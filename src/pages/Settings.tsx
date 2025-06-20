@@ -1,13 +1,64 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { User, Key, Shield, Bell } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { User, Key, Shield, Bell, Plug } from "lucide-react";
 
 const Settings = () => {
+  const integrations = [
+    {
+      name: "HubSpot",
+      description: "Sync contacts, deals, and activities with HubSpot CRM",
+      status: "disconnected",
+      logo: "🟠"
+    },
+    {
+      name: "Salesforce",
+      description: "Connect to Salesforce for unified customer data",
+      status: "connected",
+      logo: "☁️"
+    },
+    {
+      name: "Mixpanel",
+      description: "Track user events and product analytics",
+      status: "disconnected",
+      logo: "🔵"
+    },
+    {
+      name: "Amplitude",
+      description: "Advanced product analytics and user behavior tracking",
+      status: "disconnected",
+      logo: "📊"
+    },
+    {
+      name: "Customer.io",
+      description: "Automated email campaigns and customer messaging",
+      status: "connected",
+      logo: "💌"
+    },
+    {
+      name: "Google Analytics",
+      description: "Website traffic and conversion tracking",
+      status: "disconnected",
+      logo: "📈"
+    },
+    {
+      name: "Hotjar",
+      description: "Heatmaps, recordings, and user feedback",
+      status: "disconnected",
+      logo: "🔥"
+    },
+    {
+      name: "Zapier",
+      description: "Connect to 5000+ apps with automated workflows",
+      status: "disconnected",
+      logo: "⚡"
+    }
+  ];
+
   return (
     <div className="p-8 bg-slate-50 min-h-screen">
       <div className="mb-8">
@@ -28,6 +79,10 @@ const Settings = () => {
           <TabsTrigger value="permissions" className="flex items-center space-x-2">
             <Shield className="h-4 w-4" />
             <span>Permissions</span>
+          </TabsTrigger>
+          <TabsTrigger value="integrations" className="flex items-center space-x-2">
+            <Plug className="h-4 w-4" />
+            <span>Integrations</span>
           </TabsTrigger>
           <TabsTrigger value="notifications" className="flex items-center space-x-2">
             <Bell className="h-4 w-4" />
@@ -127,6 +182,61 @@ const Settings = () => {
                   <h4 className="font-medium text-slate-800 mb-2">Sales Representative</h4>
                   <p className="text-sm text-slate-600">Manage own accounts, contacts, and opportunities</p>
                 </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="integrations">
+          <Card className="bg-white shadow-sm">
+            <CardHeader>
+              <CardTitle>Integrations</CardTitle>
+              <p className="text-sm text-slate-600">
+                Connect Leaflet CRM with your favorite tools to streamline your workflow
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {integrations.map((integration) => (
+                  <div key={integration.name} className="p-4 border border-slate-200 rounded-lg hover:border-slate-300 transition-colors">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-start space-x-3">
+                        <div className="text-2xl">{integration.logo}</div>
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-2">
+                            <h4 className="font-medium text-slate-800">{integration.name}</h4>
+                            <Badge 
+                              variant={integration.status === 'connected' ? 'default' : 'secondary'}
+                              className={integration.status === 'connected' ? 'bg-emerald-100 text-emerald-700' : ''}
+                            >
+                              {integration.status === 'connected' ? 'Connected' : 'Disconnected'}
+                            </Badge>
+                          </div>
+                          <p className="text-sm text-slate-600 mt-1">{integration.description}</p>
+                        </div>
+                      </div>
+                      <Button 
+                        variant={integration.status === 'connected' ? 'outline' : 'default'}
+                        size="sm"
+                        className={integration.status === 'connected' ? 'text-slate-600' : 'bg-emerald-600 hover:bg-emerald-700'}
+                      >
+                        {integration.status === 'connected' ? 'Configure' : 'Connect'}
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <Separator />
+              
+              <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <h4 className="font-medium text-blue-800 mb-2">Need a custom integration?</h4>
+                <p className="text-sm text-blue-700 mb-3">
+                  Contact our team to discuss building a custom integration for your specific needs.
+                </p>
+                <Button variant="outline" size="sm" className="text-blue-700 border-blue-300 hover:bg-blue-100">
+                  Request Integration
+                </Button>
               </div>
             </CardContent>
           </Card>
