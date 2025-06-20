@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -8,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import { User, Key, Shield, Bell, Plug, Building, Crown } from "lucide-react";
+import { User, Key, Shield, Bell, Plug, Building, Crown, Check, Settings as SettingsIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { X, Plus } from "lucide-react";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
@@ -114,6 +113,82 @@ const Settings = () => {
     setIsUpgradeModalOpen(true);
   };
 
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case "active":
+        return (
+          <Badge className="bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border-green-200">
+            <Check className="h-3 w-3 mr-1" />
+            Active
+          </Badge>
+        );
+      case "available":
+        return (
+          <Badge className="bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 border-blue-200">
+            <Plug className="h-3 w-3 mr-1" />
+            Available
+          </Badge>
+        );
+      case "premium":
+        return (
+          <Badge className="bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800 border-amber-200">
+            <Crown className="h-3 w-3 mr-1" />
+            Premium
+          </Badge>
+        );
+      default:
+        return null;
+    }
+  };
+
+  const getActionButton = (integration: any) => {
+    switch (integration.status) {
+      case "active":
+        return (
+          <Button 
+            variant="outline"
+            className="border-green-200 text-green-700 hover:bg-green-50"
+            onClick={() => {
+              toast({
+                title: `${integration.name} Settings`,
+                description: "Integration settings would open here."
+              });
+            }}
+          >
+            <SettingsIcon className="h-4 w-4 mr-2" />
+            Configure
+          </Button>
+        );
+      case "available":
+        return (
+          <Button 
+            className="bg-blue-600 hover:bg-blue-700 text-white"
+            onClick={() => {
+              toast({
+                title: `Connecting ${integration.name}`,
+                description: "Integration setup would begin here."
+              });
+            }}
+          >
+            <Plug className="h-4 w-4 mr-2" />
+            Connect
+          </Button>
+        );
+      case "premium":
+        return (
+          <Button 
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-md"
+            onClick={() => handleIntegrationConnect(integration.name)}
+          >
+            <Crown className="h-4 w-4 mr-2" />
+            Upgrade to Connect
+          </Button>
+        );
+      default:
+        return null;
+    }
+  };
+
   const integrations = [
     {
       name: "Salesforce",
@@ -139,35 +214,35 @@ const Settings = () => {
     {
       name: "Customer.io",
       description: "Powerful email marketing automation and customer messaging platform",
-      status: "premium",
+      status: "active",
       logo: "📧",
       features: ["Email automation", "Behavioral triggers", "Segmentation", "A/B testing"]
     },
     {
       name: "Mixpanel",
       description: "Advanced product analytics to understand user behavior and optimize conversions",
-      status: "premium",
+      status: "active",
       logo: "📊",
       features: ["Event tracking", "Funnel analysis", "Cohort analysis", "Real-time data"]
     },
     {
       name: "Zapier",
       description: "Connect with 5000+ apps to automate workflows and eliminate manual tasks",
-      status: "premium",
+      status: "available",
       logo: "⚡",
       features: ["Multi-step workflows", "Conditional logic", "Error handling", "Custom webhooks"]
     },
     {
       name: "Make.com",
       description: "Visual automation platform for complex integrations and data processing",
-      status: "premium",
+      status: "available",
       logo: "🔗",
       features: ["Visual builder", "Advanced logic", "API integrations", "Real-time sync"]
     },
     {
       name: "Smartlook",
       description: "Complete user experience analytics with recordings and conversion optimization",
-      status: "premium",
+      status: "available",
       logo: "👁️",
       features: ["Session recordings", "Heatmaps", "Event tracking", "Conversion funnels"]
     }
@@ -487,9 +562,9 @@ const Settings = () => {
           <TabsContent value="integrations">
             <Card className="bg-white shadow-sm">
               <CardHeader>
-                <CardTitle>Premium Integrations</CardTitle>
+                <CardTitle>Integrations</CardTitle>
                 <p className="text-sm text-slate-600">
-                  Connect Leaflet CRM with powerful enterprise tools to supercharge your workflow
+                  Connect Leaflet CRM with powerful tools to enhance your workflow
                 </p>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -502,10 +577,7 @@ const Settings = () => {
                           <div className="flex-1">
                             <div className="flex items-center space-x-3 mb-2">
                               <h4 className="font-semibold text-slate-800 text-lg">{integration.name}</h4>
-                              <Badge className="bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800 border-amber-200">
-                                <Crown className="h-3 w-3 mr-1" />
-                                Premium
-                              </Badge>
+                              {getStatusBadge(integration.status)}
                             </div>
                             <p className="text-sm text-slate-600 mb-3">{integration.description}</p>
                             <div className="flex flex-wrap gap-2">
@@ -517,13 +589,7 @@ const Settings = () => {
                             </div>
                           </div>
                         </div>
-                        <Button 
-                          className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-md"
-                          onClick={() => handleIntegrationConnect(integration.name)}
-                        >
-                          <Crown className="h-4 w-4 mr-2" />
-                          Upgrade to Connect
-                        </Button>
+                        {getActionButton(integration)}
                       </div>
                     </div>
                   ))}
