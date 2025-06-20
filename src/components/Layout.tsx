@@ -1,6 +1,5 @@
 
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { 
   LayoutDashboard, 
@@ -13,13 +12,25 @@ import {
   Package, 
   FileText, 
   Settings,
-  Menu,
-  X,
   LogOut
 } from "lucide-react";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  SidebarTrigger,
+  SidebarInset,
+} from "@/components/ui/sidebar";
 
 const Layout = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
   const location = useLocation();
 
   const navigation = [
@@ -42,66 +53,71 @@ const Layout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex">
-      {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-white shadow-lg transition-all duration-300 flex flex-col`}>
-        <div className="p-6 border-b border-slate-200 flex items-center justify-between">
-          {sidebarOpen && (
-            <div className="flex items-center space-x-3">
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full bg-slate-50">
+        <Sidebar>
+          <SidebarHeader className="border-b border-sidebar-border">
+            <div className="flex items-center space-x-3 px-2">
               <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">L</span>
               </div>
-              <span className="font-bold text-xl text-slate-800">Leaflet CRM</span>
+              <span className="font-bold text-xl text-sidebar-foreground group-data-[collapsible=icon]:hidden">
+                Leaflet CRM
+              </span>
             </div>
-          )}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="text-slate-600 hover:text-slate-800"
-          >
-            {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
-        </div>
-        
-        <nav className="flex-1 px-4 py-6 space-y-2">
-          {navigation.map((item) => {
-            const Icon = item.icon;
-            return (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
-                  isActive(item.href)
-                    ? 'bg-emerald-100 text-emerald-700 border-l-4 border-emerald-500'
-                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-800'
-                }`}
-              >
-                <Icon className="h-5 w-5" />
-                {sidebarOpen && <span className="font-medium">{item.name}</span>}
-              </Link>
-            );
-          })}
-        </nav>
+          </SidebarHeader>
+          
+          <SidebarContent>
+            <SidebarGroup>
+              <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {navigation.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <SidebarMenuItem key={item.name}>
+                        <SidebarMenuButton
+                          asChild
+                          isActive={isActive(item.href)}
+                          tooltip={item.name}
+                        >
+                          <Link to={item.href}>
+                            <Icon className="h-4 w-4" />
+                            <span>{item.name}</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    );
+                  })}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </SidebarContent>
 
-        <div className="p-4 border-t border-slate-200">
-          <Link
-            to="/login"
-            className="flex items-center space-x-3 px-3 py-2 text-slate-600 hover:bg-slate-100 hover:text-slate-800 rounded-lg transition-colors"
-          >
-            <LogOut className="h-5 w-5" />
-            {sidebarOpen && <span className="font-medium">Sign Out</span>}
-          </Link>
-        </div>
-      </div>
+          <SidebarFooter className="border-t border-sidebar-border">
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild tooltip="Sign Out">
+                  <Link to="/login">
+                    <LogOut className="h-4 w-4" />
+                    <span>Sign Out</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarFooter>
+        </Sidebar>
 
-      {/* Main content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <main className="flex-1 overflow-auto">
-          <Outlet />
-        </main>
+        <SidebarInset>
+          <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+            <SidebarTrigger className="-ml-1" />
+          </header>
+          <main className="flex-1 overflow-auto p-4">
+            <Outlet />
+          </main>
+        </SidebarInset>
       </div>
-    </div>
+    </SidebarProvider>
   );
 };
 
