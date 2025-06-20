@@ -1,4 +1,3 @@
-
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -122,17 +121,6 @@ const Layout = () => {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
                 <Input placeholder="Search accounts, contacts, opportunities..." className="pl-10 bg-slate-50 border-slate-200 focus:bg-white" />
               </div>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <Button variant="ghost" size="sm" className="text-slate-600">
-                <span className="sr-only">Notifications</span>
-                🔔
-              </Button>
-              <Button variant="ghost" size="sm" className="text-slate-600">
-                <span className="sr-only">Profile</span>
-                👤
-              </Button>
             </div>
           </header>
           <main className="flex-1 overflow-auto p-6">
