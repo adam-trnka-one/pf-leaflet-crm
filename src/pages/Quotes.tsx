@@ -54,7 +54,7 @@ const Quotes = () => {
           <p className="text-slate-600 mt-2">Manage sales quotes and proposals</p>
         </div>
         <Button 
-          className="bg-emerald-600 hover:bg-emerald-700"
+          className="bg-[#4AB831] hover:bg-[#3da127]"
           onClick={() => setIsModalOpen(true)}
         >
           <Plus className="h-4 w-4 mr-2" />
