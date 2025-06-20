@@ -1,9 +1,7 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Facebook, Instagram, Twitter } from "lucide-react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -59,32 +57,13 @@ const Login = () => {
               />
             </div>
 
-            <div className="flex gap-4">
-              <Button 
-                type="submit" 
-                className="flex-1 h-12 bg-leaflet-green hover:bg-leaflet-green-hover text-white font-medium rounded-md"
-              >
-                Sign in
-              </Button>
-              <Button 
-                type="button" 
-                variant="outline"
-                className="flex-1 h-12 border-2 border-leaflet-green text-leaflet-green hover:bg-green-50 font-medium rounded-md"
-              >
-                Sign up
-              </Button>
-            </div>
+            <Button 
+              type="submit" 
+              className="w-full h-12 bg-leaflet-green hover:bg-leaflet-green-hover text-white font-medium rounded-md"
+            >
+              Sign in
+            </Button>
           </form>
-
-          {/* Social Links */}
-          <div className="mt-8">
-            <p className="text-sm text-gray-500 mb-4 uppercase tracking-wide">Follow</p>
-            <div className="flex gap-4">
-              <Facebook className="h-5 w-5 text-gray-400 hover:text-blue-600 cursor-pointer" />
-              <Twitter className="h-5 w-5 text-gray-400 hover:text-blue-400 cursor-pointer" />
-              <Instagram className="h-5 w-5 text-gray-400 hover:text-leaflet-green cursor-pointer" />
-            </div>
-          </div>
 
           {/* Demo Info */}
           <div className="mt-8">
