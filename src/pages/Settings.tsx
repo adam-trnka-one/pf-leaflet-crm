@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -6,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { User, Key, Shield, Bell, Plug, Building } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, Plus } from "lucide-react";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useProductFruits } from "@/hooks/useProductFruits";
@@ -16,17 +17,29 @@ const Settings = () => {
   const { initializeProductFruits, hasWorkspaceCodeChanged } = useProductFruits();
   
   const [localWorkspaceData, setLocalWorkspaceData] = useState({
-    workspaceCode: workspaceData.workspaceCode || 'KFRC3cd1dM48s0p9',
-    username: workspaceData.username || 'john.dow',
-    email: workspaceData.email || '',
-    firstName: workspaceData.firstName || '',
-    lastName: workspaceData.lastName || '',
-    role: workspaceData.role || '',
-    customProperties: workspaceData.customProperties || []
+    workspaceCode: '',
+    username: '',
+    email: '',
+    firstName: '',
+    lastName: '',
+    role: '',
+    customProperties: []
   });
-  const [customProperties, setCustomProperties] = useState(
-    workspaceData.customProperties || []
-  );
+  const [customProperties, setCustomProperties] = useState<{ name: string; value: string }[]>([]);
+
+  // Load workspace data into local state when context data changes
+  useEffect(() => {
+    setLocalWorkspaceData({
+      workspaceCode: workspaceData.workspaceCode,
+      username: workspaceData.username,
+      email: workspaceData.email,
+      firstName: workspaceData.firstName,
+      lastName: workspaceData.lastName,
+      role: workspaceData.role,
+      customProperties: workspaceData.customProperties
+    });
+    setCustomProperties(workspaceData.customProperties);
+  }, [workspaceData]);
 
   const addCustomProperty = () => {
     setCustomProperties([...customProperties, { name: "", value: "" }]);
