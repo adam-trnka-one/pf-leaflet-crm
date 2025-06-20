@@ -102,7 +102,7 @@ const Layout = () => {
         </Sidebar>
 
         <SidebarInset>
-          <header className="flex h-[95px] shrink-0 items-center justify-between gap-6 border-b px-6 bg-white">
+          <header className="flex h-[94px] shrink-0 items-center justify-between gap-6 border-b px-6 bg-white">
             <div className="flex items-center gap-4">
               <SidebarTrigger className="-ml-1" />
             </div>
