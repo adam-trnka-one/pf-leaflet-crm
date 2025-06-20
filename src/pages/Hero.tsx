@@ -333,7 +333,7 @@ const Hero = () => {
           </p>
           <Link to="/login">
             <Button size="lg" className="bg-white text-[#4AB831] hover:bg-gray-100 px-10 py-6 text-xl">
-              Start Free Trial
+              Get Started
               <ArrowRight className="ml-3 h-6 w-6" />
             </Button>
           </Link>
