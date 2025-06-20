@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
-
 const Layout = () => {
   const location = useLocation();
   const navigation = [{
@@ -102,7 +101,7 @@ const Layout = () => {
         </Sidebar>
 
         <SidebarInset>
-          <header className="flex h-[94px] shrink-0 items-center justify-between gap-6 border-b px-6 bg-white">
+          <header className="flex h-[96px] shrink-0 items-center justify-between gap-6 border-b px-6 bg-white py-0">
             <div className="flex items-center gap-4">
               <SidebarTrigger className="-ml-1" />
             </div>
