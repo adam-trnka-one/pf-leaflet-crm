@@ -2,7 +2,8 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search } from "lucide-react";
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
+
 const Layout = () => {
   const location = useLocation();
   const navigation = [{
@@ -54,6 +55,7 @@ const Layout = () => {
     if (href === "/") return location.pathname === "/";
     return location.pathname.startsWith(href);
   };
+
   return <SidebarProvider>
       <div className="min-h-screen flex w-full bg-slate-50">
         <Sidebar className="w-72">
@@ -65,9 +67,6 @@ const Layout = () => {
           
           <SidebarContent className="p-4">
             <SidebarGroup>
-              <SidebarGroupLabel className="text-sm font-semibold text-sidebar-foreground/80 mb-3">
-                Navigation
-              </SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu className="space-y-1">
                   {navigation.map(item => {
@@ -120,4 +119,5 @@ const Layout = () => {
       </div>
     </SidebarProvider>;
 };
+
 export default Layout;
