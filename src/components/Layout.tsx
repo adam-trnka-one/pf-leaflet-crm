@@ -59,7 +59,7 @@ const Layout = () => {
       <div className="min-h-screen flex w-full bg-slate-50">
         <Sidebar className="w-72">
           <SidebarHeader className="border-b border-sidebar-border px-4 py-4">
-            <div className="flex items-center">
+            <div className="flex items-center pl-[15px]">
               <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
             </div>
           </SidebarHeader>
