@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Facebook, Instagram, Twitter } from "lucide-react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -17,50 +17,99 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-blue-50 flex items-center justify-center px-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <div className="mx-auto w-16 h-16 bg-leaflet-green rounded-xl flex items-center justify-center mb-4">
-            <span className="text-white font-bold text-2xl">L</span>
+    <div className="min-h-screen flex">
+      {/* Left side - Form */}
+      <div className="flex-1 flex items-center justify-center bg-white px-8 lg:px-16">
+        <div className="w-full max-w-md">
+          {/* Logo */}
+          <div className="mb-8">
+            <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto mb-8" />
           </div>
-          <CardTitle className="text-2xl font-bold text-slate-800">Welcome to Leaflet CRM</CardTitle>
-          <p className="text-slate-600">Sign in to your account</p>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+
+          {/* Welcome Text */}
+          <div className="mb-8">
+            <h1 className="text-3xl font-light text-gray-800 mb-2">
+              Hello,
+            </h1>
+            <h2 className="text-3xl font-bold text-blue-600">
+              welcome!
+            </h2>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
               <Input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="john@company.com"
+                placeholder="Email address"
                 required
-                className="w-full"
+                className="w-full h-12 border-l-4 border-l-pink-500 border-t-0 border-r-0 border-b border-b-gray-200 rounded-none bg-transparent px-4 focus:border-l-pink-500 focus:ring-0"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
               <Input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
+                placeholder="Password"
                 required
-                className="w-full"
+                className="w-full h-12 border-l-4 border-l-pink-500 border-t-0 border-r-0 border-b border-b-gray-200 rounded-none bg-transparent px-4 focus:border-l-pink-500 focus:ring-0"
               />
             </div>
-            <Button type="submit" className="w-full bg-leaflet-green hover:bg-leaflet-green-hover">
-              Sign In
-            </Button>
+
+            <div className="flex gap-4">
+              <Button 
+                type="submit" 
+                className="flex-1 h-12 bg-pink-500 hover:bg-pink-600 text-white font-medium rounded-md"
+              >
+                Sign in
+              </Button>
+              <Button 
+                type="button" 
+                variant="outline"
+                className="flex-1 h-12 border-2 border-blue-500 text-blue-500 hover:bg-blue-50 font-medium rounded-md"
+              >
+                Sign up
+              </Button>
+            </div>
           </form>
-          <div className="mt-4 text-center">
-            <p className="text-sm text-slate-600">
+
+          {/* Social Links */}
+          <div className="mt-8">
+            <p className="text-sm text-gray-500 mb-4 uppercase tracking-wide">Follow</p>
+            <div className="flex gap-4">
+              <Facebook className="h-5 w-5 text-gray-400 hover:text-blue-600 cursor-pointer" />
+              <Twitter className="h-5 w-5 text-gray-400 hover:text-blue-400 cursor-pointer" />
+              <Instagram className="h-5 w-5 text-gray-400 hover:text-pink-600 cursor-pointer" />
+            </div>
+          </div>
+
+          {/* Demo Info */}
+          <div className="mt-8">
+            <p className="text-xs text-gray-400">
               Demo credentials: any email/password
             </p>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
+
+      {/* Right side - Gradient Background */}
+      <div className="hidden lg:flex flex-1 bg-gradient-to-br from-purple-600 via-pink-500 to-blue-500 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/90 via-pink-500/80 to-blue-500/90"></div>
+        
+        {/* Decorative circles */}
+        <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-white/10 rounded-full"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-white/10 rounded-full"></div>
+        <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-white/20 rounded-full"></div>
+        
+        {/* Gradient overlay shapes */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-gradient-to-bl from-pink-400/30 to-transparent rounded-full transform translate-x-1/3 -translate-y-1/3"></div>
+          <div className="absolute bottom-0 left-0 w-2/3 h-2/3 bg-gradient-to-tr from-blue-400/30 to-transparent rounded-full transform -translate-x-1/3 translate-y-1/3"></div>
+        </div>
+      </div>
     </div>
   );
 };
