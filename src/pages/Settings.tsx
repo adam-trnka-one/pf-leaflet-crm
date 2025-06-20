@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -64,8 +65,13 @@ const Settings = () => {
       ...localWorkspaceData,
       customProperties: customProperties.filter(prop => prop.name && prop.value)
     };
+    
+    // Save to context and localStorage
     updateWorkspaceData(dataToSave);
-    initializeProductFruits(); // Re-initialize ProductFruits after saving
+    
+    // Re-initialize ProductFruits with the newly saved data
+    initializeProductFruits(dataToSave);
+    
     console.log('Workspace data saved and ProductFruits re-initialized:', dataToSave);
   };
 
