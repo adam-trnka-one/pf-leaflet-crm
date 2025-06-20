@@ -13,11 +13,27 @@ const ContactDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const data = getSampleData();
-    if (data && id) {
-      const foundContact = data.contacts.find((con: Contact) => con.id === id);
-      setContact(foundContact || null);
+    // First try to load from localStorage
+    const storedContacts = localStorage.getItem('crmContacts');
+    let foundContact = null;
+    
+    if (storedContacts) {
+      const parsedContacts = JSON.parse(storedContacts).map((contact: any) => ({
+        ...contact,
+        createdAt: new Date(contact.createdAt)
+      }));
+      foundContact = parsedContacts.find((con: Contact) => con.id === id);
     }
+    
+    // If not found in localStorage, try sample data
+    if (!foundContact) {
+      const data = getSampleData();
+      if (data && id) {
+        foundContact = data.contacts.find((con: Contact) => con.id === id);
+      }
+    }
+    
+    setContact(foundContact || null);
     setLoading(false);
   }, [id]);
 
@@ -33,7 +49,7 @@ const ContactDetail = () => {
     return (
       <div className="p-8 text-center">
         <h1 className="text-2xl font-bold text-slate-800">Contact not found</h1>
-        <Link to="/contacts">
+        <Link to="/dashboard/contacts">
           <Button className="mt-4">Back to Contacts</Button>
         </Link>
       </div>
@@ -44,7 +60,7 @@ const ContactDetail = () => {
     <div className="p-8 bg-slate-50 min-h-screen">
       {/* Header */}
       <div className="flex items-center space-x-4 mb-8">
-        <Link to="/contacts">
+        <Link to="/dashboard/contacts">
           <Button variant="outline" size="sm">
             <ArrowLeft className="h-4 w-4" />
           </Button>

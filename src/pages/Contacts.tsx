@@ -94,7 +94,7 @@ const Contacts = () => {
       {/* Contacts Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredContacts.map((contact) => (
-          <Link key={contact.id} to={`/contacts/${contact.id}`}>
+          <Link key={contact.id} to={`/dashboard/contacts/${contact.id}`}>
             <Card className="bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer">
               <CardHeader className="pb-2">
                 <div className="flex items-center space-x-3">
