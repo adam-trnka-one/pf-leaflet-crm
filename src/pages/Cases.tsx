@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Plus, HelpCircle, Clock, AlertTriangle, Edit, Trash2 } from "lucide-react";
 import NewCaseModal from "@/components/modals/NewCaseModal";
+import EditCaseModal from "@/components/modals/EditCaseModal";
 import { toast } from "@/hooks/use-toast";
 
 const Cases = () => {
@@ -15,6 +16,8 @@ const Cases = () => {
   const [priorityFilter, setPriorityFilter] = useState<string>("all");
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedCase, setSelectedCase] = useState<Case | null>(null);
 
   const loadCases = () => {
     // Try to load from localStorage first
@@ -57,6 +60,17 @@ const Cases = () => {
 
   const handleCaseCreated = () => {
     loadCases();
+  };
+
+  const handleEdit = (case_: Case) => {
+    setSelectedCase(case_);
+    setIsEditModalOpen(true);
+  };
+
+  const handleCaseUpdated = () => {
+    loadCases();
+    setIsEditModalOpen(false);
+    setSelectedCase(null);
   };
 
   const handleDelete = (caseId: string) => {
@@ -202,7 +216,7 @@ const Cases = () => {
                     <p>Created: {case_.createdAt.toLocaleDateString()}</p>
                   </div>
                   <div className="flex space-x-2">
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" onClick={() => handleEdit(case_)}>
                       <Edit className="h-4 w-4 mr-1" />
                       Edit
                     </Button>
@@ -232,6 +246,13 @@ const Cases = () => {
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
         onCaseCreated={handleCaseCreated}
+      />
+
+      <EditCaseModal
+        open={isEditModalOpen}
+        onOpenChange={setIsEditModalOpen}
+        case_={selectedCase}
+        onCaseUpdated={handleCaseUpdated}
       />
     </div>
   );
