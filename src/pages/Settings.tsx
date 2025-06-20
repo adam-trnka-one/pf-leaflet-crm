@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -22,9 +23,7 @@ const Settings = () => {
     customProperties: workspaceData.customProperties || []
   });
   const [customProperties, setCustomProperties] = useState(
-    workspaceData.customProperties.length > 0 
-      ? workspaceData.customProperties 
-      : [{ name: "", value: "" }, { name: "", value: "" }, { name: "", value: "" }]
+    workspaceData.customProperties || []
   );
 
   const addCustomProperty = () => {
@@ -244,32 +243,34 @@ const Settings = () => {
                   </Button>
                 </div>
                 
-                <div className="space-y-3">
-                  {customProperties.map((property, index) => (
-                    <div key={index} className="flex items-center space-x-2">
-                      <Input 
-                        placeholder="Property Name"
-                        value={property.name}
-                        onChange={(e) => updateCustomProperty(index, "name", e.target.value)}
-                        className="flex-1"
-                      />
-                      <Input 
-                        placeholder="Property Value"
-                        value={property.value}
-                        onChange={(e) => updateCustomProperty(index, "value", e.target.value)}
-                        className="flex-1"
-                      />
-                      <Button 
-                        variant="ghost" 
-                        size="sm"
-                        onClick={() => removeCustomProperty(index)}
-                        className="text-slate-500 hover:text-red-500"
-                      >
-                        <X className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  ))}
-                </div>
+                {customProperties.length > 0 && (
+                  <div className="space-y-3">
+                    {customProperties.map((property, index) => (
+                      <div key={index} className="flex items-center space-x-2">
+                        <Input 
+                          placeholder="Property Name"
+                          value={property.name}
+                          onChange={(e) => updateCustomProperty(index, "name", e.target.value)}
+                          className="flex-1"
+                        />
+                        <Input 
+                          placeholder="Property Value"
+                          value={property.value}
+                          onChange={(e) => updateCustomProperty(index, "value", e.target.value)}
+                          className="flex-1"
+                        />
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => removeCustomProperty(index)}
+                          className="text-slate-500 hover:text-red-500"
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <Separator />
@@ -289,7 +290,7 @@ const Settings = () => {
                         role: '',
                         customProperties: []
                       });
-                      setCustomProperties([{ name: "", value: "" }, { name: "", value: "" }, { name: "", value: "" }]);
+                      setCustomProperties([]);
                     }}
                   >
                     Reset to Defaults
