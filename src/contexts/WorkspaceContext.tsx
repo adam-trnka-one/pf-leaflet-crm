@@ -8,6 +8,9 @@ interface WorkspaceData {
   firstName: string;
   lastName: string;
   role: string;
+  workspaceName: string;
+  companySize: string;
+  industry: string;
   customProperties: { name: string; value: string }[];
 }
 
@@ -27,6 +30,9 @@ const defaultWorkspaceData: WorkspaceData = {
   firstName: '',
   lastName: '',
   role: '',
+  workspaceName: '',
+  companySize: '',
+  industry: '',
   customProperties: []
 };
 
