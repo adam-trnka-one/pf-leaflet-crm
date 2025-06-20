@@ -27,16 +27,16 @@ const Hero = () => {
             alt="People having conversations with laptops in a bright setting with trees" 
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-black/10"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
         </div>
 
         {/* Content */}
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h1 className="text-6xl md:text-7xl font-bold text-white mb-8 leading-tight">
+          <h1 className="text-6xl md:text-7xl font-bold text-white mb-8 leading-tight drop-shadow-lg">
             Lighten your workload
             <span className="text-[#4AB831] block mt-4"> Boost your revenue</span>
           </h1>
-          <p className="text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
             Streamline your customer relationships, boost sales productivity, and grow your business with our intuitive CRM platform.
           </p>
           <div className="flex gap-6 justify-center flex-wrap">
