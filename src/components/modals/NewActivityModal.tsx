@@ -115,7 +115,7 @@ const NewActivityModal = ({ open, onOpenChange, onActivityCreated }: NewActivity
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Cancel
           </Button>
-          <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700">
+          <Button onClick={handleSubmit} className="bg-leaflet-green hover:bg-leaflet-green-hover">
             Create Activity
           </Button>
         </DialogFooter>

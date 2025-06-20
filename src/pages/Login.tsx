@@ -20,7 +20,7 @@ const Login = () => {
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-blue-50 flex items-center justify-center px-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <div className="mx-auto w-16 h-16 bg-emerald-500 rounded-xl flex items-center justify-center mb-4">
+          <div className="mx-auto w-16 h-16 bg-leaflet-green rounded-xl flex items-center justify-center mb-4">
             <span className="text-white font-bold text-2xl">L</span>
           </div>
           <CardTitle className="text-2xl font-bold text-slate-800">Welcome to Leaflet CRM</CardTitle>
@@ -50,7 +50,7 @@ const Login = () => {
                 className="w-full"
               />
             </div>
-            <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700">
+            <Button type="submit" className="w-full bg-leaflet-green hover:bg-leaflet-green-hover">
               Sign In
             </Button>
           </form>
