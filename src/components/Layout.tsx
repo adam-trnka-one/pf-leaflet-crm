@@ -1,3 +1,4 @@
+
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -64,12 +65,11 @@ const Layout = () => {
         <Sidebar className="w-72">
           <SidebarHeader className="border-b border-sidebar-border p-6 py-[20px]">
             <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">L</span>
-              </div>
-              <span className="font-bold text-xl text-sidebar-foreground group-data-[collapsible=icon]:hidden">
-                Leaflet CRM
-              </span>
+              <img 
+                src="/lovable-uploads/415345c1-c7de-4681-a387-ed49a43dc712.png" 
+                alt="Leaflet CRM" 
+                className="h-10 w-auto"
+              />
             </div>
           </SidebarHeader>
           
