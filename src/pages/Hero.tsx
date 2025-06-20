@@ -215,7 +215,7 @@ const Hero = () => {
                 <span className="text-4xl font-bold text-gray-900">$29</span>
                 <span className="text-gray-600">/month</span>
               </div>
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3">
                 <li className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-[#4AB831] mr-3" />
                   <span>Up to 1,000 contacts</span>
@@ -229,9 +229,6 @@ const Hero = () => {
                   <span>Email support</span>
                 </li>
               </ul>
-              <Button variant="outline" className="w-full">
-                Get Started
-              </Button>
             </div>
             <div className="border-2 border-[#4AB831] rounded-xl p-8 relative">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -244,7 +241,7 @@ const Hero = () => {
                 <span className="text-4xl font-bold text-gray-900">$79</span>
                 <span className="text-gray-600">/month</span>
               </div>
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3">
                 <li className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-[#4AB831] mr-3" />
                   <span>Up to 10,000 contacts</span>
@@ -262,9 +259,6 @@ const Hero = () => {
                   <span>API access</span>
                 </li>
               </ul>
-              <Button className="w-full bg-[#4AB831] hover:bg-[#3da127] text-white">
-                Get Started
-              </Button>
             </div>
             <div className="border border-gray-200 rounded-xl p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Enterprise</h3>
@@ -272,7 +266,7 @@ const Hero = () => {
                 <span className="text-4xl font-bold text-gray-900">$199</span>
                 <span className="text-gray-600">/month</span>
               </div>
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3">
                 <li className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-[#4AB831] mr-3" />
                   <span>Unlimited contacts</span>
@@ -290,9 +284,6 @@ const Hero = () => {
                   <span>Custom training</span>
                 </li>
               </ul>
-              <Button variant="outline" className="w-full">
-                Contact Sales
-              </Button>
             </div>
           </div>
         </div>
