@@ -1,4 +1,3 @@
-
 // Sample data generator for CRM
 export interface Account {
   id: string;
@@ -268,7 +267,7 @@ export function getSampleData() {
       opp.closeDate = new Date(opp.closeDate);
     });
     data.leads.forEach((lead: any) => lead.createdAt = new Date(lead.createdAt));
-    data.cases.forEach((case: any) => case.createdAt = new Date(case.createdAt));
+    data.cases.forEach((caseItem: any) => caseItem.createdAt = new Date(caseItem.createdAt));
     return data;
   }
   return null;
