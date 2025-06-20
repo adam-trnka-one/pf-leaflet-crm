@@ -3,264 +3,594 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import { Plus, Trash2 } from "lucide-react";
+import { User, Key, Shield, Bell, Plug, Building } from "lucide-react";
+import { useState, useEffect } from "react";
+import { X, Plus } from "lucide-react";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useProductFruits } from "@/hooks/useProductFruits";
-import { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { useToast } from "@/hooks/use-toast";
 
 const Settings = () => {
   const { workspaceData, updateWorkspaceData } = useWorkspace();
   const { initializeProductFruits } = useProductFruits();
-  const { toast } = useToast();
-
+  
   const [localWorkspaceData, setLocalWorkspaceData] = useState({
-    workspaceName: workspaceData?.workspaceName || "",
-    companySize: workspaceData?.companySize || "",
-    industry: workspaceData?.industry || "",
+    workspaceCode: '',
+    username: '',
+    email: '',
+    firstName: '',
+    lastName: '',
+    role: '',
+    customProperties: []
   });
+  const [customProperties, setCustomProperties] = useState<{ name: string; value: string }[]>([]);
+  const [isDataModalOpen, setIsDataModalOpen] = useState(false);
+  const [displayData, setDisplayData] = useState('');
 
-  const [customProperties, setCustomProperties] = useState(
-    workspaceData?.customProperties || []
-  );
-  const [newPropertyName, setNewPropertyName] = useState("");
-  const [newPropertyValue, setNewPropertyValue] = useState("");
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  // Load workspace data into local state when context data changes
+  useEffect(() => {
+    setLocalWorkspaceData({
+      workspaceCode: workspaceData.workspaceCode,
+      username: workspaceData.username,
+      email: workspaceData.email,
+      firstName: workspaceData.firstName,
+      lastName: workspaceData.lastName,
+      role: workspaceData.role,
+      customProperties: workspaceData.customProperties
+    });
+    setCustomProperties(workspaceData.customProperties);
+  }, [workspaceData]);
 
-  const handleAddCustomProperty = () => {
-    if (newPropertyName && newPropertyValue) {
-      setCustomProperties([
-        ...customProperties,
-        { name: newPropertyName, value: newPropertyValue },
-      ]);
-      setNewPropertyName("");
-      setNewPropertyValue("");
-    }
+  const addCustomProperty = () => {
+    setCustomProperties([...customProperties, { name: "", value: "" }]);
   };
 
-  const handleDeleteCustomProperty = (index: number) => {
-    const updatedProperties = [...customProperties];
-    updatedProperties.splice(index, 1);
-    setCustomProperties(updatedProperties);
+  const removeCustomProperty = (index: number) => {
+    const newProperties = customProperties.filter((_, i) => i !== index);
+    setCustomProperties(newProperties);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setLocalWorkspaceData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  const updateCustomProperty = (index: number, field: "name" | "value", value: string) => {
+    const newProperties = [...customProperties];
+    newProperties[index][field] = value;
+    setCustomProperties(newProperties);
   };
 
-  const handleSave = () => {
+  const handleSaveWorkspaceData = () => {
     const dataToSave = {
       ...localWorkspaceData,
       customProperties: customProperties.filter(prop => prop.name && prop.value)
     };
-    
-    // Save to context and localStorage
     updateWorkspaceData(dataToSave);
-    
-    // Re-initialize ProductFruits with the newly saved data
-    initializeProductFruits(dataToSave);
-    
+    initializeProductFruits(); // Re-initialize ProductFruits after saving
     console.log('Workspace data saved and ProductFruits re-initialized:', dataToSave);
-    
-    // Show success toast
-    toast({
-      title: "Settings saved",
-      description: "Your workspace settings have been successfully saved.",
-    });
-  };
-
-  const handleDelete = () => {
-    const emptyData = {
-      workspaceName: "",
-      companySize: "",
-      industry: "",
-      customProperties: []
-    };
-    
-    updateWorkspaceData(emptyData);
-    setLocalWorkspaceData(emptyData);
-    setCustomProperties([]);
-    initializeProductFruits(emptyData);
-    
-    console.log('Workspace data cleared and ProductFruits re-initialized');
-    
-    // Show success toast
-    toast({
-      title: "Data deleted",
-      description: "All workspace data has been successfully cleared.",
-      variant: "destructive"
-    });
-    
-    setShowDeleteModal(false);
-  };
-
-  const showSavedData = () => {
-    console.log("Saved Workspace Data:", workspaceData);
   };
 
   const handleViewSavedData = () => {
-    showSavedData();
+    // Build props object from custom properties
+    const props: Record<string, string> = {};
+    workspaceData.customProperties.forEach((prop, index) => {
+      if (prop.name && prop.value) {
+        props[`prop${index + 1}`] = prop.value;
+      }
+    });
+
+    // Generate sign-up date in required format
+    const signUpDate = new Date().toISOString();
+
+    const initData = {
+      username: workspaceData.username,
+      ...(workspaceData.email && { email: workspaceData.email }),
+      ...(workspaceData.firstName && { firstname: workspaceData.firstName }),
+      ...(workspaceData.lastName && { lastname: workspaceData.lastName }),
+      signUpAt: signUpDate,
+      ...(workspaceData.role && { role: workspaceData.role }),
+      ...(Object.keys(props).length > 0 && { props })
+    };
+
+    const productFruitsScript = `window.$productFruits.push(['init', '${workspaceData.workspaceCode}', 'en', ${JSON.stringify(initData, null, 2)}]);`;
+    
+    console.log('Current workspace data from localStorage:');
+    console.log('Raw data:', workspaceData);
+    console.log('\nProductFruits script format:');
+    console.log(productFruitsScript);
+    
+    // Set the data for modal display
+    setDisplayData(productFruitsScript);
+    setIsDataModalOpen(true);
   };
 
+  const integrations = [
+    {
+      name: "HubSpot",
+      description: "Sync contacts, deals, and activities with HubSpot CRM",
+      status: "disconnected",
+      logo: "🟠"
+    },
+    {
+      name: "Salesforce",
+      description: "Connect to Salesforce for unified customer data",
+      status: "connected",
+      logo: "☁️"
+    },
+    {
+      name: "Mixpanel",
+      description: "Track user events and product analytics",
+      status: "disconnected",
+      logo: "🔵"
+    },
+    {
+      name: "Amplitude",
+      description: "Advanced product analytics and user behavior tracking",
+      status: "disconnected",
+      logo: "📊"
+    },
+    {
+      name: "Customer.io",
+      description: "Automated email campaigns and customer messaging",
+      status: "connected",
+      logo: "💌"
+    },
+    {
+      name: "Google Analytics",
+      description: "Website traffic and conversion tracking",
+      status: "disconnected",
+      logo: "📈"
+    },
+    {
+      name: "Hotjar",
+      description: "Heatmaps, recordings, and user feedback",
+      status: "disconnected",
+      logo: "🔥"
+    },
+    {
+      name: "Zapier",
+      description: "Connect to 5000+ apps with automated workflows",
+      status: "disconnected",
+      logo: "⚡"
+    }
+  ];
+
   return (
-    <div className="container mx-auto py-10">
-      <Card>
-        <CardHeader>
-          <CardTitle>Workspace Settings</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Tabs defaultValue="general" className="w-[400px]">
-            <TabsList>
-              <TabsTrigger value="general">General</TabsTrigger>
-              <TabsTrigger value="custom">Custom Properties</TabsTrigger>
-            </TabsList>
-            <TabsContent value="general">
-              <div className="grid gap-4">
+    <>
+      <div className="p-8 bg-slate-50 min-h-screen">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-slate-800">Settings</h1>
+          <p className="text-slate-600 mt-2">Manage your account and application settings</p>
+        </div>
+
+        <Tabs defaultValue="profile" className="space-y-6">
+          <TabsList className="bg-white">
+            <TabsTrigger value="profile" className="flex items-center space-x-2">
+              <User className="h-4 w-4" />
+              <span>Profile</span>
+            </TabsTrigger>
+            <TabsTrigger value="workspace" className="flex items-center space-x-2">
+              <Building className="h-4 w-4" />
+              <span>Workspace</span>
+            </TabsTrigger>
+            <TabsTrigger value="api" className="flex items-center space-x-2">
+              <Key className="h-4 w-4" />
+              <span>API Keys</span>
+            </TabsTrigger>
+            <TabsTrigger value="permissions" className="flex items-center space-x-2">
+              <Shield className="h-4 w-4" />
+              <span>Permissions</span>
+            </TabsTrigger>
+            <TabsTrigger value="integrations" className="flex items-center space-x-2">
+              <Plug className="h-4 w-4" />
+              <span>Integrations</span>
+            </TabsTrigger>
+            <TabsTrigger value="notifications" className="flex items-center space-x-2">
+              <Bell className="h-4 w-4" />
+              <span>Notifications</span>
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="workspace">
+            <Card className="bg-white shadow-sm">
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <Building className="h-5 w-5" />
+                  <span>Workspace Configuration</span>
+                </CardTitle>
+                <p className="text-sm text-slate-600">
+                  Configure your workspace settings below. This information will be used to initialize ProductFruits on your site.
+                </p>
+              </CardHeader>
+              <CardContent className="space-y-6">
                 <div>
-                  <Label htmlFor="workspaceName">Workspace Name</Label>
-                  <Input
-                    type="text"
-                    id="workspaceName"
-                    name="workspaceName"
-                    value={localWorkspaceData.workspaceName}
-                    onChange={handleInputChange}
+                  <Label htmlFor="workspaceCode" className="text-sm font-medium text-slate-700">
+                    Workspace Code <span className="text-red-500">*</span>
+                  </Label>
+                  <Input 
+                    id="workspaceCode" 
+                    placeholder="Enter your workspace code"
+                    className="mt-1"
+                    value={localWorkspaceData.workspaceCode}
+                    onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, workspaceCode: e.target.value }))}
+                  />
+                  <p className="text-xs text-slate-500 mt-1">{localWorkspaceData.workspaceCode.length}/40 characters</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="username" className="text-sm font-medium text-slate-700">
+                      Username <span className="text-red-500">*</span>
+                    </Label>
+                    <Input 
+                      id="username" 
+                      placeholder="Enter username"
+                      className="mt-1"
+                      value={localWorkspaceData.username}
+                      onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, username: e.target.value }))}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="email" className="text-sm font-medium text-slate-700">Email</Label>
+                    <Input 
+                      id="email" 
+                      type="email"
+                      placeholder="Enter email address"
+                      className="mt-1"
+                      value={localWorkspaceData.email}
+                      onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, email: e.target.value }))}
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="firstName" className="text-sm font-medium text-slate-700">First Name</Label>
+                    <Input 
+                      id="firstName" 
+                      placeholder="Enter first name"
+                      className="mt-1"
+                      value={localWorkspaceData.firstName}
+                      onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, firstName: e.target.value }))}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="lastName" className="text-sm font-medium text-slate-700">Last Name</Label>
+                    <Input 
+                      id="lastName" 
+                      placeholder="Enter last name"
+                      className="mt-1"
+                      value={localWorkspaceData.lastName}
+                      onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, lastName: e.target.value }))}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="role" className="text-sm font-medium text-slate-700">Role</Label>
+                  <Input 
+                    id="role" 
+                    placeholder="Enter role (e.g. Student, Teacher)"
+                    className="mt-1"
+                    value={localWorkspaceData.role}
+                    onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, role: e.target.value }))}
                   />
                 </div>
+
+                <Separator />
+
                 <div>
-                  <Label htmlFor="companySize">Company Size</Label>
-                  <Input
-                    type="text"
-                    id="companySize"
-                    name="companySize"
-                    value={localWorkspaceData.companySize}
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="industry">Industry</Label>
-                  <Input
-                    type="text"
-                    id="industry"
-                    name="industry"
-                    value={localWorkspaceData.industry}
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
-            </TabsContent>
-            <TabsContent value="custom">
-              <div className="grid gap-4">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Custom Properties</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid gap-4">
-                      {customProperties.map((prop, index) => (
+                  <div className="flex items-center justify-between mb-4">
+                    <Label className="text-sm font-medium text-slate-700">Custom Properties</Label>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      onClick={addCustomProperty}
+                      className="flex items-center space-x-1"
+                    >
+                      <Plus className="h-4 w-4" />
+                      <span>Add Property</span>
+                    </Button>
+                  </div>
+                  
+                  {customProperties.length > 0 && (
+                    <div className="space-y-3">
+                      {customProperties.map((property, index) => (
                         <div key={index} className="flex items-center space-x-2">
-                          <Input
-                            type="text"
+                          <Input 
                             placeholder="Property Name"
-                            value={prop.name}
-                            readOnly
-                            className="w-1/2"
+                            value={property.name}
+                            onChange={(e) => updateCustomProperty(index, "name", e.target.value)}
+                            className="flex-1"
                           />
-                          <Input
-                            type="text"
+                          <Input 
                             placeholder="Property Value"
-                            value={prop.value}
-                            readOnly
-                            className="w-1/2"
+                            value={property.value}
+                            onChange={(e) => updateCustomProperty(index, "value", e.target.value)}
+                            className="flex-1"
                           />
-                          <Button
-                            variant="destructive"
-                            size="icon"
-                            onClick={() => handleDeleteCustomProperty(index)}
+                          <Button 
+                            variant="ghost" 
+                            size="sm"
+                            onClick={() => removeCustomProperty(index)}
+                            className="text-slate-500 hover:text-red-500"
                           >
-                            <Trash2 className="h-4 w-4" />
+                            <X className="h-4 w-4" />
                           </Button>
                         </div>
                       ))}
-                      <div className="flex items-center space-x-2">
-                        <Input
-                          type="text"
-                          placeholder="Property Name"
-                          value={newPropertyName}
-                          onChange={(e) => setNewPropertyName(e.target.value)}
-                          className="w-1/2"
-                        />
-                        <Input
-                          type="text"
-                          placeholder="Property Value"
-                          value={newPropertyValue}
-                          onChange={(e) => setNewPropertyValue(e.target.value)}
-                          className="w-1/2"
-                        />
-                        <Button
-                          variant="secondary"
-                          size="icon"
-                          onClick={handleAddCustomProperty}
+                    </div>
+                  )}
+                </div>
+
+                <Separator />
+
+                <div className="flex justify-between">
+                  <div className="flex space-x-3">
+                    <Button 
+                      variant="outline" 
+                      className="text-red-600 border-red-200 hover:bg-red-50"
+                      onClick={() => {
+                        setLocalWorkspaceData({
+                          workspaceCode: 'KFRC3cd1dM48s0p9',
+                          username: 'john.dow',
+                          email: '',
+                          firstName: '',
+                          lastName: '',
+                          role: '',
+                          customProperties: []
+                        });
+                        setCustomProperties([]);
+                      }}
+                    >
+                      Reset to Defaults
+                    </Button>
+                    <Button 
+                      variant="outline"
+                      onClick={handleViewSavedData}
+                    >
+                      View Saved Data
+                    </Button>
+                  </div>
+                  <div className="flex space-x-3">
+                    <Button 
+                      className="bg-blue-600 hover:bg-blue-700"
+                      onClick={handleSaveWorkspaceData}
+                    >
+                      Save Workspace Data
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="profile">
+            <Card className="bg-white shadow-sm">
+              <CardHeader>
+                <CardTitle>Profile Settings</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="firstName">First Name</Label>
+                    <Input id="firstName" defaultValue="John" />
+                  </div>
+                  <div>
+                    <Label htmlFor="lastName">Last Name</Label>
+                    <Input id="lastName" defaultValue="Doe" />
+                  </div>
+                </div>
+                
+                <div>
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" defaultValue="john.doe@company.com" />
+                </div>
+                
+                <div>
+                  <Label htmlFor="phone">Phone</Label>
+                  <Input id="phone" defaultValue="+1 (555) 123-4567" />
+                </div>
+                
+                <Separator />
+                
+                <div className="flex justify-end">
+                  <Button className="bg-emerald-600 hover:bg-emerald-700">
+                    Save Changes
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="api">
+            <Card className="bg-white shadow-sm">
+              <CardHeader>
+                <CardTitle>API Keys</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <p className="text-sm text-yellow-800">
+                    API keys provide access to your CRM data. Keep them secure and never share them publicly.
+                  </p>
+                </div>
+                
+                <div className="space-y-4">
+                  <div>
+                    <Label>Production API Key</Label>
+                    <div className="flex space-x-2">
+                      <Input value="sk_prod_************************" readOnly />
+                      <Button variant="outline">Regenerate</Button>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <Label>Development API Key</Label>
+                    <div className="flex space-x-2">
+                      <Input value="sk_dev_************************" readOnly />
+                      <Button variant="outline">Regenerate</Button>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="permissions">
+            <Card className="bg-white shadow-sm">
+              <CardHeader>
+                <CardTitle>Role Permissions</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="p-4 border border-slate-200 rounded-lg">
+                    <h4 className="font-medium text-slate-800 mb-2">Administrator</h4>
+                    <p className="text-sm text-slate-600">Full access to all features and settings</p>
+                  </div>
+                  
+                  <div className="p-4 border border-slate-200 rounded-lg">
+                    <h4 className="font-medium text-slate-800 mb-2">Sales Manager</h4>
+                    <p className="text-sm text-slate-600">Manage sales team and view all opportunities</p>
+                  </div>
+                  
+                  <div className="p-4 border border-slate-200 rounded-lg">
+                    <h4 className="font-medium text-slate-800 mb-2">Sales Representative</h4>
+                    <p className="text-sm text-slate-600">Manage own accounts, contacts, and opportunities</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="integrations">
+            <Card className="bg-white shadow-sm">
+              <CardHeader>
+                <CardTitle>Integrations</CardTitle>
+                <p className="text-sm text-slate-600">
+                  Connect Leaflet CRM with your favorite tools to streamline your workflow
+                </p>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {integrations.map((integration) => (
+                    <div key={integration.name} className="p-4 border border-slate-200 rounded-lg hover:border-slate-300 transition-colors">
+                      <div className="flex items-start justify-between">
+                        <div className="flex items-start space-x-3">
+                          <div className="text-2xl">{integration.logo}</div>
+                          <div className="flex-1">
+                            <div className="flex items-center space-x-2">
+                              <h4 className="font-medium text-slate-800">{integration.name}</h4>
+                              <Badge 
+                                variant={integration.status === 'connected' ? 'default' : 'secondary'}
+                                className={integration.status === 'connected' ? 'bg-emerald-100 text-emerald-700' : ''}
+                              >
+                                {integration.status === 'connected' ? 'Connected' : 'Disconnected'}
+                              </Badge>
+                            </div>
+                            <p className="text-sm text-slate-600 mt-1">{integration.description}</p>
+                          </div>
+                        </div>
+                        <Button 
+                          variant={integration.status === 'connected' ? 'outline' : 'default'}
+                          size="sm"
+                          className={integration.status === 'connected' ? 'text-slate-600' : 'bg-emerald-600 hover:bg-emerald-700'}
                         >
-                          <Plus className="h-4 w-4" />
+                          {integration.status === 'connected' ? 'Configure' : 'Connect'}
                         </Button>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </TabsContent>
-          </Tabs>
-          <div className="mt-6 flex justify-between">
-            <Button onClick={handleViewSavedData}>View Saved Data</Button>
-            <div>
-              <Button
-                variant="destructive"
-                onClick={() => setShowDeleteModal(true)}
-                className="mr-2"
-              >
-                Clear Data
-              </Button>
-              <Button onClick={handleSave}>Save Settings</Button>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+                  ))}
+                </div>
+                
+                <Separator />
+                
+                <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <h4 className="font-medium text-blue-800 mb-2">Need a custom integration?</h4>
+                  <p className="text-sm text-blue-700 mb-3">
+                    Contact our team to discuss building a custom integration for your specific needs.
+                  </p>
+                  <Button variant="outline" size="sm" className="text-blue-700 border-blue-300 hover:bg-blue-100">
+                    Request Integration
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
 
-      <Dialog open={showDeleteModal} onOpenChange={setShowDeleteModal}>
-        <DialogContent className="sm:max-w-[425px]">
+          <TabsContent value="notifications">
+            <Card className="bg-white shadow-sm">
+              <CardHeader>
+                <CardTitle>Notification Preferences</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-medium text-slate-800">Email Notifications</h4>
+                      <p className="text-sm text-slate-600">Receive notifications via email</p>
+                    </div>
+                    <Button variant="outline" size="sm">
+                      Configure
+                    </Button>
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-medium text-slate-800">Push Notifications</h4>
+                      <p className="text-sm text-slate-600">Browser push notifications</p>
+                    </div>
+                    <Button variant="outline" size="sm">
+                      Configure
+                    </Button>
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-medium text-slate-800">SMS Notifications</h4>
+                      <p className="text-sm text-slate-600">Receive urgent notifications via SMS</p>
+                    </div>
+                    <Button variant="outline" size="sm">
+                      Configure
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
+      </div>
+
+      {/* Data Display Modal */}
+      <Dialog open={isDataModalOpen} onOpenChange={setIsDataModalOpen}>
+        <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
-            <DialogTitle>Delete Confirmation</DialogTitle>
+            <DialogTitle>ProductFruits Script Format</DialogTitle>
           </DialogHeader>
-          <div className="grid gap-4 py-4">
-            <p>Are you sure you want to clear all workspace data?</p>
+          <div className="space-y-4">
+            <p className="text-sm text-slate-600">
+              Here's your workspace data formatted for the ProductFruits script:
+            </p>
+            <Textarea
+              value={displayData}
+              readOnly
+              className="min-h-[200px] font-mono text-sm"
+            />
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowDeleteModal(false)}>
-              Cancel
-            </Button>
             <Button
-              variant="destructive"
-              onClick={handleDelete}
-              className="bg-red-500 hover:bg-red-700"
+              variant="outline"
+              onClick={() => {
+                navigator.clipboard.writeText(displayData);
+              }}
             >
-              Delete
+              Copy to Clipboard
+            </Button>
+            <Button onClick={() => setIsDataModalOpen(false)}>
+              Close
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   );
 };
 
