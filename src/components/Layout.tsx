@@ -60,7 +60,7 @@ const Layout = () => {
         <Sidebar className="w-72">
           <SidebarHeader className="border-b border-sidebar-border p-6 py-2">
             <div className="flex items-center">
-              <img src="/lovable-uploads/7a4e5b2f-8c9d-4e1a-b3f6-9c8e7d5a4b2c.png" alt="Leaflet CRM" className="h-16 w-auto" />
+              <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-16 w-auto" />
             </div>
           </SidebarHeader>
           
