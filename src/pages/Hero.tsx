@@ -25,7 +25,7 @@ const Hero = () => {
       {/* Header */}
       <header className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/80 backdrop-blur-md border-b border-white/20 shadow-sm' 
+          ? 'bg-white/70 backdrop-blur-md border-b border-white/20 shadow-sm' 
           : 'bg-white border-b border-gray-200'
       }`}>
         <div className="flex items-center">
