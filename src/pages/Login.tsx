@@ -11,8 +11,8 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Fake login - just navigate to dashboard
-    navigate("/");
+    // Fake login - navigate to dashboard
+    navigate("/dashboard");
   };
 
   return (

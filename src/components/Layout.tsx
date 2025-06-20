@@ -1,3 +1,4 @@
+
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,51 +9,51 @@ const Layout = () => {
   const location = useLocation();
   const navigation = [{
     name: "Dashboard",
-    href: "/",
+    href: "/dashboard",
     icon: LayoutDashboard
   }, {
     name: "Accounts",
-    href: "/accounts",
+    href: "/dashboard/accounts",
     icon: Users
   }, {
     name: "Contacts",
-    href: "/contacts",
+    href: "/dashboard/contacts",
     icon: Contact
   }, {
     name: "Leads",
-    href: "/leads",
+    href: "/dashboard/leads",
     icon: UserPlus
   }, {
     name: "Opportunities",
-    href: "/opportunities",
+    href: "/dashboard/opportunities",
     icon: Target
   }, {
     name: "Activities",
-    href: "/activities",
+    href: "/dashboard/activities",
     icon: Activity
   }, {
     name: "Cases",
-    href: "/cases",
+    href: "/dashboard/cases",
     icon: HelpCircle
   }, {
     name: "Users",
-    href: "/users",
+    href: "/dashboard/users",
     icon: Users
   }, {
     name: "Products",
-    href: "/products",
+    href: "/dashboard/products",
     icon: Package
   }, {
     name: "Quotes",
-    href: "/quotes",
+    href: "/dashboard/quotes",
     icon: FileText
   }, {
     name: "Settings",
-    href: "/settings",
+    href: "/dashboard/settings",
     icon: Settings
   }];
   const isActive = (href: string) => {
-    if (href === "/") return location.pathname === "/";
+    if (href === "/dashboard") return location.pathname === "/dashboard";
     return location.pathname.startsWith(href);
   };
 
@@ -89,7 +90,7 @@ const Layout = () => {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip="Sign Out" className="h-11 px-4 rounded-lg text-sm font-medium">
-                  <Link to="/login">
+                  <Link to="/">
                     <LogOut className="h-5 w-5" />
                     <span>Sign Out</span>
                   </Link>
