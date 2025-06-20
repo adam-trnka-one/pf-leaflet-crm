@@ -13,7 +13,7 @@ import { useProductFruits } from "@/hooks/useProductFruits";
 
 const Settings = () => {
   const { workspaceData, updateWorkspaceData } = useWorkspace();
-  const { initializeProductFruits, hasWorkspaceCodeChanged } = useProductFruits();
+  const { initializeProductFruits } = useProductFruits();
   
   const [localWorkspaceData, setLocalWorkspaceData] = useState({
     workspaceCode: '',
@@ -323,13 +323,6 @@ const Settings = () => {
                     onClick={handleSaveWorkspaceData}
                   >
                     Save Workspace Data
-                  </Button>
-                  <Button 
-                    className={`${hasWorkspaceCodeChanged ? 'bg-orange-500 hover:bg-orange-600' : 'bg-gray-400'} text-white`}
-                    onClick={handleInitializeProductFruits}
-                    disabled={!hasWorkspaceCodeChanged && workspaceData.workspaceCode !== ''}
-                  >
-                    {hasWorkspaceCodeChanged ? 'Reinitialize ProductFruits' : 'Initialize ProductFruits'}
                   </Button>
                 </div>
               </div>
