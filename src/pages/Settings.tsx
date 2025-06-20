@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -7,11 +8,12 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import { User, Key, Shield, Bell, Plug, Building } from "lucide-react";
+import { User, Key, Shield, Bell, Plug, Building, Crown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { X, Plus } from "lucide-react";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useProductFruits } from "@/hooks/useProductFruits";
+import { toast } from "@/hooks/use-toast";
 
 const Settings = () => {
   const { workspaceData, updateWorkspaceData } = useWorkspace();
@@ -28,6 +30,8 @@ const Settings = () => {
   });
   const [customProperties, setCustomProperties] = useState<{ name: string; value: string }[]>([]);
   const [isDataModalOpen, setIsDataModalOpen] = useState(false);
+  const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
+  const [selectedIntegration, setSelectedIntegration] = useState('');
   const [displayData, setDisplayData] = useState('');
 
   // Load workspace data into local state when context data changes
@@ -67,6 +71,11 @@ const Settings = () => {
     updateWorkspaceData(dataToSave);
     initializeProductFruits(); // Re-initialize ProductFruits after saving
     console.log('Workspace data saved and ProductFruits re-initialized:', dataToSave);
+    
+    toast({
+      title: "Workspace data saved",
+      description: "Your workspace configuration has been saved successfully."
+    });
   };
 
   const handleViewSavedData = () => {
@@ -103,54 +112,32 @@ const Settings = () => {
     setIsDataModalOpen(true);
   };
 
+  const handleIntegrationConnect = (integrationName: string) => {
+    setSelectedIntegration(integrationName);
+    setIsUpgradeModalOpen(true);
+  };
+
   const integrations = [
     {
-      name: "HubSpot",
-      description: "Sync contacts, deals, and activities with HubSpot CRM",
-      status: "disconnected",
-      logo: "🟠"
-    },
-    {
       name: "Salesforce",
-      description: "Connect to Salesforce for unified customer data",
-      status: "connected",
-      logo: "☁️"
+      description: "Connect to Salesforce for unified customer data and advanced CRM features",
+      status: "premium",
+      logo: "☁️",
+      features: ["Contact sync", "Deal tracking", "Custom fields", "Advanced reporting"]
     },
     {
-      name: "Mixpanel",
-      description: "Track user events and product analytics",
-      status: "disconnected",
-      logo: "🔵"
-    },
-    {
-      name: "Amplitude",
-      description: "Advanced product analytics and user behavior tracking",
-      status: "disconnected",
-      logo: "📊"
-    },
-    {
-      name: "Customer.io",
-      description: "Automated email campaigns and customer messaging",
-      status: "connected",
-      logo: "💌"
-    },
-    {
-      name: "Google Analytics",
-      description: "Website traffic and conversion tracking",
-      status: "disconnected",
-      logo: "📈"
+      name: "HubSpot",
+      description: "Sync contacts, deals, and activities with HubSpot CRM for better sales automation",
+      status: "premium",
+      logo: "🟠",
+      features: ["Marketing automation", "Lead scoring", "Email campaigns", "Analytics dashboard"]
     },
     {
       name: "Hotjar",
-      description: "Heatmaps, recordings, and user feedback",
-      status: "disconnected",
-      logo: "🔥"
-    },
-    {
-      name: "Zapier",
-      description: "Connect to 5000+ apps with automated workflows",
-      status: "disconnected",
-      logo: "⚡"
+      description: "Advanced user behavior analytics with heatmaps, recordings, and feedback tools",
+      status: "premium",
+      logo: "🔥",
+      features: ["Heatmaps", "Session recordings", "User feedback", "Conversion funnels"]
     }
   ];
 
@@ -340,6 +327,10 @@ const Settings = () => {
                           customProperties: []
                         });
                         setCustomProperties([]);
+                        toast({
+                          title: "Settings reset",
+                          description: "Workspace data has been reset to defaults."
+                        });
                       }}
                     >
                       Reset to Defaults
@@ -464,37 +455,42 @@ const Settings = () => {
           <TabsContent value="integrations">
             <Card className="bg-white shadow-sm">
               <CardHeader>
-                <CardTitle>Integrations</CardTitle>
+                <CardTitle>Premium Integrations</CardTitle>
                 <p className="text-sm text-slate-600">
-                  Connect Leaflet CRM with your favorite tools to streamline your workflow
+                  Connect Leaflet CRM with powerful enterprise tools to supercharge your workflow
                 </p>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-6">
                   {integrations.map((integration) => (
-                    <div key={integration.name} className="p-4 border border-slate-200 rounded-lg hover:border-slate-300 transition-colors">
+                    <div key={integration.name} className="p-6 border border-slate-200 rounded-lg hover:border-slate-300 transition-colors bg-gradient-to-r from-slate-50 to-white">
                       <div className="flex items-start justify-between">
-                        <div className="flex items-start space-x-3">
-                          <div className="text-2xl">{integration.logo}</div>
+                        <div className="flex items-start space-x-4">
+                          <div className="text-3xl">{integration.logo}</div>
                           <div className="flex-1">
-                            <div className="flex items-center space-x-2">
-                              <h4 className="font-medium text-slate-800">{integration.name}</h4>
-                              <Badge 
-                                variant={integration.status === 'connected' ? 'default' : 'secondary'}
-                                className={integration.status === 'connected' ? 'bg-emerald-100 text-emerald-700' : ''}
-                              >
-                                {integration.status === 'connected' ? 'Connected' : 'Disconnected'}
+                            <div className="flex items-center space-x-3 mb-2">
+                              <h4 className="font-semibold text-slate-800 text-lg">{integration.name}</h4>
+                              <Badge className="bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800 border-amber-200">
+                                <Crown className="h-3 w-3 mr-1" />
+                                Premium
                               </Badge>
                             </div>
-                            <p className="text-sm text-slate-600 mt-1">{integration.description}</p>
+                            <p className="text-sm text-slate-600 mb-3">{integration.description}</p>
+                            <div className="flex flex-wrap gap-2">
+                              {integration.features.map((feature, index) => (
+                                <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-50 text-blue-700 border border-blue-200">
+                                  {feature}
+                                </span>
+                              ))}
+                            </div>
                           </div>
                         </div>
                         <Button 
-                          variant={integration.status === 'connected' ? 'outline' : 'default'}
-                          size="sm"
-                          className={integration.status === 'connected' ? 'text-slate-600' : 'bg-emerald-600 hover:bg-emerald-700'}
+                          className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-md"
+                          onClick={() => handleIntegrationConnect(integration.name)}
                         >
-                          {integration.status === 'connected' ? 'Configure' : 'Connect'}
+                          <Crown className="h-4 w-4 mr-2" />
+                          Upgrade to Connect
                         </Button>
                       </div>
                     </div>
@@ -503,14 +499,22 @@ const Settings = () => {
                 
                 <Separator />
                 
-                <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <h4 className="font-medium text-blue-800 mb-2">Need a custom integration?</h4>
-                  <p className="text-sm text-blue-700 mb-3">
-                    Contact our team to discuss building a custom integration for your specific needs.
+                <div className="p-6 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg">
+                  <h4 className="font-semibold text-blue-800 mb-2 flex items-center">
+                    <Crown className="h-5 w-5 mr-2" />
+                    Unlock Premium Integrations
+                  </h4>
+                  <p className="text-sm text-blue-700 mb-4">
+                    Upgrade to our Premium plan to connect with enterprise-grade tools and unlock advanced automation features that will transform your sales process.
                   </p>
-                  <Button variant="outline" size="sm" className="text-blue-700 border-blue-300 hover:bg-blue-100">
-                    Request Integration
-                  </Button>
+                  <div className="flex space-x-3">
+                    <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
+                      View Premium Plans
+                    </Button>
+                    <Button variant="outline" className="text-blue-700 border-blue-300 hover:bg-blue-100">
+                      Contact Sales
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -550,7 +554,7 @@ const Settings = () => {
                     </div>
                     <Button variant="outline" size="sm">
                       Configure
-                    </Button>
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -580,12 +584,69 @@ const Settings = () => {
               variant="outline"
               onClick={() => {
                 navigator.clipboard.writeText(displayData);
+                toast({
+                  title: "Copied to clipboard",
+                  description: "The script has been copied to your clipboard."
+                });
               }}
             >
               Copy to Clipboard
             </Button>
             <Button onClick={() => setIsDataModalOpen(false)}>
               Close
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Upgrade Modal */}
+      <Dialog open={isUpgradeModalOpen} onOpenChange={setIsUpgradeModalOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle className="flex items-center space-x-2">
+              <Crown className="h-5 w-5 text-amber-500" />
+              <span>Upgrade to Premium</span>
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
+              <h4 className="font-semibold text-slate-800 mb-2">{selectedIntegration} Integration</h4>
+              <p className="text-sm text-slate-600">
+                Connect with {selectedIntegration} to unlock powerful automation and sync your data seamlessly across platforms.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <h5 className="font-medium text-slate-800">Premium features include:</h5>
+              <ul className="space-y-2 text-sm text-slate-600">
+                <li className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span>Real-time data synchronization</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span>Advanced automation workflows</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span>Priority customer support</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span>Custom field mapping</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <DialogFooter className="flex-col sm:flex-row gap-2">
+            <Button 
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white w-full sm:w-auto"
+              onClick={() => setIsUpgradeModalOpen(false)}
+            >
+              <Crown className="h-4 w-4 mr-2" />
+              Upgrade Now
+            </Button>
+            <Button variant="outline" onClick={() => setIsUpgradeModalOpen(false)} className="w-full sm:w-auto">
+              Maybe Later
             </Button>
           </DialogFooter>
         </DialogContent>
