@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
+
 const Layout = () => {
   const location = useLocation();
+  
   const navigation = [{
     name: "Dashboard",
     href: "/",
@@ -50,11 +52,14 @@ const Layout = () => {
     href: "/settings",
     icon: Settings
   }];
+  
   const isActive = (href: string) => {
     if (href === "/") return location.pathname === "/";
     return location.pathname.startsWith(href);
   };
-  return <SidebarProvider>
+  
+  return (
+    <SidebarProvider>
       <div className="min-h-screen flex w-full bg-slate-50">
         <Sidebar className="w-72">
           <SidebarHeader className="border-b border-sidebar-border p-6 py-[20px]">
@@ -106,12 +111,12 @@ const Layout = () => {
         </Sidebar>
 
         <SidebarInset>
-          <header className="flex h-24 shrink-0 items-center justify-between gap-4 border-b px-6 bg-white">
+          <header className="flex h-24 shrink-0 items-center justify-between gap-6 border-b px-6 bg-white">
             <div className="flex items-center gap-4">
               <SidebarTrigger className="-ml-1" />
             </div>
             
-            <div className="flex-1 max-w-md">
+            <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
                 <Input placeholder="Search accounts, contacts, opportunities..." className="pl-10 bg-slate-50 border-slate-200 focus:bg-white" />
@@ -134,6 +139,8 @@ const Layout = () => {
           </main>
         </SidebarInset>
       </div>
-    </SidebarProvider>;
+    </SidebarProvider>
+  );
 };
+
 export default Layout;
