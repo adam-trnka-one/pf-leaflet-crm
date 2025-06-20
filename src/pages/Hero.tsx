@@ -23,20 +23,20 @@ const Hero = () => {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80" 
-            alt="Business team collaboration" 
-            className="w-full h-full object-cover opacity-10"
+            src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=2126&q=80" 
+            alt="Modern office workspace with team collaboration" 
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/90 to-white/85"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
         </div>
 
         {/* Content */}
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+          <h1 className="text-6xl md:text-7xl font-bold text-white mb-8 leading-tight">
             Lightness for your business that
             <span className="text-[#4AB831] block mt-4"> grow your revenue</span>
           </h1>
-          <p className="text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed">
             Streamline your customer relationships, boost sales productivity, and grow your business with our intuitive CRM platform.
           </p>
           <div className="flex gap-6 justify-center flex-wrap">
@@ -46,7 +46,7 @@ const Hero = () => {
                 <ArrowRight className="ml-3 h-6 w-6" />
               </Button>
             </Link>
-            <Button variant="outline" size="lg" className="px-10 py-6 text-xl border-2">
+            <Button variant="outline" size="lg" className="px-10 py-6 text-xl border-2 border-white text-white hover:bg-white hover:text-gray-900">
               Learn More
             </Button>
           </div>
