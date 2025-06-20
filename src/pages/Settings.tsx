@@ -12,7 +12,15 @@ import { useWorkspace } from "@/contexts/WorkspaceContext";
 
 const Settings = () => {
   const { workspaceData, updateWorkspaceData } = useWorkspace();
-  const [localWorkspaceData, setLocalWorkspaceData] = useState(workspaceData);
+  const [localWorkspaceData, setLocalWorkspaceData] = useState({
+    workspaceCode: workspaceData.workspaceCode || 'KFRC3cd1dM48s0p9',
+    username: workspaceData.username || 'john.dow',
+    email: workspaceData.email || '',
+    firstName: workspaceData.firstName || '',
+    lastName: workspaceData.lastName || '',
+    role: workspaceData.role || '',
+    customProperties: workspaceData.customProperties || []
+  });
   const [customProperties, setCustomProperties] = useState(
     workspaceData.customProperties.length > 0 
       ? workspaceData.customProperties 
@@ -273,8 +281,8 @@ const Settings = () => {
                     className="text-red-600 border-red-200 hover:bg-red-50"
                     onClick={() => {
                       setLocalWorkspaceData({
-                        workspaceCode: '',
-                        username: '',
+                        workspaceCode: 'KFRC3cd1dM48s0p9',
+                        username: 'john.dow',
                         email: '',
                         firstName: '',
                         lastName: '',
@@ -284,7 +292,7 @@ const Settings = () => {
                       setCustomProperties([{ name: "", value: "" }, { name: "", value: "" }, { name: "", value: "" }]);
                     }}
                   >
-                    Clear All Data
+                    Reset to Defaults
                   </Button>
                   <Button 
                     variant="outline"
