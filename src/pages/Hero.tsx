@@ -2,16 +2,32 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, Target, BarChart3, CheckCircle, Star, Shield, Zap, Globe, Clock } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const Hero = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="flex items-center justify-between px-8 py-6 border-b border-gray-200 relative z-10">
+      <header className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white/80 backdrop-blur-md border-b border-white/20 shadow-sm' 
+          : 'bg-white border-b border-gray-200'
+      }`}>
         <div className="flex items-center">
           <button onClick={scrollToTop} className="hover:opacity-80 transition-opacity">
             <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
@@ -25,7 +41,7 @@ const Hero = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center px-8 py-20 overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center justify-center px-8 py-20 overflow-hidden mt-[89px]">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -33,16 +49,16 @@ const Hero = () => {
             alt="People having conversations with laptops in a bright setting with trees" 
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
         </div>
 
         {/* Content */}
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h1 className="text-6xl md:text-7xl font-bold text-white mb-8 leading-tight drop-shadow-lg">
+          <h1 className="text-6xl md:text-7xl font-bold text-white mb-8 leading-tight drop-shadow-2xl">
             Lighten your workload
             <span className="text-[#4AB831] block mt-4"> Boost your revenue</span>
           </h1>
-          <p className="text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
+          <p className="text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
             Streamline your customer relationships, boost sales productivity, and grow your business with our intuitive CRM platform.
           </p>
           <div className="flex gap-6 justify-center flex-wrap">
