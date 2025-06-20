@@ -1,9 +1,10 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plus, Calendar, Phone, Mail, MessageSquare } from "lucide-react";
+import { Plus, Calendar, Phone, Mail, MessageSquare, Edit, Trash2 } from "lucide-react";
 import NewActivityModal from "@/components/modals/NewActivityModal";
+import EditActivityModal from "@/components/modals/EditActivityModal";
+import { toast } from "@/hooks/use-toast";
 
 interface Activity {
   id: string;
@@ -15,6 +16,8 @@ interface Activity {
 
 const Activities = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
   const [activities, setActivities] = useState<Activity[]>([]);
 
   // Load activities from localStorage
@@ -48,6 +51,27 @@ const Activities = () => {
     loadActivities(); // Refresh the list when a new activity is created
   };
 
+  const handleEdit = (activity: Activity) => {
+    setSelectedActivity(activity);
+    setIsEditModalOpen(true);
+  };
+
+  const handleDelete = (activityId: string) => {
+    const updatedActivities = activities.filter(a => a.id !== activityId);
+    setActivities(updatedActivities);
+    localStorage.setItem('crmActivities', JSON.stringify(updatedActivities));
+    toast({
+      title: "Activity deleted",
+      description: "The activity has been successfully deleted."
+    });
+  };
+
+  const handleActivityUpdated = () => {
+    loadActivities();
+    setIsEditModalOpen(false);
+    setSelectedActivity(null);
+  };
+
   const getActivityIcon = (type: string) => {
     switch (type) {
       case 'Call': return <Phone className="h-4 w-4" />;
@@ -77,20 +101,39 @@ const Activities = () => {
         {activities.map((activity) => (
           <Card key={activity.id} className="bg-white shadow-sm">
             <CardContent className="p-6">
-              <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0">
-                  {getActivityIcon(activity.type)}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4">
+                  <div className="flex-shrink-0">
+                    {getActivityIcon(activity.type)}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-slate-800">{activity.subject}</h3>
+                    <p className="text-sm text-slate-600">{activity.type} • {activity.date.toLocaleDateString()}</p>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <h3 className="font-semibold text-slate-800">{activity.subject}</h3>
-                  <p className="text-sm text-slate-600">{activity.type} • {activity.date.toLocaleDateString()}</p>
-                </div>
-                <div className="flex-shrink-0">
-                  {activity.completed ? (
-                    <span className="text-emerald-600 text-sm">Completed</span>
-                  ) : (
-                    <span className="text-orange-600 text-sm">Pending</span>
-                  )}
+                <div className="flex items-center space-x-2">
+                  <div className="flex-shrink-0 mr-4">
+                    {activity.completed ? (
+                      <span className="text-emerald-600 text-sm">Completed</span>
+                    ) : (
+                      <span className="text-orange-600 text-sm">Pending</span>
+                    )}
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleEdit(activity)}
+                  >
+                    <Edit className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleDelete(activity.id)}
+                    className="text-red-600 hover:text-red-700"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
                 </div>
               </div>
             </CardContent>
@@ -102,6 +145,13 @@ const Activities = () => {
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
         onActivityCreated={handleActivityCreated}
+      />
+
+      <EditActivityModal
+        open={isEditModalOpen}
+        onOpenChange={setIsEditModalOpen}
+        activity={selectedActivity}
+        onActivityUpdated={handleActivityUpdated}
       />
     </div>
   );

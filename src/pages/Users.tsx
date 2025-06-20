@@ -1,10 +1,11 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Plus, User, Mail, Shield } from "lucide-react";
+import { Plus, User, Mail, Shield, Edit, Trash2 } from "lucide-react";
 import NewUserModal from "@/components/modals/NewUserModal";
+import EditUserModal from "@/components/modals/EditUserModal";
+import { toast } from "@/hooks/use-toast";
 
 interface UserType {
   id: string;
@@ -16,6 +17,8 @@ interface UserType {
 
 const Users = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState<UserType | null>(null);
   const [users, setUsers] = useState<UserType[]>([]);
 
   // Load users from localStorage
@@ -41,6 +44,27 @@ const Users = () => {
 
   const handleUserCreated = () => {
     loadUsers(); // Refresh the list when a new user is created
+  };
+
+  const handleEdit = (user: UserType) => {
+    setSelectedUser(user);
+    setIsEditModalOpen(true);
+  };
+
+  const handleDelete = (userId: string) => {
+    const updatedUsers = users.filter(u => u.id !== userId);
+    setUsers(updatedUsers);
+    localStorage.setItem('crmUsers', JSON.stringify(updatedUsers));
+    toast({
+      title: "User deleted",
+      description: "The user has been successfully deleted."
+    });
+  };
+
+  const handleUserUpdated = () => {
+    loadUsers();
+    setIsEditModalOpen(false);
+    setSelectedUser(null);
   };
 
   const getRoleColor = (role: string) => {
@@ -85,7 +109,7 @@ const Users = () => {
                 </div>
               </div>
               
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center mb-4">
                 <Badge className={getRoleColor(user.role)} variant="secondary">
                   <Shield className="h-3 w-3 mr-1" />
                   {user.role}
@@ -93,6 +117,26 @@ const Users = () => {
                 <Badge variant="outline" className="text-emerald-600">
                   {user.status}
                 </Badge>
+              </div>
+
+              <div className="flex space-x-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleEdit(user)}
+                  className="flex-1"
+                >
+                  <Edit className="h-4 w-4 mr-1" />
+                  Edit
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleDelete(user.id)}
+                  className="text-red-600 hover:text-red-700"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
               </div>
             </CardContent>
           </Card>
@@ -103,6 +147,13 @@ const Users = () => {
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
         onUserCreated={handleUserCreated}
+      />
+
+      <EditUserModal
+        open={isEditModalOpen}
+        onOpenChange={setIsEditModalOpen}
+        user={selectedUser}
+        onUserUpdated={handleUserUpdated}
       />
     </div>
   );

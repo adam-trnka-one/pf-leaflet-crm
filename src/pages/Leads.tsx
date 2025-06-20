@@ -3,13 +3,17 @@ import { getSampleData, type Lead } from "@/utils/sampleData";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Plus, UserPlus, Mail, Phone, Building } from "lucide-react";
+import { Plus, UserPlus, Mail, Phone, Building, Edit, Trash2 } from "lucide-react";
 import NewLeadModal from "@/components/modals/NewLeadModal";
+import EditLeadModal from "@/components/modals/EditLeadModal";
+import { toast } from "@/hooks/use-toast";
 
 const Leads = () => {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
 
   const loadLeads = () => {
     // Try to load from localStorage first
@@ -36,6 +40,28 @@ const Leads = () => {
 
   const handleLeadCreated = () => {
     loadLeads(); // Refresh the list when a new lead is created
+  };
+
+  const handleEdit = (lead: Lead) => {
+    setSelectedLead(lead);
+    setIsEditModalOpen(true);
+  };
+
+  const handleDelete = (leadId: string) => {
+    const storedLeads = JSON.parse(localStorage.getItem('crmLeads') || '[]');
+    const updatedLeads = storedLeads.filter((l: Lead) => l.id !== leadId);
+    localStorage.setItem('crmLeads', JSON.stringify(updatedLeads));
+    loadLeads();
+    toast({
+      title: "Lead deleted",
+      description: "The lead has been successfully deleted."
+    });
+  };
+
+  const handleLeadUpdated = () => {
+    loadLeads();
+    setIsEditModalOpen(false);
+    setSelectedLead(null);
   };
 
   const getStatusColor = (status: string) => {
@@ -139,10 +165,29 @@ const Leads = () => {
                 </div>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-2 space-y-2">
                 <Button size="sm" className="w-full">
                   Convert Lead
                 </Button>
+                <div className="flex space-x-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleEdit(lead)}
+                    className="flex-1"
+                  >
+                    <Edit className="h-4 w-4 mr-1" />
+                    Edit
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleDelete(lead.id)}
+                    className="text-red-600 hover:text-red-700"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -159,6 +204,13 @@ const Leads = () => {
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
         onLeadCreated={handleLeadCreated}
+      />
+
+      <EditLeadModal
+        open={isEditModalOpen}
+        onOpenChange={setIsEditModalOpen}
+        lead={selectedLead}
+        onLeadUpdated={handleLeadUpdated}
       />
     </div>
   );

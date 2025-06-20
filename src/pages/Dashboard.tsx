@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getSampleData, generateAndStoreSampleData, resetDatabase, type Opportunity } from "@/utils/sampleData";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
-import { RefreshCw, TrendingUp, Users, Target, DollarSign, CheckCircle, Clock, AlertCircle } from "lucide-react";
+import { RefreshCw, TrendingUp, Users, Target, DollarSign, CheckCircle, Clock, AlertCircle, List } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
 interface Activity {
@@ -226,7 +226,7 @@ const Dashboard = () => {
                 <p className="text-2xl font-bold text-slate-800">{totalTasks}</p>
               </div>
               <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <list className="h-6 w-6 text-blue-600" />
+                <List className="h-6 w-6 text-blue-600" />
               </div>
             </div>
           </CardContent>
