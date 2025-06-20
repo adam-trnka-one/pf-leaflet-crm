@@ -1,11 +1,13 @@
 
 import { useEffect, useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getSampleData, generateAndStoreSampleData, resetDatabase, type Opportunity } from "@/utils/sampleData";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
-import { RefreshCw, TrendingUp, Users, Target, DollarSign, CheckCircle, Clock, AlertCircle, List } from "lucide-react";
+import { RefreshCw } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import MetricsCards from "@/components/dashboard/MetricsCards";
+import TaskSummaryCards from "@/components/dashboard/TaskSummaryCards";
+import ChartsSection from "@/components/dashboard/ChartsSection";
+import RecentItemsSection from "@/components/dashboard/RecentItemsSection";
 
 interface Activity {
   id: string;
@@ -158,246 +160,31 @@ const Dashboard = () => {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="bg-white shadow-sm">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Total Revenue</p>
-                <p className="text-2xl font-bold text-slate-800">${totalRevenue.toLocaleString()}</p>
-              </div>
-              <div className="h-12 w-12 bg-emerald-100 rounded-lg flex items-center justify-center">
-                <DollarSign className="h-6 w-6 text-emerald-600" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-white shadow-sm">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Total Accounts</p>
-                <p className="text-2xl font-bold text-slate-800">{totalAccounts}</p>
-              </div>
-              <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <Users className="h-6 w-6 text-blue-600" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-white shadow-sm">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Total Contacts</p>
-                <p className="text-2xl font-bold text-slate-800">{totalContacts}</p>
-              </div>
-              <div className="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                <Users className="h-6 w-6 text-purple-600" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-white shadow-sm">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Open Opportunities</p>
-                <p className="text-2xl font-bold text-slate-800">{openOpportunities}</p>
-              </div>
-              <div className="h-12 w-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                <Target className="h-6 w-6 text-orange-600" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      <MetricsCards 
+        totalRevenue={totalRevenue}
+        totalAccounts={totalAccounts}
+        totalContacts={totalContacts}
+        openOpportunities={openOpportunities}
+      />
 
       {/* Task Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="bg-white shadow-sm">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Total Tasks</p>
-                <p className="text-2xl font-bold text-slate-800">{totalTasks}</p>
-              </div>
-              <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <List className="h-6 w-6 text-blue-600" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+      <TaskSummaryCards 
+        totalTasks={totalTasks}
+        completedTasks={completedTasks}
+        overdueTasks={overdueTasks}
+      />
 
-        <Card className="bg-white shadow-sm">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Completed Tasks</p>
-                <p className="text-2xl font-bold text-slate-800">{completedTasks}</p>
-              </div>
-              <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <CheckCircle className="h-6 w-6 text-green-600" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+      {/* Charts */}
+      <ChartsSection 
+        pipelineData={pipelineData}
+        monthlyRevenue={monthlyRevenue}
+      />
 
-        <Card className="bg-white shadow-sm">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Overdue Tasks</p>
-                <p className="text-2xl font-bold text-slate-800">{overdueTasks}</p>
-              </div>
-              <div className="h-12 w-12 bg-red-100 rounded-lg flex items-center justify-center">
-                <AlertCircle className="h-6 w-6 text-red-600" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Charts and Lists */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Pipeline Chart */}
-        <Card className="bg-white shadow-sm">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <TrendingUp className="h-5 w-5 text-emerald-600" />
-              <span>Sales Pipeline</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={pipelineData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis 
-                  dataKey="stage" 
-                  angle={-45}
-                  textAnchor="end"
-                  height={80}
-                  fontSize={12}
-                />
-                <YAxis />
-                <Tooltip 
-                  formatter={(value, name) => [
-                    name === 'count' ? `${value} opportunities` : `$${Number(value).toLocaleString()}`,
-                    name === 'count' ? 'Count' : 'Value'
-                  ]}
-                />
-                <Bar dataKey="count" fill="#10b981" name="count" />
-              </BarChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
-
-        {/* Revenue Trend */}
-        <Card className="bg-white shadow-sm">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <TrendingUp className="h-5 w-5 text-blue-600" />
-              <span>Revenue Trend</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={monthlyRevenue}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip 
-                  formatter={(value) => [`$${Number(value).toLocaleString()}`, 'Revenue']}
-                />
-                <Line type="monotone" dataKey="revenue" stroke="#3b82f6" strokeWidth={2} />
-              </LineChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
-
-        {/* Recent Tasks */}
-        <Card className="bg-white shadow-sm">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Clock className="h-5 w-5 text-orange-600" />
-              <span>Recent Tasks</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {recentActivities.length > 0 ? (
-                recentActivities.map((activity) => (
-                  <div key={activity.id} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                    <div className="flex-1">
-                      <p className="font-medium text-slate-800">{activity.subject}</p>
-                      <p className="text-sm text-slate-600">{activity.type} • {activity.assignedTo}</p>
-                    </div>
-                    <div className="text-right">
-                      <span className={`text-xs px-2 py-1 rounded-full ${
-                        activity.status === 'Completed' 
-                          ? 'bg-green-100 text-green-800' 
-                          : activity.status === 'In Progress'
-                          ? 'bg-blue-100 text-blue-800'
-                          : 'bg-gray-100 text-gray-800'
-                      }`}>
-                        {activity.status}
-                      </span>
-                      <p className="text-xs text-slate-500 mt-1">
-                        {new Date(activity.dueDate).toLocaleDateString()}
-                      </p>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p className="text-slate-500 text-center py-8">No recent tasks</p>
-              )}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Recent Leads */}
-        <Card className="bg-white shadow-sm">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Users className="h-5 w-5 text-purple-600" />
-              <span>Recent Leads</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {recentLeads.length > 0 ? (
-                recentLeads.map((lead) => (
-                  <div key={lead.id} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                    <div className="flex-1">
-                      <p className="font-medium text-slate-800">{lead.firstName} {lead.lastName}</p>
-                      <p className="text-sm text-slate-600">{lead.company} • {lead.email}</p>
-                    </div>
-                    <div className="text-right">
-                      <span className={`text-xs px-2 py-1 rounded-full ${
-                        lead.status === 'New' 
-                          ? 'bg-blue-100 text-blue-800' 
-                          : lead.status === 'Qualified'
-                          ? 'bg-green-100 text-green-800'
-                          : lead.status === 'Working'
-                          ? 'bg-yellow-100 text-yellow-800'
-                          : 'bg-gray-100 text-gray-800'
-                      }`}>
-                        {lead.status}
-                      </span>
-                      <p className="text-xs text-slate-500 mt-1">{lead.source}</p>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p className="text-slate-500 text-center py-8">No recent leads</p>
-              )}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      {/* Recent Items */}
+      <RecentItemsSection 
+        recentActivities={recentActivities}
+        recentLeads={recentLeads}
+      />
     </div>
   );
 };
