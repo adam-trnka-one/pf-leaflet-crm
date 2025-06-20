@@ -65,9 +65,37 @@ const Settings = () => {
     console.log('Workspace data saved and ProductFruits re-initialized:', dataToSave);
   };
 
-  const handleInitializeProductFruits = () => {
-    handleSaveWorkspaceData();
-    console.log('ProductFruits manually initialized with current workspace data');
+  const handleViewSavedData = () => {
+    // Build props object from custom properties
+    const props: Record<string, string> = {};
+    workspaceData.customProperties.forEach((prop, index) => {
+      if (prop.name && prop.value) {
+        props[`prop${index + 1}`] = prop.value;
+      }
+    });
+
+    // Generate sign-up date in required format
+    const signUpDate = new Date().toISOString();
+
+    const initData = {
+      username: workspaceData.username,
+      ...(workspaceData.email && { email: workspaceData.email }),
+      ...(workspaceData.firstName && { firstname: workspaceData.firstName }),
+      ...(workspaceData.lastName && { lastname: workspaceData.lastName }),
+      signUpAt: signUpDate,
+      ...(workspaceData.role && { role: workspaceData.role }),
+      ...(Object.keys(props).length > 0 && { props })
+    };
+
+    const productFruitsScript = `window.$productFruits.push(['init', '${workspaceData.workspaceCode}', 'en', ${JSON.stringify(initData, null, 2)}]);`;
+    
+    console.log('Current workspace data from localStorage:');
+    console.log('Raw data:', workspaceData);
+    console.log('\nProductFruits script format:');
+    console.log(productFruitsScript);
+    
+    // Also display in an alert for easy viewing
+    alert(`ProductFruits Script Format:\n\n${productFruitsScript}`);
   };
 
   const integrations = [
@@ -312,7 +340,7 @@ const Settings = () => {
                   </Button>
                   <Button 
                     variant="outline"
-                    onClick={() => console.log('Current workspace data:', workspaceData)}
+                    onClick={handleViewSavedData}
                   >
                     View Saved Data
                   </Button>
