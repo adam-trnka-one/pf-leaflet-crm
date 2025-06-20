@@ -1,6 +1,7 @@
 
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { 
   LayoutDashboard, 
   Users, 
@@ -12,7 +13,8 @@ import {
   Package, 
   FileText, 
   Settings,
-  LogOut
+  LogOut,
+  Search
 } from "lucide-react";
 import {
   Sidebar,
@@ -116,8 +118,31 @@ const Layout = () => {
         </Sidebar>
 
         <SidebarInset>
-          <header className="flex h-16 shrink-0 items-center gap-2 border-b px-6 bg-white">
-            <SidebarTrigger className="-ml-1" />
+          <header className="flex h-24 shrink-0 items-center justify-between gap-4 border-b px-6 bg-white">
+            <div className="flex items-center gap-4">
+              <SidebarTrigger className="-ml-1" />
+            </div>
+            
+            <div className="flex-1 max-w-md">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
+                <Input
+                  placeholder="Search accounts, contacts, opportunities..."
+                  className="pl-10 bg-slate-50 border-slate-200 focus:bg-white"
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Button variant="ghost" size="sm" className="text-slate-600">
+                <span className="sr-only">Notifications</span>
+                🔔
+              </Button>
+              <Button variant="ghost" size="sm" className="text-slate-600">
+                <span className="sr-only">Profile</span>
+                👤
+              </Button>
+            </div>
           </header>
           <main className="flex-1 overflow-auto p-6">
             <Outlet />
