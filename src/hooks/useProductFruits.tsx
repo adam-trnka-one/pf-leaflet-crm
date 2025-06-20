@@ -1,29 +1,55 @@
 
 import { useEffect, useRef } from 'react';
-import { useWorkspace } from '@/contexts/WorkspaceContext';
+
+const STORAGE_KEY = 'leaflet-workspace-data';
 
 export const useProductFruits = () => {
-  const { workspaceData } = useWorkspace();
   const initializedWorkspaceCode = useRef<string>('');
   const hasInitialized = useRef<boolean>(false);
 
   useEffect(() => {
-    if (!workspaceData.workspaceCode || !workspaceData.username) {
-      return; // Don't initialize if required fields are missing
+    // Load data from localStorage and initialize ProductFruits
+    initializeFromStorage();
+  }, []);
+
+  const initializeFromStorage = () => {
+    try {
+      const savedData = localStorage.getItem(STORAGE_KEY);
+      if (savedData) {
+        const workspaceData = JSON.parse(savedData);
+        
+        if (workspaceData.workspaceCode && workspaceData.username) {
+          initializeProductFruits(workspaceData);
+          initializedWorkspaceCode.current = workspaceData.workspaceCode;
+          hasInitialized.current = true;
+        }
+      }
+    } catch (error) {
+      console.error('Error loading workspace data from localStorage:', error);
+    }
+  };
+
+  const initializeProductFruits = (workspaceData?: any) => {
+    let dataToUse = workspaceData;
+    
+    // If no data provided, load from localStorage
+    if (!dataToUse) {
+      try {
+        const savedData = localStorage.getItem(STORAGE_KEY);
+        if (savedData) {
+          dataToUse = JSON.parse(savedData);
+        }
+      } catch (error) {
+        console.error('Error loading workspace data from localStorage:', error);
+        return;
+      }
     }
 
-    // Auto-initialize on first load or if workspace code hasn't changed
-    const shouldAutoInitialize = !hasInitialized.current || 
-      (hasInitialized.current && workspaceData.workspaceCode === initializedWorkspaceCode.current);
-
-    if (shouldAutoInitialize) {
-      initializeProductFruits();
-      initializedWorkspaceCode.current = workspaceData.workspaceCode;
-      hasInitialized.current = true;
+    if (!dataToUse || !dataToUse.workspaceCode || !dataToUse.username) {
+      console.log('Missing required workspace data for ProductFruits initialization');
+      return;
     }
-  }, [workspaceData]);
 
-  const initializeProductFruits = () => {
     // Remove existing ProductFruits script if it exists
     const existingScript = document.querySelector('script[data-productfruits-init]');
     if (existingScript) {
@@ -37,47 +63,50 @@ export const useProductFruits = () => {
     
     // Build props object from custom properties
     const props: Record<string, string> = {};
-    workspaceData.customProperties.forEach((prop, index) => {
-      if (prop.name && prop.value) {
-        props[`prop${index + 1}`] = prop.value;
-      }
-    });
+    if (dataToUse.customProperties && Array.isArray(dataToUse.customProperties)) {
+      dataToUse.customProperties.forEach((prop: any, index: number) => {
+        if (prop.name && prop.value) {
+          props[`prop${index + 1}`] = prop.value;
+        }
+      });
+    }
 
     // Generate sign-up date in required format (current date as example)
     const signUpDate = new Date().toISOString();
 
     const initData = {
-      username: workspaceData.username,
-      ...(workspaceData.email && { email: workspaceData.email }),
-      ...(workspaceData.firstName && { firstname: workspaceData.firstName }),
-      ...(workspaceData.lastName && { lastname: workspaceData.lastName }),
+      username: dataToUse.username,
+      ...(dataToUse.email && { email: dataToUse.email }),
+      ...(dataToUse.firstName && { firstname: dataToUse.firstName }),
+      ...(dataToUse.lastName && { lastname: dataToUse.lastName }),
       signUpAt: signUpDate,
-      ...(workspaceData.role && { role: workspaceData.role }),
+      ...(dataToUse.role && { role: dataToUse.role }),
       ...(Object.keys(props).length > 0 && { props })
     };
 
     script.innerHTML = `
       if (window.$productFruits) {
-        window.$productFruits.push(['init', '${workspaceData.workspaceCode}', 'en', ${JSON.stringify(initData)}]);
+        window.$productFruits.push(['init', '${dataToUse.workspaceCode}', 'en', ${JSON.stringify(initData)}]);
       }
     `;
 
     document.head.appendChild(script);
-    console.log('ProductFruits initialized with workspace code:', workspaceData.workspaceCode);
+    console.log('ProductFruits initialized with workspace code:', dataToUse.workspaceCode);
+    console.log('Initialization data:', initData);
 
     // Update the tracking reference
-    initializedWorkspaceCode.current = workspaceData.workspaceCode;
+    initializedWorkspaceCode.current = dataToUse.workspaceCode;
   };
 
-  const hasWorkspaceCodeChanged = () => {
+  const hasWorkspaceCodeChanged = (currentWorkspaceCode: string) => {
     return hasInitialized.current && 
-           workspaceData.workspaceCode !== initializedWorkspaceCode.current &&
-           workspaceData.workspaceCode !== '';
+           currentWorkspaceCode !== initializedWorkspaceCode.current &&
+           currentWorkspaceCode !== '';
   };
 
   return {
     initializeProductFruits,
-    hasWorkspaceCodeChanged: hasWorkspaceCodeChanged(),
-    canAutoInitialize: !hasWorkspaceCodeChanged()
+    hasWorkspaceCodeChanged,
+    canAutoInitialize: true
   };
 };
