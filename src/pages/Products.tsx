@@ -1,10 +1,13 @@
-
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Package, DollarSign } from "lucide-react";
+import NewProductModal from "@/components/modals/NewProductModal";
 
 const Products = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const products = [
     { id: 1, name: 'CRM Professional', description: 'Advanced CRM features', price: 99, category: 'Software', status: 'Active' },
     { id: 2, name: 'Consulting Services', description: 'Expert consulting', price: 150, category: 'Service', status: 'Active' },
@@ -27,7 +30,10 @@ const Products = () => {
           <h1 className="text-3xl font-bold text-slate-800">Products</h1>
           <p className="text-slate-600 mt-2">Manage your product catalog</p>
         </div>
-        <Button className="bg-emerald-600 hover:bg-emerald-700">
+        <Button 
+          className="bg-emerald-600 hover:bg-emerald-700"
+          onClick={() => setIsModalOpen(true)}
+        >
           <Plus className="h-4 w-4 mr-2" />
           New Product
         </Button>
@@ -64,6 +70,11 @@ const Products = () => {
           </Card>
         ))}
       </div>
+
+      <NewProductModal 
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+      />
     </div>
   );
 };

@@ -1,9 +1,12 @@
-
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Calendar, Phone, Mail, MessageSquare } from "lucide-react";
+import NewActivityModal from "@/components/modals/NewActivityModal";
 
 const Activities = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const activities = [
     { id: 1, type: 'Call', subject: 'Follow up call with Acme Corp', date: new Date(), completed: false },
     { id: 2, type: 'Email', subject: 'Send proposal to TechStart', date: new Date(), completed: true },
@@ -26,7 +29,10 @@ const Activities = () => {
           <h1 className="text-3xl font-bold text-slate-800">Activities</h1>
           <p className="text-slate-600 mt-2">Track and manage your activities</p>
         </div>
-        <Button className="bg-emerald-600 hover:bg-emerald-700">
+        <Button 
+          className="bg-emerald-600 hover:bg-emerald-700"
+          onClick={() => setIsModalOpen(true)}
+        >
           <Plus className="h-4 w-4 mr-2" />
           New Activity
         </Button>
@@ -56,6 +62,11 @@ const Activities = () => {
           </Card>
         ))}
       </div>
+
+      <NewActivityModal 
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+      />
     </div>
   );
 };

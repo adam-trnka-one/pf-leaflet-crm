@@ -1,10 +1,13 @@
-
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Plus, User, Mail, Shield } from "lucide-react";
+import NewUserModal from "@/components/modals/NewUserModal";
 
 const Users = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const users = [
     { id: 1, name: 'Alice Johnson', email: 'alice@company.com', role: 'Admin', status: 'Active' },
     { id: 2, name: 'Bob Smith', email: 'bob@company.com', role: 'Sales Rep', status: 'Active' },
@@ -27,7 +30,10 @@ const Users = () => {
           <h1 className="text-3xl font-bold text-slate-800">Users</h1>
           <p className="text-slate-600 mt-2">Manage system users and permissions</p>
         </div>
-        <Button className="bg-emerald-600 hover:bg-emerald-700">
+        <Button 
+          className="bg-emerald-600 hover:bg-emerald-700"
+          onClick={() => setIsModalOpen(true)}
+        >
           <Plus className="h-4 w-4 mr-2" />
           New User
         </Button>
@@ -63,6 +69,11 @@ const Users = () => {
           </Card>
         ))}
       </div>
+
+      <NewUserModal 
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+      />
     </div>
   );
 };

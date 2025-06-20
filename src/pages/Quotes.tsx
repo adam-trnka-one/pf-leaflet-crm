@@ -1,10 +1,13 @@
-
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Plus, FileText, DollarSign, Calendar } from "lucide-react";
+import NewQuoteModal from "@/components/modals/NewQuoteModal";
 
 const Quotes = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const quotes = [
     { id: 1, name: 'Q-2024-001', account: 'Acme Corp', amount: 25000, status: 'Draft', date: new Date() },
     { id: 2, name: 'Q-2024-002', account: 'TechStart Inc', amount: 15000, status: 'Sent', date: new Date() },
@@ -28,7 +31,10 @@ const Quotes = () => {
           <h1 className="text-3xl font-bold text-slate-800">Quotes</h1>
           <p className="text-slate-600 mt-2">Manage sales quotes and proposals</p>
         </div>
-        <Button className="bg-emerald-600 hover:bg-emerald-700">
+        <Button 
+          className="bg-emerald-600 hover:bg-emerald-700"
+          onClick={() => setIsModalOpen(true)}
+        >
           <Plus className="h-4 w-4 mr-2" />
           New Quote
         </Button>
@@ -70,6 +76,11 @@ const Quotes = () => {
           </Card>
         ))}
       </div>
+
+      <NewQuoteModal 
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+      />
     </div>
   );
 };
