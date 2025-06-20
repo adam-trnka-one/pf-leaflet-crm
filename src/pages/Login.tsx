@@ -31,7 +31,7 @@ const Login = () => {
             <h1 className="text-3xl font-light text-gray-800 mb-2">
               Hello,
             </h1>
-            <h2 className="text-3xl font-bold text-blue-600">
+            <h2 className="text-3xl font-bold text-leaflet-green">
               welcome!
             </h2>
           </div>
@@ -45,7 +45,7 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email address"
                 required
-                className="w-full h-12 border-l-4 border-l-pink-500 border-t-0 border-r-0 border-b border-b-gray-200 rounded-none bg-transparent px-4 focus:border-l-pink-500 focus:ring-0"
+                className="w-full h-12 border-l-4 border-l-leaflet-green border-t-0 border-r-0 border-b border-b-gray-200 rounded-none bg-transparent px-4 focus:border-l-leaflet-green focus:ring-0"
               />
             </div>
             <div>
@@ -55,21 +55,21 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 required
-                className="w-full h-12 border-l-4 border-l-pink-500 border-t-0 border-r-0 border-b border-b-gray-200 rounded-none bg-transparent px-4 focus:border-l-pink-500 focus:ring-0"
+                className="w-full h-12 border-l-4 border-l-leaflet-green border-t-0 border-r-0 border-b border-b-gray-200 rounded-none bg-transparent px-4 focus:border-l-leaflet-green focus:ring-0"
               />
             </div>
 
             <div className="flex gap-4">
               <Button 
                 type="submit" 
-                className="flex-1 h-12 bg-pink-500 hover:bg-pink-600 text-white font-medium rounded-md"
+                className="flex-1 h-12 bg-leaflet-green hover:bg-leaflet-green-hover text-white font-medium rounded-md"
               >
                 Sign in
               </Button>
               <Button 
                 type="button" 
                 variant="outline"
-                className="flex-1 h-12 border-2 border-blue-500 text-blue-500 hover:bg-blue-50 font-medium rounded-md"
+                className="flex-1 h-12 border-2 border-leaflet-green text-leaflet-green hover:bg-green-50 font-medium rounded-md"
               >
                 Sign up
               </Button>
@@ -82,7 +82,7 @@ const Login = () => {
             <div className="flex gap-4">
               <Facebook className="h-5 w-5 text-gray-400 hover:text-blue-600 cursor-pointer" />
               <Twitter className="h-5 w-5 text-gray-400 hover:text-blue-400 cursor-pointer" />
-              <Instagram className="h-5 w-5 text-gray-400 hover:text-pink-600 cursor-pointer" />
+              <Instagram className="h-5 w-5 text-gray-400 hover:text-leaflet-green cursor-pointer" />
             </div>
           </div>
 
@@ -96,8 +96,8 @@ const Login = () => {
       </div>
 
       {/* Right side - Gradient Background */}
-      <div className="hidden lg:flex flex-1 bg-gradient-to-br from-purple-600 via-pink-500 to-blue-500 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/90 via-pink-500/80 to-blue-500/90"></div>
+      <div className="hidden lg:flex flex-1 bg-gradient-to-br from-leaflet-green via-green-400 to-emerald-500 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-leaflet-green/90 via-green-400/80 to-emerald-500/90"></div>
         
         {/* Decorative circles */}
         <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-white/10 rounded-full"></div>
@@ -106,8 +106,8 @@ const Login = () => {
         
         {/* Gradient overlay shapes */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-gradient-to-bl from-pink-400/30 to-transparent rounded-full transform translate-x-1/3 -translate-y-1/3"></div>
-          <div className="absolute bottom-0 left-0 w-2/3 h-2/3 bg-gradient-to-tr from-blue-400/30 to-transparent rounded-full transform -translate-x-1/3 translate-y-1/3"></div>
+          <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-gradient-to-bl from-green-400/30 to-transparent rounded-full transform translate-x-1/3 -translate-y-1/3"></div>
+          <div className="absolute bottom-0 left-0 w-2/3 h-2/3 bg-gradient-to-tr from-emerald-400/30 to-transparent rounded-full transform -translate-x-1/3 translate-y-1/3"></div>
         </div>
       </div>
     </div>
