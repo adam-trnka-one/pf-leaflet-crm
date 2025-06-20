@@ -5,9 +5,32 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { User, Key, Shield, Bell, Plug } from "lucide-react";
+import { User, Key, Shield, Bell, Plug, Building } from "lucide-react";
+import { useState } from "react";
+import { X, Plus } from "lucide-react";
 
 const Settings = () => {
+  const [customProperties, setCustomProperties] = useState([
+    { name: "", value: "" },
+    { name: "", value: "" },
+    { name: "", value: "" }
+  ]);
+
+  const addCustomProperty = () => {
+    setCustomProperties([...customProperties, { name: "", value: "" }]);
+  };
+
+  const removeCustomProperty = (index: number) => {
+    const newProperties = customProperties.filter((_, i) => i !== index);
+    setCustomProperties(newProperties);
+  };
+
+  const updateCustomProperty = (index: number, field: "name" | "value", value: string) => {
+    const newProperties = [...customProperties];
+    newProperties[index][field] = value;
+    setCustomProperties(newProperties);
+  };
+
   const integrations = [
     {
       name: "HubSpot",
@@ -72,6 +95,10 @@ const Settings = () => {
             <User className="h-4 w-4" />
             <span>Profile</span>
           </TabsTrigger>
+          <TabsTrigger value="workspace" className="flex items-center space-x-2">
+            <Building className="h-4 w-4" />
+            <span>Workspace</span>
+          </TabsTrigger>
           <TabsTrigger value="api" className="flex items-center space-x-2">
             <Key className="h-4 w-4" />
             <span>API Keys</span>
@@ -89,6 +116,146 @@ const Settings = () => {
             <span>Notifications</span>
           </TabsTrigger>
         </TabsList>
+
+        <TabsContent value="workspace">
+          <Card className="bg-white shadow-sm">
+            <CardHeader>
+              <CardTitle className="flex items-center space-x-2">
+                <Building className="h-5 w-5" />
+                <span>Workspace Configuration</span>
+              </CardTitle>
+              <p className="text-sm text-slate-600">
+                Configure your workspace settings below. This information will be used to initialize ProductFruits on your site.
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div>
+                <Label htmlFor="workspaceCode" className="text-sm font-medium text-slate-700">
+                  Workspace Code <span className="text-red-500">*</span>
+                </Label>
+                <Input 
+                  id="workspaceCode" 
+                  placeholder="Enter your workspace code"
+                  className="mt-1"
+                />
+                <p className="text-xs text-slate-500 mt-1">0/40 characters</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="username" className="text-sm font-medium text-slate-700">Username</Label>
+                  <Input 
+                    id="username" 
+                    placeholder="Enter username"
+                    className="mt-1"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="email" className="text-sm font-medium text-slate-700">Email</Label>
+                  <Input 
+                    id="email" 
+                    type="email"
+                    placeholder="Enter email address"
+                    className="mt-1"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="firstName" className="text-sm font-medium text-slate-700">First Name</Label>
+                  <Input 
+                    id="firstName" 
+                    placeholder="Enter first name"
+                    className="mt-1"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="lastName" className="text-sm font-medium text-slate-700">Last Name</Label>
+                  <Input 
+                    id="lastName" 
+                    placeholder="Enter last name"
+                    className="mt-1"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Label htmlFor="role" className="text-sm font-medium text-slate-700">Role</Label>
+                <Input 
+                  id="role" 
+                  placeholder="Enter role (e.g. Student, Teacher)"
+                  className="mt-1"
+                />
+              </div>
+
+              <Separator />
+
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <Label className="text-sm font-medium text-slate-700">Custom Properties</Label>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={addCustomProperty}
+                    className="flex items-center space-x-1"
+                  >
+                    <Plus className="h-4 w-4" />
+                    <span>Add Property</span>
+                  </Button>
+                </div>
+                
+                <div className="space-y-3">
+                  {customProperties.map((property, index) => (
+                    <div key={index} className="flex items-center space-x-2">
+                      <Input 
+                        placeholder="Property Name"
+                        value={property.name}
+                        onChange={(e) => updateCustomProperty(index, "name", e.target.value)}
+                        className="flex-1"
+                      />
+                      <Input 
+                        placeholder="Property Value"
+                        value={property.value}
+                        onChange={(e) => updateCustomProperty(index, "value", e.target.value)}
+                        className="flex-1"
+                      />
+                      <Button 
+                        variant="ghost" 
+                        size="sm"
+                        onClick={() => removeCustomProperty(index)}
+                        className="text-slate-500 hover:text-red-500"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <Separator />
+
+              <div className="flex justify-between">
+                <div className="flex space-x-3">
+                  <Button variant="outline" className="text-red-600 border-red-200 hover:bg-red-50">
+                    Clear All Data
+                  </Button>
+                  <Button variant="outline">
+                    View Saved Data
+                  </Button>
+                </div>
+                <div className="flex space-x-3">
+                  <Button className="bg-blue-600 hover:bg-blue-700">
+                    Save Workspace Data
+                  </Button>
+                  <Button className="bg-orange-500 hover:bg-orange-600">
+                    Initialize ProductFruits
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
 
         <TabsContent value="profile">
           <Card className="bg-white shadow-sm">
