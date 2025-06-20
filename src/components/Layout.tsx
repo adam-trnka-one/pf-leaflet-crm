@@ -1,4 +1,3 @@
-
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -68,7 +67,7 @@ const Layout = () => {
               <img 
                 src="/lovable-uploads/415345c1-c7de-4681-a387-ed49a43dc712.png" 
                 alt="Leaflet CRM" 
-                className="h-10 w-auto"
+                className="h-16 w-auto"
               />
             </div>
           </SidebarHeader>
