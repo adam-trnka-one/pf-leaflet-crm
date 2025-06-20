@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, Target, BarChart3, CheckCircle, Star, Shield, Zap, Globe, Clock } from "lucide-react";
@@ -46,9 +45,6 @@ const Hero = () => {
                 <ArrowRight className="ml-3 h-6 w-6" />
               </Button>
             </Link>
-            <Button variant="outline" size="lg" className="px-10 py-6 text-xl border-2 border-white text-white hover:bg-white hover:text-gray-900">
-              Learn More
-            </Button>
           </div>
         </div>
       </section>
