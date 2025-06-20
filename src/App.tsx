@@ -1,9 +1,24 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import Layout from "./components/Layout";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import Accounts from "./pages/Accounts";
+import AccountDetail from "./pages/AccountDetail";
+import Contacts from "./pages/Contacts";
+import ContactDetail from "./pages/ContactDetail";
+import Leads from "./pages/Leads";
+import Opportunities from "./pages/Opportunities";
+import Activities from "./pages/Activities";
+import Cases from "./pages/Cases";
+import Users from "./pages/Users";
+import Products from "./pages/Products";
+import Quotes from "./pages/Quotes";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -15,8 +30,22 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="accounts" element={<Accounts />} />
+            <Route path="accounts/:id" element={<AccountDetail />} />
+            <Route path="contacts" element={<Contacts />} />
+            <Route path="contacts/:id" element={<ContactDetail />} />
+            <Route path="leads" element={<Leads />} />
+            <Route path="opportunities" element={<Opportunities />} />
+            <Route path="activities" element={<Activities />} />
+            <Route path="cases" element={<Cases />} />
+            <Route path="users" element={<Users />} />
+            <Route path="products" element={<Products />} />
+            <Route path="quotes" element={<Quotes />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
