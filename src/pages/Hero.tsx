@@ -33,8 +33,8 @@ const Hero = () => {
         {/* Content */}
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <h1 className="text-6xl md:text-7xl font-bold text-white mb-8 leading-tight">
-            Lightness for your business that
-            <span className="text-[#4AB831] block mt-4"> grow your revenue</span>
+            Lighten your workload
+            <span className="text-[#4AB831] block mt-4"> Boost your revenue</span>
           </h1>
           <p className="text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed">
             Streamline your customer relationships, boost sales productivity, and grow your business with our intuitive CRM platform.
