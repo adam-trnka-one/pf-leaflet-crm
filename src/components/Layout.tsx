@@ -3,10 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
-
 const Layout = () => {
   const location = useLocation();
-  
   const navigation = [{
     name: "Dashboard",
     href: "/",
@@ -52,23 +50,16 @@ const Layout = () => {
     href: "/settings",
     icon: Settings
   }];
-  
   const isActive = (href: string) => {
     if (href === "/") return location.pathname === "/";
     return location.pathname.startsWith(href);
   };
-  
-  return (
-    <SidebarProvider>
+  return <SidebarProvider>
       <div className="min-h-screen flex w-full bg-slate-50">
         <Sidebar className="w-72">
           <SidebarHeader className="border-b border-sidebar-border p-6 py-[20px]">
-            <div className="flex items-center space-x-4">
-              <img 
-                src="/lovable-uploads/415345c1-c7de-4681-a387-ed49a43dc712.png" 
-                alt="Leaflet CRM" 
-                className="h-16 w-auto"
-              />
+            <div className="flex items-center">
+              <img src="/lovable-uploads/415345c1-c7de-4681-a387-ed49a43dc712.png" alt="Leaflet CRM" className="h-16 w-auto" />
             </div>
           </SidebarHeader>
           
@@ -127,8 +118,6 @@ const Layout = () => {
           </main>
         </SidebarInset>
       </div>
-    </SidebarProvider>
-  );
+    </SidebarProvider>;
 };
-
 export default Layout;
