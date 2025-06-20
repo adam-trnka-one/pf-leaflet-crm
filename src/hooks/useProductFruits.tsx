@@ -1,15 +1,29 @@
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useWorkspace } from '@/contexts/WorkspaceContext';
 
 export const useProductFruits = () => {
   const { workspaceData } = useWorkspace();
+  const initializedWorkspaceCode = useRef<string>('');
+  const hasInitialized = useRef<boolean>(false);
 
   useEffect(() => {
     if (!workspaceData.workspaceCode || !workspaceData.username) {
       return; // Don't initialize if required fields are missing
     }
 
+    // Auto-initialize on first load or if workspace code hasn't changed
+    const shouldAutoInitialize = !hasInitialized.current || 
+      (hasInitialized.current && workspaceData.workspaceCode === initializedWorkspaceCode.current);
+
+    if (shouldAutoInitialize) {
+      initializeProductFruits();
+      initializedWorkspaceCode.current = workspaceData.workspaceCode;
+      hasInitialized.current = true;
+    }
+  }, [workspaceData]);
+
+  const initializeProductFruits = () => {
     // Remove existing ProductFruits script if it exists
     const existingScript = document.querySelector('script[data-productfruits-init]');
     if (existingScript) {
@@ -49,12 +63,21 @@ export const useProductFruits = () => {
     `;
 
     document.head.appendChild(script);
+    console.log('ProductFruits initialized with workspace code:', workspaceData.workspaceCode);
 
-    return () => {
-      const scriptToRemove = document.querySelector('script[data-productfruits-init]');
-      if (scriptToRemove) {
-        scriptToRemove.remove();
-      }
-    };
-  }, [workspaceData]);
+    // Update the tracking reference
+    initializedWorkspaceCode.current = workspaceData.workspaceCode;
+  };
+
+  const hasWorkspaceCodeChanged = () => {
+    return hasInitialized.current && 
+           workspaceData.workspaceCode !== initializedWorkspaceCode.current &&
+           workspaceData.workspaceCode !== '';
+  };
+
+  return {
+    initializeProductFruits,
+    hasWorkspaceCodeChanged: hasWorkspaceCodeChanged(),
+    canAutoInitialize: !hasWorkspaceCodeChanged()
+  };
 };

@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -10,9 +9,12 @@ import { User, Key, Shield, Bell, Plug, Building } from "lucide-react";
 import { useState } from "react";
 import { X, Plus } from "lucide-react";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
+import { useProductFruits } from "@/hooks/useProductFruits";
 
 const Settings = () => {
   const { workspaceData, updateWorkspaceData } = useWorkspace();
+  const { initializeProductFruits, hasWorkspaceCodeChanged } = useProductFruits();
+  
   const [localWorkspaceData, setLocalWorkspaceData] = useState({
     workspaceCode: workspaceData.workspaceCode || 'KFRC3cd1dM48s0p9',
     username: workspaceData.username || 'john.dow',
@@ -52,7 +54,8 @@ const Settings = () => {
 
   const handleInitializeProductFruits = () => {
     handleSaveWorkspaceData();
-    console.log('ProductFruits initialized with current workspace data');
+    initializeProductFruits();
+    console.log('ProductFruits manually initialized with current workspace data');
   };
 
   const integrations = [
@@ -310,10 +313,11 @@ const Settings = () => {
                     Save Workspace Data
                   </Button>
                   <Button 
-                    className="bg-orange-500 hover:bg-orange-600"
+                    className={`${hasWorkspaceCodeChanged ? 'bg-orange-500 hover:bg-orange-600' : 'bg-gray-400'} text-white`}
                     onClick={handleInitializeProductFruits}
+                    disabled={!hasWorkspaceCodeChanged && workspaceData.workspaceCode !== ''}
                   >
-                    Initialize ProductFruits
+                    {hasWorkspaceCodeChanged ? 'Reinitialize ProductFruits' : 'Initialize ProductFruits'}
                   </Button>
                 </div>
               </div>
