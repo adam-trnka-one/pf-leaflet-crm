@@ -18,12 +18,21 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+interface Activity {
+  id: string;
+  type: string;
+  subject: string;
+  date: Date;
+  completed: boolean;
+}
+
 interface NewActivityModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onActivityCreated?: () => void;
 }
 
-const NewActivityModal = ({ open, onOpenChange }: NewActivityModalProps) => {
+const NewActivityModal = ({ open, onOpenChange, onActivityCreated }: NewActivityModalProps) => {
   const [formData, setFormData] = useState({
     type: "Call",
     subject: "",
@@ -31,9 +40,35 @@ const NewActivityModal = ({ open, onOpenChange }: NewActivityModalProps) => {
   });
 
   const handleSubmit = () => {
-    console.log("Creating new activity:", formData);
+    if (!formData.subject || !formData.date) {
+      return;
+    }
+
+    const newActivity: Activity = {
+      id: `activity_${Date.now()}`,
+      type: formData.type,
+      subject: formData.subject,
+      date: new Date(formData.date),
+      completed: false,
+    };
+
+    // Get existing activities from localStorage
+    const existingActivities = JSON.parse(localStorage.getItem('crmActivities') || '[]');
+    const updatedActivities = [newActivity, ...existingActivities];
+    
+    // Store back to localStorage
+    localStorage.setItem('crmActivities', JSON.stringify(updatedActivities));
+    
+    console.log("Creating new activity:", newActivity);
+    
+    // Reset form and close modal
     onOpenChange(false);
     setFormData({ type: "Call", subject: "", date: "" });
+    
+    // Notify parent component
+    if (onActivityCreated) {
+      onActivityCreated();
+    }
   };
 
   return (

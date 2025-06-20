@@ -1,17 +1,52 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Calendar, Phone, Mail, MessageSquare } from "lucide-react";
 import NewActivityModal from "@/components/modals/NewActivityModal";
 
+interface Activity {
+  id: string;
+  type: string;
+  subject: string;
+  date: Date;
+  completed: boolean;
+}
+
 const Activities = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activities, setActivities] = useState<Activity[]>([]);
 
-  const activities = [
-    { id: 1, type: 'Call', subject: 'Follow up call with Acme Corp', date: new Date(), completed: false },
-    { id: 2, type: 'Email', subject: 'Send proposal to TechStart', date: new Date(), completed: true },
-    { id: 3, type: 'Meeting', subject: 'Demo presentation', date: new Date(), completed: false },
-  ];
+  // Load activities from localStorage
+  const loadActivities = () => {
+    const storedActivities = localStorage.getItem('crmActivities');
+    if (storedActivities) {
+      const parsed = JSON.parse(storedActivities);
+      // Convert date strings back to Date objects
+      const activitiesWithDates = parsed.map((activity: any) => ({
+        ...activity,
+        date: new Date(activity.date)
+      }));
+      setActivities(activitiesWithDates);
+    } else {
+      // Set default activities if none exist
+      const defaultActivities = [
+        { id: '1', type: 'Call', subject: 'Follow up call with Acme Corp', date: new Date(), completed: false },
+        { id: '2', type: 'Email', subject: 'Send proposal to TechStart', date: new Date(), completed: true },
+        { id: '3', type: 'Meeting', subject: 'Demo presentation', date: new Date(), completed: false },
+      ];
+      setActivities(defaultActivities);
+      localStorage.setItem('crmActivities', JSON.stringify(defaultActivities));
+    }
+  };
+
+  useEffect(() => {
+    loadActivities();
+  }, []);
+
+  const handleActivityCreated = () => {
+    loadActivities(); // Refresh the list when a new activity is created
+  };
 
   const getActivityIcon = (type: string) => {
     switch (type) {
@@ -66,6 +101,7 @@ const Activities = () => {
       <NewActivityModal 
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
+        onActivityCreated={handleActivityCreated}
       />
     </div>
   );

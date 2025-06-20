@@ -1,18 +1,47 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Plus, User, Mail, Shield } from "lucide-react";
 import NewUserModal from "@/components/modals/NewUserModal";
 
+interface UserType {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  status: string;
+}
+
 const Users = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [users, setUsers] = useState<UserType[]>([]);
 
-  const users = [
-    { id: 1, name: 'Alice Johnson', email: 'alice@company.com', role: 'Admin', status: 'Active' },
-    { id: 2, name: 'Bob Smith', email: 'bob@company.com', role: 'Sales Rep', status: 'Active' },
-    { id: 3, name: 'Carol Davis', email: 'carol@company.com', role: 'Manager', status: 'Active' },
-  ];
+  // Load users from localStorage
+  const loadUsers = () => {
+    const storedUsers = localStorage.getItem('crmUsers');
+    if (storedUsers) {
+      setUsers(JSON.parse(storedUsers));
+    } else {
+      // Set default users if none exist
+      const defaultUsers = [
+        { id: '1', name: 'Alice Johnson', email: 'alice@company.com', role: 'Admin', status: 'Active' },
+        { id: '2', name: 'Bob Smith', email: 'bob@company.com', role: 'Sales Rep', status: 'Active' },
+        { id: '3', name: 'Carol Davis', email: 'carol@company.com', role: 'Manager', status: 'Active' },
+      ];
+      setUsers(defaultUsers);
+      localStorage.setItem('crmUsers', JSON.stringify(defaultUsers));
+    }
+  };
+
+  useEffect(() => {
+    loadUsers();
+  }, []);
+
+  const handleUserCreated = () => {
+    loadUsers(); // Refresh the list when a new user is created
+  };
 
   const getRoleColor = (role: string) => {
     switch (role) {
@@ -73,6 +102,7 @@ const Users = () => {
       <NewUserModal 
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
+        onUserCreated={handleUserCreated}
       />
     </div>
   );

@@ -18,12 +18,21 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  status: string;
+}
+
 interface NewUserModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onUserCreated?: () => void;
 }
 
-const NewUserModal = ({ open, onOpenChange }: NewUserModalProps) => {
+const NewUserModal = ({ open, onOpenChange, onUserCreated }: NewUserModalProps) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -31,9 +40,35 @@ const NewUserModal = ({ open, onOpenChange }: NewUserModalProps) => {
   });
 
   const handleSubmit = () => {
-    console.log("Creating new user:", formData);
+    if (!formData.name || !formData.email) {
+      return;
+    }
+
+    const newUser: User = {
+      id: `user_${Date.now()}`,
+      name: formData.name,
+      email: formData.email,
+      role: formData.role,
+      status: "Active",
+    };
+
+    // Get existing users from localStorage
+    const existingUsers = JSON.parse(localStorage.getItem('crmUsers') || '[]');
+    const updatedUsers = [newUser, ...existingUsers];
+    
+    // Store back to localStorage
+    localStorage.setItem('crmUsers', JSON.stringify(updatedUsers));
+    
+    console.log("Creating new user:", newUser);
+    
+    // Reset form and close modal
     onOpenChange(false);
     setFormData({ name: "", email: "", role: "Sales Rep" });
+    
+    // Notify parent component
+    if (onUserCreated) {
+      onUserCreated();
+    }
   };
 
   return (
