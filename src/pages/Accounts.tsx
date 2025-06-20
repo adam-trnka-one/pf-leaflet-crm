@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getSampleData, type Account } from "@/utils/sampleData";
@@ -105,7 +104,7 @@ const Accounts = () => {
       {/* Accounts Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredAccounts.map((account) => (
-          <Link key={account.id} to={`/accounts/${account.id}`}>
+          <Link key={account.id} to={`/dashboard/accounts/${account.id}`}>
             <Card className="bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer">
               <CardHeader className="pb-2">
                 <div className="flex justify-between items-start">

@@ -1,4 +1,3 @@
-
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getSampleData, type Account } from "@/utils/sampleData";
@@ -15,11 +14,27 @@ const AccountDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const data = getSampleData();
-    if (data && id) {
-      const foundAccount = data.accounts.find((acc: Account) => acc.id === id);
-      setAccount(foundAccount || null);
+    // First try to load from localStorage
+    const storedAccounts = localStorage.getItem('crmAccounts');
+    let foundAccount = null;
+    
+    if (storedAccounts) {
+      const parsedAccounts = JSON.parse(storedAccounts).map((account: any) => ({
+        ...account,
+        createdAt: new Date(account.createdAt)
+      }));
+      foundAccount = parsedAccounts.find((acc: Account) => acc.id === id);
     }
+    
+    // If not found in localStorage, try sample data
+    if (!foundAccount) {
+      const data = getSampleData();
+      if (data && id) {
+        foundAccount = data.accounts.find((acc: Account) => acc.id === id);
+      }
+    }
+    
+    setAccount(foundAccount || null);
     setLoading(false);
   }, [id]);
 
@@ -35,7 +50,7 @@ const AccountDetail = () => {
     return (
       <div className="p-8 text-center">
         <h1 className="text-2xl font-bold text-slate-800">Account not found</h1>
-        <Link to="/accounts">
+        <Link to="/dashboard/accounts">
           <Button className="mt-4">Back to Accounts</Button>
         </Link>
       </div>
@@ -46,7 +61,7 @@ const AccountDetail = () => {
     <div className="p-8 bg-slate-50 min-h-screen">
       {/* Header */}
       <div className="flex items-center space-x-4 mb-8">
-        <Link to="/accounts">
+        <Link to="/dashboard/accounts">
           <Button variant="outline" size="sm">
             <ArrowLeft className="h-4 w-4" />
           </Button>
