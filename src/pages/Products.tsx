@@ -5,10 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Package, DollarSign, Edit, Trash2 } from "lucide-react";
 import NewProductModal from "@/components/modals/NewProductModal";
+import EditProductModal from "@/components/modals/EditProductModal";
 import { toast } from "@/hooks/use-toast";
 
 const Products = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [products, setProducts] = useState([
     { id: 1, name: 'CRM Professional', description: 'Advanced CRM features', price: 99, category: 'Software', status: 'Active' },
     { id: 2, name: 'Consulting Services', description: 'Expert consulting', price: 150, category: 'Service', status: 'Active' },
@@ -16,11 +19,13 @@ const Products = () => {
   ]);
 
   const handleEdit = (product: any) => {
-    // For now, just show a toast. Edit modal would be implemented here
-    toast({
-      title: "Edit Product",
-      description: `Editing product ${product.name}`
-    });
+    setSelectedProduct(product);
+    setIsEditModalOpen(true);
+  };
+
+  const handleProductUpdated = (updatedProduct: any) => {
+    setProducts(products.map(p => p.id === updatedProduct.id ? updatedProduct : p));
+    setSelectedProduct(null);
   };
 
   const handleDelete = (productId: number) => {
@@ -110,6 +115,13 @@ const Products = () => {
       <NewProductModal 
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
+      />
+
+      <EditProductModal
+        open={isEditModalOpen}
+        onOpenChange={setIsEditModalOpen}
+        product={selectedProduct}
+        onProductUpdated={handleProductUpdated}
       />
     </div>
   );

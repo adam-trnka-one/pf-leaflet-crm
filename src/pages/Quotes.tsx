@@ -5,10 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Plus, FileText, DollarSign, Calendar, Edit, Trash2 } from "lucide-react";
 import NewQuoteModal from "@/components/modals/NewQuoteModal";
+import EditQuoteModal from "@/components/modals/EditQuoteModal";
 import { toast } from "@/hooks/use-toast";
 
 const Quotes = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedQuote, setSelectedQuote] = useState<any>(null);
   const [quotes, setQuotes] = useState([
     { id: 1, name: 'Q-2024-001', account: 'Acme Corp', amount: 25000, status: 'Draft', date: new Date() },
     { id: 2, name: 'Q-2024-002', account: 'TechStart Inc', amount: 15000, status: 'Sent', date: new Date() },
@@ -16,11 +19,13 @@ const Quotes = () => {
   ]);
 
   const handleEdit = (quote: any) => {
-    // For now, just show a toast. Edit modal would be implemented here
-    toast({
-      title: "Edit Quote",
-      description: `Editing quote ${quote.name}`
-    });
+    setSelectedQuote(quote);
+    setIsEditModalOpen(true);
+  };
+
+  const handleQuoteUpdated = (updatedQuote: any) => {
+    setQuotes(quotes.map(q => q.id === updatedQuote.id ? updatedQuote : q));
+    setSelectedQuote(null);
   };
 
   const handleDelete = (quoteId: number) => {
@@ -116,6 +121,13 @@ const Quotes = () => {
       <NewQuoteModal 
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
+      />
+
+      <EditQuoteModal
+        open={isEditModalOpen}
+        onOpenChange={setIsEditModalOpen}
+        quote={selectedQuote}
+        onQuoteUpdated={handleQuoteUpdated}
       />
     </div>
   );
