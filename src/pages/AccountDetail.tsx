@@ -7,13 +7,15 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Edit, Phone, Globe, MapPin, DollarSign, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import EditAccountModal from "@/components/modals/EditAccountModal";
 
 const AccountDetail = () => {
   const { id } = useParams();
   const [account, setAccount] = useState<Account | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  useEffect(() => {
+  const loadAccount = () => {
     // First try to load from localStorage
     const storedAccounts = localStorage.getItem('crmAccounts');
     let foundAccount = null;
@@ -36,7 +38,15 @@ const AccountDetail = () => {
     
     setAccount(foundAccount || null);
     setLoading(false);
+  };
+
+  useEffect(() => {
+    loadAccount();
   }, [id]);
+
+  const handleAccountUpdated = () => {
+    loadAccount(); // Refresh the account data when updated
+  };
 
   if (loading) {
     return (
@@ -70,7 +80,10 @@ const AccountDetail = () => {
           <h1 className="text-3xl font-bold text-slate-800">{account.name}</h1>
           <p className="text-slate-600">{account.industry} • {account.type}</p>
         </div>
-        <Button className="bg-emerald-600 hover:bg-emerald-700">
+        <Button 
+          className="bg-emerald-600 hover:bg-emerald-700"
+          onClick={() => setIsEditModalOpen(true)}
+        >
           <Edit className="h-4 w-4 mr-2" />
           Edit Account
         </Button>
@@ -192,6 +205,13 @@ const AccountDetail = () => {
           </Card>
         </TabsContent>
       </Tabs>
+
+      <EditAccountModal 
+        open={isEditModalOpen}
+        onOpenChange={setIsEditModalOpen}
+        account={account}
+        onAccountUpdated={handleAccountUpdated}
+      />
     </div>
   );
 };
