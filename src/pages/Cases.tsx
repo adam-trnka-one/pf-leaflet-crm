@@ -20,19 +20,23 @@ const Cases = () => {
   const [selectedCase, setSelectedCase] = useState<Case | null>(null);
 
   const loadCases = () => {
+    console.log("Loading cases...");
     // Try to load from localStorage first
     const storedCases = localStorage.getItem('crmCases');
     if (storedCases) {
+      console.log("Found stored cases:", storedCases);
       const parsedCases = JSON.parse(storedCases).map((case_: any) => ({
         ...case_,
         createdAt: new Date(case_.createdAt)
       }));
+      console.log("Parsed cases:", parsedCases);
       setCases(parsedCases);
       setFilteredCases(parsedCases);
     } else {
       // Fall back to sample data
       const data = getSampleData();
       if (data) {
+        console.log("Using sample data:", data.cases);
         setCases(data.cases);
         setFilteredCases(data.cases);
       }
@@ -55,25 +59,30 @@ const Cases = () => {
       filtered = filtered.filter(case_ => case_.priority === priorityFilter);
     }
     
+    console.log("Filtered cases:", filtered);
     setFilteredCases(filtered);
   }, [statusFilter, priorityFilter, cases]);
 
   const handleCaseCreated = () => {
+    console.log("Case created, reloading...");
     loadCases();
   };
 
   const handleEdit = (case_: Case) => {
+    console.log("Editing case:", case_);
     setSelectedCase(case_);
     setIsEditModalOpen(true);
   };
 
   const handleCaseUpdated = () => {
+    console.log("Case updated, reloading...");
     loadCases();
     setIsEditModalOpen(false);
     setSelectedCase(null);
   };
 
   const handleDelete = (caseId: string) => {
+    console.log("Deleting case:", caseId);
     const storedCases = JSON.parse(localStorage.getItem('crmCases') || '[]');
     const updatedCases = storedCases.filter((c: Case) => c.id !== caseId);
     localStorage.setItem('crmCases', JSON.stringify(updatedCases));

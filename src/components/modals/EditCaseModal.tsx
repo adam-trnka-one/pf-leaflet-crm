@@ -42,6 +42,7 @@ const EditCaseModal = ({ open, onOpenChange, case_, onCaseUpdated }: EditCaseMod
 
   useEffect(() => {
     if (case_) {
+      console.log("Setting form data for case:", case_);
       setFormData({
         subject: case_.subject,
         description: case_.description,
@@ -65,15 +66,29 @@ const EditCaseModal = ({ open, onOpenChange, case_, onCaseUpdated }: EditCaseMod
       return;
     }
 
-    if (!case_) return;
+    if (!case_) {
+      console.error("No case to update");
+      return;
+    }
+
+    console.log("Updating case with data:", formData);
 
     // Get existing cases from localStorage
     const existingCases = JSON.parse(localStorage.getItem('crmCases') || '[]');
+    console.log("Existing cases before update:", existingCases);
+    
     const updatedCases = existingCases.map((c: Case) => 
       c.id === case_.id 
-        ? { ...c, ...formData }
+        ? { 
+            ...c, 
+            ...formData,
+            // Preserve the original createdAt date
+            createdAt: c.createdAt 
+          }
         : c
     );
+    
+    console.log("Updated cases after modification:", updatedCases);
     localStorage.setItem('crmCases', JSON.stringify(updatedCases));
 
     toast({
