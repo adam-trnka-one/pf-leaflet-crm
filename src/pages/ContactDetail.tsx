@@ -1,4 +1,3 @@
-
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getSampleData, type Contact } from "@/utils/sampleData";
@@ -6,13 +5,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Edit, Mail, Phone, User, Building } from "lucide-react";
+import EditContactModal from "@/components/modals/EditContactModal";
 
 const ContactDetail = () => {
   const { id } = useParams();
   const [contact, setContact] = useState<Contact | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  useEffect(() => {
+  const loadContact = () => {
     // First try to load from localStorage
     const storedContacts = localStorage.getItem('crmContacts');
     let foundContact = null;
@@ -35,7 +36,15 @@ const ContactDetail = () => {
     
     setContact(foundContact || null);
     setLoading(false);
+  };
+
+  useEffect(() => {
+    loadContact();
   }, [id]);
+
+  const handleContactUpdated = () => {
+    loadContact(); // Refresh the contact data when updated
+  };
 
   if (loading) {
     return (
@@ -76,7 +85,10 @@ const ContactDetail = () => {
             <p className="text-slate-600">{contact.title} at {contact.accountName}</p>
           </div>
         </div>
-        <Button className="bg-emerald-600 hover:bg-emerald-700">
+        <Button 
+          className="bg-emerald-600 hover:bg-emerald-700"
+          onClick={() => setIsEditModalOpen(true)}
+        >
           <Edit className="h-4 w-4 mr-2" />
           Edit Contact
         </Button>
@@ -176,6 +188,13 @@ const ContactDetail = () => {
           </Card>
         </TabsContent>
       </Tabs>
+
+      <EditContactModal 
+        open={isEditModalOpen}
+        onOpenChange={setIsEditModalOpen}
+        contact={contact}
+        onContactUpdated={handleContactUpdated}
+      />
     </div>
   );
 };
