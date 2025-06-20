@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, Target, BarChart3, CheckCircle, Star, Shield, Zap, Globe, Clock } from "lucide-react";
@@ -22,11 +23,11 @@ const Hero = () => {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1500673922987-e212871fec22?ixlib=rb-4.0.3&auto=format&fit=crop&w=6000&q=80" 
-            alt="People having conversations in a natural setting with trees" 
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=6000&q=80" 
+            alt="People having conversations with laptops in a bright setting with trees" 
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-black/10"></div>
         </div>
 
         {/* Content */}
