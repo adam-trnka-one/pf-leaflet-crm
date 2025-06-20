@@ -1,12 +1,14 @@
-
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
+import { useProductFruits } from "@/hooks/useProductFruits";
 
 const Layout = () => {
   const location = useLocation();
+  useProductFruits(); // Initialize ProductFruits with workspace data
+  
   const navigation = [{
     name: "Dashboard",
     href: "/dashboard",

@@ -8,13 +8,16 @@ import { Badge } from "@/components/ui/badge";
 import { User, Key, Shield, Bell, Plug, Building } from "lucide-react";
 import { useState } from "react";
 import { X, Plus } from "lucide-react";
+import { useWorkspace } from "@/contexts/WorkspaceContext";
 
 const Settings = () => {
-  const [customProperties, setCustomProperties] = useState([
-    { name: "", value: "" },
-    { name: "", value: "" },
-    { name: "", value: "" }
-  ]);
+  const { workspaceData, updateWorkspaceData } = useWorkspace();
+  const [localWorkspaceData, setLocalWorkspaceData] = useState(workspaceData);
+  const [customProperties, setCustomProperties] = useState(
+    workspaceData.customProperties.length > 0 
+      ? workspaceData.customProperties 
+      : [{ name: "", value: "" }, { name: "", value: "" }, { name: "", value: "" }]
+  );
 
   const addCustomProperty = () => {
     setCustomProperties([...customProperties, { name: "", value: "" }]);
@@ -29,6 +32,20 @@ const Settings = () => {
     const newProperties = [...customProperties];
     newProperties[index][field] = value;
     setCustomProperties(newProperties);
+  };
+
+  const handleSaveWorkspaceData = () => {
+    const dataToSave = {
+      ...localWorkspaceData,
+      customProperties: customProperties.filter(prop => prop.name && prop.value)
+    };
+    updateWorkspaceData(dataToSave);
+    console.log('Workspace data saved:', dataToSave);
+  };
+
+  const handleInitializeProductFruits = () => {
+    handleSaveWorkspaceData();
+    console.log('ProductFruits initialized with current workspace data');
   };
 
   const integrations = [
@@ -137,17 +154,23 @@ const Settings = () => {
                   id="workspaceCode" 
                   placeholder="Enter your workspace code"
                   className="mt-1"
+                  value={localWorkspaceData.workspaceCode}
+                  onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, workspaceCode: e.target.value }))}
                 />
-                <p className="text-xs text-slate-500 mt-1">0/40 characters</p>
+                <p className="text-xs text-slate-500 mt-1">{localWorkspaceData.workspaceCode.length}/40 characters</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="username" className="text-sm font-medium text-slate-700">Username</Label>
+                  <Label htmlFor="username" className="text-sm font-medium text-slate-700">
+                    Username <span className="text-red-500">*</span>
+                  </Label>
                   <Input 
                     id="username" 
                     placeholder="Enter username"
                     className="mt-1"
+                    value={localWorkspaceData.username}
+                    onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, username: e.target.value }))}
                   />
                 </div>
                 <div>
@@ -157,6 +180,8 @@ const Settings = () => {
                     type="email"
                     placeholder="Enter email address"
                     className="mt-1"
+                    value={localWorkspaceData.email}
+                    onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, email: e.target.value }))}
                   />
                 </div>
               </div>
@@ -168,6 +193,8 @@ const Settings = () => {
                     id="firstName" 
                     placeholder="Enter first name"
                     className="mt-1"
+                    value={localWorkspaceData.firstName}
+                    onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, firstName: e.target.value }))}
                   />
                 </div>
                 <div>
@@ -176,6 +203,8 @@ const Settings = () => {
                     id="lastName" 
                     placeholder="Enter last name"
                     className="mt-1"
+                    value={localWorkspaceData.lastName}
+                    onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, lastName: e.target.value }))}
                   />
                 </div>
               </div>
@@ -186,6 +215,8 @@ const Settings = () => {
                   id="role" 
                   placeholder="Enter role (e.g. Student, Teacher)"
                   className="mt-1"
+                  value={localWorkspaceData.role}
+                  onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, role: e.target.value }))}
                 />
               </div>
 
@@ -237,18 +268,42 @@ const Settings = () => {
 
               <div className="flex justify-between">
                 <div className="flex space-x-3">
-                  <Button variant="outline" className="text-red-600 border-red-200 hover:bg-red-50">
+                  <Button 
+                    variant="outline" 
+                    className="text-red-600 border-red-200 hover:bg-red-50"
+                    onClick={() => {
+                      setLocalWorkspaceData({
+                        workspaceCode: '',
+                        username: '',
+                        email: '',
+                        firstName: '',
+                        lastName: '',
+                        role: '',
+                        customProperties: []
+                      });
+                      setCustomProperties([{ name: "", value: "" }, { name: "", value: "" }, { name: "", value: "" }]);
+                    }}
+                  >
                     Clear All Data
                   </Button>
-                  <Button variant="outline">
+                  <Button 
+                    variant="outline"
+                    onClick={() => console.log('Current workspace data:', workspaceData)}
+                  >
                     View Saved Data
                   </Button>
                 </div>
                 <div className="flex space-x-3">
-                  <Button className="bg-blue-600 hover:bg-blue-700">
+                  <Button 
+                    className="bg-blue-600 hover:bg-blue-700"
+                    onClick={handleSaveWorkspaceData}
+                  >
                     Save Workspace Data
                   </Button>
-                  <Button className="bg-orange-500 hover:bg-orange-600">
+                  <Button 
+                    className="bg-orange-500 hover:bg-orange-600"
+                    onClick={handleInitializeProductFruits}
+                  >
                     Initialize ProductFruits
                   </Button>
                 </div>
