@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -43,7 +44,6 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email address"
                 required
-                className="w-full h-12 border-l-4 border-l-leaflet-green border-t-0 border-r-0 border-b border-b-gray-200 rounded-none bg-transparent px-4 focus:border-l-leaflet-green focus:ring-0"
               />
             </div>
             <div>
@@ -53,7 +53,6 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 required
-                className="w-full h-12 border-l-4 border-l-leaflet-green border-t-0 border-r-0 border-b border-b-gray-200 rounded-none bg-transparent px-4 focus:border-l-leaflet-green focus:ring-0"
               />
             </div>
 
