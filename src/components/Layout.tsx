@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
+
 const Layout = () => {
   const location = useLocation();
   const navigation = [{
@@ -57,9 +58,9 @@ const Layout = () => {
   return <SidebarProvider>
       <div className="min-h-screen flex w-full bg-slate-50">
         <Sidebar className="w-72">
-          <SidebarHeader className="border-b border-sidebar-border p-6">
-            <div className="flex items-center justify-center">
-              <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-10 w-auto" />
+          <SidebarHeader className="border-b border-sidebar-border px-4 py-4">
+            <div className="flex items-center">
+              <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
             </div>
           </SidebarHeader>
           
@@ -120,4 +121,5 @@ const Layout = () => {
       </div>
     </SidebarProvider>;
 };
+
 export default Layout;
