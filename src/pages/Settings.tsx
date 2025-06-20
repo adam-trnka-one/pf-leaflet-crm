@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -134,6 +135,41 @@ const Settings = () => {
       status: "premium",
       logo: "🔥",
       features: ["Heatmaps", "Session recordings", "User feedback", "Conversion funnels"]
+    },
+    {
+      name: "Customer.io",
+      description: "Powerful email marketing automation and customer messaging platform",
+      status: "premium",
+      logo: "📧",
+      features: ["Email automation", "Behavioral triggers", "Segmentation", "A/B testing"]
+    },
+    {
+      name: "Mixpanel",
+      description: "Advanced product analytics to understand user behavior and optimize conversions",
+      status: "premium",
+      logo: "📊",
+      features: ["Event tracking", "Funnel analysis", "Cohort analysis", "Real-time data"]
+    },
+    {
+      name: "Zapier",
+      description: "Connect with 5000+ apps to automate workflows and eliminate manual tasks",
+      status: "premium",
+      logo: "⚡",
+      features: ["Multi-step workflows", "Conditional logic", "Error handling", "Custom webhooks"]
+    },
+    {
+      name: "Make.com",
+      description: "Visual automation platform for complex integrations and data processing",
+      status: "premium",
+      logo: "🔗",
+      features: ["Visual builder", "Advanced logic", "API integrations", "Real-time sync"]
+    },
+    {
+      name: "Smartlook",
+      description: "Complete user experience analytics with recordings and conversion optimization",
+      status: "premium",
+      logo: "👁️",
+      features: ["Session recordings", "Heatmaps", "Event tracking", "Conversion funnels"]
     }
   ];
 
