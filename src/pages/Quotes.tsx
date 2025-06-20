@@ -1,18 +1,35 @@
+
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Plus, FileText, DollarSign, Calendar } from "lucide-react";
+import { Plus, FileText, DollarSign, Calendar, Edit, Trash2 } from "lucide-react";
 import NewQuoteModal from "@/components/modals/NewQuoteModal";
+import { toast } from "@/hooks/use-toast";
 
 const Quotes = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const quotes = [
+  const [quotes, setQuotes] = useState([
     { id: 1, name: 'Q-2024-001', account: 'Acme Corp', amount: 25000, status: 'Draft', date: new Date() },
     { id: 2, name: 'Q-2024-002', account: 'TechStart Inc', amount: 15000, status: 'Sent', date: new Date() },
     { id: 3, name: 'Q-2024-003', account: 'GlobalSoft', amount: 35000, status: 'Accepted', date: new Date() },
-  ];
+  ]);
+
+  const handleEdit = (quote: any) => {
+    // For now, just show a toast. Edit modal would be implemented here
+    toast({
+      title: "Edit Quote",
+      description: `Editing quote ${quote.name}`
+    });
+  };
+
+  const handleDelete = (quoteId: number) => {
+    setQuotes(quotes.filter(q => q.id !== quoteId));
+    toast({
+      title: "Quote deleted",
+      description: "The quote has been successfully deleted."
+    });
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -70,6 +87,25 @@ const Quotes = () => {
                   <Badge className={getStatusColor(quote.status)} variant="secondary">
                     {quote.status}
                   </Badge>
+
+                  <div className="flex space-x-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleEdit(quote)}
+                    >
+                      <Edit className="h-4 w-4 mr-1" />
+                      Edit
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleDelete(quote.id)}
+                      className="text-red-600 hover:text-red-700"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
               </div>
             </CardContent>

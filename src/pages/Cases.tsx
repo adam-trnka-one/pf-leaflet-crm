@@ -1,11 +1,12 @@
-
 import { useEffect, useState } from "react";
 import { getSampleData, type Case } from "@/utils/sampleData";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Plus, HelpCircle, Clock, AlertTriangle } from "lucide-react";
+import { Plus, HelpCircle, Clock, AlertTriangle, Edit, Trash2 } from "lucide-react";
+import NewCaseModal from "@/components/modals/NewCaseModal";
+import { toast } from "@/hooks/use-toast";
 
 const Cases = () => {
   const [cases, setCases] = useState<Case[]>([]);
@@ -13,14 +14,31 @@ const Cases = () => {
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [priorityFilter, setPriorityFilter] = useState<string>("all");
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    const data = getSampleData();
-    if (data) {
-      setCases(data.cases);
-      setFilteredCases(data.cases);
+  const loadCases = () => {
+    // Try to load from localStorage first
+    const storedCases = localStorage.getItem('crmCases');
+    if (storedCases) {
+      const parsedCases = JSON.parse(storedCases).map((case_: any) => ({
+        ...case_,
+        createdAt: new Date(case_.createdAt)
+      }));
+      setCases(parsedCases);
+      setFilteredCases(parsedCases);
+    } else {
+      // Fall back to sample data
+      const data = getSampleData();
+      if (data) {
+        setCases(data.cases);
+        setFilteredCases(data.cases);
+      }
     }
     setLoading(false);
+  };
+
+  useEffect(() => {
+    loadCases();
   }, []);
 
   useEffect(() => {
@@ -36,6 +54,21 @@ const Cases = () => {
     
     setFilteredCases(filtered);
   }, [statusFilter, priorityFilter, cases]);
+
+  const handleCaseCreated = () => {
+    loadCases();
+  };
+
+  const handleDelete = (caseId: string) => {
+    const storedCases = JSON.parse(localStorage.getItem('crmCases') || '[]');
+    const updatedCases = storedCases.filter((c: Case) => c.id !== caseId);
+    localStorage.setItem('crmCases', JSON.stringify(updatedCases));
+    loadCases();
+    toast({
+      title: "Case deleted",
+      description: "The case has been successfully deleted."
+    });
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -84,7 +117,7 @@ const Cases = () => {
           <h1 className="text-3xl font-bold text-slate-800">Cases</h1>
           <p className="text-slate-600 mt-2">Manage customer support cases</p>
         </div>
-        <Button className="bg-emerald-600 hover:bg-emerald-700">
+        <Button className="bg-emerald-600 hover:bg-emerald-700" onClick={() => setIsModalOpen(true)}>
           <Plus className="h-4 w-4 mr-2" />
           New Case
         </Button>
@@ -163,9 +196,25 @@ const Cases = () => {
                   </div>
                 </div>
                 
-                <div className="text-xs text-slate-500 text-right">
-                  <p>Case #{case_.id}</p>
-                  <p>Created: {case_.createdAt.toLocaleDateString()}</p>
+                <div className="flex flex-col items-end space-y-2">
+                  <div className="text-xs text-slate-500 text-right">
+                    <p>Case #{case_.id}</p>
+                    <p>Created: {case_.createdAt.toLocaleDateString()}</p>
+                  </div>
+                  <div className="flex space-x-2">
+                    <Button variant="outline" size="sm">
+                      <Edit className="h-4 w-4 mr-1" />
+                      Edit
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleDelete(case_.id)}
+                      className="text-red-600 hover:text-red-700"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
               </div>
             </CardContent>
@@ -178,6 +227,12 @@ const Cases = () => {
           <p className="text-slate-500">No cases found matching your filters.</p>
         </div>
       )}
+
+      <NewCaseModal 
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        onCaseCreated={handleCaseCreated}
+      />
     </div>
   );
 };
