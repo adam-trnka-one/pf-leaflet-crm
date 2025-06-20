@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -69,7 +68,7 @@ const Settings = () => {
       customProperties: customProperties.filter(prop => prop.name && prop.value)
     };
     updateWorkspaceData(dataToSave);
-    initializeProductFruits(); // Re-initialize ProductFruits after saving
+    initializeProductFruits();
     console.log('Workspace data saved and ProductFruits re-initialized:', dataToSave);
     
     toast({
@@ -79,7 +78,6 @@ const Settings = () => {
   };
 
   const handleViewSavedData = () => {
-    // Build props object from custom properties
     const props: Record<string, string> = {};
     workspaceData.customProperties.forEach((prop, index) => {
       if (prop.name && prop.value) {
@@ -87,7 +85,6 @@ const Settings = () => {
       }
     });
 
-    // Generate sign-up date in required format
     const signUpDate = new Date().toISOString();
 
     const initData = {
@@ -107,7 +104,6 @@ const Settings = () => {
     console.log('\nProductFruits script format:');
     console.log(productFruitsScript);
     
-    // Set the data for modal display
     setDisplayData(productFruitsScript);
     setIsDataModalOpen(true);
   };
@@ -554,7 +550,7 @@ const Settings = () => {
                     </div>
                     <Button variant="outline" size="sm">
                       Configure
-                    </div>
+                    </Button>
                   </div>
                 </div>
               </CardContent>
