@@ -6,20 +6,38 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Plus, Search, Mail, Phone, User } from "lucide-react";
+import NewContactModal from "@/components/modals/NewContactModal";
 
 const Contacts = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [filteredContacts, setFilteredContacts] = useState<Contact[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    const data = getSampleData();
-    if (data) {
-      setContacts(data.contacts);
-      setFilteredContacts(data.contacts);
+  const loadContacts = () => {
+    // Try to load from localStorage first
+    const storedContacts = localStorage.getItem('crmContacts');
+    if (storedContacts) {
+      const parsedContacts = JSON.parse(storedContacts).map((contact: any) => ({
+        ...contact,
+        createdAt: new Date(contact.createdAt)
+      }));
+      setContacts(parsedContacts);
+      setFilteredContacts(parsedContacts);
+    } else {
+      // Fall back to sample data
+      const data = getSampleData();
+      if (data) {
+        setContacts(data.contacts);
+        setFilteredContacts(data.contacts);
+      }
     }
     setLoading(false);
+  };
+
+  useEffect(() => {
+    loadContacts();
   }, []);
 
   useEffect(() => {
@@ -30,6 +48,10 @@ const Contacts = () => {
     );
     setFilteredContacts(filtered);
   }, [searchTerm, contacts]);
+
+  const handleContactCreated = () => {
+    loadContacts(); // Refresh the list when a new contact is created
+  };
 
   if (loading) {
     return (
@@ -47,7 +69,10 @@ const Contacts = () => {
           <h1 className="text-3xl font-bold text-slate-800">Contacts</h1>
           <p className="text-slate-600 mt-2">Manage your contact relationships</p>
         </div>
-        <Button className="bg-emerald-600 hover:bg-emerald-700">
+        <Button 
+          className="bg-emerald-600 hover:bg-emerald-700"
+          onClick={() => setIsModalOpen(true)}
+        >
           <Plus className="h-4 w-4 mr-2" />
           New Contact
         </Button>
@@ -118,6 +143,12 @@ const Contacts = () => {
           <p className="text-slate-500">No contacts found matching your search.</p>
         </div>
       )}
+
+      <NewContactModal 
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        onContactCreated={handleContactCreated}
+      />
     </div>
   );
 };

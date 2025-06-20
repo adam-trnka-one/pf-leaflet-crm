@@ -1,14 +1,15 @@
-
 import { useEffect, useState } from "react";
 import { getSampleData, type Opportunity } from "@/utils/sampleData";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Plus, DollarSign } from "lucide-react";
+import NewOpportunityModal from "@/components/modals/NewOpportunityModal";
 
 const Opportunities = () => {
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const stages = [
     { name: 'Prospecting', color: 'bg-slate-100 text-slate-700' },
@@ -21,13 +22,33 @@ const Opportunities = () => {
     { name: 'Closed Lost', color: 'bg-red-100 text-red-700' },
   ];
 
-  useEffect(() => {
-    const data = getSampleData();
-    if (data) {
-      setOpportunities(data.opportunities);
+  const loadOpportunities = () => {
+    // Try to load from localStorage first
+    const storedOpportunities = localStorage.getItem('crmOpportunities');
+    if (storedOpportunities) {
+      const parsedOpportunities = JSON.parse(storedOpportunities).map((opp: any) => ({
+        ...opp,
+        closeDate: new Date(opp.closeDate),
+        createdAt: new Date(opp.createdAt)
+      }));
+      setOpportunities(parsedOpportunities);
+    } else {
+      // Fall back to sample data
+      const data = getSampleData();
+      if (data) {
+        setOpportunities(data.opportunities);
+      }
     }
     setLoading(false);
+  };
+
+  useEffect(() => {
+    loadOpportunities();
   }, []);
+
+  const handleOpportunityCreated = () => {
+    loadOpportunities(); // Refresh the list when a new opportunity is created
+  };
 
   const getOpportunitiesByStage = (stageName: string) => {
     return opportunities.filter(opp => opp.stage === stageName);
@@ -75,7 +96,10 @@ const Opportunities = () => {
           <h1 className="text-3xl font-bold text-slate-800">Opportunities</h1>
           <p className="text-slate-600 mt-2">Manage your sales pipeline</p>
         </div>
-        <Button className="bg-emerald-600 hover:bg-emerald-700">
+        <Button 
+          className="bg-emerald-600 hover:bg-emerald-700"
+          onClick={() => setIsModalOpen(true)}
+        >
           <Plus className="h-4 w-4 mr-2" />
           New Opportunity
         </Button>
@@ -150,6 +174,12 @@ const Opportunities = () => {
           );
         })}
       </div>
+
+      <NewOpportunityModal 
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        onOpportunityCreated={handleOpportunityCreated}
+      />
     </div>
   );
 };

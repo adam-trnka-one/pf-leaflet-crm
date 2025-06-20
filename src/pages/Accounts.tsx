@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getSampleData, type Account } from "@/utils/sampleData";
@@ -7,20 +6,38 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Search, Users, DollarSign, MapPin } from "lucide-react";
+import NewAccountModal from "@/components/modals/NewAccountModal";
 
 const Accounts = () => {
   const [accounts, setAccounts] = useState<Account[]>([]);
   const [filteredAccounts, setFilteredAccounts] = useState<Account[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    const data = getSampleData();
-    if (data) {
-      setAccounts(data.accounts);
-      setFilteredAccounts(data.accounts);
+  const loadAccounts = () => {
+    // Try to load from localStorage first
+    const storedAccounts = localStorage.getItem('crmAccounts');
+    if (storedAccounts) {
+      const parsedAccounts = JSON.parse(storedAccounts).map((account: any) => ({
+        ...account,
+        createdAt: new Date(account.createdAt)
+      }));
+      setAccounts(parsedAccounts);
+      setFilteredAccounts(parsedAccounts);
+    } else {
+      // Fall back to sample data
+      const data = getSampleData();
+      if (data) {
+        setAccounts(data.accounts);
+        setFilteredAccounts(data.accounts);
+      }
     }
     setLoading(false);
+  };
+
+  useEffect(() => {
+    loadAccounts();
   }, []);
 
   useEffect(() => {
@@ -31,6 +48,10 @@ const Accounts = () => {
     );
     setFilteredAccounts(filtered);
   }, [searchTerm, accounts]);
+
+  const handleAccountCreated = () => {
+    loadAccounts(); // Refresh the list when a new account is created
+  };
 
   const getTypeColor = (type: string) => {
     switch (type) {
@@ -58,7 +79,10 @@ const Accounts = () => {
           <h1 className="text-3xl font-bold text-slate-800">Accounts</h1>
           <p className="text-slate-600 mt-2">Manage your customer accounts</p>
         </div>
-        <Button className="bg-emerald-600 hover:bg-emerald-700">
+        <Button 
+          className="bg-emerald-600 hover:bg-emerald-700"
+          onClick={() => setIsModalOpen(true)}
+        >
           <Plus className="h-4 w-4 mr-2" />
           New Account
         </Button>
@@ -133,6 +157,12 @@ const Accounts = () => {
           <p className="text-slate-500">No accounts found matching your search.</p>
         </div>
       )}
+
+      <NewAccountModal 
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        onAccountCreated={handleAccountCreated}
+      />
     </div>
   );
 };

@@ -1,22 +1,42 @@
-
 import { useEffect, useState } from "react";
 import { getSampleData, type Lead } from "@/utils/sampleData";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Plus, UserPlus, Mail, Phone, Building } from "lucide-react";
+import NewLeadModal from "@/components/modals/NewLeadModal";
 
 const Leads = () => {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    const data = getSampleData();
-    if (data) {
-      setLeads(data.leads);
+  const loadLeads = () => {
+    // Try to load from localStorage first
+    const storedLeads = localStorage.getItem('crmLeads');
+    if (storedLeads) {
+      const parsedLeads = JSON.parse(storedLeads).map((lead: any) => ({
+        ...lead,
+        createdAt: new Date(lead.createdAt)
+      }));
+      setLeads(parsedLeads);
+    } else {
+      // Fall back to sample data
+      const data = getSampleData();
+      if (data) {
+        setLeads(data.leads);
+      }
     }
     setLoading(false);
+  };
+
+  useEffect(() => {
+    loadLeads();
   }, []);
+
+  const handleLeadCreated = () => {
+    loadLeads(); // Refresh the list when a new lead is created
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -54,7 +74,10 @@ const Leads = () => {
           <h1 className="text-3xl font-bold text-slate-800">Leads</h1>
           <p className="text-slate-600 mt-2">Manage your sales leads</p>
         </div>
-        <Button className="bg-emerald-600 hover:bg-emerald-700">
+        <Button 
+          className="bg-emerald-600 hover:bg-emerald-700"
+          onClick={() => setIsModalOpen(true)}
+        >
           <Plus className="h-4 w-4 mr-2" />
           New Lead
         </Button>
@@ -131,6 +154,12 @@ const Leads = () => {
           <p className="text-slate-500">No leads found.</p>
         </div>
       )}
+
+      <NewLeadModal 
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        onLeadCreated={handleLeadCreated}
+      />
     </div>
   );
 };
