@@ -1,16 +1,20 @@
 
 import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const STORAGE_KEY = 'leaflet-workspace-data';
 
 export const useProductFruits = () => {
+  const location = useLocation();
   const initializedWorkspaceCode = useRef<string>('');
   const hasInitialized = useRef<boolean>(false);
 
   useEffect(() => {
-    // Load data from localStorage and initialize ProductFruits
-    initializeFromStorage();
-  }, []);
+    // Only initialize ProductFruits on dashboard pages
+    if (location.pathname.startsWith('/dashboard')) {
+      initializeFromStorage();
+    }
+  }, [location.pathname]);
 
   const initializeFromStorage = () => {
     try {
@@ -107,6 +111,6 @@ export const useProductFruits = () => {
   return {
     initializeProductFruits,
     hasWorkspaceCodeChanged,
-    canAutoInitialize: true
+    canAutoInitialize: location.pathname.startsWith('/dashboard')
   };
 };
