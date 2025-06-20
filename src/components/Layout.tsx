@@ -62,7 +62,9 @@ const Layout = () => {
         <Sidebar className="w-72">
           <SidebarHeader className="border-b border-sidebar-border px-4 py-[18px]">
             <div className="flex items-center pl-[15px] py-[10px]">
-              <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
+              <Link to="/dashboard" className="hover:opacity-80 transition-opacity">
+                <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
+              </Link>
             </div>
           </SidebarHeader>
           

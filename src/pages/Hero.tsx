@@ -4,12 +4,18 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, Target, BarChart3, CheckCircle, Star, Shield, Zap, Globe, Clock } from "lucide-react";
 
 const Hero = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="flex items-center justify-between px-8 py-6 border-b border-gray-200 relative z-10">
         <div className="flex items-center">
-          <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
+          <button onClick={scrollToTop} className="hover:opacity-80 transition-opacity">
+            <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
+          </button>
         </div>
         <Link to="/login">
           <Button className="bg-[#4AB831] hover:bg-[#3da127] text-white">
