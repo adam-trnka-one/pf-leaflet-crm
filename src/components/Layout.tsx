@@ -55,11 +55,11 @@ const Layout = () => {
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-slate-50">
-        <Sidebar>
-          <SidebarHeader className="border-b border-sidebar-border">
-            <div className="flex items-center space-x-3 px-2">
-              <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">L</span>
+        <Sidebar className="w-72">
+          <SidebarHeader className="border-b border-sidebar-border p-6">
+            <div className="flex items-center space-x-4">
+              <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">L</span>
               </div>
               <span className="font-bold text-xl text-sidebar-foreground group-data-[collapsible=icon]:hidden">
                 Leaflet CRM
@@ -67,11 +67,13 @@ const Layout = () => {
             </div>
           </SidebarHeader>
           
-          <SidebarContent>
+          <SidebarContent className="p-4">
             <SidebarGroup>
-              <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+              <SidebarGroupLabel className="text-sm font-semibold text-sidebar-foreground/80 mb-3">
+                Navigation
+              </SidebarGroupLabel>
               <SidebarGroupContent>
-                <SidebarMenu>
+                <SidebarMenu className="space-y-1">
                   {navigation.map((item) => {
                     const Icon = item.icon;
                     return (
@@ -80,9 +82,10 @@ const Layout = () => {
                           asChild
                           isActive={isActive(item.href)}
                           tooltip={item.name}
+                          className="h-11 px-4 rounded-lg text-sm font-medium"
                         >
                           <Link to={item.href}>
-                            <Icon className="h-4 w-4" />
+                            <Icon className="h-5 w-5" />
                             <span>{item.name}</span>
                           </Link>
                         </SidebarMenuButton>
@@ -94,12 +97,16 @@ const Layout = () => {
             </SidebarGroup>
           </SidebarContent>
 
-          <SidebarFooter className="border-t border-sidebar-border">
+          <SidebarFooter className="border-t border-sidebar-border p-4">
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Sign Out">
+                <SidebarMenuButton 
+                  asChild 
+                  tooltip="Sign Out"
+                  className="h-11 px-4 rounded-lg text-sm font-medium"
+                >
                   <Link to="/login">
-                    <LogOut className="h-4 w-4" />
+                    <LogOut className="h-5 w-5" />
                     <span>Sign Out</span>
                   </Link>
                 </SidebarMenuButton>
@@ -109,10 +116,10 @@ const Layout = () => {
         </Sidebar>
 
         <SidebarInset>
-          <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+          <header className="flex h-16 shrink-0 items-center gap-2 border-b px-6 bg-white">
             <SidebarTrigger className="-ml-1" />
           </header>
-          <main className="flex-1 overflow-auto p-4">
+          <main className="flex-1 overflow-auto p-6">
             <Outlet />
           </main>
         </SidebarInset>
