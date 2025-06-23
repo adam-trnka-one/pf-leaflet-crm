@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -128,13 +129,22 @@ const Blog = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center">
-            <p className="text-slate-600">
-              Ready to implement these strategies? <Link to="/login" className="text-leaflet-green hover:text-leaflet-green-hover">Start with Leaflet CRM</Link>
-            </p>
+      <footer className="px-8 py-10 bg-gray-900 text-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center justify-center mb-6">
+            <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
           </div>
+          <div className="flex justify-center space-x-8 mb-6">
+            <Link to="/blog" className="text-gray-400 hover:text-white transition-colors">
+              Blog
+            </Link>
+            <Link to="/help" className="text-gray-400 hover:text-white transition-colors">
+              Help
+            </Link>
+          </div>
+          <p className="text-gray-400 text-lg text-center">
+            © 2025 Leaflet CRM. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>
