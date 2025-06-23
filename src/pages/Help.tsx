@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -164,6 +163,49 @@ const Help = () => {
               <p>Properly structured account records serve as the central hub for all related contacts, opportunities, and activities.</p>
             </div>
           )
+        },
+        {
+          title: "Account Detail Views",
+          content: (
+            <div>
+              <p className="mb-4">The account detail view provides a comprehensive overview of all information related to a specific company account:</p>
+              <ul className="list-disc pl-6 space-y-3 mb-4">
+                <li><strong>Summary Section</strong>: Displays key account information at a glance:
+                  <ul className="list-disc pl-6 mt-2 space-y-1">
+                    <li>Company name, industry, and account type</li>
+                    <li>Primary contact information and website</li>
+                    <li>Account owner and creation date</li>
+                    <li>Revenue figures and employee count</li>
+                  </ul>
+                </li>
+                <li><strong>Related Records Tabs</strong>: Organized sections for:
+                  <ul className="list-disc pl-6 mt-2 space-y-1">
+                    <li><strong>Contacts</strong>: All people associated with this account</li>
+                    <li><strong>Opportunities</strong>: Active and closed sales opportunities</li>
+                    <li><strong>Activities</strong>: Meetings, calls, emails, and tasks</li>
+                    <li><strong>Cases</strong>: Support tickets and customer service issues</li>
+                  </ul>
+                </li>
+                <li><strong>Activity Timeline</strong>: Chronological view of all interactions:
+                  <ul className="list-disc pl-6 mt-2 space-y-1">
+                    <li>Recent communications and meetings</li>
+                    <li>Opportunity stage changes and updates</li>
+                    <li>Case creation and resolution</li>
+                    <li>Contact additions and modifications</li>
+                  </ul>
+                </li>
+                <li><strong>Quick Actions</strong>: Streamlined access to common tasks:
+                  <ul className="list-disc pl-6 mt-2 space-y-1">
+                    <li>Create new contact for this account</li>
+                    <li>Schedule meeting or call</li>
+                    <li>Log activity or interaction</li>
+                    <li>Create new opportunity</li>
+                  </ul>
+                </li>
+              </ul>
+              <p>This centralized view ensures you have all account-related information at your fingertips for effective relationship management.</p>
+            </div>
+          )
         }
       ]
     },
@@ -277,6 +319,116 @@ const Help = () => {
                 </li>
               </ul>
               <p>Systematic lead qualification improves sales efficiency and forecasting accuracy.</p>
+            </div>
+          )
+        }
+      ]
+    },
+    {
+      id: "opportunities",
+      title: "Opportunity Management",
+      icon: Target,
+      description: "Managing sales opportunities and deals",
+      articles: [
+        {
+          title: "Creating and Managing Opportunities",
+          content: (
+            <div>
+              <p className="mb-4">Opportunities represent potential sales deals in your pipeline. Proper opportunity management is essential for accurate forecasting and sales success:</p>
+              <ul className="list-disc pl-6 space-y-3 mb-4">
+                <li><strong>Opportunity Creation</strong>:
+                  <ul className="list-disc pl-6 mt-2 space-y-1">
+                    <li>Navigate to the Opportunities module from the sidebar</li>
+                    <li>Click "New Opportunity" to create a new sales opportunity</li>
+                    <li>Link opportunities to existing accounts and contacts</li>
+                    <li>Convert qualified leads directly into opportunities</li>
+                  </ul>
+                </li>
+                <li><strong>Essential Opportunity Fields</strong>:
+                  <ul className="list-disc pl-6 mt-2 space-y-1">
+                    <li><strong>Opportunity Name</strong>: Descriptive title for the deal</li>
+                    <li><strong>Account Association</strong>: Link to the relevant company account</li>
+                    <li><strong>Amount</strong>: Estimated deal value in your currency</li>
+                    <li><strong>Close Date</strong>: Expected date for deal closure</li>
+                    <li><strong>Stage</strong>: Current position in your sales process</li>
+                    <li><strong>Probability</strong>: Likelihood of closing (percentage)</li>
+                  </ul>
+                </li>
+                <li><strong>Sales Stage Management</strong>:
+                  <ul className="list-disc pl-6 mt-2 space-y-1">
+                    <li><strong>Prospecting</strong>: Initial contact and relationship building</li>
+                    <li><strong>Qualification</strong>: Validating fit and opportunity potential</li>
+                    <li><strong>Needs Analysis</strong>: Understanding requirements and pain points</li>
+                    <li><strong>Proposal</strong>: Presenting solutions and pricing</li>
+                    <li><strong>Negotiation</strong>: Finalizing terms and conditions</li>
+                    <li><strong>Closed Won/Lost</strong>: Final outcome tracking</li>
+                  </ul>
+                </li>
+                <li><strong>Opportunity Tracking</strong>:
+                  <ul className="list-disc pl-6 mt-2 space-y-1">
+                    <li>Regular stage updates and probability adjustments</li>
+                    <li>Activity logging for all opportunity-related interactions</li>
+                    <li>Competitor analysis and positioning</li>
+                    <li>Decision criteria and stakeholder mapping</li>
+                  </ul>
+                </li>
+              </ul>
+              <p>Consistent opportunity management provides visibility into your sales pipeline and enables accurate revenue forecasting.</p>
+            </div>
+          )
+        }
+      ]
+    },
+    {
+      id: "activities",
+      title: "Activity Management",
+      icon: Activity,
+      description: "Tracking tasks, meetings, and communications",
+      articles: [
+        {
+          title: "Logging and Managing Activities",
+          content: (
+            <div>
+              <p className="mb-4">Activities in Leaflet CRM help you track all interactions and tasks related to your customers and prospects:</p>
+              <ul className="list-disc pl-6 space-y-3 mb-4">
+                <li><strong>Activity Types</strong>:
+                  <ul className="list-disc pl-6 mt-2 space-y-1">
+                    <li><strong>Meetings</strong>: Face-to-face or virtual appointments</li>
+                    <li><strong>Phone Calls</strong>: Inbound and outbound communications</li>
+                    <li><strong>Emails</strong>: Email correspondence tracking</li>
+                    <li><strong>Tasks</strong>: To-do items and follow-up actions</li>
+                    <li><strong>Events</strong>: Conferences, trade shows, and networking events</li>
+                  </ul>
+                </li>
+                <li><strong>Creating Activities</strong>:
+                  <ul className="list-disc pl-6 mt-2 space-y-1">
+                    <li>Access the Activities module from the main navigation</li>
+                    <li>Use "New Activity" button to create scheduled activities</li>
+                    <li>Log completed activities from account or contact records</li>
+                    <li>Set reminders and due dates for follow-up actions</li>
+                  </ul>
+                </li>
+                <li><strong>Activity Details</strong>:
+                  <ul className="list-disc pl-6 mt-2 space-y-1">
+                    <li><strong>Subject</strong>: Brief description of the activity</li>
+                    <li><strong>Related Records</strong>: Link to accounts, contacts, or opportunities</li>
+                    <li><strong>Date and Time</strong>: When the activity occurred or is scheduled</li>
+                    <li><strong>Duration</strong>: Length of meetings or calls</li>
+                    <li><strong>Notes</strong>: Detailed information about the interaction</li>
+                    <li><strong>Outcome</strong>: Results and next steps</li>
+                  </ul>
+                </li>
+                <li><strong>Activity Management Best Practices</strong>:
+                  <ul className="list-disc pl-6 mt-2 space-y-1">
+                    <li>Log activities immediately after completion</li>
+                    <li>Include detailed notes for future reference</li>
+                    <li>Set follow-up tasks during or immediately after meetings</li>
+                    <li>Use consistent naming conventions for easy searching</li>
+                    <li>Regular review of upcoming activities and overdue tasks</li>
+                  </ul>
+                </li>
+              </ul>
+              <p>Consistent activity logging provides a complete history of customer interactions and ensures nothing falls through the cracks.</p>
             </div>
           )
         }
