@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -464,7 +465,7 @@ const Help = () => {
               <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
               <h1 className="text-xl font-semibold text-slate-900">Help Center</h1>
             </div>
-            <Button asChild>
+            <Button asChild style={{ backgroundColor: '#4AB830' }} className="hover:opacity-90">
               <Link to="/login">
                 Sign In
               </Link>
