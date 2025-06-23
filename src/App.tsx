@@ -8,6 +8,8 @@ import { WorkspaceProvider } from "@/contexts/WorkspaceContext";
 import Layout from "./components/Layout";
 import Hero from "./pages/Hero";
 import Help from "./pages/Help";
+import Blog from "./pages/Blog";
+import BlogArticle from "./pages/BlogArticle";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Accounts from "./pages/Accounts";
@@ -35,6 +37,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/help" element={<Help />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogArticle />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={
             <WorkspaceProvider>
