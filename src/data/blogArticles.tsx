@@ -11,7 +11,7 @@ import { teamCollaborationArticle } from './articles/team-collaboration';
 import { mobileCrmArticle } from './articles/mobile-crm';
 import { crmRoiArticle } from './articles/crm-roi';
 
-export { BlogArticle } from '@/types/blog';
+export type { BlogArticle } from '@/types/blog';
 
 export const blogArticles: BlogArticle[] = [
   beginnersGuideArticle,
