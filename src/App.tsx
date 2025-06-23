@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { WorkspaceProvider } from "@/contexts/WorkspaceContext";
 import Layout from "./components/Layout";
 import Hero from "./pages/Hero";
+import Help from "./pages/Help";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Accounts from "./pages/Accounts";
@@ -33,6 +34,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Hero />} />
+          <Route path="/help" element={<Help />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={
             <WorkspaceProvider>
