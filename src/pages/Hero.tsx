@@ -369,7 +369,7 @@ const Hero = () => {
             </Link>
           </div>
           <p className="text-gray-400 text-lg text-center">
-            © 2024 Leaflet CRM. All rights reserved.
+            © 2025 Leaflet CRM. All rights reserved.
           </p>
         </div>
       </footer>
