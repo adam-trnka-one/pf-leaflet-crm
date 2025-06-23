@@ -204,7 +204,7 @@ const BlogArticle = () => {
             © 2025 Leaflet CRM. All rights reserved.
           </p>
         </div>
-      </div>
+      </footer>
     </div>
   );
 };
