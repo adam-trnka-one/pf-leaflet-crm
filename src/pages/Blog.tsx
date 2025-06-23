@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -21,11 +20,11 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
-      <header className="bg-white border-b border-slate-200">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-white/20 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
-              <Link to="/" className="flex items-center text-slate-600 hover:text-slate-900">
+              <Link to="/" className="flex items-center text-slate-600 hover:text-slate-900 transition-colors">
                 <ArrowLeft className="h-5 w-5 mr-2" />
                 Back to Home
               </Link>
@@ -33,7 +32,7 @@ const Blog = () => {
               <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
               <h1 className="text-xl font-semibold text-slate-900">CRM Insights Blog</h1>
             </div>
-            <Link to="/login" className="text-leaflet-green hover:text-leaflet-green-hover font-medium">
+            <Link to="/login" className="text-leaflet-green hover:text-leaflet-green-hover font-medium transition-colors">
               Login to CRM
             </Link>
           </div>
@@ -41,7 +40,7 @@ const Blog = () => {
       </header>
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-leaflet-green to-green-500 text-white py-16">
+      <div className="bg-gradient-to-r from-leaflet-green to-green-500 text-white py-16 mt-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl font-bold mb-4">CRM Insights & Best Practices</h1>
           <p className="text-xl opacity-90 mb-8">
