@@ -46,77 +46,104 @@ const BlogArticle = () => {
       </header>
 
       {/* Article */}
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-white rounded-lg shadow-sm p-8">
-          {/* Article Header */}
-          <header className="mb-8">
-            <div className="flex items-center gap-4 mb-4">
-              <Badge variant="outline">{article.category}</Badge>
-              <div className="flex items-center text-sm text-slate-500">
-                <Clock className="h-4 w-4 mr-1" />
-                {article.readTime}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Table of Contents - Sidebar */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-8">
+              <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+                <h3 className="text-lg font-semibold text-slate-900 mb-4">Table of Contents</h3>
+                {article.tableOfContents && (
+                  <nav className="space-y-2">
+                    {article.tableOfContents.map((item, index) => (
+                      <a
+                        key={index}
+                        href={`#${item.id}`}
+                        className="block text-sm text-slate-600 hover:text-leaflet-green transition-colors py-1"
+                      >
+                        {item.title}
+                      </a>
+                    ))}
+                  </nav>
+                )}
               </div>
             </div>
-            
-            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              {article.title}
-            </h1>
-            
-            <p className="text-xl text-slate-600 mb-6">
-              {article.excerpt}
-            </p>
-            
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4 text-sm text-slate-500">
-                <div className="flex items-center">
-                  <User className="h-4 w-4 mr-1" />
-                  {article.author}
-                </div>
-                <div className="flex items-center">
-                  <Calendar className="h-4 w-4 mr-1" />
-                  {article.date}
-                </div>
-              </div>
-              
-              <Button variant="outline" size="sm">
-                <Share2 className="h-4 w-4 mr-2" />
-                Share
-              </Button>
-            </div>
-          </header>
-
-          {/* Article Content */}
-          <div className="prose prose-lg prose-slate max-w-none">
-            {article.content}
           </div>
-        </div>
 
-        {/* Related Articles */}
-        <div className="mt-12">
-          <h3 className="text-2xl font-bold text-slate-900 mb-6">Related Articles</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {blogArticles
-              .filter(a => a.category === article.category && a.id !== article.id)
-              .slice(0, 2)
-              .map(relatedArticle => (
-                <div key={relatedArticle.id} className="bg-white rounded-lg p-6 shadow-sm">
-                  <Badge variant="outline" className="mb-2">{relatedArticle.category}</Badge>
-                  <h4 className="font-semibold text-slate-900 mb-2">
-                    <Link to={`/blog/${relatedArticle.slug}`} className="hover:text-leaflet-green">
-                      {relatedArticle.title}
-                    </Link>
-                  </h4>
-                  <p className="text-slate-600 text-sm mb-3">{relatedArticle.excerpt}</p>
-                  <div className="flex items-center text-xs text-slate-500">
-                    <span>{relatedArticle.author}</span>
-                    <span className="mx-2">•</span>
-                    <span>{relatedArticle.readTime}</span>
+          {/* Main Content */}
+          <article className="lg:col-span-3">
+            <div className="bg-white rounded-lg shadow-sm p-8">
+              {/* Article Header */}
+              <header className="mb-8">
+                <div className="flex items-center gap-4 mb-4">
+                  <Badge variant="outline">{article.category}</Badge>
+                  <div className="flex items-center text-sm text-slate-500">
+                    <Clock className="h-4 w-4 mr-1" />
+                    {article.readTime}
                   </div>
                 </div>
-              ))}
-          </div>
+                
+                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                  {article.title}
+                </h1>
+                
+                <p className="text-xl text-slate-600 mb-6">
+                  {article.excerpt}
+                </p>
+                
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4 text-sm text-slate-500">
+                    <div className="flex items-center">
+                      <User className="h-4 w-4 mr-1" />
+                      {article.author}
+                    </div>
+                    <div className="flex items-center">
+                      <Calendar className="h-4 w-4 mr-1" />
+                      {article.date}
+                    </div>
+                  </div>
+                  
+                  <Button variant="outline" size="sm">
+                    <Share2 className="h-4 w-4 mr-2" />
+                    Share
+                  </Button>
+                </div>
+              </header>
+
+              {/* Article Content */}
+              <div className="prose prose-lg prose-slate max-w-none">
+                {article.content}
+              </div>
+            </div>
+
+            {/* Related Articles */}
+            <div className="mt-12">
+              <h3 className="text-2xl font-bold text-slate-900 mb-6">Related Articles</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {blogArticles
+                  .filter(a => a.category === article.category && a.id !== article.id)
+                  .slice(0, 2)
+                  .map(relatedArticle => (
+                    <div key={relatedArticle.id} className="bg-white rounded-lg p-6 shadow-sm">
+                      <Badge variant="outline" className="mb-2">{relatedArticle.category}</Badge>
+                      <h4 className="font-semibold text-slate-900 mb-2">
+                        <Link to={`/blog/${relatedArticle.slug}`} className="hover:text-leaflet-green">
+                          {relatedArticle.title}
+                        </Link>
+                      </h4>
+                      <p className="text-slate-600 text-sm mb-3">{relatedArticle.excerpt}</p>
+                      <div className="flex items-center text-xs text-slate-500">
+                        <span>{relatedArticle.author}</span>
+                        <span className="mx-2">•</span>
+                        <span>{relatedArticle.readTime}</span>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </article>
         </div>
-      </article>
+      </div>
 
       {/* CTA Section */}
       <div className="bg-leaflet-green text-white py-16">
