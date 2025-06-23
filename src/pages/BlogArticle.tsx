@@ -36,9 +36,11 @@ const BlogArticle = () => {
               <div className="h-6 border-l border-slate-300"></div>
               <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
             </div>
-            <Link to="/login" className="text-leaflet-green hover:text-leaflet-green-hover font-medium">
-              Login to CRM
-            </Link>
+            <Button asChild style={{ backgroundColor: '#4AB830' }} className="hover:opacity-90">
+              <Link to="/login">
+                Sign In
+              </Link>
+            </Button>
           </div>
         </div>
       </header>
