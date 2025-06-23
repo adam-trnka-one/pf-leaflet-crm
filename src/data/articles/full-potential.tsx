@@ -26,7 +26,7 @@ export const fullPotentialArticle: BlogArticle = {
         <h2>Advanced Automation Strategies</h2>
         <p>Automation stands as one of the most underutilized yet powerful CRM features. Beyond simple email sequences, sophisticated automation can handle lead scoring, task assignment, follow-up scheduling, and even predictive analytics.</p>
         
-        <h3>Key Automation Areas</h3>
+        <h2>Key Automation Areas</h2>
         <ul>
           <li><strong>Lead scoring:</strong> Automatically prioritize prospects based on behavior</li>
           <li><strong>Task assignment:</strong> Route leads to appropriate team members</li>
@@ -41,7 +41,7 @@ export const fullPotentialArticle: BlogArticle = {
         <h2>Data Analytics and Reporting</h2>
         <p>Data analytics and reporting transform your CRM from a storage system into a strategic intelligence platform. Advanced users create custom dashboards that track key performance indicators, identify trends, and predict future outcomes.</p>
         
-        <h3>Essential Analytics</h3>
+        <h2>Essential Analytics</h2>
         <ul>
           <li><strong>Sales velocity analysis:</strong> Track deal progression speed</li>
           <li><strong>Customer lifetime value:</strong> Calculate long-term customer worth</li>
@@ -63,7 +63,7 @@ export const fullPotentialArticle: BlogArticle = {
         <h2>Advanced Customization</h2>
         <p>Advanced customization allows your CRM to evolve with your business needs. Custom fields, workflows, and user interfaces ensure the system supports your unique processes rather than forcing you to adapt to generic templates.</p>
         
-        <h3>Customization Options</h3>
+        <h2>Customization Options</h2>
         <ul>
           <li><strong>Industry-specific modules:</strong> Tailor functionality to your sector</li>
           <li><strong>Custom reports:</strong> Track metrics unique to your business</li>

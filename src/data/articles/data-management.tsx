@@ -26,7 +26,7 @@ export const dataManagementArticle: BlogArticle = {
         <h2>Data Consolidation Strategy</h2>
         <p>Data consolidation begins with identifying all customer touchpoints and information sources within your organization. This includes sales interactions, marketing campaigns, customer service tickets, website behavior, social media engagement, and transaction history.</p>
         
-        <h3>Common Data Sources</h3>
+        <h2>Common Data Sources</h2>
         <ul>
           <li><strong>Sales interactions:</strong> Calls, meetings, proposals, and deals</li>
           <li><strong>Marketing campaigns:</strong> Email engagement, website visits, downloads</li>
@@ -42,7 +42,7 @@ export const dataManagementArticle: BlogArticle = {
         <h2>Data Quality and Standardization</h2>
         <p>Data quality and standardization ensure your customer information remains accurate, complete, and actionable. This involves establishing data entry standards, implementing validation rules, and creating processes for regular data cleansing.</p>
         
-        <h3>Quality Control Measures</h3>
+        <h2>Quality Control Measures</h2>
         <ul>
           <li><strong>Data entry standards:</strong> Consistent formatting and required fields</li>
           <li><strong>Validation rules:</strong> Automatic checks for accuracy</li>
@@ -57,7 +57,7 @@ export const dataManagementArticle: BlogArticle = {
         <h2>Privacy and Compliance</h2>
         <p>Privacy and compliance considerations have become increasingly important as regulations like GDPR and CCPA reshape how businesses handle customer information. Your CRM system must support data subject rights, consent management, and audit trails.</p>
         
-        <h3>Compliance Requirements</h3>
+        <h2>Compliance Requirements</h2>
         <ul>
           <li><strong>Data deletion requests:</strong> Ability to remove customer data</li>
           <li><strong>Consent management:</strong> Track and manage permissions</li>
@@ -72,7 +72,7 @@ export const dataManagementArticle: BlogArticle = {
         <h2>Data Utilization and Insights</h2>
         <p>Data utilization and insights transform organized customer information into strategic business value. This involves creating customer segments, identifying cross-sell and upsell opportunities, and developing personalized communication strategies.</p>
         
-        <h3>Strategic Applications</h3>
+        <h2>Strategic Applications</h2>
         <ul>
           <li><strong>Customer segmentation:</strong> Group customers by behavior and value</li>
           <li><strong>Predictive analytics:</strong> Forecast customer behavior and churn</li>

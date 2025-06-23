@@ -26,7 +26,7 @@ export const integrationArticle: BlogArticle = {
         <h2>Marketing Automation Integration</h2>
         <p>Marketing automation integration represents one of the most valuable CRM connections for growing businesses. This integration enables seamless lead handoffs from marketing to sales, ensures consistent messaging across touchpoints, and provides complete visibility into the customer journey.</p>
         
-        <h3>Integration Benefits</h3>
+        <h2>Integration Benefits</h2>
         <ul>
           <li><strong>Lead handoffs:</strong> Automatic transfer from marketing to sales</li>
           <li><strong>Consistent messaging:</strong> Unified communication across channels</li>
@@ -41,7 +41,7 @@ export const integrationArticle: BlogArticle = {
         <h2>Customer Service Platform Integration</h2>
         <p>Customer service platform integration creates a comprehensive view of customer interactions and support history. When your CRM connects with help desk systems, chat platforms, and knowledge bases, support teams can access complete customer context before engaging.</p>
         
-        <h3>Service Integration Advantages</h3>
+        <h2>Service Integration Advantages</h2>
         <ul>
           <li><strong>Complete context:</strong> Full customer history for support teams</li>
           <li><strong>Proactive support:</strong> Identify issues before they escalate</li>
@@ -56,7 +56,7 @@ export const integrationArticle: BlogArticle = {
         <h2>Financial System Integration</h2>
         <p>Financial system integration streamlines operations by connecting CRM data with accounting, billing, and payment processing systems. This connection automates invoice generation, tracks payment history, and provides sales teams with real-time credit information.</p>
         
-        <h3>Financial Integration Features</h3>
+        <h2>Financial Integration Features</h2>
         <ul>
           <li><strong>Invoice automation:</strong> Generate invoices from CRM data</li>
           <li><strong>Payment tracking:</strong> Monitor payment status and history</li>
@@ -71,7 +71,7 @@ export const integrationArticle: BlogArticle = {
         <h2>Integration Strategy and Planning</h2>
         <p>Integration strategy and planning ensure your connected systems deliver maximum value without creating complexity. This involves mapping data flows, establishing governance policies, and planning for scalability.</p>
         
-        <h3>Planning Considerations</h3>
+        <h2>Planning Considerations</h2>
         <ul>
           <li><strong>Data security:</strong> Ensure secure data transmission</li>
           <li><strong>System performance:</strong> Maintain optimal speed and reliability</li>
