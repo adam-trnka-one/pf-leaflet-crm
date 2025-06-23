@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Search, ArrowLeft, Calendar, User, Clock } from "lucide-react";
 import { blogArticles } from "@/data/blogArticles";
 
@@ -32,9 +33,11 @@ const Blog = () => {
               <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
               <h1 className="text-xl font-semibold text-slate-900">CRM Insights Blog</h1>
             </div>
-            <Link to="/login" className="text-leaflet-green hover:text-leaflet-green-hover font-medium transition-colors">
-              Login to CRM
-            </Link>
+            <Button asChild>
+              <Link to="/login">
+                Sign In
+              </Link>
+            </Button>
           </div>
         </div>
       </header>
