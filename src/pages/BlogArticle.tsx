@@ -130,6 +130,26 @@ const BlogArticle = () => {
           </Link>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="px-8 py-10 bg-gray-900 text-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center justify-center mb-6">
+            <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
+          </div>
+          <div className="flex justify-center space-x-8 mb-6">
+            <Link to="/blog" className="text-gray-400 hover:text-white transition-colors">
+              Blog
+            </Link>
+            <Link to="/help" className="text-gray-400 hover:text-white transition-colors">
+              Help
+            </Link>
+          </div>
+          <p className="text-gray-400 text-lg text-center">
+            © 2025 Leaflet CRM. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
