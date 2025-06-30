@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { getSampleData } from "@/utils/sampleData";
 
 interface Account {
   id: string;
@@ -80,8 +81,16 @@ const NewAccountModal = ({ open, onOpenChange, onAccountCreated }: NewAccountMod
     };
 
     // Get existing accounts from localStorage
-    const existingAccounts = JSON.parse(localStorage.getItem('crmAccounts') || '[]');
-    const updatedAccounts = [newAccount, ...existingAccounts];
+    const existingStoredAccounts = JSON.parse(localStorage.getItem('crmAccounts') || '[]');
+    
+    // Get sample data accounts
+    const sampleData = getSampleData();
+    const sampleAccounts = sampleData ? sampleData.accounts : [];
+    
+    // Combine all accounts: new account + stored accounts + sample accounts
+    // But avoid duplicates by checking if sample accounts are already in stored accounts
+    const allExistingAccounts = existingStoredAccounts.length > 0 ? existingStoredAccounts : sampleAccounts;
+    const updatedAccounts = [newAccount, ...allExistingAccounts];
     
     // Store back to localStorage
     localStorage.setItem('crmAccounts', JSON.stringify(updatedAccounts));
