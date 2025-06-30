@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
+import { getSampleData } from "@/utils/sampleData";
 
 interface Contact {
   id: string;
@@ -70,8 +71,16 @@ const EditContactModal = ({ open, onOpenChange, contact, onContactUpdated }: Edi
     };
 
     // Get existing contacts from localStorage
-    const existingContacts = JSON.parse(localStorage.getItem('crmContacts') || '[]');
-    const updatedContacts = existingContacts.map((c: Contact) => 
+    const existingStoredContacts = JSON.parse(localStorage.getItem('crmContacts') || '[]');
+    
+    // Get sample data contacts
+    const sampleData = getSampleData();
+    const sampleContacts = sampleData ? sampleData.contacts : [];
+    
+    // Use stored contacts if they exist, otherwise use sample contacts
+    const allContacts = existingStoredContacts.length > 0 ? existingStoredContacts : sampleContacts;
+    
+    const updatedContacts = allContacts.map((c: Contact) => 
       c.id === contact.id ? updatedContact : c
     );
     

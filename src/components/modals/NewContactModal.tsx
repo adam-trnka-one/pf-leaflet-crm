@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { getSampleData } from "@/utils/sampleData";
 
 interface Contact {
   id: string;
@@ -57,8 +58,16 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
     };
 
     // Get existing contacts from localStorage
-    const existingContacts = JSON.parse(localStorage.getItem('crmContacts') || '[]');
-    const updatedContacts = [newContact, ...existingContacts];
+    const existingStoredContacts = JSON.parse(localStorage.getItem('crmContacts') || '[]');
+    
+    // Get sample data contacts
+    const sampleData = getSampleData();
+    const sampleContacts = sampleData ? sampleData.contacts : [];
+    
+    // Combine all contacts: new contact + stored contacts + sample contacts
+    // But avoid duplicates by checking if sample contacts are already in stored contacts
+    const allExistingContacts = existingStoredContacts.length > 0 ? existingStoredContacts : sampleContacts;
+    const updatedContacts = [newContact, ...allExistingContacts];
     
     // Store back to localStorage
     localStorage.setItem('crmContacts', JSON.stringify(updatedContacts));
