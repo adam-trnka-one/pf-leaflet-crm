@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -7,29 +6,34 @@ import { Plus, Package, DollarSign, Edit, Trash2 } from "lucide-react";
 import NewProductModal from "@/components/modals/NewProductModal";
 import EditProductModal from "@/components/modals/EditProductModal";
 import { toast } from "@/hooks/use-toast";
+import { getProducts, saveProducts, Product } from "@/utils/productData";
 
 const Products = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
-  const [products, setProducts] = useState([
-    { id: 1, name: 'CRM Professional', description: 'Advanced CRM features', price: 99, category: 'Software', status: 'Active' },
-    { id: 2, name: 'Consulting Services', description: 'Expert consulting', price: 150, category: 'Service', status: 'Active' },
-    { id: 3, name: 'Training Package', description: 'Comprehensive training', price: 75, category: 'Training', status: 'Active' },
-  ]);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [products, setProducts] = useState<Product[]>([]);
 
-  const handleEdit = (product: any) => {
+  useEffect(() => {
+    setProducts(getProducts());
+  }, []);
+
+  const handleEdit = (product: Product) => {
     setSelectedProduct(product);
     setIsEditModalOpen(true);
   };
 
-  const handleProductUpdated = (updatedProduct: any) => {
-    setProducts(products.map(p => p.id === updatedProduct.id ? updatedProduct : p));
+  const handleProductUpdated = (updatedProduct: Product) => {
+    const updatedProducts = products.map(p => p.id === updatedProduct.id ? updatedProduct : p);
+    setProducts(updatedProducts);
+    saveProducts(updatedProducts);
     setSelectedProduct(null);
   };
 
-  const handleProductCreated = (newProduct: any) => {
-    setProducts(prevProducts => [newProduct, ...prevProducts]);
+  const handleProductCreated = (newProduct: Product) => {
+    const updatedProducts = [newProduct, ...products];
+    setProducts(updatedProducts);
+    saveProducts(updatedProducts);
     toast({
       title: "Product created",
       description: "The product has been successfully created."
@@ -37,7 +41,9 @@ const Products = () => {
   };
 
   const handleDelete = (productId: number) => {
-    setProducts(products.filter(p => p.id !== productId));
+    const updatedProducts = products.filter(p => p.id !== productId);
+    setProducts(updatedProducts);
+    saveProducts(updatedProducts);
     toast({
       title: "Product deleted",
       description: "The product has been successfully deleted."
