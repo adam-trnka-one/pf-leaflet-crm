@@ -118,124 +118,134 @@ const Cases = () => {
     switch (priority) {
       case 'Critical':
       case 'High':
-        return <AlertTriangle className="h-4 w-4" />;
+        return <AlertTriangle className="h-4 w-4" data-cases="priority-icon-high" />;
       default:
-        return <Clock className="h-4 w-4" />;
+        return <Clock className="h-4 w-4" data-cases="priority-icon-normal" />;
     }
   };
 
   if (loading) {
     return (
-      <div className="p-8 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500"></div>
+      <div className="p-8 flex items-center justify-center" data-cases="loading-container">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500" data-cases="loading-spinner"></div>
       </div>
     );
   }
 
   return (
-    <div className="p-8 bg-slate-50 min-h-screen">
+    <div className="p-8 bg-slate-50 min-h-screen" data-cases="main-container">
       {/* Header */}
-      <div className="flex justify-between items-start mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-800">Cases</h1>
-          <p className="text-slate-600 mt-2">Manage customer support cases</p>
+      <div className="flex justify-between items-start mb-8" data-cases="header-section">
+        <div data-cases="header-content">
+          <h1 className="text-3xl font-bold text-slate-800" data-cases="page-title">Cases</h1>
+          <p className="text-slate-600 mt-2" data-cases="page-subtitle">Manage customer support cases</p>
         </div>
-        <Button className="bg-emerald-600 hover:bg-emerald-700" onClick={() => setIsModalOpen(true)}>
-          <Plus className="h-4 w-4 mr-2" />
-          New Case
+        <Button 
+          className="bg-emerald-600 hover:bg-emerald-700" 
+          onClick={() => setIsModalOpen(true)}
+          data-cases="new-case-button"
+        >
+          <Plus className="h-4 w-4 mr-2" data-cases="new-case-icon" />
+          <span data-cases="new-case-text">New Case</span>
         </Button>
       </div>
 
       {/* Filters */}
-      <div className="flex space-x-4 mb-6">
-        <Select value={statusFilter} onValueChange={setStatusFilter}>
-          <SelectTrigger className="w-48 bg-white">
-            <SelectValue placeholder="Filter by status" />
+      <div className="flex space-x-4 mb-6" data-cases="filters-section">
+        <Select value={statusFilter} onValueChange={setStatusFilter} data-cases="status-filter">
+          <SelectTrigger className="w-48 bg-white" data-cases="status-filter-trigger">
+            <SelectValue placeholder="Filter by status" data-cases="status-filter-value" />
           </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Statuses</SelectItem>
-            <SelectItem value="New">New</SelectItem>
-            <SelectItem value="In Progress">In Progress</SelectItem>
-            <SelectItem value="Pending">Pending</SelectItem>
-            <SelectItem value="Resolved">Resolved</SelectItem>
-            <SelectItem value="Closed">Closed</SelectItem>
+          <SelectContent data-cases="status-filter-content">
+            <SelectItem value="all" data-cases="status-option-all">All Statuses</SelectItem>
+            <SelectItem value="New" data-cases="status-option-new">New</SelectItem>
+            <SelectItem value="In Progress" data-cases="status-option-progress">In Progress</SelectItem>
+            <SelectItem value="Pending" data-cases="status-option-pending">Pending</SelectItem>
+            <SelectItem value="Resolved" data-cases="status-option-resolved">Resolved</SelectItem>
+            <SelectItem value="Closed" data-cases="status-option-closed">Closed</SelectItem>
           </SelectContent>
         </Select>
 
-        <Select value={priorityFilter} onValueChange={setPriorityFilter}>
-          <SelectTrigger className="w-48 bg-white">
-            <SelectValue placeholder="Filter by priority" />
+        <Select value={priorityFilter} onValueChange={setPriorityFilter} data-cases="priority-filter">
+          <SelectTrigger className="w-48 bg-white" data-cases="priority-filter-trigger">
+            <SelectValue placeholder="Filter by priority" data-cases="priority-filter-value" />
           </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Priorities</SelectItem>
-            <SelectItem value="Critical">Critical</SelectItem>
-            <SelectItem value="High">High</SelectItem>
-            <SelectItem value="Medium">Medium</SelectItem>
-            <SelectItem value="Low">Low</SelectItem>
+          <SelectContent data-cases="priority-filter-content">
+            <SelectItem value="all" data-cases="priority-option-all">All Priorities</SelectItem>
+            <SelectItem value="Critical" data-cases="priority-option-critical">Critical</SelectItem>
+            <SelectItem value="High" data-cases="priority-option-high">High</SelectItem>
+            <SelectItem value="Medium" data-cases="priority-option-medium">Medium</SelectItem>
+            <SelectItem value="Low" data-cases="priority-option-low">Low</SelectItem>
           </SelectContent>
         </Select>
       </div>
 
       {/* Cases List */}
-      <div className="space-y-4">
+      <div className="space-y-4" data-cases="cases-list">
         {filteredCases.map((case_) => (
-          <Card key={case_.id} className="bg-white shadow-sm hover:shadow-md transition-shadow">
-            <CardContent className="p-6">
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <div className="flex items-center space-x-3 mb-2">
-                    <HelpCircle className="h-5 w-5 text-slate-500" />
-                    <h3 className="font-semibold text-slate-800">{case_.subject}</h3>
-                    <Badge className={getStatusColor(case_.status)} variant="secondary">
-                      {case_.status}
+          <Card key={case_.id} className="bg-white shadow-sm hover:shadow-md transition-shadow" data-cases="case-card">
+            <CardContent className="p-6" data-cases="card-content">
+              <div className="flex items-start justify-between" data-cases="card-row">
+                <div className="flex-1" data-cases="case-info-section">
+                  <div className="flex items-center space-x-3 mb-2" data-cases="case-header">
+                    <HelpCircle className="h-5 w-5 text-slate-500" data-cases="case-icon" />
+                    <h3 className="font-semibold text-slate-800" data-cases="case-subject">{case_.subject}</h3>
+                    <Badge className={getStatusColor(case_.status)} variant="secondary" data-cases="status-badge">
+                      <span data-cases="status-text">{case_.status}</span>
                     </Badge>
-                    <Badge className={getPriorityColor(case_.priority)} variant="secondary">
-                      <div className="flex items-center space-x-1">
+                    <Badge className={getPriorityColor(case_.priority)} variant="secondary" data-cases="priority-badge">
+                      <div className="flex items-center space-x-1" data-cases="priority-content">
                         {getPriorityIcon(case_.priority)}
-                        <span>{case_.priority}</span>
+                        <span data-cases="priority-text">{case_.priority}</span>
                       </div>
                     </Badge>
                   </div>
                   
-                  <p className="text-slate-600 mb-4">{case_.description}</p>
+                  <p className="text-slate-600 mb-4" data-cases="case-description">{case_.description}</p>
                   
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                    <div>
-                      <label className="text-slate-500">Account</label>
-                      <p className="font-medium text-slate-800">{case_.accountName}</p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm" data-cases="case-details-grid">
+                    <div data-cases="account-info">
+                      <label className="text-slate-500" data-cases="account-label">Account</label>
+                      <p className="font-medium text-slate-800" data-cases="account-name">{case_.accountName}</p>
                     </div>
-                    <div>
-                      <label className="text-slate-500">Contact</label>
-                      <p className="font-medium text-slate-800">{case_.contactName}</p>
+                    <div data-cases="contact-info">
+                      <label className="text-slate-500" data-cases="contact-label">Contact</label>
+                      <p className="font-medium text-slate-800" data-cases="contact-name">{case_.contactName}</p>
                     </div>
-                    <div>
-                      <label className="text-slate-500">Type</label>
-                      <p className="font-medium text-slate-800">{case_.type}</p>
+                    <div data-cases="type-info">
+                      <label className="text-slate-500" data-cases="type-label">Type</label>
+                      <p className="font-medium text-slate-800" data-cases="type-value">{case_.type}</p>
                     </div>
-                    <div>
-                      <label className="text-slate-500">Owner</label>
-                      <p className="font-medium text-slate-800">{case_.owner}</p>
+                    <div data-cases="owner-info">
+                      <label className="text-slate-500" data-cases="owner-label">Owner</label>
+                      <p className="font-medium text-slate-800" data-cases="owner-name">{case_.owner}</p>
                     </div>
                   </div>
                 </div>
                 
-                <div className="flex flex-col items-end space-y-2">
-                  <div className="text-xs text-slate-500 text-right">
-                    <p>Case #{case_.id}</p>
-                    <p>Created: {case_.createdAt.toLocaleDateString()}</p>
+                <div className="flex flex-col items-end space-y-2" data-cases="case-actions-section">
+                  <div className="text-xs text-slate-500 text-right" data-cases="case-metadata">
+                    <p data-cases="case-id">Case #{case_.id}</p>
+                    <p data-cases="created-date">Created: {case_.createdAt.toLocaleDateString()}</p>
                   </div>
-                  <div className="flex space-x-2">
-                    <Button variant="outline" size="sm" onClick={() => handleEdit(case_)}>
-                      <Edit className="h-4 w-4 mr-1" />
-                      Edit
+                  <div className="flex space-x-2" data-cases="case-buttons">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      onClick={() => handleEdit(case_)}
+                      data-cases="edit-button"
+                    >
+                      <Edit className="h-4 w-4 mr-1" data-cases="edit-icon" />
+                      <span data-cases="edit-text">Edit</span>
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => handleDelete(case_.id)}
                       className="text-red-600 hover:text-red-700"
+                      data-cases="delete-button"
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <Trash2 className="h-4 w-4" data-cases="delete-icon" />
                     </Button>
                   </div>
                 </div>
@@ -246,8 +256,8 @@ const Cases = () => {
       </div>
 
       {filteredCases.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-slate-500">No cases found matching your filters.</p>
+        <div className="text-center py-12" data-cases="empty-state">
+          <p className="text-slate-500" data-cases="empty-message">No cases found matching your filters.</p>
         </div>
       )}
 
@@ -255,6 +265,7 @@ const Cases = () => {
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
         onCaseCreated={handleCaseCreated}
+        data-cases="new-case-modal"
       />
 
       <EditCaseModal
@@ -262,6 +273,7 @@ const Cases = () => {
         onOpenChange={setIsEditModalOpen}
         case_={selectedCase}
         onCaseUpdated={handleCaseUpdated}
+        data-cases="edit-case-modal"
       />
     </div>
   );
