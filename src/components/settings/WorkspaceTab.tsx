@@ -87,6 +87,11 @@ export const WorkspaceTab = () => {
       title: "ProductFruits initiated",
       description: "ProductFruits script has been initialized with current workspace data."
     });
+
+    // Perform soft refresh after initialization
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
 
   const handleResetToDefaults = () => {
