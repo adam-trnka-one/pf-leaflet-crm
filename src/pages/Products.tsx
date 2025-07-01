@@ -28,6 +28,14 @@ const Products = () => {
     setSelectedProduct(null);
   };
 
+  const handleProductCreated = (newProduct: any) => {
+    setProducts(prevProducts => [newProduct, ...prevProducts]);
+    toast({
+      title: "Product created",
+      description: "The product has been successfully created."
+    });
+  };
+
   const handleDelete = (productId: number) => {
     setProducts(products.filter(p => p.id !== productId));
     toast({
@@ -115,6 +123,7 @@ const Products = () => {
       <NewProductModal 
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
+        onProductCreated={handleProductCreated}
       />
 
       <EditProductModal

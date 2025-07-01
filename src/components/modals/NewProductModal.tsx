@@ -18,12 +18,22 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  status: string;
+}
+
 interface NewProductModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onProductCreated?: (product: Product) => void;
 }
 
-const NewProductModal = ({ open, onOpenChange }: NewProductModalProps) => {
+const NewProductModal = ({ open, onOpenChange, onProductCreated }: NewProductModalProps) => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -32,7 +42,26 @@ const NewProductModal = ({ open, onOpenChange }: NewProductModalProps) => {
   });
 
   const handleSubmit = () => {
-    console.log("Creating new product:", formData);
+    if (!formData.name || !formData.description || !formData.price) {
+      return;
+    }
+
+    const newProduct: Product = {
+      id: Date.now(),
+      name: formData.name,
+      description: formData.description,
+      price: Number(formData.price),
+      category: formData.category,
+      status: "Active",
+    };
+
+    console.log("Creating new product:", newProduct);
+    
+    // Notify parent component
+    if (onProductCreated) {
+      onProductCreated(newProduct);
+    }
+    
     onOpenChange(false);
     setFormData({ name: "", description: "", price: "", category: "Software" });
   };
