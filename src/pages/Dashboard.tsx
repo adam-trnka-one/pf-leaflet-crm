@@ -41,11 +41,13 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [recentActivities, setRecentActivities] = useState<Activity[]>([]);
   const [recentLeads, setRecentLeads] = useState<Lead[]>([]);
+  const [totalAccounts, setTotalAccounts] = useState(0);
 
   useEffect(() => {
     loadData();
     loadRecentActivities();
     loadRecentLeads();
+    loadTotalAccounts();
   }, []);
 
   const loadData = () => {
@@ -59,6 +61,21 @@ const Dashboard = () => {
     }
     setData(sampleData);
     setLoading(false);
+  };
+
+  const loadTotalAccounts = () => {
+    // Try to load from localStorage first (manually created accounts)
+    const storedAccounts = localStorage.getItem('crmAccounts');
+    if (storedAccounts) {
+      const parsedAccounts = JSON.parse(storedAccounts);
+      setTotalAccounts(parsedAccounts.length);
+    } else {
+      // Fall back to sample data
+      const sampleData = getSampleData();
+      if (sampleData) {
+        setTotalAccounts(sampleData.accounts.length);
+      }
+    }
   };
 
   const loadRecentActivities = () => {
@@ -100,6 +117,8 @@ const Dashboard = () => {
     const newData = resetDatabase();
     setData(newData);
     setLoading(false);
+    // Update total accounts after reset
+    setTotalAccounts(newData.accounts.length);
     toast({
       title: "Database reset",
       description: "All sample data has been regenerated"
@@ -144,14 +163,12 @@ const Dashboard = () => {
     .filter((opp: Opportunity) => opp.stage === 'Closed Won')
     .reduce((sum: number, opp: Opportunity) => sum + opp.amount, 0);
 
-  const totalAccounts = data.accounts.length;
   const totalContacts = data.contacts.length;
   const openOpportunities = data.opportunities.filter((opp: Opportunity) => 
     !['Closed Won', 'Closed Lost'].includes(opp.stage)
   ).length;
 
   // Tasks summary - now based on actual activities
-  const totalTasks = recentActivities.length;
   const completedTasks = recentActivities.filter(activity => activity.completed).length;
   const overdueTasks = recentActivities.filter(activity => {
     const dueDate = new Date(activity.dueDate);
@@ -186,7 +203,7 @@ const Dashboard = () => {
 
       {/* Task Summary */}
       <TaskSummaryCards 
-        totalTasks={totalTasks}
+        totalTasks={recentActivities.length}
         completedTasks={completedTasks}
         overdueTasks={overdueTasks}
       />
