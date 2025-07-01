@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -87,6 +86,27 @@ export const WorkspaceTab = () => {
     toast({
       title: "ProductFruits initiated",
       description: "ProductFruits script has been initialized with current workspace data."
+    });
+  };
+
+  const handleResetToDefaults = () => {
+    const defaultData = {
+      workspaceCode: 'KFRC3cd1dM48s0p9',
+      username: 'john.doe',
+      email: 'john@doe.com',
+      firstName: 'John',
+      lastName: 'Doe',
+      role: 'Admin',
+      customProperties: []
+    };
+
+    // Update the context with default data
+    updateWorkspaceData(defaultData);
+    setCustomProperties([]);
+    
+    toast({
+      title: "Settings reset",
+      description: "Workspace data has been reset to defaults."
     });
   };
 
@@ -264,22 +284,7 @@ export const WorkspaceTab = () => {
             <Button 
               variant="outline" 
               className="text-red-600 border-red-200 hover:bg-red-50"
-              onClick={() => {
-                setLocalWorkspaceData({
-                  workspaceCode: 'KFRC3cd1dM48s0p9',
-                  username: 'john.dow',
-                  email: '',
-                  firstName: 'John',
-                  lastName: '',
-                  role: '',
-                  customProperties: []
-                });
-                setCustomProperties([]);
-                toast({
-                  title: "Settings reset",
-                  description: "Workspace data has been reset to defaults."
-                });
-              }}
+              onClick={handleResetToDefaults}
             >
               Reset to Defaults
             </Button>
