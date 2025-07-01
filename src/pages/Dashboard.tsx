@@ -1,4 +1,5 @@
 
+
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { getSampleData, generateAndStoreSampleData, resetDatabase, type Opportunity } from "@/utils/sampleData";
@@ -146,10 +147,10 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="p-8 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500 mx-auto"></div>
-          <p className="mt-4 text-slate-600">Loading dashboard...</p>
+      <div className="p-8 flex items-center justify-center" data-dashboard="loading-container">
+        <div className="text-center" data-dashboard="loading-content">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500 mx-auto" data-dashboard="loading-spinner"></div>
+          <p className="mt-4 text-slate-600" data-dashboard="loading-text">Loading dashboard...</p>
         </div>
       </div>
     );
@@ -194,51 +195,61 @@ const Dashboard = () => {
   }).length;
 
   return (
-    <div className="p-8 space-y-8 bg-slate-50 min-h-screen">
+    <div className="p-8 space-y-8 bg-slate-50 min-h-screen" data-dashboard="main-container">
       {/* Header */}
-      <div className="flex justify-between items-start">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-800">Dashboard</h1>
-          <p className="text-slate-600 mt-2">Welcome back! Here's what's happening with your sales.</p>
+      <div className="flex justify-between items-start" data-dashboard="header-section">
+        <div data-dashboard="header-content">
+          <h1 className="text-3xl font-bold text-slate-800" data-dashboard="page-title">Dashboard</h1>
+          <p className="text-slate-600 mt-2" data-dashboard="page-subtitle">Welcome back! Here's what's happening with your sales.</p>
         </div>
         <Button 
           onClick={handleResetDatabase}
           variant="outline"
           className="flex items-center space-x-2"
+          data-dashboard="reset-button"
         >
-          <RefreshCw className="h-4 w-4" />
-          <span>Reset Database</span>
+          <RefreshCw className="h-4 w-4" data-dashboard="reset-icon" />
+          <span data-dashboard="reset-text">Reset Database</span>
         </Button>
       </div>
 
       {/* Key Metrics */}
-      <MetricsCards 
-        totalRevenue={totalRevenue}
-        totalAccounts={totalAccounts}
-        totalContacts={totalContacts}
-        openOpportunities={openOpportunities}
-      />
+      <div data-dashboard="metrics-section">
+        <MetricsCards 
+          totalRevenue={totalRevenue}
+          totalAccounts={totalAccounts}
+          totalContacts={totalContacts}
+          openOpportunities={openOpportunities}
+        />
+      </div>
 
       {/* Task Summary */}
-      <TaskSummaryCards 
-        totalTasks={recentActivities.length}
-        completedTasks={completedTasks}
-        overdueTasks={overdueTasks}
-      />
+      <div data-dashboard="task-summary-section">
+        <TaskSummaryCards 
+          totalTasks={recentActivities.length}
+          completedTasks={completedTasks}
+          overdueTasks={overdueTasks}
+        />
+      </div>
 
       {/* Charts */}
-      <ChartsSection 
-        pipelineData={pipelineData}
-        monthlyRevenue={monthlyRevenue}
-      />
+      <div data-dashboard="charts-section">
+        <ChartsSection 
+          pipelineData={pipelineData}
+          monthlyRevenue={monthlyRevenue}
+        />
+      </div>
 
       {/* Recent Items */}
-      <RecentItemsSection 
-        recentActivities={recentActivities}
-        recentLeads={recentLeads}
-      />
+      <div data-dashboard="recent-items-section">
+        <RecentItemsSection 
+          recentActivities={recentActivities}
+          recentLeads={recentLeads}
+        />
+      </div>
     </div>
   );
 };
 
 export default Dashboard;
+
