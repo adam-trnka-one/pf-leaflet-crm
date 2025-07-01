@@ -26,10 +26,10 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="p-8 flex items-center justify-center" data-dashboard="loading-container">
-        <div className="text-center" data-dashboard="loading-content">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500 mx-auto" data-dashboard="loading-spinner"></div>
-          <p className="mt-4 text-slate-600" data-dashboard="loading-text">Loading dashboard...</p>
+      <div className="p-8 flex items-center justify-center" data-testid="dashboard-loading-container">
+        <div className="text-center" data-testid="dashboard-loading-content">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500 mx-auto" data-testid="dashboard-loading-spinner"></div>
+          <p className="mt-4 text-slate-600" data-testid="dashboard-loading-text">Loading dashboard...</p>
         </div>
       </div>
     );
@@ -43,12 +43,12 @@ const Dashboard = () => {
   const { completedTasks, overdueTasks } = calculateTaskMetrics(recentActivities);
 
   return (
-    <div className="p-8 space-y-8 bg-slate-50 min-h-screen" data-dashboard="main-container">
+    <div className="p-8 space-y-8 bg-slate-50 min-h-screen" data-testid="dashboard-main-container">
       {/* Header */}
       <DashboardHeader onResetDatabase={handleResetDatabase} />
 
       {/* Key Metrics */}
-      <div data-dashboard="metrics-section">
+      <div data-testid="dashboard-metrics-section">
         <MetricsCards 
           totalRevenue={totalRevenue}
           totalAccounts={totalAccounts}
@@ -58,7 +58,7 @@ const Dashboard = () => {
       </div>
 
       {/* Task Summary */}
-      <div data-dashboard="task-summary-section">
+      <div data-testid="dashboard-task-summary-section">
         <TaskSummaryCards 
           totalTasks={recentActivities.length}
           completedTasks={completedTasks}
@@ -67,7 +67,7 @@ const Dashboard = () => {
       </div>
 
       {/* Charts */}
-      <div data-dashboard="charts-section">
+      <div data-testid="dashboard-charts-section">
         <ChartsSection 
           pipelineData={pipelineData}
           monthlyRevenue={monthlyRevenue}
@@ -75,7 +75,7 @@ const Dashboard = () => {
       </div>
 
       {/* Recent Items */}
-      <div data-dashboard="recent-items-section">
+      <div data-testid="dashboard-recent-items-section">
         <RecentItemsSection 
           recentActivities={recentActivities}
           recentLeads={recentLeads}

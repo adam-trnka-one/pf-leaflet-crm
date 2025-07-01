@@ -1,5 +1,4 @@
 
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Clock, Users } from "lucide-react";
 
@@ -36,65 +35,65 @@ interface RecentItemsSectionProps {
 
 const RecentItemsSection = ({ recentActivities, recentLeads }: RecentItemsSectionProps) => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" data-recent="section-grid">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" data-testid="recent-section-grid">
       {/* Recent Tasks */}
-      <Card className="bg-white shadow-sm" data-recent="tasks-card">
-        <CardHeader data-recent="tasks-header">
-          <CardTitle className="flex items-center space-x-2" data-recent="tasks-title">
-            <Clock className="h-5 w-5 text-orange-600" data-recent="tasks-icon" />
-            <span data-recent="tasks-text">Recent Tasks</span>
+      <Card className="bg-white shadow-sm" data-testid="recent-tasks-card">
+        <CardHeader data-testid="recent-tasks-header">
+          <CardTitle className="flex items-center space-x-2" data-testid="recent-tasks-title">
+            <Clock className="h-5 w-5 text-orange-600" data-testid="recent-tasks-icon" />
+            <span data-testid="recent-tasks-text">Recent Tasks</span>
           </CardTitle>
         </CardHeader>
-        <CardContent data-recent="tasks-content">
-          <div className="space-y-4" data-recent="tasks-list">
+        <CardContent data-testid="recent-tasks-content">
+          <div className="space-y-4" data-testid="recent-tasks-list">
             {recentActivities.length > 0 ? (
               recentActivities.map((activity) => (
-                <div key={activity.id} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg" data-recent="task-item" data-task-id={activity.id}>
-                  <div className="flex-1" data-recent="task-info">
-                    <p className="font-medium text-slate-800" data-recent="task-subject">{activity.subject}</p>
-                    <p className="text-sm text-slate-600" data-recent="task-details">{activity.type} • {activity.assignedTo}</p>
+                <div key={activity.id} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg" data-testid={`recent-task-item-${activity.id}`}>
+                  <div className="flex-1" data-testid={`recent-task-info-${activity.id}`}>
+                    <p className="font-medium text-slate-800" data-testid={`recent-task-subject-${activity.id}`}>{activity.subject}</p>
+                    <p className="text-sm text-slate-600" data-testid={`recent-task-details-${activity.id}`}>{activity.type} • {activity.assignedTo}</p>
                   </div>
-                  <div className="text-right" data-recent="task-status">
+                  <div className="text-right" data-testid={`recent-task-status-${activity.id}`}>
                     <span className={`text-xs px-2 py-1 rounded-full ${
                       activity.status === 'Completed' 
                         ? 'bg-green-100 text-green-800' 
                         : activity.status === 'In Progress'
                         ? 'bg-blue-100 text-blue-800'
                         : 'bg-gray-100 text-gray-800'
-                    }`} data-recent="task-badge">
+                    }`} data-testid={`recent-task-badge-${activity.id}`}>
                       {activity.status}
                     </span>
-                    <p className="text-xs text-slate-500 mt-1" data-recent="task-date">
+                    <p className="text-xs text-slate-500 mt-1" data-testid={`recent-task-date-${activity.id}`}>
                       {new Date(activity.dueDate).toLocaleDateString()}
                     </p>
                   </div>
                 </div>
               ))
             ) : (
-              <p className="text-slate-500 text-center py-8" data-recent="no-tasks">No recent tasks</p>
+              <p className="text-slate-500 text-center py-8" data-testid="recent-no-tasks">No recent tasks</p>
             )}
           </div>
         </CardContent>
       </Card>
 
       {/* Recent Leads */}
-      <Card className="bg-white shadow-sm" data-recent="leads-card">
-        <CardHeader data-recent="leads-header">
-          <CardTitle className="flex items-center space-x-2" data-recent="leads-title">
-            <Users className="h-5 w-5 text-purple-600" data-recent="leads-icon" />
-            <span data-recent="leads-text">Recent Leads</span>
+      <Card className="bg-white shadow-sm" data-testid="recent-leads-card">
+        <CardHeader data-testid="recent-leads-header">
+          <CardTitle className="flex items-center space-x-2" data-testid="recent-leads-title">
+            <Users className="h-5 w-5 text-purple-600" data-testid="recent-leads-icon" />
+            <span data-testid="recent-leads-text">Recent Leads</span>
           </CardTitle>
         </CardHeader>
-        <CardContent data-recent="leads-content">
-          <div className="space-y-4" data-recent="leads-list">
+        <CardContent data-testid="recent-leads-content">
+          <div className="space-y-4" data-testid="recent-leads-list">
             {recentLeads.length > 0 ? (
               recentLeads.map((lead) => (
-                <div key={lead.id} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg" data-recent="lead-item" data-lead-id={lead.id}>
-                  <div className="flex-1" data-recent="lead-info">
-                    <p className="font-medium text-slate-800" data-recent="lead-name">{lead.firstName} {lead.lastName}</p>
-                    <p className="text-sm text-slate-600" data-recent="lead-details">{lead.company} • {lead.email}</p>
+                <div key={lead.id} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg" data-testid={`recent-lead-item-${lead.id}`}>
+                  <div className="flex-1" data-testid={`recent-lead-info-${lead.id}`}>
+                    <p className="font-medium text-slate-800" data-testid={`recent-lead-name-${lead.id}`}>{lead.firstName} {lead.lastName}</p>
+                    <p className="text-sm text-slate-600" data-testid={`recent-lead-details-${lead.id}`}>{lead.company} • {lead.email}</p>
                   </div>
-                  <div className="text-right" data-recent="lead-status">
+                  <div className="text-right" data-testid={`recent-lead-status-${lead.id}`}>
                     <span className={`text-xs px-2 py-1 rounded-full ${
                       lead.status === 'New' 
                         ? 'bg-blue-100 text-blue-800' 
@@ -103,15 +102,15 @@ const RecentItemsSection = ({ recentActivities, recentLeads }: RecentItemsSectio
                         : lead.status === 'Working'
                         ? 'bg-yellow-100 text-yellow-800'
                         : 'bg-gray-100 text-gray-800'
-                    }`} data-recent="lead-badge">
+                    }`} data-testid={`recent-lead-badge-${lead.id}`}>
                       {lead.status}
                     </span>
-                    <p className="text-xs text-slate-500 mt-1" data-recent="lead-source">{lead.source}</p>
+                    <p className="text-xs text-slate-500 mt-1" data-testid={`recent-lead-source-${lead.id}`}>{lead.source}</p>
                   </div>
                 </div>
               ))
             ) : (
-              <p className="text-slate-500 text-center py-8" data-recent="no-leads">No recent leads</p>
+              <p className="text-slate-500 text-center py-8" data-testid="recent-no-leads">No recent leads</p>
             )}
           </div>
         </CardContent>
@@ -121,4 +120,3 @@ const RecentItemsSection = ({ recentActivities, recentLeads }: RecentItemsSectio
 };
 
 export default RecentItemsSection;
-
