@@ -55,8 +55,11 @@ const NewCaseModal = ({ open, onOpenChange, onCaseCreated }: NewCaseModalProps) 
     };
 
     // Get existing cases from localStorage
-    const existingCases = JSON.parse(localStorage.getItem('crmCases') || '[]');
-    const updatedCases = [newCase, ...existingCases];
+    const existingStoredCases = JSON.parse(localStorage.getItem('crmCases') || '[]');
+    
+    // If no stored cases exist, we'll let the Cases page handle loading defaults
+    // This preserves any existing cases whether they're from sample data or previously created
+    const updatedCases = [newCase, ...existingStoredCases];
     localStorage.setItem('crmCases', JSON.stringify(updatedCases));
 
     toast({
