@@ -82,31 +82,32 @@ const Opportunities = () => {
 
   if (loading) {
     return (
-      <div className="p-8 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500"></div>
+      <div className="p-8 flex items-center justify-center" data-opportunities="loading-container">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500" data-opportunities="loading-spinner"></div>
       </div>
     );
   }
 
   return (
-    <div className="p-8 bg-slate-50 min-h-screen">
+    <div className="p-8 bg-slate-50 min-h-screen" data-opportunities="main-container">
       {/* Header */}
-      <div className="flex justify-between items-start mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-800">Opportunities</h1>
-          <p className="text-slate-600 mt-2">Manage your sales pipeline</p>
+      <div className="flex justify-between items-start mb-8" data-opportunities="header-section">
+        <div data-opportunities="header-content">
+          <h1 className="text-3xl font-bold text-slate-800" data-opportunities="page-title">Opportunities</h1>
+          <p className="text-slate-600 mt-2" data-opportunities="page-subtitle">Manage your sales pipeline</p>
         </div>
         <Button 
           className="bg-emerald-600 hover:bg-emerald-700"
           onClick={() => setIsModalOpen(true)}
+          data-opportunities="new-opportunity-button"
         >
-          <Plus className="h-4 w-4 mr-2" />
-          New Opportunity
+          <Plus className="h-4 w-4 mr-2" data-opportunities="new-opportunity-icon" />
+          <span data-opportunities="new-opportunity-text">New Opportunity</span>
         </Button>
       </div>
 
       {/* Kanban Board */}
-      <div className="flex space-x-4 overflow-x-auto pb-4">
+      <div className="flex space-x-4 overflow-x-auto pb-4" data-opportunities="kanban-board">
         {stages.map((stage) => {
           const stageOpportunities = getOpportunitiesByStage(stage.name);
           const totalValue = getTotalValueByStage(stage.name);
@@ -117,55 +118,59 @@ const Opportunities = () => {
               className="flex-shrink-0 w-80"
               onDragOver={handleDragOver}
               onDrop={(e) => handleDrop(e, stage.name)}
+              data-opportunities="stage-column"
             >
-              <div className="bg-white rounded-lg shadow-sm">
-                <div className="p-4 border-b border-slate-200">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-semibold text-slate-800">{stage.name}</h3>
-                    <Badge variant="secondary" className={stage.color}>
+              <div className="bg-white rounded-lg shadow-sm" data-opportunities="stage-container">
+                <div className="p-4 border-b border-slate-200" data-opportunities="stage-header">
+                  <div className="flex items-center justify-between mb-2" data-opportunities="stage-title-row">
+                    <h3 className="font-semibold text-slate-800" data-opportunities="stage-title">{stage.name}</h3>
+                    <Badge variant="secondary" className={stage.color} data-opportunities="stage-count-badge">
                       {stageOpportunities.length}
                     </Badge>
                   </div>
-                  <p className="text-sm text-slate-600 flex items-center">
-                    <DollarSign className="h-4 w-4 mr-1" />
-                    ${totalValue.toLocaleString()}
+                  <p className="text-sm text-slate-600 flex items-center" data-opportunities="stage-total-value">
+                    <DollarSign className="h-4 w-4 mr-1" data-opportunities="stage-value-icon" />
+                    <span data-opportunities="stage-value-amount">${totalValue.toLocaleString()}</span>
                   </p>
                 </div>
                 
-                <div className="p-4 space-y-3 min-h-[600px] max-h-[600px] overflow-y-auto">
+                <div className="p-4 space-y-3 min-h-[600px] max-h-[600px] overflow-y-auto" data-opportunities="stage-content">
                   {stageOpportunities.map((opportunity) => (
                     <Card
                       key={opportunity.id}
                       className="cursor-move hover:shadow-md transition-shadow"
                       draggable
                       onDragStart={(e) => handleDragStart(e, opportunity.id)}
+                      data-opportunities="opportunity-card"
                     >
-                      <CardContent className="p-4">
-                        <h4 className="font-medium text-slate-800 mb-2 line-clamp-2">
+                      <CardContent className="p-4" data-opportunities="card-content">
+                        <h4 className="font-medium text-slate-800 mb-2 line-clamp-2" data-opportunities="opportunity-name">
                           {opportunity.name}
                         </h4>
-                        <p className="text-sm text-slate-600 mb-2">{opportunity.accountName}</p>
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="font-semibold text-emerald-600">
+                        <p className="text-sm text-slate-600 mb-2" data-opportunities="opportunity-account">{opportunity.accountName}</p>
+                        <div className="flex justify-between items-center mb-2" data-opportunities="opportunity-metrics">
+                          <span className="font-semibold text-emerald-600" data-opportunities="opportunity-amount">
                             ${opportunity.amount.toLocaleString()}
                           </span>
-                          <Badge variant="outline">
+                          <Badge variant="outline" data-opportunities="opportunity-probability">
                             {opportunity.probability}%
                           </Badge>
                         </div>
-                        <div className="text-xs text-slate-500">
-                          Close: {opportunity.closeDate.toLocaleDateString()}
+                        <div className="text-xs text-slate-500" data-opportunities="opportunity-close-date">
+                          <span data-opportunities="close-date-label">Close: </span>
+                          <span data-opportunities="close-date-value">{opportunity.closeDate.toLocaleDateString()}</span>
                         </div>
-                        <div className="text-xs text-slate-500 mt-1">
-                          Owner: {opportunity.owner}
+                        <div className="text-xs text-slate-500 mt-1" data-opportunities="opportunity-owner">
+                          <span data-opportunities="owner-label">Owner: </span>
+                          <span data-opportunities="owner-value">{opportunity.owner}</span>
                         </div>
                       </CardContent>
                     </Card>
                   ))}
                   
                   {stageOpportunities.length === 0 && (
-                    <div className="text-center py-8 text-slate-400">
-                      No opportunities in this stage
+                    <div className="text-center py-8 text-slate-400" data-opportunities="empty-stage">
+                      <span data-opportunities="empty-stage-message">No opportunities in this stage</span>
                     </div>
                   )}
                 </div>
@@ -179,6 +184,7 @@ const Opportunities = () => {
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
         onOpportunityCreated={handleOpportunityCreated}
+        data-opportunities="new-opportunity-modal"
       />
     </div>
   );
