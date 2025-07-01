@@ -91,6 +91,9 @@ const Layout = () => {
           </SidebarContent>
 
           <SidebarFooter className="border-t border-sidebar-border p-4">
+            <div className="mb-3 px-4">
+              <p className="text-xs text-slate-500">Version 1.0.{Date.now().toString().slice(-6)}</p>
+            </div>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip="Sign Out" className="h-11 px-4 rounded-lg text-sm font-medium">
