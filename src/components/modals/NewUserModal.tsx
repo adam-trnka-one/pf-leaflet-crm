@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import {
   Dialog,
@@ -53,8 +52,11 @@ const NewUserModal = ({ open, onOpenChange, onUserCreated }: NewUserModalProps) 
     };
 
     // Get existing users from localStorage
-    const existingUsers = JSON.parse(localStorage.getItem('crmUsers') || '[]');
-    const updatedUsers = [newUser, ...existingUsers];
+    const existingStoredUsers = JSON.parse(localStorage.getItem('crmUsers') || '[]');
+    
+    // If no stored users exist, we'll let the Users page handle loading defaults
+    // This preserves any existing users whether they're from sample data or previously created
+    const updatedUsers = [newUser, ...existingStoredUsers];
     
     // Store back to localStorage
     localStorage.setItem('crmUsers', JSON.stringify(updatedUsers));
