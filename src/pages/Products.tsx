@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -60,65 +61,68 @@ const Products = () => {
   };
 
   return (
-    <div className="p-8 bg-slate-50 min-h-screen">
-      <div className="flex justify-between items-start mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-800">Products</h1>
-          <p className="text-slate-600 mt-2">Manage your product catalog</p>
+    <div className="p-8 bg-slate-50 min-h-screen" data-products="main-container">
+      <div className="flex justify-between items-start mb-8" data-products="header-section">
+        <div data-products="header-content">
+          <h1 className="text-3xl font-bold text-slate-800" data-products="page-title">Products</h1>
+          <p className="text-slate-600 mt-2" data-products="page-subtitle">Manage your product catalog</p>
         </div>
         <Button 
           className="bg-[#4AB831] hover:bg-[#3da127]"
           onClick={() => setIsModalOpen(true)}
+          data-products="new-product-button"
         >
-          <Plus className="h-4 w-4 mr-2" />
-          New Product
+          <Plus className="h-4 w-4 mr-2" data-products="new-product-icon" />
+          <span data-products="new-product-text">New Product</span>
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-products="products-grid">
         {products.map((product) => (
-          <Card key={product.id} className="bg-white shadow-sm">
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
-                    <Package className="h-5 w-5 text-emerald-600" />
+          <Card key={product.id} className="bg-white shadow-sm" data-products="product-card">
+            <CardHeader data-products="card-header">
+              <div className="flex items-center justify-between" data-products="header-content">
+                <div className="flex items-center space-x-3" data-products="product-info">
+                  <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center" data-products="product-icon-container">
+                    <Package className="h-5 w-5 text-emerald-600" data-products="product-icon" />
                   </div>
-                  <div>
-                    <CardTitle className="text-lg">{product.name}</CardTitle>
-                    <Badge className={getCategoryColor(product.category)} variant="secondary">
-                      {product.category}
+                  <div data-products="product-details">
+                    <CardTitle className="text-lg" data-products="product-name">{product.name}</CardTitle>
+                    <Badge className={getCategoryColor(product.category)} variant="secondary" data-products="category-badge">
+                      <span data-products="category-text">{product.category}</span>
                     </Badge>
                   </div>
                 </div>
-                <div className="flex space-x-1">
+                <div className="flex space-x-1" data-products="product-actions">
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => handleEdit(product)}
+                    data-products="edit-button"
                   >
-                    <Edit className="h-4 w-4" />
+                    <Edit className="h-4 w-4" data-products="edit-icon" />
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => handleDelete(product.id)}
                     className="text-red-600 hover:text-red-700"
+                    data-products="delete-button"
                   >
-                    <Trash2 className="h-4 w-4" />
+                    <Trash2 className="h-4 w-4" data-products="delete-icon" />
                   </Button>
                 </div>
               </div>
             </CardHeader>
-            <CardContent>
-              <p className="text-slate-600 mb-4">{product.description}</p>
-              <div className="flex justify-between items-center">
-                <div className="flex items-center space-x-1 text-emerald-600 font-semibold">
-                  <DollarSign className="h-4 w-4" />
-                  <span>{product.price}/month</span>
+            <CardContent data-products="card-content">
+              <p className="text-slate-600 mb-4" data-products="product-description">{product.description}</p>
+              <div className="flex justify-between items-center" data-products="product-footer">
+                <div className="flex items-center space-x-1 text-emerald-600 font-semibold" data-products="price-section">
+                  <DollarSign className="h-4 w-4" data-products="price-icon" />
+                  <span data-products="price-text">{product.price}/month</span>
                 </div>
-                <Badge variant="outline" className="text-emerald-600">
-                  {product.status}
+                <Badge variant="outline" className="text-emerald-600" data-products="status-badge">
+                  <span data-products="status-text">{product.status}</span>
                 </Badge>
               </div>
             </CardContent>
@@ -130,6 +134,7 @@ const Products = () => {
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
         onProductCreated={handleProductCreated}
+        data-products="new-product-modal"
       />
 
       <EditProductModal
@@ -137,6 +142,7 @@ const Products = () => {
         onOpenChange={setIsEditModalOpen}
         product={selectedProduct}
         onProductUpdated={handleProductUpdated}
+        data-products="edit-product-modal"
       />
     </div>
   );
