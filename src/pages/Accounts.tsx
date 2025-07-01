@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getSampleData, type Account } from "@/utils/sampleData";
@@ -65,85 +66,89 @@ const Accounts = () => {
 
   if (loading) {
     return (
-      <div className="p-8 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500"></div>
+      <div className="p-8 flex items-center justify-center" data-accounts="loading-container">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500" data-accounts="loading-spinner"></div>
       </div>
     );
   }
 
   return (
-    <div className="p-8 bg-slate-50 min-h-screen">
+    <div className="p-8 bg-slate-50 min-h-screen" data-accounts="main-container">
       {/* Header */}
-      <div className="flex justify-between items-start mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-800">Accounts</h1>
-          <p className="text-slate-600 mt-2">Manage your customer accounts</p>
+      <div className="flex justify-between items-start mb-8" data-accounts="header-section">
+        <div data-accounts="header-content">
+          <h1 className="text-3xl font-bold text-slate-800" data-accounts="page-title">Accounts</h1>
+          <p className="text-slate-600 mt-2" data-accounts="page-subtitle">Manage your customer accounts</p>
         </div>
         <Button 
           className="bg-[#4AB831] hover:bg-[#3da127]"
           onClick={() => setIsModalOpen(true)}
+          data-accounts="new-account-button"
         >
-          <Plus className="h-4 w-4 mr-2" />
-          New Account
+          <Plus className="h-4 w-4 mr-2" data-accounts="new-account-icon" />
+          <span data-accounts="new-account-text">New Account</span>
         </Button>
       </div>
 
       {/* Search */}
-      <div className="mb-6">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
+      <div className="mb-6" data-accounts="search-section">
+        <div className="relative" data-accounts="search-container">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" data-accounts="search-icon" />
           <Input
             placeholder="Search accounts..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 max-w-md bg-white"
+            data-accounts="search-input"
           />
         </div>
       </div>
 
       {/* Accounts Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-accounts="accounts-grid">
         {filteredAccounts.map((account) => (
-          <Link key={account.id} to={`/dashboard/accounts/${account.id}`}>
-            <Card className="bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-              <CardHeader className="pb-2">
-                <div className="flex justify-between items-start">
-                  <CardTitle className="text-lg font-semibold text-slate-800 line-clamp-1">
+          <Link key={account.id} to={`/dashboard/accounts/${account.id}`} data-accounts="account-link">
+            <Card className="bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer" data-accounts="account-card">
+              <CardHeader className="pb-2" data-accounts="card-header">
+                <div className="flex justify-between items-start" data-accounts="header-row">
+                  <CardTitle className="text-lg font-semibold text-slate-800 line-clamp-1" data-accounts="account-name">
                     {account.name}
                   </CardTitle>
-                  <Badge className={getTypeColor(account.type)}>
+                  <Badge className={getTypeColor(account.type)} data-accounts="account-type-badge">
                     {account.type}
                   </Badge>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center text-sm text-slate-600">
-                  <span className="font-medium mr-2">Industry:</span>
-                  {account.industry}
+              <CardContent className="space-y-3" data-accounts="card-content">
+                <div className="flex items-center text-sm text-slate-600" data-accounts="industry-row">
+                  <span className="font-medium mr-2" data-accounts="industry-label">Industry:</span>
+                  <span data-accounts="industry-value">{account.industry}</span>
                 </div>
                 
-                <div className="flex items-center justify-between text-sm">
-                  <div className="flex items-center text-slate-600">
-                    <DollarSign className="h-4 w-4 mr-1" />
-                    ${account.revenue.toLocaleString()}
+                <div className="flex items-center justify-between text-sm" data-accounts="metrics-row">
+                  <div className="flex items-center text-slate-600" data-accounts="revenue-container">
+                    <DollarSign className="h-4 w-4 mr-1" data-accounts="revenue-icon" />
+                    <span data-accounts="revenue-value">${account.revenue.toLocaleString()}</span>
                   </div>
-                  <div className="flex items-center text-slate-600">
-                    <Users className="h-4 w-4 mr-1" />
-                    {account.employees}
+                  <div className="flex items-center text-slate-600" data-accounts="employees-container">
+                    <Users className="h-4 w-4 mr-1" data-accounts="employees-icon" />
+                    <span data-accounts="employees-value">{account.employees}</span>
                   </div>
                 </div>
 
-                <div className="flex items-center text-sm text-slate-600">
-                  <MapPin className="h-4 w-4 mr-1" />
-                  {account.address.city}, {account.address.country}
+                <div className="flex items-center text-sm text-slate-600" data-accounts="location-row">
+                  <MapPin className="h-4 w-4 mr-1" data-accounts="location-icon" />
+                  <span data-accounts="location-value">{account.address.city}, {account.address.country}</span>
                 </div>
 
-                <div className="pt-2 border-t border-slate-100">
-                  <div className="text-xs text-slate-500">
-                    Owner: {account.owner}
+                <div className="pt-2 border-t border-slate-100" data-accounts="metadata-section">
+                  <div className="text-xs text-slate-500" data-accounts="owner-row">
+                    <span data-accounts="owner-label">Owner: </span>
+                    <span data-accounts="owner-value">{account.owner}</span>
                   </div>
-                  <div className="text-xs text-slate-500">
-                    Created: {account.createdAt.toLocaleDateString()}
+                  <div className="text-xs text-slate-500" data-accounts="created-row">
+                    <span data-accounts="created-label">Created: </span>
+                    <span data-accounts="created-value">{account.createdAt.toLocaleDateString()}</span>
                   </div>
                 </div>
               </CardContent>
@@ -153,8 +158,8 @@ const Accounts = () => {
       </div>
 
       {filteredAccounts.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-slate-500">No accounts found matching your search.</p>
+        <div className="text-center py-12" data-accounts="empty-state">
+          <p className="text-slate-500" data-accounts="empty-message">No accounts found matching your search.</p>
         </div>
       )}
 
@@ -162,6 +167,7 @@ const Accounts = () => {
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
         onAccountCreated={handleAccountCreated}
+        data-accounts="new-account-modal"
       />
     </div>
   );
