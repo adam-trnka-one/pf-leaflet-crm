@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import {
   Dialog,
@@ -17,6 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { getSampleData } from "@/utils/sampleData";
 
 interface Lead {
   id: string;
@@ -73,8 +73,16 @@ const NewLeadModal = ({ open, onOpenChange, onLeadCreated }: NewLeadModalProps) 
     };
 
     // Get existing leads from localStorage
-    const existingLeads = JSON.parse(localStorage.getItem('crmLeads') || '[]');
-    const updatedLeads = [newLead, ...existingLeads];
+    const existingStoredLeads = JSON.parse(localStorage.getItem('crmLeads') || '[]');
+    
+    // Get sample data leads
+    const sampleData = getSampleData();
+    const sampleLeads = sampleData ? sampleData.leads : [];
+    
+    // Combine all leads: new lead + stored leads + sample leads
+    // But avoid duplicates by checking if sample leads are already in stored leads
+    const allExistingLeads = existingStoredLeads.length > 0 ? existingStoredLeads : sampleLeads;
+    const updatedLeads = [newLead, ...allExistingLeads];
     
     // Store back to localStorage
     localStorage.setItem('crmLeads', JSON.stringify(updatedLeads));
