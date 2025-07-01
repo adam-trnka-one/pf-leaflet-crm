@@ -53,8 +53,15 @@ const NewActivityModal = ({ open, onOpenChange, onActivityCreated }: NewActivity
     };
 
     // Get existing activities from localStorage
-    const existingActivities = JSON.parse(localStorage.getItem('crmActivities') || '[]');
-    const updatedActivities = [newActivity, ...existingActivities];
+    const existingStoredActivities = JSON.parse(localStorage.getItem('crmActivities') || '[]');
+    
+    // If no stored activities exist, check if we have default activities from the Activities page
+    // This preserves the default activities that were set in the Activities page
+    let allExistingActivities = existingStoredActivities;
+    
+    // If localStorage is empty, we'll let the Activities page handle the defaults
+    // This way we don't duplicate the default activities logic
+    const updatedActivities = [newActivity, ...allExistingActivities];
     
     // Store back to localStorage
     localStorage.setItem('crmActivities', JSON.stringify(updatedActivities));
