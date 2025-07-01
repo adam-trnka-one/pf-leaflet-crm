@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { getSampleData, generateAndStoreSampleData, resetDatabase, type Opportunity } from "@/utils/sampleData";
@@ -19,6 +18,8 @@ interface Activity {
   assignedTo: string;
   relatedTo: string;
   createdAt: Date;
+  completed: boolean;
+  date: Date;
 }
 
 interface Lead {
@@ -62,9 +63,25 @@ const Dashboard = () => {
 
   const loadRecentActivities = () => {
     const activities = JSON.parse(localStorage.getItem('crmActivities') || '[]');
-    // Get recent activities (last 5, sorted by creation date)
-    const recent = activities
-      .sort((a: Activity, b: Activity) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    
+    // Transform activities to match the expected format
+    const transformedActivities = activities.map((activity: any) => ({
+      id: activity.id,
+      subject: activity.subject,
+      type: activity.type,
+      status: activity.completed ? 'Completed' : 'In Progress',
+      priority: 'Medium', // Default priority since it's not stored
+      dueDate: activity.date || new Date().toISOString(),
+      assignedTo: 'Current User', // Default assignee
+      relatedTo: '', // Default relation
+      createdAt: new Date(activity.date || new Date()),
+      completed: activity.completed || false,
+      date: new Date(activity.date || new Date())
+    }));
+    
+    // Get recent activities (last 5, sorted by date)
+    const recent = transformedActivities
+      .sort((a: Activity, b: Activity) => new Date(b.date).getTime() - new Date(a.date).getTime())
       .slice(0, 5);
     setRecentActivities(recent);
   };
@@ -133,12 +150,12 @@ const Dashboard = () => {
     !['Closed Won', 'Closed Lost'].includes(opp.stage)
   ).length;
 
-  // Tasks summary
+  // Tasks summary - now based on actual activities
   const totalTasks = recentActivities.length;
-  const completedTasks = recentActivities.filter(activity => activity.status === 'Completed').length;
+  const completedTasks = recentActivities.filter(activity => activity.completed).length;
   const overdueTasks = recentActivities.filter(activity => {
     const dueDate = new Date(activity.dueDate);
-    return dueDate < new Date() && activity.status !== 'Completed';
+    return dueDate < new Date() && !activity.completed;
   }).length;
 
   return (
