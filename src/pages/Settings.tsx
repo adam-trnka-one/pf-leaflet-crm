@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -62,7 +63,32 @@ const Settings = () => {
     setCustomProperties(newProperties);
   };
 
+  const validateRequiredFields = () => {
+    const errors = [];
+    if (!localWorkspaceData.workspaceCode.trim()) {
+      errors.push('Workspace Code is required');
+    }
+    if (!localWorkspaceData.username.trim()) {
+      errors.push('Username is required');
+    }
+    if (!localWorkspaceData.firstName.trim()) {
+      errors.push('First Name is required');
+    }
+    return errors;
+  };
+
   const handleSaveWorkspaceData = () => {
+    const validationErrors = validateRequiredFields();
+    
+    if (validationErrors.length > 0) {
+      toast({
+        title: "Validation Error",
+        description: validationErrors.join(', '),
+        variant: "destructive"
+      });
+      return;
+    }
+
     const dataToSave = {
       ...localWorkspaceData,
       customProperties: customProperties.filter(prop => prop.name && prop.value)
@@ -303,9 +329,10 @@ const Settings = () => {
                   <Input 
                     id="workspaceCode" 
                     placeholder="Enter your workspace code"
-                    className="mt-1"
+                    className={`mt-1 ${!localWorkspaceData.workspaceCode.trim() ? 'border-red-300 focus-visible:border-red-500' : ''}`}
                     value={localWorkspaceData.workspaceCode}
                     onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, workspaceCode: e.target.value }))}
+                    required
                   />
                   <p className="text-xs text-slate-500 mt-1">{localWorkspaceData.workspaceCode.length}/40 characters</p>
                 </div>
@@ -318,9 +345,10 @@ const Settings = () => {
                     <Input 
                       id="username" 
                       placeholder="Enter username"
-                      className="mt-1"
+                      className={`mt-1 ${!localWorkspaceData.username.trim() ? 'border-red-300 focus-visible:border-red-500' : ''}`}
                       value={localWorkspaceData.username}
                       onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, username: e.target.value }))}
+                      required
                     />
                   </div>
                   <div>
@@ -338,13 +366,16 @@ const Settings = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="firstName" className="text-sm font-medium text-slate-700">First Name</Label>
+                    <Label htmlFor="firstName" className="text-sm font-medium text-slate-700">
+                      First Name <span className="text-red-500">*</span>
+                    </Label>
                     <Input 
                       id="firstName" 
                       placeholder="Enter first name"
-                      className="mt-1"
+                      className={`mt-1 ${!localWorkspaceData.firstName.trim() ? 'border-red-300 focus-visible:border-red-500' : ''}`}
                       value={localWorkspaceData.firstName}
                       onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, firstName: e.target.value }))}
+                      required
                     />
                   </div>
                   <div>
