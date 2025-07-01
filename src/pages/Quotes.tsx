@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -26,6 +25,14 @@ const Quotes = () => {
   const handleQuoteUpdated = (updatedQuote: any) => {
     setQuotes(quotes.map(q => q.id === updatedQuote.id ? updatedQuote : q));
     setSelectedQuote(null);
+  };
+
+  const handleQuoteCreated = (newQuote: any) => {
+    setQuotes(prevQuotes => [newQuote, ...prevQuotes]);
+    toast({
+      title: "Quote created",
+      description: "The quote has been successfully created."
+    });
   };
 
   const handleDelete = (quoteId: number) => {
@@ -121,6 +128,7 @@ const Quotes = () => {
       <NewQuoteModal 
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
+        onQuoteCreated={handleQuoteCreated}
       />
 
       <EditQuoteModal

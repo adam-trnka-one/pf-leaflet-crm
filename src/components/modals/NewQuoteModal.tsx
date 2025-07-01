@@ -18,12 +18,22 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+interface Quote {
+  id: number;
+  name: string;
+  account: string;
+  amount: number;
+  status: string;
+  date: Date;
+}
+
 interface NewQuoteModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onQuoteCreated?: (quote: Quote) => void;
 }
 
-const NewQuoteModal = ({ open, onOpenChange }: NewQuoteModalProps) => {
+const NewQuoteModal = ({ open, onOpenChange, onQuoteCreated }: NewQuoteModalProps) => {
   const [formData, setFormData] = useState({
     name: "",
     account: "",
@@ -32,7 +42,26 @@ const NewQuoteModal = ({ open, onOpenChange }: NewQuoteModalProps) => {
   });
 
   const handleSubmit = () => {
-    console.log("Creating new quote:", formData);
+    if (!formData.name || !formData.account || !formData.amount) {
+      return;
+    }
+
+    const newQuote: Quote = {
+      id: Date.now(),
+      name: formData.name,
+      account: formData.account,
+      amount: Number(formData.amount),
+      status: formData.status,
+      date: new Date(),
+    };
+
+    console.log("Creating new quote:", newQuote);
+    
+    // Notify parent component
+    if (onQuoteCreated) {
+      onQuoteCreated(newQuote);
+    }
+    
     onOpenChange(false);
     setFormData({ name: "", account: "", amount: "", status: "Draft" });
   };
