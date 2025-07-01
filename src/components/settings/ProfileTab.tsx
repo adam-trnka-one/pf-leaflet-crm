@@ -42,57 +42,62 @@ export const ProfileTab = () => {
   };
 
   return (
-    <Card className="bg-white shadow-sm">
-      <CardHeader>
-        <CardTitle>Profile Settings</CardTitle>
+    <Card className="bg-white shadow-sm" data-settings="profile-card">
+      <CardHeader data-settings="profile-card-header">
+        <CardTitle data-settings="profile-card-title">Profile Settings</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <Label htmlFor="firstName">First Name</Label>
+      <CardContent className="space-y-6" data-settings="profile-card-content">
+        <div className="grid grid-cols-2 gap-4" data-settings="name-fields-grid">
+          <div data-settings="first-name-field">
+            <Label htmlFor="firstName" data-settings="first-name-label">First Name</Label>
             <Input 
               id="firstName" 
               value={localData.firstName}
               onChange={(e) => setLocalData(prev => ({ ...prev, firstName: e.target.value }))}
+              data-settings="first-name-input"
             />
           </div>
-          <div>
-            <Label htmlFor="lastName">Last Name</Label>
+          <div data-settings="last-name-field">
+            <Label htmlFor="lastName" data-settings="last-name-label">Last Name</Label>
             <Input 
               id="lastName" 
               value={localData.lastName}
               onChange={(e) => setLocalData(prev => ({ ...prev, lastName: e.target.value }))}
+              data-settings="last-name-input"
             />
           </div>
         </div>
         
-        <div>
-          <Label htmlFor="email">Email</Label>
+        <div data-settings="email-field">
+          <Label htmlFor="email" data-settings="email-label">Email</Label>
           <Input 
             id="email" 
             type="email" 
             value={localData.email}
             onChange={(e) => setLocalData(prev => ({ ...prev, email: e.target.value }))}
+            data-settings="email-input"
           />
         </div>
         
-        <div>
-          <Label htmlFor="phone">Phone</Label>
+        <div data-settings="phone-field">
+          <Label htmlFor="phone" data-settings="phone-label">Phone</Label>
           <Input 
             id="phone" 
             value={localData.phone}
             onChange={(e) => setLocalData(prev => ({ ...prev, phone: e.target.value }))}
+            data-settings="phone-input"
           />
         </div>
         
-        <Separator />
+        <Separator data-settings="profile-separator" />
         
-        <div className="flex justify-end">
+        <div className="flex justify-end" data-settings="profile-actions">
           <Button 
             className="bg-emerald-600 hover:bg-emerald-700"
             onClick={handleSaveChanges}
+            data-settings="save-changes-button"
           >
-            Save Changes
+            <span data-settings="save-changes-text">Save Changes</span>
           </Button>
         </div>
       </CardContent>
