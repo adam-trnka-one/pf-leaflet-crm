@@ -22,11 +22,11 @@ const STORAGE_KEY = 'leaflet-workspace-data';
 
 const defaultWorkspaceData: WorkspaceData = {
   workspaceCode: 'KFRC3cd1dM48s0p9',
-  username: 'john.dow',
-  email: '',
-  firstName: '',
-  lastName: '',
-  role: '',
+  username: 'john.doe',
+  email: 'john@doe.com',
+  firstName: 'John',
+  lastName: 'Doe',
+  role: 'Admin',
   customProperties: []
 };
 
