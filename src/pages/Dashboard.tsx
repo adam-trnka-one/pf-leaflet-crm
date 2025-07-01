@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { getSampleData, generateAndStoreSampleData, resetDatabase, type Opportunity } from "@/utils/sampleData";
@@ -42,12 +43,14 @@ const Dashboard = () => {
   const [recentActivities, setRecentActivities] = useState<Activity[]>([]);
   const [recentLeads, setRecentLeads] = useState<Lead[]>([]);
   const [totalAccounts, setTotalAccounts] = useState(0);
+  const [totalContacts, setTotalContacts] = useState(0);
 
   useEffect(() => {
     loadData();
     loadRecentActivities();
     loadRecentLeads();
     loadTotalAccounts();
+    loadTotalContacts();
   }, []);
 
   const loadData = () => {
@@ -74,6 +77,21 @@ const Dashboard = () => {
       const sampleData = getSampleData();
       if (sampleData) {
         setTotalAccounts(sampleData.accounts.length);
+      }
+    }
+  };
+
+  const loadTotalContacts = () => {
+    // Try to load from localStorage first (manually created contacts)
+    const storedContacts = localStorage.getItem('crmContacts');
+    if (storedContacts) {
+      const parsedContacts = JSON.parse(storedContacts);
+      setTotalContacts(parsedContacts.length);
+    } else {
+      // Fall back to sample data
+      const sampleData = getSampleData();
+      if (sampleData) {
+        setTotalContacts(sampleData.contacts.length);
       }
     }
   };
@@ -117,8 +135,9 @@ const Dashboard = () => {
     const newData = resetDatabase();
     setData(newData);
     setLoading(false);
-    // Update total accounts after reset
+    // Update total accounts and contacts after reset
     setTotalAccounts(newData.accounts.length);
+    setTotalContacts(newData.contacts.length);
     toast({
       title: "Database reset",
       description: "All sample data has been regenerated"
@@ -163,7 +182,6 @@ const Dashboard = () => {
     .filter((opp: Opportunity) => opp.stage === 'Closed Won')
     .reduce((sum: number, opp: Opportunity) => sum + opp.amount, 0);
 
-  const totalContacts = data.contacts.length;
   const openOpportunities = data.opportunities.filter((opp: Opportunity) => 
     !['Closed Won', 'Closed Lost'].includes(opp.stage)
   ).length;
