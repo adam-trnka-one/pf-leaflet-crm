@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { Building, X, Plus } from "lucide-react";
+import { Building, X, Plus, Play } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useProductFruits } from "@/hooks/useProductFruits";
@@ -78,6 +78,15 @@ export const WorkspaceTab = () => {
     toast({
       title: "Workspace data saved",
       description: "Your workspace configuration has been saved successfully."
+    });
+  };
+
+  const handleInitiateProductFruits = () => {
+    initializeProductFruits();
+    
+    toast({
+      title: "ProductFruits initiated",
+      description: "ProductFruits script has been initialized with current workspace data."
     });
   };
 
@@ -285,6 +294,14 @@ export const WorkspaceTab = () => {
             </Button>
           </div>
           <div className="flex space-x-3">
+            <Button 
+              variant="outline"
+              className="bg-green-600 hover:bg-green-700 text-white border-green-600"
+              onClick={handleInitiateProductFruits}
+            >
+              <Play className="h-4 w-4 mr-2" />
+              Initiate ProductFruits
+            </Button>
             <Button 
               className="bg-blue-600 hover:bg-blue-700"
               onClick={handleSaveWorkspaceData}
