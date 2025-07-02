@@ -68,59 +68,62 @@ const NewQuoteModal = ({ open, onOpenChange, onQuoteCreated }: NewQuoteModalProp
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Create New Quote</DialogTitle>
+      <DialogContent className="sm:max-w-[425px]" data-testid="new-quote-modal-content">
+        <DialogHeader data-testid="new-quote-modal-header">
+          <DialogTitle data-testid="new-quote-modal-title">Create New Quote</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid gap-2">
-            <Label htmlFor="quote-name">Quote Name</Label>
+        <div className="grid gap-4 py-4" data-testid="new-quote-modal-form">
+          <div className="grid gap-2" data-testid="new-quote-name-field">
+            <Label htmlFor="quote-name" data-testid="new-quote-name-label">Quote Name</Label>
             <Input
               id="quote-name"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               placeholder="Q-2024-004"
+              data-testid="new-quote-name-input"
             />
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="account">Account</Label>
+          <div className="grid gap-2" data-testid="new-quote-account-field">
+            <Label htmlFor="account" data-testid="new-quote-account-label">Account</Label>
             <Input
               id="account"
               value={formData.account}
               onChange={(e) => setFormData({ ...formData, account: e.target.value })}
               placeholder="Select or enter account name"
+              data-testid="new-quote-account-input"
             />
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="amount">Amount</Label>
+          <div className="grid gap-2" data-testid="new-quote-amount-field">
+            <Label htmlFor="amount" data-testid="new-quote-amount-label">Amount</Label>
             <Input
               id="amount"
               type="number"
               value={formData.amount}
               onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
               placeholder="25000"
+              data-testid="new-quote-amount-input"
             />
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="status">Status</Label>
+          <div className="grid gap-2" data-testid="new-quote-status-field">
+            <Label htmlFor="status" data-testid="new-quote-status-label">Status</Label>
             <Select value={formData.status} onValueChange={(value) => setFormData({ ...formData, status: value })}>
-              <SelectTrigger>
+              <SelectTrigger data-testid="new-quote-status-trigger">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Draft">Draft</SelectItem>
-                <SelectItem value="Sent">Sent</SelectItem>
-                <SelectItem value="Accepted">Accepted</SelectItem>
-                <SelectItem value="Rejected">Rejected</SelectItem>
+              <SelectContent data-testid="new-quote-status-content">
+                <SelectItem value="Draft" data-testid="new-quote-status-draft">Draft</SelectItem>
+                <SelectItem value="Sent" data-testid="new-quote-status-sent">Sent</SelectItem>
+                <SelectItem value="Accepted" data-testid="new-quote-status-accepted">Accepted</SelectItem>
+                <SelectItem value="Rejected" data-testid="new-quote-status-rejected">Rejected</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
-        <DialogFooter>
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
+        <DialogFooter data-testid="new-quote-modal-footer">
+          <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="new-quote-cancel-button">
             Cancel
           </Button>
-          <Button onClick={handleSubmit} className="bg-leaflet-green hover:bg-leaflet-green-hover">
+          <Button onClick={handleSubmit} className="bg-leaflet-green hover:bg-leaflet-green-hover" data-testid="new-quote-create-button">
             Create Quote
           </Button>
         </DialogFooter>

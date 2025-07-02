@@ -55,71 +55,71 @@ const Quotes = () => {
   };
 
   return (
-    <div className="p-8 bg-slate-50 min-h-screen" data-quotes="main-container">
-      <div className="flex justify-between items-start mb-8" data-quotes="header-section">
-        <div data-quotes="header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-quotes="page-title">Quotes</h1>
-          <p className="text-slate-600 mt-2" data-quotes="page-subtitle">Manage sales quotes and proposals</p>
+    <div className="p-8 bg-slate-50 min-h-screen" data-testid="quotes-main-container">
+      <div className="flex justify-between items-start mb-8" data-testid="quotes-header-section">
+        <div data-testid="quotes-header-content">
+          <h1 className="text-3xl font-bold text-slate-800" data-testid="quotes-page-title">Quotes</h1>
+          <p className="text-slate-600 mt-2" data-testid="quotes-page-subtitle">Manage sales quotes and proposals</p>
         </div>
         <Button 
           className="bg-[#4AB831] hover:bg-[#3da127]"
           onClick={() => setIsModalOpen(true)}
-          data-quotes="new-quote-button"
+          data-testid="quotes-new-quote-button"
         >
-          <Plus className="h-4 w-4 mr-2" data-quotes="new-quote-icon" />
-          <span data-quotes="new-quote-text">New Quote</span>
+          <Plus className="h-4 w-4 mr-2" data-testid="quotes-new-quote-icon" />
+          <span data-testid="quotes-new-quote-text">New Quote</span>
         </Button>
       </div>
 
-      <div className="space-y-4" data-quotes="quotes-list">
+      <div className="space-y-4" data-testid="quotes-list">
         {quotes.map((quote) => (
-          <Card key={quote.id} className="bg-white shadow-sm hover:shadow-md transition-shadow" data-quotes="quote-card">
-            <CardContent className="p-6" data-quotes="card-content">
-              <div className="flex items-center justify-between" data-quotes="card-row">
-                <div className="flex items-center space-x-4" data-quotes="quote-info-section">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center" data-quotes="quote-icon-container">
-                    <FileText className="h-5 w-5 text-blue-600" data-quotes="quote-icon" />
+          <Card key={quote.id} className="bg-white shadow-sm hover:shadow-md transition-shadow" data-testid="quotes-quote-card">
+            <CardContent className="p-6" data-testid="quotes-card-content">
+              <div className="flex items-center justify-between" data-testid="quotes-card-row">
+                <div className="flex items-center space-x-4" data-testid="quotes-quote-info-section">
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center" data-testid="quotes-quote-icon-container">
+                    <FileText className="h-5 w-5 text-blue-600" data-testid="quotes-quote-icon" />
                   </div>
-                  <div data-quotes="quote-details">
-                    <h3 className="font-semibold text-slate-800" data-quotes="quote-name">{quote.name}</h3>
-                    <p className="text-sm text-slate-600" data-quotes="quote-account">{quote.account}</p>
+                  <div data-testid="quotes-quote-details">
+                    <h3 className="font-semibold text-slate-800" data-testid="quotes-quote-name">{quote.name}</h3>
+                    <p className="text-sm text-slate-600" data-testid="quotes-quote-account">{quote.account}</p>
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-6" data-quotes="quote-metadata-section">
-                  <div className="text-right" data-quotes="quote-financial-info">
-                    <div className="flex items-center space-x-1 text-emerald-600 font-semibold" data-quotes="amount-section">
-                      <DollarSign className="h-4 w-4" data-quotes="amount-icon" />
-                      <span data-quotes="amount-text">{quote.amount.toLocaleString()}</span>
+                <div className="flex items-center space-x-6" data-testid="quotes-quote-metadata-section">
+                  <div className="text-right" data-testid="quotes-quote-financial-info">
+                    <div className="flex items-center space-x-1 text-emerald-600 font-semibold" data-testid="quotes-amount-section">
+                      <DollarSign className="h-4 w-4" data-testid="quotes-amount-icon" />
+                      <span data-testid="quotes-amount-text">{quote.amount.toLocaleString()}</span>
                     </div>
-                    <div className="flex items-center space-x-1 text-xs text-slate-500" data-quotes="date-section">
-                      <Calendar className="h-3 w-3" data-quotes="date-icon" />
-                      <span data-quotes="date-text">{quote.date.toLocaleDateString()}</span>
+                    <div className="flex items-center space-x-1 text-xs text-slate-500" data-testid="quotes-date-section">
+                      <Calendar className="h-3 w-3" data-testid="quotes-date-icon" />
+                      <span data-testid="quotes-date-text">{quote.date.toLocaleDateString()}</span>
                     </div>
                   </div>
                   
-                  <Badge className={getStatusColor(quote.status)} variant="secondary" data-quotes="status-badge">
-                    <span data-quotes="status-text">{quote.status}</span>
+                  <Badge className={getStatusColor(quote.status)} variant="secondary" data-testid="quotes-status-badge">
+                    <span data-testid="quotes-status-text">{quote.status}</span>
                   </Badge>
 
-                  <div className="flex space-x-2" data-quotes="quote-actions">
+                  <div className="flex space-x-2" data-testid="quotes-quote-actions">
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => handleEdit(quote)}
-                      data-quotes="edit-button"
+                      data-testid="quotes-edit-button"
                     >
-                      <Edit className="h-4 w-4 mr-1" data-quotes="edit-icon" />
-                      <span data-quotes="edit-text">Edit</span>
+                      <Edit className="h-4 w-4 mr-1" data-testid="quotes-edit-icon" />
+                      <span data-testid="quotes-edit-text">Edit</span>
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => handleDelete(quote.id)}
                       className="text-red-600 hover:text-red-700"
-                      data-quotes="delete-button"
+                      data-testid="quotes-delete-button"
                     >
-                      <Trash2 className="h-4 w-4" data-quotes="delete-icon" />
+                      <Trash2 className="h-4 w-4" data-testid="quotes-delete-icon" />
                     </Button>
                   </div>
                 </div>
@@ -133,7 +133,7 @@ const Quotes = () => {
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
         onQuoteCreated={handleQuoteCreated}
-        data-quotes="new-quote-modal"
+        data-testid="quotes-new-quote-modal"
       />
 
       <EditQuoteModal
@@ -141,7 +141,7 @@ const Quotes = () => {
         onOpenChange={setIsEditModalOpen}
         quote={selectedQuote}
         onQuoteUpdated={handleQuoteUpdated}
-        data-quotes="edit-quote-modal"
+        data-testid="quotes-edit-quote-modal"
       />
     </div>
   );
