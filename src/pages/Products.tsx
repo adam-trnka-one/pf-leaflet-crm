@@ -61,68 +61,68 @@ const Products = () => {
   };
 
   return (
-    <div className="p-8 bg-slate-50 min-h-screen" data-products="main-container">
-      <div className="flex justify-between items-start mb-8" data-products="header-section">
-        <div data-products="header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-products="page-title">Products</h1>
-          <p className="text-slate-600 mt-2" data-products="page-subtitle">Manage your product catalog</p>
+    <div className="p-8 bg-slate-50 min-h-screen" data-testid="products-main-container">
+      <div className="flex justify-between items-start mb-8" data-testid="products-header-section">
+        <div data-testid="products-header-content">
+          <h1 className="text-3xl font-bold text-slate-800" data-testid="products-page-title">Products</h1>
+          <p className="text-slate-600 mt-2" data-testid="products-page-subtitle">Manage your product catalog</p>
         </div>
         <Button 
           className="bg-[#4AB831] hover:bg-[#3da127]"
           onClick={() => setIsModalOpen(true)}
-          data-products="new-product-button"
+          data-testid="products-new-button"
         >
-          <Plus className="h-4 w-4 mr-2" data-products="new-product-icon" />
-          <span data-products="new-product-text">New Product</span>
+          <Plus className="h-4 w-4 mr-2" data-testid="products-new-icon" />
+          <span data-testid="products-new-text">New Product</span>
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-products="products-grid">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="products-grid">
         {products.map((product) => (
-          <Card key={product.id} className="bg-white shadow-sm" data-products="product-card">
-            <CardHeader data-products="card-header">
-              <div className="flex items-center justify-between" data-products="header-content">
-                <div className="flex items-center space-x-3" data-products="product-info">
-                  <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center" data-products="product-icon-container">
-                    <Package className="h-5 w-5 text-emerald-600" data-products="product-icon" />
+          <Card key={product.id} className="bg-white shadow-sm" data-testid={`product-card-${product.id}`}>
+            <CardHeader data-testid={`product-card-header-${product.id}`}>
+              <div className="flex items-center justify-between" data-testid={`product-header-content-${product.id}`}>
+                <div className="flex items-center space-x-3" data-testid={`product-info-${product.id}`}>
+                  <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center" data-testid={`product-icon-container-${product.id}`}>
+                    <Package className="h-5 w-5 text-emerald-600" data-testid={`product-icon-${product.id}`} />
                   </div>
-                  <div data-products="product-details">
-                    <CardTitle className="text-lg" data-products="product-name">{product.name}</CardTitle>
-                    <Badge className={getCategoryColor(product.category)} variant="secondary" data-products="category-badge">
-                      <span data-products="category-text">{product.category}</span>
+                  <div data-testid={`product-details-${product.id}`}>
+                    <CardTitle className="text-lg" data-testid={`product-name-${product.id}`}>{product.name}</CardTitle>
+                    <Badge className={getCategoryColor(product.category)} variant="secondary" data-testid={`product-category-badge-${product.id}`}>
+                      <span data-testid={`product-category-text-${product.id}`}>{product.category}</span>
                     </Badge>
                   </div>
                 </div>
-                <div className="flex space-x-1" data-products="product-actions">
+                <div className="flex space-x-1" data-testid={`product-actions-${product.id}`}>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => handleEdit(product)}
-                    data-products="edit-button"
+                    data-testid={`product-edit-button-${product.id}`}
                   >
-                    <Edit className="h-4 w-4" data-products="edit-icon" />
+                    <Edit className="h-4 w-4" data-testid={`product-edit-icon-${product.id}`} />
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => handleDelete(product.id)}
                     className="text-red-600 hover:text-red-700"
-                    data-products="delete-button"
+                    data-testid={`product-delete-button-${product.id}`}
                   >
-                    <Trash2 className="h-4 w-4" data-products="delete-icon" />
+                    <Trash2 className="h-4 w-4" data-testid={`product-delete-icon-${product.id}`} />
                   </Button>
                 </div>
               </div>
             </CardHeader>
-            <CardContent data-products="card-content">
-              <p className="text-slate-600 mb-4" data-products="product-description">{product.description}</p>
-              <div className="flex justify-between items-center" data-products="product-footer">
-                <div className="flex items-center space-x-1 text-emerald-600 font-semibold" data-products="price-section">
-                  <DollarSign className="h-4 w-4" data-products="price-icon" />
-                  <span data-products="price-text">{product.price}/month</span>
+            <CardContent data-testid={`product-card-content-${product.id}`}>
+              <p className="text-slate-600 mb-4" data-testid={`product-description-${product.id}`}>{product.description}</p>
+              <div className="flex justify-between items-center" data-testid={`product-footer-${product.id}`}>
+                <div className="flex items-center space-x-1 text-emerald-600 font-semibold" data-testid={`product-price-section-${product.id}`}>
+                  <DollarSign className="h-4 w-4" data-testid={`product-price-icon-${product.id}`} />
+                  <span data-testid={`product-price-text-${product.id}`}>{product.price}/month</span>
                 </div>
-                <Badge variant="outline" className="text-emerald-600" data-products="status-badge">
-                  <span data-products="status-text">{product.status}</span>
+                <Badge variant="outline" className="text-emerald-600" data-testid={`product-status-badge-${product.id}`}>
+                  <span data-testid={`product-status-text-${product.id}`}>{product.status}</span>
                 </Badge>
               </div>
             </CardContent>
@@ -134,7 +134,7 @@ const Products = () => {
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
         onProductCreated={handleProductCreated}
-        data-products="new-product-modal"
+        data-testid="new-product-modal"
       />
 
       <EditProductModal
@@ -142,7 +142,7 @@ const Products = () => {
         onOpenChange={setIsEditModalOpen}
         product={selectedProduct}
         onProductUpdated={handleProductUpdated}
-        data-products="edit-product-modal"
+        data-testid="edit-product-modal"
       />
     </div>
   );

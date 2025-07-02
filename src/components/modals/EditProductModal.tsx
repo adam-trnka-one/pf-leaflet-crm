@@ -89,58 +89,61 @@ const EditProductModal = ({ open, onOpenChange, product, onProductUpdated }: Edi
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Edit Product</DialogTitle>
+      <DialogContent className="sm:max-w-[425px]" data-testid="edit-product-modal-content">
+        <DialogHeader data-testid="edit-product-modal-header">
+          <DialogTitle data-testid="edit-product-modal-title">Edit Product</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid gap-2">
-            <Label htmlFor="product-name">Product Name</Label>
+        <div className="grid gap-4 py-4" data-testid="edit-product-modal-form">
+          <div className="grid gap-2" data-testid="edit-product-name-field">
+            <Label htmlFor="product-name" data-testid="edit-product-name-label">Product Name</Label>
             <Input
               id="product-name"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               placeholder="CRM Professional"
+              data-testid="edit-product-name-input"
             />
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="description">Description</Label>
+          <div className="grid gap-2" data-testid="edit-product-description-field">
+            <Label htmlFor="description" data-testid="edit-product-description-label">Description</Label>
             <Input
               id="description"
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               placeholder="Advanced CRM features"
+              data-testid="edit-product-description-input"
             />
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="price">Price (monthly)</Label>
+          <div className="grid gap-2" data-testid="edit-product-price-field">
+            <Label htmlFor="price" data-testid="edit-product-price-label">Price (monthly)</Label>
             <Input
               id="price"
               type="number"
               value={formData.price}
               onChange={(e) => setFormData({ ...formData, price: e.target.value })}
               placeholder="99"
+              data-testid="edit-product-price-input"
             />
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="category">Category</Label>
+          <div className="grid gap-2" data-testid="edit-product-category-field">
+            <Label htmlFor="category" data-testid="edit-product-category-label">Category</Label>
             <Select value={formData.category} onValueChange={(value) => setFormData({ ...formData, category: value })}>
-              <SelectTrigger>
+              <SelectTrigger data-testid="edit-product-category-trigger">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Software">Software</SelectItem>
-                <SelectItem value="Service">Service</SelectItem>
-                <SelectItem value="Training">Training</SelectItem>
+              <SelectContent data-testid="edit-product-category-content">
+                <SelectItem value="Software" data-testid="edit-product-category-software">Software</SelectItem>
+                <SelectItem value="Service" data-testid="edit-product-category-service">Service</SelectItem>
+                <SelectItem value="Training" data-testid="edit-product-category-training">Training</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
-        <DialogFooter>
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
+        <DialogFooter data-testid="edit-product-modal-footer">
+          <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="edit-product-cancel-button">
             Cancel
           </Button>
-          <Button onClick={handleSubmit} className="bg-[#4AB831] hover:bg-[#3da127]">
+          <Button onClick={handleSubmit} className="bg-[#4AB831] hover:bg-[#3da127]" data-testid="edit-product-update-button">
             Update Product
           </Button>
         </DialogFooter>
