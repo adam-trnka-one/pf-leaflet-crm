@@ -80,49 +80,51 @@ const NewActivityModal = ({ open, onOpenChange, onActivityCreated }: NewActivity
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Create New Activity</DialogTitle>
+      <DialogContent className="sm:max-w-[425px]" data-testid="new-activity-modal-content">
+        <DialogHeader data-testid="new-activity-modal-header">
+          <DialogTitle data-testid="new-activity-modal-title">Create New Activity</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid gap-2">
-            <Label htmlFor="activity-type">Type</Label>
+        <div className="grid gap-4 py-4" data-testid="new-activity-modal-form">
+          <div className="grid gap-2" data-testid="new-activity-type-field">
+            <Label htmlFor="activity-type" data-testid="new-activity-type-label">Type</Label>
             <Select value={formData.type} onValueChange={(value) => setFormData({ ...formData, type: value })}>
-              <SelectTrigger>
+              <SelectTrigger data-testid="new-activity-type-trigger">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Call">Call</SelectItem>
-                <SelectItem value="Email">Email</SelectItem>
-                <SelectItem value="Meeting">Meeting</SelectItem>
-                <SelectItem value="Task">Task</SelectItem>
+              <SelectContent data-testid="new-activity-type-content">
+                <SelectItem value="Call" data-testid="new-activity-type-call">Call</SelectItem>
+                <SelectItem value="Email" data-testid="new-activity-type-email">Email</SelectItem>
+                <SelectItem value="Meeting" data-testid="new-activity-type-meeting">Meeting</SelectItem>
+                <SelectItem value="Task" data-testid="new-activity-type-task">Task</SelectItem>
               </SelectContent>
             </Select>
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="subject">Subject</Label>
+          <div className="grid gap-2" data-testid="new-activity-subject-field">
+            <Label htmlFor="subject" data-testid="new-activity-subject-label">Subject</Label>
             <Input
               id="subject"
               value={formData.subject}
               onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
               placeholder="Follow up call with client"
+              data-testid="new-activity-subject-input"
             />
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="date">Due Date</Label>
+          <div className="grid gap-2" data-testid="new-activity-date-field">
+            <Label htmlFor="date" data-testid="new-activity-date-label">Due Date</Label>
             <Input
               id="date"
               type="date"
               value={formData.date}
               onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+              data-testid="new-activity-date-input"
             />
           </div>
         </div>
-        <DialogFooter>
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
+        <DialogFooter data-testid="new-activity-modal-footer">
+          <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="new-activity-cancel-button">
             Cancel
           </Button>
-          <Button onClick={handleSubmit} className="bg-leaflet-green hover:bg-leaflet-green-hover">
+          <Button onClick={handleSubmit} className="bg-leaflet-green hover:bg-leaflet-green-hover" data-testid="new-activity-create-button">
             Create Activity
           </Button>
         </DialogFooter>

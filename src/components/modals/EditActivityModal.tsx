@@ -91,64 +91,66 @@ const EditActivityModal = ({ open, onOpenChange, activity, onActivityUpdated }: 
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Edit Activity</DialogTitle>
+      <DialogContent className="sm:max-w-[425px]" data-testid="edit-activity-modal-content">
+        <DialogHeader data-testid="edit-activity-modal-header">
+          <DialogTitle data-testid="edit-activity-modal-title">Edit Activity</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid gap-2">
-            <Label htmlFor="activity-type">Type</Label>
+        <div className="grid gap-4 py-4" data-testid="edit-activity-modal-form">
+          <div className="grid gap-2" data-testid="edit-activity-type-field">
+            <Label htmlFor="activity-type" data-testid="edit-activity-type-label">Type</Label>
             <Select value={formData.type} onValueChange={(value) => setFormData({ ...formData, type: value })}>
-              <SelectTrigger>
+              <SelectTrigger data-testid="edit-activity-type-trigger">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Call">Call</SelectItem>
-                <SelectItem value="Email">Email</SelectItem>
-                <SelectItem value="Meeting">Meeting</SelectItem>
-                <SelectItem value="Task">Task</SelectItem>
+              <SelectContent data-testid="edit-activity-type-content">
+                <SelectItem value="Call" data-testid="edit-activity-type-call">Call</SelectItem>
+                <SelectItem value="Email" data-testid="edit-activity-type-email">Email</SelectItem>
+                <SelectItem value="Meeting" data-testid="edit-activity-type-meeting">Meeting</SelectItem>
+                <SelectItem value="Task" data-testid="edit-activity-type-task">Task</SelectItem>
               </SelectContent>
             </Select>
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="subject">Subject</Label>
+          <div className="grid gap-2" data-testid="edit-activity-subject-field">
+            <Label htmlFor="subject" data-testid="edit-activity-subject-label">Subject</Label>
             <Input
               id="subject"
               value={formData.subject}
               onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
               placeholder="Follow up call with client"
+              data-testid="edit-activity-subject-input"
             />
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="date">Due Date</Label>
+          <div className="grid gap-2" data-testid="edit-activity-date-field">
+            <Label htmlFor="date" data-testid="edit-activity-date-label">Due Date</Label>
             <Input
               id="date"
               type="date"
               value={formData.date}
               onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+              data-testid="edit-activity-date-input"
             />
           </div>
-          <div className="grid gap-2">
-            <Label htmlFor="completed">Status</Label>
+          <div className="grid gap-2" data-testid="edit-activity-status-field">
+            <Label htmlFor="completed" data-testid="edit-activity-status-label">Status</Label>
             <Select 
               value={formData.completed ? "completed" : "pending"} 
               onValueChange={(value) => setFormData({ ...formData, completed: value === "completed" })}
             >
-              <SelectTrigger>
+              <SelectTrigger data-testid="edit-activity-status-trigger">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="pending">Pending</SelectItem>
-                <SelectItem value="completed">Completed</SelectItem>
+              <SelectContent data-testid="edit-activity-status-content">
+                <SelectItem value="pending" data-testid="edit-activity-status-pending">Pending</SelectItem>
+                <SelectItem value="completed" data-testid="edit-activity-status-completed">Completed</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
-        <DialogFooter>
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
+        <DialogFooter data-testid="edit-activity-modal-footer">
+          <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="edit-activity-cancel-button">
             Cancel
           </Button>
-          <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700">
+          <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700" data-testid="edit-activity-update-button">
             Update Activity
           </Button>
         </DialogFooter>

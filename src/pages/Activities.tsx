@@ -75,70 +75,70 @@ const Activities = () => {
 
   const getActivityIcon = (type: string) => {
     switch (type) {
-      case 'Call': return <Phone className="h-4 w-4" data-activities="call-icon" />;
-      case 'Email': return <Mail className="h-4 w-4" data-activities="email-icon" />;
-      case 'Meeting': return <Calendar className="h-4 w-4" data-activities="meeting-icon" />;
-      default: return <MessageSquare className="h-4 w-4" data-activities="default-icon" />;
+      case 'Call': return <Phone className="h-4 w-4" data-testid="activities-call-icon" />;
+      case 'Email': return <Mail className="h-4 w-4" data-testid="activities-email-icon" />;
+      case 'Meeting': return <Calendar className="h-4 w-4" data-testid="activities-meeting-icon" />;
+      default: return <MessageSquare className="h-4 w-4" data-testid="activities-default-icon" />;
     }
   };
 
   return (
-    <div className="p-8 bg-slate-50 min-h-screen" data-activities="main-container">
-      <div className="flex justify-between items-start mb-8" data-activities="header-section">
-        <div data-activities="header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-activities="page-title">Activities</h1>
-          <p className="text-slate-600 mt-2" data-activities="page-subtitle">Track and manage your activities</p>
+    <div className="p-8 bg-slate-50 min-h-screen" data-testid="activities-main-container">
+      <div className="flex justify-between items-start mb-8" data-testid="activities-header-section">
+        <div data-testid="activities-header-content">
+          <h1 className="text-3xl font-bold text-slate-800" data-testid="activities-page-title">Activities</h1>
+          <p className="text-slate-600 mt-2" data-testid="activities-page-subtitle">Track and manage your activities</p>
         </div>
         <Button 
           className="bg-[#4AB831] hover:bg-[#3da127]"
           onClick={() => setIsModalOpen(true)}
-          data-activities="new-activity-button"
+          data-testid="activities-new-activity-button"
         >
-          <Plus className="h-4 w-4 mr-2" data-activities="new-activity-icon" />
-          <span data-activities="new-activity-text">New Activity</span>
+          <Plus className="h-4 w-4 mr-2" data-testid="activities-new-activity-icon" />
+          <span data-testid="activities-new-activity-text">New Activity</span>
         </Button>
       </div>
 
-      <div className="space-y-4" data-activities="activities-list">
+      <div className="space-y-4" data-testid="activities-list">
         {activities.map((activity) => (
-          <Card key={activity.id} className="bg-white shadow-sm" data-activities="activity-card">
-            <CardContent className="p-6" data-activities="card-content">
-              <div className="flex items-center justify-between" data-activities="card-row">
-                <div className="flex items-center space-x-4" data-activities="activity-info-section">
-                  <div className="flex-shrink-0" data-activities="activity-icon-container">
+          <Card key={activity.id} className="bg-white shadow-sm" data-testid="activities-activity-card">
+            <CardContent className="p-6" data-testid="activities-card-content">
+              <div className="flex items-center justify-between" data-testid="activities-card-row">
+                <div className="flex items-center space-x-4" data-testid="activities-info-section">
+                  <div className="flex-shrink-0" data-testid="activities-icon-container">
                     {getActivityIcon(activity.type)}
                   </div>
-                  <div className="flex-1" data-activities="activity-details">
-                    <h3 className="font-semibold text-slate-800" data-activities="activity-subject">{activity.subject}</h3>
-                    <p className="text-sm text-slate-600" data-activities="activity-metadata">
-                      <span data-activities="activity-type">{activity.type}</span> • <span data-activities="activity-date">{activity.date.toLocaleDateString()}</span>
+                  <div className="flex-1" data-testid="activities-details">
+                    <h3 className="font-semibold text-slate-800" data-testid="activities-subject">{activity.subject}</h3>
+                    <p className="text-sm text-slate-600" data-testid="activities-metadata">
+                      <span data-testid="activities-type">{activity.type}</span> • <span data-testid="activities-date">{activity.date.toLocaleDateString()}</span>
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-2" data-activities="activity-actions">
-                  <div className="flex-shrink-0 mr-4" data-activities="status-section">
+                <div className="flex items-center space-x-2" data-testid="activities-actions">
+                  <div className="flex-shrink-0 mr-4" data-testid="activities-status-section">
                     {activity.completed ? (
-                      <span className="text-emerald-600 text-sm" data-activities="completed-status">Completed</span>
+                      <span className="text-emerald-600 text-sm" data-testid="activities-completed-status">Completed</span>
                     ) : (
-                      <span className="text-orange-600 text-sm" data-activities="pending-status">Pending</span>
+                      <span className="text-orange-600 text-sm" data-testid="activities-pending-status">Pending</span>
                     )}
                   </div>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => handleEdit(activity)}
-                    data-activities="edit-button"
+                    data-testid="activities-edit-button"
                   >
-                    <Edit className="h-4 w-4" data-activities="edit-icon" />
+                    <Edit className="h-4 w-4" data-testid="activities-edit-icon" />
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => handleDelete(activity.id)}
                     className="text-red-600 hover:text-red-700"
-                    data-activities="delete-button"
+                    data-testid="activities-delete-button"
                   >
-                    <Trash2 className="h-4 w-4" data-activities="delete-icon" />
+                    <Trash2 className="h-4 w-4" data-testid="activities-delete-icon" />
                   </Button>
                 </div>
               </div>
@@ -151,7 +151,7 @@ const Activities = () => {
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
         onActivityCreated={handleActivityCreated}
-        data-activities="new-activity-modal"
+        data-testid="activities-new-activity-modal"
       />
 
       <EditActivityModal
@@ -159,7 +159,7 @@ const Activities = () => {
         onOpenChange={setIsEditModalOpen}
         activity={selectedActivity}
         onActivityUpdated={handleActivityUpdated}
-        data-activities="edit-activity-modal"
+        data-testid="activities-edit-activity-modal"
       />
     </div>
   );
