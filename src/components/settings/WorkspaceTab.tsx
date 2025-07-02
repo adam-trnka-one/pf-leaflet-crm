@@ -20,30 +20,30 @@ export const WorkspaceTab = () => {
   } = useWorkspaceForm();
 
   return (
-    <Card className="bg-white shadow-sm" data-settings="workspace-card">
-      <CardHeader data-settings="workspace-card-header">
-        <CardTitle className="flex items-center space-x-2" data-settings="workspace-card-title">
-          <Building className="h-5 w-5" data-settings="workspace-icon" />
-          <span data-settings="workspace-title-text">Workspace Configuration</span>
+    <Card className="bg-white shadow-sm" data-testid="workspace-card">
+      <CardHeader data-testid="workspace-card-header">
+        <CardTitle className="flex items-center space-x-2" data-testid="workspace-card-title">
+          <Building className="h-5 w-5" data-testid="workspace-icon" />
+          <span data-testid="workspace-title-text">Workspace Configuration</span>
         </CardTitle>
-        <p className="text-sm text-slate-600" data-settings="workspace-description">
+        <p className="text-sm text-slate-600" data-testid="workspace-description">
           Configure your workspace settings below. This information will be used to initialize ProductFruits on your site.
         </p>
       </CardHeader>
-      <CardContent className="space-y-6" data-settings="workspace-card-content">
+      <CardContent className="space-y-6" data-testid="workspace-card-content">
         <WorkspaceBasicFields 
           localWorkspaceData={localWorkspaceData}
           setLocalWorkspaceData={setLocalWorkspaceData}
         />
 
-        <Separator data-settings="workspace-separator-1" />
+        <Separator data-testid="workspace-separator-1" />
 
         <CustomPropertiesSection 
           customProperties={customProperties}
           setCustomProperties={setCustomProperties}
         />
 
-        <Separator data-settings="workspace-separator-2" />
+        <Separator data-testid="workspace-separator-2" />
 
         <WorkspaceActions 
           handleResetToDefaults={handleResetToDefaults}

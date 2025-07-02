@@ -26,47 +26,47 @@ export const CustomPropertiesSection = ({ customProperties, setCustomProperties 
   };
 
   return (
-    <div data-settings="custom-properties-section">
-      <div className="flex items-center justify-between mb-4" data-settings="custom-properties-header">
-        <Label className="text-sm font-medium text-slate-700" data-settings="custom-properties-label">Custom Properties</Label>
+    <div data-testid="workspace-custom-properties-section">
+      <div className="flex items-center justify-between mb-4" data-testid="workspace-custom-properties-header">
+        <Label className="text-sm font-medium text-slate-700" data-testid="workspace-custom-properties-label">Custom Properties</Label>
         <Button 
           variant="outline" 
           size="sm" 
           onClick={addCustomProperty}
           className="flex items-center space-x-1"
-          data-settings="add-property-button"
+          data-testid="workspace-add-property-button"
         >
-          <Plus className="h-4 w-4" data-settings="add-property-icon" />
-          <span data-settings="add-property-text">Add Property</span>
+          <Plus className="h-4 w-4" data-testid="workspace-add-property-icon" />
+          <span data-testid="workspace-add-property-text">Add Property</span>
         </Button>
       </div>
       
       {customProperties.length > 0 && (
-        <div className="space-y-3" data-settings="custom-properties-list">
+        <div className="space-y-3" data-testid="workspace-custom-properties-list">
           {customProperties.map((property, index) => (
-            <div key={index} className="flex items-center space-x-2" data-settings={`custom-property-${index}`}>
+            <div key={index} className="flex items-center space-x-2" data-testid={`workspace-custom-property-${index}`}>
               <Input 
                 placeholder="Property Name"
                 value={property.name}
                 onChange={(e) => updateCustomProperty(index, "name", e.target.value)}
                 className="flex-1"
-                data-settings={`property-name-${index}`}
+                data-testid={`workspace-property-name-${index}`}
               />
               <Input 
                 placeholder="Property Value"
                 value={property.value}
                 onChange={(e) => updateCustomProperty(index, "value", e.target.value)}
                 className="flex-1"
-                data-settings={`property-value-${index}`}
+                data-testid={`workspace-property-value-${index}`}
               />
               <Button 
                 variant="ghost" 
                 size="sm"
                 onClick={() => removeCustomProperty(index)}
                 className="text-slate-500 hover:text-red-500"
-                data-settings={`remove-property-${index}`}
+                data-testid={`workspace-remove-property-${index}`}
               >
-                <X className="h-4 w-4" data-settings={`remove-property-icon-${index}`} />
+                <X className="h-4 w-4" data-testid={`workspace-remove-property-icon-${index}`} />
               </Button>
             </div>
           ))}

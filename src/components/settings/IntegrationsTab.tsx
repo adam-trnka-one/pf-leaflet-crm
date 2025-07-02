@@ -156,29 +156,29 @@ export const IntegrationsTab = () => {
   };
 
   return (
-    <Card className="bg-white shadow-sm">
-      <CardHeader>
-        <CardTitle>Integrations</CardTitle>
-        <p className="text-sm text-slate-600">
+    <Card className="bg-white shadow-sm" data-testid="integrations-card">
+      <CardHeader data-testid="integrations-card-header">
+        <CardTitle data-testid="integrations-card-title">Integrations</CardTitle>
+        <p className="text-sm text-slate-600" data-testid="integrations-description">
           Connect Leaflet CRM with powerful tools to enhance your workflow
         </p>
       </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="grid grid-cols-1 gap-6">
+      <CardContent className="space-y-6" data-testid="integrations-card-content">
+        <div className="grid grid-cols-1 gap-6" data-testid="integrations-grid">
           {integrations.map((integration) => (
-            <div key={integration.name} className="p-6 border border-slate-200 rounded-lg hover:border-slate-300 transition-colors bg-gradient-to-r from-slate-50 to-white">
+            <div key={integration.name} className="p-6 border border-slate-200 rounded-lg hover:border-slate-300 transition-colors bg-gradient-to-r from-slate-50 to-white" data-testid={`integration-${integration.name.toLowerCase().replace(' ', '-')}`}>
               <div className="flex items-start justify-between">
                 <div className="flex items-start space-x-4">
-                  <div className="text-3xl">{integration.logo}</div>
+                  <div className="text-3xl" data-testid={`integration-logo-${integration.name.toLowerCase().replace(' ', '-')}`}>{integration.logo}</div>
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-2">
-                      <h4 className="font-semibold text-slate-800 text-lg">{integration.name}</h4>
+                      <h4 className="font-semibold text-slate-800 text-lg" data-testid={`integration-name-${integration.name.toLowerCase().replace(' ', '-')}`}>{integration.name}</h4>
                       {getStatusBadge(integration.status)}
                     </div>
-                    <p className="text-sm text-slate-600 mb-3">{integration.description}</p>
-                    <div className="flex flex-wrap gap-2">
+                    <p className="text-sm text-slate-600 mb-3" data-testid={`integration-description-${integration.name.toLowerCase().replace(' ', '-')}`}>{integration.description}</p>
+                    <div className="flex flex-wrap gap-2" data-testid={`integration-features-${integration.name.toLowerCase().replace(' ', '-')}`}>
                       {integration.features.map((feature, index) => (
-                        <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-50 text-blue-700 border border-blue-200">
+                        <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-50 text-blue-700 border border-blue-200" data-testid={`integration-feature-${integration.name.toLowerCase().replace(' ', '-')}-${index}`}>
                           {feature}
                         </span>
                       ))}
@@ -191,21 +191,21 @@ export const IntegrationsTab = () => {
           ))}
         </div>
         
-        <Separator />
+        <Separator data-testid="integrations-separator" />
         
-        <div className="p-6 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg">
-          <h4 className="font-semibold text-blue-800 mb-2 flex items-center">
+        <div className="p-6 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg" data-testid="premium-upgrade-section">
+          <h4 className="font-semibold text-blue-800 mb-2 flex items-center" data-testid="premium-upgrade-title">
             <Crown className="h-5 w-5 mr-2" />
             Unlock Premium Integrations
           </h4>
-          <p className="text-sm text-blue-700 mb-4">
+          <p className="text-sm text-blue-700 mb-4" data-testid="premium-upgrade-description">
             Upgrade to our Premium plan to connect with enterprise-grade tools and unlock advanced automation features that will transform your sales process.
           </p>
-          <div className="flex space-x-3">
-            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
+          <div className="flex space-x-3" data-testid="premium-upgrade-actions">
+            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white" data-testid="view-premium-plans-button">
               View Premium Plans
             </Button>
-            <Button variant="outline" className="text-blue-700 border-blue-300 hover:bg-blue-100">
+            <Button variant="outline" className="text-blue-700 border-blue-300 hover:bg-blue-100" data-testid="contact-sales-button">
               Contact Sales
             </Button>
           </div>

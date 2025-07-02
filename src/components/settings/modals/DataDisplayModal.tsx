@@ -12,23 +12,23 @@ interface DataDisplayModalProps {
 
 export const DataDisplayModal = ({ isOpen, onClose, displayData }: DataDisplayModalProps) => {
   return (
-    <Dialog open={isOpen} onOpenChange={onClose} data-settings="data-display-modal">
-      <DialogContent className="sm:max-w-[600px]" data-settings="data-display-modal-content">
-        <DialogHeader data-settings="data-display-modal-header">
-          <DialogTitle data-settings="data-display-modal-title">ProductFruits Script Format</DialogTitle>
+    <Dialog open={isOpen} onOpenChange={onClose} data-testid="data-display-modal">
+      <DialogContent className="sm:max-w-[600px]" data-testid="data-display-modal-content">
+        <DialogHeader data-testid="data-display-modal-header">
+          <DialogTitle data-testid="data-display-modal-title">ProductFruits Script Format</DialogTitle>
         </DialogHeader>
-        <div className="space-y-4" data-settings="data-display-modal-body">
-          <p className="text-sm text-slate-600" data-settings="data-display-description">
+        <div className="space-y-4" data-testid="data-display-modal-body">
+          <p className="text-sm text-slate-600" data-testid="data-display-description">
             Here's your workspace data formatted for the ProductFruits script:
           </p>
           <Textarea
             value={displayData}
             readOnly
             className="min-h-[200px] font-mono text-sm"
-            data-settings="data-display-textarea"
+            data-testid="data-display-textarea"
           />
         </div>
-        <DialogFooter data-settings="data-display-modal-footer">
+        <DialogFooter data-testid="data-display-modal-footer">
           <Button
             variant="outline"
             onClick={() => {
@@ -38,12 +38,12 @@ export const DataDisplayModal = ({ isOpen, onClose, displayData }: DataDisplayMo
                 description: "The script has been copied to your clipboard."
               });
             }}
-            data-settings="copy-button"
+            data-testid="data-display-copy-button"
           >
-            <span data-settings="copy-button-text">Copy to Clipboard</span>
+            <span data-testid="data-display-copy-button-text">Copy to Clipboard</span>
           </Button>
-          <Button onClick={onClose} data-settings="close-button">
-            <span data-settings="close-button-text">Close</span>
+          <Button onClick={onClose} data-testid="data-display-close-button">
+            <span data-testid="data-display-close-button-text">Close</span>
           </Button>
         </DialogFooter>
       </DialogContent>

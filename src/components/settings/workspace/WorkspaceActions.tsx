@@ -53,40 +53,40 @@ export const WorkspaceActions = ({
 
   return (
     <>
-      <div className="flex justify-between" data-settings="workspace-actions">
-        <div className="flex space-x-3" data-settings="secondary-actions">
+      <div className="flex justify-between" data-testid="workspace-actions">
+        <div className="flex space-x-3" data-testid="workspace-secondary-actions">
           <Button 
             variant="outline" 
             className="text-red-600 border-red-200 hover:bg-red-50"
             onClick={handleResetToDefaults}
-            data-settings="reset-defaults-button"
+            data-testid="workspace-reset-defaults-button"
           >
-            <span data-settings="reset-defaults-text">Reset to Defaults</span>
+            <span data-testid="workspace-reset-defaults-text">Reset to Defaults</span>
           </Button>
           <Button 
             variant="outline"
             onClick={handleViewSavedData}
-            data-settings="view-saved-data-button"
+            data-testid="workspace-view-saved-data-button"
           >
-            <span data-settings="view-saved-data-text">View Saved Data</span>
+            <span data-testid="workspace-view-saved-data-text">View Saved Data</span>
           </Button>
         </div>
-        <div className="flex space-x-3" data-settings="primary-actions">
+        <div className="flex space-x-3" data-testid="workspace-primary-actions">
           <Button 
             variant="outline"
             className="bg-green-600 hover:bg-green-700 text-white border-green-600"
             onClick={handleInitiateProductFruits}
-            data-settings="initiate-productfruits-button"
+            data-testid="workspace-initiate-productfruits-button"
           >
-            <Play className="h-4 w-4 mr-2" data-settings="initiate-productfruits-icon" />
-            <span data-settings="initiate-productfruits-text">Initiate ProductFruits</span>
+            <Play className="h-4 w-4 mr-2" data-testid="workspace-initiate-productfruits-icon" />
+            <span data-testid="workspace-initiate-productfruits-text">Initiate ProductFruits</span>
           </Button>
           <Button 
             className="bg-blue-600 hover:bg-blue-700"
             onClick={handleSaveWorkspaceData}
-            data-settings="save-workspace-button"
+            data-testid="workspace-save-workspace-button"
           >
-            <span data-settings="save-workspace-text">Save Workspace Data</span>
+            <span data-testid="workspace-save-workspace-text">Save Workspace Data</span>
           </Button>
         </div>
       </div>

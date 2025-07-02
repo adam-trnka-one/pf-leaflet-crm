@@ -17,8 +17,8 @@ interface WorkspaceBasicFieldsProps {
 export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData }: WorkspaceBasicFieldsProps) => {
   return (
     <>
-      <div data-settings="workspace-code-field">
-        <Label htmlFor="workspaceCode" className="text-sm font-medium text-slate-700" data-settings="workspace-code-label">
+      <div data-testid="workspace-code-field">
+        <Label htmlFor="workspaceCode" className="text-sm font-medium text-slate-700" data-testid="workspace-code-label">
           Workspace Code <span className="text-red-500">*</span>
         </Label>
         <Input 
@@ -28,14 +28,14 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
           value={localWorkspaceData.workspaceCode}
           onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, workspaceCode: e.target.value }))}
           required
-          data-settings="workspace-code-input"
+          data-testid="workspace-code-input"
         />
-        <p className="text-xs text-slate-500 mt-1" data-settings="workspace-code-counter">{localWorkspaceData.workspaceCode.length}/40 characters</p>
+        <p className="text-xs text-slate-500 mt-1" data-testid="workspace-code-counter">{localWorkspaceData.workspaceCode.length}/40 characters</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-settings="user-credentials-grid">
-        <div data-settings="username-field">
-          <Label htmlFor="username" className="text-sm font-medium text-slate-700" data-settings="username-label">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="workspace-user-credentials-grid">
+        <div data-testid="workspace-username-field">
+          <Label htmlFor="username" className="text-sm font-medium text-slate-700" data-testid="workspace-username-label">
             Username <span className="text-red-500">*</span>
           </Label>
           <Input 
@@ -45,11 +45,11 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
             value={localWorkspaceData.username}
             onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, username: e.target.value }))}
             required
-            data-settings="username-input"
+            data-testid="workspace-username-input"
           />
         </div>
-        <div data-settings="email-field">
-          <Label htmlFor="email" className="text-sm font-medium text-slate-700" data-settings="email-label">Email</Label>
+        <div data-testid="workspace-email-field">
+          <Label htmlFor="email" className="text-sm font-medium text-slate-700" data-testid="workspace-email-label">Email</Label>
           <Input 
             id="email" 
             type="email"
@@ -57,14 +57,14 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
             className="mt-1"
             value={localWorkspaceData.email}
             onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, email: e.target.value }))}
-            data-settings="email-input"
+            data-testid="workspace-email-input"
           />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-settings="name-fields-grid">
-        <div data-settings="first-name-field">
-          <Label htmlFor="firstName" className="text-sm font-medium text-slate-700" data-settings="first-name-label">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="workspace-name-fields-grid">
+        <div data-testid="workspace-first-name-field">
+          <Label htmlFor="firstName" className="text-sm font-medium text-slate-700" data-testid="workspace-first-name-label">
             First Name <span className="text-red-500">*</span>
           </Label>
           <Input 
@@ -74,31 +74,31 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
             value={localWorkspaceData.firstName}
             onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, firstName: e.target.value }))}
             required
-            data-settings="first-name-input"
+            data-testid="workspace-first-name-input"
           />
         </div>
-        <div data-settings="last-name-field">
-          <Label htmlFor="lastName" className="text-sm font-medium text-slate-700" data-settings="last-name-label">Last Name</Label>
+        <div data-testid="workspace-last-name-field">
+          <Label htmlFor="lastName" className="text-sm font-medium text-slate-700" data-testid="workspace-last-name-label">Last Name</Label>
           <Input 
             id="lastName" 
             placeholder="Enter last name"
             className="mt-1"
             value={localWorkspaceData.lastName}
             onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, lastName: e.target.value }))}
-            data-settings="last-name-input"
+            data-testid="workspace-last-name-input"
           />
         </div>
       </div>
 
-      <div data-settings="role-field">
-        <Label htmlFor="role" className="text-sm font-medium text-slate-700" data-settings="role-label">Role</Label>
+      <div data-testid="workspace-role-field">
+        <Label htmlFor="role" className="text-sm font-medium text-slate-700" data-testid="workspace-role-label">Role</Label>
         <Input 
           id="role" 
           placeholder="Enter role (e.g. Student, Teacher)"
           className="mt-1"
           value={localWorkspaceData.role}
           onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, role: e.target.value }))}
-          data-settings="role-input"
+          data-testid="workspace-role-input"
         />
       </div>
     </>
