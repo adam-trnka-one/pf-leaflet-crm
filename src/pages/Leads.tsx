@@ -87,112 +87,112 @@ const Leads = () => {
 
   if (loading) {
     return (
-      <div className="p-8 flex items-center justify-center" data-leads="loading-container">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500" data-leads="loading-spinner"></div>
+      <div className="p-8 flex items-center justify-center" data-testid="leads-loading-container">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500" data-testid="leads-loading-spinner"></div>
       </div>
     );
   }
 
   return (
-    <div className="p-8 bg-slate-50 min-h-screen" data-leads="main-container">
+    <div className="p-8 bg-slate-50 min-h-screen" data-testid="leads-main-container">
       {/* Header */}
-      <div className="flex justify-between items-start mb-8" data-leads="header-section">
-        <div data-leads="header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-leads="page-title">Leads</h1>
-          <p className="text-slate-600 mt-2" data-leads="page-subtitle">Manage your sales leads</p>
+      <div className="flex justify-between items-start mb-8" data-testid="leads-header-section">
+        <div data-testid="leads-header-content">
+          <h1 className="text-3xl font-bold text-slate-800" data-testid="leads-page-title">Leads</h1>
+          <p className="text-slate-600 mt-2" data-testid="leads-page-subtitle">Manage your sales leads</p>
         </div>
         <Button 
           className="bg-emerald-600 hover:bg-emerald-700"
           onClick={() => setIsModalOpen(true)}
-          data-leads="new-lead-button"
+          data-testid="leads-new-lead-button"
         >
-          <Plus className="h-4 w-4 mr-2" data-leads="new-lead-icon" />
-          <span data-leads="new-lead-text">New Lead</span>
+          <Plus className="h-4 w-4 mr-2" data-testid="leads-new-lead-icon" />
+          <span data-testid="leads-new-lead-text">New Lead</span>
         </Button>
       </div>
 
       {/* Leads Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-leads="leads-grid">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="leads-grid">
         {leads.map((lead) => (
-          <Card key={lead.id} className="bg-white shadow-sm hover:shadow-md transition-shadow" data-leads="lead-card">
-            <CardHeader className="pb-2" data-leads="card-header">
-              <div className="flex items-center justify-between" data-leads="header-row">
-                <div className="flex items-center space-x-3" data-leads="lead-info-section">
-                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center" data-leads="lead-avatar">
-                    <UserPlus className="h-5 w-5 text-blue-600" data-leads="lead-avatar-icon" />
+          <Card key={lead.id} className="bg-white shadow-sm hover:shadow-md transition-shadow" data-testid="leads-lead-card">
+            <CardHeader className="pb-2" data-testid="leads-card-header">
+              <div className="flex items-center justify-between" data-testid="leads-header-row">
+                <div className="flex items-center space-x-3" data-testid="leads-lead-info-section">
+                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center" data-testid="leads-lead-avatar">
+                    <UserPlus className="h-5 w-5 text-blue-600" data-testid="leads-lead-avatar-icon" />
                   </div>
-                  <div data-leads="lead-name-section">
-                    <CardTitle className="text-lg font-semibold text-slate-800" data-leads="lead-name">
+                  <div data-testid="leads-lead-name-section">
+                    <CardTitle className="text-lg font-semibold text-slate-800" data-testid="leads-lead-name">
                       {lead.firstName} {lead.lastName}
                     </CardTitle>
-                    <p className="text-sm text-slate-600" data-leads="lead-title">{lead.title}</p>
+                    <p className="text-sm text-slate-600" data-testid="leads-lead-title">{lead.title}</p>
                   </div>
                 </div>
-                <div className="flex flex-col space-y-1" data-leads="badges-section">
-                  <Badge className={getStatusColor(lead.status)} variant="secondary" data-leads="status-badge">
+                <div className="flex flex-col space-y-1" data-testid="leads-badges-section">
+                  <Badge className={getStatusColor(lead.status)} variant="secondary" data-testid="leads-status-badge">
                     {lead.status}
                   </Badge>
-                  <Badge className={getRatingColor(lead.rating)} variant="secondary" data-leads="rating-badge">
+                  <Badge className={getRatingColor(lead.rating)} variant="secondary" data-testid="leads-rating-badge">
                     {lead.rating}
                   </Badge>
                 </div>
               </div>
             </CardHeader>
-            <CardContent className="space-y-3" data-leads="card-content">
-              <div className="flex items-center text-sm text-slate-600" data-leads="company-row">
-                <Building className="h-4 w-4 mr-2" data-leads="company-icon" />
-                <span data-leads="company-value">{lead.company}</span>
+            <CardContent className="space-y-3" data-testid="leads-card-content">
+              <div className="flex items-center text-sm text-slate-600" data-testid="leads-company-row">
+                <Building className="h-4 w-4 mr-2" data-testid="leads-company-icon" />
+                <span data-testid="leads-company-value">{lead.company}</span>
               </div>
               
-              <div className="flex items-center text-sm text-slate-600" data-leads="email-row">
-                <Mail className="h-4 w-4 mr-2" data-leads="email-icon" />
-                <span data-leads="email-value">{lead.email}</span>
+              <div className="flex items-center text-sm text-slate-600" data-testid="leads-email-row">
+                <Mail className="h-4 w-4 mr-2" data-testid="leads-email-icon" />
+                <span data-testid="leads-email-value">{lead.email}</span>
               </div>
 
-              <div className="flex items-center text-sm text-slate-600" data-leads="phone-row">
-                <Phone className="h-4 w-4 mr-2" data-leads="phone-icon" />
-                <span data-leads="phone-value">{lead.phone}</span>
+              <div className="flex items-center text-sm text-slate-600" data-testid="leads-phone-row">
+                <Phone className="h-4 w-4 mr-2" data-testid="leads-phone-icon" />
+                <span data-testid="leads-phone-value">{lead.phone}</span>
               </div>
 
-              <div className="text-sm text-slate-600" data-leads="source-row">
-                <span className="font-medium" data-leads="source-label">Source:</span> 
-                <span data-leads="source-value">{lead.source}</span>
+              <div className="text-sm text-slate-600" data-testid="leads-source-row">
+                <span className="font-medium" data-testid="leads-source-label">Source:</span> 
+                <span data-testid="leads-source-value">{lead.source}</span>
               </div>
 
-              <div className="pt-2 border-t border-slate-100" data-leads="metadata-section">
-                <div className="text-xs text-slate-500" data-leads="owner-row">
-                  <span data-leads="owner-label">Owner: </span>
-                  <span data-leads="owner-value">{lead.owner}</span>
+              <div className="pt-2 border-t border-slate-100" data-testid="leads-metadata-section">
+                <div className="text-xs text-slate-500" data-testid="leads-owner-row">
+                  <span data-testid="leads-owner-label">Owner: </span>
+                  <span data-testid="leads-owner-value">{lead.owner}</span>
                 </div>
-                <div className="text-xs text-slate-500" data-leads="created-row">
-                  <span data-leads="created-label">Created: </span>
-                  <span data-leads="created-value">{lead.createdAt.toLocaleDateString()}</span>
+                <div className="text-xs text-slate-500" data-testid="leads-created-row">
+                  <span data-testid="leads-created-label">Created: </span>
+                  <span data-testid="leads-created-value">{lead.createdAt.toLocaleDateString()}</span>
                 </div>
               </div>
 
-              <div className="pt-2 space-y-2" data-leads="actions-section">
-                <Button size="sm" className="w-full" data-leads="convert-button">
-                  <span data-leads="convert-text">Convert Lead</span>
+              <div className="pt-2 space-y-2" data-testid="leads-actions-section">
+                <Button size="sm" className="w-full" data-testid="leads-convert-button">
+                  <span data-testid="leads-convert-text">Convert Lead</span>
                 </Button>
-                <div className="flex space-x-2" data-leads="edit-delete-row">
+                <div className="flex space-x-2" data-testid="leads-edit-delete-row">
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => handleEdit(lead)}
                     className="flex-1"
-                    data-leads="edit-button"
+                    data-testid="leads-edit-button"
                   >
-                    <Edit className="h-4 w-4 mr-1" data-leads="edit-icon" />
-                    <span data-leads="edit-text">Edit</span>
+                    <Edit className="h-4 w-4 mr-1" data-testid="leads-edit-icon" />
+                    <span data-testid="leads-edit-text">Edit</span>
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => handleDelete(lead.id)}
                     className="text-red-600 hover:text-red-700"
-                    data-leads="delete-button"
+                    data-testid="leads-delete-button"
                   >
-                    <Trash2 className="h-4 w-4" data-leads="delete-icon" />
+                    <Trash2 className="h-4 w-4" data-testid="leads-delete-icon" />
                   </Button>
                 </div>
               </div>
@@ -202,8 +202,8 @@ const Leads = () => {
       </div>
 
       {leads.length === 0 && (
-        <div className="text-center py-12" data-leads="empty-state">
-          <p className="text-slate-500" data-leads="empty-message">No leads found.</p>
+        <div className="text-center py-12" data-testid="leads-empty-state">
+          <p className="text-slate-500" data-testid="leads-empty-message">No leads found.</p>
         </div>
       )}
 
@@ -211,7 +211,7 @@ const Leads = () => {
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
         onLeadCreated={handleLeadCreated}
-        data-leads="new-lead-modal"
+        data-testid="leads-new-lead-modal"
       />
 
       <EditLeadModal
@@ -219,7 +219,7 @@ const Leads = () => {
         onOpenChange={setIsEditModalOpen}
         lead={selectedLead}
         onLeadUpdated={handleLeadUpdated}
-        data-leads="edit-lead-modal"
+        data-testid="leads-edit-lead-modal"
       />
     </div>
   );
