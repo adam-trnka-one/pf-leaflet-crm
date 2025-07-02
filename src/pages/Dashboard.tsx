@@ -47,39 +47,46 @@ const Dashboard = () => {
       {/* Header */}
       <DashboardHeader onResetDatabase={handleResetDatabase} />
 
-      {/* Key Metrics */}
-      <div data-testid="dashboard-metrics-section">
-        <MetricsCards 
-          totalRevenue={totalRevenue}
-          totalAccounts={totalAccounts}
-          totalContacts={totalContacts}
-          openOpportunities={openOpportunities}
-        />
+      {/* Top Metrics Group - First red rectangle */}
+      <div data-testid="dashboard-top-metrics-group">
+        {/* Key Metrics */}
+        <div data-testid="dashboard-metrics-section">
+          <MetricsCards 
+            totalRevenue={totalRevenue}
+            totalAccounts={totalAccounts}
+            totalContacts={totalContacts}
+            openOpportunities={openOpportunities}
+          />
+        </div>
+
+        {/* Task Summary */}
+        <div className="mt-8" data-testid="dashboard-task-summary-section">
+          <TaskSummaryCards 
+            totalTasks={recentActivities.length}
+            completedTasks={completedTasks}
+            overdueTasks={overdueTasks}
+          />
+        </div>
       </div>
 
-      {/* Task Summary */}
-      <div data-testid="dashboard-task-summary-section">
-        <TaskSummaryCards 
-          totalTasks={recentActivities.length}
-          completedTasks={completedTasks}
-          overdueTasks={overdueTasks}
-        />
+      {/* Charts Group - Second red rectangle */}
+      <div data-testid="dashboard-charts-group">
+        <div data-testid="dashboard-charts-section">
+          <ChartsSection 
+            pipelineData={pipelineData}
+            monthlyRevenue={monthlyRevenue}
+          />
+        </div>
       </div>
 
-      {/* Charts */}
-      <div data-testid="dashboard-charts-section">
-        <ChartsSection 
-          pipelineData={pipelineData}
-          monthlyRevenue={monthlyRevenue}
-        />
-      </div>
-
-      {/* Recent Items */}
-      <div data-testid="dashboard-recent-items-section">
-        <RecentItemsSection 
-          recentActivities={recentActivities}
-          recentLeads={recentLeads}
-        />
+      {/* Recent Items Group - Third red rectangle */}
+      <div data-testid="dashboard-recent-items-group">
+        <div data-testid="dashboard-recent-items-section">
+          <RecentItemsSection 
+            recentActivities={recentActivities}
+            recentLeads={recentLeads}
+          />
+        </div>
       </div>
     </div>
   );
