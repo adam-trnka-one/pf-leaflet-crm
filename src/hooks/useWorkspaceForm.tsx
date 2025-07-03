@@ -47,7 +47,13 @@ export const useWorkspaceForm = () => {
       return;
     }
 
-    const validationErrors = validateRequiredFields(localWorkspaceData);
+    // Create validation data - only check workspace code if it's custom or if it has a value
+    const validationData = {
+      ...localWorkspaceData,
+      workspaceCode: localWorkspaceData.selectedWorkspace === 'custom' ? localWorkspaceData.workspaceCode : 'valid'
+    };
+
+    const validationErrors = validateRequiredFields(validationData);
     
     if (validationErrors.length > 0) {
       toast({
