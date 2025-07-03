@@ -16,7 +16,7 @@ import {
 } from "@/utils/dashboardCalculations";
 
 const Dashboard = () => {
-  const [isChecklistVisible, setIsChecklistVisible] = useState(true);
+  const [isChecklistVisible, setIsChecklistVisible] = useState(false);
   
   const {
     data,
