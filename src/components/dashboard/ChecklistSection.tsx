@@ -31,7 +31,7 @@ const ChecklistSection = () => {
     <div 
       ref={checklistRef} 
       id="productfruits-checklist-container"
-      className="min-h-[600px] max-h-none overflow-visible w-full max-w-full"
+      className="min-h-[600px] max-h-none overflow-visible w-full max-w-full bg-white shadow-sm border border-slate-200 rounded-lg p-6"
       data-testid="checklist-container"
     >
     </div>
