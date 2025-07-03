@@ -1,7 +1,5 @@
 
 import { useEffect, useRef } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckSquare } from "lucide-react";
 
 const ChecklistSection = () => {
   const checklistRef = useRef<HTMLDivElement>(null);
@@ -30,24 +28,13 @@ const ChecklistSection = () => {
   }, []);
 
   return (
-    <Card className="bg-white shadow-sm h-full w-full" data-testid="checklist-card">
-      <CardHeader data-testid="checklist-header">
-        <CardTitle className="flex items-center space-x-2" data-testid="checklist-title">
-          <CheckSquare className="h-5 w-5" data-testid="checklist-icon" />
-          <span data-testid="checklist-title-text">Getting Started</span>
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="p-6" data-testid="checklist-content">
-        <div 
-          ref={checklistRef} 
-          id="productfruits-checklist-container"
-          className="min-h-[600px] max-h-none overflow-visible w-full max-w-full"
-          data-testid="checklist-container"
-        >
-          <p className="text-slate-600 text-sm">Loading checklist...</p>
-        </div>
-      </CardContent>
-    </Card>
+    <div 
+      ref={checklistRef} 
+      id="productfruits-checklist-container"
+      className="min-h-[600px] max-h-none overflow-visible w-full max-w-full"
+      data-testid="checklist-container"
+    >
+    </div>
   );
 };
 
