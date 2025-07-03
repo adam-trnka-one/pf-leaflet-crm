@@ -31,7 +31,7 @@ const ChecklistSection = () => {
     <div 
       ref={checklistRef} 
       id="productfruits-checklist-container"
-      className="min-h-[400px] w-full bg-white shadow-sm border border-slate-200 rounded-lg p-6"
+      className="min-h-[500px] w-full bg-white shadow-sm border border-slate-200 rounded-lg p-6"
       data-testid="checklist-container"
     >
     </div>
