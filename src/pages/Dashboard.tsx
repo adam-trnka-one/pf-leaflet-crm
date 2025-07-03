@@ -70,8 +70,8 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Checklist Section - NEW: Between Tasks and Charts */}
-      <div data-testid="dashboard-checklist-group">
+      {/* Checklist Section - Between Tasks and Charts */}
+      <div className="mb-8" data-testid="dashboard-checklist-group">
         <div data-testid="dashboard-checklist-section">
           <ChecklistSection />
         </div>

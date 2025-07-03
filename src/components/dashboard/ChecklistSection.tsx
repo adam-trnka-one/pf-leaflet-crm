@@ -40,7 +40,7 @@ const ChecklistSection = () => {
         <div 
           ref={checklistRef} 
           id="productfruits-checklist-container"
-          className="min-h-[100px]"
+          className="min-h-[100px] max-h-[400px] overflow-hidden"
           data-testid="checklist-container"
         >
           {/* ProductFruits checklist will be injected here */}
