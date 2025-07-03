@@ -79,7 +79,6 @@ const Dashboard = () => {
     <div className="p-8 space-y-8 bg-slate-50 min-h-screen" data-testid="dashboard-main-container">
       {/* Header */}
       <DashboardHeader 
-        onResetDatabase={handleResetDatabase} 
         showChecklist={showChecklist}
         onToggleChecklist={() => setShowChecklist(!showChecklist)}
         showChecklistToggle={!isJessWorkspace}

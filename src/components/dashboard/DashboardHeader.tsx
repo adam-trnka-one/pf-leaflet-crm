@@ -3,14 +3,12 @@ import { Button } from "@/components/ui/button";
 import { RefreshCw, Eye, EyeOff } from "lucide-react";
 
 interface DashboardHeaderProps {
-  onResetDatabase: () => void;
   showChecklist: boolean;
   onToggleChecklist: () => void;
   showChecklistToggle?: boolean;
 }
 
 const DashboardHeader = ({ 
-  onResetDatabase, 
   showChecklist, 
   onToggleChecklist, 
   showChecklistToggle = true 
@@ -37,15 +35,6 @@ const DashboardHeader = ({
             )}
           </Button>
         )}
-        <Button 
-          onClick={onResetDatabase}
-          variant="outline"
-          className="flex items-center space-x-2"
-          data-testid="dashboard-reset-button"
-        >
-          <RefreshCw className="h-4 w-4" data-testid="dashboard-reset-icon" />
-          <span data-testid="dashboard-reset-text">Reset Database</span>
-        </Button>
       </div>
     </div>
   );
