@@ -5,7 +5,7 @@ import RecentItemsSection from "@/components/dashboard/RecentItemsSection";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import ChecklistSection from "@/components/dashboard/ChecklistSection";
 import { useDashboardData } from "@/hooks/useDashboardData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   calculatePipelineData, 
   calculateTotalRevenue, 
@@ -15,7 +15,17 @@ import {
 } from "@/utils/dashboardCalculations";
 
 const Dashboard = () => {
-  const [showChecklist, setShowChecklist] = useState(true);
+  const [showChecklist, setShowChecklist] = useState(() => {
+    // Load initial state from localStorage
+    const saved = localStorage.getItem('dashboard-show-checklist');
+    return saved !== null ? JSON.parse(saved) : true;
+  });
+
+  // Save to localStorage whenever showChecklist changes
+  useEffect(() => {
+    localStorage.setItem('dashboard-show-checklist', JSON.stringify(showChecklist));
+  }, [showChecklist]);
+
   const {
     data,
     loading,
