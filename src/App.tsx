@@ -2,8 +2,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { WorkspaceProvider } from "@/contexts/WorkspaceContext";
+import { useIsMobile } from "@/hooks/use-mobile";
 import Layout from "./components/Layout";
 import Hero from "./pages/Hero";
 import Help from "./pages/Help";
@@ -28,6 +29,16 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+const MobileRedirect = ({ children }: { children: React.ReactNode }) => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) {
+    return <Navigate to="/dashboard" replace />;
+  }
+  
+  return <>{children}</>;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -35,12 +46,12 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Hero />} />
-          <Route path="/products" element={<PublicProducts />} />
+          <Route path="/" element={<MobileRedirect><Hero /></MobileRedirect>} />
+          <Route path="/products" element={<MobileRedirect><PublicProducts /></MobileRedirect>} />
           <Route path="/help" element={<Help />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogArticle />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<MobileRedirect><Login /></MobileRedirect>} />
           <Route path="/dashboard" element={
             <WorkspaceProvider>
               <Layout />
