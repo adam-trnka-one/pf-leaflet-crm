@@ -1,4 +1,3 @@
-
 import MetricsCards from "@/components/dashboard/MetricsCards";
 import TaskSummaryCards from "@/components/dashboard/TaskSummaryCards";
 import ChartsSection from "@/components/dashboard/ChartsSection";
@@ -6,7 +5,7 @@ import RecentItemsSection from "@/components/dashboard/RecentItemsSection";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import ChecklistSection from "@/components/dashboard/ChecklistSection";
 import { useDashboardData } from "@/hooks/useDashboardData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   calculatePipelineData, 
   calculateTotalRevenue, 
@@ -15,8 +14,25 @@ import {
   getMonthlyRevenueData 
 } from "@/utils/dashboardCalculations";
 
+const CHECKLIST_VISIBILITY_KEY = 'dashboard-checklist-visible';
+
 const Dashboard = () => {
   const [isChecklistVisible, setIsChecklistVisible] = useState(false);
+  
+  // Load checklist visibility from localStorage on component mount
+  useEffect(() => {
+    const savedVisibility = localStorage.getItem(CHECKLIST_VISIBILITY_KEY);
+    if (savedVisibility !== null) {
+      setIsChecklistVisible(JSON.parse(savedVisibility));
+    }
+  }, []);
+
+  // Save checklist visibility to localStorage whenever it changes
+  const handleToggleChecklist = () => {
+    const newVisibility = !isChecklistVisible;
+    setIsChecklistVisible(newVisibility);
+    localStorage.setItem(CHECKLIST_VISIBILITY_KEY, JSON.stringify(newVisibility));
+  };
   
   const {
     data,
@@ -52,7 +68,7 @@ const Dashboard = () => {
       <DashboardHeader 
         onResetDatabase={handleResetDatabase}
         isChecklistVisible={isChecklistVisible}
-        onToggleChecklist={() => setIsChecklistVisible(!isChecklistVisible)}
+        onToggleChecklist={handleToggleChecklist}
       />
 
       {/* Main Dashboard Layout */}
