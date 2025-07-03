@@ -75,6 +75,38 @@ const ChecklistSection = () => {
       });
     };
 
+    const waitForDOMElement = () => {
+      return new Promise<void>((resolve, reject) => {
+        const maxWaitTime = 5000; // 5 seconds
+        const checkInterval = 100; // Check every 100ms
+        let elapsed = 0;
+
+        const checkElement = () => {
+          console.log('Checking for DOM element...', {
+            refCurrent: !!checklistRef.current,
+            getElementById: !!document.getElementById('productfruits-checklist-container')
+          });
+
+          if (checklistRef.current) {
+            console.log('DOM element is ready!');
+            resolve();
+            return;
+          }
+
+          elapsed += checkInterval;
+          if (elapsed >= maxWaitTime) {
+            console.error('DOM element not available after waiting');
+            reject(new Error('DOM element not available'));
+            return;
+          }
+
+          setTimeout(checkElement, checkInterval);
+        };
+
+        checkElement();
+      });
+    };
+
     const injectChecklist = () => {
       if (!checklistRef.current) {
         console.error('Checklist container element not found');
@@ -109,6 +141,7 @@ const ChecklistSection = () => {
         await loadProductFruitsScript();
         initializeProductFruits();
         await waitForProductFruitsAPI();
+        await waitForDOMElement();
         injectChecklist();
       } catch (error) {
         console.error('Failed to initialize ProductFruits:', error);
