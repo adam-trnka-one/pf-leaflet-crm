@@ -4,6 +4,7 @@ import TaskSummaryCards from "@/components/dashboard/TaskSummaryCards";
 import ChartsSection from "@/components/dashboard/ChartsSection";
 import RecentItemsSection from "@/components/dashboard/RecentItemsSection";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
+import ChecklistSection from "@/components/dashboard/ChecklistSection";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { 
   calculatePipelineData, 
@@ -33,7 +34,7 @@ const Dashboard = () => {
         </div>
       </div>
     );
-  }
+  };
 
   // Calculate metrics using utility functions
   const pipelineData = calculatePipelineData(data.opportunities);
@@ -66,6 +67,13 @@ const Dashboard = () => {
             completedTasks={completedTasks}
             overdueTasks={overdueTasks}
           />
+        </div>
+      </div>
+
+      {/* Checklist Section - NEW: Between Tasks and Charts */}
+      <div data-testid="dashboard-checklist-group">
+        <div data-testid="dashboard-checklist-section">
+          <ChecklistSection />
         </div>
       </div>
 
