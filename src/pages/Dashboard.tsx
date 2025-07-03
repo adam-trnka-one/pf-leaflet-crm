@@ -60,20 +60,18 @@ const Dashboard = () => {
           />
         </div>
 
-        {/* Task Summary */}
-        <div className="mt-8" data-testid="dashboard-task-summary-section">
-          <TaskSummaryCards 
-            totalTasks={recentActivities.length}
-            completedTasks={completedTasks}
-            overdueTasks={overdueTasks}
-          />
-        </div>
-      </div>
-
-      {/* Checklist Section - Between Tasks and Charts */}
-      <div className="mb-8" data-testid="dashboard-checklist-group">
-        <div data-testid="dashboard-checklist-section">
-          <ChecklistSection />
+        {/* Task Summary and Checklist Side by Side */}
+        <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8" data-testid="dashboard-task-checklist-section">
+          <div className="lg:col-span-2" data-testid="dashboard-task-summary-section">
+            <TaskSummaryCards 
+              totalTasks={recentActivities.length}
+              completedTasks={completedTasks}
+              overdueTasks={overdueTasks}
+            />
+          </div>
+          <div data-testid="dashboard-checklist-section">
+            <ChecklistSection />
+          </div>
         </div>
       </div>
 
