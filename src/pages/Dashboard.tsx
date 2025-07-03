@@ -1,3 +1,4 @@
+
 import MetricsCards from "@/components/dashboard/MetricsCards";
 import TaskSummaryCards from "@/components/dashboard/TaskSummaryCards";
 import ChartsSection from "@/components/dashboard/ChartsSection";
@@ -5,7 +6,6 @@ import RecentItemsSection from "@/components/dashboard/RecentItemsSection";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import ChecklistSection from "@/components/dashboard/ChecklistSection";
 import { useDashboardData } from "@/hooks/useDashboardData";
-import { useState, useEffect } from "react";
 import { 
   calculatePipelineData, 
   calculateTotalRevenue, 
@@ -14,26 +14,7 @@ import {
   getMonthlyRevenueData 
 } from "@/utils/dashboardCalculations";
 
-const CHECKLIST_VISIBILITY_KEY = 'dashboard-checklist-visible';
-
 const Dashboard = () => {
-  const [isChecklistVisible, setIsChecklistVisible] = useState(false);
-  
-  // Load checklist visibility from localStorage on component mount
-  useEffect(() => {
-    const savedVisibility = localStorage.getItem(CHECKLIST_VISIBILITY_KEY);
-    if (savedVisibility !== null) {
-      setIsChecklistVisible(JSON.parse(savedVisibility));
-    }
-  }, []);
-
-  // Save checklist visibility to localStorage whenever it changes
-  const handleToggleChecklist = () => {
-    const newVisibility = !isChecklistVisible;
-    setIsChecklistVisible(newVisibility);
-    localStorage.setItem(CHECKLIST_VISIBILITY_KEY, JSON.stringify(newVisibility));
-  };
-  
   const {
     data,
     loading,
@@ -65,16 +46,12 @@ const Dashboard = () => {
   return (
     <div className="p-8 space-y-8 bg-slate-50 min-h-screen" data-testid="dashboard-main-container">
       {/* Header */}
-      <DashboardHeader 
-        onResetDatabase={handleResetDatabase}
-        isChecklistVisible={isChecklistVisible}
-        onToggleChecklist={handleToggleChecklist}
-      />
+      <DashboardHeader onResetDatabase={handleResetDatabase} />
 
       {/* Main Dashboard Layout */}
-      <div className={`grid gap-8 ${isChecklistVisible ? 'grid-cols-1 xl:grid-cols-4' : 'grid-cols-1'}`}>
+      <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
         {/* Left Column - Main Dashboard Content */}
-        <div className={`${isChecklistVisible ? 'xl:col-span-3' : ''} space-y-8`}>
+        <div className="xl:col-span-3 space-y-8">
           {/* Top Metrics Group */}
           <div data-testid="dashboard-top-metrics-group">
             {/* Key Metrics */}
@@ -119,11 +96,9 @@ const Dashboard = () => {
         </div>
 
         {/* Right Column - Checklist */}
-        {isChecklistVisible && (
-          <div className="xl:col-span-1" data-testid="dashboard-checklist-column">
-            <ChecklistSection />
-          </div>
-        )}
+        <div className="xl:col-span-1" data-testid="dashboard-checklist-column">
+          <ChecklistSection />
+        </div>
       </div>
     </div>
   );
