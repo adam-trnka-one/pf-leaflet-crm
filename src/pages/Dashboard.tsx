@@ -5,6 +5,7 @@ import RecentItemsSection from "@/components/dashboard/RecentItemsSection";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import ChecklistSection from "@/components/dashboard/ChecklistSection";
 import { useDashboardData } from "@/hooks/useDashboardData";
+import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useState, useEffect } from "react";
 import { 
   calculatePipelineData, 
@@ -15,16 +16,35 @@ import {
 } from "@/utils/dashboardCalculations";
 
 const Dashboard = () => {
+  const { workspaceData } = useWorkspace();
+  const isJessWorkspace = workspaceData.selectedWorkspace === 'jess';
+  
   const [showChecklist, setShowChecklist] = useState(() => {
-    // Load initial state from localStorage
+    // If Jess workspace, always hide checklist
+    if (isJessWorkspace) return false;
+    
+    // Load initial state from localStorage for other workspaces
     const saved = localStorage.getItem('dashboard-show-checklist');
     return saved !== null ? JSON.parse(saved) : true;
   });
 
-  // Save to localStorage whenever showChecklist changes
+  // Save to localStorage whenever showChecklist changes (only for non-Jess workspaces)
   useEffect(() => {
-    localStorage.setItem('dashboard-show-checklist', JSON.stringify(showChecklist));
-  }, [showChecklist]);
+    if (!isJessWorkspace) {
+      localStorage.setItem('dashboard-show-checklist', JSON.stringify(showChecklist));
+    }
+  }, [showChecklist, isJessWorkspace]);
+
+  // Update checklist visibility when workspace changes
+  useEffect(() => {
+    if (isJessWorkspace) {
+      setShowChecklist(false);
+    } else {
+      // Load from localStorage for other workspaces
+      const saved = localStorage.getItem('dashboard-show-checklist');
+      setShowChecklist(saved !== null ? JSON.parse(saved) : true);
+    }
+  }, [isJessWorkspace]);
 
   const {
     data,
@@ -61,12 +81,13 @@ const Dashboard = () => {
         onResetDatabase={handleResetDatabase} 
         showChecklist={showChecklist}
         onToggleChecklist={() => setShowChecklist(!showChecklist)}
+        showChecklistToggle={!isJessWorkspace}
       />
 
       {/* Main Dashboard Layout */}
-      <div className={`grid gap-8 ${showChecklist ? 'grid-cols-1 xl:grid-cols-3' : 'grid-cols-1'}`}>
+      <div className={`grid gap-8 ${showChecklist && !isJessWorkspace ? 'grid-cols-1 xl:grid-cols-3' : 'grid-cols-1'}`}>
         {/* Left Column - Main Dashboard Content */}
-        <div className={`space-y-8 ${showChecklist ? 'xl:col-span-2' : ''}`}>
+        <div className={`space-y-8 ${showChecklist && !isJessWorkspace ? 'xl:col-span-2' : ''}`}>
           {/* Top Metrics Group */}
           <div data-testid="dashboard-top-metrics-group">
             {/* Key Metrics */}
@@ -111,7 +132,7 @@ const Dashboard = () => {
         </div>
 
         {/* Right Column - Checklist */}
-        {showChecklist && (
+        {showChecklist && !isJessWorkspace && (
           <div className="xl:col-span-1" data-testid="dashboard-checklist-column">
             <ChecklistSection />
           </div>

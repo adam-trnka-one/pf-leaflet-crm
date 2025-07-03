@@ -6,9 +6,15 @@ interface DashboardHeaderProps {
   onResetDatabase: () => void;
   showChecklist: boolean;
   onToggleChecklist: () => void;
+  showChecklistToggle?: boolean;
 }
 
-const DashboardHeader = ({ onResetDatabase, showChecklist, onToggleChecklist }: DashboardHeaderProps) => {
+const DashboardHeader = ({ 
+  onResetDatabase, 
+  showChecklist, 
+  onToggleChecklist, 
+  showChecklistToggle = true 
+}: DashboardHeaderProps) => {
   return (
     <div className="flex justify-between items-start" data-testid="dashboard-header-section">
       <div data-testid="dashboard-header-content">
@@ -16,19 +22,21 @@ const DashboardHeader = ({ onResetDatabase, showChecklist, onToggleChecklist }: 
         <p className="text-slate-600 mt-2" data-testid="dashboard-page-subtitle">Welcome back! Here's what's happening with your sales.</p>
       </div>
       <div className="flex items-center space-x-2">
-        <Button 
-          onClick={onToggleChecklist}
-          variant="outline"
-          size="icon"
-          data-testid="dashboard-toggle-checklist-button"
-          title={showChecklist ? "Hide checklist" : "Show checklist"}
-        >
-          {showChecklist ? (
-            <EyeOff className="h-4 w-4" data-testid="dashboard-hide-checklist-icon" />
-          ) : (
-            <Eye className="h-4 w-4" data-testid="dashboard-show-checklist-icon" />
-          )}
-        </Button>
+        {showChecklistToggle && (
+          <Button 
+            onClick={onToggleChecklist}
+            variant="outline"
+            size="icon"
+            data-testid="dashboard-toggle-checklist-button"
+            title={showChecklist ? "Hide checklist" : "Show checklist"}
+          >
+            {showChecklist ? (
+              <EyeOff className="h-4 w-4" data-testid="dashboard-hide-checklist-icon" />
+            ) : (
+              <Eye className="h-4 w-4" data-testid="dashboard-show-checklist-icon" />
+            )}
+          </Button>
+        )}
         <Button 
           onClick={onResetDatabase}
           variant="outline"
