@@ -16,7 +16,8 @@ export const useWorkspaceForm = () => {
     firstName: 'John',
     lastName: '',
     role: '',
-    customProperties: []
+    customProperties: [],
+    selectedWorkspace: 'jess'
   });
   const [customProperties, setCustomProperties] = useState<{ name: string; value: string }[]>([]);
 
@@ -29,12 +30,23 @@ export const useWorkspaceForm = () => {
       firstName: workspaceData.firstName,
       lastName: workspaceData.lastName,
       role: workspaceData.role,
-      customProperties: workspaceData.customProperties
+      customProperties: workspaceData.customProperties,
+      selectedWorkspace: workspaceData.selectedWorkspace || 'jess'
     });
     setCustomProperties(workspaceData.customProperties);
   }, [workspaceData]);
 
   const handleSaveWorkspaceData = () => {
+    // For custom workspace, check if workspace code is provided
+    if (localWorkspaceData.selectedWorkspace === 'custom' && !localWorkspaceData.workspaceCode.trim()) {
+      toast({
+        title: "Validation Error",
+        description: "Workspace Code is required for Custom workspace",
+        variant: "destructive"
+      });
+      return;
+    }
+
     const validationErrors = validateRequiredFields(localWorkspaceData);
     
     if (validationErrors.length > 0) {
@@ -51,8 +63,14 @@ export const useWorkspaceForm = () => {
       customProperties: customProperties.filter(prop => prop.name && prop.value)
     };
     updateWorkspaceData(dataToSave);
-    initializeProductFruits();
-    console.log('Workspace data saved and ProductFruits re-initialized:', dataToSave);
+    
+    // Only initialize ProductFruits if workspace code is provided
+    if (dataToSave.workspaceCode.trim()) {
+      initializeProductFruits();
+      console.log('Workspace data saved and ProductFruits re-initialized:', dataToSave);
+    } else {
+      console.log('Workspace data saved without ProductFruits initialization (empty workspace code):', dataToSave);
+    }
     
     toast({
       title: "Workspace data saved",
@@ -61,6 +79,16 @@ export const useWorkspaceForm = () => {
   };
 
   const handleInitiateProductFruits = () => {
+    // Only initialize if workspace code is provided
+    if (!localWorkspaceData.workspaceCode.trim()) {
+      toast({
+        title: "Cannot initialize ProductFruits",
+        description: "Workspace code is required to initialize ProductFruits",
+        variant: "destructive"
+      });
+      return;
+    }
+
     initializeProductFruits();
     
     toast({
@@ -82,7 +110,8 @@ export const useWorkspaceForm = () => {
       firstName: 'John',
       lastName: 'Doe',
       role: 'Admin',
-      customProperties: []
+      customProperties: [],
+      selectedWorkspace: 'jess'
     };
 
     // Update the context with default data
