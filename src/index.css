@@ -119,3 +119,8 @@
 .border-leaflet-green {
   border-color: #4AB831;
 }
+
+/* ProductFruits checklist panel styling */
+.productfruits--checklist-panel.productfruits--checklist-panel-embedded {
+  max-width: 250px !important;
+}
