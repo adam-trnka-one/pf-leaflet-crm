@@ -40,9 +40,10 @@ const Dashboard = () => {
     if (isJessWorkspace) {
       setShowChecklist(false);
     } else {
-      // Load from localStorage for other workspaces
+      // Load from localStorage for other workspaces and ensure it's applied
       const saved = localStorage.getItem('dashboard-show-checklist');
-      setShowChecklist(saved !== null ? JSON.parse(saved) : true);
+      const savedState = saved !== null ? JSON.parse(saved) : true;
+      setShowChecklist(savedState);
     }
   }, [isJessWorkspace]);
 
