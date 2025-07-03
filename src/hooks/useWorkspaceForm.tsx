@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useProductFruits } from "@/hooks/useProductFruits";
@@ -116,8 +115,8 @@ export const useWorkspaceForm = () => {
     }
 
     // Clear ProductFruits global object
-    if (window.$productFruits) {
-      delete window.$productFruits;
+    if ((window as any).$productFruits) {
+      delete (window as any).$productFruits;
     }
 
     toast({
