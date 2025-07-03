@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { WorkspaceProvider } from "@/contexts/WorkspaceContext";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useState, useEffect } from "react";
 import Layout from "./components/Layout";
 import Hero from "./pages/Hero";
 import Help from "./pages/Help";
@@ -31,8 +32,30 @@ const queryClient = new QueryClient();
 
 const MobileRedirect = ({ children }: { children: React.ReactNode }) => {
   const isMobile = useIsMobile();
+  const [isLoading, setIsLoading] = useState(true);
   
-  if (isMobile) {
+  useEffect(() => {
+    if (isMobile) {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 5000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isMobile]);
+  
+  if (isMobile && isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500 mx-auto"></div>
+          <p className="mt-4 text-slate-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+  
+  if (isMobile && !isLoading) {
     return <Navigate to="/dashboard" replace />;
   }
   
