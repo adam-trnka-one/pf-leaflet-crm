@@ -30,7 +30,7 @@ const ChecklistSection = () => {
   }, []);
 
   return (
-    <Card className="bg-white shadow-sm h-full" data-testid="checklist-card">
+    <Card className="bg-white shadow-sm h-full w-full" data-testid="checklist-card">
       <CardHeader data-testid="checklist-header">
         <CardTitle className="flex items-center space-x-2" data-testid="checklist-title">
           <CheckSquare className="h-5 w-5" data-testid="checklist-icon" />
@@ -41,7 +41,7 @@ const ChecklistSection = () => {
         <div 
           ref={checklistRef} 
           id="productfruits-checklist-container"
-          className="min-h-[600px] max-h-none overflow-visible"
+          className="min-h-[600px] max-h-none overflow-visible w-full max-w-full"
           data-testid="checklist-container"
         >
           <p className="text-slate-600 text-sm">Loading checklist...</p>
