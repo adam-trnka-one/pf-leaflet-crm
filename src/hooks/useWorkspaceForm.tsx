@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useProductFruits } from "@/hooks/useProductFruits";
@@ -108,6 +107,29 @@ export const useWorkspaceForm = () => {
     }, 1000);
   };
 
+  const handleDisableProductFruits = () => {
+    // Remove ProductFruits script
+    const existingScript = document.querySelector('script[data-productfruits-init]');
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    // Clear ProductFruits global object
+    if ((window as any).$productFruits) {
+      delete (window as any).$productFruits;
+    }
+
+    toast({
+      title: "ProductFruits disabled",
+      description: "ProductFruits has been disabled and removed from the page."
+    });
+
+    // Perform soft refresh to ensure complete removal
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  };
+
   const handleResetToDefaults = () => {
     const defaultData = {
       workspaceCode: 'KFRC3cd1dM48s0p9',
@@ -137,6 +159,7 @@ export const useWorkspaceForm = () => {
     setCustomProperties,
     handleSaveWorkspaceData,
     handleInitiateProductFruits,
+    handleDisableProductFruits,
     handleResetToDefaults,
     workspaceData
   };

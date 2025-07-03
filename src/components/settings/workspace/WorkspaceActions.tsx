@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react";
+import { Play, X } from "lucide-react";
 import { useState } from "react";
 import { DataDisplayModal } from "../modals/DataDisplayModal";
 
@@ -8,6 +8,7 @@ interface WorkspaceActionsProps {
   handleResetToDefaults: () => void;
   handleInitiateProductFruits: () => void;
   handleSaveWorkspaceData: () => void;
+  handleDisableProductFruits: () => void;
   workspaceData: any;
 }
 
@@ -15,6 +16,7 @@ export const WorkspaceActions = ({
   handleResetToDefaults, 
   handleInitiateProductFruits, 
   handleSaveWorkspaceData,
+  handleDisableProductFruits,
   workspaceData 
 }: WorkspaceActionsProps) => {
   const [isDataModalOpen, setIsDataModalOpen] = useState(false);
@@ -62,6 +64,15 @@ export const WorkspaceActions = ({
             data-testid="workspace-reset-defaults-button"
           >
             <span data-testid="workspace-reset-defaults-text">Reset to Defaults</span>
+          </Button>
+          <Button 
+            variant="outline" 
+            className="text-orange-600 border-orange-200 hover:bg-orange-50"
+            onClick={handleDisableProductFruits}
+            data-testid="workspace-disable-productfruits-button"
+          >
+            <X className="h-4 w-4 mr-2" data-testid="workspace-disable-productfruits-icon" />
+            <span data-testid="workspace-disable-productfruits-text">Disable Product Fruits</span>
           </Button>
           <Button 
             variant="outline"

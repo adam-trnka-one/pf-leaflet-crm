@@ -4,7 +4,6 @@ import TaskSummaryCards from "@/components/dashboard/TaskSummaryCards";
 import ChartsSection from "@/components/dashboard/ChartsSection";
 import RecentItemsSection from "@/components/dashboard/RecentItemsSection";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
-import ChecklistSection from "@/components/dashboard/ChecklistSection";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { 
   calculatePipelineData, 
@@ -34,7 +33,7 @@ const Dashboard = () => {
         </div>
       </div>
     );
-  };
+  }
 
   // Calculate metrics using utility functions
   const pipelineData = calculatePipelineData(data.opportunities);
@@ -60,18 +59,13 @@ const Dashboard = () => {
           />
         </div>
 
-        {/* Task Summary and Checklist Side by Side */}
-        <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8" data-testid="dashboard-task-checklist-section">
-          <div className="lg:col-span-2" data-testid="dashboard-task-summary-section">
-            <TaskSummaryCards 
-              totalTasks={recentActivities.length}
-              completedTasks={completedTasks}
-              overdueTasks={overdueTasks}
-            />
-          </div>
-          <div data-testid="dashboard-checklist-section">
-            <ChecklistSection />
-          </div>
+        {/* Task Summary */}
+        <div className="mt-8" data-testid="dashboard-task-summary-section">
+          <TaskSummaryCards 
+            totalTasks={recentActivities.length}
+            completedTasks={completedTasks}
+            overdueTasks={overdueTasks}
+          />
         </div>
       </div>
 
