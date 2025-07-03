@@ -15,6 +15,7 @@ export const WorkspaceTab = () => {
     setCustomProperties,
     handleSaveWorkspaceData,
     handleInitiateProductFruits,
+    handleDisableProductFruits,
     handleResetToDefaults,
     workspaceData
   } = useWorkspaceForm();
@@ -48,6 +49,7 @@ export const WorkspaceTab = () => {
         <WorkspaceActions 
           handleResetToDefaults={handleResetToDefaults}
           handleInitiateProductFruits={handleInitiateProductFruits}
+          handleDisableProductFruits={handleDisableProductFruits}
           handleSaveWorkspaceData={handleSaveWorkspaceData}
           workspaceData={workspaceData}
         />
