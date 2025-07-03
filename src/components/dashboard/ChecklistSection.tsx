@@ -12,16 +12,24 @@ const ChecklistSection = () => {
       return new Promise<void>((resolve, reject) => {
         // Check if script already exists
         if (document.querySelector('script[src*="productfruits.com"]')) {
+          console.log('ProductFruits script already loaded');
           resolve();
           return;
         }
 
+        console.log('Loading ProductFruits script...');
         const script = document.createElement('script');
         script.type = 'text/javascript';
         script.async = true;
         script.src = 'https://app.productfruits.com/widget';
-        script.onload = () => resolve();
-        script.onerror = () => reject(new Error('Failed to load ProductFruits script'));
+        script.onload = () => {
+          console.log('ProductFruits script loaded successfully');
+          resolve();
+        };
+        script.onerror = () => {
+          console.error('Failed to load ProductFruits script');
+          reject(new Error('Failed to load ProductFruits script'));
+        };
         document.head.appendChild(script);
       });
     };
@@ -30,47 +38,81 @@ const ChecklistSection = () => {
       // Initialize the ProductFruits queue if it doesn't exist
       if (!window.$productFruits) {
         window.$productFruits = [];
+        console.log('ProductFruits queue initialized');
       }
     };
 
-    const injectChecklist = () => {
-      const maxRetries = 10;
-      let retryCount = 0;
+    const waitForProductFruitsAPI = () => {
+      return new Promise<void>((resolve, reject) => {
+        const maxWaitTime = 15000; // 15 seconds
+        const checkInterval = 200; // Check every 200ms
+        let elapsed = 0;
 
-      const attemptInject = () => {
-        if (checklistRef.current && window.productFruits?.api?.checklists) {
-          const checklistId = 8950;
-          try {
-            window.productFruits.api.checklists.injectToElement(checklistId, checklistRef.current);
-            console.log('ProductFruits checklist injected with ID:', checklistId);
-            setIsLoading(false);
-            setError(null);
-          } catch (error) {
-            console.error('Error injecting ProductFruits checklist:', error);
-            setError('Failed to load checklist');
-            setIsLoading(false);
+        const checkAPI = () => {
+          console.log('Checking for ProductFruits API...', {
+            productFruits: !!window.productFruits,
+            api: !!window.productFruits?.api,
+            checklists: !!window.productFruits?.api?.checklists
+          });
+
+          if (window.productFruits?.api?.checklists) {
+            console.log('ProductFruits API is ready!');
+            resolve();
+            return;
           }
-        } else if (retryCount < maxRetries) {
-          retryCount++;
-          setTimeout(attemptInject, 500);
-        } else {
-          setError('ProductFruits checklist could not be loaded');
-          setIsLoading(false);
-        }
-      };
 
-      attemptInject();
+          elapsed += checkInterval;
+          if (elapsed >= maxWaitTime) {
+            console.error('ProductFruits API not available after waiting');
+            reject(new Error('ProductFruits API not available'));
+            return;
+          }
+
+          setTimeout(checkAPI, checkInterval);
+        };
+
+        checkAPI();
+      });
+    };
+
+    const injectChecklist = () => {
+      if (!checklistRef.current) {
+        console.error('Checklist container element not found');
+        setError('Container element not available');
+        setIsLoading(false);
+        return;
+      }
+
+      const checklistId = 8950;
+      console.log('Attempting to inject checklist with ID:', checklistId);
+
+      try {
+        // Verify the API is still available
+        if (!window.productFruits?.api?.checklists) {
+          throw new Error('ProductFruits API not available at injection time');
+        }
+
+        window.productFruits.api.checklists.injectToElement(checklistId, checklistRef.current);
+        console.log('ProductFruits checklist injected successfully with ID:', checklistId);
+        setIsLoading(false);
+        setError(null);
+      } catch (error) {
+        console.error('Error injecting ProductFruits checklist:', error);
+        setError(`Failed to inject checklist: ${error instanceof Error ? error.message : 'Unknown error'}`);
+        setIsLoading(false);
+      }
     };
 
     const initialize = async () => {
       try {
+        console.log('Starting ProductFruits initialization...');
         await loadProductFruitsScript();
         initializeProductFruits();
-        // Wait a bit for the API to be available
-        setTimeout(injectChecklist, 1000);
+        await waitForProductFruitsAPI();
+        injectChecklist();
       } catch (error) {
         console.error('Failed to initialize ProductFruits:', error);
-        setError('Failed to initialize checklist service');
+        setError(`Failed to initialize checklist service: ${error instanceof Error ? error.message : 'Unknown error'}`);
         setIsLoading(false);
       }
     };
@@ -84,6 +126,12 @@ const ChecklistSection = () => {
         <div className="text-center text-gray-500">
           <p className="mb-2">Checklist unavailable</p>
           <p className="text-sm">{error}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="mt-4 px-4 py-2 text-sm bg-emerald-500 text-white rounded hover:bg-emerald-600"
+          >
+            Retry
+          </button>
         </div>
       </div>
     );
