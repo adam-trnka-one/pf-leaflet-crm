@@ -5,6 +5,7 @@ import RecentItemsSection from "@/components/dashboard/RecentItemsSection";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import ChecklistSection from "@/components/dashboard/ChecklistSection";
 import { useDashboardData } from "@/hooks/useDashboardData";
+import { useState } from "react";
 import { 
   calculatePipelineData, 
   calculateTotalRevenue, 
@@ -14,6 +15,7 @@ import {
 } from "@/utils/dashboardCalculations";
 
 const Dashboard = () => {
+  const [showChecklist, setShowChecklist] = useState(true);
   const {
     data,
     loading,
@@ -45,12 +47,16 @@ const Dashboard = () => {
   return (
     <div className="p-8 space-y-8 bg-slate-50 min-h-screen" data-testid="dashboard-main-container">
       {/* Header */}
-      <DashboardHeader onResetDatabase={handleResetDatabase} />
+      <DashboardHeader 
+        onResetDatabase={handleResetDatabase} 
+        showChecklist={showChecklist}
+        onToggleChecklist={() => setShowChecklist(!showChecklist)}
+      />
 
       {/* Main Dashboard Layout */}
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+      <div className={`grid gap-8 ${showChecklist ? 'grid-cols-1 xl:grid-cols-3' : 'grid-cols-1'}`}>
         {/* Left Column - Main Dashboard Content */}
-        <div className="xl:col-span-2 space-y-8">
+        <div className={`space-y-8 ${showChecklist ? 'xl:col-span-2' : ''}`}>
           {/* Top Metrics Group */}
           <div data-testid="dashboard-top-metrics-group">
             {/* Key Metrics */}
@@ -95,9 +101,11 @@ const Dashboard = () => {
         </div>
 
         {/* Right Column - Checklist */}
-        <div className="xl:col-span-1" data-testid="dashboard-checklist-column">
-          <ChecklistSection />
-        </div>
+        {showChecklist && (
+          <div className="xl:col-span-1" data-testid="dashboard-checklist-column">
+            <ChecklistSection />
+          </div>
+        )}
       </div>
     </div>
   );
