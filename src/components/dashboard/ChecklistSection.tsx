@@ -75,23 +75,48 @@ const ChecklistSection = () => {
       });
     };
 
-    const injectChecklist = () => {
-      const checklistId = 8950;
-      console.log('Attempting to inject checklist with ID:', checklistId);
+    const waitForElement = () => {
+      return new Promise<HTMLDivElement>((resolve, reject) => {
+        const maxWaitTime = 10000; // 10 seconds
+        const checkInterval = 100; // Check every 100ms
+        let elapsed = 0;
 
-      // Get element by both ref and getElementById as fallback
-      const element = checklistRef.current || document.getElementById('productfruits-checklist-container');
-      
-      if (!element) {
-        console.error('Checklist container element not found');
-        setError('Container element not available');
-        setIsLoading(false);
-        return;
-      }
+        const checkElement = () => {
+          console.log('Checking for container element...', {
+            refCurrent: !!checklistRef.current,
+            getElementById: !!document.getElementById('productfruits-checklist-container')
+          });
 
-      console.log('Found element:', element);
+          const element = checklistRef.current || document.getElementById('productfruits-checklist-container') as HTMLDivElement;
+          
+          if (element) {
+            console.log('Container element found:', element);
+            resolve(element);
+            return;
+          }
 
+          elapsed += checkInterval;
+          if (elapsed >= maxWaitTime) {
+            console.error('Container element not found after waiting');
+            reject(new Error('Container element not available'));
+            return;
+          }
+
+          setTimeout(checkElement, checkInterval);
+        };
+
+        checkElement();
+      });
+    };
+
+    const injectChecklist = async () => {
       try {
+        const checklistId = 8950;
+        console.log('Attempting to inject checklist with ID:', checklistId);
+
+        // Wait for the container element to be available
+        const element = await waitForElement();
+        
         // Verify the API is still available
         if (!window.productFruits?.api?.checklists) {
           throw new Error('ProductFruits API not available at injection time');
@@ -114,11 +139,7 @@ const ChecklistSection = () => {
         await loadProductFruitsScript();
         initializeProductFruits();
         await waitForProductFruitsAPI();
-        
-        // Add a small delay to ensure React has finished rendering
-        await new Promise(resolve => setTimeout(resolve, 100));
-        
-        injectChecklist();
+        await injectChecklist();
       } catch (error) {
         console.error('Failed to initialize ProductFruits:', error);
         setError(`Failed to initialize checklist service: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -126,10 +147,10 @@ const ChecklistSection = () => {
       }
     };
 
-    // Use a timeout to ensure the component has fully mounted
-    const timeoutId = setTimeout(initialize, 50);
-    
-    return () => clearTimeout(timeoutId);
+    // Use requestAnimationFrame to ensure DOM is ready
+    requestAnimationFrame(() => {
+      setTimeout(initialize, 100);
+    });
   }, []);
 
   if (error) {
