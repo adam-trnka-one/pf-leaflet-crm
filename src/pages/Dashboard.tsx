@@ -4,6 +4,7 @@ import TaskSummaryCards from "@/components/dashboard/TaskSummaryCards";
 import ChartsSection from "@/components/dashboard/ChartsSection";
 import RecentItemsSection from "@/components/dashboard/RecentItemsSection";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
+import ChecklistSection from "@/components/dashboard/ChecklistSection";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { 
   calculatePipelineData, 
@@ -47,45 +48,56 @@ const Dashboard = () => {
       {/* Header */}
       <DashboardHeader onResetDatabase={handleResetDatabase} />
 
-      {/* Top Metrics Group - First red rectangle */}
-      <div data-testid="dashboard-top-metrics-group">
-        {/* Key Metrics */}
-        <div data-testid="dashboard-metrics-section">
-          <MetricsCards 
-            totalRevenue={totalRevenue}
-            totalAccounts={totalAccounts}
-            totalContacts={totalContacts}
-            openOpportunities={openOpportunities}
-          />
+      {/* Main Dashboard Layout */}
+      <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
+        {/* Left Column - Main Dashboard Content */}
+        <div className="xl:col-span-3 space-y-8">
+          {/* Top Metrics Group */}
+          <div data-testid="dashboard-top-metrics-group">
+            {/* Key Metrics */}
+            <div data-testid="dashboard-metrics-section">
+              <MetricsCards 
+                totalRevenue={totalRevenue}
+                totalAccounts={totalAccounts}
+                totalContacts={totalContacts}
+                openOpportunities={openOpportunities}
+              />
+            </div>
+
+            {/* Task Summary */}
+            <div className="mt-8" data-testid="dashboard-task-summary-section">
+              <TaskSummaryCards 
+                totalTasks={recentActivities.length}
+                completedTasks={completedTasks}
+                overdueTasks={overdueTasks}
+              />
+            </div>
+          </div>
+
+          {/* Charts Group */}
+          <div data-testid="dashboard-charts-group">
+            <div data-testid="dashboard-charts-section">
+              <ChartsSection 
+                pipelineData={pipelineData}
+                monthlyRevenue={monthlyRevenue}
+              />
+            </div>
+          </div>
+
+          {/* Recent Items Group */}
+          <div data-testid="dashboard-recent-items-group">
+            <div data-testid="dashboard-recent-items-section">
+              <RecentItemsSection 
+                recentActivities={recentActivities}
+                recentLeads={recentLeads}
+              />
+            </div>
+          </div>
         </div>
 
-        {/* Task Summary */}
-        <div className="mt-8" data-testid="dashboard-task-summary-section">
-          <TaskSummaryCards 
-            totalTasks={recentActivities.length}
-            completedTasks={completedTasks}
-            overdueTasks={overdueTasks}
-          />
-        </div>
-      </div>
-
-      {/* Charts Group - Second red rectangle */}
-      <div data-testid="dashboard-charts-group">
-        <div data-testid="dashboard-charts-section">
-          <ChartsSection 
-            pipelineData={pipelineData}
-            monthlyRevenue={monthlyRevenue}
-          />
-        </div>
-      </div>
-
-      {/* Recent Items Group - Third red rectangle */}
-      <div data-testid="dashboard-recent-items-group">
-        <div data-testid="dashboard-recent-items-section">
-          <RecentItemsSection 
-            recentActivities={recentActivities}
-            recentLeads={recentLeads}
-          />
+        {/* Right Column - Checklist */}
+        <div className="xl:col-span-1" data-testid="dashboard-checklist-column">
+          <ChecklistSection />
         </div>
       </div>
     </div>
