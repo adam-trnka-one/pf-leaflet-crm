@@ -122,5 +122,5 @@
 
 /* ProductFruits checklist panel styling */
 .productfruits--checklist-panel.productfruits--checklist-panel-embedded {
-  max-width: 250px !important;
+  max-width: fit-content !important;
 }
