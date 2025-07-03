@@ -1,4 +1,3 @@
-
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -75,7 +74,7 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
       {isCustomWorkspace && (
         <div data-testid="workspace-code-field">
           <Label htmlFor="workspaceCode" className="text-sm font-medium text-slate-700" data-testid="workspace-code-label">
-            Workspace Code <span className="text-red-500">*</span>
+            Workspace Code
           </Label>
           <Input 
             id="workspaceCode" 
@@ -83,7 +82,6 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
             className={`mt-1 ${!localWorkspaceData.workspaceCode.trim() ? 'border-red-300 focus-visible:border-red-500' : ''}`}
             value={localWorkspaceData.workspaceCode}
             onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, workspaceCode: e.target.value }))}
-            required
             data-testid="workspace-code-input"
           />
           <p className="text-xs text-slate-500 mt-1" data-testid="workspace-code-counter">{localWorkspaceData.workspaceCode.length}/40 characters</p>
