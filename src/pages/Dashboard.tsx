@@ -1,4 +1,3 @@
-
 import MetricsCards from "@/components/dashboard/MetricsCards";
 import TaskSummaryCards from "@/components/dashboard/TaskSummaryCards";
 import ChartsSection from "@/components/dashboard/ChartsSection";
@@ -49,9 +48,9 @@ const Dashboard = () => {
       <DashboardHeader onResetDatabase={handleResetDatabase} />
 
       {/* Main Dashboard Layout */}
-      <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
         {/* Left Column - Main Dashboard Content */}
-        <div className="xl:col-span-3 space-y-8">
+        <div className="xl:col-span-2 space-y-8">
           {/* Top Metrics Group */}
           <div data-testid="dashboard-top-metrics-group">
             {/* Key Metrics */}
