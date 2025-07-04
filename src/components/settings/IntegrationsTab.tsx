@@ -145,8 +145,6 @@ export const IntegrationsTab = () => {
                 description: `${integration.name} integration requires a premium plan.`
               });
             }}
-            data-id={integration.name === "HubSpot" ? "299e5015-ac9f-4d66-bad4-fe74464c5961" : undefined}
-            data-testid={integration.name === "HubSpot" ? "299e5015-ac9f-4d66-bad4-fe74464c5961" : undefined}
           >
             <Crown className="h-4 w-4 mr-2" />
             Upgrade to Connect
