@@ -1,4 +1,3 @@
-
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -20,22 +19,4 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  build: {
-    rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, 'index.html'),
-        server: path.resolve(__dirname, 'src/entry-server.tsx')
-      },
-      output: {
-        entryFileNames: (chunkInfo) => {
-          return chunkInfo.name === 'server' ? 'entry-server.js' : '[name]-[hash].js';
-        }
-      }
-    },
-    ssr: mode === 'production'
-  },
-  ssr: {
-    // Prevent SSR from trying to bundle these
-    noExternal: ['react-router-dom']
-  }
 }));
