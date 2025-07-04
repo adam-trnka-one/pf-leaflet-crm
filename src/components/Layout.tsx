@@ -72,8 +72,9 @@ const Layout = () => {
       delete (window as any).$productFruits;
     }
 
-    // Navigate to home page
+    // Navigate to home page and refresh
     navigate("/");
+    window.location.reload();
   };
 
   return <SidebarProvider>
