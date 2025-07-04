@@ -74,7 +74,7 @@ const App = () => (
           <Route path="/help" element={<Help />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogArticle />} />
-          <Route path="/login" element={<MobileRedirect><Login /></MobileRedirect>} />
+          <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={
             <WorkspaceProvider>
               <Layout />
