@@ -1,4 +1,4 @@
-import { Outlet, Link, useLocation } from "react-router-dom";
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search } from "lucide-react";
@@ -7,6 +7,7 @@ import { useProductFruits } from "@/hooks/useProductFruits";
 
 const Layout = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   useProductFruits(); // Initialize ProductFruits with workspace data
   
   const navigation = [{
@@ -59,6 +60,22 @@ const Layout = () => {
     return location.pathname.startsWith(href);
   };
 
+  const handleSignOut = () => {
+    // Remove ProductFruits script
+    const existingScript = document.querySelector('script[data-productfruits-init]');
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    // Clear ProductFruits global object
+    if ((window as any).$productFruits) {
+      delete (window as any).$productFruits;
+    }
+
+    // Navigate to home page
+    navigate("/");
+  };
+
   return <SidebarProvider>
       <div className="min-h-screen flex w-full bg-slate-50">
         <Sidebar className="w-72">
@@ -96,11 +113,16 @@ const Layout = () => {
             </div>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Sign Out" className="h-11 px-4 rounded-lg text-sm font-medium">
-                  <Link to="/">
+                <SidebarMenuButton 
+                  asChild 
+                  tooltip="Sign Out" 
+                  className="h-11 px-4 rounded-lg text-sm font-medium"
+                  onClick={handleSignOut}
+                >
+                  <button>
                     <LogOut className="h-5 w-5" />
                     <span>Sign Out</span>
-                  </Link>
+                  </button>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
