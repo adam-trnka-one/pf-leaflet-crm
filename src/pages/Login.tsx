@@ -1,17 +1,27 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useWorkspace } from "@/contexts/WorkspaceContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { updateWorkspaceData } = useWorkspace();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Fake login - navigate to dashboard
+    
+    // Save email to workspace context (which will automatically save to localStorage)
+    if (email.trim()) {
+      updateWorkspaceData({
+        email: email.trim(),
+        username: email.trim() // Use email as username as well
+      });
+    }
+    
+    // Navigate to dashboard
     navigate("/dashboard");
   };
 
