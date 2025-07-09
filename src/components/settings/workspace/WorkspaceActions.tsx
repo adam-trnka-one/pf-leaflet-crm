@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Play, X } from "lucide-react";
+import { Play, X, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataDisplayModal } from "../modals/DataDisplayModal";
@@ -22,6 +22,7 @@ export const WorkspaceActions = ({
 }: WorkspaceActionsProps) => {
   const [isDataModalOpen, setIsDataModalOpen] = useState(false);
   const [displayData, setDisplayData] = useState('');
+  const [isInitiating, setIsInitiating] = useState(false);
   const navigate = useNavigate();
 
   const handleViewSavedData = () => {
@@ -55,6 +56,20 @@ export const WorkspaceActions = ({
     setIsDataModalOpen(true);
   };
 
+  const handleInitiateWithLoading = async () => {
+    setIsInitiating(true);
+    try {
+      await handleInitiateProductFruits();
+      // Add a small delay to show the loading state
+      await new Promise(resolve => setTimeout(resolve, 500));
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Error initiating ProductFruits:', error);
+    } finally {
+      setIsInitiating(false);
+    }
+  };
+
   return (
     <>
       <div className="flex justify-between" data-testid="workspace-actions">
@@ -78,15 +93,19 @@ export const WorkspaceActions = ({
         <div className="flex space-x-3" data-testid="workspace-primary-actions">
           <Button 
             variant="outline"
-            className="bg-green-600 hover:bg-green-700 text-white border-green-600"
-            onClick={() => {
-              handleInitiateProductFruits();
-              navigate('/dashboard');
-            }}
+            className="bg-green-600 hover:bg-green-700 text-white border-green-600 disabled:opacity-50"
+            onClick={handleInitiateWithLoading}
+            disabled={isInitiating}
             data-testid="workspace-initiate-productfruits-button"
           >
-            <Play className="h-4 w-4 mr-2" data-testid="workspace-initiate-productfruits-icon" />
-            <span data-testid="workspace-initiate-productfruits-text">Initiate ProductFruits</span>
+            {isInitiating ? (
+              <Loader2 className="h-4 w-4 mr-2 animate-spin" data-testid="workspace-initiate-productfruits-loader" />
+            ) : (
+              <Play className="h-4 w-4 mr-2" data-testid="workspace-initiate-productfruits-icon" />
+            )}
+            <span data-testid="workspace-initiate-productfruits-text">
+              {isInitiating ? 'Initiating...' : 'Initiate ProductFruits'}
+            </span>
           </Button>
           <Button 
             className="bg-blue-600 hover:bg-blue-700"
