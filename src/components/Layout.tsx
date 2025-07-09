@@ -135,12 +135,12 @@ const LayoutContent = () => {
             </div>
             <Button 
               variant="outline" 
-              size="sm" 
+              size="icon" 
               onClick={handleSignOut}
-              className="flex items-center gap-2"
+              className="h-8 w-8"
+              title="Sign Out"
             >
               <LogOut className="h-4 w-4" />
-              <span>Sign Out</span>
             </Button>
           </div>
         </header>
