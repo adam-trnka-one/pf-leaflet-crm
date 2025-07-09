@@ -27,9 +27,9 @@ export const WorkspaceActions = ({
 
   const handleViewSavedData = () => {
     const props: Record<string, string> = {};
-    workspaceData.customProperties.forEach((prop: any, index: number) => {
+    workspaceData.customProperties.forEach((prop: any) => {
       if (prop.name && prop.value) {
-        props[`prop${index + 1}`] = prop.value;
+        props[prop.name] = prop.value;
       }
     });
 

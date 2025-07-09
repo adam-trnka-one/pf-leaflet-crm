@@ -68,9 +68,9 @@ export const useProductFruits = () => {
     // Build props object from custom properties
     const props: Record<string, string> = {};
     if (dataToUse.customProperties && Array.isArray(dataToUse.customProperties)) {
-      dataToUse.customProperties.forEach((prop: any, index: number) => {
+      dataToUse.customProperties.forEach((prop: any) => {
         if (prop.name && prop.value) {
-          props[`prop${index + 1}`] = prop.value;
+          props[prop.name] = prop.value;
         }
       });
     }
