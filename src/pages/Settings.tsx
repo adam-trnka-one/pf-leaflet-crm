@@ -1,5 +1,5 @@
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { User, Key, Shield, Bell, Plug, Building } from "lucide-react";
 import { useState } from "react";
 import { WorkspaceTab } from "@/components/settings/WorkspaceTab";
@@ -16,6 +16,26 @@ const Settings = () => {
   const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
   const [selectedIntegration, setSelectedIntegration] = useState('');
   const [displayData, setDisplayData] = useState('');
+  const [activeTab, setActiveTab] = useState('profile');
+
+  const tabOptions = [
+    { value: 'profile', label: 'Profile', icon: User },
+    { value: 'workspace', label: 'Workspace', icon: Building },
+    { value: 'api', label: 'API Keys', icon: Key },
+    { value: 'permissions', label: 'Permissions', icon: Shield },
+    { value: 'integrations', label: 'Integrations', icon: Plug },
+    { value: 'notifications', label: 'Notifications', icon: Bell },
+  ];
+
+  const getCurrentTabLabel = () => {
+    const currentTab = tabOptions.find(tab => tab.value === activeTab);
+    return currentTab ? currentTab.label : 'Select Tab';
+  };
+
+  const getCurrentTabIcon = () => {
+    const currentTab = tabOptions.find(tab => tab.value === activeTab);
+    return currentTab ? currentTab.icon : User;
+  };
 
   const handleViewSavedData = (scriptData: string) => {
     setDisplayData(scriptData);
@@ -35,60 +55,77 @@ const Settings = () => {
           <p className="text-slate-600 mt-1 md:mt-2 text-sm md:text-base" data-testid="settings-page-subtitle">Manage your account and application settings</p>
         </div>
 
-        <Tabs defaultValue="profile" className="space-y-4 md:space-y-6" data-testid="settings-tabs-container">
-          <div className="overflow-x-auto">
-            <TabsList className="bg-white flex w-max md:grid md:w-full md:grid-cols-6 h-auto md:h-10 gap-1 p-1" data-testid="settings-tabs-list">
-              <TabsTrigger value="profile" className="flex items-center space-x-2 px-3 py-2 text-sm whitespace-nowrap" data-testid="settings-profile-tab-trigger">
-                <User className="h-4 w-4" data-testid="settings-profile-icon" />
-                <span data-testid="settings-profile-text">Profile</span>
-              </TabsTrigger>
-              <TabsTrigger value="workspace" className="flex items-center space-x-2 px-3 py-2 text-sm whitespace-nowrap" data-testid="settings-workspace-tab-trigger">
-                <Building className="h-4 w-4" data-testid="settings-workspace-icon" />
-                <span data-testid="settings-workspace-text">Workspace</span>
-              </TabsTrigger>
-              <TabsTrigger value="api" className="flex items-center space-x-2 px-3 py-2 text-sm whitespace-nowrap" data-testid="settings-api-tab-trigger">
-                <Key className="h-4 w-4" data-testid="settings-api-icon" />
-                <span data-testid="settings-api-text">API Keys</span>
-              </TabsTrigger>
-              <TabsTrigger value="permissions" className="flex items-center space-x-2 px-3 py-2 text-sm whitespace-nowrap" data-testid="settings-permissions-tab-trigger">
-                <Shield className="h-4 w-4" data-testid="settings-permissions-icon" />
-                <span data-testid="settings-permissions-text">Permissions</span>
-              </TabsTrigger>
-              <TabsTrigger value="integrations" className="flex items-center space-x-2 px-3 py-2 text-sm whitespace-nowrap" data-testid="settings-integrations-tab-trigger">
-                <Plug className="h-4 w-4" data-testid="settings-integrations-icon" />
-                <span data-testid="settings-integrations-text">Integrations</span>
-              </TabsTrigger>
-              <TabsTrigger value="notifications" className="flex items-center space-x-2 px-3 py-2 text-sm whitespace-nowrap" data-testid="settings-notifications-tab-trigger">
-                <Bell className="h-4 w-4" data-testid="settings-notifications-icon" />
-                <span data-testid="settings-notifications-text">Notifications</span>
-              </TabsTrigger>
-            </TabsList>
+        <div className="space-y-4 md:space-y-6" data-testid="settings-tabs-container">
+          <div className="bg-white rounded-lg border p-1">
+            <Select value={activeTab} onValueChange={setActiveTab}>
+              <SelectTrigger className="w-full border-0 shadow-none focus:ring-0" data-testid="settings-tab-selector">
+                <div className="flex items-center space-x-2">
+                  {(() => {
+                    const CurrentIcon = getCurrentTabIcon();
+                    return <CurrentIcon className="h-4 w-4" />;
+                  })()}
+                  <SelectValue placeholder="Select a tab">
+                    {getCurrentTabLabel()}
+                  </SelectValue>
+                </div>
+              </SelectTrigger>
+              <SelectContent className="bg-white border shadow-lg z-50">
+                {tabOptions.map((tab) => {
+                  const IconComponent = tab.icon;
+                  return (
+                    <SelectItem 
+                      key={tab.value} 
+                      value={tab.value}
+                      className="flex items-center space-x-2 cursor-pointer hover:bg-slate-50"
+                      data-testid={`settings-${tab.value}-option`}
+                    >
+                      <div className="flex items-center space-x-2">
+                        <IconComponent className="h-4 w-4" />
+                        <span>{tab.label}</span>
+                      </div>
+                    </SelectItem>
+                  );
+                })}
+              </SelectContent>
+            </Select>
           </div>
 
-          <TabsContent value="profile" data-testid="settings-profile-tab-content">
-            <ProfileTab />
-          </TabsContent>
+          {activeTab === 'profile' && (
+            <div data-testid="settings-profile-tab-content">
+              <ProfileTab />
+            </div>
+          )}
 
-          <TabsContent value="workspace" data-testid="settings-workspace-tab-content">
-            <WorkspaceTab />
-          </TabsContent>
+          {activeTab === 'workspace' && (
+            <div data-testid="settings-workspace-tab-content">
+              <WorkspaceTab />
+            </div>
+          )}
 
-          <TabsContent value="api" data-testid="settings-api-tab-content">
-            <ApiTab />
-          </TabsContent>
+          {activeTab === 'api' && (
+            <div data-testid="settings-api-tab-content">
+              <ApiTab />
+            </div>
+          )}
 
-          <TabsContent value="permissions" data-testid="settings-permissions-tab-content">
-            <PermissionsTab />
-          </TabsContent>
+          {activeTab === 'permissions' && (
+            <div data-testid="settings-permissions-tab-content">
+              <PermissionsTab />
+            </div>
+          )}
 
-          <TabsContent value="integrations" data-testid="settings-integrations-tab-content">
-            <IntegrationsTab />
-          </TabsContent>
+          {activeTab === 'integrations' && (
+            <div data-testid="settings-integrations-tab-content">
+              <IntegrationsTab />
+            </div>
+          )}
 
-          <TabsContent value="notifications" data-testid="settings-notifications-tab-content">
-            <NotificationsTab />
-          </TabsContent>
-        </Tabs>
+          {activeTab === 'notifications' && (
+            <div data-testid="settings-notifications-tab-content">
+              <NotificationsTab />
+            </div>
+          )}
+        </div>
       </div>
 
       <DataDisplayModal
