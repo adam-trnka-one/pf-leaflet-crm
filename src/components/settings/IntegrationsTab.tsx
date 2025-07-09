@@ -182,16 +182,12 @@ export const IntegrationsTab = () => {
                       </div>
                     </div>
                     <p className="text-sm text-slate-600 mb-3 leading-relaxed" data-testid={`integration-description-${integration.name.toLowerCase().replace(' ', '-')}`}>{integration.description}</p>
-                    <div className="flex flex-wrap gap-1.5 md:gap-2" data-testid={`integration-features-${integration.name.toLowerCase().replace(' ', '-')}`}>
-                      {integration.features.map((feature, index) => {
-                        // Hide specific tags on mobile
-                        const hiddenOnMobile = ['Marketing automation', 'Lead scoring', 'Email campaigns', 'Analytics dashboard'].includes(feature);
-                        return (
-                          <span key={index} className={`inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-50 text-blue-700 border border-blue-200 ${hiddenOnMobile ? 'hidden md:inline-flex' : ''}`} data-testid={`integration-feature-${integration.name.toLowerCase().replace(' ', '-')}-${index}`}>
-                            {feature}
-                          </span>
-                        );
-                      })}
+                    <div className="hidden md:flex flex-wrap gap-1.5 md:gap-2" data-testid={`integration-features-${integration.name.toLowerCase().replace(' ', '-')}`}>
+                      {integration.features.map((feature, index) => (
+                        <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-50 text-blue-700 border border-blue-200" data-testid={`integration-feature-${integration.name.toLowerCase().replace(' ', '-')}-${index}`}>
+                          {feature}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
