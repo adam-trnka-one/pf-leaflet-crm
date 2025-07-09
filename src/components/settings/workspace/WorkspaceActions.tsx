@@ -84,11 +84,11 @@ export const WorkspaceActions = ({
 
   return (
     <>
-      <div className="flex justify-between" data-testid="workspace-actions">
-        <div className="flex space-x-3" data-testid="workspace-secondary-actions">
+      <div className="flex flex-col md:flex-row md:justify-between gap-4" data-testid="workspace-actions">
+        <div className="flex flex-col sm:flex-row gap-2 md:gap-3" data-testid="workspace-secondary-actions">
           <Button 
             variant="outline" 
-            className="text-red-600 border-red-200 hover:bg-red-50"
+            className="text-red-600 border-red-200 hover:bg-red-50 w-full sm:w-auto"
             onClick={handleResetToDefaults}
             data-testid="workspace-reset-defaults-button"
           >
@@ -96,16 +96,17 @@ export const WorkspaceActions = ({
           </Button>
           <Button 
             variant="outline"
+            className="w-full sm:w-auto"
             onClick={handleViewSavedData}
             data-testid="workspace-view-saved-data-button"
           >
             <span data-testid="workspace-view-saved-data-text">View Saved Data</span>
           </Button>
         </div>
-        <div className="flex space-x-3" data-testid="workspace-primary-actions">
+        <div className="flex flex-col sm:flex-row gap-2 md:gap-3" data-testid="workspace-primary-actions">
           <Button 
             variant="outline"
-            className="bg-green-600 hover:bg-green-700 text-white border-green-600 disabled:opacity-50"
+            className="bg-green-600 hover:bg-green-700 text-white border-green-600 disabled:opacity-50 w-full sm:w-auto"
             onClick={handleInitiateWithLoading}
             disabled={isInitiating}
             data-testid="workspace-initiate-productfruits-button"
@@ -120,7 +121,7 @@ export const WorkspaceActions = ({
             </span>
           </Button>
           <Button 
-            className="bg-blue-600 hover:bg-blue-700"
+            className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto"
             onClick={handleSaveWorkspaceData}
             data-testid="workspace-save-workspace-button"
           >

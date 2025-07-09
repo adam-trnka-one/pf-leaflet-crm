@@ -46,8 +46,8 @@ export const ProfileTab = () => {
       <CardHeader data-testid="profile-card-header">
         <CardTitle data-testid="profile-card-title">Profile Settings</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6" data-testid="profile-card-content">
-        <div className="grid grid-cols-2 gap-4" data-testid="profile-name-fields-grid">
+      <CardContent className="space-y-4 md:space-y-6" data-testid="profile-card-content">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="profile-name-fields-grid">
           <div data-testid="profile-first-name-field">
             <Label htmlFor="firstName" data-testid="profile-first-name-label">First Name</Label>
             <Input 

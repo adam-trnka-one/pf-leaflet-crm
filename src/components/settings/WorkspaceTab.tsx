@@ -31,7 +31,7 @@ export const WorkspaceTab = () => {
           Configure your workspace settings below. This information will be used to initialize ProductFruits on your site.
         </p>
       </CardHeader>
-      <CardContent className="space-y-6" data-testid="workspace-card-content">
+      <CardContent className="space-y-4 md:space-y-6" data-testid="workspace-card-content">
         <WorkspaceBasicFields 
           localWorkspaceData={localWorkspaceData}
           setLocalWorkspaceData={setLocalWorkspaceData}

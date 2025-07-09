@@ -29,37 +29,37 @@ const Settings = () => {
 
   return (
     <>
-      <div className="p-8 bg-slate-50 min-h-screen" data-testid="settings-main-container">
-        <div className="mb-8" data-testid="settings-header-section">
-          <h1 className="text-3xl font-bold text-slate-800" data-testid="settings-page-title">Settings</h1>
-          <p className="text-slate-600 mt-2" data-testid="settings-page-subtitle">Manage your account and application settings</p>
+      <div className="p-4 md:p-8 bg-slate-50 min-h-screen" data-testid="settings-main-container">
+        <div className="mb-6 md:mb-8" data-testid="settings-header-section">
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-800" data-testid="settings-page-title">Settings</h1>
+          <p className="text-slate-600 mt-1 md:mt-2 text-sm md:text-base" data-testid="settings-page-subtitle">Manage your account and application settings</p>
         </div>
 
-        <Tabs defaultValue="profile" className="space-y-6" data-testid="settings-tabs-container">
-          <TabsList className="bg-white" data-testid="settings-tabs-list">
-            <TabsTrigger value="profile" className="flex items-center space-x-2" data-testid="settings-profile-tab-trigger">
-              <User className="h-4 w-4" data-testid="settings-profile-icon" />
-              <span data-testid="settings-profile-text">Profile</span>
+        <Tabs defaultValue="profile" className="space-y-4 md:space-y-6" data-testid="settings-tabs-container">
+          <TabsList className="bg-white grid w-full grid-cols-2 md:grid-cols-6 h-auto md:h-10 gap-1 md:gap-0" data-testid="settings-tabs-list">
+            <TabsTrigger value="profile" className="flex items-center justify-center md:justify-start space-x-1 md:space-x-2 p-2 md:p-3 text-xs md:text-sm" data-testid="settings-profile-tab-trigger">
+              <User className="h-3 w-3 md:h-4 md:w-4" data-testid="settings-profile-icon" />
+              <span className="hidden sm:inline" data-testid="settings-profile-text">Profile</span>
             </TabsTrigger>
-            <TabsTrigger value="workspace" className="flex items-center space-x-2" data-testid="settings-workspace-tab-trigger">
-              <Building className="h-4 w-4" data-testid="settings-workspace-icon" />
-              <span data-testid="settings-workspace-text">Workspace</span>
+            <TabsTrigger value="workspace" className="flex items-center justify-center md:justify-start space-x-1 md:space-x-2 p-2 md:p-3 text-xs md:text-sm" data-testid="settings-workspace-tab-trigger">
+              <Building className="h-3 w-3 md:h-4 md:w-4" data-testid="settings-workspace-icon" />
+              <span className="hidden sm:inline" data-testid="settings-workspace-text">Workspace</span>
             </TabsTrigger>
-            <TabsTrigger value="api" className="flex items-center space-x-2" data-testid="settings-api-tab-trigger">
-              <Key className="h-4 w-4" data-testid="settings-api-icon" />
-              <span data-testid="settings-api-text">API Keys</span>
+            <TabsTrigger value="api" className="flex items-center justify-center md:justify-start space-x-1 md:space-x-2 p-2 md:p-3 text-xs md:text-sm md:flex" data-testid="settings-api-tab-trigger">
+              <Key className="h-3 w-3 md:h-4 md:w-4" data-testid="settings-api-icon" />
+              <span className="hidden sm:inline" data-testid="settings-api-text">API Keys</span>
             </TabsTrigger>
-            <TabsTrigger value="permissions" className="flex items-center space-x-2" data-testid="settings-permissions-tab-trigger">
-              <Shield className="h-4 w-4" data-testid="settings-permissions-icon" />
-              <span data-testid="settings-permissions-text">Permissions</span>
+            <TabsTrigger value="permissions" className="flex items-center justify-center md:justify-start space-x-1 md:space-x-2 p-2 md:p-3 text-xs md:text-sm md:flex" data-testid="settings-permissions-tab-trigger">
+              <Shield className="h-3 w-3 md:h-4 md:w-4" data-testid="settings-permissions-icon" />
+              <span className="hidden sm:inline" data-testid="settings-permissions-text">Permissions</span>
             </TabsTrigger>
-            <TabsTrigger value="integrations" className="flex items-center space-x-2" data-testid="settings-integrations-tab-trigger">
-              <Plug className="h-4 w-4" data-testid="settings-integrations-icon" />
-              <span data-testid="settings-integrations-text">Integrations</span>
+            <TabsTrigger value="integrations" className="flex items-center justify-center md:justify-start space-x-1 md:space-x-2 p-2 md:p-3 text-xs md:text-sm md:flex" data-testid="settings-integrations-tab-trigger">
+              <Plug className="h-3 w-3 md:h-4 md:w-4" data-testid="settings-integrations-icon" />
+              <span className="hidden sm:inline" data-testid="settings-integrations-text">Integrations</span>
             </TabsTrigger>
-            <TabsTrigger value="notifications" className="flex items-center space-x-2" data-testid="settings-notifications-tab-trigger">
-              <Bell className="h-4 w-4" data-testid="settings-notifications-icon" />
-              <span data-testid="settings-notifications-text">Notifications</span>
+            <TabsTrigger value="notifications" className="flex items-center justify-center md:justify-start space-x-1 md:space-x-2 p-2 md:p-3 text-xs md:text-sm md:flex" data-testid="settings-notifications-tab-trigger">
+              <Bell className="h-3 w-3 md:h-4 md:w-4" data-testid="settings-notifications-icon" />
+              <span className="hidden sm:inline" data-testid="settings-notifications-text">Notifications</span>
             </TabsTrigger>
           </TabsList>
 
