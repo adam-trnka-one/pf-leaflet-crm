@@ -79,7 +79,10 @@ export const WorkspaceActions = ({
           <Button 
             variant="outline"
             className="bg-green-600 hover:bg-green-700 text-white border-green-600"
-            onClick={() => navigate('/dashboard')}
+            onClick={() => {
+              handleInitiateProductFruits();
+              navigate('/dashboard');
+            }}
             data-testid="workspace-initiate-productfruits-button"
           >
             <Play className="h-4 w-4 mr-2" data-testid="workspace-initiate-productfruits-icon" />
