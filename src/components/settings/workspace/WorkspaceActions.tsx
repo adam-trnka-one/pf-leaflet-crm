@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Play, X } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { DataDisplayModal } from "../modals/DataDisplayModal";
 
 interface WorkspaceActionsProps {
@@ -21,6 +22,7 @@ export const WorkspaceActions = ({
 }: WorkspaceActionsProps) => {
   const [isDataModalOpen, setIsDataModalOpen] = useState(false);
   const [displayData, setDisplayData] = useState('');
+  const navigate = useNavigate();
 
   const handleViewSavedData = () => {
     const props: Record<string, string> = {};
@@ -77,7 +79,7 @@ export const WorkspaceActions = ({
           <Button 
             variant="outline"
             className="bg-green-600 hover:bg-green-700 text-white border-green-600"
-            onClick={handleInitiateProductFruits}
+            onClick={() => navigate('/dashboard')}
             data-testid="workspace-initiate-productfruits-button"
           >
             <Play className="h-4 w-4 mr-2" data-testid="workspace-initiate-productfruits-icon" />
