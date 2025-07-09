@@ -133,8 +133,8 @@ export const useWorkspaceForm = () => {
   const handleResetToDefaults = () => {
     const defaultData = {
       workspaceCode: 'KFRC3cd1dM48s0p9',
-      username: 'john.doe',
-      email: 'john@doe.com',
+      username: localWorkspaceData.username || 'john.doe', // preserve current username
+      email: localWorkspaceData.email || 'john@doe.com',   // preserve current email
       firstName: 'John',
       lastName: 'Doe',
       role: 'Admin',
