@@ -134,7 +134,7 @@ const LayoutContent = () => {
               <Input placeholder="Search accounts, contacts, opportunities..." className="pl-10 bg-slate-50 border-slate-200 focus:bg-white" />
             </div>
             <Button 
-              variant="outline" 
+              variant="ghost" 
               size="icon" 
               onClick={handleSignOut}
               className="h-8 w-8"
