@@ -57,18 +57,30 @@ export const WorkspaceActions = ({
   };
 
   const handleInitiateWithLoading = async () => {
+    console.log('Starting initiation process...');
     setIsInitiating(true);
+    console.log('Loading state set to true');
+    
     try {
+      console.log('Calling handleInitiateProductFruits...');
       await handleInitiateProductFruits();
+      console.log('handleInitiateProductFruits completed');
+      
       // Add a small delay to show the loading state
-      await new Promise(resolve => setTimeout(resolve, 500));
+      console.log('Adding delay...');
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      console.log('Delay completed, navigating to dashboard...');
+      
       navigate('/dashboard');
     } catch (error) {
       console.error('Error initiating ProductFruits:', error);
     } finally {
+      console.log('Setting loading state to false');
       setIsInitiating(false);
     }
   };
+
+  console.log('Current isInitiating state:', isInitiating);
 
   return (
     <>
