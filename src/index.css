@@ -147,7 +147,7 @@
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  height: 65vh !important; /* 30% higher than typical 50vh */
+  height: 80vh !important; /* 30% higher than previous 65vh */
   max-height: 80vh !important; /* Ensure it doesn't exceed viewport */
   width: 90vw !important;
   max-width: 600px !important;
@@ -175,7 +175,7 @@
 /* Ensure modal content scrolls properly with increased height */
 .productfruits--announcements-modal .productfruits--announcements-content,
 .productfruits--newsfeed-modal .productfruits--newsfeed-content {
-  max-height: calc(65vh - 80px) !important;
+  max-height: calc(80vh - 80px) !important;
   overflow-y: auto !important;
 }
 
