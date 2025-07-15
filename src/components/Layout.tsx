@@ -104,85 +104,87 @@ const LayoutContent = () => {
   };
 
   return (
-    <div className="min-h-screen flex w-full bg-slate-50">
-      <Sidebar className="w-72">
-        <SidebarHeader className="border-b border-sidebar-border px-4 py-[18px]">
-          <div className="flex items-center pl-[15px] py-[10px]">
-            <Link to="/dashboard" className="hover:opacity-80 transition-opacity" onClick={handleNavClick}>
-              <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
-            </Link>
-          </div>
-        </SidebarHeader>
-        
-        <SidebarContent className="p-4">
-          <SidebarGroup>
-            <SidebarGroupContent>
-              <SidebarMenu className="space-y-1">
-                {navigation.map(item => {
-                const Icon = item.icon;
-                return <SidebarMenuItem key={item.name}>
-                      <SidebarMenuButton asChild isActive={isActive(item.href)} tooltip={item.name} className="h-11 px-4 rounded-lg text-sm font-medium">
-                        <Link to={item.href} onClick={handleNavClick}>
-                          <Icon className="h-5 w-5" />
-                          <span>{item.name}</span>
-                        </Link>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>;
-              })}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        </SidebarContent>
-
-        <SidebarFooter className="border-t border-sidebar-border p-4">
-          <div className="px-4">
-            <p className="text-xs text-slate-500">Version 1.0.{Date.now().toString().slice(-6)}</p>
-          </div>
-        </SidebarFooter>
-      </Sidebar>
-
-      <SidebarInset>
-        <header className="flex h-[89px] shrink-0 items-center justify-between gap-6 border-b px-6 bg-white py-0">
-          <div className="flex items-center gap-4">
-            <SidebarTrigger className="-ml-1" />
-          </div>
-          
-          <div className="flex items-center gap-4 flex-1 max-w-2xl">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
-              <Input placeholder="Search accounts, contacts, opportunities..." className="pl-10 bg-slate-50 border-slate-200 focus:bg-white" />
+    <div className="min-h-screen flex flex-col w-full bg-slate-50">
+      <div className="flex flex-1">
+        <Sidebar className="w-72">
+          <SidebarHeader className="border-b border-sidebar-border px-4 py-[18px]">
+            <div className="flex items-center pl-[15px] py-[10px]">
+              <Link to="/dashboard" className="hover:opacity-80 transition-opacity" onClick={handleNavClick}>
+                <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
+              </Link>
             </div>
-            <Button 
-              ref={newsfeedRef}
-              variant="ghost" 
-              size="icon" 
-              onClick={handleNewsfeedClick}
-              className="h-8 w-8 relative"
-              title="Newsfeed"
-              id="newsfeed-launcher"
-            >
-              <Newspaper className="h-4 w-4" />
-              {unreadCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {unreadCount > 9 ? '9+' : unreadCount}
-                </span>
-              )}
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={handleSignOut}
-              className="h-8 w-8"
-              title="Sign Out"
-            >
-              <LogOut className="h-4 w-4" />
-            </Button>
-          </div>
-        </header>
-        <main className="flex-1 overflow-auto p-6">
-          <Outlet />
-        </main>
-      </SidebarInset>
+          </SidebarHeader>
+          
+          <SidebarContent className="p-4">
+            <SidebarGroup>
+              <SidebarGroupContent>
+                <SidebarMenu className="space-y-1">
+                  {navigation.map(item => {
+                  const Icon = item.icon;
+                  return <SidebarMenuItem key={item.name}>
+                        <SidebarMenuButton asChild isActive={isActive(item.href)} tooltip={item.name} className="h-11 px-4 rounded-lg text-sm font-medium">
+                          <Link to={item.href} onClick={handleNavClick}>
+                            <Icon className="h-5 w-5" />
+                            <span>{item.name}</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>;
+                })}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </SidebarContent>
+
+          <SidebarFooter className="border-t border-sidebar-border p-4">
+            <div className="px-4">
+              <p className="text-xs text-slate-500">Version 1.0.{Date.now().toString().slice(-6)}</p>
+            </div>
+          </SidebarFooter>
+        </Sidebar>
+
+        <SidebarInset className="flex-1">
+          <header className="flex h-[89px] shrink-0 items-center justify-between gap-6 border-b px-6 bg-white py-0">
+            <div className="flex items-center gap-4">
+              <SidebarTrigger className="-ml-1" />
+            </div>
+            
+            <div className="flex items-center gap-4 flex-1 max-w-2xl">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
+                <Input placeholder="Search accounts, contacts, opportunities..." className="pl-10 bg-slate-50 border-slate-200 focus:bg-white" />
+              </div>
+              <Button 
+                ref={newsfeedRef}
+                variant="ghost" 
+                size="icon" 
+                onClick={handleNewsfeedClick}
+                className="h-8 w-8 relative"
+                title="Newsfeed"
+                id="newsfeed-launcher"
+              >
+                <Newspaper className="h-4 w-4" />
+                {unreadCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {unreadCount > 9 ? '9+' : unreadCount}
+                  </span>
+                )}
+              </Button>
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={handleSignOut}
+                className="h-8 w-8"
+                title="Sign Out"
+              >
+                <LogOut className="h-4 w-4" />
+              </Button>
+            </div>
+          </header>
+          <main className="flex-1 overflow-auto p-6">
+            <Outlet />
+          </main>
+        </SidebarInset>
+      </div>
     </div>
   );
 };
