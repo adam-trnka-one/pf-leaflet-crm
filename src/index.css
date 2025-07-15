@@ -124,3 +124,65 @@
 .productfruits--checklist-panel.productfruits--checklist-panel-embedded {
   max-width: fit-content !important;
 }
+
+/* ProductFruits newsfeed modal styling */
+/* Add backdrop when newsfeed modal is displayed */
+.productfruits--newsfeed-modal-backdrop {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  z-index: 9998 !important;
+  backdrop-filter: blur(2px) !important;
+}
+
+/* Target the ProductFruits newsfeed modal container */
+.productfruits--announcements-modal,
+.productfruits--newsfeed-modal,
+[data-productfruits-announcements-modal] {
+  position: fixed !important;
+  z-index: 9999 !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  height: 65vh !important; /* 30% higher than typical 50vh */
+  max-height: 80vh !important; /* Ensure it doesn't exceed viewport */
+  width: 90vw !important;
+  max-width: 600px !important;
+  background: white !important;
+  border-radius: 12px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  animation: scale-in 0.2s ease-out !important;
+}
+
+/* Create backdrop when modal is open */
+.productfruits--announcements-modal::before,
+.productfruits--newsfeed-modal::before,
+[data-productfruits-announcements-modal]::before {
+  content: '';
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  z-index: -1 !important;
+  backdrop-filter: blur(2px) !important;
+}
+
+/* Ensure modal content scrolls properly with increased height */
+.productfruits--announcements-modal .productfruits--announcements-content,
+.productfruits--newsfeed-modal .productfruits--newsfeed-content {
+  max-height: calc(65vh - 80px) !important;
+  overflow-y: auto !important;
+}
+
+/* Dark mode support for the modal */
+.dark .productfruits--announcements-modal,
+.dark .productfruits--newsfeed-modal,
+.dark [data-productfruits-announcements-modal] {
+  background: hsl(var(--card)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
