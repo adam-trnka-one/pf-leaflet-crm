@@ -1,7 +1,9 @@
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { User, Key, Shield, Bell, Plug, Building } from "lucide-react";
 import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { WorkspaceTab } from "@/components/settings/WorkspaceTab";
 import { ProfileTab } from "@/components/settings/ProfileTab";
 import { ApiTab } from "@/components/settings/ApiTab";
@@ -17,6 +19,7 @@ const Settings = () => {
   const [selectedIntegration, setSelectedIntegration] = useState('');
   const [displayData, setDisplayData] = useState('');
   const [activeTab, setActiveTab] = useState('profile');
+  const isMobile = useIsMobile();
 
   const tabOptions = [
     { value: 'profile', label: 'Profile', icon: User },
@@ -55,77 +58,122 @@ const Settings = () => {
           <p className="text-slate-600 mt-1 md:mt-2 text-sm md:text-base" data-testid="settings-page-subtitle">Manage your account and application settings</p>
         </div>
 
-        <div className="space-y-4 md:space-y-6" data-testid="settings-tabs-container">
-          <div className="bg-white rounded-lg border p-1">
-            <Select value={activeTab} onValueChange={setActiveTab}>
-              <SelectTrigger className="w-full border-0 shadow-none focus:ring-0" data-testid="settings-tab-selector">
-                <div className="flex items-center space-x-2">
-                  {(() => {
-                    const CurrentIcon = getCurrentTabIcon();
-                    return <CurrentIcon className="h-4 w-4" />;
-                  })()}
-                  <SelectValue placeholder="Select a tab">
-                    {getCurrentTabLabel()}
-                  </SelectValue>
-                </div>
-              </SelectTrigger>
-              <SelectContent className="bg-white border shadow-lg z-50">
-                {tabOptions.map((tab) => {
-                  const IconComponent = tab.icon;
-                  return (
-                    <SelectItem 
-                      key={tab.value} 
-                      value={tab.value}
-                      className="flex items-center space-x-2 cursor-pointer hover:bg-slate-50"
-                      data-testid={`settings-${tab.value}-option`}
-                    >
-                      <div className="flex items-center space-x-2">
-                        <IconComponent className="h-4 w-4" />
-                        <span>{tab.label}</span>
-                      </div>
-                    </SelectItem>
-                  );
-                })}
-              </SelectContent>
-            </Select>
+        {isMobile ? (
+          <div className="space-y-4 md:space-y-6" data-testid="settings-tabs-container">
+            <div className="bg-white rounded-lg border p-1">
+              <Select value={activeTab} onValueChange={setActiveTab}>
+                <SelectTrigger className="w-full border-0 shadow-none focus:ring-0" data-testid="settings-tab-selector">
+                  <div className="flex items-center space-x-2">
+                    {(() => {
+                      const CurrentIcon = getCurrentTabIcon();
+                      return <CurrentIcon className="h-4 w-4" />;
+                    })()}
+                    <SelectValue placeholder="Select a tab">
+                      {getCurrentTabLabel()}
+                    </SelectValue>
+                  </div>
+                </SelectTrigger>
+                <SelectContent className="bg-white border shadow-lg z-50">
+                  {tabOptions.map((tab) => {
+                    const IconComponent = tab.icon;
+                    return (
+                      <SelectItem 
+                        key={tab.value} 
+                        value={tab.value}
+                        className="flex items-center space-x-2 cursor-pointer hover:bg-slate-50"
+                        data-testid={`settings-${tab.value}-option`}
+                      >
+                        <div className="flex items-center space-x-2">
+                          <IconComponent className="h-4 w-4" />
+                          <span>{tab.label}</span>
+                        </div>
+                      </SelectItem>
+                    );
+                  })}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {activeTab === 'profile' && (
+              <div data-testid="settings-profile-tab-content">
+                <ProfileTab />
+              </div>
+            )}
+
+            {activeTab === 'workspace' && (
+              <div data-testid="settings-workspace-tab-content">
+                <WorkspaceTab />
+              </div>
+            )}
+
+            {activeTab === 'api' && (
+              <div data-testid="settings-api-tab-content">
+                <ApiTab />
+              </div>
+            )}
+
+            {activeTab === 'permissions' && (
+              <div data-testid="settings-permissions-tab-content">
+                <PermissionsTab />
+              </div>
+            )}
+
+            {activeTab === 'integrations' && (
+              <div data-testid="settings-integrations-tab-content">
+                <IntegrationsTab />
+              </div>
+            )}
+
+            {activeTab === 'notifications' && (
+              <div data-testid="settings-notifications-tab-content">
+                <NotificationsTab />
+              </div>
+            )}
           </div>
-
-          {activeTab === 'profile' && (
-            <div data-testid="settings-profile-tab-content">
+        ) : (
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="grid w-full grid-cols-6 bg-muted p-1">
+              {tabOptions.map((tab) => {
+                const IconComponent = tab.icon;
+                return (
+                  <TabsTrigger 
+                    key={tab.value} 
+                    value={tab.value}
+                    className="flex items-center space-x-2 data-[state=active]:bg-background"
+                    data-testid={`settings-${tab.value}-tab`}
+                  >
+                    <IconComponent className="h-4 w-4" />
+                    <span className="hidden lg:inline">{tab.label}</span>
+                  </TabsTrigger>
+                );
+              })}
+            </TabsList>
+            
+            <TabsContent value="profile" className="mt-4" data-testid="settings-profile-tab-content">
               <ProfileTab />
-            </div>
-          )}
-
-          {activeTab === 'workspace' && (
-            <div data-testid="settings-workspace-tab-content">
+            </TabsContent>
+            
+            <TabsContent value="workspace" className="mt-4" data-testid="settings-workspace-tab-content">
               <WorkspaceTab />
-            </div>
-          )}
-
-          {activeTab === 'api' && (
-            <div data-testid="settings-api-tab-content">
+            </TabsContent>
+            
+            <TabsContent value="api" className="mt-4" data-testid="settings-api-tab-content">
               <ApiTab />
-            </div>
-          )}
-
-          {activeTab === 'permissions' && (
-            <div data-testid="settings-permissions-tab-content">
+            </TabsContent>
+            
+            <TabsContent value="permissions" className="mt-4" data-testid="settings-permissions-tab-content">
               <PermissionsTab />
-            </div>
-          )}
-
-          {activeTab === 'integrations' && (
-            <div data-testid="settings-integrations-tab-content">
+            </TabsContent>
+            
+            <TabsContent value="integrations" className="mt-4" data-testid="settings-integrations-tab-content">
               <IntegrationsTab />
-            </div>
-          )}
-
-          {activeTab === 'notifications' && (
-            <div data-testid="settings-notifications-tab-content">
+            </TabsContent>
+            
+            <TabsContent value="notifications" className="mt-4" data-testid="settings-notifications-tab-content">
               <NotificationsTab />
-            </div>
-          )}
-        </div>
+            </TabsContent>
+          </Tabs>
+        )}
       </div>
 
       <DataDisplayModal
