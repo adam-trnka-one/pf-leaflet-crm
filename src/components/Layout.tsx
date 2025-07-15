@@ -1,9 +1,10 @@
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search } from "lucide-react";
+import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search, Newspaper } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset, useSidebar } from "@/components/ui/sidebar";
 import { useProductFruits } from "@/hooks/useProductFruits";
+import { useRef, useEffect, useState } from "react";
 
 const navigation = [{
   name: "Dashboard",
@@ -55,6 +56,8 @@ const LayoutContent = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { isMobile, setOpenMobile } = useSidebar();
+  const newsfeedRef = useRef<HTMLButtonElement>(null);
+  const [unreadCount, setUnreadCount] = useState(0);
   
   const isActive = (href: string) => {
     if (href === "/dashboard") return location.pathname === "/dashboard";
@@ -82,6 +85,22 @@ const LayoutContent = () => {
     // Navigate to home page and refresh
     navigate("/");
     window.location.reload();
+  };
+
+  // Setup ProductFruits newsfeed
+  useEffect(() => {
+    // Listen for unread count changes
+    if ((window as any).productFruits?.api?.announcementsV2) {
+      (window as any).productFruits.api.announcementsV2.listen('newsfeed-unread-count-changed', (data: { count: number }) => {
+        setUnreadCount(data.count);
+      });
+    }
+  }, []);
+
+  const handleNewsfeedClick = () => {
+    if (newsfeedRef.current && (window as any).productFruits?.api?.announcementsV2) {
+      (window as any).productFruits.api.announcementsV2.attachNewsWidgetToElement(newsfeedRef.current);
+    }
   };
 
   return (
@@ -133,6 +152,22 @@ const LayoutContent = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
               <Input placeholder="Search accounts, contacts, opportunities..." className="pl-10 bg-slate-50 border-slate-200 focus:bg-white" />
             </div>
+            <Button 
+              ref={newsfeedRef}
+              variant="ghost" 
+              size="icon" 
+              onClick={handleNewsfeedClick}
+              className="h-8 w-8 relative"
+              title="Newsfeed"
+              id="newsfeed-launcher"
+            >
+              <Newspaper className="h-4 w-4" />
+              {unreadCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {unreadCount > 9 ? '9+' : unreadCount}
+                </span>
+              )}
+            </Button>
             <Button 
               variant="ghost" 
               size="icon" 
