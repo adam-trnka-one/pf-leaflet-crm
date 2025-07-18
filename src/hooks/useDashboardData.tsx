@@ -45,7 +45,7 @@ export const useDashboardData = () => {
       sampleData = generateAndStoreSampleData();
       toast({
         title: "Sample data generated",
-        description: "300 accounts, 600 contacts, and 600 opportunities created"
+        description: "50 accounts, 80 contacts, 100 opportunities, 60 leads, and 20 cases created"
       });
     }
     setData(sampleData);
@@ -124,9 +124,12 @@ export const useDashboardData = () => {
     // Update total accounts and contacts after reset
     setTotalAccounts(newData.accounts.length);
     setTotalContacts(newData.contacts.length);
+    // Reload recent activities and leads
+    loadRecentActivities();
+    loadRecentLeads();
     toast({
       title: "Database reset",
-      description: "All sample data has been regenerated"
+      description: "Sample data regenerated with new limits: 50 accounts, 80 contacts, 100 opportunities, 60 leads, 20 cases"
     });
   };
 
