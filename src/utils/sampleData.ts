@@ -222,7 +222,7 @@ export function generateLeads(count: number = 60): Lead[] {
   return leads;
 }
 
-export function generateCases(accounts: Account[], contacts: Contact[], count: number = 150): Case[] {
+export function generateCases(accounts: Account[], contacts: Contact[], count: number = 20): Case[] {
   const cases: Case[] = [];
   
   for (let i = 0; i < count; i++) {
@@ -278,7 +278,7 @@ export function generateAndStoreSampleData() {
   const contacts = generateContacts(accounts, 80);
   const opportunities = generateOpportunities(accounts, 100);
   const leads = generateLeads(60);
-  const cases = generateCases(accounts, contacts, 150);
+  const cases = generateCases(accounts, contacts, 20);
   
   const data = { accounts, contacts, opportunities, leads, cases };
   localStorage.setItem('leafletCrmData', JSON.stringify(data));

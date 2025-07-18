@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { getSampleData, type Case } from "@/utils/sampleData";
+import { getSampleData, resetDatabase, type Case } from "@/utils/sampleData";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -46,7 +46,11 @@ const Cases = () => {
   };
 
   useEffect(() => {
-    loadCases();
+    // Reset database to apply new case limit
+    const data = resetDatabase();
+    setCases(data.cases);
+    setFilteredCases(data.cases);
+    setLoading(false);
   }, []);
 
   useEffect(() => {
