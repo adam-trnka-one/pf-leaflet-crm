@@ -1,9 +1,10 @@
 
 import { Button } from "@/components/ui/button";
-import { Play, X, Loader2 } from "lucide-react";
+import { Play, X, Loader2, RotateCcw } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataDisplayModal } from "../modals/DataDisplayModal";
+import { useDashboardData } from "@/hooks/useDashboardData";
 
 interface WorkspaceActionsProps {
   handleResetToDefaults: () => void;
@@ -24,6 +25,7 @@ export const WorkspaceActions = ({
   const [displayData, setDisplayData] = useState('');
   const [isInitiating, setIsInitiating] = useState(false);
   const navigate = useNavigate();
+  const { handleResetDatabase } = useDashboardData();
 
   const handleViewSavedData = () => {
     const props: Record<string, string> = {};
@@ -93,6 +95,15 @@ export const WorkspaceActions = ({
             data-testid="workspace-reset-defaults-button"
           >
             <span data-testid="workspace-reset-defaults-text">Reset to Defaults</span>
+          </Button>
+          <Button 
+            variant="outline" 
+            className="text-orange-600 border-orange-200 hover:bg-orange-50 w-full sm:w-auto"
+            onClick={handleResetDatabase}
+            data-testid="workspace-reset-database-button"
+          >
+            <RotateCcw className="h-4 w-4 mr-2" />
+            <span data-testid="workspace-reset-database-text">Reset to Default</span>
           </Button>
           <Button 
             variant="outline"
