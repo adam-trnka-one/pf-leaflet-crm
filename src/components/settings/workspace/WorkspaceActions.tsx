@@ -90,14 +90,6 @@ export const WorkspaceActions = ({
         <div className="flex flex-col sm:flex-row gap-2 md:gap-3" data-testid="workspace-secondary-actions">
           <Button 
             variant="outline" 
-            className="text-red-600 border-red-200 hover:bg-red-50 w-full sm:w-auto"
-            onClick={handleResetToDefaults}
-            data-testid="workspace-reset-defaults-button"
-          >
-            <span data-testid="workspace-reset-defaults-text">Reset to Defaults</span>
-          </Button>
-          <Button 
-            variant="outline" 
             className="text-orange-600 border-orange-200 hover:bg-orange-50 w-full sm:w-auto"
             onClick={handleResetDatabase}
             data-testid="workspace-reset-database-button"
