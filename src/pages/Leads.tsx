@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { getSampleData, type Lead } from "@/utils/sampleData";
+import { getSampleData, resetDatabase, type Lead } from "@/utils/sampleData";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -36,7 +36,10 @@ const Leads = () => {
   };
 
   useEffect(() => {
-    loadLeads();
+    // Reset database to apply new lead limit
+    const data = resetDatabase();
+    setLeads(data.leads);
+    setLoading(false);
   }, []);
 
   const handleLeadCreated = () => {

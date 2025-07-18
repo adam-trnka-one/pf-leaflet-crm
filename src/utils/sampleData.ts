@@ -195,7 +195,7 @@ export function generateOpportunities(accounts: Account[], count: number = 600):
   return opportunities;
 }
 
-export function generateLeads(count: number = 200): Lead[] {
+export function generateLeads(count: number = 60): Lead[] {
   const leads: Lead[] = [];
   
   for (let i = 0; i < count; i++) {
@@ -277,7 +277,7 @@ export function generateAndStoreSampleData() {
   const accounts = generateAccounts(50);
   const contacts = generateContacts(accounts, 80);
   const opportunities = generateOpportunities(accounts, 600);
-  const leads = generateLeads(200);
+  const leads = generateLeads(60);
   const cases = generateCases(accounts, contacts, 150);
   
   const data = { accounts, contacts, opportunities, leads, cases };
