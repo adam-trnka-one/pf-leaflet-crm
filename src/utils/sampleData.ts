@@ -113,7 +113,7 @@ function generateFutureDate(daysForward: number): Date {
   return date;
 }
 
-export function generateAccounts(count: number = 300): Account[] {
+export function generateAccounts(count: number = 50): Account[] {
   const accounts: Account[] = [];
   
   for (let i = 0; i < count; i++) {
@@ -274,7 +274,7 @@ export function getSampleData() {
 }
 
 export function generateAndStoreSampleData() {
-  const accounts = generateAccounts(300);
+  const accounts = generateAccounts(50);
   const contacts = generateContacts(accounts, 600);
   const opportunities = generateOpportunities(accounts, 600);
   const leads = generateLeads(200);
