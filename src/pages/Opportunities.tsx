@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { getSampleData, type Opportunity } from "@/utils/sampleData";
+import { getSampleData, resetDatabase, type Opportunity } from "@/utils/sampleData";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -44,7 +44,10 @@ const Opportunities = () => {
   };
 
   useEffect(() => {
-    loadOpportunities();
+    // Reset database to apply new opportunity limit
+    const data = resetDatabase();
+    setOpportunities(data.opportunities);
+    setLoading(false);
   }, []);
 
   const handleOpportunityCreated = () => {
