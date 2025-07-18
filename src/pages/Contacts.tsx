@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getSampleData, type Contact } from "@/utils/sampleData";
+import { getSampleData, resetDatabase, type Contact } from "@/utils/sampleData";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -37,7 +37,11 @@ const Contacts = () => {
   };
 
   useEffect(() => {
-    loadContacts();
+    // Reset database to apply new contact limit
+    const data = resetDatabase();
+    setContacts(data.contacts);
+    setFilteredContacts(data.contacts);
+    setLoading(false);
   }, []);
 
   useEffect(() => {
