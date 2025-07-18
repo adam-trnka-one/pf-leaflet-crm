@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getSampleData, type Account } from "@/utils/sampleData";
+import { getSampleData, resetDatabase, type Account } from "@/utils/sampleData";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,7 +38,11 @@ const Accounts = () => {
   };
 
   useEffect(() => {
-    loadAccounts();
+    // Reset database to apply new 50-account limit
+    const data = resetDatabase();
+    setAccounts(data.accounts);
+    setFilteredAccounts(data.accounts);
+    setLoading(false);
   }, []);
 
   useEffect(() => {
