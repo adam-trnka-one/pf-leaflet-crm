@@ -32,30 +32,40 @@ const ChecklistSection = ({ onVisibilityChange }: ChecklistSectionProps) => {
   }, []);
 
   useEffect(() => {
+    let hasDetectedChecklist = false;
+
     const checkForSpecificClasses = () => {
       if (checklistRef.current) {
         const hasTargetClasses = checklistRef.current.querySelector('.productfruits--checklist-panel.productfruits--checklist-panel-embedded') ||
                                  (checklistRef.current.querySelector('.productfruits--checklist-panel') && 
                                   checklistRef.current.querySelector('.productfruits--checklist-panel-embedded'));
         
-        onVisibilityChange?.(!!hasTargetClasses);
+        // Only notify of availability, don't keep checking for removal
+        if (hasTargetClasses && !hasDetectedChecklist) {
+          hasDetectedChecklist = true;
+          onVisibilityChange?.(true);
+        } else if (!hasTargetClasses && !hasDetectedChecklist) {
+          onVisibilityChange?.(false);
+        }
       }
     };
 
-    // Check after a delay to allow injection
+    // Initial check after delay to allow injection
     const timer = setTimeout(checkForSpecificClasses, 2000);
     
-    // Set up observer to monitor DOM changes
-    const observer = new MutationObserver(() => {
-      setTimeout(checkForSpecificClasses, 200);
+    // Only observe for initial detection, not continuous monitoring
+    const observer = new MutationObserver((mutations) => {
+      // Only check if we haven't detected the checklist yet
+      if (!hasDetectedChecklist) {
+        // Debounce the check to avoid too many calls
+        setTimeout(checkForSpecificClasses, 500);
+      }
     });
     
     if (checklistRef.current) {
       observer.observe(checklistRef.current, {
         childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['class']
+        subtree: true
       });
     }
 
