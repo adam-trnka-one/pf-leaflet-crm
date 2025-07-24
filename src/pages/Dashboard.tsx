@@ -89,9 +89,9 @@ const Dashboard = () => {
       />
 
       {/* Main Dashboard Layout */}
-      <div className={`grid gap-8 ${showChecklist && !isJessWorkspace && !isMobile ? 'grid-cols-1 xl:grid-cols-3' : 'grid-cols-1'}`}>
+      <div className={`grid gap-8 ${showChecklist && checklistAvailable && !isJessWorkspace && !isMobile ? 'grid-cols-1 xl:grid-cols-3' : 'grid-cols-1'}`}>
         {/* Left Column - Main Dashboard Content */}
-        <div className={`space-y-8 ${showChecklist && !isJessWorkspace && !isMobile ? 'xl:col-span-2' : ''}`}>
+        <div className={`space-y-8 ${showChecklist && checklistAvailable && !isJessWorkspace && !isMobile ? 'xl:col-span-2' : ''}`}>
           {/* Top Metrics Group */}
           <div data-testid="dashboard-top-metrics-group">
             {/* Key Metrics */}
@@ -136,7 +136,7 @@ const Dashboard = () => {
         </div>
 
         {/* Right Column - Checklist */}
-        {showChecklist && !isJessWorkspace && !isMobile && (
+        {showChecklist && checklistAvailable && !isJessWorkspace && !isMobile && (
           <div className="xl:col-span-1" data-testid="dashboard-checklist-column">
             <ChecklistSection onVisibilityChange={setChecklistAvailable} />
           </div>
