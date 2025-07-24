@@ -35,18 +35,27 @@ const ChecklistSection = ({ onVisibilityChange }: ChecklistSectionProps) => {
   useEffect(() => {
     const checkForChecklist = () => {
       if (checklistRef.current) {
-        const hasChecklistPanel = checklistRef.current.querySelector('.productfruits--checklist-panel, .productfruits--checklist-panel-embedded');
+        // Check for any ProductFruits content, not just specific classes
+        const hasChecklistPanel = checklistRef.current.querySelector('[class*="productfruits"]') || 
+                                  checklistRef.current.querySelector('.productfruits--checklist-panel') ||
+                                  checklistRef.current.querySelector('.productfruits--checklist-panel-embedded') ||
+                                  checklistRef.current.innerHTML.includes('productfruits');
+        
         const newVisibility = !!hasChecklistPanel;
+        console.log('Checklist visibility check:', { hasChecklistPanel: !!hasChecklistPanel, innerHTML: checklistRef.current.innerHTML });
         setIsVisible(newVisibility);
         onVisibilityChange?.(newVisibility);
       }
     };
 
-    // Check immediately
-    checkForChecklist();
-
+    // Check with a slight delay to allow ProductFruits to inject content
+    const initialCheck = setTimeout(checkForChecklist, 500);
+    
     // Set up observer to monitor DOM changes
-    const observer = new MutationObserver(checkForChecklist);
+    const observer = new MutationObserver(() => {
+      // Add a small delay to let ProductFruits finish its injection
+      setTimeout(checkForChecklist, 100);
+    });
     
     if (checklistRef.current) {
       observer.observe(checklistRef.current, {
@@ -57,7 +66,10 @@ const ChecklistSection = ({ onVisibilityChange }: ChecklistSectionProps) => {
       });
     }
 
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(initialCheck);
+      observer.disconnect();
+    };
   }, [onVisibilityChange]);
 
   if (!isVisible) {
