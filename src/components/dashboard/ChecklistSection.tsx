@@ -7,8 +7,6 @@ interface ChecklistSectionProps {
 
 const ChecklistSection = ({ onVisibilityChange }: ChecklistSectionProps) => {
   const checklistRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(true);
-  const [hasBeenInjected, setHasBeenInjected] = useState(false);
 
   useEffect(() => {
     const injectChecklist = () => {
@@ -17,7 +15,6 @@ const ChecklistSection = ({ onVisibilityChange }: ChecklistSectionProps) => {
         try {
           window.productFruits.api.checklists.injectToElement(checklistId, checklistRef.current);
           console.log('ProductFruits checklist injected with ID:', checklistId);
-          setHasBeenInjected(true);
         } catch (error) {
           console.error('Error injecting ProductFruits checklist:', error);
         }
@@ -35,60 +32,38 @@ const ChecklistSection = ({ onVisibilityChange }: ChecklistSectionProps) => {
   }, []);
 
   useEffect(() => {
-    const checkForChecklist = () => {
-      if (checklistRef.current && hasBeenInjected) {
-        // Only check for visibility after content has been injected
-        const hasChecklistPanel = checklistRef.current.querySelector('[class*="productfruits"]') || 
-                                  checklistRef.current.querySelector('.productfruits--checklist-panel') ||
-                                  checklistRef.current.querySelector('.productfruits--checklist-panel-embedded') ||
-                                  checklistRef.current.innerHTML.includes('productfruits');
+    const checkForSpecificClasses = () => {
+      if (checklistRef.current) {
+        const hasTargetClasses = checklistRef.current.querySelector('.productfruits--checklist-panel.productfruits--checklist-panel-embedded') ||
+                                 (checklistRef.current.querySelector('.productfruits--checklist-panel') && 
+                                  checklistRef.current.querySelector('.productfruits--checklist-panel-embedded'));
         
-        const newVisibility = !!hasChecklistPanel;
-        console.log('Checklist visibility check:', { 
-          hasChecklistPanel: !!hasChecklistPanel, 
-          hasBeenInjected, 
-          innerHTML: checklistRef.current.innerHTML.substring(0, 200) 
-        });
-        
-        // Only update visibility if content was previously injected and now missing
-        if (!newVisibility && hasBeenInjected) {
-          setIsVisible(false);
-          onVisibilityChange?.(false);
-        } else if (newVisibility) {
-          setIsVisible(true);
-          onVisibilityChange?.(true);
-        }
+        onVisibilityChange?.(!!hasTargetClasses);
       }
     };
 
-    if (hasBeenInjected) {
-      // Only start monitoring after injection
-      const initialCheck = setTimeout(checkForChecklist, 1000);
-      
-      // Set up observer to monitor DOM changes
-      const observer = new MutationObserver(() => {
-        setTimeout(checkForChecklist, 100);
+    // Check after a delay to allow injection
+    const timer = setTimeout(checkForSpecificClasses, 2000);
+    
+    // Set up observer to monitor DOM changes
+    const observer = new MutationObserver(() => {
+      setTimeout(checkForSpecificClasses, 200);
+    });
+    
+    if (checklistRef.current) {
+      observer.observe(checklistRef.current, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class']
       });
-      
-      if (checklistRef.current) {
-        observer.observe(checklistRef.current, {
-          childList: true,
-          subtree: true,
-          attributes: true,
-          attributeFilter: ['class']
-        });
-      }
-
-      return () => {
-        clearTimeout(initialCheck);
-        observer.disconnect();
-      };
     }
-  }, [onVisibilityChange, hasBeenInjected]);
 
-  if (!isVisible) {
-    return null;
-  }
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, [onVisibilityChange]);
 
   return (
     <div 
