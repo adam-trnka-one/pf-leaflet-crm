@@ -1,11 +1,7 @@
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
-interface ChecklistSectionProps {
-  onVisibilityChange?: (isVisible: boolean) => void;
-}
-
-const ChecklistSection = ({ onVisibilityChange }: ChecklistSectionProps) => {
+const ChecklistSection = () => {
   const checklistRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -30,50 +26,6 @@ const ChecklistSection = ({ onVisibilityChange }: ChecklistSectionProps) => {
       return () => clearTimeout(timer);
     }
   }, []);
-
-  useEffect(() => {
-    let hasDetectedChecklist = false;
-
-    const checkForSpecificClasses = () => {
-      if (checklistRef.current) {
-        const hasTargetClasses = checklistRef.current.querySelector('.productfruits--checklist-panel.productfruits--checklist-panel-embedded') ||
-                                 (checklistRef.current.querySelector('.productfruits--checklist-panel') && 
-                                  checklistRef.current.querySelector('.productfruits--checklist-panel-embedded'));
-        
-        // Only notify of availability, don't keep checking for removal
-        if (hasTargetClasses && !hasDetectedChecklist) {
-          hasDetectedChecklist = true;
-          onVisibilityChange?.(true);
-        } else if (!hasTargetClasses && !hasDetectedChecklist) {
-          onVisibilityChange?.(false);
-        }
-      }
-    };
-
-    // Initial check after delay to allow injection
-    const timer = setTimeout(checkForSpecificClasses, 2000);
-    
-    // Only observe for initial detection, not continuous monitoring
-    const observer = new MutationObserver((mutations) => {
-      // Only check if we haven't detected the checklist yet
-      if (!hasDetectedChecklist) {
-        // Debounce the check to avoid too many calls
-        setTimeout(checkForSpecificClasses, 500);
-      }
-    });
-    
-    if (checklistRef.current) {
-      observer.observe(checklistRef.current, {
-        childList: true,
-        subtree: true
-      });
-    }
-
-    return () => {
-      clearTimeout(timer);
-      observer.disconnect();
-    };
-  }, [onVisibilityChange]);
 
   return (
     <div 
