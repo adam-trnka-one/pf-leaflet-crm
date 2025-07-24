@@ -30,6 +30,8 @@ const Dashboard = () => {
     return saved !== null ? JSON.parse(saved) : true;
   });
 
+  const [checklistAvailable, setChecklistAvailable] = useState(true);
+
   // Save to localStorage whenever showChecklist changes (only for non-Jess workspaces)
   useEffect(() => {
     if (!isJessWorkspace) {
@@ -83,7 +85,7 @@ const Dashboard = () => {
       <DashboardHeader 
         showChecklist={showChecklist}
         onToggleChecklist={() => setShowChecklist(!showChecklist)}
-        showChecklistToggle={!isJessWorkspace && !isMobile}
+        showChecklistToggle={!isJessWorkspace && !isMobile && checklistAvailable}
       />
 
       {/* Main Dashboard Layout */}
@@ -136,7 +138,7 @@ const Dashboard = () => {
         {/* Right Column - Checklist */}
         {showChecklist && !isJessWorkspace && !isMobile && (
           <div className="xl:col-span-1" data-testid="dashboard-checklist-column">
-            <ChecklistSection />
+            <ChecklistSection onVisibilityChange={setChecklistAvailable} />
           </div>
         )}
       </div>

@@ -1,7 +1,11 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const ChecklistSection = () => {
+interface ChecklistSectionProps {
+  onVisibilityChange?: (isVisible: boolean) => void;
+}
+
+const ChecklistSection = ({ onVisibilityChange }: ChecklistSectionProps) => {
   const checklistRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(true);
 
@@ -32,7 +36,9 @@ const ChecklistSection = () => {
     const checkForChecklist = () => {
       if (checklistRef.current) {
         const hasChecklistPanel = checklistRef.current.querySelector('.productfruits--checklist-panel, .productfruits--checklist-panel-embedded');
-        setIsVisible(!!hasChecklistPanel);
+        const newVisibility = !!hasChecklistPanel;
+        setIsVisible(newVisibility);
+        onVisibilityChange?.(newVisibility);
       }
     };
 
@@ -52,7 +58,7 @@ const ChecklistSection = () => {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [onVisibilityChange]);
 
   if (!isVisible) {
     return null;
