@@ -1,8 +1,9 @@
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const ChecklistSection = () => {
   const checklistRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const injectChecklist = () => {
@@ -26,6 +27,36 @@ const ChecklistSection = () => {
       return () => clearTimeout(timer);
     }
   }, []);
+
+  useEffect(() => {
+    const checkForChecklist = () => {
+      if (checklistRef.current) {
+        const hasChecklistPanel = checklistRef.current.querySelector('.productfruits--checklist-panel, .productfruits--checklist-panel-embedded');
+        setIsVisible(!!hasChecklistPanel);
+      }
+    };
+
+    // Check immediately
+    checkForChecklist();
+
+    // Set up observer to monitor DOM changes
+    const observer = new MutationObserver(checkForChecklist);
+    
+    if (checklistRef.current) {
+      observer.observe(checklistRef.current, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class']
+      });
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <div 
