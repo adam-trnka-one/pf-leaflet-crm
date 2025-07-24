@@ -1,24 +1,20 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const ChecklistSection = () => {
+interface ChecklistSectionProps {
+  onVisibilityChange?: (isVisible: boolean) => void;
+}
+
+const ChecklistSection = ({ onVisibilityChange }: ChecklistSectionProps) => {
   const checklistRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const checkForEmbeddedClass = () => {
-      const hasEmbeddedClass = document.querySelector('.productfruits--checklist-panel-embedded');
-      setIsVisible(!!hasEmbeddedClass);
-    };
-
     const injectChecklist = () => {
       if (checklistRef.current && window.productFruits?.api?.checklists) {
         const checklistId = 8950;
         try {
           window.productFruits.api.checklists.injectToElement(checklistId, checklistRef.current);
           console.log('ProductFruits checklist injected with ID:', checklistId);
-          // Check for embedded class after injection
-          setTimeout(checkForEmbeddedClass, 100);
         } catch (error) {
           console.error('Error injecting ProductFruits checklist:', error);
         }
@@ -33,22 +29,51 @@ const ChecklistSection = () => {
       const timer = setTimeout(injectChecklist, 1000);
       return () => clearTimeout(timer);
     }
-
-    // Set up observer to watch for class changes
-    const observer = new MutationObserver(checkForEmbeddedClass);
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['class']
-    });
-
-    return () => observer.disconnect();
   }, []);
 
-  if (!isVisible) {
-    return null;
-  }
+  useEffect(() => {
+    let hasDetectedChecklist = false;
+
+    const checkForSpecificClasses = () => {
+      if (checklistRef.current) {
+        const hasTargetClasses = checklistRef.current.querySelector('.productfruits--checklist-panel.productfruits--checklist-panel-embedded') ||
+                                 (checklistRef.current.querySelector('.productfruits--checklist-panel') && 
+                                  checklistRef.current.querySelector('.productfruits--checklist-panel-embedded'));
+        
+        // Only notify of availability, don't keep checking for removal
+        if (hasTargetClasses && !hasDetectedChecklist) {
+          hasDetectedChecklist = true;
+          onVisibilityChange?.(true);
+        } else if (!hasTargetClasses && !hasDetectedChecklist) {
+          onVisibilityChange?.(false);
+        }
+      }
+    };
+
+    // Initial check after delay to allow injection
+    const timer = setTimeout(checkForSpecificClasses, 2000);
+    
+    // Only observe for initial detection, not continuous monitoring
+    const observer = new MutationObserver((mutations) => {
+      // Only check if we haven't detected the checklist yet
+      if (!hasDetectedChecklist) {
+        // Debounce the check to avoid too many calls
+        setTimeout(checkForSpecificClasses, 500);
+      }
+    });
+    
+    if (checklistRef.current) {
+      observer.observe(checklistRef.current, {
+        childList: true,
+        subtree: true
+      });
+    }
+
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, [onVisibilityChange]);
 
   return (
     <div 
