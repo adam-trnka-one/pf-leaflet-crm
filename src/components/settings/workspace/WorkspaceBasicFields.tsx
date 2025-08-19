@@ -17,7 +17,7 @@ interface WorkspaceBasicFieldsProps {
 
 const workspaceOptions = [
   {
-    name: "Leaflet CRM - Jess",
+    name: "Leaflet CRM - Elvin AI",
     code: "KFRC3cd1dM48s0p9",
     value: "jess",
     isDefault: true
