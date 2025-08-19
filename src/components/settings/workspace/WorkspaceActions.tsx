@@ -68,12 +68,10 @@ export const WorkspaceActions = ({
       await handleInitiateProductFruits();
       console.log('handleInitiateProductFruits completed');
       
-      // Add a small delay to show the loading state
-      console.log('Adding delay...');
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      console.log('Delay completed, navigating to dashboard...');
-      
-      navigate('/dashboard');
+    // Add a small delay to show the loading state
+    console.log('Adding delay...');
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log('Delay completed, staying on current page...');
     } catch (error) {
       console.error('Error initiating ProductFruits:', error);
     } finally {
