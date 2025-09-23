@@ -74,15 +74,11 @@ export const useProductFruits = () => {
     const environment = dataToUse.productFruitsEnvironment || 'https://app.productfruits.com';
     
     // Remove existing ProductFruits scripts if they exist
-    const existingInitScript = document.querySelector('script[data-productfruits-init]');
-    if (existingInitScript) {
-      existingInitScript.remove();
-    }
+    const existingInitScripts = document.querySelectorAll('script[data-productfruits-init]');
+    existingInitScripts.forEach(script => script.remove());
     
-    const existingMainScript = document.querySelector('script[src*="productfruits.com"]');
-    if (existingMainScript) {
-      existingMainScript.remove();
-    }
+    const existingMainScripts = document.querySelectorAll('script[src*="productfruits.com"], script[src*="pf.dev"]');
+    existingMainScripts.forEach(script => script.remove());
 
     // Clear existing ProductFruits global variables
     if (window.$productFruits) {
