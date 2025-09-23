@@ -96,7 +96,7 @@ export const useProductFruits = () => {
     const mainScript = document.createElement('script');
     mainScript.type = 'text/javascript';
     mainScript.async = true;
-    mainScript.src = `${environment}/static/script.js`;
+    mainScript.src = `${environment}/static/script.js?c=${dataToUse.workspaceCode}`;
     
     mainScript.onload = () => {
       // Initialize ProductFruits after the main script loads
