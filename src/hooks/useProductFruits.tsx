@@ -1,13 +1,11 @@
 
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 const STORAGE_KEY = 'leaflet-workspace-data';
 
 export const useProductFruits = () => {
   const location = useLocation();
-  const { currentLanguage } = useLanguage();
   const initializedWorkspaceCode = useRef<string>('');
   const hasInitialized = useRef<boolean>(false);
 
@@ -32,12 +30,7 @@ export const useProductFruits = () => {
     };
   }, []);
 
-  useEffect(() => {
-    // Re-initialize when language changes
-    if (hasInitialized.current && location.pathname.startsWith('/dashboard')) {
-      initializeFromStorage();
-    }
-  }, [currentLanguage.code]);
+  // Remove the language-dependent useEffect for now
 
   const initializeFromStorage = () => {
     try {
