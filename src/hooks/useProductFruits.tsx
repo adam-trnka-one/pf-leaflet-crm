@@ -1,11 +1,13 @@
 
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const STORAGE_KEY = 'leaflet-workspace-data';
 
 export const useProductFruits = () => {
   const location = useLocation();
+  const { currentLanguage } = useLanguage();
   const initializedWorkspaceCode = useRef<string>('');
   const hasInitialized = useRef<boolean>(false);
 
@@ -15,6 +17,27 @@ export const useProductFruits = () => {
       initializeFromStorage();
     }
   }, [location.pathname]);
+
+  useEffect(() => {
+    // Listen for language changes and re-initialize ProductFruits
+    const handleLanguageChange = (event: CustomEvent) => {
+      if (hasInitialized.current) {
+        initializeFromStorage();
+      }
+    };
+
+    window.addEventListener('languageChanged', handleLanguageChange as EventListener);
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange as EventListener);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Re-initialize when language changes
+    if (hasInitialized.current && location.pathname.startsWith('/dashboard')) {
+      initializeFromStorage();
+    }
+  }, [currentLanguage.code]);
 
   const initializeFromStorage = () => {
     try {
@@ -128,9 +151,12 @@ export const useProductFruits = () => {
     script.type = 'text/javascript';
     script.setAttribute('data-productfruits-init', 'true');
     
+    // Get current language code
+    const languageCode = localStorage.getItem('leaflet-language') || 'en';
+    
     script.innerHTML = `
       if (window.$productFruits) {
-        window.$productFruits.push(['init', '${dataToUse.workspaceCode}', 'en', ${JSON.stringify(initData)}]);
+        window.$productFruits.push(['init', '${dataToUse.workspaceCode}', '${languageCode}', ${JSON.stringify(initData)}]);
       }
     `;
 

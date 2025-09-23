@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search, Newspaper } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset, useSidebar } from "@/components/ui/sidebar";
 import { useProductFruits } from "@/hooks/useProductFruits";
+import { LanguageSelector } from "@/components/LanguageSelector";
 import { useRef, useEffect, useState } from "react";
 
 const navigation = [{
@@ -169,6 +170,7 @@ const LayoutContent = () => {
                   </span>
                 )}
               </Button>
+              <LanguageSelector />
               <Button 
                 variant="ghost" 
                 size="icon" 
