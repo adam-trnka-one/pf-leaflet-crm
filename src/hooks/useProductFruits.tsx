@@ -54,17 +54,52 @@ export const useProductFruits = () => {
       return;
     }
 
-    // Remove existing ProductFruits script if it exists
-    const existingScript = document.querySelector('script[data-productfruits-init]');
-    if (existingScript) {
-      existingScript.remove();
+    // Get the ProductFruits environment URL
+    const environment = dataToUse.productFruitsEnvironment || 'https://app.productfruits.com';
+    
+    // Remove existing ProductFruits scripts if they exist
+    const existingInitScript = document.querySelector('script[data-productfruits-init]');
+    if (existingInitScript) {
+      existingInitScript.remove();
+    }
+    
+    const existingMainScript = document.querySelector('script[src*="productfruits.com"]');
+    if (existingMainScript) {
+      existingMainScript.remove();
     }
 
-    // Create the initialization script
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.setAttribute('data-productfruits-init', 'true');
+    // Clear existing ProductFruits global variables
+    if (window.$productFruits) {
+      window.$productFruits = [];
+    }
+    if (window.productFruits) {
+      delete window.productFruits;
+    }
+
+    // Load the ProductFruits main script from the correct environment
+    const mainScript = document.createElement('script');
+    mainScript.type = 'text/javascript';
+    mainScript.async = true;
+    mainScript.src = `${environment}/static/script.js`;
     
+    mainScript.onload = () => {
+      // Initialize ProductFruits after the main script loads
+      setTimeout(() => {
+        initializeWithEnvironment(dataToUse, environment);
+      }, 100);
+    };
+    
+    document.head.appendChild(mainScript);
+  };
+
+  const initializeWithEnvironment = (dataToUse: any, environment: string) => {
+    // Ensure ProductFruits global is available
+    if (!window.$productFruits) {
+      window.$productFruits = [];
+      window.productFruits = window.productFruits || {};
+      window.productFruits.scrV = '2';
+    }
+
     // Build props object from custom properties
     const props: Record<string, string> = {};
     if (dataToUse.customProperties && Array.isArray(dataToUse.customProperties)) {
@@ -88,6 +123,11 @@ export const useProductFruits = () => {
       ...(Object.keys(props).length > 0 && { props })
     };
 
+    // Create the initialization script
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.setAttribute('data-productfruits-init', 'true');
+    
     script.innerHTML = `
       if (window.$productFruits) {
         window.$productFruits.push(['init', '${dataToUse.workspaceCode}', 'en', ${JSON.stringify(initData)}]);
@@ -96,6 +136,7 @@ export const useProductFruits = () => {
 
     document.head.appendChild(script);
     console.log('ProductFruits initialized with workspace code:', dataToUse.workspaceCode);
+    console.log('ProductFruits environment:', environment);
     console.log('Initialization data:', initData);
 
     // Update the tracking reference

@@ -16,7 +16,8 @@ export const useWorkspaceForm = () => {
     lastName: '',
     role: '',
     customProperties: [],
-    selectedWorkspace: 'jess'
+    selectedWorkspace: 'jess',
+    productFruitsEnvironment: 'https://app.productfruits.com'
   });
   const [customProperties, setCustomProperties] = useState<{ name: string; value: string }[]>([]);
 
@@ -30,26 +31,28 @@ export const useWorkspaceForm = () => {
       lastName: workspaceData.lastName,
       role: workspaceData.role,
       customProperties: workspaceData.customProperties,
-      selectedWorkspace: workspaceData.selectedWorkspace || 'jess'
+      selectedWorkspace: workspaceData.selectedWorkspace || 'jess',
+      productFruitsEnvironment: workspaceData.productFruitsEnvironment || 'https://app.productfruits.com'
     });
     setCustomProperties(workspaceData.customProperties);
   }, [workspaceData]);
 
   const handleSaveWorkspaceData = () => {
-    // For custom workspace, check if workspace code is provided
-    if (localWorkspaceData.selectedWorkspace === 'custom' && !localWorkspaceData.workspaceCode.trim()) {
+    // For custom or PR2 workspace, check if workspace code is provided
+    if ((localWorkspaceData.selectedWorkspace === 'custom' || localWorkspaceData.selectedWorkspace === 'pr2') && !localWorkspaceData.workspaceCode.trim()) {
+      const workspaceType = localWorkspaceData.selectedWorkspace === 'pr2' ? 'PR2' : 'Custom';
       toast({
         title: "Validation Error",
-        description: "Workspace Code is required for Custom workspace",
+        description: `Workspace Code is required for ${workspaceType} workspace`,
         variant: "destructive"
       });
       return;
     }
 
-    // Create validation data - only check workspace code if it's custom or if it has a value
+    // Create validation data - only check workspace code if it's custom or PR2 or if it has a value
     const validationData = {
       ...localWorkspaceData,
-      workspaceCode: localWorkspaceData.selectedWorkspace === 'custom' ? localWorkspaceData.workspaceCode : 'valid'
+      workspaceCode: (localWorkspaceData.selectedWorkspace === 'custom' || localWorkspaceData.selectedWorkspace === 'pr2') ? localWorkspaceData.workspaceCode : 'valid'
     };
 
     const validationErrors = validateRequiredFields(validationData);
@@ -139,7 +142,8 @@ export const useWorkspaceForm = () => {
       lastName: 'Doe',
       role: 'Admin',
       customProperties: [],
-      selectedWorkspace: 'jess'
+      selectedWorkspace: 'jess',
+      productFruitsEnvironment: 'https://app.productfruits.com'
     };
 
     // Update the context with default data

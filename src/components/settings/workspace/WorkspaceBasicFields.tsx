@@ -11,6 +11,7 @@ interface WorkspaceBasicFieldsProps {
     lastName: string;
     role: string;
     selectedWorkspace?: string;
+    productFruitsEnvironment?: string;
   };
   setLocalWorkspaceData: (updater: (prev: any) => any) => void;
 }
@@ -20,18 +21,28 @@ const workspaceOptions = [
     name: "Leaflet CRM - Elvin AI",
     code: "KFRC3cd1dM48s0p9",
     value: "jess",
+    environment: "https://app.productfruits.com",
     isDefault: true
   },
   {
     name: "Leaflet CRM - Static PF",
     code: "OxISa0He3RgK0P8q",
     value: "static",
+    environment: "https://app.productfruits.com",
+    isDefault: false
+  },
+  {
+    name: "Leaflet CRM - PR2",
+    code: "",
+    value: "pr2",
+    environment: "https://my-pr2.ohio.pf.dev",
     isDefault: false
   },
   {
     name: "Custom",
     code: "",
     value: "custom",
+    environment: "https://app.productfruits.com",
     isDefault: false
   }
 ];
@@ -39,6 +50,8 @@ const workspaceOptions = [
 export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData }: WorkspaceBasicFieldsProps) => {
   const selectedWorkspace = localWorkspaceData.selectedWorkspace || "jess";
   const isCustomWorkspace = selectedWorkspace === "custom";
+  const isPR2Workspace = selectedWorkspace === "pr2";
+  const showWorkspaceCodeInput = isCustomWorkspace || isPR2Workspace;
 
   const handleWorkspaceChange = (value: string) => {
     const selectedOption = workspaceOptions.find(option => option.value === value);
@@ -46,7 +59,8 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
       setLocalWorkspaceData(prev => ({
         ...prev,
         selectedWorkspace: value,
-        workspaceCode: selectedOption.code
+        workspaceCode: selectedOption.code,
+        productFruitsEnvironment: selectedOption.environment
       }));
     }
   };
@@ -71,20 +85,23 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
         </Select>
       </div>
 
-      {isCustomWorkspace && (
+      {showWorkspaceCodeInput && (
         <div data-testid="workspace-code-field">
           <Label htmlFor="workspaceCode" className="text-sm font-medium text-slate-700" data-testid="workspace-code-label">
-            Workspace Code
+            Workspace Code {isPR2Workspace && <span className="text-blue-600">(PR2 Environment)</span>}
           </Label>
           <Input 
             id="workspaceCode" 
-            placeholder="Enter your workspace code"
+            placeholder={isPR2Workspace ? "Enter your PR2 workspace code" : "Enter your workspace code"}
             className={`mt-1 ${!localWorkspaceData.workspaceCode.trim() ? 'border-red-300 focus-visible:border-red-500' : ''}`}
             value={localWorkspaceData.workspaceCode}
             onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, workspaceCode: e.target.value }))}
             data-testid="workspace-code-input"
           />
-          <p className="text-xs text-slate-500 mt-1" data-testid="workspace-code-counter">{localWorkspaceData.workspaceCode.length}/40 characters</p>
+          <p className="text-xs text-slate-500 mt-1" data-testid="workspace-code-counter">
+            {localWorkspaceData.workspaceCode.length}/40 characters
+            {isPR2Workspace && <span className="ml-2 text-blue-600">Environment: {localWorkspaceData.productFruitsEnvironment}</span>}
+          </p>
         </div>
       )}
 

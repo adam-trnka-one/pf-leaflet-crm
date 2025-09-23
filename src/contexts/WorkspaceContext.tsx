@@ -10,6 +10,7 @@ interface WorkspaceData {
   role: string;
   customProperties: { name: string; value: string }[];
   selectedWorkspace?: string;
+  productFruitsEnvironment?: string;
 }
 
 interface WorkspaceContextType {
@@ -29,7 +30,8 @@ const defaultWorkspaceData: WorkspaceData = {
   lastName: 'Doe',
   role: 'Admin',
   customProperties: [],
-  selectedWorkspace: 'jess'
+  selectedWorkspace: 'jess',
+  productFruitsEnvironment: 'https://app.productfruits.com'
 };
 
 export const useWorkspace = () => {
