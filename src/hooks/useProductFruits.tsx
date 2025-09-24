@@ -34,8 +34,8 @@ export const useProductFruits = () => {
   };
 
   const getScriptUrl = (selectedWorkspace?: string) => {
-    if (selectedWorkspace === 'pr2') {
-      return 'https://my-pr2.ohio.pf.dev/static/script.js';
+    if (selectedWorkspace?.startsWith('pr')) {
+      return `https://my-${selectedWorkspace}.ohio.pf.dev/static/script.js`;
     }
     return 'https://app.productfruits.com/static/script.js';
   };

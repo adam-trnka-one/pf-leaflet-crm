@@ -36,9 +36,10 @@ export const useWorkspaceForm = () => {
   }, [workspaceData]);
 
   const handleSaveWorkspaceData = () => {
-    // For custom or PR2 workspace, check if workspace code is provided
-    if ((localWorkspaceData.selectedWorkspace === 'custom' || localWorkspaceData.selectedWorkspace === 'pr2') && !localWorkspaceData.workspaceCode.trim()) {
-      const workspaceType = localWorkspaceData.selectedWorkspace === 'pr2' ? 'PR2' : 'Custom';
+    // For custom or PR workspaces, check if workspace code is provided
+    const requiresWorkspaceCode = localWorkspaceData.selectedWorkspace === 'custom' || localWorkspaceData.selectedWorkspace?.startsWith('pr');
+    if (requiresWorkspaceCode && !localWorkspaceData.workspaceCode.trim()) {
+      const workspaceType = localWorkspaceData.selectedWorkspace === 'custom' ? 'Custom' : localWorkspaceData.selectedWorkspace?.toUpperCase();
       toast({
         title: "Validation Error",
         description: `Workspace Code is required for ${workspaceType} workspace`,
@@ -47,10 +48,10 @@ export const useWorkspaceForm = () => {
       return;
     }
 
-    // Create validation data - check workspace code for custom and PR2 workspaces
+    // Create validation data - check workspace code for custom and PR workspaces
     const validationData = {
       ...localWorkspaceData,
-      workspaceCode: (localWorkspaceData.selectedWorkspace === 'custom' || localWorkspaceData.selectedWorkspace === 'pr2') ? localWorkspaceData.workspaceCode : 'valid'
+      workspaceCode: requiresWorkspaceCode ? localWorkspaceData.workspaceCode : 'valid'
     };
 
     const validationErrors = validateRequiredFields(validationData);
