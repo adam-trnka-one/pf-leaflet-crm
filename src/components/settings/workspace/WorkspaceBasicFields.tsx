@@ -29,6 +29,12 @@ const workspaceOptions = [
     isDefault: false
   },
   {
+    name: "PR2",
+    code: "XEw0ntaGWU3LSXTx",
+    value: "pr2",
+    isDefault: false
+  },
+  {
     name: "Custom",
     code: "",
     value: "custom",

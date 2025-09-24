@@ -33,6 +33,13 @@ export const useProductFruits = () => {
     }
   };
 
+  const getScriptUrl = (selectedWorkspace?: string) => {
+    if (selectedWorkspace === 'pr2') {
+      return 'https://my-pr2.ohio.pf.dev/static/script.js';
+    }
+    return 'https://app.productfruits.com/static/script.js';
+  };
+
   const initializeProductFruits = (workspaceData?: any) => {
     let dataToUse = workspaceData;
     
@@ -54,11 +61,16 @@ export const useProductFruits = () => {
       return;
     }
 
-    // Remove existing ProductFruits script if it exists
-    const existingScript = document.querySelector('script[data-productfruits-init]');
-    if (existingScript) {
-      existingScript.remove();
-    }
+    // Remove existing ProductFruits scripts
+    const existingScripts = document.querySelectorAll('script[src*="productfruits"], script[src*="pf.dev"], script[data-productfruits-init]');
+    existingScripts.forEach(script => script.remove());
+
+    // Create and add the new main ProductFruits script with correct URL
+    const mainScript = document.createElement('script');
+    mainScript.async = true;
+    const scriptUrl = getScriptUrl(dataToUse.selectedWorkspace);
+    mainScript.src = `${scriptUrl}?c=${dataToUse.workspaceCode}`;
+    document.head.appendChild(mainScript);
 
     // Create the initialization script
     const script = document.createElement('script');
