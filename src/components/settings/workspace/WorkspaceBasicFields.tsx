@@ -29,33 +29,9 @@ const workspaceOptions = [
     isDefault: false
   },
   {
-    name: "PR1",
+    name: "DEV",
     code: "",
-    value: "pr1",
-    isDefault: false
-  },
-  {
-    name: "PR2",
-    code: "",
-    value: "pr2",
-    isDefault: false
-  },
-  {
-    name: "PR3",
-    code: "",
-    value: "pr3",
-    isDefault: false
-  },
-  {
-    name: "PR4",
-    code: "",
-    value: "pr4",
-    isDefault: false
-  },
-  {
-    name: "PR5",
-    code: "",
-    value: "pr5",
+    value: "dev",
     isDefault: false
   },
   {
@@ -66,20 +42,46 @@ const workspaceOptions = [
   }
 ];
 
+const devOptions = [
+  { name: "PR1", value: "pr1" },
+  { name: "PR2", value: "pr2" },
+  { name: "PR3", value: "pr3" },
+  { name: "PR4", value: "pr4" },
+  { name: "PR5", value: "pr5" }
+];
+
 export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData }: WorkspaceBasicFieldsProps) => {
   const selectedWorkspace = localWorkspaceData.selectedWorkspace || "jess";
   const isCustomWorkspace = selectedWorkspace === "custom";
+  const isDevWorkspace = selectedWorkspace === "dev";
   const isPRWorkspace = ["pr1", "pr2", "pr3", "pr4", "pr5"].includes(selectedWorkspace);
 
   const handleWorkspaceChange = (value: string) => {
-    const selectedOption = workspaceOptions.find(option => option.value === value);
-    if (selectedOption) {
+    if (value === "dev") {
+      // When DEV is selected, default to PR1
       setLocalWorkspaceData(prev => ({
         ...prev,
-        selectedWorkspace: value,
-        workspaceCode: selectedOption.code
+        selectedWorkspace: "pr1",
+        workspaceCode: ""
       }));
+    } else {
+      const selectedOption = workspaceOptions.find(option => option.value === value);
+      if (selectedOption) {
+        setLocalWorkspaceData(prev => ({
+          ...prev,
+          selectedWorkspace: value,
+          workspaceCode: selectedOption.code
+        }));
+      }
     }
+  };
+
+  const handleDevWorkspaceChange = (value: string) => {
+    setLocalWorkspaceData(prev => ({
+      ...prev,
+      selectedWorkspace: value,
+      workspaceCode: ""
+    }));
   };
 
   return (
@@ -88,7 +90,7 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
         <Label htmlFor="workspaceSelection" className="text-sm font-medium text-slate-700" data-testid="workspace-selection-label">
           Workspace <span className="text-red-500">*</span>
         </Label>
-        <Select value={selectedWorkspace} onValueChange={handleWorkspaceChange}>
+        <Select value={isPRWorkspace ? "dev" : selectedWorkspace} onValueChange={handleWorkspaceChange}>
           <SelectTrigger className="mt-1" data-testid="workspace-selection-trigger">
             <SelectValue placeholder="Select a workspace" />
           </SelectTrigger>
@@ -101,6 +103,26 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
           </SelectContent>
         </Select>
       </div>
+
+      {isPRWorkspace && (
+        <div data-testid="dev-environment-field">
+          <Label htmlFor="devEnvironment" className="text-sm font-medium text-slate-700" data-testid="dev-environment-label">
+            DEV Environment <span className="text-red-500">*</span>
+          </Label>
+          <Select value={selectedWorkspace} onValueChange={handleDevWorkspaceChange}>
+            <SelectTrigger className="mt-1" data-testid="dev-environment-trigger">
+              <SelectValue placeholder="Select DEV environment" />
+            </SelectTrigger>
+            <SelectContent data-testid="dev-environment-content">
+              {devOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value} data-testid={`dev-option-${option.value}`}>
+                  {option.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      )}
 
       {(isCustomWorkspace || isPRWorkspace) && (
         <div data-testid="workspace-code-field">
