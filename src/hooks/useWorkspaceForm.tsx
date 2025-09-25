@@ -16,7 +16,8 @@ export const useWorkspaceForm = () => {
     lastName: '',
     role: '',
     customProperties: [],
-    selectedWorkspace: 'jess'
+    selectedWorkspace: 'jess',
+    customUrl: ''
   });
   const [customProperties, setCustomProperties] = useState<{ name: string; value: string }[]>([]);
 
@@ -30,19 +31,30 @@ export const useWorkspaceForm = () => {
       lastName: workspaceData.lastName,
       role: workspaceData.role,
       customProperties: workspaceData.customProperties,
-      selectedWorkspace: workspaceData.selectedWorkspace || 'jess'
+      selectedWorkspace: workspaceData.selectedWorkspace || 'jess',
+      customUrl: workspaceData.customUrl || ''
     });
     setCustomProperties(workspaceData.customProperties);
   }, [workspaceData]);
 
   const handleSaveWorkspaceData = () => {
-    // For custom or PR workspaces, check if workspace code is provided
-    const requiresWorkspaceCode = localWorkspaceData.selectedWorkspace === 'custom' || localWorkspaceData.selectedWorkspace?.startsWith('pr');
+    // For custom, PR workspaces, or custom-dev, check if workspace code is provided
+    const requiresWorkspaceCode = localWorkspaceData.selectedWorkspace === 'custom' || localWorkspaceData.selectedWorkspace?.startsWith('pr') || localWorkspaceData.selectedWorkspace === 'custom-dev';
     if (requiresWorkspaceCode && !localWorkspaceData.workspaceCode.trim()) {
       const workspaceType = localWorkspaceData.selectedWorkspace === 'custom' ? 'Custom' : localWorkspaceData.selectedWorkspace?.toUpperCase();
       toast({
         title: "Validation Error",
         description: `Workspace Code is required for ${workspaceType} workspace`,
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // For custom-dev workspace, check if URL is provided
+    if (localWorkspaceData.selectedWorkspace === 'custom-dev' && !localWorkspaceData.customUrl?.trim()) {
+      toast({
+        title: "Validation Error",
+        description: "URL is required for Custom DEV workspace",
         variant: "destructive"
       });
       return;

@@ -10,6 +10,7 @@ interface WorkspaceData {
   role: string;
   customProperties: { name: string; value: string }[];
   selectedWorkspace?: string;
+  customUrl?: string;
 }
 
 interface WorkspaceContextType {

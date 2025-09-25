@@ -33,7 +33,12 @@ export const useProductFruits = () => {
     }
   };
 
-  const getScriptUrl = (selectedWorkspace?: string) => {
+  const getScriptUrl = (selectedWorkspace?: string, customUrl?: string) => {
+    if (selectedWorkspace === 'custom-dev' && customUrl) {
+      // Extract domain from custom URL and construct script path
+      const url = customUrl.endsWith('/') ? customUrl.slice(0, -1) : customUrl;
+      return `${url}/static/script.js`;
+    }
     if (selectedWorkspace?.startsWith('pr')) {
       return `https://my-${selectedWorkspace}.ohio.pf.dev/static/script.js`;
     }
@@ -74,7 +79,7 @@ export const useProductFruits = () => {
     // Create and add the new main ProductFruits script with correct URL
     const mainScript = document.createElement('script');
     mainScript.async = true;
-    const scriptUrl = getScriptUrl(dataToUse.selectedWorkspace);
+    const scriptUrl = getScriptUrl(dataToUse.selectedWorkspace, dataToUse.customUrl);
     mainScript.src = `${scriptUrl}?c=${dataToUse.workspaceCode}`;
     document.head.appendChild(mainScript);
 

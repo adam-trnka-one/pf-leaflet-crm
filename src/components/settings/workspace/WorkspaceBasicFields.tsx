@@ -11,6 +11,7 @@ interface WorkspaceBasicFieldsProps {
     lastName: string;
     role: string;
     selectedWorkspace?: string;
+    customUrl?: string;
   };
   setLocalWorkspaceData: (updater: (prev: any) => any) => void;
 }
@@ -47,7 +48,8 @@ const devOptions = [
   { name: "PR2", value: "pr2" },
   { name: "PR3", value: "pr3" },
   { name: "PR4", value: "pr4" },
-  { name: "PR5", value: "pr5" }
+  { name: "PR5", value: "pr5" },
+  { name: "Custom", value: "custom-dev" }
 ];
 
 export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData }: WorkspaceBasicFieldsProps) => {
@@ -55,6 +57,7 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
   const isCustomWorkspace = selectedWorkspace === "custom";
   const isDevWorkspace = selectedWorkspace === "dev";
   const isPRWorkspace = ["pr1", "pr2", "pr3", "pr4", "pr5"].includes(selectedWorkspace);
+  const isCustomDevWorkspace = selectedWorkspace === "custom-dev";
 
   const handleWorkspaceChange = (value: string) => {
     if (value === "dev") {
@@ -90,7 +93,7 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
         <Label htmlFor="workspaceSelection" className="text-sm font-medium text-slate-700" data-testid="workspace-selection-label">
           Workspace <span className="text-red-500">*</span>
         </Label>
-        <Select value={isPRWorkspace ? "dev" : selectedWorkspace} onValueChange={handleWorkspaceChange}>
+        <Select value={(isPRWorkspace || isCustomDevWorkspace) ? "dev" : selectedWorkspace} onValueChange={handleWorkspaceChange}>
           <SelectTrigger className="mt-1" data-testid="workspace-selection-trigger">
             <SelectValue placeholder="Select a workspace" />
           </SelectTrigger>
@@ -104,7 +107,7 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
         </Select>
       </div>
 
-      {isPRWorkspace && (
+      {(isPRWorkspace || isCustomDevWorkspace) && (
         <div data-testid="dev-environment-field">
           <Label htmlFor="devEnvironment" className="text-sm font-medium text-slate-700" data-testid="dev-environment-label">
             DEV Environment <span className="text-red-500">*</span>
@@ -124,15 +127,31 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
         </div>
       )}
 
-      {(isCustomWorkspace || isPRWorkspace) && (
+      {isCustomDevWorkspace && (
+        <div data-testid="custom-url-field">
+          <Label htmlFor="customUrl" className="text-sm font-medium text-slate-700" data-testid="custom-url-label">
+            URL <span className="text-red-500">*</span>
+          </Label>
+          <Input 
+            id="customUrl" 
+            placeholder="Enter custom URL (e.g. https://my-domain.com)"
+            className={`mt-1 ${!localWorkspaceData.customUrl?.trim() ? 'border-red-300 focus-visible:border-red-500' : ''}`}
+            value={localWorkspaceData.customUrl || ''}
+            onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, customUrl: e.target.value }))}
+            data-testid="custom-url-input"
+          />
+        </div>
+      )}
+
+      {(isCustomWorkspace || isPRWorkspace || isCustomDevWorkspace) && (
         <div data-testid="workspace-code-field">
           <Label htmlFor="workspaceCode" className="text-sm font-medium text-slate-700" data-testid="workspace-code-label">
-            Workspace Code {isPRWorkspace && <span className="text-red-500">*</span>}
+            Workspace Code {(isPRWorkspace || isCustomDevWorkspace) && <span className="text-red-500">*</span>}
           </Label>
           <Input 
             id="workspaceCode" 
-            placeholder={isPRWorkspace ? `Enter your ${selectedWorkspace.toUpperCase()} workspace code` : "Enter your workspace code"}
-            className={`mt-1 ${!localWorkspaceData.workspaceCode.trim() && isPRWorkspace ? 'border-red-300 focus-visible:border-red-500' : ''}`}
+            placeholder={isPRWorkspace ? `Enter your ${selectedWorkspace.toUpperCase()} workspace code` : isCustomDevWorkspace ? "Enter your workspace code" : "Enter your workspace code"}
+            className={`mt-1 ${!localWorkspaceData.workspaceCode.trim() && (isPRWorkspace || isCustomDevWorkspace) ? 'border-red-300 focus-visible:border-red-500' : ''}`}
             value={localWorkspaceData.workspaceCode}
             onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, workspaceCode: e.target.value }))}
             data-testid="workspace-code-input"
