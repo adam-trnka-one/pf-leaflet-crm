@@ -67,7 +67,7 @@ export const useProductFruits = () => {
     }
 
     // Remove existing ProductFruits scripts including the static one from index.html
-    const existingScripts = document.querySelectorAll('script[src*="productfruits"], script[src*="pf.dev"], script[data-productfruits-init]');
+    const existingScripts = document.querySelectorAll('script[src*="productfruits"], script[src*="pf.dev"], script[src*="/static/script.js"], script[data-productfruits-init]');
     existingScripts.forEach(script => script.remove());
     
     // Also remove the static ProductFruits script from index.html if it exists
