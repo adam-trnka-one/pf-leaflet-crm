@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
+import { useToast } from "@/hooks/use-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { updateWorkspaceData } = useWorkspace();
+  const { updateWorkspaceData, workspaceData } = useWorkspace();
+  const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +25,49 @@ const Login = () => {
     
     // Navigate to dashboard
     navigate("/dashboard");
+  };
+
+  const handleNewUser = () => {
+    // Generate random user data
+    const randomId = Math.floor(Math.random() * 10000);
+    const roles = ["Admin", "Manager", "Sales Rep", "Support"];
+    const randomRole = roles[Math.floor(Math.random() * roles.length)];
+    
+    const newUser = {
+      email: `user${randomId}@demo.com`,
+      username: `user${randomId}@demo.com`,
+      firstName: `User`,
+      lastName: `${randomId}`,
+      role: randomRole
+    };
+    
+    // Save to workspace context
+    updateWorkspaceData(newUser);
+    
+    toast({
+      title: "New user created",
+      description: `Logged in as ${newUser.email}`,
+    });
+    
+    // Navigate to dashboard
+    navigate("/dashboard");
+  };
+
+  const handleLastUsedUser = () => {
+    // Check if there's data in workspace context
+    if (workspaceData.email) {
+      toast({
+        title: "Logged in",
+        description: `Welcome back, ${workspaceData.email}`,
+      });
+      navigate("/dashboard");
+    } else {
+      toast({
+        title: "No previous user",
+        description: "Please sign in or create a new user",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -73,6 +118,36 @@ const Login = () => {
               Sign in
             </Button>
           </form>
+
+          {/* Quick Login Options */}
+          <div className="mt-6 space-y-3">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t border-gray-200" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-white px-2 text-gray-400">Or continue with</span>
+              </div>
+            </div>
+
+            <Button 
+              type="button"
+              onClick={handleNewUser}
+              variant="outline"
+              className="w-full h-12 border-2 border-gray-200 hover:border-leaflet-green hover:bg-leaflet-green/5 font-medium rounded-md"
+            >
+              New user
+            </Button>
+
+            <Button 
+              type="button"
+              onClick={handleLastUsedUser}
+              variant="outline"
+              className="w-full h-12 border-2 border-gray-200 hover:border-leaflet-green hover:bg-leaflet-green/5 font-medium rounded-md"
+            >
+              Last used user
+            </Button>
+          </div>
 
           {/* Demo Info */}
           <div className="mt-8">
