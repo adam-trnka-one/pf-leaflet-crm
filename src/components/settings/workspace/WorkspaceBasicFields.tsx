@@ -58,6 +58,9 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
   const isDevWorkspace = selectedWorkspace === "dev";
   const isPRWorkspace = ["pr1", "pr2", "pr3", "pr4", "pr5"].includes(selectedWorkspace);
   const isCustomDevWorkspace = selectedWorkspace === "custom-dev";
+  
+  // Check if user email has @productfruits.com domain
+  const isProductFruitsUser = localWorkspaceData.email?.endsWith("@productfruits.com");
 
   const handleWorkspaceChange = (value: string) => {
     if (value === "dev") {
@@ -98,11 +101,13 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
             <SelectValue placeholder="Select a workspace" />
           </SelectTrigger>
           <SelectContent data-testid="workspace-selection-content">
-            {workspaceOptions.map((option) => (
-              <SelectItem key={option.value} value={option.value} data-testid={`workspace-option-${option.value}`}>
-                {option.name} {option.isDefault && "(Default)"}
-              </SelectItem>
-            ))}
+            {workspaceOptions
+              .filter(option => option.value !== "dev" || isProductFruitsUser)
+              .map((option) => (
+                <SelectItem key={option.value} value={option.value} data-testid={`workspace-option-${option.value}`}>
+                  {option.name} {option.isDefault && "(Default)"}
+                </SelectItem>
+              ))}
           </SelectContent>
         </Select>
       </div>
