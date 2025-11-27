@@ -39,6 +39,9 @@ const Dashboard = () => {
     script.async = true;
     script.id = "crisp-script";
     document.getElementsByTagName("head")[0].appendChild(script);
+    
+    // Hide chat widget by default
+    window.$crisp.push(["do", "chat:hide"]);
 
     return () => {
       // Cleanup on unmount
