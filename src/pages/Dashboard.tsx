@@ -8,6 +8,14 @@ import { useDashboardData } from "@/hooks/useDashboardData";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useState, useEffect } from "react";
+
+// Initialize Crisp chat
+declare global {
+  interface Window {
+    $crisp: any[];
+    CRISP_WEBSITE_ID: string;
+  }
+}
 import { 
   calculatePipelineData, 
   calculateTotalRevenue, 
@@ -20,6 +28,26 @@ const Dashboard = () => {
   const { workspaceData } = useWorkspace();
   const isMobile = useIsMobile();
   const isJessWorkspace = workspaceData.selectedWorkspace === 'jess';
+
+  // Initialize Crisp chat
+  useEffect(() => {
+    window.$crisp = [];
+    window.CRISP_WEBSITE_ID = "72291954-9726-47ee-980c-09eff435c8d7";
+    
+    const script = document.createElement("script");
+    script.src = "https://client.crisp.chat/l.js";
+    script.async = true;
+    script.id = "crisp-script";
+    document.getElementsByTagName("head")[0].appendChild(script);
+
+    return () => {
+      // Cleanup on unmount
+      const existingScript = document.getElementById("crisp-script");
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, []);
   
   const [showChecklist, setShowChecklist] = useState(() => {
     // If Jess workspace, always hide checklist
