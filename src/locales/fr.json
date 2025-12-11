@@ -44,6 +44,117 @@
   "common": {
     "search": "Rechercher",
     "signOut": "Se déconnecter",
-    "language": "Langue"
+    "language": "Langue",
+    "new": "Nouveau",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "loading": "Chargement...",
+    "noResults": "Aucun résultat",
+    "owner": "Propriétaire",
+    "created": "Créé",
+    "industry": "Secteur",
+    "account": "Compte",
+    "contact": "Contact",
+    "type": "Type",
+    "status": "Statut",
+    "priority": "Priorité",
+    "completed": "Terminé",
+    "pending": "En attente",
+    "allStatuses": "Tous les statuts",
+    "allPriorities": "Toutes les priorités",
+    "filterByStatus": "Filtrer par statut",
+    "filterByPriority": "Filtrer par priorité"
+  },
+  "accounts": {
+    "title": "Comptes",
+    "subtitle": "Gérez vos comptes clients",
+    "newAccount": "Nouveau compte",
+    "searchPlaceholder": "Rechercher des comptes...",
+    "noAccountsFound": "Aucun compte trouvé correspondant à votre recherche.",
+    "customer": "Client",
+    "prospect": "Prospect",
+    "partner": "Partenaire",
+    "competitor": "Concurrent"
+  },
+  "contacts": {
+    "title": "Contacts",
+    "subtitle": "Gérez vos relations de contact",
+    "newContact": "Nouveau contact",
+    "searchPlaceholder": "Rechercher des contacts...",
+    "noContactsFound": "Aucun contact trouvé correspondant à votre recherche."
+  },
+  "leads": {
+    "title": "Prospects",
+    "subtitle": "Gérez vos prospects commerciaux",
+    "newLead": "Nouveau prospect",
+    "convertLead": "Convertir le prospect",
+    "noLeadsFound": "Aucun prospect trouvé.",
+    "source": "Source",
+    "leadDeleted": "Prospect supprimé",
+    "leadDeletedDesc": "Le prospect a été supprimé avec succès."
+  },
+  "opportunities": {
+    "title": "Opportunités",
+    "subtitle": "Gérez votre pipeline de ventes",
+    "newOpportunity": "Nouvelle opportunité",
+    "noOpportunities": "Aucune opportunité à cette étape",
+    "close": "Clôture",
+    "stages": {
+      "prospecting": "Prospection",
+      "qualification": "Qualification",
+      "proposal": "Proposition",
+      "negotiation": "Négociation",
+      "demo": "Démo",
+      "followUp": "Suivi",
+      "closedWon": "Conclu gagné",
+      "closedLost": "Conclu perdu"
+    }
+  },
+  "activities": {
+    "title": "Activités",
+    "subtitle": "Suivez et gérez vos activités",
+    "newActivity": "Nouvelle activité",
+    "activityDeleted": "Activité supprimée",
+    "activityDeletedDesc": "L'activité a été supprimée avec succès.",
+    "types": {
+      "call": "Appel",
+      "email": "E-mail",
+      "meeting": "Réunion"
+    }
+  },
+  "cases": {
+    "title": "Cas",
+    "subtitle": "Gérez les cas de support client",
+    "newCase": "Nouveau cas",
+    "noCasesFound": "Aucun cas trouvé correspondant à vos filtres.",
+    "caseDeleted": "Cas supprimé",
+    "caseDeletedDesc": "Le cas a été supprimé avec succès.",
+    "statuses": {
+      "new": "Nouveau",
+      "inProgress": "En cours",
+      "pending": "En attente",
+      "resolved": "Résolu",
+      "closed": "Fermé"
+    },
+    "priorities": {
+      "critical": "Critique",
+      "high": "Haute",
+      "medium": "Moyenne",
+      "low": "Basse"
+    }
+  },
+  "settings": {
+    "title": "Paramètres",
+    "subtitle": "Gérez votre compte et les paramètres de l'application",
+    "tabs": {
+      "profile": "Profil",
+      "workspace": "Espace de travail",
+      "api": "Clés API",
+      "permissions": "Permissions",
+      "integrations": "Intégrations",
+      "notifications": "Notifications"
+    }
   }
 }
