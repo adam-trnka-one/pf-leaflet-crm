@@ -5,6 +5,8 @@ import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset, useSidebar } from "@/components/ui/sidebar";
 import { useProductFruits } from "@/hooks/useProductFruits";
 import { useRef, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { LanguageSelector } from "@/components/LanguageSelector";
 
 const navigation = [{
   name: "Dashboard",
@@ -58,6 +60,7 @@ const LayoutContent = () => {
   const { isMobile, setOpenMobile } = useSidebar();
   const newsfeedRef = useRef<HTMLButtonElement>(null);
   const [unreadCount, setUnreadCount] = useState(0);
+  const { t } = useTranslation();
   
   const isActive = (href: string) => {
     if (href === "/dashboard") return location.pathname === "/dashboard";
@@ -121,11 +124,12 @@ const LayoutContent = () => {
                 <SidebarMenu className="space-y-1">
                   {navigation.map(item => {
                   const Icon = item.icon;
+                  const translationKey = `nav.${item.name.toLowerCase()}`;
                   return <SidebarMenuItem key={item.name}>
-                        <SidebarMenuButton asChild isActive={isActive(item.href)} tooltip={item.name} className="h-11 px-4 rounded-lg text-sm font-medium">
+                        <SidebarMenuButton asChild isActive={isActive(item.href)} tooltip={t(translationKey)} className="h-11 px-4 rounded-lg text-sm font-medium">
                           <Link to={item.href} onClick={handleNavClick}>
                             <Icon className="h-5 w-5" />
-                            <span>{item.name}</span>
+                            <span>{t(translationKey)}</span>
                           </Link>
                         </SidebarMenuButton>
                       </SidebarMenuItem>;
@@ -150,9 +154,10 @@ const LayoutContent = () => {
             
             <div className="flex items-center gap-4 flex-1 max-w-2xl">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
-                <Input placeholder="Search accounts, contacts, opportunities..." className="pl-10 bg-slate-50 border-slate-200 focus:bg-white" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 rtl:left-auto rtl:right-3" />
+                <Input placeholder={t('common.search')} className="pl-10 rtl:pl-3 rtl:pr-10 bg-slate-50 border-slate-200 focus:bg-white" />
               </div>
+              <LanguageSelector />
               <Button 
                 ref={newsfeedRef}
                 variant="ghost" 
@@ -174,7 +179,7 @@ const LayoutContent = () => {
                 size="icon" 
                 onClick={handleSignOut}
                 className="h-8 w-8"
-                title="Sign Out"
+                title={t('common.signOut')}
               >
                 <LogOut className="h-4 w-4" />
               </Button>

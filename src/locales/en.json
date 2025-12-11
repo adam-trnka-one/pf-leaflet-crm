@@ -1,0 +1,49 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back",
+    "overview": "Here's an overview of your business"
+  },
+  "metrics": {
+    "totalRevenue": "Total Revenue",
+    "totalAccounts": "Total Accounts",
+    "totalContacts": "Total Contacts",
+    "openOpportunities": "Open Opportunities"
+  },
+  "tasks": {
+    "title": "Tasks",
+    "total": "Total Tasks",
+    "completed": "Completed",
+    "overdue": "Overdue"
+  },
+  "charts": {
+    "salesPipeline": "Sales Pipeline",
+    "monthlyRevenue": "Monthly Revenue",
+    "stage": "Stage",
+    "count": "Count",
+    "revenue": "Revenue"
+  },
+  "recent": {
+    "activities": "Recent Activities",
+    "opportunities": "Recent Opportunities"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "accounts": "Accounts",
+    "contacts": "Contacts",
+    "leads": "Leads",
+    "opportunities": "Opportunities",
+    "activities": "Activities",
+    "cases": "Cases",
+    "quotes": "Quotes",
+    "products": "Products",
+    "users": "Users",
+    "settings": "Settings",
+    "help": "Help"
+  },
+  "common": {
+    "search": "Search",
+    "signOut": "Sign out",
+    "language": "Language"
+  }
+}

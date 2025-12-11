@@ -1,0 +1,49 @@
+{
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "welcome": "مرحباً بعودتك",
+    "overview": "إليك نظرة عامة على عملك"
+  },
+  "metrics": {
+    "totalRevenue": "إجمالي الإيرادات",
+    "totalAccounts": "إجمالي الحسابات",
+    "totalContacts": "إجمالي جهات الاتصال",
+    "openOpportunities": "الفرص المفتوحة"
+  },
+  "tasks": {
+    "title": "المهام",
+    "total": "إجمالي المهام",
+    "completed": "مكتملة",
+    "overdue": "متأخرة"
+  },
+  "charts": {
+    "salesPipeline": "خط أنابيب المبيعات",
+    "monthlyRevenue": "الإيرادات الشهرية",
+    "stage": "المرحلة",
+    "count": "العدد",
+    "revenue": "الإيرادات"
+  },
+  "recent": {
+    "activities": "الأنشطة الأخيرة",
+    "opportunities": "الفرص الأخيرة"
+  },
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "accounts": "الحسابات",
+    "contacts": "جهات الاتصال",
+    "leads": "العملاء المحتملين",
+    "opportunities": "الفرص",
+    "activities": "الأنشطة",
+    "cases": "الحالات",
+    "quotes": "عروض الأسعار",
+    "products": "المنتجات",
+    "users": "المستخدمون",
+    "settings": "الإعدادات",
+    "help": "المساعدة"
+  },
+  "common": {
+    "search": "بحث",
+    "signOut": "تسجيل الخروج",
+    "language": "اللغة"
+  }
+}

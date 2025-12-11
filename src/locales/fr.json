@@ -1,0 +1,49 @@
+{
+  "dashboard": {
+    "title": "Tableau de bord",
+    "welcome": "Bon retour",
+    "overview": "Voici un aperçu de votre entreprise"
+  },
+  "metrics": {
+    "totalRevenue": "Revenu total",
+    "totalAccounts": "Total des comptes",
+    "totalContacts": "Total des contacts",
+    "openOpportunities": "Opportunités ouvertes"
+  },
+  "tasks": {
+    "title": "Tâches",
+    "total": "Total des tâches",
+    "completed": "Terminées",
+    "overdue": "En retard"
+  },
+  "charts": {
+    "salesPipeline": "Pipeline de ventes",
+    "monthlyRevenue": "Revenu mensuel",
+    "stage": "Étape",
+    "count": "Nombre",
+    "revenue": "Revenu"
+  },
+  "recent": {
+    "activities": "Activités récentes",
+    "opportunities": "Opportunités récentes"
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "accounts": "Comptes",
+    "contacts": "Contacts",
+    "leads": "Prospects",
+    "opportunities": "Opportunités",
+    "activities": "Activités",
+    "cases": "Cas",
+    "quotes": "Devis",
+    "products": "Produits",
+    "users": "Utilisateurs",
+    "settings": "Paramètres",
+    "help": "Aide"
+  },
+  "common": {
+    "search": "Rechercher",
+    "signOut": "Se déconnecter",
+    "language": "Langue"
+  }
+}
