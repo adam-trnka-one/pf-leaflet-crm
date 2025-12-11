@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Dialog,
   DialogContent,
@@ -33,6 +34,7 @@ interface EditContactModalProps {
 }
 
 const EditContactModal = ({ open, onOpenChange, contact, onContactUpdated }: EditContactModalProps) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -70,32 +72,24 @@ const EditContactModal = ({ open, onOpenChange, contact, onContactUpdated }: Edi
       accountName: formData.accountName,
     };
 
-    // Get existing contacts from localStorage
     const existingStoredContacts = JSON.parse(localStorage.getItem('crmContacts') || '[]');
-    
-    // Get sample data contacts
     const sampleData = getSampleData();
     const sampleContacts = sampleData ? sampleData.contacts : [];
-    
-    // Use stored contacts if they exist, otherwise use sample contacts
     const allContacts = existingStoredContacts.length > 0 ? existingStoredContacts : sampleContacts;
     
     const updatedContacts = allContacts.map((c: Contact) => 
       c.id === contact.id ? updatedContact : c
     );
     
-    // Store back to localStorage
     localStorage.setItem('crmContacts', JSON.stringify(updatedContacts));
     
     toast({
-      title: "Contact updated",
-      description: "The contact has been successfully updated."
+      title: t('common.contactUpdated'),
+      description: t('common.contactUpdatedDesc')
     });
     
-    // Reset form and close modal
     onOpenChange(false);
     
-    // Notify parent component
     if (onContactUpdated) {
       onContactUpdated();
     }
@@ -105,12 +99,12 @@ const EditContactModal = ({ open, onOpenChange, contact, onContactUpdated }: Edi
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit Contact</DialogTitle>
+          <DialogTitle>{t('contacts.editContact')}</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="firstName">First Name</Label>
+              <Label htmlFor="firstName">{t('common.firstName')}</Label>
               <Input
                 id="firstName"
                 value={formData.firstName}
@@ -119,7 +113,7 @@ const EditContactModal = ({ open, onOpenChange, contact, onContactUpdated }: Edi
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="lastName">Last Name</Label>
+              <Label htmlFor="lastName">{t('common.lastName')}</Label>
               <Input
                 id="lastName"
                 value={formData.lastName}
@@ -130,7 +124,7 @@ const EditContactModal = ({ open, onOpenChange, contact, onContactUpdated }: Edi
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">{t('common.email')}</Label>
             <Input
               id="email"
               type="email"
@@ -141,7 +135,7 @@ const EditContactModal = ({ open, onOpenChange, contact, onContactUpdated }: Edi
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="phone">Phone</Label>
+            <Label htmlFor="phone">{t('common.phone')}</Label>
             <Input
               id="phone"
               value={formData.phone}
@@ -151,7 +145,7 @@ const EditContactModal = ({ open, onOpenChange, contact, onContactUpdated }: Edi
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="title">Job Title</Label>
+            <Label htmlFor="title">{t('common.jobTitle')}</Label>
             <Input
               id="title"
               value={formData.title}
@@ -161,7 +155,7 @@ const EditContactModal = ({ open, onOpenChange, contact, onContactUpdated }: Edi
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="accountName">Account Name</Label>
+            <Label htmlFor="accountName">{t('contacts.accountName')}</Label>
             <Input
               id="accountName"
               value={formData.accountName}
@@ -172,10 +166,10 @@ const EditContactModal = ({ open, onOpenChange, contact, onContactUpdated }: Edi
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
-            Cancel
+            {t('common.cancel')}
           </Button>
           <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700">
-            Update Contact
+            {t('contacts.updateContact')}
           </Button>
         </DialogFooter>
       </DialogContent>
