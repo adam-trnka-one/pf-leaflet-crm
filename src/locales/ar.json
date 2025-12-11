@@ -118,7 +118,37 @@
     "quoteUpdated": "تم تحديث عرض السعر",
     "quoteUpdatedDesc": "تم تحديث عرض السعر بنجاح.",
     "userUpdated": "تم تحديث المستخدم",
-    "userUpdatedDesc": "تم تحديث المستخدم بنجاح."
+    "userUpdatedDesc": "تم تحديث المستخدم بنجاح.",
+    "activityCreated": "تم إنشاء النشاط",
+    "activityCreatedDesc": "تم إنشاء النشاط بنجاح.",
+    "caseCreated": "تم إنشاء الحالة",
+    "caseCreatedDesc": "تم إنشاء الحالة بنجاح.",
+    "opportunityCreated": "تم إنشاء الفرصة",
+    "opportunityCreatedDesc": "تم إنشاء الفرصة بنجاح.",
+    "saveChanges": "حفظ التغييرات",
+    "configure": "تكوين",
+    "regenerate": "إعادة إنشاء",
+    "addProperty": "إضافة خاصية",
+    "propertyName": "اسم الخاصية",
+    "propertyValue": "قيمة الخاصية",
+    "viewSavedData": "عرض البيانات المحفوظة",
+    "resetToDefault": "إعادة التعيين للافتراضي",
+    "initiateProductFruits": "بدء ProductFruits",
+    "initiating": "جاري البدء...",
+    "saveWorkspaceData": "حفظ بيانات مساحة العمل",
+    "username": "اسم المستخدم",
+    "enterUsername": "أدخل اسم المستخدم",
+    "enterEmail": "أدخل عنوان البريد الإلكتروني",
+    "enterFirstName": "أدخل الاسم الأول",
+    "enterLastName": "أدخل اسم العائلة",
+    "enterRole": "أدخل الدور (مثل: طالب، معلم)",
+    "characters": "حرف",
+    "default": "افتراضي",
+    "custom": "مخصص",
+    "url": "الرابط",
+    "enterCustomUrl": "أدخل الرابط المخصص (مثل: https://my-domain.com)",
+    "enterWorkspaceCode": "أدخل رمز مساحة العمل",
+    "required": "مطلوب"
   },
   "accounts": {
     "title": "الحسابات",
@@ -189,7 +219,9 @@
     "noOpportunities": "لا توجد فرص في هذه المرحلة",
     "close": "الإغلاق",
     "closeDate": "تاريخ الإغلاق",
+    "expectedCloseDate": "تاريخ الإغلاق المتوقع",
     "probability": "الاحتمالية",
+    "opportunityName": "اسم الفرصة",
     "stages": {
       "prospecting": "التنقيب",
       "qualification": "التأهيل",
@@ -320,6 +352,99 @@
       "permissions": "الصلاحيات",
       "integrations": "التكاملات",
       "notifications": "الإشعارات"
+    },
+    "profile": {
+      "title": "إعدادات الملف الشخصي",
+      "profileSaved": "تم حفظ الملف الشخصي",
+      "profileSavedDesc": "تم حفظ تغييرات ملفك الشخصي ومزامنتها مع بيانات مساحة العمل."
+    },
+    "workspace": {
+      "title": "تكوين مساحة العمل",
+      "description": "قم بتكوين إعدادات مساحة العمل أدناه. سيتم استخدام هذه المعلومات لتهيئة ProductFruits على موقعك.",
+      "workspace": "مساحة العمل",
+      "selectWorkspace": "حدد مساحة عمل",
+      "devEnvironment": "بيئة التطوير",
+      "selectDevEnvironment": "حدد بيئة التطوير",
+      "workspaceCode": "رمز مساحة العمل"
+    },
+    "api": {
+      "title": "مفاتيح API",
+      "warning": "توفر مفاتيح API الوصول إلى بيانات CRM الخاصة بك. احتفظ بها آمنة ولا تشاركها علنياً أبداً.",
+      "productionKey": "مفتاح API للإنتاج",
+      "developmentKey": "مفتاح API للتطوير"
+    },
+    "permissions": {
+      "title": "صلاحيات الأدوار",
+      "administrator": "المسؤول",
+      "administratorDesc": "وصول كامل لجميع الميزات والإعدادات",
+      "salesManager": "مدير المبيعات",
+      "salesManagerDesc": "إدارة فريق المبيعات وعرض جميع الفرص",
+      "salesRep": "مندوب المبيعات",
+      "salesRepDesc": "إدارة الحسابات والاتصالات والفرص الخاصة"
+    },
+    "integrations": {
+      "title": "التكاملات",
+      "subtitle": "اربط أدواتك وخدماتك المفضلة",
+      "active": "نشط",
+      "available": "متاح",
+      "premium": "بريميوم",
+      "disconnect": "قطع الاتصال",
+      "connect": "اتصال",
+      "upgrade": "ترقية",
+      "premiumFeatures": "ميزات بريميوم",
+      "premiumFeaturesDesc": "افتح التكاملات والميزات المتقدمة مع اشتراك بريميوم",
+      "viewPlans": "عرض الخطط",
+      "salesforce": {
+        "name": "Salesforce",
+        "description": "مزامنة جهات الاتصال والفرص مع Salesforce CRM",
+        "feature1": "مزامنة ثنائية الاتجاه",
+        "feature2": "إدارة جهات الاتصال",
+        "feature3": "تتبع الفرص"
+      },
+      "slack": {
+        "name": "Slack",
+        "description": "احصل على إشعارات وتحديثات في قنوات Slack",
+        "feature1": "إشعارات فورية",
+        "feature2": "تعاون الفريق",
+        "feature3": "تنبيهات مخصصة"
+      },
+      "zapier": {
+        "name": "Zapier",
+        "description": "اتصل بأكثر من 5000 تطبيق من خلال أتمتة Zapier",
+        "feature1": "سير عمل آلي",
+        "feature2": "مشغلات مخصصة",
+        "feature3": "اتصالات متعددة التطبيقات"
+      },
+      "hubspot": {
+        "name": "HubSpot",
+        "description": "التكامل مع أدوات التسويق والمبيعات HubSpot",
+        "feature1": "أتمتة التسويق",
+        "feature2": "تسجيل العملاء المحتملين",
+        "feature3": "حملات البريد الإلكتروني"
+      },
+      "mailchimp": {
+        "name": "Mailchimp",
+        "description": "تكامل التسويق عبر البريد الإلكتروني للحملات",
+        "feature1": "حملات البريد الإلكتروني",
+        "feature2": "مزامنة الجمهور",
+        "feature3": "التحليلات"
+      },
+      "googleAnalytics": {
+        "name": "Google Analytics",
+        "description": "تتبع حركة مرور الموقع وتحليلات سلوك المستخدم",
+        "feature1": "تحليلات حركة المرور",
+        "feature2": "تتبع التحويلات",
+        "feature3": "تقارير مخصصة"
+      }
+    },
+    "notifications": {
+      "title": "تفضيلات الإشعارات",
+      "email": "إشعارات البريد الإلكتروني",
+      "emailDesc": "تلقي الإشعارات عبر البريد الإلكتروني",
+      "push": "إشعارات الدفع",
+      "pushDesc": "إشعارات الدفع في المتصفح",
+      "sms": "إشعارات الرسائل النصية",
+      "smsDesc": "تلقي الإشعارات العاجلة عبر الرسائل النصية"
     }
   }
 }

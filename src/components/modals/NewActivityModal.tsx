@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTranslation } from "react-i18next";
 
 interface Activity {
   id: string;
@@ -33,6 +34,7 @@ interface NewActivityModalProps {
 }
 
 const NewActivityModal = ({ open, onOpenChange, onActivityCreated }: NewActivityModalProps) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     type: "Call",
     subject: "",
@@ -82,25 +84,25 @@ const NewActivityModal = ({ open, onOpenChange, onActivityCreated }: NewActivity
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]" data-testid="new-activity-modal-content">
         <DialogHeader data-testid="new-activity-modal-header">
-          <DialogTitle data-testid="new-activity-modal-title">Create New Activity</DialogTitle>
+          <DialogTitle data-testid="new-activity-modal-title">{t('activities.createActivity')}</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4" data-testid="new-activity-modal-form">
           <div className="grid gap-2" data-testid="new-activity-type-field">
-            <Label htmlFor="activity-type" data-testid="new-activity-type-label">Type</Label>
+            <Label htmlFor="activity-type" data-testid="new-activity-type-label">{t('common.type')}</Label>
             <Select value={formData.type} onValueChange={(value) => setFormData({ ...formData, type: value })}>
               <SelectTrigger data-testid="new-activity-type-trigger">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent data-testid="new-activity-type-content">
-                <SelectItem value="Call" data-testid="new-activity-type-call">Call</SelectItem>
-                <SelectItem value="Email" data-testid="new-activity-type-email">Email</SelectItem>
-                <SelectItem value="Meeting" data-testid="new-activity-type-meeting">Meeting</SelectItem>
-                <SelectItem value="Task" data-testid="new-activity-type-task">Task</SelectItem>
+                <SelectItem value="Call" data-testid="new-activity-type-call">{t('activities.types.call')}</SelectItem>
+                <SelectItem value="Email" data-testid="new-activity-type-email">{t('activities.types.email')}</SelectItem>
+                <SelectItem value="Meeting" data-testid="new-activity-type-meeting">{t('activities.types.meeting')}</SelectItem>
+                <SelectItem value="Task" data-testid="new-activity-type-task">{t('activities.types.task')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div className="grid gap-2" data-testid="new-activity-subject-field">
-            <Label htmlFor="subject" data-testid="new-activity-subject-label">Subject</Label>
+            <Label htmlFor="subject" data-testid="new-activity-subject-label">{t('common.subject')}</Label>
             <Input
               id="subject"
               value={formData.subject}
@@ -110,7 +112,7 @@ const NewActivityModal = ({ open, onOpenChange, onActivityCreated }: NewActivity
             />
           </div>
           <div className="grid gap-2" data-testid="new-activity-date-field">
-            <Label htmlFor="date" data-testid="new-activity-date-label">Due Date</Label>
+            <Label htmlFor="date" data-testid="new-activity-date-label">{t('common.dueDate')}</Label>
             <Input
               id="date"
               type="date"
@@ -122,10 +124,10 @@ const NewActivityModal = ({ open, onOpenChange, onActivityCreated }: NewActivity
         </div>
         <DialogFooter data-testid="new-activity-modal-footer">
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="new-activity-cancel-button">
-            Cancel
+            {t('common.cancel')}
           </Button>
           <Button onClick={handleSubmit} className="bg-leaflet-green hover:bg-leaflet-green-hover" data-testid="new-activity-create-button">
-            Create Activity
+            {t('activities.createActivity')}
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useTranslation } from "react-i18next";
 
 interface WorkspaceBasicFieldsProps {
   localWorkspaceData: {
@@ -53,6 +54,7 @@ const devOptions = [
 ];
 
 export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData }: WorkspaceBasicFieldsProps) => {
+  const { t } = useTranslation();
   const selectedWorkspace = localWorkspaceData.selectedWorkspace || "jess";
   const isCustomWorkspace = selectedWorkspace === "custom";
   const isDevWorkspace = selectedWorkspace === "dev";
@@ -94,18 +96,18 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
     <>
       <div data-testid="workspace-selection-field">
         <Label htmlFor="workspaceSelection" className="text-sm font-medium text-slate-700" data-testid="workspace-selection-label">
-          Workspace <span className="text-red-500">*</span>
+          {t('settings.workspace.workspace')} <span className="text-red-500">*</span>
         </Label>
         <Select value={(isPRWorkspace || isCustomDevWorkspace) ? "dev" : selectedWorkspace} onValueChange={handleWorkspaceChange}>
           <SelectTrigger className="mt-1" data-testid="workspace-selection-trigger">
-            <SelectValue placeholder="Select a workspace" />
+            <SelectValue placeholder={t('settings.workspace.selectWorkspace')} />
           </SelectTrigger>
           <SelectContent data-testid="workspace-selection-content">
             {workspaceOptions
               .filter(option => option.value !== "dev" || isProductFruitsUser)
               .map((option) => (
                 <SelectItem key={option.value} value={option.value} data-testid={`workspace-option-${option.value}`}>
-                  {option.name} {option.isDefault && "(Default)"}
+                  {option.name} {option.isDefault && `(${t('common.default')})`}
                 </SelectItem>
               ))}
           </SelectContent>
@@ -115,11 +117,11 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
       {(isPRWorkspace || isCustomDevWorkspace) && (
         <div data-testid="dev-environment-field">
           <Label htmlFor="devEnvironment" className="text-sm font-medium text-slate-700" data-testid="dev-environment-label">
-            DEV Environment <span className="text-red-500">*</span>
+            {t('settings.workspace.devEnvironment')} <span className="text-red-500">*</span>
           </Label>
           <Select value={selectedWorkspace} onValueChange={handleDevWorkspaceChange}>
             <SelectTrigger className="mt-1" data-testid="dev-environment-trigger">
-              <SelectValue placeholder="Select DEV environment" />
+              <SelectValue placeholder={t('settings.workspace.selectDevEnvironment')} />
             </SelectTrigger>
             <SelectContent data-testid="dev-environment-content">
               {devOptions.map((option) => (
@@ -135,11 +137,11 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
       {isCustomDevWorkspace && (
         <div data-testid="custom-url-field">
           <Label htmlFor="customUrl" className="text-sm font-medium text-slate-700" data-testid="custom-url-label">
-            URL <span className="text-red-500">*</span>
+            {t('common.url')} <span className="text-red-500">*</span>
           </Label>
           <Input 
             id="customUrl" 
-            placeholder="Enter custom URL (e.g. https://my-domain.com)"
+            placeholder={t('common.enterCustomUrl')}
             className={`mt-1 ${!localWorkspaceData.customUrl?.trim() ? 'border-red-300 focus-visible:border-red-500' : ''}`}
             value={localWorkspaceData.customUrl || ''}
             onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, customUrl: e.target.value }))}
@@ -151,28 +153,28 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
       {(isCustomWorkspace || isPRWorkspace || isCustomDevWorkspace) && (
         <div data-testid="workspace-code-field">
           <Label htmlFor="workspaceCode" className="text-sm font-medium text-slate-700" data-testid="workspace-code-label">
-            Workspace Code {(isPRWorkspace || isCustomDevWorkspace) && <span className="text-red-500">*</span>}
+            {t('settings.workspace.workspaceCode')} {(isPRWorkspace || isCustomDevWorkspace) && <span className="text-red-500">*</span>}
           </Label>
           <Input 
             id="workspaceCode" 
-            placeholder={isPRWorkspace ? `Enter your ${selectedWorkspace.toUpperCase()} workspace code` : isCustomDevWorkspace ? "Enter your workspace code" : "Enter your workspace code"}
+            placeholder={t('common.enterWorkspaceCode')}
             className={`mt-1 ${!localWorkspaceData.workspaceCode.trim() && (isPRWorkspace || isCustomDevWorkspace) ? 'border-red-300 focus-visible:border-red-500' : ''}`}
             value={localWorkspaceData.workspaceCode}
             onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, workspaceCode: e.target.value }))}
             data-testid="workspace-code-input"
           />
-          <p className="text-xs text-slate-500 mt-1" data-testid="workspace-code-counter">{localWorkspaceData.workspaceCode.length}/40 characters</p>
+          <p className="text-xs text-slate-500 mt-1" data-testid="workspace-code-counter">{localWorkspaceData.workspaceCode.length}/40 {t('common.characters')}</p>
         </div>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="workspace-user-credentials-grid">
         <div data-testid="workspace-username-field">
           <Label htmlFor="username" className="text-sm font-medium text-slate-700" data-testid="workspace-username-label">
-            Username <span className="text-red-500">*</span>
+            {t('common.username')} <span className="text-red-500">*</span>
           </Label>
           <Input 
             id="username" 
-            placeholder="Enter username"
+            placeholder={t('common.enterUsername')}
             className={`mt-1 ${!localWorkspaceData.username.trim() ? 'border-red-300 focus-visible:border-red-500' : ''}`}
             value={localWorkspaceData.username}
             onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, username: e.target.value }))}
@@ -181,11 +183,11 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
           />
         </div>
         <div data-testid="workspace-email-field">
-          <Label htmlFor="email" className="text-sm font-medium text-slate-700" data-testid="workspace-email-label">Email</Label>
+          <Label htmlFor="email" className="text-sm font-medium text-slate-700" data-testid="workspace-email-label">{t('common.email')}</Label>
           <Input 
             id="email" 
             type="email"
-            placeholder="Enter email address"
+            placeholder={t('common.enterEmail')}
             className="mt-1"
             value={localWorkspaceData.email}
             onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, email: e.target.value }))}
@@ -197,11 +199,11 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="workspace-name-fields-grid">
         <div data-testid="workspace-first-name-field">
           <Label htmlFor="firstName" className="text-sm font-medium text-slate-700" data-testid="workspace-first-name-label">
-            First Name <span className="text-red-500">*</span>
+            {t('common.firstName')} <span className="text-red-500">*</span>
           </Label>
           <Input 
             id="firstName" 
-            placeholder="Enter first name"
+            placeholder={t('common.enterFirstName')}
             className={`mt-1 ${!localWorkspaceData.firstName.trim() ? 'border-red-300 focus-visible:border-red-500' : ''}`}
             value={localWorkspaceData.firstName}
             onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, firstName: e.target.value }))}
@@ -210,10 +212,10 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
           />
         </div>
         <div data-testid="workspace-last-name-field">
-          <Label htmlFor="lastName" className="text-sm font-medium text-slate-700" data-testid="workspace-last-name-label">Last Name</Label>
+          <Label htmlFor="lastName" className="text-sm font-medium text-slate-700" data-testid="workspace-last-name-label">{t('common.lastName')}</Label>
           <Input 
             id="lastName" 
-            placeholder="Enter last name"
+            placeholder={t('common.enterLastName')}
             className="mt-1"
             value={localWorkspaceData.lastName}
             onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, lastName: e.target.value }))}
@@ -223,10 +225,10 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
       </div>
 
       <div data-testid="workspace-role-field">
-        <Label htmlFor="role" className="text-sm font-medium text-slate-700" data-testid="workspace-role-label">Role</Label>
+        <Label htmlFor="role" className="text-sm font-medium text-slate-700" data-testid="workspace-role-label">{t('common.role')}</Label>
         <Input 
           id="role" 
-          placeholder="Enter role (e.g. Student, Teacher)"
+          placeholder={t('common.enterRole')}
           className="mt-1"
           value={localWorkspaceData.role}
           onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, role: e.target.value }))}

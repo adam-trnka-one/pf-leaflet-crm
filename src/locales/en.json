@@ -118,7 +118,37 @@
     "quoteUpdated": "Quote updated",
     "quoteUpdatedDesc": "The quote has been successfully updated.",
     "userUpdated": "User updated",
-    "userUpdatedDesc": "The user has been successfully updated."
+    "userUpdatedDesc": "The user has been successfully updated.",
+    "activityCreated": "Activity created",
+    "activityCreatedDesc": "The activity has been successfully created.",
+    "caseCreated": "Case created",
+    "caseCreatedDesc": "The case has been successfully created.",
+    "opportunityCreated": "Opportunity created",
+    "opportunityCreatedDesc": "The opportunity has been successfully created.",
+    "saveChanges": "Save Changes",
+    "configure": "Configure",
+    "regenerate": "Regenerate",
+    "addProperty": "Add Property",
+    "propertyName": "Property Name",
+    "propertyValue": "Property Value",
+    "viewSavedData": "View Saved Data",
+    "resetToDefault": "Reset to Default",
+    "initiateProductFruits": "Initiate ProductFruits",
+    "initiating": "Initiating...",
+    "saveWorkspaceData": "Save Workspace Data",
+    "username": "Username",
+    "enterUsername": "Enter username",
+    "enterEmail": "Enter email address",
+    "enterFirstName": "Enter first name",
+    "enterLastName": "Enter last name",
+    "enterRole": "Enter role (e.g. Student, Teacher)",
+    "characters": "characters",
+    "default": "Default",
+    "custom": "Custom",
+    "url": "URL",
+    "enterCustomUrl": "Enter custom URL (e.g. https://my-domain.com)",
+    "enterWorkspaceCode": "Enter your workspace code",
+    "required": "required"
   },
   "accounts": {
     "title": "Accounts",
@@ -189,7 +219,9 @@
     "noOpportunities": "No opportunities in this stage",
     "close": "Close",
     "closeDate": "Close Date",
+    "expectedCloseDate": "Expected Close Date",
     "probability": "Probability",
+    "opportunityName": "Opportunity Name",
     "stages": {
       "prospecting": "Prospecting",
       "qualification": "Qualification",
@@ -320,6 +352,99 @@
       "permissions": "Permissions",
       "integrations": "Integrations",
       "notifications": "Notifications"
+    },
+    "profile": {
+      "title": "Profile Settings",
+      "profileSaved": "Profile saved",
+      "profileSavedDesc": "Your profile changes have been saved and synced with workspace data."
+    },
+    "workspace": {
+      "title": "Workspace Configuration",
+      "description": "Configure your workspace settings below. This information will be used to initialize ProductFruits on your site.",
+      "workspace": "Workspace",
+      "selectWorkspace": "Select a workspace",
+      "devEnvironment": "DEV Environment",
+      "selectDevEnvironment": "Select DEV environment",
+      "workspaceCode": "Workspace Code"
+    },
+    "api": {
+      "title": "API Keys",
+      "warning": "API keys provide access to your CRM data. Keep them secure and never share them publicly.",
+      "productionKey": "Production API Key",
+      "developmentKey": "Development API Key"
+    },
+    "permissions": {
+      "title": "Role Permissions",
+      "administrator": "Administrator",
+      "administratorDesc": "Full access to all features and settings",
+      "salesManager": "Sales Manager",
+      "salesManagerDesc": "Manage sales team and view all opportunities",
+      "salesRep": "Sales Representative",
+      "salesRepDesc": "Manage own accounts, contacts, and opportunities"
+    },
+    "integrations": {
+      "title": "Integrations",
+      "subtitle": "Connect your favorite tools and services",
+      "active": "Active",
+      "available": "Available",
+      "premium": "Premium",
+      "disconnect": "Disconnect",
+      "connect": "Connect",
+      "upgrade": "Upgrade",
+      "premiumFeatures": "Premium Features",
+      "premiumFeaturesDesc": "Unlock advanced integrations and features with a premium subscription",
+      "viewPlans": "View Plans",
+      "salesforce": {
+        "name": "Salesforce",
+        "description": "Sync contacts and opportunities with Salesforce CRM",
+        "feature1": "Two-way data sync",
+        "feature2": "Contact management",
+        "feature3": "Opportunity tracking"
+      },
+      "slack": {
+        "name": "Slack",
+        "description": "Get notifications and updates in Slack channels",
+        "feature1": "Real-time notifications",
+        "feature2": "Team collaboration",
+        "feature3": "Custom alerts"
+      },
+      "zapier": {
+        "name": "Zapier",
+        "description": "Connect with 5,000+ apps through Zapier automation",
+        "feature1": "Automated workflows",
+        "feature2": "Custom triggers",
+        "feature3": "Multi-app connections"
+      },
+      "hubspot": {
+        "name": "HubSpot",
+        "description": "Integrate with HubSpot marketing and sales tools",
+        "feature1": "Marketing automation",
+        "feature2": "Lead scoring",
+        "feature3": "Email campaigns"
+      },
+      "mailchimp": {
+        "name": "Mailchimp",
+        "description": "Email marketing integration for campaigns",
+        "feature1": "Email campaigns",
+        "feature2": "Audience sync",
+        "feature3": "Analytics"
+      },
+      "googleAnalytics": {
+        "name": "Google Analytics",
+        "description": "Track website traffic and user behavior analytics",
+        "feature1": "Traffic analytics",
+        "feature2": "Conversion tracking",
+        "feature3": "Custom reports"
+      }
+    },
+    "notifications": {
+      "title": "Notification Preferences",
+      "email": "Email Notifications",
+      "emailDesc": "Receive notifications via email",
+      "push": "Push Notifications",
+      "pushDesc": "Browser push notifications",
+      "sms": "SMS Notifications",
+      "smsDesc": "Receive urgent notifications via SMS"
     }
   }
 }

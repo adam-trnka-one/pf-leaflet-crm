@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataDisplayModal } from "../modals/DataDisplayModal";
 import { useDashboardData } from "@/hooks/useDashboardData";
+import { useTranslation } from "react-i18next";
 
 interface WorkspaceActionsProps {
   handleResetToDefaults: () => void;
@@ -21,6 +22,7 @@ export const WorkspaceActions = ({
   handleDisableProductFruits,
   workspaceData 
 }: WorkspaceActionsProps) => {
+  const { t, i18n } = useTranslation();
   const [isDataModalOpen, setIsDataModalOpen] = useState(false);
   const [displayData, setDisplayData] = useState('');
   const [isInitiating, setIsInitiating] = useState(false);
@@ -37,6 +39,9 @@ export const WorkspaceActions = ({
 
     const signUpDate = new Date().toISOString();
 
+    // Get current language from localStorage or default to 'en'
+    const currentLanguage = localStorage.getItem('language') || i18n.language || 'en';
+
     const initData = {
       username: workspaceData.username,
       ...(workspaceData.email && { email: workspaceData.email }),
@@ -47,7 +52,7 @@ export const WorkspaceActions = ({
       ...(Object.keys(props).length > 0 && { props })
     };
 
-    const productFruitsScript = `window.$productFruits.push(['init', '${workspaceData.workspaceCode}', 'en', ${JSON.stringify(initData, null, 2)}]);`;
+    const productFruitsScript = `window.$productFruits.push(['init', '${workspaceData.workspaceCode}', '${currentLanguage}', ${JSON.stringify(initData, null, 2)}]);`;
     
     console.log('Current workspace data from localStorage:');
     console.log('Raw data:', workspaceData);
@@ -93,7 +98,7 @@ export const WorkspaceActions = ({
             data-testid="workspace-reset-database-button"
           >
             <RotateCcw className="h-4 w-4 mr-2" />
-            <span data-testid="workspace-reset-database-text">Reset to Default</span>
+            <span data-testid="workspace-reset-database-text">{t('common.resetToDefault')}</span>
           </Button>
           <Button 
             variant="outline"
@@ -101,7 +106,7 @@ export const WorkspaceActions = ({
             onClick={handleViewSavedData}
             data-testid="workspace-view-saved-data-button"
           >
-            <span data-testid="workspace-view-saved-data-text">View Saved Data</span>
+            <span data-testid="workspace-view-saved-data-text">{t('common.viewSavedData')}</span>
           </Button>
         </div>
         <div className="flex flex-col sm:flex-row gap-2 md:gap-3" data-testid="workspace-primary-actions">
@@ -118,7 +123,7 @@ export const WorkspaceActions = ({
               <Play className="h-4 w-4 mr-2" data-testid="workspace-initiate-productfruits-icon" />
             )}
             <span data-testid="workspace-initiate-productfruits-text">
-              {isInitiating ? 'Initiating...' : 'Initiate ProductFruits'}
+              {isInitiating ? t('common.initiating') : t('common.initiateProductFruits')}
             </span>
           </Button>
           <Button 
@@ -126,7 +131,7 @@ export const WorkspaceActions = ({
             onClick={handleSaveWorkspaceData}
             data-testid="workspace-save-workspace-button"
           >
-            <span data-testid="workspace-save-workspace-text">Save Workspace Data</span>
+            <span data-testid="workspace-save-workspace-text">{t('common.saveWorkspaceData')}</span>
           </Button>
         </div>
       </div>

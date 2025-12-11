@@ -45,6 +45,15 @@ export const useProductFruits = () => {
     return 'https://app.productfruits.com/static/script.js';
   };
 
+  const getLanguageCode = (): string => {
+    // Get language from localStorage, default to 'en'
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage && ['en', 'cs', 'fr', 'ar'].includes(savedLanguage)) {
+      return savedLanguage;
+    }
+    return 'en';
+  };
+
   const initializeProductFruits = (workspaceData?: any) => {
     let dataToUse = workspaceData;
     
@@ -65,6 +74,9 @@ export const useProductFruits = () => {
       console.log('Missing required workspace data for ProductFruits initialization');
       return;
     }
+
+    // Get current language
+    const languageCode = getLanguageCode();
 
     // Remove existing ProductFruits scripts including the static one from index.html
     const existingScripts = document.querySelectorAll('script[src*="productfruits"], script[src*="pf.dev"], script[src*="/static/script.js"], script[data-productfruits-init]');
@@ -113,12 +125,13 @@ export const useProductFruits = () => {
 
     script.innerHTML = `
       if (window.$productFruits) {
-        window.$productFruits.push(['init', '${dataToUse.workspaceCode}', 'en', ${JSON.stringify(initData)}]);
+        window.$productFruits.push(['init', '${dataToUse.workspaceCode}', '${languageCode}', ${JSON.stringify(initData)}]);
       }
     `;
 
     document.head.appendChild(script);
     console.log('ProductFruits initialized with workspace code:', dataToUse.workspaceCode);
+    console.log('ProductFruits language:', languageCode);
     console.log('Initialization data:', initData);
 
     // Update the tracking reference
