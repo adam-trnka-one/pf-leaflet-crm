@@ -50,6 +50,7 @@
     "delete": "حذف",
     "save": "حفظ",
     "cancel": "إلغاء",
+    "create": "إنشاء",
     "loading": "جاري التحميل...",
     "noResults": "لا توجد نتائج",
     "owner": "المالك",
@@ -62,17 +63,46 @@
     "priority": "الأولوية",
     "completed": "مكتمل",
     "pending": "قيد الانتظار",
+    "active": "نشط",
     "allStatuses": "جميع الحالات",
     "allPriorities": "جميع الأولويات",
     "filterByStatus": "تصفية حسب الحالة",
-    "filterByPriority": "تصفية حسب الأولوية"
+    "filterByPriority": "تصفية حسب الأولوية",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "company": "الشركة",
+    "jobTitle": "المسمى الوظيفي",
+    "description": "الوصف",
+    "name": "الاسم",
+    "price": "السعر",
+    "category": "الفئة",
+    "amount": "المبلغ",
+    "date": "التاريخ",
+    "role": "الدور",
+    "address": "العنوان",
+    "street": "الشارع",
+    "city": "المدينة",
+    "state": "الولاية",
+    "country": "البلد",
+    "postalCode": "الرمز البريدي",
+    "annualRevenue": "الإيرادات السنوية",
+    "employees": "الموظفون",
+    "rating": "التقييم",
+    "subject": "الموضوع"
   },
   "accounts": {
     "title": "الحسابات",
     "subtitle": "إدارة حسابات العملاء",
     "newAccount": "حساب جديد",
+    "createAccount": "إنشاء حساب",
+    "editAccount": "تعديل الحساب",
+    "updateAccount": "تحديث الحساب",
     "searchPlaceholder": "البحث في الحسابات...",
     "noAccountsFound": "لم يتم العثور على حسابات تطابق بحثك.",
+    "accountName": "اسم الحساب",
+    "accountType": "نوع الحساب",
     "customer": "عميل",
     "prospect": "عميل محتمل",
     "partner": "شريك",
@@ -82,25 +112,56 @@
     "title": "جهات الاتصال",
     "subtitle": "إدارة علاقات الاتصال الخاصة بك",
     "newContact": "جهة اتصال جديدة",
+    "createContact": "إنشاء جهة اتصال",
+    "editContact": "تعديل جهة الاتصال",
+    "updateContact": "تحديث جهة الاتصال",
     "searchPlaceholder": "البحث في جهات الاتصال...",
-    "noContactsFound": "لم يتم العثور على جهات اتصال تطابق بحثك."
+    "noContactsFound": "لم يتم العثور على جهات اتصال تطابق بحثك.",
+    "accountName": "اسم الحساب"
   },
   "leads": {
     "title": "العملاء المحتملين",
     "subtitle": "إدارة العملاء المحتملين للمبيعات",
     "newLead": "عميل محتمل جديد",
+    "createLead": "إنشاء عميل محتمل",
+    "editLead": "تعديل العميل المحتمل",
+    "updateLead": "تحديث العميل المحتمل",
     "convertLead": "تحويل العميل المحتمل",
     "noLeadsFound": "لم يتم العثور على عملاء محتملين.",
     "source": "المصدر",
     "leadDeleted": "تم حذف العميل المحتمل",
-    "leadDeletedDesc": "تم حذف العميل المحتمل بنجاح."
+    "leadDeletedDesc": "تم حذف العميل المحتمل بنجاح.",
+    "statuses": {
+      "new": "جديد",
+      "working": "قيد العمل",
+      "qualified": "مؤهل",
+      "unqualified": "غير مؤهل",
+      "converted": "محول"
+    },
+    "ratings": {
+      "hot": "ساخن",
+      "warm": "دافئ",
+      "cold": "بارد"
+    },
+    "sources": {
+      "website": "الموقع الإلكتروني",
+      "referral": "إحالة",
+      "coldCall": "مكالمة باردة",
+      "tradeShow": "معرض تجاري",
+      "socialMedia": "وسائل التواصل الاجتماعي",
+      "emailCampaign": "حملة بريد إلكتروني"
+    }
   },
   "opportunities": {
     "title": "الفرص",
     "subtitle": "إدارة خط أنابيب المبيعات",
     "newOpportunity": "فرصة جديدة",
+    "createOpportunity": "إنشاء فرصة",
+    "editOpportunity": "تعديل الفرصة",
     "noOpportunities": "لا توجد فرص في هذه المرحلة",
     "close": "الإغلاق",
+    "closeDate": "تاريخ الإغلاق",
+    "probability": "الاحتمالية",
     "stages": {
       "prospecting": "التنقيب",
       "qualification": "التأهيل",
@@ -116,18 +177,25 @@
     "title": "الأنشطة",
     "subtitle": "تتبع وإدارة أنشطتك",
     "newActivity": "نشاط جديد",
+    "createActivity": "إنشاء نشاط",
+    "editActivity": "تعديل النشاط",
+    "updateActivity": "تحديث النشاط",
     "activityDeleted": "تم حذف النشاط",
     "activityDeletedDesc": "تم حذف النشاط بنجاح.",
     "types": {
       "call": "مكالمة",
       "email": "بريد إلكتروني",
-      "meeting": "اجتماع"
+      "meeting": "اجتماع",
+      "task": "مهمة"
     }
   },
   "cases": {
     "title": "الحالات",
     "subtitle": "إدارة حالات دعم العملاء",
     "newCase": "حالة جديدة",
+    "createCase": "إنشاء حالة",
+    "editCase": "تعديل الحالة",
+    "updateCase": "تحديث الحالة",
     "noCasesFound": "لم يتم العثور على حالات تطابق الفلاتر الخاصة بك.",
     "caseDeleted": "تم حذف الحالة",
     "caseDeletedDesc": "تم حذف الحالة بنجاح.",
@@ -144,6 +212,75 @@
       "medium": "متوسط",
       "low": "منخفض"
     }
+  },
+  "products": {
+    "title": "المنتجات",
+    "subtitle": "إدارة كتالوج المنتجات",
+    "newProduct": "منتج جديد",
+    "createProduct": "إنشاء منتج",
+    "editProduct": "تعديل المنتج",
+    "updateProduct": "تحديث المنتج",
+    "productName": "اسم المنتج",
+    "priceMonthly": "السعر (شهرياً)",
+    "productCreated": "تم إنشاء المنتج",
+    "productCreatedDesc": "تم إنشاء المنتج بنجاح.",
+    "productDeleted": "تم حذف المنتج",
+    "productDeletedDesc": "تم حذف المنتج بنجاح.",
+    "categories": {
+      "software": "برنامج",
+      "service": "خدمة",
+      "training": "تدريب"
+    }
+  },
+  "quotes": {
+    "title": "عروض الأسعار",
+    "subtitle": "إدارة عروض الأسعار والمقترحات",
+    "newQuote": "عرض سعر جديد",
+    "createQuote": "إنشاء عرض سعر",
+    "editQuote": "تعديل عرض السعر",
+    "updateQuote": "تحديث عرض السعر",
+    "quoteName": "اسم عرض السعر",
+    "quoteCreated": "تم إنشاء عرض السعر",
+    "quoteCreatedDesc": "تم إنشاء عرض السعر بنجاح.",
+    "quoteDeleted": "تم حذف عرض السعر",
+    "quoteDeletedDesc": "تم حذف عرض السعر بنجاح.",
+    "statuses": {
+      "draft": "مسودة",
+      "sent": "مرسل",
+      "accepted": "مقبول",
+      "rejected": "مرفوض"
+    }
+  },
+  "users": {
+    "title": "المستخدمون",
+    "subtitle": "إدارة مستخدمي النظام والصلاحيات",
+    "newUser": "مستخدم جديد",
+    "createUser": "إنشاء مستخدم",
+    "editUser": "تعديل المستخدم",
+    "updateUser": "تحديث المستخدم",
+    "userCreated": "تم إنشاء المستخدم",
+    "userCreatedDesc": "تم إنشاء المستخدم بنجاح.",
+    "userDeleted": "تم حذف المستخدم",
+    "userDeletedDesc": "تم حذف المستخدم بنجاح.",
+    "roles": {
+      "admin": "مسؤول",
+      "manager": "مدير",
+      "salesRep": "مندوب مبيعات"
+    }
+  },
+  "help": {
+    "title": "مركز المساعدة",
+    "subtitle": "اعثر على إجابات وتعلم كيفية استخدام Leaflet CRM",
+    "searchPlaceholder": "البحث في المساعدة...",
+    "backToHelp": "العودة إلى مركز المساعدة",
+    "gettingStarted": "البدء",
+    "gettingStartedDesc": "تعلم أساسيات استخدام Leaflet CRM",
+    "accountManagement": "إدارة الحسابات",
+    "accountManagementDesc": "إدارة حسابات الشركات والمؤسسات",
+    "contactManagement": "إدارة جهات الاتصال",
+    "contactManagementDesc": "إدارة جهات الاتصال الفردية والعلاقات",
+    "leadManagement": "إدارة العملاء المحتملين",
+    "leadManagementDesc": "تحويل العملاء المحتملين إلى فرص"
   },
   "settings": {
     "title": "الإعدادات",

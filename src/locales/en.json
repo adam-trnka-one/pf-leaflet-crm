@@ -50,6 +50,7 @@
     "delete": "Delete",
     "save": "Save",
     "cancel": "Cancel",
+    "create": "Create",
     "loading": "Loading...",
     "noResults": "No results found",
     "owner": "Owner",
@@ -62,17 +63,46 @@
     "priority": "Priority",
     "completed": "Completed",
     "pending": "Pending",
+    "active": "Active",
     "allStatuses": "All Statuses",
     "allPriorities": "All Priorities",
     "filterByStatus": "Filter by status",
-    "filterByPriority": "Filter by priority"
+    "filterByPriority": "Filter by priority",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "company": "Company",
+    "jobTitle": "Job Title",
+    "description": "Description",
+    "name": "Name",
+    "price": "Price",
+    "category": "Category",
+    "amount": "Amount",
+    "date": "Date",
+    "role": "Role",
+    "address": "Address",
+    "street": "Street Address",
+    "city": "City",
+    "state": "State",
+    "country": "Country",
+    "postalCode": "Postal Code",
+    "annualRevenue": "Annual Revenue",
+    "employees": "Employees",
+    "rating": "Rating",
+    "subject": "Subject"
   },
   "accounts": {
     "title": "Accounts",
     "subtitle": "Manage your customer accounts",
     "newAccount": "New Account",
+    "createAccount": "Create Account",
+    "editAccount": "Edit Account",
+    "updateAccount": "Update Account",
     "searchPlaceholder": "Search accounts...",
     "noAccountsFound": "No accounts found matching your search.",
+    "accountName": "Account Name",
+    "accountType": "Account Type",
     "customer": "Customer",
     "prospect": "Prospect",
     "partner": "Partner",
@@ -82,25 +112,56 @@
     "title": "Contacts",
     "subtitle": "Manage your contact relationships",
     "newContact": "New Contact",
+    "createContact": "Create Contact",
+    "editContact": "Edit Contact",
+    "updateContact": "Update Contact",
     "searchPlaceholder": "Search contacts...",
-    "noContactsFound": "No contacts found matching your search."
+    "noContactsFound": "No contacts found matching your search.",
+    "accountName": "Account Name"
   },
   "leads": {
     "title": "Leads",
     "subtitle": "Manage your sales leads",
     "newLead": "New Lead",
+    "createLead": "Create Lead",
+    "editLead": "Edit Lead",
+    "updateLead": "Update Lead",
     "convertLead": "Convert Lead",
     "noLeadsFound": "No leads found.",
     "source": "Source",
     "leadDeleted": "Lead deleted",
-    "leadDeletedDesc": "The lead has been successfully deleted."
+    "leadDeletedDesc": "The lead has been successfully deleted.",
+    "statuses": {
+      "new": "New",
+      "working": "Working",
+      "qualified": "Qualified",
+      "unqualified": "Unqualified",
+      "converted": "Converted"
+    },
+    "ratings": {
+      "hot": "Hot",
+      "warm": "Warm",
+      "cold": "Cold"
+    },
+    "sources": {
+      "website": "Website",
+      "referral": "Referral",
+      "coldCall": "Cold Call",
+      "tradeShow": "Trade Show",
+      "socialMedia": "Social Media",
+      "emailCampaign": "Email Campaign"
+    }
   },
   "opportunities": {
     "title": "Opportunities",
     "subtitle": "Manage your sales pipeline",
     "newOpportunity": "New Opportunity",
+    "createOpportunity": "Create Opportunity",
+    "editOpportunity": "Edit Opportunity",
     "noOpportunities": "No opportunities in this stage",
     "close": "Close",
+    "closeDate": "Close Date",
+    "probability": "Probability",
     "stages": {
       "prospecting": "Prospecting",
       "qualification": "Qualification",
@@ -116,18 +177,25 @@
     "title": "Activities",
     "subtitle": "Track and manage your activities",
     "newActivity": "New Activity",
+    "createActivity": "Create Activity",
+    "editActivity": "Edit Activity",
+    "updateActivity": "Update Activity",
     "activityDeleted": "Activity deleted",
     "activityDeletedDesc": "The activity has been successfully deleted.",
     "types": {
       "call": "Call",
       "email": "Email",
-      "meeting": "Meeting"
+      "meeting": "Meeting",
+      "task": "Task"
     }
   },
   "cases": {
     "title": "Cases",
     "subtitle": "Manage customer support cases",
     "newCase": "New Case",
+    "createCase": "Create Case",
+    "editCase": "Edit Case",
+    "updateCase": "Update Case",
     "noCasesFound": "No cases found matching your filters.",
     "caseDeleted": "Case deleted",
     "caseDeletedDesc": "The case has been successfully deleted.",
@@ -144,6 +212,75 @@
       "medium": "Medium",
       "low": "Low"
     }
+  },
+  "products": {
+    "title": "Products",
+    "subtitle": "Manage your product catalog",
+    "newProduct": "New Product",
+    "createProduct": "Create Product",
+    "editProduct": "Edit Product",
+    "updateProduct": "Update Product",
+    "productName": "Product Name",
+    "priceMonthly": "Price (monthly)",
+    "productCreated": "Product created",
+    "productCreatedDesc": "The product has been successfully created.",
+    "productDeleted": "Product deleted",
+    "productDeletedDesc": "The product has been successfully deleted.",
+    "categories": {
+      "software": "Software",
+      "service": "Service",
+      "training": "Training"
+    }
+  },
+  "quotes": {
+    "title": "Quotes",
+    "subtitle": "Manage sales quotes and proposals",
+    "newQuote": "New Quote",
+    "createQuote": "Create Quote",
+    "editQuote": "Edit Quote",
+    "updateQuote": "Update Quote",
+    "quoteName": "Quote Name",
+    "quoteCreated": "Quote created",
+    "quoteCreatedDesc": "The quote has been successfully created.",
+    "quoteDeleted": "Quote deleted",
+    "quoteDeletedDesc": "The quote has been successfully deleted.",
+    "statuses": {
+      "draft": "Draft",
+      "sent": "Sent",
+      "accepted": "Accepted",
+      "rejected": "Rejected"
+    }
+  },
+  "users": {
+    "title": "Users",
+    "subtitle": "Manage system users and permissions",
+    "newUser": "New User",
+    "createUser": "Create User",
+    "editUser": "Edit User",
+    "updateUser": "Update User",
+    "userCreated": "User created",
+    "userCreatedDesc": "The user has been successfully created.",
+    "userDeleted": "User deleted",
+    "userDeletedDesc": "The user has been successfully deleted.",
+    "roles": {
+      "admin": "Admin",
+      "manager": "Manager",
+      "salesRep": "Sales Rep"
+    }
+  },
+  "help": {
+    "title": "Help Center",
+    "subtitle": "Find answers and learn how to use Leaflet CRM",
+    "searchPlaceholder": "Search help articles...",
+    "backToHelp": "Back to Help Center",
+    "gettingStarted": "Getting Started",
+    "gettingStartedDesc": "Learn the basics of using Leaflet CRM",
+    "accountManagement": "Account Management",
+    "accountManagementDesc": "Managing company accounts and organizations",
+    "contactManagement": "Contact Management",
+    "contactManagementDesc": "Managing individual contacts and relationships",
+    "leadManagement": "Lead Management",
+    "leadManagementDesc": "Converting prospects into opportunities"
   },
   "settings": {
     "title": "Settings",

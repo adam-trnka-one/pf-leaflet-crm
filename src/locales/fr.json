@@ -50,6 +50,7 @@
     "delete": "Supprimer",
     "save": "Enregistrer",
     "cancel": "Annuler",
+    "create": "Créer",
     "loading": "Chargement...",
     "noResults": "Aucun résultat",
     "owner": "Propriétaire",
@@ -62,17 +63,46 @@
     "priority": "Priorité",
     "completed": "Terminé",
     "pending": "En attente",
+    "active": "Actif",
     "allStatuses": "Tous les statuts",
     "allPriorities": "Toutes les priorités",
     "filterByStatus": "Filtrer par statut",
-    "filterByPriority": "Filtrer par priorité"
+    "filterByPriority": "Filtrer par priorité",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "company": "Entreprise",
+    "jobTitle": "Poste",
+    "description": "Description",
+    "name": "Nom",
+    "price": "Prix",
+    "category": "Catégorie",
+    "amount": "Montant",
+    "date": "Date",
+    "role": "Rôle",
+    "address": "Adresse",
+    "street": "Rue",
+    "city": "Ville",
+    "state": "État",
+    "country": "Pays",
+    "postalCode": "Code postal",
+    "annualRevenue": "Revenu annuel",
+    "employees": "Employés",
+    "rating": "Évaluation",
+    "subject": "Sujet"
   },
   "accounts": {
     "title": "Comptes",
     "subtitle": "Gérez vos comptes clients",
     "newAccount": "Nouveau compte",
+    "createAccount": "Créer un compte",
+    "editAccount": "Modifier le compte",
+    "updateAccount": "Mettre à jour le compte",
     "searchPlaceholder": "Rechercher des comptes...",
     "noAccountsFound": "Aucun compte trouvé correspondant à votre recherche.",
+    "accountName": "Nom du compte",
+    "accountType": "Type de compte",
     "customer": "Client",
     "prospect": "Prospect",
     "partner": "Partenaire",
@@ -82,25 +112,56 @@
     "title": "Contacts",
     "subtitle": "Gérez vos relations de contact",
     "newContact": "Nouveau contact",
+    "createContact": "Créer un contact",
+    "editContact": "Modifier le contact",
+    "updateContact": "Mettre à jour le contact",
     "searchPlaceholder": "Rechercher des contacts...",
-    "noContactsFound": "Aucun contact trouvé correspondant à votre recherche."
+    "noContactsFound": "Aucun contact trouvé correspondant à votre recherche.",
+    "accountName": "Nom du compte"
   },
   "leads": {
     "title": "Prospects",
     "subtitle": "Gérez vos prospects commerciaux",
     "newLead": "Nouveau prospect",
+    "createLead": "Créer un prospect",
+    "editLead": "Modifier le prospect",
+    "updateLead": "Mettre à jour le prospect",
     "convertLead": "Convertir le prospect",
     "noLeadsFound": "Aucun prospect trouvé.",
     "source": "Source",
     "leadDeleted": "Prospect supprimé",
-    "leadDeletedDesc": "Le prospect a été supprimé avec succès."
+    "leadDeletedDesc": "Le prospect a été supprimé avec succès.",
+    "statuses": {
+      "new": "Nouveau",
+      "working": "En cours",
+      "qualified": "Qualifié",
+      "unqualified": "Non qualifié",
+      "converted": "Converti"
+    },
+    "ratings": {
+      "hot": "Chaud",
+      "warm": "Tiède",
+      "cold": "Froid"
+    },
+    "sources": {
+      "website": "Site web",
+      "referral": "Recommandation",
+      "coldCall": "Appel à froid",
+      "tradeShow": "Salon",
+      "socialMedia": "Réseaux sociaux",
+      "emailCampaign": "Campagne e-mail"
+    }
   },
   "opportunities": {
     "title": "Opportunités",
     "subtitle": "Gérez votre pipeline de ventes",
     "newOpportunity": "Nouvelle opportunité",
+    "createOpportunity": "Créer une opportunité",
+    "editOpportunity": "Modifier l'opportunité",
     "noOpportunities": "Aucune opportunité à cette étape",
     "close": "Clôture",
+    "closeDate": "Date de clôture",
+    "probability": "Probabilité",
     "stages": {
       "prospecting": "Prospection",
       "qualification": "Qualification",
@@ -116,18 +177,25 @@
     "title": "Activités",
     "subtitle": "Suivez et gérez vos activités",
     "newActivity": "Nouvelle activité",
+    "createActivity": "Créer une activité",
+    "editActivity": "Modifier l'activité",
+    "updateActivity": "Mettre à jour l'activité",
     "activityDeleted": "Activité supprimée",
     "activityDeletedDesc": "L'activité a été supprimée avec succès.",
     "types": {
       "call": "Appel",
       "email": "E-mail",
-      "meeting": "Réunion"
+      "meeting": "Réunion",
+      "task": "Tâche"
     }
   },
   "cases": {
     "title": "Cas",
     "subtitle": "Gérez les cas de support client",
     "newCase": "Nouveau cas",
+    "createCase": "Créer un cas",
+    "editCase": "Modifier le cas",
+    "updateCase": "Mettre à jour le cas",
     "noCasesFound": "Aucun cas trouvé correspondant à vos filtres.",
     "caseDeleted": "Cas supprimé",
     "caseDeletedDesc": "Le cas a été supprimé avec succès.",
@@ -144,6 +212,75 @@
       "medium": "Moyenne",
       "low": "Basse"
     }
+  },
+  "products": {
+    "title": "Produits",
+    "subtitle": "Gérez votre catalogue de produits",
+    "newProduct": "Nouveau produit",
+    "createProduct": "Créer un produit",
+    "editProduct": "Modifier le produit",
+    "updateProduct": "Mettre à jour le produit",
+    "productName": "Nom du produit",
+    "priceMonthly": "Prix (mensuel)",
+    "productCreated": "Produit créé",
+    "productCreatedDesc": "Le produit a été créé avec succès.",
+    "productDeleted": "Produit supprimé",
+    "productDeletedDesc": "Le produit a été supprimé avec succès.",
+    "categories": {
+      "software": "Logiciel",
+      "service": "Service",
+      "training": "Formation"
+    }
+  },
+  "quotes": {
+    "title": "Devis",
+    "subtitle": "Gérez les devis et propositions commerciales",
+    "newQuote": "Nouveau devis",
+    "createQuote": "Créer un devis",
+    "editQuote": "Modifier le devis",
+    "updateQuote": "Mettre à jour le devis",
+    "quoteName": "Nom du devis",
+    "quoteCreated": "Devis créé",
+    "quoteCreatedDesc": "Le devis a été créé avec succès.",
+    "quoteDeleted": "Devis supprimé",
+    "quoteDeletedDesc": "Le devis a été supprimé avec succès.",
+    "statuses": {
+      "draft": "Brouillon",
+      "sent": "Envoyé",
+      "accepted": "Accepté",
+      "rejected": "Rejeté"
+    }
+  },
+  "users": {
+    "title": "Utilisateurs",
+    "subtitle": "Gérez les utilisateurs et les permissions",
+    "newUser": "Nouvel utilisateur",
+    "createUser": "Créer un utilisateur",
+    "editUser": "Modifier l'utilisateur",
+    "updateUser": "Mettre à jour l'utilisateur",
+    "userCreated": "Utilisateur créé",
+    "userCreatedDesc": "L'utilisateur a été créé avec succès.",
+    "userDeleted": "Utilisateur supprimé",
+    "userDeletedDesc": "L'utilisateur a été supprimé avec succès.",
+    "roles": {
+      "admin": "Administrateur",
+      "manager": "Responsable",
+      "salesRep": "Commercial"
+    }
+  },
+  "help": {
+    "title": "Centre d'aide",
+    "subtitle": "Trouvez des réponses et apprenez à utiliser Leaflet CRM",
+    "searchPlaceholder": "Rechercher dans l'aide...",
+    "backToHelp": "Retour au centre d'aide",
+    "gettingStarted": "Premiers pas",
+    "gettingStartedDesc": "Apprenez les bases de Leaflet CRM",
+    "accountManagement": "Gestion des comptes",
+    "accountManagementDesc": "Gérer les comptes d'entreprise et les organisations",
+    "contactManagement": "Gestion des contacts",
+    "contactManagementDesc": "Gérer les contacts individuels et les relations",
+    "leadManagement": "Gestion des prospects",
+    "leadManagementDesc": "Convertir les prospects en opportunités"
   },
   "settings": {
     "title": "Paramètres",
