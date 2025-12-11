@@ -1,6 +1,6 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { List, CheckCircle, AlertCircle } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface TaskSummaryCardsProps {
   totalTasks: number;
@@ -9,13 +9,15 @@ interface TaskSummaryCardsProps {
 }
 
 const TaskSummaryCards = ({ totalTasks, completedTasks, overdueTasks }: TaskSummaryCardsProps) => {
+  const { t } = useTranslation();
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6" data-testid="tasks-summary-grid">
       <Card className="bg-white shadow-sm" data-testid="tasks-total-card">
         <CardContent className="p-6" data-testid="tasks-total-content">
           <div className="flex items-center justify-between" data-testid="tasks-total-layout">
             <div data-testid="tasks-total-info">
-              <p className="text-sm font-medium text-slate-600" data-testid="tasks-total-label">Total Tasks</p>
+              <p className="text-sm font-medium text-slate-600" data-testid="tasks-total-label">{t('tasks.total')}</p>
               <p className="text-2xl font-bold text-slate-800" data-testid="tasks-total-value">{totalTasks}</p>
             </div>
             <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center" data-testid="tasks-total-icon-container">
@@ -29,7 +31,7 @@ const TaskSummaryCards = ({ totalTasks, completedTasks, overdueTasks }: TaskSumm
         <CardContent className="p-6" data-testid="tasks-completed-content">
           <div className="flex items-center justify-between" data-testid="tasks-completed-layout">
             <div data-testid="tasks-completed-info">
-              <p className="text-sm font-medium text-slate-600" data-testid="tasks-completed-label">Completed Tasks</p>
+              <p className="text-sm font-medium text-slate-600" data-testid="tasks-completed-label">{t('tasks.completed')}</p>
               <p className="text-2xl font-bold text-slate-800" data-testid="tasks-completed-value">{completedTasks}</p>
             </div>
             <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center" data-testid="tasks-completed-icon-container">
@@ -43,7 +45,7 @@ const TaskSummaryCards = ({ totalTasks, completedTasks, overdueTasks }: TaskSumm
         <CardContent className="p-6" data-testid="tasks-overdue-content">
           <div className="flex items-center justify-between" data-testid="tasks-overdue-layout">
             <div data-testid="tasks-overdue-info">
-              <p className="text-sm font-medium text-slate-600" data-testid="tasks-overdue-label">Overdue Tasks</p>
+              <p className="text-sm font-medium text-slate-600" data-testid="tasks-overdue-label">{t('tasks.overdue')}</p>
               <p className="text-2xl font-bold text-slate-800" data-testid="tasks-overdue-value">{overdueTasks}</p>
             </div>
             <div className="h-12 w-12 bg-red-100 rounded-lg flex items-center justify-center" data-testid="tasks-overdue-icon-container">

@@ -1,0 +1,49 @@
+{
+  "dashboard": {
+    "title": "Přehled",
+    "welcome": "Vítejte zpět",
+    "overview": "Zde je přehled vašeho podnikání"
+  },
+  "metrics": {
+    "totalRevenue": "Celkové příjmy",
+    "totalAccounts": "Celkem účtů",
+    "totalContacts": "Celkem kontaktů",
+    "openOpportunities": "Otevřené příležitosti"
+  },
+  "tasks": {
+    "title": "Úkoly",
+    "total": "Celkem úkolů",
+    "completed": "Dokončeno",
+    "overdue": "Po termínu"
+  },
+  "charts": {
+    "salesPipeline": "Prodejní pipeline",
+    "monthlyRevenue": "Měsíční příjmy",
+    "stage": "Fáze",
+    "count": "Počet",
+    "revenue": "Příjmy"
+  },
+  "recent": {
+    "activities": "Nedávné aktivity",
+    "opportunities": "Nedávné příležitosti"
+  },
+  "nav": {
+    "dashboard": "Přehled",
+    "accounts": "Účty",
+    "contacts": "Kontakty",
+    "leads": "Leady",
+    "opportunities": "Příležitosti",
+    "activities": "Aktivity",
+    "cases": "Případy",
+    "quotes": "Nabídky",
+    "products": "Produkty",
+    "users": "Uživatelé",
+    "settings": "Nastavení",
+    "help": "Nápověda"
+  },
+  "common": {
+    "search": "Hledat",
+    "signOut": "Odhlásit se",
+    "language": "Jazyk"
+  }
+}
