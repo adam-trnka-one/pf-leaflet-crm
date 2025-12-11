@@ -118,7 +118,37 @@
     "quoteUpdated": "Nabídka aktualizována",
     "quoteUpdatedDesc": "Nabídka byla úspěšně aktualizována.",
     "userUpdated": "Uživatel aktualizován",
-    "userUpdatedDesc": "Uživatel byl úspěšně aktualizován."
+    "userUpdatedDesc": "Uživatel byl úspěšně aktualizován.",
+    "activityCreated": "Aktivita vytvořena",
+    "activityCreatedDesc": "Aktivita byla úspěšně vytvořena.",
+    "caseCreated": "Případ vytvořen",
+    "caseCreatedDesc": "Případ byl úspěšně vytvořen.",
+    "opportunityCreated": "Příležitost vytvořena",
+    "opportunityCreatedDesc": "Příležitost byla úspěšně vytvořena.",
+    "saveChanges": "Uložit změny",
+    "configure": "Konfigurovat",
+    "regenerate": "Regenerovat",
+    "addProperty": "Přidat vlastnost",
+    "propertyName": "Název vlastnosti",
+    "propertyValue": "Hodnota vlastnosti",
+    "viewSavedData": "Zobrazit uložená data",
+    "resetToDefault": "Obnovit výchozí",
+    "initiateProductFruits": "Spustit ProductFruits",
+    "initiating": "Spouštění...",
+    "saveWorkspaceData": "Uložit data pracovního prostoru",
+    "username": "Uživatelské jméno",
+    "enterUsername": "Zadejte uživatelské jméno",
+    "enterEmail": "Zadejte e-mailovou adresu",
+    "enterFirstName": "Zadejte jméno",
+    "enterLastName": "Zadejte příjmení",
+    "enterRole": "Zadejte roli (např. Student, Učitel)",
+    "characters": "znaků",
+    "default": "Výchozí",
+    "custom": "Vlastní",
+    "url": "URL",
+    "enterCustomUrl": "Zadejte vlastní URL (např. https://my-domain.com)",
+    "enterWorkspaceCode": "Zadejte kód pracovního prostoru",
+    "required": "povinné"
   },
   "accounts": {
     "title": "Účty",
@@ -189,7 +219,9 @@
     "noOpportunities": "V této fázi nejsou žádné příležitosti",
     "close": "Uzavření",
     "closeDate": "Datum uzavření",
+    "expectedCloseDate": "Očekávané datum uzavření",
     "probability": "Pravděpodobnost",
+    "opportunityName": "Název příležitosti",
     "stages": {
       "prospecting": "Prospekce",
       "qualification": "Kvalifikace",
@@ -320,6 +352,99 @@
       "permissions": "Oprávnění",
       "integrations": "Integrace",
       "notifications": "Oznámení"
+    },
+    "profile": {
+      "title": "Nastavení profilu",
+      "profileSaved": "Profil uložen",
+      "profileSavedDesc": "Změny vašeho profilu byly uloženy a synchronizovány s daty pracovního prostoru."
+    },
+    "workspace": {
+      "title": "Konfigurace pracovního prostoru",
+      "description": "Nakonfigurujte níže nastavení pracovního prostoru. Tyto informace budou použity pro inicializaci ProductFruits na vašem webu.",
+      "workspace": "Pracovní prostor",
+      "selectWorkspace": "Vyberte pracovní prostor",
+      "devEnvironment": "DEV prostředí",
+      "selectDevEnvironment": "Vyberte DEV prostředí",
+      "workspaceCode": "Kód pracovního prostoru"
+    },
+    "api": {
+      "title": "API klíče",
+      "warning": "API klíče poskytují přístup k datům vašeho CRM. Udržujte je v bezpečí a nikdy je nesdílejte veřejně.",
+      "productionKey": "Produkční API klíč",
+      "developmentKey": "Vývojový API klíč"
+    },
+    "permissions": {
+      "title": "Oprávnění rolí",
+      "administrator": "Administrátor",
+      "administratorDesc": "Plný přístup ke všem funkcím a nastavením",
+      "salesManager": "Manažer prodeje",
+      "salesManagerDesc": "Správa prodejního týmu a zobrazení všech příležitostí",
+      "salesRep": "Obchodní zástupce",
+      "salesRepDesc": "Správa vlastních účtů, kontaktů a příležitostí"
+    },
+    "integrations": {
+      "title": "Integrace",
+      "subtitle": "Připojte své oblíbené nástroje a služby",
+      "active": "Aktivní",
+      "available": "Dostupné",
+      "premium": "Premium",
+      "disconnect": "Odpojit",
+      "connect": "Připojit",
+      "upgrade": "Upgradovat",
+      "premiumFeatures": "Premium funkce",
+      "premiumFeaturesDesc": "Odemkněte pokročilé integrace a funkce s premium předplatným",
+      "viewPlans": "Zobrazit plány",
+      "salesforce": {
+        "name": "Salesforce",
+        "description": "Synchronizujte kontakty a příležitosti se Salesforce CRM",
+        "feature1": "Obousměrná synchronizace dat",
+        "feature2": "Správa kontaktů",
+        "feature3": "Sledování příležitostí"
+      },
+      "slack": {
+        "name": "Slack",
+        "description": "Dostávejte oznámení a aktualizace v Slack kanálech",
+        "feature1": "Oznámení v reálném čase",
+        "feature2": "Týmová spolupráce",
+        "feature3": "Vlastní upozornění"
+      },
+      "zapier": {
+        "name": "Zapier",
+        "description": "Připojte se k 5 000+ aplikacím prostřednictvím automatizace Zapier",
+        "feature1": "Automatizované workflow",
+        "feature2": "Vlastní triggery",
+        "feature3": "Propojení více aplikací"
+      },
+      "hubspot": {
+        "name": "HubSpot",
+        "description": "Integrujte s marketingovými a prodejními nástroji HubSpot",
+        "feature1": "Marketingová automatizace",
+        "feature2": "Hodnocení leadů",
+        "feature3": "E-mailové kampaně"
+      },
+      "mailchimp": {
+        "name": "Mailchimp",
+        "description": "E-mailová marketingová integrace pro kampaně",
+        "feature1": "E-mailové kampaně",
+        "feature2": "Synchronizace publika",
+        "feature3": "Analytika"
+      },
+      "googleAnalytics": {
+        "name": "Google Analytics",
+        "description": "Sledujte návštěvnost webu a analytiku chování uživatelů",
+        "feature1": "Analytika návštěvnosti",
+        "feature2": "Sledování konverzí",
+        "feature3": "Vlastní reporty"
+      }
+    },
+    "notifications": {
+      "title": "Předvolby oznámení",
+      "email": "E-mailová oznámení",
+      "emailDesc": "Přijímejte oznámení e-mailem",
+      "push": "Push oznámení",
+      "pushDesc": "Push oznámení v prohlížeči",
+      "sms": "SMS oznámení",
+      "smsDesc": "Přijímejte urgentní oznámení prostřednictvím SMS"
     }
   }
 }

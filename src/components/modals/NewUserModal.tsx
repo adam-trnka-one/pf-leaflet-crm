@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTranslation } from "react-i18next";
 
 interface User {
   id: string;
@@ -33,6 +34,7 @@ interface NewUserModalProps {
 }
 
 const NewUserModal = ({ open, onOpenChange, onUserCreated }: NewUserModalProps) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -78,11 +80,11 @@ const NewUserModal = ({ open, onOpenChange, onUserCreated }: NewUserModalProps) 
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]" data-testid="new-user-modal-content">
         <DialogHeader data-testid="new-user-modal-header">
-          <DialogTitle data-testid="new-user-modal-title">Create New User</DialogTitle>
+          <DialogTitle data-testid="new-user-modal-title">{t('users.createUser')}</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4" data-testid="new-user-modal-form">
           <div className="grid gap-2" data-testid="new-user-name-field">
-            <Label htmlFor="user-name" data-testid="new-user-name-label">Full Name</Label>
+            <Label htmlFor="user-name" data-testid="new-user-name-label">{t('common.fullName')}</Label>
             <Input
               id="user-name"
               value={formData.name}
@@ -92,7 +94,7 @@ const NewUserModal = ({ open, onOpenChange, onUserCreated }: NewUserModalProps) 
             />
           </div>
           <div className="grid gap-2" data-testid="new-user-email-field">
-            <Label htmlFor="email" data-testid="new-user-email-label">Email</Label>
+            <Label htmlFor="email" data-testid="new-user-email-label">{t('common.email')}</Label>
             <Input
               id="email"
               type="email"
@@ -103,25 +105,25 @@ const NewUserModal = ({ open, onOpenChange, onUserCreated }: NewUserModalProps) 
             />
           </div>
           <div className="grid gap-2" data-testid="new-user-role-field">
-            <Label htmlFor="role" data-testid="new-user-role-label">Role</Label>
+            <Label htmlFor="role" data-testid="new-user-role-label">{t('common.role')}</Label>
             <Select value={formData.role} onValueChange={(value) => setFormData({ ...formData, role: value })}>
               <SelectTrigger data-testid="new-user-role-trigger">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent data-testid="new-user-role-content">
-                <SelectItem value="Admin" data-testid="new-user-role-admin">Admin</SelectItem>
-                <SelectItem value="Manager" data-testid="new-user-role-manager">Manager</SelectItem>
-                <SelectItem value="Sales Rep" data-testid="new-user-role-sales">Sales Rep</SelectItem>
+                <SelectItem value="Admin" data-testid="new-user-role-admin">{t('users.roles.admin')}</SelectItem>
+                <SelectItem value="Manager" data-testid="new-user-role-manager">{t('users.roles.manager')}</SelectItem>
+                <SelectItem value="Sales Rep" data-testid="new-user-role-sales">{t('users.roles.salesRep')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
         <DialogFooter data-testid="new-user-modal-footer">
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="new-user-cancel-button">
-            Cancel
+            {t('common.cancel')}
           </Button>
           <Button onClick={handleSubmit} className="bg-[#4AB831] hover:bg-[#3da127]" data-testid="new-user-create-button">
-            Create User
+            {t('users.createUser')}
           </Button>
         </DialogFooter>
       </DialogContent>

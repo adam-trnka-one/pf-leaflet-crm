@@ -118,7 +118,37 @@
     "quoteUpdated": "Devis mis à jour",
     "quoteUpdatedDesc": "Le devis a été mis à jour avec succès.",
     "userUpdated": "Utilisateur mis à jour",
-    "userUpdatedDesc": "L'utilisateur a été mis à jour avec succès."
+    "userUpdatedDesc": "L'utilisateur a été mis à jour avec succès.",
+    "activityCreated": "Activité créée",
+    "activityCreatedDesc": "L'activité a été créée avec succès.",
+    "caseCreated": "Cas créé",
+    "caseCreatedDesc": "Le cas a été créé avec succès.",
+    "opportunityCreated": "Opportunité créée",
+    "opportunityCreatedDesc": "L'opportunité a été créée avec succès.",
+    "saveChanges": "Enregistrer les modifications",
+    "configure": "Configurer",
+    "regenerate": "Régénérer",
+    "addProperty": "Ajouter une propriété",
+    "propertyName": "Nom de la propriété",
+    "propertyValue": "Valeur de la propriété",
+    "viewSavedData": "Voir les données enregistrées",
+    "resetToDefault": "Réinitialiser par défaut",
+    "initiateProductFruits": "Lancer ProductFruits",
+    "initiating": "Lancement...",
+    "saveWorkspaceData": "Enregistrer les données de l'espace de travail",
+    "username": "Nom d'utilisateur",
+    "enterUsername": "Entrez le nom d'utilisateur",
+    "enterEmail": "Entrez l'adresse e-mail",
+    "enterFirstName": "Entrez le prénom",
+    "enterLastName": "Entrez le nom",
+    "enterRole": "Entrez le rôle (ex: Étudiant, Enseignant)",
+    "characters": "caractères",
+    "default": "Par défaut",
+    "custom": "Personnalisé",
+    "url": "URL",
+    "enterCustomUrl": "Entrez l'URL personnalisée (ex: https://mon-domaine.com)",
+    "enterWorkspaceCode": "Entrez le code de l'espace de travail",
+    "required": "obligatoire"
   },
   "accounts": {
     "title": "Comptes",
@@ -189,7 +219,9 @@
     "noOpportunities": "Aucune opportunité à cette étape",
     "close": "Clôture",
     "closeDate": "Date de clôture",
+    "expectedCloseDate": "Date de clôture prévue",
     "probability": "Probabilité",
+    "opportunityName": "Nom de l'opportunité",
     "stages": {
       "prospecting": "Prospection",
       "qualification": "Qualification",
@@ -320,6 +352,99 @@
       "permissions": "Permissions",
       "integrations": "Intégrations",
       "notifications": "Notifications"
+    },
+    "profile": {
+      "title": "Paramètres du profil",
+      "profileSaved": "Profil enregistré",
+      "profileSavedDesc": "Vos modifications de profil ont été enregistrées et synchronisées avec les données de l'espace de travail."
+    },
+    "workspace": {
+      "title": "Configuration de l'espace de travail",
+      "description": "Configurez les paramètres de votre espace de travail ci-dessous. Ces informations seront utilisées pour initialiser ProductFruits sur votre site.",
+      "workspace": "Espace de travail",
+      "selectWorkspace": "Sélectionnez un espace de travail",
+      "devEnvironment": "Environnement DEV",
+      "selectDevEnvironment": "Sélectionnez l'environnement DEV",
+      "workspaceCode": "Code de l'espace de travail"
+    },
+    "api": {
+      "title": "Clés API",
+      "warning": "Les clés API donnent accès aux données de votre CRM. Gardez-les en sécurité et ne les partagez jamais publiquement.",
+      "productionKey": "Clé API de production",
+      "developmentKey": "Clé API de développement"
+    },
+    "permissions": {
+      "title": "Permissions des rôles",
+      "administrator": "Administrateur",
+      "administratorDesc": "Accès complet à toutes les fonctionnalités et paramètres",
+      "salesManager": "Responsable des ventes",
+      "salesManagerDesc": "Gérer l'équipe commerciale et voir toutes les opportunités",
+      "salesRep": "Commercial",
+      "salesRepDesc": "Gérer ses propres comptes, contacts et opportunités"
+    },
+    "integrations": {
+      "title": "Intégrations",
+      "subtitle": "Connectez vos outils et services préférés",
+      "active": "Actif",
+      "available": "Disponible",
+      "premium": "Premium",
+      "disconnect": "Déconnecter",
+      "connect": "Connecter",
+      "upgrade": "Mettre à niveau",
+      "premiumFeatures": "Fonctionnalités Premium",
+      "premiumFeaturesDesc": "Débloquez des intégrations et fonctionnalités avancées avec un abonnement premium",
+      "viewPlans": "Voir les forfaits",
+      "salesforce": {
+        "name": "Salesforce",
+        "description": "Synchronisez les contacts et opportunités avec Salesforce CRM",
+        "feature1": "Synchronisation bidirectionnelle",
+        "feature2": "Gestion des contacts",
+        "feature3": "Suivi des opportunités"
+      },
+      "slack": {
+        "name": "Slack",
+        "description": "Recevez des notifications et mises à jour dans les canaux Slack",
+        "feature1": "Notifications en temps réel",
+        "feature2": "Collaboration d'équipe",
+        "feature3": "Alertes personnalisées"
+      },
+      "zapier": {
+        "name": "Zapier",
+        "description": "Connectez-vous à plus de 5 000 applications via l'automatisation Zapier",
+        "feature1": "Workflows automatisés",
+        "feature2": "Déclencheurs personnalisés",
+        "feature3": "Connexions multi-applications"
+      },
+      "hubspot": {
+        "name": "HubSpot",
+        "description": "Intégrez avec les outils marketing et commerciaux HubSpot",
+        "feature1": "Automatisation marketing",
+        "feature2": "Scoring des prospects",
+        "feature3": "Campagnes email"
+      },
+      "mailchimp": {
+        "name": "Mailchimp",
+        "description": "Intégration marketing email pour les campagnes",
+        "feature1": "Campagnes email",
+        "feature2": "Synchronisation d'audience",
+        "feature3": "Analytique"
+      },
+      "googleAnalytics": {
+        "name": "Google Analytics",
+        "description": "Suivez le trafic du site web et l'analytique du comportement utilisateur",
+        "feature1": "Analytique du trafic",
+        "feature2": "Suivi des conversions",
+        "feature3": "Rapports personnalisés"
+      }
+    },
+    "notifications": {
+      "title": "Préférences de notification",
+      "email": "Notifications par email",
+      "emailDesc": "Recevoir des notifications par email",
+      "push": "Notifications push",
+      "pushDesc": "Notifications push du navigateur",
+      "sms": "Notifications SMS",
+      "smsDesc": "Recevoir des notifications urgentes par SMS"
     }
   }
 }

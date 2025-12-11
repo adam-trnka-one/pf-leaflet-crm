@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTranslation } from "react-i18next";
 
 interface Opportunity {
   id: string;
@@ -37,6 +38,7 @@ interface NewOpportunityModalProps {
 }
 
 const NewOpportunityModal = ({ open, onOpenChange, onOpportunityCreated }: NewOpportunityModalProps) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     accountName: "",
@@ -93,11 +95,11 @@ const NewOpportunityModal = ({ open, onOpenChange, onOpportunityCreated }: NewOp
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]" data-testid="new-opportunity-modal-content">
         <DialogHeader data-testid="new-opportunity-modal-header">
-          <DialogTitle data-testid="new-opportunity-modal-title">Create New Opportunity</DialogTitle>
+          <DialogTitle data-testid="new-opportunity-modal-title">{t('opportunities.createOpportunity')}</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4" data-testid="new-opportunity-modal-form">
           <div className="grid gap-2" data-testid="new-opportunity-name-field">
-            <Label htmlFor="opportunity-name" data-testid="new-opportunity-name-label">Opportunity Name</Label>
+            <Label htmlFor="opportunity-name" data-testid="new-opportunity-name-label">{t('opportunities.opportunityName')}</Label>
             <Input
               id="opportunity-name"
               value={formData.name}
@@ -108,7 +110,7 @@ const NewOpportunityModal = ({ open, onOpenChange, onOpportunityCreated }: NewOp
           </div>
 
           <div className="grid gap-2" data-testid="new-opportunity-account-field">
-            <Label htmlFor="accountName" data-testid="new-opportunity-account-label">Account Name</Label>
+            <Label htmlFor="accountName" data-testid="new-opportunity-account-label">{t('accounts.accountName')}</Label>
             <Input
               id="accountName"
               value={formData.accountName}
@@ -120,7 +122,7 @@ const NewOpportunityModal = ({ open, onOpenChange, onOpportunityCreated }: NewOp
 
           <div className="grid grid-cols-2 gap-4" data-testid="new-opportunity-amount-probability-row">
             <div className="grid gap-2" data-testid="new-opportunity-amount-field">
-              <Label htmlFor="amount" data-testid="new-opportunity-amount-label">Amount</Label>
+              <Label htmlFor="amount" data-testid="new-opportunity-amount-label">{t('common.amount')}</Label>
               <Input
                 id="amount"
                 type="number"
@@ -131,7 +133,7 @@ const NewOpportunityModal = ({ open, onOpenChange, onOpportunityCreated }: NewOp
               />
             </div>
             <div className="grid gap-2" data-testid="new-opportunity-probability-field">
-              <Label htmlFor="probability" data-testid="new-opportunity-probability-label">Probability (%)</Label>
+              <Label htmlFor="probability" data-testid="new-opportunity-probability-label">{t('opportunities.probability')} (%)</Label>
               <Input
                 id="probability"
                 type="number"
@@ -146,26 +148,26 @@ const NewOpportunityModal = ({ open, onOpenChange, onOpportunityCreated }: NewOp
           </div>
 
           <div className="grid gap-2" data-testid="new-opportunity-stage-field">
-            <Label htmlFor="stage" data-testid="new-opportunity-stage-label">Stage</Label>
+            <Label htmlFor="stage" data-testid="new-opportunity-stage-label">{t('charts.stage')}</Label>
             <Select value={formData.stage} onValueChange={(value) => setFormData({ ...formData, stage: value })}>
               <SelectTrigger data-testid="new-opportunity-stage-trigger">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent data-testid="new-opportunity-stage-content">
-                <SelectItem value="Prospecting" data-testid="new-opportunity-stage-prospecting">Prospecting</SelectItem>
-                <SelectItem value="Qualification" data-testid="new-opportunity-stage-qualification">Qualification</SelectItem>
-                <SelectItem value="Proposal" data-testid="new-opportunity-stage-proposal">Proposal</SelectItem>
-                <SelectItem value="Negotiation" data-testid="new-opportunity-stage-negotiation">Negotiation</SelectItem>
-                <SelectItem value="Demo" data-testid="new-opportunity-stage-demo">Demo</SelectItem>
-                <SelectItem value="Follow-up" data-testid="new-opportunity-stage-followup">Follow-up</SelectItem>
-                <SelectItem value="Closed Won" data-testid="new-opportunity-stage-closed-won">Closed Won</SelectItem>
-                <SelectItem value="Closed Lost" data-testid="new-opportunity-stage-closed-lost">Closed Lost</SelectItem>
+                <SelectItem value="Prospecting" data-testid="new-opportunity-stage-prospecting">{t('opportunities.stages.prospecting')}</SelectItem>
+                <SelectItem value="Qualification" data-testid="new-opportunity-stage-qualification">{t('opportunities.stages.qualification')}</SelectItem>
+                <SelectItem value="Proposal" data-testid="new-opportunity-stage-proposal">{t('opportunities.stages.proposal')}</SelectItem>
+                <SelectItem value="Negotiation" data-testid="new-opportunity-stage-negotiation">{t('opportunities.stages.negotiation')}</SelectItem>
+                <SelectItem value="Demo" data-testid="new-opportunity-stage-demo">{t('opportunities.stages.demo')}</SelectItem>
+                <SelectItem value="Follow-up" data-testid="new-opportunity-stage-followup">{t('opportunities.stages.followUp')}</SelectItem>
+                <SelectItem value="Closed Won" data-testid="new-opportunity-stage-closed-won">{t('opportunities.stages.closedWon')}</SelectItem>
+                <SelectItem value="Closed Lost" data-testid="new-opportunity-stage-closed-lost">{t('opportunities.stages.closedLost')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div className="grid gap-2" data-testid="new-opportunity-close-date-field">
-            <Label htmlFor="closeDate" data-testid="new-opportunity-close-date-label">Expected Close Date</Label>
+            <Label htmlFor="closeDate" data-testid="new-opportunity-close-date-label">{t('opportunities.expectedCloseDate')}</Label>
             <Input
               id="closeDate"
               type="date"
@@ -177,10 +179,10 @@ const NewOpportunityModal = ({ open, onOpenChange, onOpportunityCreated }: NewOp
         </div>
         <DialogFooter data-testid="new-opportunity-modal-footer">
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="new-opportunity-cancel-button">
-            Cancel
+            {t('common.cancel')}
           </Button>
           <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700" data-testid="new-opportunity-create-button">
-            Create Opportunity
+            {t('opportunities.createOpportunity')}
           </Button>
         </DialogFooter>
       </DialogContent>
