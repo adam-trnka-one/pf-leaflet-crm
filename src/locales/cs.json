@@ -50,6 +50,7 @@
     "delete": "Smazat",
     "save": "Uložit",
     "cancel": "Zrušit",
+    "create": "Vytvořit",
     "loading": "Načítání...",
     "noResults": "Žádné výsledky",
     "owner": "Vlastník",
@@ -62,17 +63,46 @@
     "priority": "Priorita",
     "completed": "Dokončeno",
     "pending": "Čeká",
+    "active": "Aktivní",
     "allStatuses": "Všechny stavy",
     "allPriorities": "Všechny priority",
     "filterByStatus": "Filtrovat podle stavu",
-    "filterByPriority": "Filtrovat podle priority"
+    "filterByPriority": "Filtrovat podle priority",
+    "firstName": "Jméno",
+    "lastName": "Příjmení",
+    "email": "E-mail",
+    "phone": "Telefon",
+    "company": "Společnost",
+    "jobTitle": "Pracovní pozice",
+    "description": "Popis",
+    "name": "Název",
+    "price": "Cena",
+    "category": "Kategorie",
+    "amount": "Částka",
+    "date": "Datum",
+    "role": "Role",
+    "address": "Adresa",
+    "street": "Ulice",
+    "city": "Město",
+    "state": "Stát",
+    "country": "Země",
+    "postalCode": "PSČ",
+    "annualRevenue": "Roční příjmy",
+    "employees": "Zaměstnanci",
+    "rating": "Hodnocení",
+    "subject": "Předmět"
   },
   "accounts": {
     "title": "Účty",
     "subtitle": "Spravujte své zákaznické účty",
     "newAccount": "Nový účet",
+    "createAccount": "Vytvořit účet",
+    "editAccount": "Upravit účet",
+    "updateAccount": "Aktualizovat účet",
     "searchPlaceholder": "Hledat účty...",
     "noAccountsFound": "Nebyly nalezeny žádné účty odpovídající vašemu hledání.",
+    "accountName": "Název účtu",
+    "accountType": "Typ účtu",
     "customer": "Zákazník",
     "prospect": "Potenciální zákazník",
     "partner": "Partner",
@@ -82,25 +112,56 @@
     "title": "Kontakty",
     "subtitle": "Spravujte své kontaktní vztahy",
     "newContact": "Nový kontakt",
+    "createContact": "Vytvořit kontakt",
+    "editContact": "Upravit kontakt",
+    "updateContact": "Aktualizovat kontakt",
     "searchPlaceholder": "Hledat kontakty...",
-    "noContactsFound": "Nebyly nalezeny žádné kontakty odpovídající vašemu hledání."
+    "noContactsFound": "Nebyly nalezeny žádné kontakty odpovídající vašemu hledání.",
+    "accountName": "Název účtu"
   },
   "leads": {
     "title": "Leady",
     "subtitle": "Spravujte své prodejní leady",
     "newLead": "Nový lead",
+    "createLead": "Vytvořit lead",
+    "editLead": "Upravit lead",
+    "updateLead": "Aktualizovat lead",
     "convertLead": "Převést lead",
     "noLeadsFound": "Nebyly nalezeny žádné leady.",
     "source": "Zdroj",
     "leadDeleted": "Lead smazán",
-    "leadDeletedDesc": "Lead byl úspěšně smazán."
+    "leadDeletedDesc": "Lead byl úspěšně smazán.",
+    "statuses": {
+      "new": "Nový",
+      "working": "Zpracovávaný",
+      "qualified": "Kvalifikovaný",
+      "unqualified": "Nekvalifikovaný",
+      "converted": "Převedený"
+    },
+    "ratings": {
+      "hot": "Horký",
+      "warm": "Teplý",
+      "cold": "Studený"
+    },
+    "sources": {
+      "website": "Web",
+      "referral": "Doporučení",
+      "coldCall": "Studený hovor",
+      "tradeShow": "Veletrh",
+      "socialMedia": "Sociální média",
+      "emailCampaign": "E-mailová kampaň"
+    }
   },
   "opportunities": {
     "title": "Příležitosti",
     "subtitle": "Spravujte svůj prodejní pipeline",
     "newOpportunity": "Nová příležitost",
+    "createOpportunity": "Vytvořit příležitost",
+    "editOpportunity": "Upravit příležitost",
     "noOpportunities": "V této fázi nejsou žádné příležitosti",
     "close": "Uzavření",
+    "closeDate": "Datum uzavření",
+    "probability": "Pravděpodobnost",
     "stages": {
       "prospecting": "Prospekce",
       "qualification": "Kvalifikace",
@@ -116,18 +177,25 @@
     "title": "Aktivity",
     "subtitle": "Sledujte a spravujte své aktivity",
     "newActivity": "Nová aktivita",
+    "createActivity": "Vytvořit aktivitu",
+    "editActivity": "Upravit aktivitu",
+    "updateActivity": "Aktualizovat aktivitu",
     "activityDeleted": "Aktivita smazána",
     "activityDeletedDesc": "Aktivita byla úspěšně smazána.",
     "types": {
       "call": "Hovor",
       "email": "E-mail",
-      "meeting": "Schůzka"
+      "meeting": "Schůzka",
+      "task": "Úkol"
     }
   },
   "cases": {
     "title": "Případy",
     "subtitle": "Spravujte případy zákaznické podpory",
     "newCase": "Nový případ",
+    "createCase": "Vytvořit případ",
+    "editCase": "Upravit případ",
+    "updateCase": "Aktualizovat případ",
     "noCasesFound": "Nebyly nalezeny žádné případy odpovídající vašim filtrům.",
     "caseDeleted": "Případ smazán",
     "caseDeletedDesc": "Případ byl úspěšně smazán.",
@@ -144,6 +212,75 @@
       "medium": "Střední",
       "low": "Nízká"
     }
+  },
+  "products": {
+    "title": "Produkty",
+    "subtitle": "Spravujte svůj katalog produktů",
+    "newProduct": "Nový produkt",
+    "createProduct": "Vytvořit produkt",
+    "editProduct": "Upravit produkt",
+    "updateProduct": "Aktualizovat produkt",
+    "productName": "Název produktu",
+    "priceMonthly": "Cena (měsíčně)",
+    "productCreated": "Produkt vytvořen",
+    "productCreatedDesc": "Produkt byl úspěšně vytvořen.",
+    "productDeleted": "Produkt smazán",
+    "productDeletedDesc": "Produkt byl úspěšně smazán.",
+    "categories": {
+      "software": "Software",
+      "service": "Služba",
+      "training": "Školení"
+    }
+  },
+  "quotes": {
+    "title": "Nabídky",
+    "subtitle": "Spravujte prodejní nabídky a návrhy",
+    "newQuote": "Nová nabídka",
+    "createQuote": "Vytvořit nabídku",
+    "editQuote": "Upravit nabídku",
+    "updateQuote": "Aktualizovat nabídku",
+    "quoteName": "Název nabídky",
+    "quoteCreated": "Nabídka vytvořena",
+    "quoteCreatedDesc": "Nabídka byla úspěšně vytvořena.",
+    "quoteDeleted": "Nabídka smazána",
+    "quoteDeletedDesc": "Nabídka byla úspěšně smazána.",
+    "statuses": {
+      "draft": "Koncept",
+      "sent": "Odesláno",
+      "accepted": "Přijato",
+      "rejected": "Zamítnuto"
+    }
+  },
+  "users": {
+    "title": "Uživatelé",
+    "subtitle": "Spravujte uživatele systému a oprávnění",
+    "newUser": "Nový uživatel",
+    "createUser": "Vytvořit uživatele",
+    "editUser": "Upravit uživatele",
+    "updateUser": "Aktualizovat uživatele",
+    "userCreated": "Uživatel vytvořen",
+    "userCreatedDesc": "Uživatel byl úspěšně vytvořen.",
+    "userDeleted": "Uživatel smazán",
+    "userDeletedDesc": "Uživatel byl úspěšně smazán.",
+    "roles": {
+      "admin": "Administrátor",
+      "manager": "Manažer",
+      "salesRep": "Obchodní zástupce"
+    }
+  },
+  "help": {
+    "title": "Centrum nápovědy",
+    "subtitle": "Najděte odpovědi a naučte se používat Leaflet CRM",
+    "searchPlaceholder": "Hledat v nápovědě...",
+    "backToHelp": "Zpět do centra nápovědy",
+    "gettingStarted": "Začínáme",
+    "gettingStartedDesc": "Naučte se základy používání Leaflet CRM",
+    "accountManagement": "Správa účtů",
+    "accountManagementDesc": "Správa firemních účtů a organizací",
+    "contactManagement": "Správa kontaktů",
+    "contactManagementDesc": "Správa jednotlivých kontaktů a vztahů",
+    "leadManagement": "Správa leadů",
+    "leadManagementDesc": "Konverze potenciálních zákazníků na příležitosti"
   },
   "settings": {
     "title": "Nastavení",

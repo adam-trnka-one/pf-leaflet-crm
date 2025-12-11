@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +10,7 @@ import EditQuoteModal from "@/components/modals/EditQuoteModal";
 import { toast } from "@/hooks/use-toast";
 
 const Quotes = () => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedQuote, setSelectedQuote] = useState<any>(null);
@@ -31,16 +33,16 @@ const Quotes = () => {
   const handleQuoteCreated = (newQuote: any) => {
     setQuotes(prevQuotes => [newQuote, ...prevQuotes]);
     toast({
-      title: "Quote created",
-      description: "The quote has been successfully created."
+      title: t('quotes.quoteCreated'),
+      description: t('quotes.quoteCreatedDesc')
     });
   };
 
   const handleDelete = (quoteId: number) => {
     setQuotes(quotes.filter(q => q.id !== quoteId));
     toast({
-      title: "Quote deleted",
-      description: "The quote has been successfully deleted."
+      title: t('quotes.quoteDeleted'),
+      description: t('quotes.quoteDeletedDesc')
     });
   };
 
@@ -58,8 +60,8 @@ const Quotes = () => {
     <div className="p-8 bg-slate-50 min-h-screen" data-testid="quotes-main-container">
       <div className="flex justify-between items-start mb-8" data-testid="quotes-header-section">
         <div data-testid="quotes-header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-testid="quotes-page-title">Quotes</h1>
-          <p className="text-slate-600 mt-2" data-testid="quotes-page-subtitle">Manage sales quotes and proposals</p>
+          <h1 className="text-3xl font-bold text-slate-800" data-testid="quotes-page-title">{t('quotes.title')}</h1>
+          <p className="text-slate-600 mt-2" data-testid="quotes-page-subtitle">{t('quotes.subtitle')}</p>
         </div>
         <Button 
           className="bg-[#4AB831] hover:bg-[#3da127]"
@@ -67,7 +69,7 @@ const Quotes = () => {
           data-testid="quotes-new-quote-button"
         >
           <Plus className="h-4 w-4 mr-2" data-testid="quotes-new-quote-icon" />
-          <span data-testid="quotes-new-quote-text">New Quote</span>
+          <span data-testid="quotes-new-quote-text">{t('quotes.newQuote')}</span>
         </Button>
       </div>
 
@@ -110,7 +112,7 @@ const Quotes = () => {
                       data-testid="quotes-edit-button"
                     >
                       <Edit className="h-4 w-4 mr-1" data-testid="quotes-edit-icon" />
-                      <span data-testid="quotes-edit-text">Edit</span>
+                      <span data-testid="quotes-edit-text">{t('common.edit')}</span>
                     </Button>
                     <Button
                       variant="outline"
