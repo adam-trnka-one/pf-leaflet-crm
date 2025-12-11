@@ -44,6 +44,117 @@
   "common": {
     "search": "بحث",
     "signOut": "تسجيل الخروج",
-    "language": "اللغة"
+    "language": "اللغة",
+    "new": "جديد",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "loading": "جاري التحميل...",
+    "noResults": "لا توجد نتائج",
+    "owner": "المالك",
+    "created": "تاريخ الإنشاء",
+    "industry": "الصناعة",
+    "account": "الحساب",
+    "contact": "جهة الاتصال",
+    "type": "النوع",
+    "status": "الحالة",
+    "priority": "الأولوية",
+    "completed": "مكتمل",
+    "pending": "قيد الانتظار",
+    "allStatuses": "جميع الحالات",
+    "allPriorities": "جميع الأولويات",
+    "filterByStatus": "تصفية حسب الحالة",
+    "filterByPriority": "تصفية حسب الأولوية"
+  },
+  "accounts": {
+    "title": "الحسابات",
+    "subtitle": "إدارة حسابات العملاء",
+    "newAccount": "حساب جديد",
+    "searchPlaceholder": "البحث في الحسابات...",
+    "noAccountsFound": "لم يتم العثور على حسابات تطابق بحثك.",
+    "customer": "عميل",
+    "prospect": "عميل محتمل",
+    "partner": "شريك",
+    "competitor": "منافس"
+  },
+  "contacts": {
+    "title": "جهات الاتصال",
+    "subtitle": "إدارة علاقات الاتصال الخاصة بك",
+    "newContact": "جهة اتصال جديدة",
+    "searchPlaceholder": "البحث في جهات الاتصال...",
+    "noContactsFound": "لم يتم العثور على جهات اتصال تطابق بحثك."
+  },
+  "leads": {
+    "title": "العملاء المحتملين",
+    "subtitle": "إدارة العملاء المحتملين للمبيعات",
+    "newLead": "عميل محتمل جديد",
+    "convertLead": "تحويل العميل المحتمل",
+    "noLeadsFound": "لم يتم العثور على عملاء محتملين.",
+    "source": "المصدر",
+    "leadDeleted": "تم حذف العميل المحتمل",
+    "leadDeletedDesc": "تم حذف العميل المحتمل بنجاح."
+  },
+  "opportunities": {
+    "title": "الفرص",
+    "subtitle": "إدارة خط أنابيب المبيعات",
+    "newOpportunity": "فرصة جديدة",
+    "noOpportunities": "لا توجد فرص في هذه المرحلة",
+    "close": "الإغلاق",
+    "stages": {
+      "prospecting": "التنقيب",
+      "qualification": "التأهيل",
+      "proposal": "العرض",
+      "negotiation": "التفاوض",
+      "demo": "العرض التوضيحي",
+      "followUp": "المتابعة",
+      "closedWon": "مغلق - فاز",
+      "closedLost": "مغلق - خسر"
+    }
+  },
+  "activities": {
+    "title": "الأنشطة",
+    "subtitle": "تتبع وإدارة أنشطتك",
+    "newActivity": "نشاط جديد",
+    "activityDeleted": "تم حذف النشاط",
+    "activityDeletedDesc": "تم حذف النشاط بنجاح.",
+    "types": {
+      "call": "مكالمة",
+      "email": "بريد إلكتروني",
+      "meeting": "اجتماع"
+    }
+  },
+  "cases": {
+    "title": "الحالات",
+    "subtitle": "إدارة حالات دعم العملاء",
+    "newCase": "حالة جديدة",
+    "noCasesFound": "لم يتم العثور على حالات تطابق الفلاتر الخاصة بك.",
+    "caseDeleted": "تم حذف الحالة",
+    "caseDeletedDesc": "تم حذف الحالة بنجاح.",
+    "statuses": {
+      "new": "جديد",
+      "inProgress": "قيد التنفيذ",
+      "pending": "قيد الانتظار",
+      "resolved": "تم الحل",
+      "closed": "مغلق"
+    },
+    "priorities": {
+      "critical": "حرج",
+      "high": "عالي",
+      "medium": "متوسط",
+      "low": "منخفض"
+    }
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "subtitle": "إدارة حسابك وإعدادات التطبيق",
+    "tabs": {
+      "profile": "الملف الشخصي",
+      "workspace": "مساحة العمل",
+      "api": "مفاتيح API",
+      "permissions": "الصلاحيات",
+      "integrations": "التكاملات",
+      "notifications": "الإشعارات"
+    }
   }
 }

@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { getSampleData, resetDatabase, type Opportunity } from "@/utils/sampleData";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +9,7 @@ import { Plus, DollarSign } from "lucide-react";
 import NewOpportunityModal from "@/components/modals/NewOpportunityModal";
 
 const Opportunities = () => {
+  const { t } = useTranslation();
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -97,8 +99,8 @@ const Opportunities = () => {
       {/* Header */}
       <div className="flex justify-between items-start mb-8" data-testid="opportunities-header-section">
         <div data-testid="opportunities-header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-testid="opportunities-page-title">Opportunities</h1>
-          <p className="text-slate-600 mt-2" data-testid="opportunities-page-subtitle">Manage your sales pipeline</p>
+          <h1 className="text-3xl font-bold text-slate-800" data-testid="opportunities-page-title">{t('opportunities.title')}</h1>
+          <p className="text-slate-600 mt-2" data-testid="opportunities-page-subtitle">{t('opportunities.subtitle')}</p>
         </div>
         <Button 
           className="bg-emerald-600 hover:bg-emerald-700"
@@ -106,7 +108,7 @@ const Opportunities = () => {
           data-testid="opportunities-new-opportunity-button"
         >
           <Plus className="h-4 w-4 mr-2" data-testid="opportunities-new-opportunity-icon" />
-          <span data-testid="opportunities-new-opportunity-text">New Opportunity</span>
+          <span data-testid="opportunities-new-opportunity-text">{t('opportunities.newOpportunity')}</span>
         </Button>
       </div>
 
@@ -161,11 +163,11 @@ const Opportunities = () => {
                           </Badge>
                         </div>
                         <div className="text-xs text-slate-500" data-testid="opportunities-opportunity-close-date">
-                          <span data-testid="opportunities-close-date-label">Close: </span>
+                          <span data-testid="opportunities-close-date-label">{t('opportunities.close')}: </span>
                           <span data-testid="opportunities-close-date-value">{opportunity.closeDate.toLocaleDateString()}</span>
                         </div>
                         <div className="text-xs text-slate-500 mt-1" data-testid="opportunities-opportunity-owner">
-                          <span data-testid="opportunities-owner-label">Owner: </span>
+                          <span data-testid="opportunities-owner-label">{t('common.owner')}: </span>
                           <span data-testid="opportunities-owner-value">{opportunity.owner}</span>
                         </div>
                       </CardContent>
@@ -174,7 +176,7 @@ const Opportunities = () => {
                   
                   {stageOpportunities.length === 0 && (
                     <div className="text-center py-8 text-slate-400" data-testid="opportunities-empty-stage">
-                      <span data-testid="opportunities-empty-stage-message">No opportunities in this stage</span>
+                      <span data-testid="opportunities-empty-stage-message">{t('opportunities.noOpportunities')}</span>
                     </div>
                   )}
                 </div>

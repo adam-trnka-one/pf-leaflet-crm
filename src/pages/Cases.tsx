@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { getSampleData, resetDatabase, type Case } from "@/utils/sampleData";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -11,6 +12,7 @@ import EditCaseModal from "@/components/modals/EditCaseModal";
 import { toast } from "@/hooks/use-toast";
 
 const Cases = () => {
+  const { t } = useTranslation();
   const [cases, setCases] = useState<Case[]>([]);
   const [filteredCases, setFilteredCases] = useState<Case[]>([]);
   const [statusFilter, setStatusFilter] = useState<string>("all");
@@ -93,8 +95,8 @@ const Cases = () => {
     localStorage.setItem('crmCases', JSON.stringify(updatedCases));
     loadCases();
     toast({
-      title: "Case deleted",
-      description: "The case has been successfully deleted."
+      title: t('cases.caseDeleted'),
+      description: t('cases.caseDeletedDesc')
     });
   };
 
@@ -142,8 +144,8 @@ const Cases = () => {
       {/* Header */}
       <div className="flex justify-between items-start mb-8" data-testid="cases-header-section">
         <div data-testid="cases-header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-testid="cases-page-title">Cases</h1>
-          <p className="text-slate-600 mt-2" data-testid="cases-page-subtitle">Manage customer support cases</p>
+          <h1 className="text-3xl font-bold text-slate-800" data-testid="cases-page-title">{t('cases.title')}</h1>
+          <p className="text-slate-600 mt-2" data-testid="cases-page-subtitle">{t('cases.subtitle')}</p>
         </div>
         <Button 
           className="bg-emerald-600 hover:bg-emerald-700" 
@@ -151,7 +153,7 @@ const Cases = () => {
           data-testid="cases-new-case-button"
         >
           <Plus className="h-4 w-4 mr-2" data-testid="cases-new-case-icon" />
-          <span data-testid="cases-new-case-text">New Case</span>
+          <span data-testid="cases-new-case-text">{t('cases.newCase')}</span>
         </Button>
       </div>
 
@@ -159,28 +161,28 @@ const Cases = () => {
       <div className="flex space-x-4 mb-6" data-testid="cases-filters-section">
         <Select value={statusFilter} onValueChange={setStatusFilter} data-testid="cases-status-filter">
           <SelectTrigger className="w-48 bg-white" data-testid="cases-status-filter-trigger">
-            <SelectValue placeholder="Filter by status" data-testid="cases-status-filter-value" />
+            <SelectValue placeholder={t('common.filterByStatus')} data-testid="cases-status-filter-value" />
           </SelectTrigger>
           <SelectContent data-testid="cases-status-filter-content">
-            <SelectItem value="all" data-testid="cases-status-option-all">All Statuses</SelectItem>
-            <SelectItem value="New" data-testid="cases-status-option-new">New</SelectItem>
-            <SelectItem value="In Progress" data-testid="cases-status-option-progress">In Progress</SelectItem>
-            <SelectItem value="Pending" data-testid="cases-status-option-pending">Pending</SelectItem>
-            <SelectItem value="Resolved" data-testid="cases-status-option-resolved">Resolved</SelectItem>
-            <SelectItem value="Closed" data-testid="cases-status-option-closed">Closed</SelectItem>
+            <SelectItem value="all" data-testid="cases-status-option-all">{t('common.allStatuses')}</SelectItem>
+            <SelectItem value="New" data-testid="cases-status-option-new">{t('cases.statuses.new')}</SelectItem>
+            <SelectItem value="In Progress" data-testid="cases-status-option-progress">{t('cases.statuses.inProgress')}</SelectItem>
+            <SelectItem value="Pending" data-testid="cases-status-option-pending">{t('cases.statuses.pending')}</SelectItem>
+            <SelectItem value="Resolved" data-testid="cases-status-option-resolved">{t('cases.statuses.resolved')}</SelectItem>
+            <SelectItem value="Closed" data-testid="cases-status-option-closed">{t('cases.statuses.closed')}</SelectItem>
           </SelectContent>
         </Select>
 
         <Select value={priorityFilter} onValueChange={setPriorityFilter} data-testid="cases-priority-filter">
           <SelectTrigger className="w-48 bg-white" data-testid="cases-priority-filter-trigger">
-            <SelectValue placeholder="Filter by priority" data-testid="cases-priority-filter-value" />
+            <SelectValue placeholder={t('common.filterByPriority')} data-testid="cases-priority-filter-value" />
           </SelectTrigger>
           <SelectContent data-testid="cases-priority-filter-content">
-            <SelectItem value="all" data-testid="cases-priority-option-all">All Priorities</SelectItem>
-            <SelectItem value="Critical" data-testid="cases-priority-option-critical">Critical</SelectItem>
-            <SelectItem value="High" data-testid="cases-priority-option-high">High</SelectItem>
-            <SelectItem value="Medium" data-testid="cases-priority-option-medium">Medium</SelectItem>
-            <SelectItem value="Low" data-testid="cases-priority-option-low">Low</SelectItem>
+            <SelectItem value="all" data-testid="cases-priority-option-all">{t('common.allPriorities')}</SelectItem>
+            <SelectItem value="Critical" data-testid="cases-priority-option-critical">{t('cases.priorities.critical')}</SelectItem>
+            <SelectItem value="High" data-testid="cases-priority-option-high">{t('cases.priorities.high')}</SelectItem>
+            <SelectItem value="Medium" data-testid="cases-priority-option-medium">{t('cases.priorities.medium')}</SelectItem>
+            <SelectItem value="Low" data-testid="cases-priority-option-low">{t('cases.priorities.low')}</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -210,19 +212,19 @@ const Cases = () => {
                   
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm" data-testid={`case-details-grid-${case_.id}`}>
                     <div data-testid={`case-account-info-${case_.id}`}>
-                      <label className="text-slate-500" data-testid={`case-account-label-${case_.id}`}>Account</label>
+                      <label className="text-slate-500" data-testid={`case-account-label-${case_.id}`}>{t('common.account')}</label>
                       <p className="font-medium text-slate-800" data-testid={`case-account-name-${case_.id}`}>{case_.accountName}</p>
                     </div>
                     <div data-testid={`case-contact-info-${case_.id}`}>
-                      <label className="text-slate-500" data-testid={`case-contact-label-${case_.id}`}>Contact</label>
+                      <label className="text-slate-500" data-testid={`case-contact-label-${case_.id}`}>{t('common.contact')}</label>
                       <p className="font-medium text-slate-800" data-testid={`case-contact-name-${case_.id}`}>{case_.contactName}</p>
                     </div>
                     <div data-testid={`case-type-info-${case_.id}`}>
-                      <label className="text-slate-500" data-testid={`case-type-label-${case_.id}`}>Type</label>
+                      <label className="text-slate-500" data-testid={`case-type-label-${case_.id}`}>{t('common.type')}</label>
                       <p className="font-medium text-slate-800" data-testid={`case-type-value-${case_.id}`}>{case_.type}</p>
                     </div>
                     <div data-testid={`case-owner-info-${case_.id}`}>
-                      <label className="text-slate-500" data-testid={`case-owner-label-${case_.id}`}>Owner</label>
+                      <label className="text-slate-500" data-testid={`case-owner-label-${case_.id}`}>{t('common.owner')}</label>
                       <p className="font-medium text-slate-800" data-testid={`case-owner-name-${case_.id}`}>{case_.owner}</p>
                     </div>
                   </div>
@@ -231,7 +233,7 @@ const Cases = () => {
                 <div className="flex flex-col items-end space-y-2" data-testid={`case-actions-section-${case_.id}`}>
                   <div className="text-xs text-slate-500 text-right" data-testid={`case-metadata-${case_.id}`}>
                     <p data-testid={`case-id-${case_.id}`}>Case #{case_.id}</p>
-                    <p data-testid={`case-created-date-${case_.id}`}>Created: {case_.createdAt.toLocaleDateString()}</p>
+                    <p data-testid={`case-created-date-${case_.id}`}>{t('common.created')}: {case_.createdAt.toLocaleDateString()}</p>
                   </div>
                   <div className="flex space-x-2" data-testid={`case-buttons-${case_.id}`}>
                     <Button 
@@ -241,7 +243,7 @@ const Cases = () => {
                       data-testid={`case-edit-button-${case_.id}`}
                     >
                       <Edit className="h-4 w-4 mr-1" data-testid={`case-edit-icon-${case_.id}`} />
-                      <span data-testid={`case-edit-text-${case_.id}`}>Edit</span>
+                      <span data-testid={`case-edit-text-${case_.id}`}>{t('common.edit')}</span>
                     </Button>
                     <Button
                       variant="outline"
@@ -262,7 +264,7 @@ const Cases = () => {
 
       {filteredCases.length === 0 && (
         <div className="text-center py-12" data-testid="cases-empty-state">
-          <p className="text-slate-500" data-testid="cases-empty-message">No cases found matching your filters.</p>
+          <p className="text-slate-500" data-testid="cases-empty-message">{t('cases.noCasesFound')}</p>
         </div>
       )}
 

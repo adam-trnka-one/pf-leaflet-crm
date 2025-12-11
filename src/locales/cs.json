@@ -44,6 +44,117 @@
   "common": {
     "search": "Hledat",
     "signOut": "Odhlásit se",
-    "language": "Jazyk"
+    "language": "Jazyk",
+    "new": "Nový",
+    "edit": "Upravit",
+    "delete": "Smazat",
+    "save": "Uložit",
+    "cancel": "Zrušit",
+    "loading": "Načítání...",
+    "noResults": "Žádné výsledky",
+    "owner": "Vlastník",
+    "created": "Vytvořeno",
+    "industry": "Odvětví",
+    "account": "Účet",
+    "contact": "Kontakt",
+    "type": "Typ",
+    "status": "Stav",
+    "priority": "Priorita",
+    "completed": "Dokončeno",
+    "pending": "Čeká",
+    "allStatuses": "Všechny stavy",
+    "allPriorities": "Všechny priority",
+    "filterByStatus": "Filtrovat podle stavu",
+    "filterByPriority": "Filtrovat podle priority"
+  },
+  "accounts": {
+    "title": "Účty",
+    "subtitle": "Spravujte své zákaznické účty",
+    "newAccount": "Nový účet",
+    "searchPlaceholder": "Hledat účty...",
+    "noAccountsFound": "Nebyly nalezeny žádné účty odpovídající vašemu hledání.",
+    "customer": "Zákazník",
+    "prospect": "Potenciální zákazník",
+    "partner": "Partner",
+    "competitor": "Konkurent"
+  },
+  "contacts": {
+    "title": "Kontakty",
+    "subtitle": "Spravujte své kontaktní vztahy",
+    "newContact": "Nový kontakt",
+    "searchPlaceholder": "Hledat kontakty...",
+    "noContactsFound": "Nebyly nalezeny žádné kontakty odpovídající vašemu hledání."
+  },
+  "leads": {
+    "title": "Leady",
+    "subtitle": "Spravujte své prodejní leady",
+    "newLead": "Nový lead",
+    "convertLead": "Převést lead",
+    "noLeadsFound": "Nebyly nalezeny žádné leady.",
+    "source": "Zdroj",
+    "leadDeleted": "Lead smazán",
+    "leadDeletedDesc": "Lead byl úspěšně smazán."
+  },
+  "opportunities": {
+    "title": "Příležitosti",
+    "subtitle": "Spravujte svůj prodejní pipeline",
+    "newOpportunity": "Nová příležitost",
+    "noOpportunities": "V této fázi nejsou žádné příležitosti",
+    "close": "Uzavření",
+    "stages": {
+      "prospecting": "Prospekce",
+      "qualification": "Kvalifikace",
+      "proposal": "Návrh",
+      "negotiation": "Vyjednávání",
+      "demo": "Demo",
+      "followUp": "Follow-up",
+      "closedWon": "Uzavřeno - vyhráno",
+      "closedLost": "Uzavřeno - prohráno"
+    }
+  },
+  "activities": {
+    "title": "Aktivity",
+    "subtitle": "Sledujte a spravujte své aktivity",
+    "newActivity": "Nová aktivita",
+    "activityDeleted": "Aktivita smazána",
+    "activityDeletedDesc": "Aktivita byla úspěšně smazána.",
+    "types": {
+      "call": "Hovor",
+      "email": "E-mail",
+      "meeting": "Schůzka"
+    }
+  },
+  "cases": {
+    "title": "Případy",
+    "subtitle": "Spravujte případy zákaznické podpory",
+    "newCase": "Nový případ",
+    "noCasesFound": "Nebyly nalezeny žádné případy odpovídající vašim filtrům.",
+    "caseDeleted": "Případ smazán",
+    "caseDeletedDesc": "Případ byl úspěšně smazán.",
+    "statuses": {
+      "new": "Nový",
+      "inProgress": "Probíhá",
+      "pending": "Čeká",
+      "resolved": "Vyřešeno",
+      "closed": "Uzavřeno"
+    },
+    "priorities": {
+      "critical": "Kritická",
+      "high": "Vysoká",
+      "medium": "Střední",
+      "low": "Nízká"
+    }
+  },
+  "settings": {
+    "title": "Nastavení",
+    "subtitle": "Spravujte svůj účet a nastavení aplikace",
+    "tabs": {
+      "profile": "Profil",
+      "workspace": "Pracovní prostor",
+      "api": "API klíče",
+      "permissions": "Oprávnění",
+      "integrations": "Integrace",
+      "notifications": "Oznámení"
+    }
   }
 }
