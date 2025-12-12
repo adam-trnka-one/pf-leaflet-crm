@@ -78,6 +78,20 @@ export const useProductFruits = () => {
     // Get current language
     const languageCode = getLanguageCode();
 
+    // Clean up existing ProductFruits instance
+    if ((window as any).$productFruits) {
+      try {
+        (window as any).$productFruits.push(['destroy']);
+        console.log('ProductFruits destroyed before reinitialization');
+      } catch (e) {
+        console.log('ProductFruits destroy failed:', e);
+      }
+    }
+    
+    // Clear globals
+    delete (window as any).$productFruits;
+    delete (window as any).productFruits;
+
     // Remove existing ProductFruits scripts including the static one from index.html
     const existingScripts = document.querySelectorAll('script[src*="productfruits"], script[src*="pf.dev"], script[src*="/static/script.js"], script[data-productfruits-init]');
     existingScripts.forEach(script => script.remove());
@@ -88,18 +102,6 @@ export const useProductFruits = () => {
       staticScript.remove();
     }
 
-    // Create and add the new main ProductFruits script with correct URL
-    const mainScript = document.createElement('script');
-    mainScript.async = true;
-    const scriptUrl = getScriptUrl(dataToUse.selectedWorkspace, dataToUse.customUrl);
-    mainScript.src = `${scriptUrl}?c=${dataToUse.workspaceCode}`;
-    document.head.appendChild(mainScript);
-
-    // Create the initialization script
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.setAttribute('data-productfruits-init', 'true');
-    
     // Build props object from custom properties
     const props: Record<string, string> = {};
     if (dataToUse.customProperties && Array.isArray(dataToUse.customProperties)) {
@@ -123,16 +125,28 @@ export const useProductFruits = () => {
       ...(Object.keys(props).length > 0 && { props })
     };
 
-    script.innerHTML = `
-      if (window.$productFruits) {
+    // Create and add the new main ProductFruits script with correct URL
+    const mainScript = document.createElement('script');
+    mainScript.async = true;
+    const scriptUrl = getScriptUrl(dataToUse.selectedWorkspace, dataToUse.customUrl);
+    mainScript.src = `${scriptUrl}?c=${dataToUse.workspaceCode}`;
+    
+    // Wait for script to load before initializing
+    mainScript.onload = () => {
+      const initScript = document.createElement('script');
+      initScript.type = 'text/javascript';
+      initScript.setAttribute('data-productfruits-init', 'true');
+      initScript.innerHTML = `
+        window.$productFruits = window.$productFruits || [];
         window.$productFruits.push(['init', '${dataToUse.workspaceCode}', '${languageCode}', ${JSON.stringify(initData)}]);
-      }
-    `;
-
-    document.head.appendChild(script);
-    console.log('ProductFruits initialized with workspace code:', dataToUse.workspaceCode);
-    console.log('ProductFruits language:', languageCode);
-    console.log('Initialization data:', initData);
+      `;
+      document.head.appendChild(initScript);
+      console.log('ProductFruits initialized with workspace code:', dataToUse.workspaceCode);
+      console.log('ProductFruits language:', languageCode);
+      console.log('Initialization data:', initData);
+    };
+    
+    document.head.appendChild(mainScript);
 
     // Update the tracking reference
     initializedWorkspaceCode.current = dataToUse.workspaceCode;
