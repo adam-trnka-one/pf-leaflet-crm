@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useProductFruits } from '@/hooks/useProductFruits';
 
 const languages = [
   { code: 'en', name: 'English', flag: '🇬🇧' },
@@ -16,11 +17,15 @@ const languages = [
 
 export const LanguageSelector = () => {
   const { i18n } = useTranslation();
+  const { initializeProductFruits } = useProductFruits();
 
   const handleLanguageChange = (langCode: string) => {
     i18n.changeLanguage(langCode);
     localStorage.setItem('language', langCode);
     document.documentElement.dir = langCode === 'ar' ? 'rtl' : 'ltr';
+    
+    // Reinitialize ProductFruits with the new language
+    initializeProductFruits();
   };
 
   const currentLang = languages.find((l) => l.code === i18n.language) || languages[0];
