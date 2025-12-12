@@ -48,7 +48,7 @@ export const useProductFruits = () => {
   const getLanguageCode = (): string => {
     // Get language from localStorage, default to 'en'
     const savedLanguage = localStorage.getItem('language');
-    if (savedLanguage && ['en', 'cs', 'fr', 'ar'].includes(savedLanguage)) {
+    if (savedLanguage && ['en', 'cs', 'fr', 'ar', 'pt'].includes(savedLanguage)) {
       return savedLanguage;
     }
     return 'en';
