@@ -1,0 +1,41 @@
+{
+  "title": "Cases",
+  "subtitle": "Manage your support cases",
+  "newCase": "New Case",
+  "searchPlaceholder": "Search cases...",
+  "noResults": "No cases found.",
+  "fields": {
+    "caseNumber": "Case Number",
+    "subject": "Subject",
+    "status": "Status",
+    "priority": "Priority",
+    "type": "Type",
+    "account": "Account",
+    "contact": "Contact",
+    "owner": "Owner",
+    "created": "Created"
+  },
+  "statuses": {
+    "new": "New",
+    "working": "Working",
+    "escalated": "Escalated",
+    "closed": "Closed"
+  },
+  "priorities": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "critical": "Critical"
+  },
+  "types": {
+    "problem": "Problem",
+    "question": "Question",
+    "featureRequest": "Feature Request"
+  },
+  "modal": {
+    "createTitle": "Create New Case",
+    "editTitle": "Edit Case",
+    "createButton": "Create Case",
+    "saveButton": "Save Changes"
+  }
+}

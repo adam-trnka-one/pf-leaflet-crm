@@ -1,0 +1,41 @@
+{
+  "title": "Activities",
+  "subtitle": "Manage your tasks and activities",
+  "newActivity": "New Activity",
+  "searchPlaceholder": "Search activities...",
+  "noResults": "No activities found.",
+  "fields": {
+    "subject": "Subject",
+    "type": "Type",
+    "status": "Status",
+    "priority": "Priority",
+    "dueDate": "Due Date",
+    "relatedTo": "Related To",
+    "assignedTo": "Assigned To",
+    "description": "Description"
+  },
+  "types": {
+    "call": "Call",
+    "meeting": "Meeting",
+    "task": "Task",
+    "email": "Email",
+    "event": "Event"
+  },
+  "statuses": {
+    "notStarted": "Not Started",
+    "inProgress": "In Progress",
+    "completed": "Completed",
+    "deferred": "Deferred"
+  },
+  "priorities": {
+    "low": "Low",
+    "normal": "Normal",
+    "high": "High"
+  },
+  "modal": {
+    "createTitle": "Create New Activity",
+    "editTitle": "Edit Activity",
+    "createButton": "Create Activity",
+    "saveButton": "Save Changes"
+  }
+}

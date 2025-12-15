@@ -1,0 +1,7 @@
+{
+  "title": "Contas", "subtitle": "Gerencie suas contas de clientes", "newAccount": "Nova Conta", "searchPlaceholder": "Pesquisar contas...", "noResults": "Nenhuma conta encontrada.",
+  "fields": { "accountName": "Nome da Conta", "accountType": "Tipo de Conta", "industry": "Setor", "annualRevenue": "Receita Anual", "employees": "Funcionários", "streetAddress": "Endereço", "city": "Cidade", "state": "Estado", "country": "País", "postalCode": "CEP", "owner": "Proprietário", "created": "Criado" },
+  "types": { "customer": "Cliente", "prospect": "Prospect", "partner": "Parceiro", "competitor": "Concorrente" },
+  "modal": { "createTitle": "Criar Nova Conta", "editTitle": "Editar Conta", "createButton": "Criar Conta", "saveButton": "Salvar Alterações" },
+  "placeholders": { "accountName": "Acme Corporation", "industry": "Tecnologia", "revenue": "1000000", "employees": "50", "street": "Rua Principal 123", "city": "São Paulo", "state": "SP", "country": "Brasil", "postalCode": "01000-000" }
+}

@@ -1,0 +1,6 @@
+{
+  "title": "Cotações", "subtitle": "Gerencie suas cotações de vendas", "newQuote": "Nova Cotação", "searchPlaceholder": "Pesquisar cotações...", "noResults": "Nenhuma cotação encontrada.",
+  "fields": { "quoteNumber": "Número da Cotação", "quoteName": "Nome da Cotação", "account": "Conta", "opportunity": "Oportunidade", "status": "Status", "expirationDate": "Data de Expiração", "subtotal": "Subtotal", "discount": "Desconto", "tax": "Imposto", "total": "Total" },
+  "statuses": { "draft": "Rascunho", "pending": "Pendente", "accepted": "Aceita", "rejected": "Rejeitada" },
+  "modal": { "createTitle": "Criar Nova Cotação", "editTitle": "Editar Cotação", "createButton": "Criar Cotação", "saveButton": "Salvar Alterações" }
+}

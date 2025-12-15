@@ -1,0 +1,6 @@
+{
+  "title": "Contatos", "subtitle": "Gerencie seus relacionamentos de contato", "newContact": "Novo Contato", "searchPlaceholder": "Pesquisar contatos...", "noResults": "Nenhum contato encontrado.",
+  "fields": { "firstName": "Nome", "lastName": "Sobrenome", "email": "E-mail", "phone": "Telefone", "title": "Cargo", "account": "Conta", "owner": "Proprietário", "created": "Criado" },
+  "modal": { "createTitle": "Criar Novo Contato", "editTitle": "Editar Contato", "createButton": "Criar Contato", "saveButton": "Salvar Alterações" },
+  "placeholders": { "firstName": "João", "lastName": "Silva", "email": "joao@exemplo.com", "phone": "+55 11 99999-0000", "title": "CEO" }
+}

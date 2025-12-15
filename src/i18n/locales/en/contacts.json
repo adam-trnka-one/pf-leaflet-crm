@@ -1,0 +1,30 @@
+{
+  "title": "Contacts",
+  "subtitle": "Manage your contact relationships",
+  "newContact": "New Contact",
+  "searchPlaceholder": "Search contacts...",
+  "noResults": "No contacts found matching your search.",
+  "fields": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "title": "Title",
+    "account": "Account",
+    "owner": "Owner",
+    "created": "Created"
+  },
+  "modal": {
+    "createTitle": "Create New Contact",
+    "editTitle": "Edit Contact",
+    "createButton": "Create Contact",
+    "saveButton": "Save Changes"
+  },
+  "placeholders": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@example.com",
+    "phone": "+1 555-0100",
+    "title": "CEO"
+  }
+}

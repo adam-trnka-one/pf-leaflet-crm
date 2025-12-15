@@ -1,0 +1,7 @@
+{
+  "title": "Usuários", "subtitle": "Gerencie os membros da sua equipe", "newUser": "Novo Usuário", "searchPlaceholder": "Pesquisar usuários...", "noResults": "Nenhum usuário encontrado.",
+  "fields": { "firstName": "Nome", "lastName": "Sobrenome", "email": "E-mail", "phone": "Telefone", "role": "Função", "department": "Departamento", "status": "Status", "lastLogin": "Último Login" },
+  "roles": { "admin": "Administrador", "manager": "Gerente", "salesRep": "Representante de Vendas", "support": "Suporte" },
+  "statuses": { "active": "Ativo", "inactive": "Inativo" },
+  "modal": { "createTitle": "Criar Novo Usuário", "editTitle": "Editar Usuário", "createButton": "Criar Usuário", "saveButton": "Salvar Alterações" }
+}

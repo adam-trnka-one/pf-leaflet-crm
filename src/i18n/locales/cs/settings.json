@@ -1,0 +1,52 @@
+{
+  "title": "Nastavení",
+  "subtitle": "Spravujte nastavení účtu a aplikace",
+  "tabs": {
+    "profile": "Profil",
+    "workspace": "Pracovní prostor",
+    "api": "API klíče",
+    "permissions": "Oprávnění",
+    "integrations": "Integrace",
+    "notifications": "Oznámení"
+  },
+  "profile": {
+    "title": "Nastavení profilu",
+    "subtitle": "Spravujte své osobní údaje"
+  },
+  "workspace": {
+    "title": "Nastavení pracovního prostoru",
+    "workspaceCode": "Kód pracovního prostoru",
+    "username": "Uživatelské jméno",
+    "email": "Email",
+    "firstName": "Jméno",
+    "lastName": "Příjmení",
+    "role": "Role",
+    "languageCode": "Kód jazyka",
+    "selectedWorkspace": "Vybraný pracovní prostor",
+    "customUrl": "Vlastní URL",
+    "saveButton": "Uložit data pracovního prostoru",
+    "initiateButton": "Uložit a inicializovat PF",
+    "resetButton": "Obnovit výchozí hodnoty",
+    "viewDataButton": "Zobrazit data skriptu",
+    "customProperties": "Vlastní vlastnosti",
+    "addProperty": "Přidat vlastnost",
+    "propertyName": "Název vlastnosti",
+    "propertyValue": "Hodnota vlastnosti"
+  },
+  "api": {
+    "title": "API klíče",
+    "subtitle": "Spravujte své přístupové klíče API"
+  },
+  "permissions": {
+    "title": "Oprávnění",
+    "subtitle": "Spravujte oprávnění a role uživatelů"
+  },
+  "integrations": {
+    "title": "Integrace",
+    "subtitle": "Připojte se ke službám třetích stran"
+  },
+  "notifications": {
+    "title": "Oznámení",
+    "subtitle": "Nastavte preference oznámení"
+  }
+}

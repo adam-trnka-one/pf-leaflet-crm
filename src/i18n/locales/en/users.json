@@ -1,0 +1,33 @@
+{
+  "title": "Users",
+  "subtitle": "Manage your team members",
+  "newUser": "New User",
+  "searchPlaceholder": "Search users...",
+  "noResults": "No users found.",
+  "fields": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "role": "Role",
+    "department": "Department",
+    "status": "Status",
+    "lastLogin": "Last Login"
+  },
+  "roles": {
+    "admin": "Admin",
+    "manager": "Manager",
+    "salesRep": "Sales Rep",
+    "support": "Support"
+  },
+  "statuses": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "modal": {
+    "createTitle": "Create New User",
+    "editTitle": "Edit User",
+    "createButton": "Create User",
+    "saveButton": "Save Changes"
+  }
+}

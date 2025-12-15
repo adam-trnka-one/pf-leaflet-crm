@@ -1,0 +1,31 @@
+{
+  "title": "Příležitosti",
+  "subtitle": "Spravujte své prodejní příležitosti",
+  "newOpportunity": "Nová příležitost",
+  "searchPlaceholder": "Hledat příležitosti...",
+  "noResults": "Nebyly nalezeny žádné příležitosti.",
+  "fields": {
+    "opportunityName": "Název příležitosti",
+    "account": "Účet",
+    "amount": "Částka",
+    "stage": "Fáze",
+    "probability": "Pravděpodobnost",
+    "closeDate": "Datum uzavření",
+    "owner": "Vlastník",
+    "created": "Vytvořeno"
+  },
+  "stages": {
+    "prospecting": "Prospecting",
+    "qualification": "Kvalifikace",
+    "proposal": "Návrh",
+    "negotiation": "Jednání",
+    "closedWon": "Uzavřeno - Vyhrané",
+    "closedLost": "Uzavřeno - Prohrané"
+  },
+  "modal": {
+    "createTitle": "Vytvořit novou příležitost",
+    "editTitle": "Upravit příležitost",
+    "createButton": "Vytvořit příležitost",
+    "saveButton": "Uložit změny"
+  }
+}

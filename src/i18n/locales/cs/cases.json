@@ -1,0 +1,41 @@
+{
+  "title": "Případy",
+  "subtitle": "Spravujte své podpůrné případy",
+  "newCase": "Nový případ",
+  "searchPlaceholder": "Hledat případy...",
+  "noResults": "Nebyly nalezeny žádné případy.",
+  "fields": {
+    "caseNumber": "Číslo případu",
+    "subject": "Předmět",
+    "status": "Stav",
+    "priority": "Priorita",
+    "type": "Typ",
+    "account": "Účet",
+    "contact": "Kontakt",
+    "owner": "Vlastník",
+    "created": "Vytvořeno"
+  },
+  "statuses": {
+    "new": "Nový",
+    "working": "Zpracováváno",
+    "escalated": "Eskalováno",
+    "closed": "Uzavřeno"
+  },
+  "priorities": {
+    "low": "Nízká",
+    "medium": "Střední",
+    "high": "Vysoká",
+    "critical": "Kritická"
+  },
+  "types": {
+    "problem": "Problém",
+    "question": "Dotaz",
+    "featureRequest": "Požadavek na funkci"
+  },
+  "modal": {
+    "createTitle": "Vytvořit nový případ",
+    "editTitle": "Upravit případ",
+    "createButton": "Vytvořit případ",
+    "saveButton": "Uložit změny"
+  }
+}

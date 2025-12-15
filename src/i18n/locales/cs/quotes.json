@@ -1,0 +1,31 @@
+{
+  "title": "Nabídky",
+  "subtitle": "Spravujte své prodejní nabídky",
+  "newQuote": "Nová nabídka",
+  "searchPlaceholder": "Hledat nabídky...",
+  "noResults": "Nebyly nalezeny žádné nabídky.",
+  "fields": {
+    "quoteNumber": "Číslo nabídky",
+    "quoteName": "Název nabídky",
+    "account": "Účet",
+    "opportunity": "Příležitost",
+    "status": "Stav",
+    "expirationDate": "Datum expirace",
+    "subtotal": "Mezisoučet",
+    "discount": "Sleva",
+    "tax": "DPH",
+    "total": "Celkem"
+  },
+  "statuses": {
+    "draft": "Koncept",
+    "pending": "Čeká na schválení",
+    "accepted": "Přijato",
+    "rejected": "Zamítnuto"
+  },
+  "modal": {
+    "createTitle": "Vytvořit novou nabídku",
+    "editTitle": "Upravit nabídku",
+    "createButton": "Vytvořit nabídku",
+    "saveButton": "Uložit změny"
+  }
+}
