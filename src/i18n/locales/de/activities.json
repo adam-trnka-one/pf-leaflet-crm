@@ -1,1 +1,63 @@
-{ "title": "Aktivitäten", "subtitle": "Verwalten Sie Ihre Aktivitäten", "newActivity": "Neue", "searchPlaceholder": "Suchen...", "noResults": "Keine Ergebnisse.", "fields": { "subject": "Betreff", "type": "Typ", "status": "Status", "priority": "Priorität", "dueDate": "Fällig", "relatedTo": "Bezug", "assignedTo": "Zugewiesen", "description": "Beschreibung" }, "types": { "call": "Anruf", "meeting": "Meeting", "task": "Aufgabe", "email": "E-Mail", "event": "Termin" }, "statuses": { "notStarted": "Nicht begonnen", "inProgress": "In Bearbeitung", "completed": "Abgeschlossen", "deferred": "Verschoben" }, "priorities": { "low": "Niedrig", "normal": "Normal", "high": "Hoch" }, "modal": { "createTitle": "Erstellen", "editTitle": "Bearbeiten", "createButton": "Erstellen", "saveButton": "Speichern" } }
+{
+  "title": "Aktivitäten",
+  "subtitle": "Verfolgen und verwalten Sie Ihre Aktivitäten",
+  "newActivity": "Neue Aktivität",
+  "edit": "Aktivität bearbeiten",
+  "searchPlaceholder": "Aktivitäten suchen...",
+  "noResults": "Keine Aktivitäten gefunden.",
+  "completed": "Abgeschlossen",
+  "pending": "Ausstehend",
+  "columns": {
+    "subject": "Betreff",
+    "type": "Typ",
+    "status": "Status",
+    "date": "Datum",
+    "priority": "Priorität",
+    "dueDate": "Fälligkeitsdatum",
+    "relatedTo": "Bezogen auf",
+    "assignedTo": "Zugewiesen an",
+    "description": "Beschreibung"
+  },
+  "fields": {
+    "subject": "Betreff",
+    "type": "Typ",
+    "status": "Status",
+    "priority": "Priorität",
+    "dueDate": "Fälligkeitsdatum",
+    "relatedTo": "Bezogen auf",
+    "assignedTo": "Zugewiesen an",
+    "description": "Beschreibung"
+  },
+  "types": {
+    "call": "Anruf",
+    "meeting": "Meeting",
+    "task": "Aufgabe",
+    "email": "E-Mail",
+    "event": "Termin"
+  },
+  "status": {
+    "pending": "Ausstehend",
+    "completed": "Abgeschlossen"
+  },
+  "statuses": {
+    "notStarted": "Nicht begonnen",
+    "inProgress": "In Bearbeitung",
+    "completed": "Abgeschlossen",
+    "deferred": "Verschoben"
+  },
+  "priorities": {
+    "low": "Niedrig",
+    "normal": "Normal",
+    "high": "Hoch"
+  },
+  "modal": {
+    "createTitle": "Neue Aktivität erstellen",
+    "editTitle": "Aktivität bearbeiten",
+    "createButton": "Aktivität erstellen",
+    "saveButton": "Änderungen speichern"
+  },
+  "messages": {
+    "deleted": "Die Aktivität wurde erfolgreich gelöscht.",
+    "updated": "Die Aktivität wurde erfolgreich aktualisiert."
+  }
+}

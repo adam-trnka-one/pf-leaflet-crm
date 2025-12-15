@@ -3,6 +3,7 @@
   "subtitle": "Gestione usuarios y permisos del sistema",
   "newUser": "Nuevo Usuario",
   "createNew": "Crear Nuevo Usuario",
+  "edit": "Editar Usuario",
   "searchPlaceholder": "Buscar usuarios...",
   "noResults": "No se encontraron usuarios.",
   "columns": {
@@ -27,10 +28,14 @@
     "lastLogin": "Último Acceso"
   },
   "roles": {
-    "admin": "Admin",
+    "admin": "Administrador",
     "manager": "Gerente",
     "salesRep": "Ventas",
     "support": "Soporte"
+  },
+  "status": {
+    "active": "Activo",
+    "inactive": "Inactivo"
   },
   "statuses": {
     "active": "Activo",

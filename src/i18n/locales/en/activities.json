@@ -2,10 +2,22 @@
   "title": "Activities",
   "subtitle": "Track and manage your activities",
   "newActivity": "New Activity",
+  "edit": "Edit Activity",
   "searchPlaceholder": "Search activities...",
   "noResults": "No activities found.",
   "completed": "Completed",
   "pending": "Pending",
+  "columns": {
+    "subject": "Subject",
+    "type": "Type",
+    "status": "Status",
+    "date": "Date",
+    "priority": "Priority",
+    "dueDate": "Due Date",
+    "relatedTo": "Related To",
+    "assignedTo": "Assigned To",
+    "description": "Description"
+  },
   "fields": {
     "subject": "Subject",
     "type": "Type",
@@ -22,6 +34,10 @@
     "task": "Task",
     "email": "Email",
     "event": "Event"
+  },
+  "status": {
+    "pending": "Pending",
+    "completed": "Completed"
   },
   "statuses": {
     "notStarted": "Not Started",
@@ -41,6 +57,7 @@
     "saveButton": "Save Changes"
   },
   "messages": {
-    "deleted": "The activity has been successfully deleted."
+    "deleted": "The activity has been successfully deleted.",
+    "updated": "The activity has been successfully updated."
   }
 }
