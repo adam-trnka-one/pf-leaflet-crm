@@ -1,1 +1,75 @@
-{ "title": "الإعدادات", "subtitle": "إدارة إعداداتك", "tabs": { "profile": "الملف الشخصي", "workspace": "مساحة العمل", "api": "API", "permissions": "الصلاحيات", "integrations": "التكاملات", "notifications": "الإشعارات" }, "profile": { "title": "الملف الشخصي", "subtitle": "المعلومات الشخصية" }, "workspace": { "title": "مساحة العمل", "workspaceCode": "الرمز", "username": "اسم المستخدم", "email": "البريد الإلكتروني", "firstName": "الاسم الأول", "lastName": "اسم العائلة", "role": "الدور", "languageCode": "اللغة", "selectedWorkspace": "المساحة", "customUrl": "الرابط", "saveButton": "حفظ", "initiateButton": "حفظ وتشغيل PF", "resetButton": "إعادة تعيين", "viewDataButton": "عرض البيانات", "customProperties": "الخصائص", "addProperty": "إضافة", "propertyName": "الاسم", "propertyValue": "القيمة" }, "api": { "title": "API", "subtitle": "مفاتيح API" }, "permissions": { "title": "الصلاحيات", "subtitle": "الأدوار والصلاحيات" }, "integrations": { "title": "التكاملات", "subtitle": "الخدمات الخارجية" }, "notifications": { "title": "الإشعارات", "subtitle": "التفضيلات" } }
+{
+  "title": "الإعدادات",
+  "subtitle": "إدارة إعدادات حسابك والتطبيق",
+  "tabs": {
+    "profile": "الملف الشخصي",
+    "workspace": "مساحة العمل",
+    "api": "مفاتيح API",
+    "permissions": "الصلاحيات",
+    "integrations": "التكاملات",
+    "notifications": "الإشعارات"
+  },
+  "profile": {
+    "title": "إعدادات الملف الشخصي",
+    "subtitle": "إدارة معلوماتك الشخصية"
+  },
+  "workspace": {
+    "title": "إعدادات مساحة العمل",
+    "subtitle": "تكوين تفضيلات مساحة العمل",
+    "workspaceCode": "رمز مساحة العمل",
+    "username": "اسم المستخدم",
+    "email": "البريد الإلكتروني",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "role": "الدور",
+    "languageCode": "رمز اللغة",
+    "selectedWorkspace": "مساحة العمل المحددة",
+    "customUrl": "رابط مخصص",
+    "saveButton": "حفظ البيانات",
+    "initiateButton": "حفظ وتشغيل PF",
+    "resetButton": "إعادة تعيين القيم الافتراضية",
+    "disableButton": "تعطيل PF",
+    "viewDataButton": "عرض بيانات السكريبت",
+    "customProperties": "الخصائص المخصصة",
+    "addProperty": "إضافة خاصية",
+    "propertyName": "اسم الخاصية",
+    "propertyValue": "قيمة الخاصية"
+  },
+  "api": {
+    "title": "مفاتيح API",
+    "subtitle": "إدارة مفاتيح الوصول API",
+    "productionKey": "مفتاح API للإنتاج",
+    "developmentKey": "مفتاح API للتطوير",
+    "regenerate": "إعادة إنشاء"
+  },
+  "permissions": {
+    "title": "الصلاحيات",
+    "subtitle": "إدارة صلاحيات المستخدمين والأدوار",
+    "administrator": "مدير النظام",
+    "administratorDesc": "وصول كامل لجميع ميزات وإعدادات النظام",
+    "salesManager": "مدير المبيعات",
+    "salesManagerDesc": "يمكنه إدارة فريق المبيعات وعرض التقارير",
+    "salesRep": "مندوب المبيعات",
+    "salesRepDesc": "يمكنه إدارة العملاء المحتملين والفرص الخاصة به"
+  },
+  "integrations": {
+    "title": "التكاملات",
+    "subtitle": "الاتصال بخدمات الطرف الثالث",
+    "premium": "بريميوم",
+    "upgradeToConnect": "ترقية للاتصال",
+    "unlockPremium": "فتح التكاملات المميزة",
+    "unlockPremiumDesc": "قم بالترقية إلى خطتنا المميزة للاتصال بأدوات المؤسسات وفتح ميزات الأتمتة المتقدمة التي ستحول عملية مبيعاتك.",
+    "viewPlans": "عرض الخطط المميزة",
+    "contactSales": "اتصل بالمبيعات"
+  },
+  "notifications": {
+    "title": "الإشعارات",
+    "subtitle": "تكوين تفضيلات الإشعارات",
+    "email": "إشعارات البريد الإلكتروني",
+    "emailDesc": "استلام التحديثات والتنبيهات عبر البريد الإلكتروني",
+    "push": "إشعارات الدفع",
+    "pushDesc": "استلام الإشعارات في الوقت الفعلي في متصفحك",
+    "sms": "إشعارات الرسائل القصيرة",
+    "smsDesc": "استلام التنبيهات المهمة عبر الرسائل القصيرة"
+  }
+}

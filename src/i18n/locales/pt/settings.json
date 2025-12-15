@@ -1,10 +1,75 @@
 {
-  "title": "Configurações", "subtitle": "Gerencie as configurações da sua conta e aplicativo",
-  "tabs": { "profile": "Perfil", "workspace": "Espaço de Trabalho", "api": "Chaves API", "permissions": "Permissões", "integrations": "Integrações", "notifications": "Notificações" },
-  "profile": { "title": "Configurações de Perfil", "subtitle": "Gerencie suas informações pessoais" },
-  "workspace": { "title": "Configurações do Espaço de Trabalho", "workspaceCode": "Código do Espaço", "username": "Nome de Usuário", "email": "E-mail", "firstName": "Nome", "lastName": "Sobrenome", "role": "Função", "languageCode": "Código do Idioma", "selectedWorkspace": "Espaço Selecionado", "customUrl": "URL Personalizada", "saveButton": "Salvar Dados", "initiateButton": "Salvar e Iniciar PF", "resetButton": "Restaurar Padrões", "viewDataButton": "Ver Dados do Script", "customProperties": "Propriedades Personalizadas", "addProperty": "Adicionar Propriedade", "propertyName": "Nome da Propriedade", "propertyValue": "Valor da Propriedade" },
-  "api": { "title": "Chaves API", "subtitle": "Gerencie suas chaves de acesso API" },
-  "permissions": { "title": "Permissões", "subtitle": "Gerencie permissões e funções de usuários" },
-  "integrations": { "title": "Integrações", "subtitle": "Conecte-se a serviços de terceiros" },
-  "notifications": { "title": "Notificações", "subtitle": "Configure preferências de notificação" }
+  "title": "Configurações",
+  "subtitle": "Gerencie as configurações da sua conta e aplicativo",
+  "tabs": {
+    "profile": "Perfil",
+    "workspace": "Espaço de Trabalho",
+    "api": "Chaves API",
+    "permissions": "Permissões",
+    "integrations": "Integrações",
+    "notifications": "Notificações"
+  },
+  "profile": {
+    "title": "Configurações de Perfil",
+    "subtitle": "Gerencie suas informações pessoais"
+  },
+  "workspace": {
+    "title": "Configurações do Espaço de Trabalho",
+    "subtitle": "Configure as preferências do seu espaço de trabalho",
+    "workspaceCode": "Código do Espaço",
+    "username": "Nome de Usuário",
+    "email": "E-mail",
+    "firstName": "Nome",
+    "lastName": "Sobrenome",
+    "role": "Função",
+    "languageCode": "Código do Idioma",
+    "selectedWorkspace": "Espaço Selecionado",
+    "customUrl": "URL Personalizada",
+    "saveButton": "Salvar Dados",
+    "initiateButton": "Salvar e Iniciar PF",
+    "resetButton": "Restaurar Padrões",
+    "disableButton": "Desativar PF",
+    "viewDataButton": "Ver Dados do Script",
+    "customProperties": "Propriedades Personalizadas",
+    "addProperty": "Adicionar Propriedade",
+    "propertyName": "Nome da Propriedade",
+    "propertyValue": "Valor da Propriedade"
+  },
+  "api": {
+    "title": "Chaves API",
+    "subtitle": "Gerencie suas chaves de acesso API",
+    "productionKey": "Chave API de Produção",
+    "developmentKey": "Chave API de Desenvolvimento",
+    "regenerate": "Regenerar"
+  },
+  "permissions": {
+    "title": "Permissões",
+    "subtitle": "Gerencie permissões e funções de usuários",
+    "administrator": "Administrador",
+    "administratorDesc": "Acesso total a todos os recursos e configurações do sistema",
+    "salesManager": "Gerente de Vendas",
+    "salesManagerDesc": "Pode gerenciar a equipe de vendas e visualizar relatórios",
+    "salesRep": "Representante de Vendas",
+    "salesRepDesc": "Pode gerenciar seus próprios leads e oportunidades"
+  },
+  "integrations": {
+    "title": "Integrações",
+    "subtitle": "Conecte-se a serviços de terceiros",
+    "premium": "Premium",
+    "upgradeToConnect": "Upgrade para Conectar",
+    "unlockPremium": "Desbloquear Integrações Premium",
+    "unlockPremiumDesc": "Faça upgrade para nosso plano Premium para se conectar a ferramentas empresariais e desbloquear recursos avançados de automação que transformarão seu processo de vendas.",
+    "viewPlans": "Ver Planos Premium",
+    "contactSales": "Contatar Vendas"
+  },
+  "notifications": {
+    "title": "Notificações",
+    "subtitle": "Configure preferências de notificação",
+    "email": "Notificações por E-mail",
+    "emailDesc": "Receba atualizações e alertas por e-mail",
+    "push": "Notificações Push",
+    "pushDesc": "Receba notificações em tempo real no seu navegador",
+    "sms": "Notificações SMS",
+    "smsDesc": "Receba alertas importantes por SMS"
+  }
 }

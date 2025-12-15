@@ -1,1 +1,75 @@
-{ "title": "Configuración", "subtitle": "Gestione configuración", "tabs": { "profile": "Perfil", "workspace": "Espacio", "api": "API", "permissions": "Permisos", "integrations": "Integraciones", "notifications": "Notificaciones" }, "profile": { "title": "Perfil", "subtitle": "Información personal" }, "workspace": { "title": "Espacio de Trabajo", "workspaceCode": "Código", "username": "Usuario", "email": "Correo", "firstName": "Nombre", "lastName": "Apellido", "role": "Rol", "languageCode": "Idioma", "selectedWorkspace": "Espacio", "customUrl": "URL", "saveButton": "Guardar", "initiateButton": "Guardar e Iniciar PF", "resetButton": "Restablecer", "viewDataButton": "Ver Datos", "customProperties": "Propiedades", "addProperty": "Añadir", "propertyName": "Nombre", "propertyValue": "Valor" }, "api": { "title": "API", "subtitle": "Claves API" }, "permissions": { "title": "Permisos", "subtitle": "Roles y permisos" }, "integrations": { "title": "Integraciones", "subtitle": "Servicios externos" }, "notifications": { "title": "Notificaciones", "subtitle": "Preferencias" } }
+{
+  "title": "Configuración",
+  "subtitle": "Gestione la configuración de su cuenta y aplicación",
+  "tabs": {
+    "profile": "Perfil",
+    "workspace": "Espacio de Trabajo",
+    "api": "Claves API",
+    "permissions": "Permisos",
+    "integrations": "Integraciones",
+    "notifications": "Notificaciones"
+  },
+  "profile": {
+    "title": "Configuración de Perfil",
+    "subtitle": "Gestione su información personal"
+  },
+  "workspace": {
+    "title": "Configuración del Espacio de Trabajo",
+    "subtitle": "Configure las preferencias de su espacio de trabajo",
+    "workspaceCode": "Código del Espacio",
+    "username": "Nombre de Usuario",
+    "email": "Correo Electrónico",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "role": "Rol",
+    "languageCode": "Código de Idioma",
+    "selectedWorkspace": "Espacio Seleccionado",
+    "customUrl": "URL Personalizada",
+    "saveButton": "Guardar Datos",
+    "initiateButton": "Guardar e Iniciar PF",
+    "resetButton": "Restablecer Valores",
+    "disableButton": "Desactivar PF",
+    "viewDataButton": "Ver Datos del Script",
+    "customProperties": "Propiedades Personalizadas",
+    "addProperty": "Añadir Propiedad",
+    "propertyName": "Nombre de Propiedad",
+    "propertyValue": "Valor de Propiedad"
+  },
+  "api": {
+    "title": "Claves API",
+    "subtitle": "Gestione sus claves de acceso API",
+    "productionKey": "Clave API de Producción",
+    "developmentKey": "Clave API de Desarrollo",
+    "regenerate": "Regenerar"
+  },
+  "permissions": {
+    "title": "Permisos",
+    "subtitle": "Gestione permisos y roles de usuarios",
+    "administrator": "Administrador",
+    "administratorDesc": "Acceso completo a todas las funciones y configuraciones del sistema",
+    "salesManager": "Gerente de Ventas",
+    "salesManagerDesc": "Puede gestionar el equipo de ventas y ver informes",
+    "salesRep": "Representante de Ventas",
+    "salesRepDesc": "Puede gestionar sus propios prospectos y oportunidades"
+  },
+  "integrations": {
+    "title": "Integraciones",
+    "subtitle": "Conéctese con servicios de terceros",
+    "premium": "Premium",
+    "upgradeToConnect": "Actualizar para Conectar",
+    "unlockPremium": "Desbloquear Integraciones Premium",
+    "unlockPremiumDesc": "Actualice a nuestro plan Premium para conectar con herramientas empresariales y desbloquear funciones avanzadas de automatización que transformarán su proceso de ventas.",
+    "viewPlans": "Ver Planes Premium",
+    "contactSales": "Contactar Ventas"
+  },
+  "notifications": {
+    "title": "Notificaciones",
+    "subtitle": "Configure las preferencias de notificación",
+    "email": "Notificaciones por Correo",
+    "emailDesc": "Reciba actualizaciones y alertas por correo electrónico",
+    "push": "Notificaciones Push",
+    "pushDesc": "Reciba notificaciones en tiempo real en su navegador",
+    "sms": "Notificaciones SMS",
+    "smsDesc": "Reciba alertas importantes por SMS"
+  }
+}
