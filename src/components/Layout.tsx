@@ -151,10 +151,10 @@ const LayoutContent = () => {
                 <Input placeholder={t('header.searchPlaceholder')} className="pl-10 rtl:pl-3 rtl:pr-10 bg-slate-50 border-slate-200 focus:bg-white" />
               </div>
               
-              {/* Language Dropdown with Save & Initiate */}
+              {/* Language Dropdown with Flags */}
               <div className="flex items-center gap-1">
                 <Select value={localWorkspaceData.languageCode} onValueChange={handleLanguageChangeAndInitiate} disabled={isInitiating}>
-                  <SelectTrigger className="w-20 h-8 bg-white">
+                  <SelectTrigger className="w-24 h-8 bg-white">
                     {isInitiating ? (
                       <Loader2 className="h-4 w-4 animate-spin" />
                     ) : (
@@ -162,13 +162,13 @@ const LayoutContent = () => {
                     )}
                   </SelectTrigger>
                   <SelectContent className="bg-white z-50">
-                    <SelectItem value="en">EN</SelectItem>
-                    <SelectItem value="cs">CS</SelectItem>
-                    <SelectItem value="de">DE</SelectItem>
-                    <SelectItem value="fr">FR</SelectItem>
-                    <SelectItem value="es">ES</SelectItem>
-                    <SelectItem value="pt">PT</SelectItem>
-                    <SelectItem value="ar">AR</SelectItem>
+                    <SelectItem value="en">🇬🇧 EN</SelectItem>
+                    <SelectItem value="cs">🇨🇿 CS</SelectItem>
+                    <SelectItem value="de">🇩🇪 DE</SelectItem>
+                    <SelectItem value="fr">🇫🇷 FR</SelectItem>
+                    <SelectItem value="es">🇪🇸 ES</SelectItem>
+                    <SelectItem value="pt">🇵🇹 PT</SelectItem>
+                    <SelectItem value="ar">🇸🇦 AR</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
