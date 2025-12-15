@@ -1,1 +1,75 @@
-{ "title": "Einstellungen", "subtitle": "Verwalten Sie Ihre Einstellungen", "tabs": { "profile": "Profil", "workspace": "Arbeitsbereich", "api": "API", "permissions": "Berechtigungen", "integrations": "Integrationen", "notifications": "Benachrichtigungen" }, "profile": { "title": "Profil", "subtitle": "Persönliche Informationen" }, "workspace": { "title": "Arbeitsbereich", "workspaceCode": "Code", "username": "Benutzer", "email": "E-Mail", "firstName": "Vorname", "lastName": "Nachname", "role": "Rolle", "languageCode": "Sprache", "selectedWorkspace": "Bereich", "customUrl": "URL", "saveButton": "Speichern", "initiateButton": "Speichern & PF starten", "resetButton": "Zurücksetzen", "viewDataButton": "Daten anzeigen", "customProperties": "Eigenschaften", "addProperty": "Hinzufügen", "propertyName": "Name", "propertyValue": "Wert" }, "api": { "title": "API", "subtitle": "API-Schlüssel" }, "permissions": { "title": "Berechtigungen", "subtitle": "Rollen und Berechtigungen" }, "integrations": { "title": "Integrationen", "subtitle": "Externe Dienste" }, "notifications": { "title": "Benachrichtigungen", "subtitle": "Einstellungen" } }
+{
+  "title": "Einstellungen",
+  "subtitle": "Verwalten Sie Ihre Konto- und Anwendungseinstellungen",
+  "tabs": {
+    "profile": "Profil",
+    "workspace": "Arbeitsbereich",
+    "api": "API-Schlüssel",
+    "permissions": "Berechtigungen",
+    "integrations": "Integrationen",
+    "notifications": "Benachrichtigungen"
+  },
+  "profile": {
+    "title": "Profileinstellungen",
+    "subtitle": "Verwalten Sie Ihre persönlichen Informationen"
+  },
+  "workspace": {
+    "title": "Arbeitsbereich-Einstellungen",
+    "subtitle": "Konfigurieren Sie Ihre Arbeitsbereich-Präferenzen",
+    "workspaceCode": "Arbeitsbereich-Code",
+    "username": "Benutzername",
+    "email": "E-Mail",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "role": "Rolle",
+    "languageCode": "Sprachcode",
+    "selectedWorkspace": "Ausgewählter Arbeitsbereich",
+    "customUrl": "Benutzerdefinierte URL",
+    "saveButton": "Arbeitsbereich-Daten speichern",
+    "initiateButton": "Speichern & PF starten",
+    "resetButton": "Auf Standardwerte zurücksetzen",
+    "disableButton": "PF deaktivieren",
+    "viewDataButton": "Skript-Daten anzeigen",
+    "customProperties": "Benutzerdefinierte Eigenschaften",
+    "addProperty": "Eigenschaft hinzufügen",
+    "propertyName": "Eigenschaftsname",
+    "propertyValue": "Eigenschaftswert"
+  },
+  "api": {
+    "title": "API-Schlüssel",
+    "subtitle": "Verwalten Sie Ihre API-Zugriffsschlüssel",
+    "productionKey": "Produktions-API-Schlüssel",
+    "developmentKey": "Entwicklungs-API-Schlüssel",
+    "regenerate": "Regenerieren"
+  },
+  "permissions": {
+    "title": "Berechtigungen",
+    "subtitle": "Verwalten Sie Benutzerberechtigungen und Rollen",
+    "administrator": "Administrator",
+    "administratorDesc": "Voller Zugriff auf alle Systemfunktionen und Einstellungen",
+    "salesManager": "Vertriebsleiter",
+    "salesManagerDesc": "Kann das Vertriebsteam verwalten und Berichte einsehen",
+    "salesRep": "Vertriebsmitarbeiter",
+    "salesRepDesc": "Kann eigene Leads und Opportunities verwalten"
+  },
+  "integrations": {
+    "title": "Integrationen",
+    "subtitle": "Verbinden Sie sich mit Drittanbieter-Diensten",
+    "premium": "Premium",
+    "upgradeToConnect": "Upgrade zum Verbinden",
+    "unlockPremium": "Premium-Integrationen freischalten",
+    "unlockPremiumDesc": "Upgraden Sie auf unseren Premium-Plan, um sich mit Enterprise-Tools zu verbinden und erweiterte Automatisierungsfunktionen freizuschalten, die Ihren Verkaufsprozess transformieren werden.",
+    "viewPlans": "Premium-Pläne anzeigen",
+    "contactSales": "Vertrieb kontaktieren"
+  },
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "subtitle": "Benachrichtigungseinstellungen konfigurieren",
+    "email": "E-Mail-Benachrichtigungen",
+    "emailDesc": "Erhalten Sie Updates und Warnungen per E-Mail",
+    "push": "Push-Benachrichtigungen",
+    "pushDesc": "Erhalten Sie Echtzeit-Benachrichtigungen in Ihrem Browser",
+    "sms": "SMS-Benachrichtigungen",
+    "smsDesc": "Erhalten Sie wichtige Warnungen per SMS"
+  }
+}

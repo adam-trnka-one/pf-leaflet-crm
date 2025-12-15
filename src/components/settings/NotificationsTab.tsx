@@ -15,8 +15,8 @@ export const NotificationsTab = () => {
         <div className="space-y-4" data-testid="notifications-list">
           <div className="flex items-center justify-between" data-testid="email-notifications-item">
             <div data-testid="email-notifications-info">
-              <h4 className="font-medium text-slate-800" data-testid="email-notifications-title">Email Notifications</h4>
-              <p className="text-sm text-slate-600" data-testid="email-notifications-description">{t('notifications.subtitle')}</p>
+              <h4 className="font-medium text-slate-800" data-testid="email-notifications-title">{t('notifications.email')}</h4>
+              <p className="text-sm text-slate-600" data-testid="email-notifications-description">{t('notifications.emailDesc')}</p>
             </div>
             <Button variant="outline" size="sm" data-testid="email-configure-button">
               <span data-testid="email-configure-text">{t('common:configure')}</span>
@@ -25,8 +25,8 @@ export const NotificationsTab = () => {
           
           <div className="flex items-center justify-between" data-testid="push-notifications-item">
             <div data-testid="push-notifications-info">
-              <h4 className="font-medium text-slate-800" data-testid="push-notifications-title">Push Notifications</h4>
-              <p className="text-sm text-slate-600" data-testid="push-notifications-description">{t('notifications.subtitle')}</p>
+              <h4 className="font-medium text-slate-800" data-testid="push-notifications-title">{t('notifications.push')}</h4>
+              <p className="text-sm text-slate-600" data-testid="push-notifications-description">{t('notifications.pushDesc')}</p>
             </div>
             <Button variant="outline" size="sm" data-testid="push-configure-button">
               <span data-testid="push-configure-text">{t('common:configure')}</span>
@@ -35,8 +35,8 @@ export const NotificationsTab = () => {
           
           <div className="flex items-center justify-between" data-testid="sms-notifications-item">
             <div data-testid="sms-notifications-info">
-              <h4 className="font-medium text-slate-800" data-testid="sms-notifications-title">SMS Notifications</h4>
-              <p className="text-sm text-slate-600" data-testid="sms-notifications-description">{t('notifications.subtitle')}</p>
+              <h4 className="font-medium text-slate-800" data-testid="sms-notifications-title">{t('notifications.sms')}</h4>
+              <p className="text-sm text-slate-600" data-testid="sms-notifications-description">{t('notifications.smsDesc')}</p>
             </div>
             <Button variant="outline" size="sm" data-testid="sms-configure-button">
               <span data-testid="sms-configure-text">{t('common:configure')}</span>

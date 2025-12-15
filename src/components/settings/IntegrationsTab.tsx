@@ -97,7 +97,7 @@ export const IntegrationsTab = () => {
         return (
           <Badge className="bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800 border-amber-200">
             <Crown className="h-3 w-3 mr-1" />
-            Premium
+            {t('integrations.premium')}
           </Badge>
         );
       default:
@@ -154,7 +154,7 @@ export const IntegrationsTab = () => {
             })}
           >
             <Crown className="h-4 w-4 mr-2" />
-            Upgrade to Connect
+            {t('integrations.upgradeToConnect')}
           </Button>
         );
       default:
@@ -207,17 +207,17 @@ export const IntegrationsTab = () => {
         <div className="p-4 md:p-6 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg" data-testid="premium-upgrade-section">
           <h4 className="font-semibold text-blue-800 mb-2 flex items-center text-sm md:text-base" data-testid="premium-upgrade-title">
             <Crown className="h-4 w-4 md:h-5 md:w-5 mr-2" />
-            Unlock Premium Integrations
+            {t('integrations.unlockPremium')}
           </h4>
           <p className="text-sm text-blue-700 mb-4 leading-relaxed" data-testid="premium-upgrade-description">
-            Upgrade to our Premium plan to connect with enterprise-grade tools and unlock advanced automation features that will transform your sales process.
+            {t('integrations.unlockPremiumDesc')}
           </p>
           <div className="flex flex-col sm:flex-row gap-2 md:gap-3" data-testid="premium-upgrade-actions">
             <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white w-full sm:w-auto" data-testid="view-premium-plans-button">
-              View Premium Plans
+              {t('integrations.viewPlans')}
             </Button>
             <Button variant="outline" className="text-blue-700 border-blue-300 hover:bg-blue-100 w-full sm:w-auto" data-testid="contact-sales-button">
-              Contact Sales
+              {t('integrations.contactSales')}
             </Button>
           </div>
         </div>

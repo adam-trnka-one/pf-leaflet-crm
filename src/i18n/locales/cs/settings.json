@@ -15,18 +15,20 @@
   },
   "workspace": {
     "title": "Nastavení pracovního prostoru",
+    "subtitle": "Konfigurujte preference pracovního prostoru",
     "workspaceCode": "Kód pracovního prostoru",
     "username": "Uživatelské jméno",
-    "email": "Email",
+    "email": "E-mail",
     "firstName": "Jméno",
     "lastName": "Příjmení",
     "role": "Role",
     "languageCode": "Kód jazyka",
     "selectedWorkspace": "Vybraný pracovní prostor",
     "customUrl": "Vlastní URL",
-    "saveButton": "Uložit data pracovního prostoru",
+    "saveButton": "Uložit data",
     "initiateButton": "Uložit a inicializovat PF",
     "resetButton": "Obnovit výchozí hodnoty",
+    "disableButton": "Deaktivovat PF",
     "viewDataButton": "Zobrazit data skriptu",
     "customProperties": "Vlastní vlastnosti",
     "addProperty": "Přidat vlastnost",
@@ -35,18 +37,39 @@
   },
   "api": {
     "title": "API klíče",
-    "subtitle": "Spravujte své přístupové klíče API"
+    "subtitle": "Spravujte své přístupové klíče API",
+    "productionKey": "Produkční API klíč",
+    "developmentKey": "Vývojový API klíč",
+    "regenerate": "Regenerovat"
   },
   "permissions": {
     "title": "Oprávnění",
-    "subtitle": "Spravujte oprávnění a role uživatelů"
+    "subtitle": "Spravujte oprávnění a role uživatelů",
+    "administrator": "Administrátor",
+    "administratorDesc": "Plný přístup ke všem funkcím a nastavením systému",
+    "salesManager": "Manažer prodeje",
+    "salesManagerDesc": "Může spravovat prodejní tým a zobrazovat reporty",
+    "salesRep": "Obchodní zástupce",
+    "salesRepDesc": "Může spravovat vlastní leady a příležitosti"
   },
   "integrations": {
     "title": "Integrace",
-    "subtitle": "Připojte se ke službám třetích stran"
+    "subtitle": "Připojte se ke službám třetích stran",
+    "premium": "Premium",
+    "upgradeToConnect": "Upgradovat pro připojení",
+    "unlockPremium": "Odemknout Premium integrace",
+    "unlockPremiumDesc": "Upgradujte na náš Premium plán pro připojení k podnikovým nástrojům a odemknutí pokročilých automatizačních funkcí, které transformují váš prodejní proces.",
+    "viewPlans": "Zobrazit Premium plány",
+    "contactSales": "Kontaktovat prodej"
   },
   "notifications": {
     "title": "Oznámení",
-    "subtitle": "Nastavte preference oznámení"
+    "subtitle": "Nastavte preference oznámení",
+    "email": "E-mailová oznámení",
+    "emailDesc": "Přijímejte aktualizace a upozornění e-mailem",
+    "push": "Push oznámení",
+    "pushDesc": "Přijímejte oznámení v reálném čase ve vašem prohlížeči",
+    "sms": "SMS oznámení",
+    "smsDesc": "Přijímejte důležitá upozornění prostřednictvím SMS"
   }
 }

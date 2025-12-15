@@ -1,1 +1,75 @@
-{ "title": "Paramètres", "subtitle": "Gérez vos paramètres", "tabs": { "profile": "Profil", "workspace": "Espace", "api": "API", "permissions": "Permissions", "integrations": "Intégrations", "notifications": "Notifications" }, "profile": { "title": "Profil", "subtitle": "Informations personnelles" }, "workspace": { "title": "Espace de Travail", "workspaceCode": "Code", "username": "Utilisateur", "email": "Email", "firstName": "Prénom", "lastName": "Nom", "role": "Rôle", "languageCode": "Langue", "selectedWorkspace": "Espace", "customUrl": "URL", "saveButton": "Enregistrer", "initiateButton": "Enregistrer et Initialiser PF", "resetButton": "Réinitialiser", "viewDataButton": "Voir Données", "customProperties": "Propriétés", "addProperty": "Ajouter", "propertyName": "Nom", "propertyValue": "Valeur" }, "api": { "title": "API", "subtitle": "Clés API" }, "permissions": { "title": "Permissions", "subtitle": "Rôles et permissions" }, "integrations": { "title": "Intégrations", "subtitle": "Services externes" }, "notifications": { "title": "Notifications", "subtitle": "Préférences" } }
+{
+  "title": "Paramètres",
+  "subtitle": "Gérez les paramètres de votre compte et de l'application",
+  "tabs": {
+    "profile": "Profil",
+    "workspace": "Espace de Travail",
+    "api": "Clés API",
+    "permissions": "Permissions",
+    "integrations": "Intégrations",
+    "notifications": "Notifications"
+  },
+  "profile": {
+    "title": "Paramètres du Profil",
+    "subtitle": "Gérez vos informations personnelles"
+  },
+  "workspace": {
+    "title": "Paramètres de l'Espace de Travail",
+    "subtitle": "Configurez vos préférences d'espace de travail",
+    "workspaceCode": "Code de l'Espace",
+    "username": "Nom d'utilisateur",
+    "email": "Email",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "role": "Rôle",
+    "languageCode": "Code de Langue",
+    "selectedWorkspace": "Espace Sélectionné",
+    "customUrl": "URL Personnalisée",
+    "saveButton": "Enregistrer les Données",
+    "initiateButton": "Enregistrer et Initialiser PF",
+    "resetButton": "Réinitialiser les Valeurs",
+    "disableButton": "Désactiver PF",
+    "viewDataButton": "Voir les Données du Script",
+    "customProperties": "Propriétés Personnalisées",
+    "addProperty": "Ajouter une Propriété",
+    "propertyName": "Nom de la Propriété",
+    "propertyValue": "Valeur de la Propriété"
+  },
+  "api": {
+    "title": "Clés API",
+    "subtitle": "Gérez vos clés d'accès API",
+    "productionKey": "Clé API de Production",
+    "developmentKey": "Clé API de Développement",
+    "regenerate": "Régénérer"
+  },
+  "permissions": {
+    "title": "Permissions",
+    "subtitle": "Gérez les permissions et les rôles des utilisateurs",
+    "administrator": "Administrateur",
+    "administratorDesc": "Accès complet à toutes les fonctionnalités et paramètres du système",
+    "salesManager": "Directeur des Ventes",
+    "salesManagerDesc": "Peut gérer l'équipe commerciale et consulter les rapports",
+    "salesRep": "Commercial",
+    "salesRepDesc": "Peut gérer ses propres prospects et opportunités"
+  },
+  "integrations": {
+    "title": "Intégrations",
+    "subtitle": "Connectez-vous aux services tiers",
+    "premium": "Premium",
+    "upgradeToConnect": "Mettre à Niveau pour Connecter",
+    "unlockPremium": "Débloquer les Intégrations Premium",
+    "unlockPremiumDesc": "Passez à notre plan Premium pour vous connecter à des outils de niveau entreprise et débloquer des fonctionnalités d'automatisation avancées qui transformeront votre processus de vente.",
+    "viewPlans": "Voir les Plans Premium",
+    "contactSales": "Contacter les Ventes"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "subtitle": "Configurez les préférences de notification",
+    "email": "Notifications par Email",
+    "emailDesc": "Recevez des mises à jour et des alertes par email",
+    "push": "Notifications Push",
+    "pushDesc": "Recevez des notifications en temps réel dans votre navigateur",
+    "sms": "Notifications SMS",
+    "smsDesc": "Recevez des alertes importantes par SMS"
+  }
+}

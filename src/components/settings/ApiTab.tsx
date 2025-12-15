@@ -22,21 +22,21 @@ export const ApiTab = () => {
         
         <div className="space-y-4" data-testid="api-keys-section">
           <div data-testid="production-api-key-field">
-            <Label data-testid="production-api-key-label">Production API Key</Label>
+            <Label data-testid="production-api-key-label">{t('api.productionKey')}</Label>
             <div className="flex space-x-2" data-testid="production-api-key-container">
               <Input value="sk_prod_************************" readOnly data-testid="production-api-key-input" />
               <Button variant="outline" data-testid="production-regenerate-button">
-                <span data-testid="production-regenerate-text">Regenerate</span>
+                <span data-testid="production-regenerate-text">{t('api.regenerate')}</span>
               </Button>
             </div>
           </div>
           
           <div data-testid="development-api-key-field">
-            <Label data-testid="development-api-key-label">Development API Key</Label>
+            <Label data-testid="development-api-key-label">{t('api.developmentKey')}</Label>
             <div className="flex space-x-2" data-testid="development-api-key-container">
               <Input value="sk_dev_************************" readOnly data-testid="development-api-key-input" />
               <Button variant="outline" data-testid="development-regenerate-button">
-                <span data-testid="development-regenerate-text">Regenerate</span>
+                <span data-testid="development-regenerate-text">{t('api.regenerate')}</span>
               </Button>
             </div>
           </div>

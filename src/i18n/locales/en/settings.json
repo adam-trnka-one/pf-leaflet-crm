@@ -15,6 +15,7 @@
   },
   "workspace": {
     "title": "Workspace Settings",
+    "subtitle": "Configure your workspace preferences",
     "workspaceCode": "Workspace Code",
     "username": "Username",
     "email": "Email",
@@ -27,6 +28,7 @@
     "saveButton": "Save Workspace Data",
     "initiateButton": "Save & Initiate PF",
     "resetButton": "Reset to Defaults",
+    "disableButton": "Disable PF",
     "viewDataButton": "View Script Data",
     "customProperties": "Custom Properties",
     "addProperty": "Add Property",
@@ -35,18 +37,39 @@
   },
   "api": {
     "title": "API Keys",
-    "subtitle": "Manage your API access keys"
+    "subtitle": "Manage your API access keys",
+    "productionKey": "Production API Key",
+    "developmentKey": "Development API Key",
+    "regenerate": "Regenerate"
   },
   "permissions": {
     "title": "Permissions",
-    "subtitle": "Manage user permissions and roles"
+    "subtitle": "Manage user permissions and roles",
+    "administrator": "Administrator",
+    "administratorDesc": "Full access to all system features and settings",
+    "salesManager": "Sales Manager",
+    "salesManagerDesc": "Can manage sales team and view reports",
+    "salesRep": "Sales Representative",
+    "salesRepDesc": "Can manage own leads and opportunities"
   },
   "integrations": {
     "title": "Integrations",
-    "subtitle": "Connect with third-party services"
+    "subtitle": "Connect with third-party services",
+    "premium": "Premium",
+    "upgradeToConnect": "Upgrade to Connect",
+    "unlockPremium": "Unlock Premium Integrations",
+    "unlockPremiumDesc": "Upgrade to our Premium plan to connect with enterprise-grade tools and unlock advanced automation features that will transform your sales process.",
+    "viewPlans": "View Premium Plans",
+    "contactSales": "Contact Sales"
   },
   "notifications": {
     "title": "Notifications",
-    "subtitle": "Configure notification preferences"
+    "subtitle": "Configure notification preferences",
+    "email": "Email Notifications",
+    "emailDesc": "Receive updates and alerts via email",
+    "push": "Push Notifications",
+    "pushDesc": "Receive real-time notifications in your browser",
+    "sms": "SMS Notifications",
+    "smsDesc": "Receive important alerts via SMS"
   }
 }
