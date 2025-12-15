@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { WorkspaceProvider } from "@/contexts/WorkspaceContext";
+import { ProductFruitsProvider } from "@/contexts/ProductFruitsContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useState, useEffect } from "react";
 import Layout from "./components/Layout";
@@ -77,7 +78,9 @@ const App = () => (
           <Route path="/login" element={<WorkspaceProvider><Login /></WorkspaceProvider>} />
           <Route path="/dashboard" element={
             <WorkspaceProvider>
-              <Layout />
+              <ProductFruitsProvider>
+                <Layout />
+              </ProductFruitsProvider>
             </WorkspaceProvider>
           }>
             <Route index element={<Dashboard />} />

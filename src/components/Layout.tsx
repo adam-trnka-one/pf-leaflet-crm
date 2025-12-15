@@ -1,9 +1,9 @@
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search, Newspaper } from "lucide-react";
+import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search, Newspaper, RefreshCw, Loader2 } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset, useSidebar } from "@/components/ui/sidebar";
-import { useProductFruits } from "@/hooks/useProductFruits";
+import { useProductFruits } from "@/contexts/ProductFruitsContext";
 import { useRef, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LanguageSelector } from "@/components/LanguageSelector";
@@ -61,6 +61,7 @@ const LayoutContent = () => {
   const newsfeedRef = useRef<HTMLButtonElement>(null);
   const [unreadCount, setUnreadCount] = useState(0);
   const { t } = useTranslation();
+  const { state: pfState, initializeProductFruits, resetProductFruitsState } = useProductFruits();
   
   const isActive = (href: string) => {
     if (href === "/dashboard") return location.pathname === "/dashboard";
@@ -74,6 +75,9 @@ const LayoutContent = () => {
   };
 
   const handleSignOut = () => {
+    // Reset ProductFruits state via context
+    resetProductFruitsState();
+    
     // Remove ProductFruits script
     const existingScript = document.querySelector('script[data-productfruits-init]');
     if (existingScript) {
@@ -88,6 +92,11 @@ const LayoutContent = () => {
     // Navigate to home page and refresh
     navigate("/");
     window.location.reload();
+  };
+
+  const handleReloadProductFruits = async () => {
+    console.log('[Layout] Manual ProductFruits reload triggered');
+    await initializeProductFruits(undefined, true);
   };
 
   // Setup ProductFruits newsfeed listener with retry
@@ -174,6 +183,27 @@ const LayoutContent = () => {
                 <Input placeholder={t('common.search')} className="pl-10 rtl:pl-3 rtl:pr-10 bg-slate-50 border-slate-200 focus:bg-white" />
               </div>
               <LanguageSelector />
+              
+              {/* ProductFruits Loading Indicator */}
+              {pfState.status === 'loading' && (
+                <div className="flex items-center gap-1 text-amber-600 text-xs">
+                  <Loader2 className="h-3 w-3 animate-spin" />
+                  <span className="hidden sm:inline">Loading PF...</span>
+                </div>
+              )}
+              
+              {/* Reload ProductFruits Button */}
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={handleReloadProductFruits}
+                className="h-8 w-8"
+                title="Reload ProductFruits"
+                disabled={pfState.status === 'loading'}
+              >
+                <RefreshCw className={`h-4 w-4 ${pfState.status === 'loading' ? 'animate-spin' : ''}`} />
+              </Button>
+              
               <Button 
                 ref={newsfeedRef}
                 variant="ghost" 
@@ -211,8 +241,6 @@ const LayoutContent = () => {
 };
 
 const Layout = () => {
-  useProductFruits(); // Initialize ProductFruits with workspace data
-  
   return (
     <SidebarProvider>
       <LayoutContent />
