@@ -7,6 +7,7 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupConte
 import { useProductFruits } from "@/hooks/useProductFruits";
 import { useLanguageSync } from "@/hooks/useLanguageSync";
 import { useRef, useEffect, useState } from "react";
+import { RTL_LANGUAGES } from "@/i18n";
 
 const LayoutContent = () => {
   const location = useLocation();
@@ -77,10 +78,13 @@ const LayoutContent = () => {
     }
   };
 
+  const { i18n } = useTranslation();
+  const isRTL = RTL_LANGUAGES.includes(i18n.language);
+
   return (
     <div className="min-h-screen flex flex-col w-full bg-slate-50">
-      <div className="flex flex-1">
-        <Sidebar className="w-72">
+      <div className={`flex flex-1 ${isRTL ? 'flex-row-reverse' : ''}`}>
+        <Sidebar className="w-72" side={isRTL ? "right" : "left"}>
           <SidebarHeader className="border-b border-sidebar-border px-4 py-[18px]">
             <div className="flex items-center pl-[15px] py-[10px]">
               <Link to="/dashboard" className="hover:opacity-80 transition-opacity" onClick={handleNavClick}>
