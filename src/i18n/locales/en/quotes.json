@@ -1,0 +1,31 @@
+{
+  "title": "Quotes",
+  "subtitle": "Manage your sales quotes",
+  "newQuote": "New Quote",
+  "searchPlaceholder": "Search quotes...",
+  "noResults": "No quotes found.",
+  "fields": {
+    "quoteNumber": "Quote Number",
+    "quoteName": "Quote Name",
+    "account": "Account",
+    "opportunity": "Opportunity",
+    "status": "Status",
+    "expirationDate": "Expiration Date",
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "tax": "Tax",
+    "total": "Total"
+  },
+  "statuses": {
+    "draft": "Draft",
+    "pending": "Pending",
+    "accepted": "Accepted",
+    "rejected": "Rejected"
+  },
+  "modal": {
+    "createTitle": "Create New Quote",
+    "editTitle": "Edit Quote",
+    "createButton": "Create Quote",
+    "saveButton": "Save Changes"
+  }
+}

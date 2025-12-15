@@ -1,0 +1,33 @@
+{
+  "title": "Uživatelé",
+  "subtitle": "Spravujte členy svého týmu",
+  "newUser": "Nový uživatel",
+  "searchPlaceholder": "Hledat uživatele...",
+  "noResults": "Nebyli nalezeni žádní uživatelé.",
+  "fields": {
+    "firstName": "Jméno",
+    "lastName": "Příjmení",
+    "email": "Email",
+    "phone": "Telefon",
+    "role": "Role",
+    "department": "Oddělení",
+    "status": "Stav",
+    "lastLogin": "Poslední přihlášení"
+  },
+  "roles": {
+    "admin": "Administrátor",
+    "manager": "Manažer",
+    "salesRep": "Obchodní zástupce",
+    "support": "Podpora"
+  },
+  "statuses": {
+    "active": "Aktivní",
+    "inactive": "Neaktivní"
+  },
+  "modal": {
+    "createTitle": "Vytvořit nového uživatele",
+    "editTitle": "Upravit uživatele",
+    "createButton": "Vytvořit uživatele",
+    "saveButton": "Uložit změny"
+  }
+}

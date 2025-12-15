@@ -1,0 +1,50 @@
+{
+  "title": "Leads",
+  "subtitle": "Manage your sales leads",
+  "newLead": "New Lead",
+  "searchPlaceholder": "Search leads...",
+  "noResults": "No leads found.",
+  "convertLead": "Convert Lead",
+  "fields": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "company": "Company",
+    "title": "Title",
+    "status": "Status",
+    "rating": "Rating",
+    "source": "Source",
+    "owner": "Owner",
+    "created": "Created"
+  },
+  "statuses": {
+    "new": "New",
+    "working": "Working",
+    "qualified": "Qualified",
+    "unqualified": "Unqualified",
+    "converted": "Converted"
+  },
+  "ratings": {
+    "hot": "Hot",
+    "warm": "Warm",
+    "cold": "Cold"
+  },
+  "sources": {
+    "web": "Web",
+    "phone": "Phone Inquiry",
+    "referral": "Partner Referral",
+    "advertisement": "Advertisement",
+    "tradeShow": "Trade Show",
+    "email": "Email Campaign"
+  },
+  "modal": {
+    "createTitle": "Create New Lead",
+    "editTitle": "Edit Lead",
+    "createButton": "Create Lead",
+    "saveButton": "Save Changes"
+  },
+  "messages": {
+    "deleted": "The lead has been successfully deleted."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "buttons": { "save": "Salvar", "cancel": "Cancelar", "delete": "Excluir", "edit": "Editar", "create": "Criar", "close": "Fechar", "confirm": "Confirmar", "submit": "Enviar", "reset": "Redefinir", "search": "Pesquisar", "filter": "Filtrar", "export": "Exportar", "import": "Importar", "add": "Adicionar", "remove": "Remover", "view": "Visualizar", "back": "Voltar", "next": "Próximo", "previous": "Anterior", "loading": "Carregando..." },
+  "labels": { "name": "Nome", "email": "E-mail", "phone": "Telefone", "address": "Endereço", "city": "Cidade", "state": "Estado", "country": "País", "postalCode": "CEP", "street": "Rua", "status": "Status", "type": "Tipo", "owner": "Proprietário", "created": "Criado", "updated": "Atualizado", "description": "Descrição", "notes": "Notas", "industry": "Setor", "revenue": "Receita", "employees": "Funcionários", "website": "Website", "source": "Origem", "rating": "Classificação" },
+  "messages": { "noResults": "Nenhum resultado encontrado", "loading": "Carregando...", "error": "Ocorreu um erro", "success": "Sucesso", "confirmDelete": "Tem certeza de que deseja excluir este item?", "saved": "Alterações salvas com sucesso", "deleted": "Item excluído com sucesso", "created": "Item criado com sucesso" },
+  "placeholders": { "search": "Pesquisar...", "selectOption": "Selecione uma opção", "enterValue": "Digite um valor" },
+  "validation": { "required": "Este campo é obrigatório", "invalidEmail": "Digite um e-mail válido", "invalidPhone": "Digite um número de telefone válido" }
+}

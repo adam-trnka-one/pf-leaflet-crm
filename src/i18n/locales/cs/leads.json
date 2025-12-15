@@ -1,0 +1,50 @@
+{
+  "title": "Potenciální zákazníci",
+  "subtitle": "Spravujte své prodejní leady",
+  "newLead": "Nový lead",
+  "searchPlaceholder": "Hledat leady...",
+  "noResults": "Nebyly nalezeny žádné leady.",
+  "convertLead": "Konvertovat lead",
+  "fields": {
+    "firstName": "Jméno",
+    "lastName": "Příjmení",
+    "email": "Email",
+    "phone": "Telefon",
+    "company": "Společnost",
+    "title": "Pozice",
+    "status": "Stav",
+    "rating": "Hodnocení",
+    "source": "Zdroj",
+    "owner": "Vlastník",
+    "created": "Vytvořeno"
+  },
+  "statuses": {
+    "new": "Nový",
+    "working": "Zpracováváno",
+    "qualified": "Kvalifikovaný",
+    "unqualified": "Nekvalifikovaný",
+    "converted": "Konvertovaný"
+  },
+  "ratings": {
+    "hot": "Horký",
+    "warm": "Teplý",
+    "cold": "Studený"
+  },
+  "sources": {
+    "web": "Web",
+    "phone": "Telefonický dotaz",
+    "referral": "Doporučení partnera",
+    "advertisement": "Reklama",
+    "tradeShow": "Veletrh",
+    "email": "E-mailová kampaň"
+  },
+  "modal": {
+    "createTitle": "Vytvořit nový lead",
+    "editTitle": "Upravit lead",
+    "createButton": "Vytvořit lead",
+    "saveButton": "Uložit změny"
+  },
+  "messages": {
+    "deleted": "Lead byl úspěšně smazán."
+  }
+}

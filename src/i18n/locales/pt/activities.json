@@ -1,0 +1,8 @@
+{
+  "title": "Atividades", "subtitle": "Gerencie suas tarefas e atividades", "newActivity": "Nova Atividade", "searchPlaceholder": "Pesquisar atividades...", "noResults": "Nenhuma atividade encontrada.",
+  "fields": { "subject": "Assunto", "type": "Tipo", "status": "Status", "priority": "Prioridade", "dueDate": "Data Limite", "relatedTo": "Relacionado a", "assignedTo": "Atribuído a", "description": "Descrição" },
+  "types": { "call": "Ligação", "meeting": "Reunião", "task": "Tarefa", "email": "E-mail", "event": "Evento" },
+  "statuses": { "notStarted": "Não Iniciado", "inProgress": "Em Andamento", "completed": "Concluído", "deferred": "Adiado" },
+  "priorities": { "low": "Baixa", "normal": "Normal", "high": "Alta" },
+  "modal": { "createTitle": "Criar Nova Atividade", "editTitle": "Editar Atividade", "createButton": "Criar Atividade", "saveButton": "Salvar Alterações" }
+}

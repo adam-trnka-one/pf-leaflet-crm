@@ -1,0 +1,9 @@
+{
+  "title": "Leads", "subtitle": "Gerencie seus leads de vendas", "newLead": "Novo Lead", "searchPlaceholder": "Pesquisar leads...", "noResults": "Nenhum lead encontrado.", "convertLead": "Converter Lead",
+  "fields": { "firstName": "Nome", "lastName": "Sobrenome", "email": "E-mail", "phone": "Telefone", "company": "Empresa", "title": "Cargo", "status": "Status", "rating": "Classificação", "source": "Origem", "owner": "Proprietário", "created": "Criado" },
+  "statuses": { "new": "Novo", "working": "Em Trabalho", "qualified": "Qualificado", "unqualified": "Não Qualificado", "converted": "Convertido" },
+  "ratings": { "hot": "Quente", "warm": "Morno", "cold": "Frio" },
+  "sources": { "web": "Web", "phone": "Telefone", "referral": "Indicação", "advertisement": "Publicidade", "tradeShow": "Feira", "email": "E-mail" },
+  "modal": { "createTitle": "Criar Novo Lead", "editTitle": "Editar Lead", "createButton": "Criar Lead", "saveButton": "Salvar Alterações" },
+  "messages": { "deleted": "Lead excluído com sucesso." }
+}

@@ -1,0 +1,6 @@
+{
+  "title": "Oportunidades", "subtitle": "Gerencie suas oportunidades de vendas", "newOpportunity": "Nova Oportunidade", "searchPlaceholder": "Pesquisar oportunidades...", "noResults": "Nenhuma oportunidade encontrada.",
+  "fields": { "opportunityName": "Nome da Oportunidade", "account": "Conta", "amount": "Valor", "stage": "Estágio", "probability": "Probabilidade", "closeDate": "Data de Fechamento", "owner": "Proprietário", "created": "Criado" },
+  "stages": { "prospecting": "Prospecção", "qualification": "Qualificação", "proposal": "Proposta", "negotiation": "Negociação", "closedWon": "Fechado Ganho", "closedLost": "Fechado Perdido" },
+  "modal": { "createTitle": "Criar Nova Oportunidade", "editTitle": "Editar Oportunidade", "createButton": "Criar Oportunidade", "saveButton": "Salvar Alterações" }
+}

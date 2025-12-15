@@ -1,0 +1,41 @@
+{
+  "title": "Aktivity",
+  "subtitle": "Spravujte své úkoly a aktivity",
+  "newActivity": "Nová aktivita",
+  "searchPlaceholder": "Hledat aktivity...",
+  "noResults": "Nebyly nalezeny žádné aktivity.",
+  "fields": {
+    "subject": "Předmět",
+    "type": "Typ",
+    "status": "Stav",
+    "priority": "Priorita",
+    "dueDate": "Termín",
+    "relatedTo": "Souvisí s",
+    "assignedTo": "Přiřazeno",
+    "description": "Popis"
+  },
+  "types": {
+    "call": "Hovor",
+    "meeting": "Schůzka",
+    "task": "Úkol",
+    "email": "Email",
+    "event": "Událost"
+  },
+  "statuses": {
+    "notStarted": "Nezahájeno",
+    "inProgress": "Probíhá",
+    "completed": "Dokončeno",
+    "deferred": "Odloženo"
+  },
+  "priorities": {
+    "low": "Nízká",
+    "normal": "Normální",
+    "high": "Vysoká"
+  },
+  "modal": {
+    "createTitle": "Vytvořit novou aktivitu",
+    "editTitle": "Upravit aktivitu",
+    "createButton": "Vytvořit aktivitu",
+    "saveButton": "Uložit změny"
+  }
+}

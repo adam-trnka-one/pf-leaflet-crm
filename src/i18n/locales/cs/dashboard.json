@@ -1,0 +1,44 @@
+{
+  "title": "Přehled",
+  "subtitle": "Vítejte zpět! Zde je přehled vašich prodejů.",
+  "metrics": {
+    "totalRevenue": "Celkové příjmy",
+    "totalAccounts": "Celkem účtů",
+    "totalContacts": "Celkem kontaktů",
+    "openOpportunities": "Otevřené příležitosti"
+  },
+  "tasks": {
+    "totalTasks": "Celkem úkolů",
+    "completed": "Dokončeno",
+    "overdue": "Po termínu"
+  },
+  "charts": {
+    "salesPipeline": "Prodejní trychtýř",
+    "monthlyRevenue": "Měsíční příjmy",
+    "prospecting": "Prospecting",
+    "qualification": "Kvalifikace",
+    "proposal": "Návrh",
+    "negotiation": "Jednání",
+    "closedWon": "Uzavřeno - Vyhrané"
+  },
+  "recentItems": {
+    "recentActivities": "Nedávné aktivity",
+    "recentLeads": "Nedávní potenciální zákazníci",
+    "type": "Typ",
+    "subject": "Předmět",
+    "dueDate": "Termín",
+    "status": "Stav",
+    "name": "Jméno",
+    "company": "Společnost",
+    "rating": "Hodnocení"
+  },
+  "checklist": {
+    "title": "Začínáme",
+    "subtitle": "Dokončete tyto kroky pro maximální využití CRM"
+  },
+  "loading": "Načítání přehledu...",
+  "toggleChecklist": {
+    "show": "Zobrazit checklist",
+    "hide": "Skrýt checklist"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "items": {
+    "dashboard": "Dashboard",
+    "accounts": "Accounts",
+    "contacts": "Contacts",
+    "leads": "Leads",
+    "opportunities": "Opportunities",
+    "activities": "Activities",
+    "cases": "Cases",
+    "users": "Users",
+    "products": "Products",
+    "quotes": "Quotes",
+    "settings": "Settings"
+  },
+  "header": {
+    "searchPlaceholder": "Search accounts, contacts, opportunities...",
+    "newsfeed": "Newsfeed",
+    "signOut": "Sign Out"
+  }
+}

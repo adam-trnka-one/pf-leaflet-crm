@@ -1,0 +1,6 @@
+{
+  "title": "Produtos", "subtitle": "Gerencie seu catálogo de produtos", "newProduct": "Novo Produto", "searchPlaceholder": "Pesquisar produtos...", "noResults": "Nenhum produto encontrado.",
+  "fields": { "productName": "Nome do Produto", "productCode": "Código do Produto", "category": "Categoria", "price": "Preço", "quantity": "Quantidade", "description": "Descrição", "active": "Ativo" },
+  "categories": { "software": "Software", "hardware": "Hardware", "service": "Serviço", "subscription": "Assinatura" },
+  "modal": { "createTitle": "Criar Novo Produto", "editTitle": "Editar Produto", "createButton": "Criar Produto", "saveButton": "Salvar Alterações" }
+}

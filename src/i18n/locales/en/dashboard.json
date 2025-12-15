@@ -1,0 +1,44 @@
+{
+  "title": "Dashboard",
+  "subtitle": "Welcome back! Here's what's happening with your sales.",
+  "metrics": {
+    "totalRevenue": "Total Revenue",
+    "totalAccounts": "Total Accounts",
+    "totalContacts": "Total Contacts",
+    "openOpportunities": "Open Opportunities"
+  },
+  "tasks": {
+    "totalTasks": "Total Tasks",
+    "completed": "Completed",
+    "overdue": "Overdue"
+  },
+  "charts": {
+    "salesPipeline": "Sales Pipeline",
+    "monthlyRevenue": "Monthly Revenue",
+    "prospecting": "Prospecting",
+    "qualification": "Qualification",
+    "proposal": "Proposal",
+    "negotiation": "Negotiation",
+    "closedWon": "Closed Won"
+  },
+  "recentItems": {
+    "recentActivities": "Recent Activities",
+    "recentLeads": "Recent Leads",
+    "type": "Type",
+    "subject": "Subject",
+    "dueDate": "Due Date",
+    "status": "Status",
+    "name": "Name",
+    "company": "Company",
+    "rating": "Rating"
+  },
+  "checklist": {
+    "title": "Getting Started",
+    "subtitle": "Complete these steps to get the most out of your CRM"
+  },
+  "loading": "Loading dashboard...",
+  "toggleChecklist": {
+    "show": "Show checklist",
+    "hide": "Hide checklist"
+  }
+}

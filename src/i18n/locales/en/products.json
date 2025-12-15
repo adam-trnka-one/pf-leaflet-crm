@@ -1,0 +1,28 @@
+{
+  "title": "Products",
+  "subtitle": "Manage your product catalog",
+  "newProduct": "New Product",
+  "searchPlaceholder": "Search products...",
+  "noResults": "No products found.",
+  "fields": {
+    "productName": "Product Name",
+    "productCode": "Product Code",
+    "category": "Category",
+    "price": "Price",
+    "quantity": "Quantity",
+    "description": "Description",
+    "active": "Active"
+  },
+  "categories": {
+    "software": "Software",
+    "hardware": "Hardware",
+    "service": "Service",
+    "subscription": "Subscription"
+  },
+  "modal": {
+    "createTitle": "Create New Product",
+    "editTitle": "Edit Product",
+    "createButton": "Create Product",
+    "saveButton": "Save Changes"
+  }
+}

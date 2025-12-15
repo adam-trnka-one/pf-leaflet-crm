@@ -1,0 +1,52 @@
+{
+  "title": "Settings",
+  "subtitle": "Manage your account and application settings",
+  "tabs": {
+    "profile": "Profile",
+    "workspace": "Workspace",
+    "api": "API Keys",
+    "permissions": "Permissions",
+    "integrations": "Integrations",
+    "notifications": "Notifications"
+  },
+  "profile": {
+    "title": "Profile Settings",
+    "subtitle": "Manage your personal information"
+  },
+  "workspace": {
+    "title": "Workspace Settings",
+    "workspaceCode": "Workspace Code",
+    "username": "Username",
+    "email": "Email",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "role": "Role",
+    "languageCode": "Language Code",
+    "selectedWorkspace": "Selected Workspace",
+    "customUrl": "Custom URL",
+    "saveButton": "Save Workspace Data",
+    "initiateButton": "Save & Initiate PF",
+    "resetButton": "Reset to Defaults",
+    "viewDataButton": "View Script Data",
+    "customProperties": "Custom Properties",
+    "addProperty": "Add Property",
+    "propertyName": "Property Name",
+    "propertyValue": "Property Value"
+  },
+  "api": {
+    "title": "API Keys",
+    "subtitle": "Manage your API access keys"
+  },
+  "permissions": {
+    "title": "Permissions",
+    "subtitle": "Manage user permissions and roles"
+  },
+  "integrations": {
+    "title": "Integrations",
+    "subtitle": "Connect with third-party services"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "subtitle": "Configure notification preferences"
+  }
+}

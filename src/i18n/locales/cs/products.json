@@ -1,0 +1,28 @@
+{
+  "title": "Produkty",
+  "subtitle": "Spravujte svůj katalog produktů",
+  "newProduct": "Nový produkt",
+  "searchPlaceholder": "Hledat produkty...",
+  "noResults": "Nebyly nalezeny žádné produkty.",
+  "fields": {
+    "productName": "Název produktu",
+    "productCode": "Kód produktu",
+    "category": "Kategorie",
+    "price": "Cena",
+    "quantity": "Množství",
+    "description": "Popis",
+    "active": "Aktivní"
+  },
+  "categories": {
+    "software": "Software",
+    "hardware": "Hardware",
+    "service": "Služba",
+    "subscription": "Předplatné"
+  },
+  "modal": {
+    "createTitle": "Vytvořit nový produkt",
+    "editTitle": "Upravit produkt",
+    "createButton": "Vytvořit produkt",
+    "saveButton": "Uložit změny"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Painel", "subtitle": "Bem-vindo de volta! Aqui está o que está acontecendo com suas vendas.",
+  "metrics": { "totalRevenue": "Receita Total", "totalAccounts": "Total de Contas", "totalContacts": "Total de Contatos", "openOpportunities": "Oportunidades Abertas" },
+  "tasks": { "totalTasks": "Total de Tarefas", "completed": "Concluídas", "overdue": "Atrasadas" },
+  "charts": { "salesPipeline": "Pipeline de Vendas", "monthlyRevenue": "Receita Mensal", "prospecting": "Prospecção", "qualification": "Qualificação", "proposal": "Proposta", "negotiation": "Negociação", "closedWon": "Fechado Ganho" },
+  "recentItems": { "recentActivities": "Atividades Recentes", "recentLeads": "Leads Recentes", "type": "Tipo", "subject": "Assunto", "dueDate": "Data Limite", "status": "Status", "name": "Nome", "company": "Empresa", "rating": "Classificação" },
+  "checklist": { "title": "Primeiros Passos", "subtitle": "Complete estes passos para aproveitar ao máximo seu CRM" },
+  "loading": "Carregando painel...",
+  "toggleChecklist": { "show": "Mostrar checklist", "hide": "Ocultar checklist" }
+}

@@ -1,0 +1,31 @@
+{
+  "title": "Opportunities",
+  "subtitle": "Manage your sales opportunities",
+  "newOpportunity": "New Opportunity",
+  "searchPlaceholder": "Search opportunities...",
+  "noResults": "No opportunities found.",
+  "fields": {
+    "opportunityName": "Opportunity Name",
+    "account": "Account",
+    "amount": "Amount",
+    "stage": "Stage",
+    "probability": "Probability",
+    "closeDate": "Close Date",
+    "owner": "Owner",
+    "created": "Created"
+  },
+  "stages": {
+    "prospecting": "Prospecting",
+    "qualification": "Qualification",
+    "proposal": "Proposal",
+    "negotiation": "Negotiation",
+    "closedWon": "Closed Won",
+    "closedLost": "Closed Lost"
+  },
+  "modal": {
+    "createTitle": "Create New Opportunity",
+    "editTitle": "Edit Opportunity",
+    "createButton": "Create Opportunity",
+    "saveButton": "Save Changes"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "title": "Účty",
+  "subtitle": "Spravujte své zákaznické účty",
+  "newAccount": "Nový účet",
+  "searchPlaceholder": "Hledat účty...",
+  "noResults": "Nebyly nalezeny žádné účty odpovídající vašemu hledání.",
+  "fields": {
+    "accountName": "Název účtu",
+    "accountType": "Typ účtu",
+    "industry": "Odvětví",
+    "annualRevenue": "Roční příjmy",
+    "employees": "Zaměstnanci",
+    "streetAddress": "Ulice",
+    "city": "Město",
+    "state": "Stát",
+    "country": "Země",
+    "postalCode": "PSČ",
+    "owner": "Vlastník",
+    "created": "Vytvořeno"
+  },
+  "types": {
+    "customer": "Zákazník",
+    "prospect": "Potenciální zákazník",
+    "partner": "Partner",
+    "competitor": "Konkurent"
+  },
+  "modal": {
+    "createTitle": "Vytvořit nový účet",
+    "editTitle": "Upravit účet",
+    "createButton": "Vytvořit účet",
+    "saveButton": "Uložit změny"
+  },
+  "placeholders": {
+    "accountName": "Acme Corporation",
+    "industry": "Technologie",
+    "revenue": "1000000",
+    "employees": "50",
+    "street": "Hlavní 123",
+    "city": "Praha",
+    "state": "Praha",
+    "country": "Česká republika",
+    "postalCode": "11000"
+  }
+}

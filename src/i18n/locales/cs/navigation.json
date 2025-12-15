@@ -1,0 +1,20 @@
+{
+  "items": {
+    "dashboard": "Přehled",
+    "accounts": "Účty",
+    "contacts": "Kontakty",
+    "leads": "Potenciální zákazníci",
+    "opportunities": "Příležitosti",
+    "activities": "Aktivity",
+    "cases": "Případy",
+    "users": "Uživatelé",
+    "products": "Produkty",
+    "quotes": "Nabídky",
+    "settings": "Nastavení"
+  },
+  "header": {
+    "searchPlaceholder": "Hledat účty, kontakty, příležitosti...",
+    "newsfeed": "Novinky",
+    "signOut": "Odhlásit se"
+  }
+}

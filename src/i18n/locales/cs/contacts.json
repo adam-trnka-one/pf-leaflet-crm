@@ -1,0 +1,30 @@
+{
+  "title": "Kontakty",
+  "subtitle": "Spravujte své kontaktní vztahy",
+  "newContact": "Nový kontakt",
+  "searchPlaceholder": "Hledat kontakty...",
+  "noResults": "Nebyly nalezeny žádné kontakty odpovídající vašemu hledání.",
+  "fields": {
+    "firstName": "Jméno",
+    "lastName": "Příjmení",
+    "email": "Email",
+    "phone": "Telefon",
+    "title": "Pozice",
+    "account": "Účet",
+    "owner": "Vlastník",
+    "created": "Vytvořeno"
+  },
+  "modal": {
+    "createTitle": "Vytvořit nový kontakt",
+    "editTitle": "Upravit kontakt",
+    "createButton": "Vytvořit kontakt",
+    "saveButton": "Uložit změny"
+  },
+  "placeholders": {
+    "firstName": "Jan",
+    "lastName": "Novák",
+    "email": "jan@priklad.cz",
+    "phone": "+420 555 010 000",
+    "title": "Ředitel"
+  }
+}
