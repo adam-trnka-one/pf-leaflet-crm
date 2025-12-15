@@ -154,21 +154,21 @@ const LayoutContent = () => {
               {/* Language Dropdown with Flags */}
               <div className="flex items-center gap-1">
                 <Select value={localWorkspaceData.languageCode} onValueChange={handleLanguageChangeAndInitiate} disabled={isInitiating}>
-                  <SelectTrigger className="w-24 h-8 bg-white">
+                  <SelectTrigger className="w-24 h-8 bg-white" title="Select language">
                     {isInitiating ? (
                       <Loader2 className="h-4 w-4 animate-spin" />
                     ) : (
                       <SelectValue />
                     )}
                   </SelectTrigger>
-                  <SelectContent className="bg-white z-50">
-                    <SelectItem value="en">🇬🇧 EN</SelectItem>
-                    <SelectItem value="cs">🇨🇿 CS</SelectItem>
-                    <SelectItem value="de">🇩🇪 DE</SelectItem>
-                    <SelectItem value="fr">🇫🇷 FR</SelectItem>
-                    <SelectItem value="es">🇪🇸 ES</SelectItem>
-                    <SelectItem value="pt">🇵🇹 PT</SelectItem>
-                    <SelectItem value="ar">🇸🇦 AR</SelectItem>
+                  <SelectContent className="bg-white z-50 min-w-[160px]">
+                    <SelectItem value="en">🇬🇧 English</SelectItem>
+                    <SelectItem value="cs">🇨🇿 Čeština</SelectItem>
+                    <SelectItem value="de">🇩🇪 Deutsch</SelectItem>
+                    <SelectItem value="fr">🇫🇷 Français</SelectItem>
+                    <SelectItem value="es">🇪🇸 Español</SelectItem>
+                    <SelectItem value="pt">🇵🇹 Português</SelectItem>
+                    <SelectItem value="ar">🇸🇦 العربية</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
