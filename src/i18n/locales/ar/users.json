@@ -1,1 +1,55 @@
-{ "title": "المستخدمون", "subtitle": "إدارة المستخدمين", "newUser": "جديد", "searchPlaceholder": "بحث...", "noResults": "لا توجد نتائج.", "fields": { "firstName": "الاسم الأول", "lastName": "اسم العائلة", "email": "البريد الإلكتروني", "phone": "الهاتف", "role": "الدور", "department": "القسم", "status": "الحالة", "lastLogin": "آخر دخول" }, "roles": { "admin": "مدير", "manager": "مشرف", "salesRep": "مندوب مبيعات", "support": "دعم" }, "statuses": { "active": "نشط", "inactive": "غير نشط" }, "modal": { "createTitle": "إنشاء", "editTitle": "تعديل", "createButton": "إنشاء", "saveButton": "حفظ" } }
+{
+  "title": "المستخدمون",
+  "subtitle": "إدارة مستخدمي النظام والصلاحيات",
+  "newUser": "مستخدم جديد",
+  "createNew": "إنشاء مستخدم جديد",
+  "edit": "تعديل المستخدم",
+  "searchPlaceholder": "البحث عن المستخدمين...",
+  "noResults": "لم يتم العثور على مستخدمين.",
+  "columns": {
+    "name": "الاسم الكامل",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "role": "الدور",
+    "department": "القسم",
+    "status": "الحالة",
+    "lastLogin": "آخر دخول"
+  },
+  "fields": {
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "role": "الدور",
+    "department": "القسم",
+    "status": "الحالة",
+    "lastLogin": "آخر دخول"
+  },
+  "roles": {
+    "admin": "مدير",
+    "manager": "مشرف",
+    "salesRep": "مندوب مبيعات",
+    "support": "دعم"
+  },
+  "status": {
+    "active": "نشط",
+    "inactive": "غير نشط"
+  },
+  "statuses": {
+    "active": "نشط",
+    "inactive": "غير نشط"
+  },
+  "modal": {
+    "createTitle": "إنشاء مستخدم جديد",
+    "editTitle": "تعديل المستخدم",
+    "createButton": "إنشاء المستخدم",
+    "saveButton": "حفظ التغييرات"
+  },
+  "messages": {
+    "created": "تم إنشاء المستخدم بنجاح.",
+    "deleted": "تم حذف المستخدم بنجاح.",
+    "updated": "تم تحديث المستخدم بنجاح."
+  }
+}

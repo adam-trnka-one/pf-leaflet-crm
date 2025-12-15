@@ -1,6 +1,44 @@
 {
-  "title": "Produtos", "subtitle": "Gerencie seu catálogo de produtos", "newProduct": "Novo Produto", "searchPlaceholder": "Pesquisar produtos...", "noResults": "Nenhum produto encontrado.",
-  "fields": { "productName": "Nome do Produto", "productCode": "Código do Produto", "category": "Categoria", "price": "Preço", "quantity": "Quantidade", "description": "Descrição", "active": "Ativo" },
-  "categories": { "software": "Software", "hardware": "Hardware", "service": "Serviço", "subscription": "Assinatura" },
-  "modal": { "createTitle": "Criar Novo Produto", "editTitle": "Editar Produto", "createButton": "Criar Produto", "saveButton": "Salvar Alterações" }
+  "title": "Produtos",
+  "subtitle": "Gerencie seu catálogo de produtos",
+  "newProduct": "Novo Produto",
+  "createNew": "Criar Novo Produto",
+  "edit": "Editar Produto",
+  "searchPlaceholder": "Pesquisar produtos...",
+  "noResults": "Nenhum produto encontrado.",
+  "perMonth": "/mês",
+  "columns": {
+    "name": "Nome do Produto",
+    "description": "Descrição",
+    "price": "Preço",
+    "category": "Categoria",
+    "status": "Status"
+  },
+  "fields": {
+    "productName": "Nome do Produto",
+    "productCode": "Código do Produto",
+    "category": "Categoria",
+    "price": "Preço",
+    "quantity": "Quantidade",
+    "description": "Descrição",
+    "active": "Ativo"
+  },
+  "categories": {
+    "software": "Software",
+    "hardware": "Hardware",
+    "service": "Serviço",
+    "subscription": "Assinatura",
+    "training": "Treinamento"
+  },
+  "modal": {
+    "createTitle": "Criar Novo Produto",
+    "editTitle": "Editar Produto",
+    "createButton": "Criar Produto",
+    "saveButton": "Salvar Alterações"
+  },
+  "messages": {
+    "created": "O produto foi criado com sucesso.",
+    "deleted": "O produto foi excluído com sucesso.",
+    "updated": "O produto foi atualizado com sucesso."
+  }
 }

@@ -2,8 +2,18 @@
   "title": "Produkty",
   "subtitle": "Spravujte svůj katalog produktů",
   "newProduct": "Nový produkt",
+  "createNew": "Vytvořit nový produkt",
+  "edit": "Upravit produkt",
   "searchPlaceholder": "Hledat produkty...",
   "noResults": "Nebyly nalezeny žádné produkty.",
+  "perMonth": "/měsíc",
+  "columns": {
+    "name": "Název produktu",
+    "description": "Popis",
+    "price": "Cena",
+    "category": "Kategorie",
+    "status": "Stav"
+  },
   "fields": {
     "productName": "Název produktu",
     "productCode": "Kód produktu",
@@ -17,12 +27,18 @@
     "software": "Software",
     "hardware": "Hardware",
     "service": "Služba",
-    "subscription": "Předplatné"
+    "subscription": "Předplatné",
+    "training": "Školení"
   },
   "modal": {
     "createTitle": "Vytvořit nový produkt",
     "editTitle": "Upravit produkt",
     "createButton": "Vytvořit produkt",
     "saveButton": "Uložit změny"
+  },
+  "messages": {
+    "created": "Produkt byl úspěšně vytvořen.",
+    "deleted": "Produkt byl úspěšně smazán.",
+    "updated": "Produkt byl úspěšně aktualizován."
   }
 }

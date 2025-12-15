@@ -1,6 +1,51 @@
 {
-  "title": "Cotações", "subtitle": "Gerencie suas cotações de vendas", "newQuote": "Nova Cotação", "searchPlaceholder": "Pesquisar cotações...", "noResults": "Nenhuma cotação encontrada.",
-  "fields": { "quoteNumber": "Número da Cotação", "quoteName": "Nome da Cotação", "account": "Conta", "opportunity": "Oportunidade", "status": "Status", "expirationDate": "Data de Expiração", "subtotal": "Subtotal", "discount": "Desconto", "tax": "Imposto", "total": "Total" },
-  "statuses": { "draft": "Rascunho", "pending": "Pendente", "accepted": "Aceita", "rejected": "Rejeitada" },
-  "modal": { "createTitle": "Criar Nova Cotação", "editTitle": "Editar Cotação", "createButton": "Criar Cotação", "saveButton": "Salvar Alterações" }
+  "title": "Cotações",
+  "subtitle": "Gerencie cotações e propostas de vendas",
+  "newQuote": "Nova Cotação",
+  "createNew": "Criar Nova Cotação",
+  "edit": "Editar Cotação",
+  "searchPlaceholder": "Pesquisar cotações...",
+  "noResults": "Nenhuma cotação encontrada.",
+  "columns": {
+    "name": "Nome da Cotação",
+    "account": "Conta",
+    "amount": "Valor",
+    "status": "Status",
+    "date": "Data"
+  },
+  "fields": {
+    "quoteNumber": "Número da Cotação",
+    "quoteName": "Nome da Cotação",
+    "account": "Conta",
+    "opportunity": "Oportunidade",
+    "status": "Status",
+    "expirationDate": "Data de Expiração",
+    "subtotal": "Subtotal",
+    "discount": "Desconto",
+    "tax": "Imposto",
+    "total": "Total"
+  },
+  "status": {
+    "draft": "Rascunho",
+    "sent": "Enviada",
+    "accepted": "Aceita",
+    "rejected": "Rejeitada"
+  },
+  "statuses": {
+    "draft": "Rascunho",
+    "pending": "Pendente",
+    "accepted": "Aceita",
+    "rejected": "Rejeitada"
+  },
+  "modal": {
+    "createTitle": "Criar Nova Cotação",
+    "editTitle": "Editar Cotação",
+    "createButton": "Criar Cotação",
+    "saveButton": "Salvar Alterações"
+  },
+  "messages": {
+    "created": "A cotação foi criada com sucesso.",
+    "deleted": "A cotação foi excluída com sucesso.",
+    "updated": "A cotação foi atualizada com sucesso."
+  }
 }

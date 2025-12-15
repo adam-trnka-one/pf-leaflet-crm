@@ -3,6 +3,7 @@
   "subtitle": "Manage sales quotes and proposals",
   "newQuote": "New Quote",
   "createNew": "Create New Quote",
+  "edit": "Edit Quote",
   "searchPlaceholder": "Search quotes...",
   "noResults": "No quotes found.",
   "columns": {

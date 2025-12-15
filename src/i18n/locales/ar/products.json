@@ -3,6 +3,7 @@
   "subtitle": "إدارة كتالوج المنتجات",
   "newProduct": "منتج جديد",
   "createNew": "إنشاء منتج جديد",
+  "edit": "تعديل المنتج",
   "searchPlaceholder": "البحث عن المنتجات...",
   "noResults": "لم يتم العثور على منتجات.",
   "perMonth": "/شهر",
@@ -14,8 +15,8 @@
     "status": "الحالة"
   },
   "fields": {
-    "productName": "الاسم",
-    "productCode": "الرمز",
+    "productName": "اسم المنتج",
+    "productCode": "رمز المنتج",
     "category": "الفئة",
     "price": "السعر",
     "quantity": "الكمية",

@@ -3,6 +3,7 @@
   "subtitle": "Manage system users and permissions",
   "newUser": "New User",
   "createNew": "Create New User",
+  "edit": "Edit User",
   "searchPlaceholder": "Search users...",
   "noResults": "No users found.",
   "columns": {
@@ -31,6 +32,10 @@
     "manager": "Manager",
     "salesRep": "Sales Rep",
     "support": "Support"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
   },
   "statuses": {
     "active": "Active",

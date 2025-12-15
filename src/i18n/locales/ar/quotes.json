@@ -1,1 +1,51 @@
-{ "title": "عروض الأسعار", "subtitle": "إدارة عروض الأسعار", "newQuote": "جديد", "searchPlaceholder": "بحث...", "noResults": "لا توجد نتائج.", "fields": { "quoteNumber": "الرقم", "quoteName": "الاسم", "account": "الحساب", "opportunity": "الفرصة", "status": "الحالة", "expirationDate": "تاريخ الانتهاء", "subtotal": "المجموع الفرعي", "discount": "الخصم", "tax": "الضريبة", "total": "الإجمالي" }, "statuses": { "draft": "مسودة", "pending": "معلق", "accepted": "مقبول", "rejected": "مرفوض" }, "modal": { "createTitle": "إنشاء", "editTitle": "تعديل", "createButton": "إنشاء", "saveButton": "حفظ" } }
+{
+  "title": "عروض الأسعار",
+  "subtitle": "إدارة عروض الأسعار والمقترحات",
+  "newQuote": "عرض جديد",
+  "createNew": "إنشاء عرض سعر جديد",
+  "edit": "تعديل عرض السعر",
+  "searchPlaceholder": "البحث عن عروض الأسعار...",
+  "noResults": "لم يتم العثور على عروض أسعار.",
+  "columns": {
+    "name": "اسم العرض",
+    "account": "الحساب",
+    "amount": "المبلغ",
+    "status": "الحالة",
+    "date": "التاريخ"
+  },
+  "fields": {
+    "quoteNumber": "رقم العرض",
+    "quoteName": "اسم العرض",
+    "account": "الحساب",
+    "opportunity": "الفرصة",
+    "status": "الحالة",
+    "expirationDate": "تاريخ الانتهاء",
+    "subtotal": "المجموع الفرعي",
+    "discount": "الخصم",
+    "tax": "الضريبة",
+    "total": "الإجمالي"
+  },
+  "status": {
+    "draft": "مسودة",
+    "sent": "مرسل",
+    "accepted": "مقبول",
+    "rejected": "مرفوض"
+  },
+  "statuses": {
+    "draft": "مسودة",
+    "pending": "معلق",
+    "accepted": "مقبول",
+    "rejected": "مرفوض"
+  },
+  "modal": {
+    "createTitle": "إنشاء عرض سعر جديد",
+    "editTitle": "تعديل عرض السعر",
+    "createButton": "إنشاء العرض",
+    "saveButton": "حفظ التغييرات"
+  },
+  "messages": {
+    "created": "تم إنشاء عرض السعر بنجاح.",
+    "deleted": "تم حذف عرض السعر بنجاح.",
+    "updated": "تم تحديث عرض السعر بنجاح."
+  }
+}
