@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -8,6 +7,7 @@ export const useProductFruits = () => {
   const location = useLocation();
   const initializedWorkspaceCode = useRef<string>('');
   const hasInitialized = useRef<boolean>(false);
+  const isInitializing = useRef<boolean>(false);
 
   useEffect(() => {
     // Only initialize ProductFruits on dashboard pages
@@ -42,6 +42,10 @@ export const useProductFruits = () => {
     if (selectedWorkspace?.startsWith('pr')) {
       return `https://my-${selectedWorkspace}.ohio.pf.dev/static/script.js`;
     }
+    // Handle named workspaces like "jess", "demo", etc.
+    if (selectedWorkspace && selectedWorkspace !== 'production' && selectedWorkspace !== '') {
+      return `https://my-${selectedWorkspace}.ohio.pf.dev/static/script.js`;
+    }
     return 'https://app.productfruits.com/static/script.js';
   };
 
@@ -54,7 +58,14 @@ export const useProductFruits = () => {
     return 'en';
   };
 
-  const initializeProductFruits = (workspaceData?: any) => {
+  const initializeProductFruits = async (workspaceData?: any) => {
+    // Prevent concurrent initializations
+    if (isInitializing.current) {
+      console.log('ProductFruits initialization already in progress, skipping');
+      return;
+    }
+    isInitializing.current = true;
+
     let dataToUse = workspaceData;
     
     // If no data provided, load from localStorage
@@ -66,12 +77,14 @@ export const useProductFruits = () => {
         }
       } catch (error) {
         console.error('Error loading workspace data from localStorage:', error);
+        isInitializing.current = false;
         return;
       }
     }
 
     if (!dataToUse || !dataToUse.workspaceCode || !dataToUse.username) {
       console.log('Missing required workspace data for ProductFruits initialization');
+      isInitializing.current = false;
       return;
     }
 
@@ -91,6 +104,9 @@ export const useProductFruits = () => {
     // Clear globals
     delete (window as any).$productFruits;
     delete (window as any).productFruits;
+
+    // Small delay to ensure cleanup is complete
+    await new Promise(resolve => setTimeout(resolve, 100));
 
     // Remove existing ProductFruits scripts including the static one from index.html
     const existingScripts = document.querySelectorAll('script[src*="productfruits"], script[src*="pf.dev"], script[src*="/static/script.js"], script[data-productfruits-init]');
@@ -144,6 +160,12 @@ export const useProductFruits = () => {
       console.log('ProductFruits initialized with workspace code:', dataToUse.workspaceCode);
       console.log('ProductFruits language:', languageCode);
       console.log('Initialization data:', initData);
+      isInitializing.current = false;
+    };
+
+    mainScript.onerror = () => {
+      console.error('Failed to load ProductFruits script');
+      isInitializing.current = false;
     };
     
     document.head.appendChild(mainScript);
