@@ -90,13 +90,29 @@ const LayoutContent = () => {
     window.location.reload();
   };
 
-  // Setup ProductFruits newsfeed
+  // Setup ProductFruits newsfeed listener with retry
   useEffect(() => {
-    // Listen for unread count changes
-    if ((window as any).productFruits?.api?.announcementsV2) {
-      (window as any).productFruits.api.announcementsV2.listen('newsfeed-unread-count-changed', (data: { count: number }) => {
-        setUnreadCount(data.count);
-      });
+    const setupNewsfeedListener = () => {
+      if ((window as any).productFruits?.api?.announcementsV2) {
+        (window as any).productFruits.api.announcementsV2.listen('newsfeed-unread-count-changed', (data: { count: number }) => {
+          setUnreadCount(data.count);
+        });
+        return true;
+      }
+      return false;
+    };
+
+    // Try immediately
+    if (!setupNewsfeedListener()) {
+      // Retry after ProductFruits may be ready
+      const retryInterval = setInterval(() => {
+        if (setupNewsfeedListener()) {
+          clearInterval(retryInterval);
+        }
+      }, 1000);
+
+      // Clean up after 10 seconds
+      setTimeout(() => clearInterval(retryInterval), 10000);
     }
   }, []);
 

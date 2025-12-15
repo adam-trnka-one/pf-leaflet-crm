@@ -18,15 +18,15 @@ const languages = [
 
 export const LanguageSelector = () => {
   const { i18n } = useTranslation();
-  const { initializeProductFruits } = useProductFruits();
+  const { reinitializeWithLanguage } = useProductFruits();
 
-  const handleLanguageChange = (langCode: string) => {
+  const handleLanguageChange = async (langCode: string) => {
     i18n.changeLanguage(langCode);
     localStorage.setItem('language', langCode);
     document.documentElement.dir = langCode === 'ar' ? 'rtl' : 'ltr';
     
-    // Reinitialize ProductFruits with the new language
-    initializeProductFruits();
+    // Reinitialize ProductFruits with the new language (full destroy + reinit)
+    await reinitializeWithLanguage();
   };
 
   const currentLang = languages.find((l) => l.code === i18n.language) || languages[0];

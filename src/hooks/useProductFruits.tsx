@@ -18,6 +18,7 @@ export interface ProductFruitsState {
 export const useProductFruits = () => {
   const location = useLocation();
   const initializedWorkspaceCode = useRef<string>('');
+  const currentLanguage = useRef<string>('');
   const hasInitialized = useRef<boolean>(false);
   const isInitializing = useRef<boolean>(false);
 
@@ -83,6 +84,36 @@ export const useProductFruits = () => {
     return 'en';
   };
 
+  const destroyProductFruits = async () => {
+    // Destroy existing ProductFruits instance thoroughly
+    const existingPF = (window as any).$productFruits;
+    if (existingPF && typeof existingPF.push === 'function') {
+      try {
+        existingPF.push(['destroy']);
+        console.log('ProductFruits destroyed');
+        // Wait for destroy to complete
+        await new Promise(resolve => setTimeout(resolve, 300));
+      } catch (e) {
+        console.log('ProductFruits destroy failed:', e);
+      }
+    }
+    
+    // Clear ALL ProductFruits globals
+    delete (window as any).$productFruits;
+    delete (window as any).productFruits;
+    delete (window as any).productFruitsInit;
+    delete (window as any).productFruitsInit2;
+    delete (window as any).productFruitsUser;
+    delete (window as any).productFruitsReady;
+
+    // Remove ALL existing ProductFruits scripts
+    const existingScripts = document.querySelectorAll('script[src*="productfruits"], script[src*="pf.dev"], script[data-productfruits-init]');
+    existingScripts.forEach(script => script.remove());
+    
+    // Wait a bit more after removing scripts
+    await new Promise(resolve => setTimeout(resolve, 200));
+  };
+
   const initializeProductFruits = useCallback(async (workspaceData?: any, forceReinit = false) => {
     // Prevent concurrent initializations
     if (isInitializing.current) {
@@ -120,31 +151,8 @@ export const useProductFruits = () => {
     // Get current language
     const languageCode = getLanguageCode();
 
-    // Clean up existing ProductFruits instance thoroughly
-    const existingPF = (window as any).$productFruits;
-    if (existingPF && typeof existingPF.push === 'function') {
-      try {
-        existingPF.push(['destroy']);
-        console.log('ProductFruits destroyed before reinitialization');
-        // Wait for destroy to complete
-        await new Promise(resolve => setTimeout(resolve, 200));
-      } catch (e) {
-        console.log('ProductFruits destroy failed:', e);
-      }
-    }
-    
-    // Clear all ProductFruits globals
-    delete (window as any).$productFruits;
-    delete (window as any).productFruits;
-    delete (window as any).productFruitsInit;
-    delete (window as any).productFruitsInit2;
-
-    // Remove ALL existing ProductFruits scripts
-    const existingScripts = document.querySelectorAll('script[src*="productfruits"], script[src*="pf.dev"], script[data-productfruits-init]');
-    existingScripts.forEach(script => script.remove());
-    
-    // Wait a bit more after removing scripts
-    await new Promise(resolve => setTimeout(resolve, 100));
+    // Clean up existing ProductFruits instance
+    await destroyProductFruits();
 
     // Build props object from custom properties
     const props: Record<string, string> = {};
@@ -169,11 +177,34 @@ export const useProductFruits = () => {
       ...(Object.keys(props).length > 0 && { props })
     };
 
-    // Create and add the new main ProductFruits script with correct URL
+    // Set up the productFruitsReady callback BEFORE loading script
+    (window as any).productFruitsReady = function() {
+      console.log('ProductFruits is ready! (via productFruitsReady callback)');
+      
+      // Auto-attach newsfeed widget
+      setTimeout(() => {
+        const launcher = document.getElementById('newsfeed-launcher');
+        if (launcher && (window as any).productFruits?.api?.announcementsV2) {
+          (window as any).productFruits.api.announcementsV2.attachNewsWidgetToElement(launcher);
+          console.log('Newsfeed widget auto-attached to launcher');
+        }
+      }, 100);
+      
+      isInitializing.current = false;
+      setState(prev => ({
+        ...prev,
+        status: 'initialized',
+        lastInitialized: new Date(),
+        error: null,
+      }));
+    };
+
+    // Create and add the new main ProductFruits script with correct URL and cache-busting
     const mainScript = document.createElement('script');
     mainScript.async = true;
     const scriptUrl = getScriptUrl(dataToUse.selectedWorkspace, dataToUse.customUrl);
-    mainScript.src = `${scriptUrl}?c=${dataToUse.workspaceCode}`;
+    // Add cache-busting timestamp to force fresh script on reinit
+    mainScript.src = `${scriptUrl}?c=${dataToUse.workspaceCode}&t=${Date.now()}`;
 
     // Update state with loading info
     setState(prev => ({
@@ -194,17 +225,12 @@ export const useProductFruits = () => {
         window.$productFruits.push(['init', '${dataToUse.workspaceCode}', '${languageCode}', ${JSON.stringify(initData)}]);
       `;
       document.head.appendChild(initScript);
-      console.log('ProductFruits initialized with workspace code:', dataToUse.workspaceCode);
+      console.log('ProductFruits init command pushed with workspace code:', dataToUse.workspaceCode);
       console.log('ProductFruits language:', languageCode);
       console.log('Initialization data:', initData);
-      isInitializing.current = false;
       
-      setState(prev => ({
-        ...prev,
-        status: 'initialized',
-        lastInitialized: new Date(),
-        error: null,
-      }));
+      // Update current language ref
+      currentLanguage.current = languageCode;
     };
 
     mainScript.onerror = () => {
@@ -223,6 +249,22 @@ export const useProductFruits = () => {
     initializedWorkspaceCode.current = dataToUse.workspaceCode;
   }, []);
 
+  const reinitializeWithLanguage = useCallback(async () => {
+    const newLanguage = getLanguageCode();
+    
+    // Only reinit if language actually changed
+    if (currentLanguage.current === newLanguage && currentLanguage.current !== '') {
+      console.log('Language unchanged, skipping reinit');
+      return;
+    }
+    
+    console.log(`Language changed from "${currentLanguage.current}" to "${newLanguage}", reinitializing ProductFruits...`);
+    
+    // Force full reinitialization
+    hasInitialized.current = false;
+    await initializeProductFruits(undefined, true);
+  }, [initializeProductFruits]);
+
   const hasWorkspaceCodeChanged = (currentWorkspaceCode: string) => {
     return hasInitialized.current && 
            currentWorkspaceCode !== initializedWorkspaceCode.current &&
@@ -231,6 +273,7 @@ export const useProductFruits = () => {
 
   return {
     initializeProductFruits,
+    reinitializeWithLanguage,
     hasWorkspaceCodeChanged,
     canAutoInitialize: location.pathname.startsWith('/dashboard'),
     state,
