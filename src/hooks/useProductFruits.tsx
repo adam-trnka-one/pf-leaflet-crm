@@ -56,18 +56,16 @@ export const useProductFruits = () => {
   };
 
   const getScriptUrl = (selectedWorkspace?: string, customUrl?: string) => {
+    // Custom dev environment with user-specified URL
     if (selectedWorkspace === 'custom-dev' && customUrl) {
-      // Extract domain from custom URL and construct script path
       const url = customUrl.endsWith('/') ? customUrl.slice(0, -1) : customUrl;
       return `${url}/static/script.js`;
     }
+    // PR environments (pr1, pr2, pr3, pr4, pr5)
     if (selectedWorkspace?.startsWith('pr')) {
       return `https://my-${selectedWorkspace}.ohio.pf.dev/static/script.js`;
     }
-    // Handle named workspaces like "jess", "demo", etc.
-    if (selectedWorkspace && selectedWorkspace !== 'production' && selectedWorkspace !== '') {
-      return `https://my-${selectedWorkspace}.ohio.pf.dev/static/script.js`;
-    }
+    // All other cases (production workspaces like "jess", etc.) use production URL
     return 'https://app.productfruits.com/static/script.js';
   };
 
