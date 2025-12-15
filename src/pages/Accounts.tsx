@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getSampleData, resetDatabase, type Account } from "@/utils/sampleData";
@@ -8,8 +7,10 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Search, Users, DollarSign, MapPin } from "lucide-react";
 import NewAccountModal from "@/components/modals/NewAccountModal";
+import { useTranslation } from "react-i18next";
 
 const Accounts = () => {
+  const { t } = useTranslation(['accounts', 'common']);
   const [accounts, setAccounts] = useState<Account[]>([]);
   const [filteredAccounts, setFilteredAccounts] = useState<Account[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -81,8 +82,8 @@ const Accounts = () => {
       {/* Header */}
       <div className="flex justify-between items-start mb-8" data-testid="accounts-header-section">
         <div data-testid="accounts-header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-testid="accounts-page-title">Accounts</h1>
-          <p className="text-slate-600 mt-2" data-testid="accounts-page-subtitle">Manage your customer accounts</p>
+          <h1 className="text-3xl font-bold text-slate-800" data-testid="accounts-page-title">{t('accounts:title')}</h1>
+          <p className="text-slate-600 mt-2" data-testid="accounts-page-subtitle">{t('accounts:subtitle')}</p>
         </div>
         <Button 
           className="bg-[#4AB831] hover:bg-[#3da127]"
@@ -90,7 +91,7 @@ const Accounts = () => {
           data-testid="accounts-new-account-button"
         >
           <Plus className="h-4 w-4 mr-2" data-testid="accounts-new-account-icon" />
-          <span data-testid="accounts-new-account-text">New Account</span>
+          <span data-testid="accounts-new-account-text">{t('accounts:newAccount')}</span>
         </Button>
       </div>
 
@@ -99,7 +100,7 @@ const Accounts = () => {
         <div className="relative" data-testid="accounts-search-container">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" data-testid="accounts-search-icon" />
           <Input
-            placeholder="Search accounts..."
+            placeholder={t('accounts:searchPlaceholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 max-w-md bg-white"
@@ -125,7 +126,7 @@ const Accounts = () => {
               </CardHeader>
               <CardContent className="space-y-3" data-testid="accounts-card-content">
                 <div className="flex items-center text-sm text-slate-600" data-testid="accounts-industry-row">
-                  <span className="font-medium mr-2" data-testid="accounts-industry-label">Industry:</span>
+                  <span className="font-medium mr-2" data-testid="accounts-industry-label">{t('common:industry')}:</span>
                   <span data-testid="accounts-industry-value">{account.industry}</span>
                 </div>
                 
@@ -147,11 +148,11 @@ const Accounts = () => {
 
                 <div className="pt-2 border-t border-slate-100" data-testid="accounts-metadata-section">
                   <div className="text-xs text-slate-500" data-testid="accounts-owner-row">
-                    <span data-testid="accounts-owner-label">Owner: </span>
+                    <span data-testid="accounts-owner-label">{t('common:owner')}: </span>
                     <span data-testid="accounts-owner-value">{account.owner}</span>
                   </div>
                   <div className="text-xs text-slate-500" data-testid="accounts-created-row">
-                    <span data-testid="accounts-created-label">Created: </span>
+                    <span data-testid="accounts-created-label">{t('common:created')}: </span>
                     <span data-testid="accounts-created-value">{account.createdAt.toLocaleDateString()}</span>
                   </div>
                 </div>
@@ -163,7 +164,7 @@ const Accounts = () => {
 
       {filteredAccounts.length === 0 && (
         <div className="text-center py-12" data-testid="accounts-empty-state">
-          <p className="text-slate-500" data-testid="accounts-empty-message">No accounts found matching your search.</p>
+          <p className="text-slate-500" data-testid="accounts-empty-message">{t('accounts:noResults')}</p>
         </div>
       )}
 

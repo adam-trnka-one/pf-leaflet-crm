@@ -8,6 +8,7 @@ import { useDashboardData } from "@/hooks/useDashboardData";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 // Initialize Crisp chat
 declare global {
@@ -25,6 +26,7 @@ import {
 } from "@/utils/dashboardCalculations";
 
 const Dashboard = () => {
+  const { t } = useTranslation('dashboard');
   const { workspaceData } = useWorkspace();
   const isMobile = useIsMobile();
   const isJessWorkspace = workspaceData.selectedWorkspace === 'jess';
@@ -95,7 +97,7 @@ const Dashboard = () => {
       <div className="p-8 flex items-center justify-center" data-testid="dashboard-loading-container">
         <div className="text-center" data-testid="dashboard-loading-content">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500 mx-auto" data-testid="dashboard-loading-spinner"></div>
-          <p className="mt-4 text-slate-600" data-testid="dashboard-loading-text">Loading dashboard...</p>
+          <p className="mt-4 text-slate-600" data-testid="dashboard-loading-text">{t('loading')}</p>
         </div>
       </div>
     );

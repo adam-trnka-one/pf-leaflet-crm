@@ -1,9 +1,13 @@
 {
   "title": "Cases",
-  "subtitle": "Manage your support cases",
+  "subtitle": "Manage customer support cases",
   "newCase": "New Case",
   "searchPlaceholder": "Search cases...",
-  "noResults": "No cases found.",
+  "noResults": "No cases found matching your filters.",
+  "filterByStatus": "Filter by status",
+  "filterByPriority": "Filter by priority",
+  "allStatuses": "All Statuses",
+  "allPriorities": "All Priorities",
   "fields": {
     "caseNumber": "Case Number",
     "subject": "Subject",
@@ -17,9 +21,12 @@
   },
   "statuses": {
     "new": "New",
+    "inProgress": "In Progress",
+    "pending": "Pending",
+    "resolved": "Resolved",
+    "closed": "Closed",
     "working": "Working",
-    "escalated": "Escalated",
-    "closed": "Closed"
+    "escalated": "Escalated"
   },
   "priorities": {
     "low": "Low",
@@ -37,5 +44,8 @@
     "editTitle": "Edit Case",
     "createButton": "Create Case",
     "saveButton": "Save Changes"
+  },
+  "messages": {
+    "deleted": "The case has been successfully deleted."
   }
 }
