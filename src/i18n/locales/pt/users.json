@@ -1,7 +1,55 @@
 {
-  "title": "Usuários", "subtitle": "Gerencie os membros da sua equipe", "newUser": "Novo Usuário", "searchPlaceholder": "Pesquisar usuários...", "noResults": "Nenhum usuário encontrado.",
-  "fields": { "firstName": "Nome", "lastName": "Sobrenome", "email": "E-mail", "phone": "Telefone", "role": "Função", "department": "Departamento", "status": "Status", "lastLogin": "Último Login" },
-  "roles": { "admin": "Administrador", "manager": "Gerente", "salesRep": "Representante de Vendas", "support": "Suporte" },
-  "statuses": { "active": "Ativo", "inactive": "Inativo" },
-  "modal": { "createTitle": "Criar Novo Usuário", "editTitle": "Editar Usuário", "createButton": "Criar Usuário", "saveButton": "Salvar Alterações" }
+  "title": "Usuários",
+  "subtitle": "Gerencie usuários do sistema e permissões",
+  "newUser": "Novo Usuário",
+  "createNew": "Criar Novo Usuário",
+  "edit": "Editar Usuário",
+  "searchPlaceholder": "Pesquisar usuários...",
+  "noResults": "Nenhum usuário encontrado.",
+  "columns": {
+    "name": "Nome Completo",
+    "firstName": "Nome",
+    "lastName": "Sobrenome",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "role": "Função",
+    "department": "Departamento",
+    "status": "Status",
+    "lastLogin": "Último Login"
+  },
+  "fields": {
+    "firstName": "Nome",
+    "lastName": "Sobrenome",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "role": "Função",
+    "department": "Departamento",
+    "status": "Status",
+    "lastLogin": "Último Login"
+  },
+  "roles": {
+    "admin": "Administrador",
+    "manager": "Gerente",
+    "salesRep": "Representante de Vendas",
+    "support": "Suporte"
+  },
+  "status": {
+    "active": "Ativo",
+    "inactive": "Inativo"
+  },
+  "statuses": {
+    "active": "Ativo",
+    "inactive": "Inativo"
+  },
+  "modal": {
+    "createTitle": "Criar Novo Usuário",
+    "editTitle": "Editar Usuário",
+    "createButton": "Criar Usuário",
+    "saveButton": "Salvar Alterações"
+  },
+  "messages": {
+    "created": "O usuário foi criado com sucesso.",
+    "deleted": "O usuário foi excluído com sucesso.",
+    "updated": "O usuário foi atualizado com sucesso."
+  }
 }

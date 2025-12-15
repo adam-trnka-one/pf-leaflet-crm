@@ -1,13 +1,26 @@
 {
   "title": "Uživatelé",
-  "subtitle": "Spravujte členy svého týmu",
+  "subtitle": "Spravujte uživatele systému a oprávnění",
   "newUser": "Nový uživatel",
+  "createNew": "Vytvořit nového uživatele",
+  "edit": "Upravit uživatele",
   "searchPlaceholder": "Hledat uživatele...",
   "noResults": "Nebyli nalezeni žádní uživatelé.",
+  "columns": {
+    "name": "Celé jméno",
+    "firstName": "Jméno",
+    "lastName": "Příjmení",
+    "email": "E-mail",
+    "phone": "Telefon",
+    "role": "Role",
+    "department": "Oddělení",
+    "status": "Stav",
+    "lastLogin": "Poslední přihlášení"
+  },
   "fields": {
     "firstName": "Jméno",
     "lastName": "Příjmení",
-    "email": "Email",
+    "email": "E-mail",
     "phone": "Telefon",
     "role": "Role",
     "department": "Oddělení",
@@ -20,6 +33,10 @@
     "salesRep": "Obchodní zástupce",
     "support": "Podpora"
   },
+  "status": {
+    "active": "Aktivní",
+    "inactive": "Neaktivní"
+  },
   "statuses": {
     "active": "Aktivní",
     "inactive": "Neaktivní"
@@ -29,5 +46,10 @@
     "editTitle": "Upravit uživatele",
     "createButton": "Vytvořit uživatele",
     "saveButton": "Uložit změny"
+  },
+  "messages": {
+    "created": "Uživatel byl úspěšně vytvořen.",
+    "deleted": "Uživatel byl úspěšně smazán.",
+    "updated": "Uživatel byl úspěšně aktualizován."
   }
 }

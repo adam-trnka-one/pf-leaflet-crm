@@ -1,9 +1,18 @@
 {
   "title": "Nabídky",
-  "subtitle": "Spravujte své prodejní nabídky",
+  "subtitle": "Spravujte prodejní nabídky a návrhy",
   "newQuote": "Nová nabídka",
+  "createNew": "Vytvořit novou nabídku",
+  "edit": "Upravit nabídku",
   "searchPlaceholder": "Hledat nabídky...",
   "noResults": "Nebyly nalezeny žádné nabídky.",
+  "columns": {
+    "name": "Název nabídky",
+    "account": "Účet",
+    "amount": "Částka",
+    "status": "Stav",
+    "date": "Datum"
+  },
   "fields": {
     "quoteNumber": "Číslo nabídky",
     "quoteName": "Název nabídky",
@@ -16,6 +25,12 @@
     "tax": "DPH",
     "total": "Celkem"
   },
+  "status": {
+    "draft": "Koncept",
+    "sent": "Odesláno",
+    "accepted": "Přijato",
+    "rejected": "Zamítnuto"
+  },
   "statuses": {
     "draft": "Koncept",
     "pending": "Čeká na schválení",
@@ -27,5 +42,10 @@
     "editTitle": "Upravit nabídku",
     "createButton": "Vytvořit nabídku",
     "saveButton": "Uložit změny"
+  },
+  "messages": {
+    "created": "Nabídka byla úspěšně vytvořena.",
+    "deleted": "Nabídka byla úspěšně smazána.",
+    "updated": "Nabídka byla úspěšně aktualizována."
   }
 }
