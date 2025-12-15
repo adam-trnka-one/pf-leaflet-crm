@@ -1,1 +1,50 @@
-{ "title": "Devis", "subtitle": "Gérez vos devis", "newQuote": "Nouveau", "searchPlaceholder": "Rechercher...", "noResults": "Aucun résultat.", "fields": { "quoteNumber": "Numéro", "quoteName": "Nom", "account": "Compte", "opportunity": "Opportunité", "status": "Statut", "expirationDate": "Expiration", "subtotal": "Sous-total", "discount": "Remise", "tax": "TVA", "total": "Total" }, "statuses": { "draft": "Brouillon", "pending": "En attente", "accepted": "Accepté", "rejected": "Refusé" }, "modal": { "createTitle": "Créer", "editTitle": "Modifier", "createButton": "Créer", "saveButton": "Enregistrer" } }
+{
+  "title": "Devis",
+  "subtitle": "Gérez vos devis et propositions de vente",
+  "newQuote": "Nouveau Devis",
+  "createNew": "Créer un Nouveau Devis",
+  "searchPlaceholder": "Rechercher des devis...",
+  "noResults": "Aucun devis trouvé.",
+  "columns": {
+    "name": "Nom du Devis",
+    "account": "Compte",
+    "amount": "Montant",
+    "status": "Statut",
+    "date": "Date"
+  },
+  "fields": {
+    "quoteNumber": "Numéro",
+    "quoteName": "Nom",
+    "account": "Compte",
+    "opportunity": "Opportunité",
+    "status": "Statut",
+    "expirationDate": "Expiration",
+    "subtotal": "Sous-total",
+    "discount": "Remise",
+    "tax": "TVA",
+    "total": "Total"
+  },
+  "status": {
+    "draft": "Brouillon",
+    "sent": "Envoyé",
+    "accepted": "Accepté",
+    "rejected": "Refusé"
+  },
+  "statuses": {
+    "draft": "Brouillon",
+    "pending": "En attente",
+    "accepted": "Accepté",
+    "rejected": "Refusé"
+  },
+  "modal": {
+    "createTitle": "Créer un Nouveau Devis",
+    "editTitle": "Modifier le Devis",
+    "createButton": "Créer le Devis",
+    "saveButton": "Enregistrer les Modifications"
+  },
+  "messages": {
+    "created": "Le devis a été créé avec succès.",
+    "deleted": "Le devis a été supprimé avec succès.",
+    "updated": "Le devis a été mis à jour avec succès."
+  }
+}

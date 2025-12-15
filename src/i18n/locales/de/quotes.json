@@ -1,1 +1,50 @@
-{ "title": "Angebote", "subtitle": "Verwalten Sie Ihre Angebote", "newQuote": "Neu", "searchPlaceholder": "Suchen...", "noResults": "Keine Ergebnisse.", "fields": { "quoteNumber": "Nummer", "quoteName": "Name", "account": "Konto", "opportunity": "Chance", "status": "Status", "expirationDate": "Ablauf", "subtotal": "Zwischensumme", "discount": "Rabatt", "tax": "MwSt", "total": "Gesamt" }, "statuses": { "draft": "Entwurf", "pending": "Ausstehend", "accepted": "Akzeptiert", "rejected": "Abgelehnt" }, "modal": { "createTitle": "Erstellen", "editTitle": "Bearbeiten", "createButton": "Erstellen", "saveButton": "Speichern" } }
+{
+  "title": "Angebote",
+  "subtitle": "Verwalten Sie Verkaufsangebote und Vorschläge",
+  "newQuote": "Neues Angebot",
+  "createNew": "Neues Angebot erstellen",
+  "searchPlaceholder": "Angebote suchen...",
+  "noResults": "Keine Angebote gefunden.",
+  "columns": {
+    "name": "Angebotsname",
+    "account": "Konto",
+    "amount": "Betrag",
+    "status": "Status",
+    "date": "Datum"
+  },
+  "fields": {
+    "quoteNumber": "Nummer",
+    "quoteName": "Name",
+    "account": "Konto",
+    "opportunity": "Chance",
+    "status": "Status",
+    "expirationDate": "Ablauf",
+    "subtotal": "Zwischensumme",
+    "discount": "Rabatt",
+    "tax": "MwSt",
+    "total": "Gesamt"
+  },
+  "status": {
+    "draft": "Entwurf",
+    "sent": "Gesendet",
+    "accepted": "Akzeptiert",
+    "rejected": "Abgelehnt"
+  },
+  "statuses": {
+    "draft": "Entwurf",
+    "pending": "Ausstehend",
+    "accepted": "Akzeptiert",
+    "rejected": "Abgelehnt"
+  },
+  "modal": {
+    "createTitle": "Neues Angebot erstellen",
+    "editTitle": "Angebot bearbeiten",
+    "createButton": "Angebot erstellen",
+    "saveButton": "Änderungen speichern"
+  },
+  "messages": {
+    "created": "Das Angebot wurde erfolgreich erstellt.",
+    "deleted": "Das Angebot wurde erfolgreich gelöscht.",
+    "updated": "Das Angebot wurde erfolgreich aktualisiert."
+  }
+}

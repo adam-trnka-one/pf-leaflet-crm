@@ -1,1 +1,43 @@
-{ "title": "Produkte", "subtitle": "Verwalten Sie Ihre Produkte", "newProduct": "Neu", "searchPlaceholder": "Suchen...", "noResults": "Keine Ergebnisse.", "fields": { "productName": "Name", "productCode": "Code", "category": "Kategorie", "price": "Preis", "quantity": "Menge", "description": "Beschreibung", "active": "Aktiv" }, "categories": { "software": "Software", "hardware": "Hardware", "service": "Dienstleistung", "subscription": "Abo" }, "modal": { "createTitle": "Erstellen", "editTitle": "Bearbeiten", "createButton": "Erstellen", "saveButton": "Speichern" } }
+{
+  "title": "Produkte",
+  "subtitle": "Verwalten Sie Ihren Produktkatalog",
+  "newProduct": "Neues Produkt",
+  "createNew": "Neues Produkt erstellen",
+  "searchPlaceholder": "Produkte suchen...",
+  "noResults": "Keine Produkte gefunden.",
+  "perMonth": "/Monat",
+  "columns": {
+    "name": "Produktname",
+    "description": "Beschreibung",
+    "price": "Preis",
+    "category": "Kategorie",
+    "status": "Status"
+  },
+  "fields": {
+    "productName": "Name",
+    "productCode": "Code",
+    "category": "Kategorie",
+    "price": "Preis",
+    "quantity": "Menge",
+    "description": "Beschreibung",
+    "active": "Aktiv"
+  },
+  "categories": {
+    "software": "Software",
+    "hardware": "Hardware",
+    "service": "Dienstleistung",
+    "subscription": "Abo",
+    "training": "Schulung"
+  },
+  "modal": {
+    "createTitle": "Neues Produkt erstellen",
+    "editTitle": "Produkt bearbeiten",
+    "createButton": "Produkt erstellen",
+    "saveButton": "Änderungen speichern"
+  },
+  "messages": {
+    "created": "Das Produkt wurde erfolgreich erstellt.",
+    "deleted": "Das Produkt wurde erfolgreich gelöscht.",
+    "updated": "Das Produkt wurde erfolgreich aktualisiert."
+  }
+}

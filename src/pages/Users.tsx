@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,6 +6,7 @@ import { Plus, User, Mail, Shield, Edit, Trash2 } from "lucide-react";
 import NewUserModal from "@/components/modals/NewUserModal";
 import EditUserModal from "@/components/modals/EditUserModal";
 import { toast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 interface UserType {
   id: string;
@@ -17,6 +17,7 @@ interface UserType {
 }
 
 const Users = () => {
+  const { t } = useTranslation(['users', 'common']);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<UserType | null>(null);
@@ -57,8 +58,8 @@ const Users = () => {
     setUsers(updatedUsers);
     localStorage.setItem('crmUsers', JSON.stringify(updatedUsers));
     toast({
-      title: "User deleted",
-      description: "The user has been successfully deleted."
+      title: t('common:deleted'),
+      description: t('users:messages.deleted')
     });
   };
 
@@ -81,8 +82,8 @@ const Users = () => {
     <div className="p-8 bg-slate-50 min-h-screen" data-testid="users-main-container">
       <div className="flex justify-between items-start mb-8" data-testid="users-header-section">
         <div data-testid="users-header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-testid="users-page-title">Users</h1>
-          <p className="text-slate-600 mt-2" data-testid="users-page-subtitle">Manage system users and permissions</p>
+          <h1 className="text-3xl font-bold text-slate-800" data-testid="users-page-title">{t('users:title')}</h1>
+          <p className="text-slate-600 mt-2" data-testid="users-page-subtitle">{t('users:subtitle')}</p>
         </div>
         <Button 
           className="bg-[#4AB831] hover:bg-[#3da127]"
@@ -90,7 +91,7 @@ const Users = () => {
           data-testid="users-new-user-button"
         >
           <Plus className="h-4 w-4 mr-2" data-testid="users-new-user-icon" />
-          <span data-testid="users-new-user-text">New User</span>
+          <span data-testid="users-new-user-text">{t('users:newUser')}</span>
         </Button>
       </div>
 
@@ -130,7 +131,7 @@ const Users = () => {
                   data-testid={`user-edit-button-${user.id}`}
                 >
                   <Edit className="h-4 w-4 mr-1" data-testid={`user-edit-icon-${user.id}`} />
-                  <span data-testid={`user-edit-text-${user.id}`}>Edit</span>
+                  <span data-testid={`user-edit-text-${user.id}`}>{t('common:edit')}</span>
                 </Button>
                 <Button
                   variant="outline"

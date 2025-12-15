@@ -1,9 +1,17 @@
 {
   "title": "Quotes",
-  "subtitle": "Manage your sales quotes",
+  "subtitle": "Manage sales quotes and proposals",
   "newQuote": "New Quote",
+  "createNew": "Create New Quote",
   "searchPlaceholder": "Search quotes...",
   "noResults": "No quotes found.",
+  "columns": {
+    "name": "Quote Name",
+    "account": "Account",
+    "amount": "Amount",
+    "status": "Status",
+    "date": "Date"
+  },
   "fields": {
     "quoteNumber": "Quote Number",
     "quoteName": "Quote Name",
@@ -16,6 +24,12 @@
     "tax": "Tax",
     "total": "Total"
   },
+  "status": {
+    "draft": "Draft",
+    "sent": "Sent",
+    "accepted": "Accepted",
+    "rejected": "Rejected"
+  },
   "statuses": {
     "draft": "Draft",
     "pending": "Pending",
@@ -27,5 +41,10 @@
     "editTitle": "Edit Quote",
     "createButton": "Create Quote",
     "saveButton": "Save Changes"
+  },
+  "messages": {
+    "created": "The quote has been successfully created.",
+    "deleted": "The quote has been successfully deleted.",
+    "updated": "The quote has been successfully updated."
   }
 }

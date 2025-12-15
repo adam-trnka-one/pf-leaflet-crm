@@ -2,10 +2,11 @@
   "title": "Leads",
   "subtitle": "Manage your sales leads",
   "newLead": "New Lead",
+  "createNew": "Create New Lead",
   "searchPlaceholder": "Search leads...",
   "noResults": "No leads found.",
   "convertLead": "Convert Lead",
-  "fields": {
+  "columns": {
     "firstName": "First Name",
     "lastName": "Last Name",
     "email": "Email",
@@ -18,25 +19,25 @@
     "owner": "Owner",
     "created": "Created"
   },
-  "statuses": {
+  "status": {
     "new": "New",
     "working": "Working",
     "qualified": "Qualified",
     "unqualified": "Unqualified",
     "converted": "Converted"
   },
-  "ratings": {
+  "rating": {
     "hot": "Hot",
     "warm": "Warm",
     "cold": "Cold"
   },
-  "sources": {
-    "web": "Web",
-    "phone": "Phone Inquiry",
-    "referral": "Partner Referral",
-    "advertisement": "Advertisement",
+  "source": {
+    "website": "Website",
+    "referral": "Referral",
+    "coldCall": "Cold Call",
     "tradeShow": "Trade Show",
-    "email": "Email Campaign"
+    "socialMedia": "Social Media",
+    "emailCampaign": "Email Campaign"
   },
   "modal": {
     "createTitle": "Create New Lead",

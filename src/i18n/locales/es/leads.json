@@ -1,1 +1,84 @@
-{ "title": "Prospectos", "subtitle": "Gestione prospectos", "newLead": "Nuevo", "searchPlaceholder": "Buscar...", "noResults": "Sin resultados.", "convertLead": "Convertir", "fields": { "firstName": "Nombre", "lastName": "Apellido", "email": "Correo", "phone": "Teléfono", "company": "Empresa", "title": "Cargo", "status": "Estado", "rating": "Calificación", "source": "Fuente", "owner": "Propietario", "created": "Creado" }, "statuses": { "new": "Nuevo", "working": "En Trabajo", "qualified": "Calificado", "unqualified": "No Calificado", "converted": "Convertido" }, "ratings": { "hot": "Caliente", "warm": "Tibio", "cold": "Frío" }, "sources": { "web": "Web", "phone": "Teléfono", "referral": "Referencia", "advertisement": "Publicidad", "tradeShow": "Feria", "email": "Correo" }, "modal": { "createTitle": "Crear", "editTitle": "Editar", "createButton": "Crear", "saveButton": "Guardar" }, "messages": { "deleted": "Eliminado." } }
+{
+  "title": "Prospectos",
+  "subtitle": "Gestione sus prospectos de venta",
+  "newLead": "Nuevo Prospecto",
+  "createNew": "Crear Nuevo Prospecto",
+  "searchPlaceholder": "Buscar prospectos...",
+  "noResults": "No se encontraron prospectos.",
+  "convertLead": "Convertir Prospecto",
+  "columns": {
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo",
+    "phone": "Teléfono",
+    "company": "Empresa",
+    "title": "Cargo",
+    "status": "Estado",
+    "rating": "Calificación",
+    "source": "Fuente",
+    "owner": "Propietario",
+    "created": "Creado"
+  },
+  "fields": {
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo",
+    "phone": "Teléfono",
+    "company": "Empresa",
+    "title": "Cargo",
+    "status": "Estado",
+    "rating": "Calificación",
+    "source": "Fuente",
+    "owner": "Propietario",
+    "created": "Creado"
+  },
+  "status": {
+    "new": "Nuevo",
+    "working": "En Proceso",
+    "qualified": "Calificado",
+    "unqualified": "No Calificado",
+    "converted": "Convertido"
+  },
+  "statuses": {
+    "new": "Nuevo",
+    "working": "En Trabajo",
+    "qualified": "Calificado",
+    "unqualified": "No Calificado",
+    "converted": "Convertido"
+  },
+  "rating": {
+    "hot": "Caliente",
+    "warm": "Tibio",
+    "cold": "Frío"
+  },
+  "ratings": {
+    "hot": "Caliente",
+    "warm": "Tibio",
+    "cold": "Frío"
+  },
+  "source": {
+    "website": "Sitio Web",
+    "referral": "Referencia",
+    "coldCall": "Llamada en Frío",
+    "tradeShow": "Feria Comercial",
+    "socialMedia": "Redes Sociales",
+    "emailCampaign": "Campaña de Email"
+  },
+  "sources": {
+    "web": "Web",
+    "phone": "Teléfono",
+    "referral": "Referencia",
+    "advertisement": "Publicidad",
+    "tradeShow": "Feria",
+    "email": "Correo"
+  },
+  "modal": {
+    "createTitle": "Crear Nuevo Prospecto",
+    "editTitle": "Editar Prospecto",
+    "createButton": "Crear Prospecto",
+    "saveButton": "Guardar Cambios"
+  },
+  "messages": {
+    "deleted": "El prospecto se ha eliminado correctamente."
+  }
+}

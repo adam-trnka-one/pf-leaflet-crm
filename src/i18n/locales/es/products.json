@@ -1,1 +1,43 @@
-{ "title": "Productos", "subtitle": "Gestione productos", "newProduct": "Nuevo", "searchPlaceholder": "Buscar...", "noResults": "Sin resultados.", "fields": { "productName": "Nombre", "productCode": "Código", "category": "Categoría", "price": "Precio", "quantity": "Cantidad", "description": "Descripción", "active": "Activo" }, "categories": { "software": "Software", "hardware": "Hardware", "service": "Servicio", "subscription": "Suscripción" }, "modal": { "createTitle": "Crear", "editTitle": "Editar", "createButton": "Crear", "saveButton": "Guardar" } }
+{
+  "title": "Productos",
+  "subtitle": "Gestione su catálogo de productos",
+  "newProduct": "Nuevo Producto",
+  "createNew": "Crear Nuevo Producto",
+  "searchPlaceholder": "Buscar productos...",
+  "noResults": "No se encontraron productos.",
+  "perMonth": "/mes",
+  "columns": {
+    "name": "Nombre del Producto",
+    "description": "Descripción",
+    "price": "Precio",
+    "category": "Categoría",
+    "status": "Estado"
+  },
+  "fields": {
+    "productName": "Nombre",
+    "productCode": "Código",
+    "category": "Categoría",
+    "price": "Precio",
+    "quantity": "Cantidad",
+    "description": "Descripción",
+    "active": "Activo"
+  },
+  "categories": {
+    "software": "Software",
+    "hardware": "Hardware",
+    "service": "Servicio",
+    "subscription": "Suscripción",
+    "training": "Capacitación"
+  },
+  "modal": {
+    "createTitle": "Crear Nuevo Producto",
+    "editTitle": "Editar Producto",
+    "createButton": "Crear Producto",
+    "saveButton": "Guardar Cambios"
+  },
+  "messages": {
+    "created": "El producto se ha creado correctamente.",
+    "deleted": "El producto se ha eliminado correctamente.",
+    "updated": "El producto se ha actualizado correctamente."
+  }
+}
