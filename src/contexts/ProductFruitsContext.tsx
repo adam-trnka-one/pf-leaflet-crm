@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { createContext, useContext, useEffect, useRef, useState, useCallback, ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const STORAGE_KEY = 'leaflet-workspace-data';
@@ -15,12 +15,29 @@ export interface ProductFruitsState {
   error: string | null;
 }
 
-export const useProductFruits = () => {
+interface ProductFruitsContextValue {
+  state: ProductFruitsState;
+  initializeProductFruits: (workspaceData?: any, forceReinit?: boolean) => Promise<void>;
+  reinitializeWithLanguage: () => Promise<void>;
+  hasWorkspaceCodeChanged: (currentWorkspaceCode: string) => boolean;
+  canAutoInitialize: boolean;
+  resetProductFruitsState: () => void;
+}
+
+const ProductFruitsContext = createContext<ProductFruitsContextValue | null>(null);
+
+// Counter for debug instance IDs
+let hookInstanceCounter = 0;
+
+export const ProductFruitsProvider = ({ children }: { children: ReactNode }) => {
   const location = useLocation();
   const initializedWorkspaceCode = useRef<string>('');
   const currentLanguage = useRef<string>('');
   const hasInitialized = useRef<boolean>(false);
   const isInitializing = useRef<boolean>(false);
+  const providerInstanceId = useRef(Math.random().toString(36).substring(7));
+
+  console.log(`[ProductFruits] Provider instance ${providerInstanceId.current} mounted`);
 
   const [state, setState] = useState<ProductFruitsState>({
     status: 'idle',
@@ -32,51 +49,18 @@ export const useProductFruits = () => {
     error: null,
   });
 
-  useEffect(() => {
-    // Only initialize ProductFruits on dashboard pages and only once
-    if (location.pathname.startsWith('/dashboard') && !hasInitialized.current) {
-      initializeFromStorage();
-    }
-  }, [location.pathname]);
-
-  const initializeFromStorage = () => {
-    // Prevent multiple calls
-    if (hasInitialized.current || isInitializing.current) {
-      return;
-    }
-    
-    try {
-      const savedData = localStorage.getItem(STORAGE_KEY);
-      if (savedData) {
-        const workspaceData = JSON.parse(savedData);
-        
-        if (workspaceData.workspaceCode && workspaceData.username) {
-          hasInitialized.current = true;
-          initializeProductFruits(workspaceData);
-          initializedWorkspaceCode.current = workspaceData.workspaceCode;
-        }
-      }
-    } catch (error) {
-      console.error('Error loading workspace data from localStorage:', error);
-    }
-  };
-
   const getScriptUrl = (selectedWorkspace?: string, customUrl?: string) => {
-    // Custom dev environment with user-specified URL
     if (selectedWorkspace === 'custom-dev' && customUrl) {
       const url = customUrl.endsWith('/') ? customUrl.slice(0, -1) : customUrl;
       return `${url}/static/script.js`;
     }
-    // PR environments (pr1, pr2, pr3, pr4, pr5)
     if (selectedWorkspace?.startsWith('pr')) {
       return `https://my-${selectedWorkspace}.ohio.pf.dev/static/script.js`;
     }
-    // All other cases (production workspaces like "jess", etc.) use production URL
     return 'https://app.productfruits.com/static/script.js';
   };
 
   const getLanguageCode = (): string => {
-    // Get language from localStorage, default to 'en'
     const savedLanguage = localStorage.getItem('language');
     if (savedLanguage && ['en', 'cs', 'fr', 'ar', 'pt'].includes(savedLanguage)) {
       return savedLanguage;
@@ -85,20 +69,18 @@ export const useProductFruits = () => {
   };
 
   const destroyProductFruits = async () => {
-    // Destroy existing ProductFruits instance thoroughly
+    console.log(`[ProductFruits] Destroying existing instance...`);
     const existingPF = (window as any).$productFruits;
     if (existingPF && typeof existingPF.push === 'function') {
       try {
         existingPF.push(['destroy']);
-        console.log('ProductFruits destroyed');
-        // Wait for destroy to complete
+        console.log('[ProductFruits] Destroyed via push');
         await new Promise(resolve => setTimeout(resolve, 300));
       } catch (e) {
-        console.log('ProductFruits destroy failed:', e);
+        console.log('[ProductFruits] Destroy failed:', e);
       }
     }
     
-    // Clear ALL ProductFruits globals
     delete (window as any).$productFruits;
     delete (window as any).productFruits;
     delete (window as any).productFruitsInit;
@@ -106,27 +88,25 @@ export const useProductFruits = () => {
     delete (window as any).productFruitsUser;
     delete (window as any).productFruitsReady;
 
-    // Remove ALL existing ProductFruits scripts
     const existingScripts = document.querySelectorAll('script[src*="productfruits"], script[src*="pf.dev"], script[data-productfruits-init]');
     existingScripts.forEach(script => script.remove());
+    console.log(`[ProductFruits] Removed ${existingScripts.length} scripts`);
     
-    // Wait a bit more after removing scripts
     await new Promise(resolve => setTimeout(resolve, 200));
   };
 
   const initializeProductFruits = useCallback(async (workspaceData?: any, forceReinit = false) => {
-    // Prevent concurrent initializations
     if (isInitializing.current) {
-      console.log('ProductFruits initialization already in progress, skipping');
+      console.log('[ProductFruits] Initialization already in progress, skipping');
       return;
     }
     
+    console.log(`[ProductFruits] Starting initialization (forceReinit: ${forceReinit})`);
     isInitializing.current = true;
     setState(prev => ({ ...prev, status: 'loading', error: null }));
 
     let dataToUse = workspaceData;
     
-    // If no data provided, load from localStorage
     if (!dataToUse) {
       try {
         const savedData = localStorage.getItem(STORAGE_KEY);
@@ -134,7 +114,7 @@ export const useProductFruits = () => {
           dataToUse = JSON.parse(savedData);
         }
       } catch (error) {
-        console.error('Error loading workspace data from localStorage:', error);
+        console.error('[ProductFruits] Error loading workspace data:', error);
         isInitializing.current = false;
         setState(prev => ({ ...prev, status: 'error', error: 'Failed to load workspace data' }));
         return;
@@ -142,19 +122,15 @@ export const useProductFruits = () => {
     }
 
     if (!dataToUse || !dataToUse.workspaceCode || !dataToUse.username) {
-      console.log('Missing required workspace data for ProductFruits initialization');
+      console.log('[ProductFruits] Missing required workspace data');
       isInitializing.current = false;
       setState(prev => ({ ...prev, status: 'error', error: 'Missing workspace code or username' }));
       return;
     }
 
-    // Get current language
     const languageCode = getLanguageCode();
-
-    // Clean up existing ProductFruits instance
     await destroyProductFruits();
 
-    // Build props object from custom properties
     const props: Record<string, string> = {};
     if (dataToUse.customProperties && Array.isArray(dataToUse.customProperties)) {
       dataToUse.customProperties.forEach((prop: any) => {
@@ -164,9 +140,7 @@ export const useProductFruits = () => {
       });
     }
 
-    // Generate sign-up date in required format (current date as example)
     const signUpDate = new Date().toISOString();
-
     const initData = {
       username: dataToUse.username,
       ...(dataToUse.email && { email: dataToUse.email }),
@@ -177,16 +151,14 @@ export const useProductFruits = () => {
       ...(Object.keys(props).length > 0 && { props })
     };
 
-    // Set up the productFruitsReady callback BEFORE loading script
     (window as any).productFruitsReady = function() {
-      console.log('ProductFruits is ready! (via productFruitsReady callback)');
+      console.log('[ProductFruits] Ready callback fired!');
       
-      // Auto-attach newsfeed widget
       setTimeout(() => {
         const launcher = document.getElementById('newsfeed-launcher');
         if (launcher && (window as any).productFruits?.api?.announcementsV2) {
           (window as any).productFruits.api.announcementsV2.attachNewsWidgetToElement(launcher);
-          console.log('Newsfeed widget auto-attached to launcher');
+          console.log('[ProductFruits] Newsfeed widget auto-attached');
         }
       }, 100);
       
@@ -199,14 +171,12 @@ export const useProductFruits = () => {
       }));
     };
 
-    // Create and add the new main ProductFruits script with correct URL and cache-busting
     const mainScript = document.createElement('script');
     mainScript.async = true;
     const scriptUrl = getScriptUrl(dataToUse.selectedWorkspace, dataToUse.customUrl);
-    // Add cache-busting timestamp to force fresh script on reinit
     mainScript.src = `${scriptUrl}?c=${dataToUse.workspaceCode}&t=${Date.now()}`;
+    console.log(`[ProductFruits] Loading script: ${mainScript.src}`);
 
-    // Update state with loading info
     setState(prev => ({
       ...prev,
       workspaceCode: dataToUse.workspaceCode,
@@ -215,7 +185,6 @@ export const useProductFruits = () => {
       scriptUrl: scriptUrl,
     }));
     
-    // Wait for script to load before initializing
     mainScript.onload = () => {
       const initScript = document.createElement('script');
       initScript.type = 'text/javascript';
@@ -225,16 +194,13 @@ export const useProductFruits = () => {
         window.$productFruits.push(['init', '${dataToUse.workspaceCode}', '${languageCode}', ${JSON.stringify(initData)}]);
       `;
       document.head.appendChild(initScript);
-      console.log('ProductFruits init command pushed with workspace code:', dataToUse.workspaceCode);
-      console.log('ProductFruits language:', languageCode);
-      console.log('Initialization data:', initData);
+      console.log(`[ProductFruits] Init command pushed - workspace: ${dataToUse.workspaceCode}, lang: ${languageCode}`);
       
-      // Update current language ref
       currentLanguage.current = languageCode;
     };
 
     mainScript.onerror = () => {
-      console.error('Failed to load ProductFruits script');
+      console.error('[ProductFruits] Failed to load script');
       isInitializing.current = false;
       setState(prev => ({
         ...prev,
@@ -244,23 +210,18 @@ export const useProductFruits = () => {
     };
     
     document.head.appendChild(mainScript);
-
-    // Update the tracking reference
     initializedWorkspaceCode.current = dataToUse.workspaceCode;
   }, []);
 
   const reinitializeWithLanguage = useCallback(async () => {
     const newLanguage = getLanguageCode();
     
-    // Only reinit if language actually changed
     if (currentLanguage.current === newLanguage && currentLanguage.current !== '') {
-      console.log('Language unchanged, skipping reinit');
+      console.log('[ProductFruits] Language unchanged, skipping reinit');
       return;
     }
     
-    console.log(`Language changed from "${currentLanguage.current}" to "${newLanguage}", reinitializing ProductFruits...`);
-    
-    // Force full reinitialization
+    console.log(`[ProductFruits] Language changed: "${currentLanguage.current}" -> "${newLanguage}"`);
     hasInitialized.current = false;
     await initializeProductFruits(undefined, true);
   }, [initializeProductFruits]);
@@ -271,11 +232,82 @@ export const useProductFruits = () => {
            currentWorkspaceCode !== '';
   };
 
-  return {
-    initializeProductFruits,
-    reinitializeWithLanguage,
-    hasWorkspaceCodeChanged,
-    canAutoInitialize: location.pathname.startsWith('/dashboard'),
-    state,
-  };
+  const resetProductFruitsState = useCallback(() => {
+    console.log('[ProductFruits] Resetting state');
+    hasInitialized.current = false;
+    isInitializing.current = false;
+    currentLanguage.current = '';
+    initializedWorkspaceCode.current = '';
+    setState({
+      status: 'idle',
+      workspaceCode: '',
+      language: '',
+      userData: null,
+      scriptUrl: '',
+      lastInitialized: null,
+      error: null,
+    });
+  }, []);
+
+  const initializeFromStorage = useCallback(() => {
+    if (hasInitialized.current || isInitializing.current) {
+      console.log('[ProductFruits] Already initialized or initializing, skipping');
+      return;
+    }
+    
+    try {
+      const savedData = localStorage.getItem(STORAGE_KEY);
+      if (savedData) {
+        const workspaceData = JSON.parse(savedData);
+        
+        if (workspaceData.workspaceCode && workspaceData.username) {
+          console.log('[ProductFruits] Auto-initializing from storage');
+          hasInitialized.current = true;
+          initializeProductFruits(workspaceData);
+          initializedWorkspaceCode.current = workspaceData.workspaceCode;
+        }
+      }
+    } catch (error) {
+      console.error('[ProductFruits] Error loading from localStorage:', error);
+    }
+  }, [initializeProductFruits]);
+
+  useEffect(() => {
+    if (location.pathname.startsWith('/dashboard') && !hasInitialized.current) {
+      console.log('[ProductFruits] On dashboard page, attempting auto-init');
+      initializeFromStorage();
+    }
+  }, [location.pathname, initializeFromStorage]);
+
+  const canAutoInitialize = location.pathname.startsWith('/dashboard');
+
+  return (
+    <ProductFruitsContext.Provider value={{
+      state,
+      initializeProductFruits,
+      reinitializeWithLanguage,
+      hasWorkspaceCodeChanged,
+      canAutoInitialize,
+      resetProductFruitsState,
+    }}>
+      {children}
+    </ProductFruitsContext.Provider>
+  );
+};
+
+export const useProductFruits = () => {
+  const instanceId = useRef(`hook-${++hookInstanceCounter}-${Math.random().toString(36).substring(7)}`);
+  
+  useEffect(() => {
+    console.log(`[ProductFruits] Hook instance ${instanceId.current} created`);
+    return () => {
+      console.log(`[ProductFruits] Hook instance ${instanceId.current} unmounted`);
+    };
+  }, []);
+
+  const context = useContext(ProductFruitsContext);
+  if (!context) {
+    throw new Error('useProductFruits must be used within ProductFruitsProvider');
+  }
+  return context;
 };

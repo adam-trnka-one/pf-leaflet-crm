@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Bug, CheckCircle2, Loader2, AlertCircle, Clock, RefreshCw } from "lucide-react";
-import { ProductFruitsState } from "@/hooks/useProductFruits";
+import { ProductFruitsState } from "@/contexts/ProductFruitsContext";
 import { useState } from "react";
 
 interface ProductFruitsDebugPanelProps {

@@ -6,7 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useProductFruits } from '@/hooks/useProductFruits';
+import { useProductFruits } from '@/contexts/ProductFruitsContext';
 
 const languages = [
   { code: 'en', name: 'English', flag: '🇬🇧' },

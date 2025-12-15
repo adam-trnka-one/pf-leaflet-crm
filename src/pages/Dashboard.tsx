@@ -7,7 +7,7 @@ import ChecklistSection from "@/components/dashboard/ChecklistSection";
 import { ProductFruitsIndicator } from "@/components/dashboard/ProductFruitsIndicator";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
-import { useProductFruits } from "@/hooks/useProductFruits";
+import { useProductFruits } from "@/contexts/ProductFruitsContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useState, useEffect } from "react";
 

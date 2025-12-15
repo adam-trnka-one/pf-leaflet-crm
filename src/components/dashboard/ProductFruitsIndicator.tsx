@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, Loader2, AlertCircle } from "lucide-react";
-import { ProductFruitsStatus } from "@/hooks/useProductFruits";
+import { ProductFruitsStatus } from "@/contexts/ProductFruitsContext";
 import { useEffect, useState } from "react";
 
 interface ProductFruitsIndicatorProps {

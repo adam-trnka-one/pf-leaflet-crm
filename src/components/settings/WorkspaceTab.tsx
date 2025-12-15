@@ -6,7 +6,7 @@ import { WorkspaceBasicFields } from "./workspace/WorkspaceBasicFields";
 import { CustomPropertiesSection } from "./workspace/CustomPropertiesSection";
 import { WorkspaceActions } from "./workspace/WorkspaceActions";
 import { ProductFruitsDebugPanel } from "./workspace/ProductFruitsDebugPanel";
-import { useProductFruits } from "@/hooks/useProductFruits";
+import { useProductFruits } from "@/contexts/ProductFruitsContext";
 import { useTranslation } from "react-i18next";
 
 export const WorkspaceTab = () => {
