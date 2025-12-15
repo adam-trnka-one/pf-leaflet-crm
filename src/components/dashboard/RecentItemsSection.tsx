@@ -1,4 +1,4 @@
-
+import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Clock, Users } from "lucide-react";
 
@@ -34,6 +34,8 @@ interface RecentItemsSectionProps {
 }
 
 const RecentItemsSection = ({ recentActivities, recentLeads }: RecentItemsSectionProps) => {
+  const { t } = useTranslation('dashboard');
+  
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" data-testid="recent-section-grid">
       {/* Recent Tasks */}
@@ -41,7 +43,7 @@ const RecentItemsSection = ({ recentActivities, recentLeads }: RecentItemsSectio
         <CardHeader data-testid="recent-tasks-header">
           <CardTitle className="flex items-center space-x-2" data-testid="recent-tasks-title">
             <Clock className="h-5 w-5 text-orange-600" data-testid="recent-tasks-icon" />
-            <span data-testid="recent-tasks-text">Recent Tasks</span>
+            <span data-testid="recent-tasks-text">{t('recentItems.recentActivities')}</span>
           </CardTitle>
         </CardHeader>
         <CardContent data-testid="recent-tasks-content">
@@ -70,7 +72,7 @@ const RecentItemsSection = ({ recentActivities, recentLeads }: RecentItemsSectio
                 </div>
               ))
             ) : (
-              <p className="text-slate-500 text-center py-8" data-testid="recent-no-tasks">No recent tasks</p>
+              <p className="text-slate-500 text-center py-8" data-testid="recent-no-tasks">{t('recentItems.noTasks', 'No recent tasks')}</p>
             )}
           </div>
         </CardContent>
@@ -81,7 +83,7 @@ const RecentItemsSection = ({ recentActivities, recentLeads }: RecentItemsSectio
         <CardHeader data-testid="recent-leads-header">
           <CardTitle className="flex items-center space-x-2" data-testid="recent-leads-title">
             <Users className="h-5 w-5 text-purple-600" data-testid="recent-leads-icon" />
-            <span data-testid="recent-leads-text">Recent Leads</span>
+            <span data-testid="recent-leads-text">{t('recentItems.recentLeads')}</span>
           </CardTitle>
         </CardHeader>
         <CardContent data-testid="recent-leads-content">
@@ -110,7 +112,7 @@ const RecentItemsSection = ({ recentActivities, recentLeads }: RecentItemsSectio
                 </div>
               ))
             ) : (
-              <p className="text-slate-500 text-center py-8" data-testid="recent-no-leads">No recent leads</p>
+              <p className="text-slate-500 text-center py-8" data-testid="recent-no-leads">{t('recentItems.noLeads', 'No recent leads')}</p>
             )}
           </div>
         </CardContent>
