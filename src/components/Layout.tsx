@@ -83,7 +83,7 @@ const LayoutContent = () => {
 
   return (
     <div className="min-h-screen flex flex-col w-full bg-slate-50">
-      <div className={`flex flex-1 ${isRTL ? 'flex-row-reverse' : ''}`}>
+      <div className="flex flex-1 w-full">
         <Sidebar className="w-72" side={isRTL ? "right" : "left"}>
           <SidebarHeader className="border-b border-sidebar-border px-4 py-[18px]">
             <div className="flex items-center pl-[15px] py-[10px]">
