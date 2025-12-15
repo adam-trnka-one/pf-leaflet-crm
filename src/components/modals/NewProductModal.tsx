@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import {
   Dialog,
   DialogContent,
@@ -35,7 +34,6 @@ interface NewProductModalProps {
 }
 
 const NewProductModal = ({ open, onOpenChange, onProductCreated }: NewProductModalProps) => {
-  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -72,11 +70,11 @@ const NewProductModal = ({ open, onOpenChange, onProductCreated }: NewProductMod
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]" data-testid="new-product-modal-content">
         <DialogHeader data-testid="new-product-modal-header">
-          <DialogTitle data-testid="new-product-modal-title">{t('products.createProduct')}</DialogTitle>
+          <DialogTitle data-testid="new-product-modal-title">Create New Product</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4" data-testid="new-product-modal-form">
           <div className="grid gap-2" data-testid="new-product-name-field">
-            <Label htmlFor="product-name" data-testid="new-product-name-label">{t('products.productName')}</Label>
+            <Label htmlFor="product-name" data-testid="new-product-name-label">Product Name</Label>
             <Input
               id="product-name"
               value={formData.name}
@@ -86,7 +84,7 @@ const NewProductModal = ({ open, onOpenChange, onProductCreated }: NewProductMod
             />
           </div>
           <div className="grid gap-2" data-testid="new-product-description-field">
-            <Label htmlFor="description" data-testid="new-product-description-label">{t('common.description')}</Label>
+            <Label htmlFor="description" data-testid="new-product-description-label">Description</Label>
             <Input
               id="description"
               value={formData.description}
@@ -96,7 +94,7 @@ const NewProductModal = ({ open, onOpenChange, onProductCreated }: NewProductMod
             />
           </div>
           <div className="grid gap-2" data-testid="new-product-price-field">
-            <Label htmlFor="price" data-testid="new-product-price-label">{t('products.priceMonthly')}</Label>
+            <Label htmlFor="price" data-testid="new-product-price-label">Price (monthly)</Label>
             <Input
               id="price"
               type="number"
@@ -107,25 +105,25 @@ const NewProductModal = ({ open, onOpenChange, onProductCreated }: NewProductMod
             />
           </div>
           <div className="grid gap-2" data-testid="new-product-category-field">
-            <Label htmlFor="category" data-testid="new-product-category-label">{t('common.category')}</Label>
+            <Label htmlFor="category" data-testid="new-product-category-label">Category</Label>
             <Select value={formData.category} onValueChange={(value) => setFormData({ ...formData, category: value })}>
               <SelectTrigger data-testid="new-product-category-trigger">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent data-testid="new-product-category-content">
-                <SelectItem value="Software" data-testid="new-product-category-software">{t('products.categories.software')}</SelectItem>
-                <SelectItem value="Service" data-testid="new-product-category-service">{t('products.categories.service')}</SelectItem>
-                <SelectItem value="Training" data-testid="new-product-category-training">{t('products.categories.training')}</SelectItem>
+                <SelectItem value="Software" data-testid="new-product-category-software">Software</SelectItem>
+                <SelectItem value="Service" data-testid="new-product-category-service">Service</SelectItem>
+                <SelectItem value="Training" data-testid="new-product-category-training">Training</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
         <DialogFooter data-testid="new-product-modal-footer">
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="new-product-cancel-button">
-            {t('common.cancel')}
+            Cancel
           </Button>
           <Button onClick={handleSubmit} className="bg-[#4AB831] hover:bg-[#3da127]" data-testid="new-product-create-button">
-            {t('products.createProduct')}
+            Create Product
           </Button>
         </DialogFooter>
       </DialogContent>

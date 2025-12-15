@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Building } from "lucide-react";
@@ -5,13 +6,8 @@ import { useWorkspaceForm } from "@/hooks/useWorkspaceForm";
 import { WorkspaceBasicFields } from "./workspace/WorkspaceBasicFields";
 import { CustomPropertiesSection } from "./workspace/CustomPropertiesSection";
 import { WorkspaceActions } from "./workspace/WorkspaceActions";
-import { ProductFruitsDebugPanel } from "./workspace/ProductFruitsDebugPanel";
-import { useProductFruits } from "@/contexts/ProductFruitsContext";
-import { useTranslation } from "react-i18next";
 
 export const WorkspaceTab = () => {
-  const { t } = useTranslation();
-  const { state: productFruitsState, initializeProductFruits } = useProductFruits();
   const {
     localWorkspaceData,
     setLocalWorkspaceData,
@@ -24,19 +20,15 @@ export const WorkspaceTab = () => {
     workspaceData
   } = useWorkspaceForm();
 
-  const handleReinitialize = async () => {
-    await initializeProductFruits(undefined, true);
-  };
-
   return (
     <Card className="bg-white shadow-sm" data-testid="workspace-card">
       <CardHeader data-testid="workspace-card-header">
         <CardTitle className="flex items-center space-x-2" data-testid="workspace-card-title">
           <Building className="h-5 w-5" data-testid="workspace-icon" />
-          <span data-testid="workspace-title-text">{t('settings.workspace.title')}</span>
+          <span data-testid="workspace-title-text">Workspace Configuration</span>
         </CardTitle>
         <p className="text-sm text-slate-600" data-testid="workspace-description">
-          {t('settings.workspace.description')}
+          Configure your workspace settings below. This information will be used to initialize ProductFruits on your site.
         </p>
       </CardHeader>
       <CardContent className="space-y-4 md:space-y-6" data-testid="workspace-card-content">
@@ -61,10 +53,6 @@ export const WorkspaceTab = () => {
           handleSaveWorkspaceData={handleSaveWorkspaceData}
           workspaceData={workspaceData}
         />
-
-        <Separator data-testid="workspace-separator-3" />
-
-        <ProductFruitsDebugPanel state={productFruitsState} onReinitialize={handleReinitialize} />
       </CardContent>
     </Card>
   );

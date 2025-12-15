@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import {
   Dialog,
   DialogContent,
@@ -41,7 +40,6 @@ interface NewLeadModalProps {
 }
 
 const NewLeadModal = ({ open, onOpenChange, onLeadCreated }: NewLeadModalProps) => {
-  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -115,12 +113,12 @@ const NewLeadModal = ({ open, onOpenChange, onLeadCreated }: NewLeadModalProps) 
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>{t('leads.createLead')}</DialogTitle>
+          <DialogTitle>Create New Lead</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="firstName">{t('common.firstName')}</Label>
+              <Label htmlFor="firstName">First Name</Label>
               <Input
                 id="firstName"
                 value={formData.firstName}
@@ -129,7 +127,7 @@ const NewLeadModal = ({ open, onOpenChange, onLeadCreated }: NewLeadModalProps) 
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="lastName">{t('common.lastName')}</Label>
+              <Label htmlFor="lastName">Last Name</Label>
               <Input
                 id="lastName"
                 value={formData.lastName}
@@ -140,7 +138,7 @@ const NewLeadModal = ({ open, onOpenChange, onLeadCreated }: NewLeadModalProps) 
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="email">{t('common.email')}</Label>
+            <Label htmlFor="email">Email</Label>
             <Input
               id="email"
               type="email"
@@ -151,7 +149,7 @@ const NewLeadModal = ({ open, onOpenChange, onLeadCreated }: NewLeadModalProps) 
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="phone">{t('common.phone')}</Label>
+            <Label htmlFor="phone">Phone</Label>
             <Input
               id="phone"
               value={formData.phone}
@@ -161,7 +159,7 @@ const NewLeadModal = ({ open, onOpenChange, onLeadCreated }: NewLeadModalProps) 
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="company">{t('common.company')}</Label>
+            <Label htmlFor="company">Company</Label>
             <Input
               id="company"
               value={formData.company}
@@ -171,7 +169,7 @@ const NewLeadModal = ({ open, onOpenChange, onLeadCreated }: NewLeadModalProps) 
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="title">{t('common.jobTitle')}</Label>
+            <Label htmlFor="title">Job Title</Label>
             <Input
               id="title"
               value={formData.title}
@@ -182,58 +180,58 @@ const NewLeadModal = ({ open, onOpenChange, onLeadCreated }: NewLeadModalProps) 
 
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="status">{t('common.status')}</Label>
+              <Label htmlFor="status">Status</Label>
               <Select value={formData.status} onValueChange={(value) => setFormData({ ...formData, status: value })}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="New">{t('leads.statuses.new')}</SelectItem>
-                  <SelectItem value="Working">{t('leads.statuses.working')}</SelectItem>
-                  <SelectItem value="Qualified">{t('leads.statuses.qualified')}</SelectItem>
-                  <SelectItem value="Unqualified">{t('leads.statuses.unqualified')}</SelectItem>
-                  <SelectItem value="Converted">{t('leads.statuses.converted')}</SelectItem>
+                  <SelectItem value="New">New</SelectItem>
+                  <SelectItem value="Working">Working</SelectItem>
+                  <SelectItem value="Qualified">Qualified</SelectItem>
+                  <SelectItem value="Unqualified">Unqualified</SelectItem>
+                  <SelectItem value="Converted">Converted</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="rating">{t('common.rating')}</Label>
+              <Label htmlFor="rating">Rating</Label>
               <Select value={formData.rating} onValueChange={(value) => setFormData({ ...formData, rating: value })}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Hot">{t('leads.ratings.hot')}</SelectItem>
-                  <SelectItem value="Warm">{t('leads.ratings.warm')}</SelectItem>
-                  <SelectItem value="Cold">{t('leads.ratings.cold')}</SelectItem>
+                  <SelectItem value="Hot">Hot</SelectItem>
+                  <SelectItem value="Warm">Warm</SelectItem>
+                  <SelectItem value="Cold">Cold</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="source">{t('leads.source')}</Label>
+            <Label htmlFor="source">Source</Label>
             <Select value={formData.source} onValueChange={(value) => setFormData({ ...formData, source: value })}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Website">{t('leads.sources.website')}</SelectItem>
-                <SelectItem value="Referral">{t('leads.sources.referral')}</SelectItem>
-                <SelectItem value="Cold Call">{t('leads.sources.coldCall')}</SelectItem>
-                <SelectItem value="Trade Show">{t('leads.sources.tradeShow')}</SelectItem>
-                <SelectItem value="Social Media">{t('leads.sources.socialMedia')}</SelectItem>
-                <SelectItem value="Email Campaign">{t('leads.sources.emailCampaign')}</SelectItem>
+                <SelectItem value="Website">Website</SelectItem>
+                <SelectItem value="Referral">Referral</SelectItem>
+                <SelectItem value="Cold Call">Cold Call</SelectItem>
+                <SelectItem value="Trade Show">Trade Show</SelectItem>
+                <SelectItem value="Social Media">Social Media</SelectItem>
+                <SelectItem value="Email Campaign">Email Campaign</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
-            {t('common.cancel')}
+            Cancel
           </Button>
           <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700">
-            {t('leads.createLead')}
+            Create Lead
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -19,7 +19,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
-import { useTranslation } from "react-i18next";
 
 interface NewCaseModalProps {
   open: boolean;
@@ -28,7 +27,6 @@ interface NewCaseModalProps {
 }
 
 const NewCaseModal = ({ open, onOpenChange, onCaseCreated }: NewCaseModalProps) => {
-  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     subject: "",
     description: "",
@@ -43,8 +41,8 @@ const NewCaseModal = ({ open, onOpenChange, onCaseCreated }: NewCaseModalProps) 
   const handleSubmit = () => {
     if (!formData.subject || !formData.description || !formData.accountName) {
       toast({
-        title: t('common.error'),
-        description: t('common.fillRequiredFields'),
+        title: "Error",
+        description: "Please fill in all required fields.",
         variant: "destructive"
       });
       return;
@@ -65,8 +63,8 @@ const NewCaseModal = ({ open, onOpenChange, onCaseCreated }: NewCaseModalProps) 
     localStorage.setItem('crmCases', JSON.stringify(updatedCases));
 
     toast({
-      title: t('common.caseCreated'),
-      description: t('common.caseCreatedDesc')
+      title: "Case created",
+      description: "The case has been successfully created."
     });
 
     onOpenChange(false);
@@ -90,49 +88,49 @@ const NewCaseModal = ({ open, onOpenChange, onCaseCreated }: NewCaseModalProps) 
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[525px]" data-testid="new-case-modal-content">
         <DialogHeader data-testid="new-case-modal-header">
-          <DialogTitle data-testid="new-case-modal-title">{t('cases.createCase')}</DialogTitle>
+          <DialogTitle data-testid="new-case-modal-title">Create New Case</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4" data-testid="new-case-modal-form">
           <div className="grid gap-2" data-testid="new-case-subject-field">
-            <Label htmlFor="subject" data-testid="new-case-subject-label">{t('common.subject')} *</Label>
+            <Label htmlFor="subject" data-testid="new-case-subject-label">Subject *</Label>
             <Input
               id="subject"
               value={formData.subject}
               onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-              placeholder={t('common.subject')}
+              placeholder="Enter case subject"
               data-testid="new-case-subject-input"
             />
           </div>
           
           <div className="grid gap-2" data-testid="new-case-description-field">
-            <Label htmlFor="description" data-testid="new-case-description-label">{t('common.description')} *</Label>
+            <Label htmlFor="description" data-testid="new-case-description-label">Description *</Label>
             <Textarea
               id="description"
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              placeholder={t('common.description')}
+              placeholder="Describe the case details"
               data-testid="new-case-description-textarea"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4" data-testid="new-case-account-contact-row">
             <div className="grid gap-2" data-testid="new-case-account-field">
-              <Label htmlFor="account" data-testid="new-case-account-label">{t('common.account')} *</Label>
+              <Label htmlFor="account" data-testid="new-case-account-label">Account *</Label>
               <Input
                 id="account"
                 value={formData.accountName}
                 onChange={(e) => setFormData({ ...formData, accountName: e.target.value })}
-                placeholder={t('common.account')}
+                placeholder="Account name"
                 data-testid="new-case-account-input"
               />
             </div>
             <div className="grid gap-2" data-testid="new-case-contact-field">
-              <Label htmlFor="contact" data-testid="new-case-contact-label">{t('common.contact')}</Label>
+              <Label htmlFor="contact" data-testid="new-case-contact-label">Contact</Label>
               <Input
                 id="contact"
                 value={formData.contactName}
                 onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
-                placeholder={t('common.contact')}
+                placeholder="Contact name"
                 data-testid="new-case-contact-input"
               />
             </div>
@@ -140,47 +138,47 @@ const NewCaseModal = ({ open, onOpenChange, onCaseCreated }: NewCaseModalProps) 
 
           <div className="grid grid-cols-3 gap-4" data-testid="new-case-properties-row">
             <div className="grid gap-2" data-testid="new-case-type-field">
-              <Label htmlFor="type" data-testid="new-case-type-label">{t('common.type')}</Label>
+              <Label htmlFor="type" data-testid="new-case-type-label">Type</Label>
               <Select value={formData.type} onValueChange={(value) => setFormData({ ...formData, type: value })}>
                 <SelectTrigger data-testid="new-case-type-trigger">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent data-testid="new-case-type-content">
-                  <SelectItem value="Question" data-testid="new-case-type-question">{t('common.question')}</SelectItem>
-                  <SelectItem value="Problem" data-testid="new-case-type-problem">{t('common.problem')}</SelectItem>
-                  <SelectItem value="Feature Request" data-testid="new-case-type-feature">{t('common.featureRequest')}</SelectItem>
-                  <SelectItem value="Bug" data-testid="new-case-type-bug">{t('common.bug')}</SelectItem>
+                  <SelectItem value="Question" data-testid="new-case-type-question">Question</SelectItem>
+                  <SelectItem value="Problem" data-testid="new-case-type-problem">Problem</SelectItem>
+                  <SelectItem value="Feature Request" data-testid="new-case-type-feature">Feature Request</SelectItem>
+                  <SelectItem value="Bug" data-testid="new-case-type-bug">Bug</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             
             <div className="grid gap-2" data-testid="new-case-status-field">
-              <Label htmlFor="status" data-testid="new-case-status-label">{t('common.status')}</Label>
+              <Label htmlFor="status" data-testid="new-case-status-label">Status</Label>
               <Select value={formData.status} onValueChange={(value) => setFormData({ ...formData, status: value })}>
                 <SelectTrigger data-testid="new-case-status-trigger">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent data-testid="new-case-status-content">
-                  <SelectItem value="New" data-testid="new-case-status-new">{t('cases.statuses.new')}</SelectItem>
-                  <SelectItem value="In Progress" data-testid="new-case-status-progress">{t('cases.statuses.inProgress')}</SelectItem>
-                  <SelectItem value="Pending" data-testid="new-case-status-pending">{t('cases.statuses.pending')}</SelectItem>
-                  <SelectItem value="Resolved" data-testid="new-case-status-resolved">{t('cases.statuses.resolved')}</SelectItem>
-                  <SelectItem value="Closed" data-testid="new-case-status-closed">{t('cases.statuses.closed')}</SelectItem>
+                  <SelectItem value="New" data-testid="new-case-status-new">New</SelectItem>
+                  <SelectItem value="In Progress" data-testid="new-case-status-progress">In Progress</SelectItem>
+                  <SelectItem value="Pending" data-testid="new-case-status-pending">Pending</SelectItem>
+                  <SelectItem value="Resolved" data-testid="new-case-status-resolved">Resolved</SelectItem>
+                  <SelectItem value="Closed" data-testid="new-case-status-closed">Closed</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             
             <div className="grid gap-2" data-testid="new-case-priority-field">
-              <Label htmlFor="priority" data-testid="new-case-priority-label">{t('common.priority')}</Label>
+              <Label htmlFor="priority" data-testid="new-case-priority-label">Priority</Label>
               <Select value={formData.priority} onValueChange={(value) => setFormData({ ...formData, priority: value })}>
                 <SelectTrigger data-testid="new-case-priority-trigger">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent data-testid="new-case-priority-content">
-                  <SelectItem value="Low" data-testid="new-case-priority-low">{t('cases.priorities.low')}</SelectItem>
-                  <SelectItem value="Medium" data-testid="new-case-priority-medium">{t('cases.priorities.medium')}</SelectItem>
-                  <SelectItem value="High" data-testid="new-case-priority-high">{t('cases.priorities.high')}</SelectItem>
-                  <SelectItem value="Critical" data-testid="new-case-priority-critical">{t('cases.priorities.critical')}</SelectItem>
+                  <SelectItem value="Low" data-testid="new-case-priority-low">Low</SelectItem>
+                  <SelectItem value="Medium" data-testid="new-case-priority-medium">Medium</SelectItem>
+                  <SelectItem value="High" data-testid="new-case-priority-high">High</SelectItem>
+                  <SelectItem value="Critical" data-testid="new-case-priority-critical">Critical</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -188,10 +186,10 @@ const NewCaseModal = ({ open, onOpenChange, onCaseCreated }: NewCaseModalProps) 
         </div>
         <DialogFooter data-testid="new-case-modal-footer">
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="new-case-cancel-button">
-            {t('common.cancel')}
+            Cancel
           </Button>
           <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700" data-testid="new-case-create-button">
-            {t('cases.createCase')}
+            Create Case
           </Button>
         </DialogFooter>
       </DialogContent>

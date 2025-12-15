@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { getSampleData, resetDatabase, type Contact } from "@/utils/sampleData";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -10,7 +9,6 @@ import { Plus, Search, Mail, Phone, User } from "lucide-react";
 import NewContactModal from "@/components/modals/NewContactModal";
 
 const Contacts = () => {
-  const { t } = useTranslation();
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [filteredContacts, setFilteredContacts] = useState<Contact[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -72,8 +70,8 @@ const Contacts = () => {
       {/* Header */}
       <div className="flex justify-between items-start mb-8" data-testid="contacts-header-section">
         <div data-testid="contacts-header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-testid="contacts-page-title">{t('contacts.title')}</h1>
-          <p className="text-slate-600 mt-2" data-testid="contacts-page-subtitle">{t('contacts.subtitle')}</p>
+          <h1 className="text-3xl font-bold text-slate-800" data-testid="contacts-page-title">Contacts</h1>
+          <p className="text-slate-600 mt-2" data-testid="contacts-page-subtitle">Manage your contact relationships</p>
         </div>
         <Button 
           className="bg-[#4AB831] hover:bg-[#3da127]"
@@ -81,7 +79,7 @@ const Contacts = () => {
           data-testid="contacts-new-contact-button"
         >
           <Plus className="h-4 w-4 mr-2" data-testid="contacts-new-contact-icon" />
-          <span data-testid="contacts-new-contact-text">{t('contacts.newContact')}</span>
+          <span data-testid="contacts-new-contact-text">New Contact</span>
         </Button>
       </div>
 
@@ -90,7 +88,7 @@ const Contacts = () => {
         <div className="relative" data-testid="contacts-search-container">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" data-testid="contacts-search-icon" />
           <Input
-            placeholder={t('contacts.searchPlaceholder')}
+            placeholder="Search contacts..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 max-w-md bg-white"
@@ -119,7 +117,7 @@ const Contacts = () => {
               </CardHeader>
               <CardContent className="space-y-3" data-testid="contacts-card-content">
                 <div className="text-sm text-slate-600" data-testid="contacts-account-row">
-                  <span className="font-medium" data-testid="contacts-account-label">{t('common.account')}:</span> 
+                  <span className="font-medium" data-testid="contacts-account-label">Account:</span> 
                   <span data-testid="contacts-account-value">{contact.accountName}</span>
                 </div>
                 
@@ -135,11 +133,11 @@ const Contacts = () => {
 
                 <div className="pt-2 border-t border-slate-100" data-testid="contacts-metadata-section">
                   <div className="text-xs text-slate-500" data-testid="contacts-owner-row">
-                    <span data-testid="contacts-owner-label">{t('common.owner')}: </span>
+                    <span data-testid="contacts-owner-label">Owner: </span>
                     <span data-testid="contacts-owner-value">{contact.owner}</span>
                   </div>
                   <div className="text-xs text-slate-500" data-testid="contacts-created-row">
-                    <span data-testid="contacts-created-label">{t('common.created')}: </span>
+                    <span data-testid="contacts-created-label">Created: </span>
                     <span data-testid="contacts-created-value">{contact.createdAt.toLocaleDateString()}</span>
                   </div>
                 </div>
@@ -151,7 +149,7 @@ const Contacts = () => {
 
       {filteredContacts.length === 0 && (
         <div className="text-center py-12" data-testid="contacts-empty-state">
-          <p className="text-slate-500" data-testid="contacts-empty-message">{t('contacts.noContactsFound')}</p>
+          <p className="text-slate-500" data-testid="contacts-empty-message">No contacts found matching your search.</p>
         </div>
       )}
 

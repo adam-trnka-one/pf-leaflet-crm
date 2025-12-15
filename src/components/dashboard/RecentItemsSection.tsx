@@ -1,6 +1,6 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Clock, Users } from "lucide-react";
-import { useTranslation } from "react-i18next";
 
 interface Activity {
   id: string;
@@ -34,16 +34,14 @@ interface RecentItemsSectionProps {
 }
 
 const RecentItemsSection = ({ recentActivities, recentLeads }: RecentItemsSectionProps) => {
-  const { t } = useTranslation();
-
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" data-testid="recent-section-grid">
       {/* Recent Tasks */}
       <Card className="bg-white shadow-sm" data-testid="recent-tasks-card">
         <CardHeader data-testid="recent-tasks-header">
-          <CardTitle className="flex items-center space-x-2 rtl:space-x-reverse" data-testid="recent-tasks-title">
+          <CardTitle className="flex items-center space-x-2" data-testid="recent-tasks-title">
             <Clock className="h-5 w-5 text-orange-600" data-testid="recent-tasks-icon" />
-            <span data-testid="recent-tasks-text">{t('recent.activities')}</span>
+            <span data-testid="recent-tasks-text">Recent Tasks</span>
           </CardTitle>
         </CardHeader>
         <CardContent data-testid="recent-tasks-content">
@@ -55,7 +53,7 @@ const RecentItemsSection = ({ recentActivities, recentLeads }: RecentItemsSectio
                     <p className="font-medium text-slate-800" data-testid={`recent-task-subject-${activity.id}`}>{activity.subject}</p>
                     <p className="text-sm text-slate-600" data-testid={`recent-task-details-${activity.id}`}>{activity.type} • {activity.assignedTo}</p>
                   </div>
-                  <div className="text-right rtl:text-left" data-testid={`recent-task-status-${activity.id}`}>
+                  <div className="text-right" data-testid={`recent-task-status-${activity.id}`}>
                     <span className={`text-xs px-2 py-1 rounded-full ${
                       activity.status === 'Completed' 
                         ? 'bg-green-100 text-green-800' 
@@ -81,9 +79,9 @@ const RecentItemsSection = ({ recentActivities, recentLeads }: RecentItemsSectio
       {/* Recent Leads */}
       <Card className="bg-white shadow-sm" data-testid="recent-leads-card">
         <CardHeader data-testid="recent-leads-header">
-          <CardTitle className="flex items-center space-x-2 rtl:space-x-reverse" data-testid="recent-leads-title">
+          <CardTitle className="flex items-center space-x-2" data-testid="recent-leads-title">
             <Users className="h-5 w-5 text-purple-600" data-testid="recent-leads-icon" />
-            <span data-testid="recent-leads-text">{t('recent.opportunities')}</span>
+            <span data-testid="recent-leads-text">Recent Leads</span>
           </CardTitle>
         </CardHeader>
         <CardContent data-testid="recent-leads-content">
@@ -95,7 +93,7 @@ const RecentItemsSection = ({ recentActivities, recentLeads }: RecentItemsSectio
                     <p className="font-medium text-slate-800" data-testid={`recent-lead-name-${lead.id}`}>{lead.firstName} {lead.lastName}</p>
                     <p className="text-sm text-slate-600" data-testid={`recent-lead-details-${lead.id}`}>{lead.company} • {lead.email}</p>
                   </div>
-                  <div className="text-right rtl:text-left" data-testid={`recent-lead-status-${lead.id}`}>
+                  <div className="text-right" data-testid={`recent-lead-status-${lead.id}`}>
                     <span className={`text-xs px-2 py-1 rounded-full ${
                       lead.status === 'New' 
                         ? 'bg-blue-100 text-blue-800' 

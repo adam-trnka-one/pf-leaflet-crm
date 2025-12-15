@@ -4,10 +4,8 @@ import ChartsSection from "@/components/dashboard/ChartsSection";
 import RecentItemsSection from "@/components/dashboard/RecentItemsSection";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import ChecklistSection from "@/components/dashboard/ChecklistSection";
-import { ProductFruitsIndicator } from "@/components/dashboard/ProductFruitsIndicator";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
-import { useProductFruits } from "@/contexts/ProductFruitsContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useState, useEffect } from "react";
 
@@ -28,7 +26,6 @@ import {
 
 const Dashboard = () => {
   const { workspaceData } = useWorkspace();
-  const { state: productFruitsState } = useProductFruits();
   const isMobile = useIsMobile();
   const isJessWorkspace = workspaceData.selectedWorkspace === 'jess';
 
@@ -113,7 +110,6 @@ const Dashboard = () => {
 
   return (
     <div className="p-8 space-y-8 bg-slate-50 min-h-screen" data-testid="dashboard-main-container">
-      <ProductFruitsIndicator status={productFruitsState.status} />
       {/* Header */}
       <DashboardHeader 
         showChecklist={showChecklist}

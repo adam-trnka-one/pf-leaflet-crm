@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import {
   Dialog,
   DialogContent,
@@ -41,7 +40,6 @@ interface EditAccountModalProps {
 }
 
 const EditAccountModal = ({ open, onOpenChange, account, onAccountUpdated }: EditAccountModalProps) => {
-  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     type: "",
@@ -99,20 +97,24 @@ const EditAccountModal = ({ open, onOpenChange, account, onAccountUpdated }: Edi
       },
     };
 
+    // Get existing accounts from localStorage
     const existingAccounts = JSON.parse(localStorage.getItem('crmAccounts') || '[]');
     const updatedAccounts = existingAccounts.map((a: Account) => 
       a.id === account.id ? updatedAccount : a
     );
     
+    // Store back to localStorage
     localStorage.setItem('crmAccounts', JSON.stringify(updatedAccounts));
     
     toast({
-      title: t('common.accountUpdated'),
-      description: t('common.accountUpdatedDesc')
+      title: "Account updated",
+      description: "The account has been successfully updated."
     });
     
+    // Reset form and close modal
     onOpenChange(false);
     
+    // Notify parent component
     if (onAccountUpdated) {
       onAccountUpdated();
     }
@@ -122,12 +124,12 @@ const EditAccountModal = ({ open, onOpenChange, account, onAccountUpdated }: Edi
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
-          <DialogTitle>{t('accounts.editAccount')}</DialogTitle>
+          <DialogTitle>Edit Account</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4 max-h-[70vh] overflow-y-auto">
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="name">{t('accounts.accountName')}</Label>
+              <Label htmlFor="name">Account Name</Label>
               <Input
                 id="name"
                 value={formData.name}
@@ -136,7 +138,7 @@ const EditAccountModal = ({ open, onOpenChange, account, onAccountUpdated }: Edi
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="type">{t('common.type')}</Label>
+              <Label htmlFor="type">Type</Label>
               <Input
                 id="type"
                 value={formData.type}
@@ -148,7 +150,7 @@ const EditAccountModal = ({ open, onOpenChange, account, onAccountUpdated }: Edi
 
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="industry">{t('common.industry')}</Label>
+              <Label htmlFor="industry">Industry</Label>
               <Input
                 id="industry"
                 value={formData.industry}
@@ -157,7 +159,7 @@ const EditAccountModal = ({ open, onOpenChange, account, onAccountUpdated }: Edi
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="phone">{t('common.phone')}</Label>
+              <Label htmlFor="phone">Phone</Label>
               <Input
                 id="phone"
                 value={formData.phone}
@@ -168,7 +170,7 @@ const EditAccountModal = ({ open, onOpenChange, account, onAccountUpdated }: Edi
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="website">{t('common.website')}</Label>
+            <Label htmlFor="website">Website</Label>
             <Input
               id="website"
               value={formData.website}
@@ -179,7 +181,7 @@ const EditAccountModal = ({ open, onOpenChange, account, onAccountUpdated }: Edi
 
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="revenue">{t('common.annualRevenue')}</Label>
+              <Label htmlFor="revenue">Annual Revenue</Label>
               <Input
                 id="revenue"
                 type="number"
@@ -189,7 +191,7 @@ const EditAccountModal = ({ open, onOpenChange, account, onAccountUpdated }: Edi
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="employees">{t('common.employees')}</Label>
+              <Label htmlFor="employees">Employees</Label>
               <Input
                 id="employees"
                 type="number"
@@ -201,9 +203,9 @@ const EditAccountModal = ({ open, onOpenChange, account, onAccountUpdated }: Edi
           </div>
 
           <div className="space-y-4">
-            <h4 className="font-medium">{t('common.addressInfo')}</h4>
+            <h4 className="font-medium">Address Information</h4>
             <div className="grid gap-2">
-              <Label htmlFor="street">{t('common.street')}</Label>
+              <Label htmlFor="street">Street</Label>
               <Input
                 id="street"
                 value={formData.street}
@@ -214,7 +216,7 @@ const EditAccountModal = ({ open, onOpenChange, account, onAccountUpdated }: Edi
             
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="city">{t('common.city')}</Label>
+                <Label htmlFor="city">City</Label>
                 <Input
                   id="city"
                   value={formData.city}
@@ -223,7 +225,7 @@ const EditAccountModal = ({ open, onOpenChange, account, onAccountUpdated }: Edi
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="state">{t('common.state')}</Label>
+                <Label htmlFor="state">State</Label>
                 <Input
                   id="state"
                   value={formData.state}
@@ -235,7 +237,7 @@ const EditAccountModal = ({ open, onOpenChange, account, onAccountUpdated }: Edi
 
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="zipCode">{t('common.zipCode')}</Label>
+                <Label htmlFor="zipCode">Zip Code</Label>
                 <Input
                   id="zipCode"
                   value={formData.zipCode}
@@ -244,7 +246,7 @@ const EditAccountModal = ({ open, onOpenChange, account, onAccountUpdated }: Edi
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="country">{t('common.country')}</Label>
+                <Label htmlFor="country">Country</Label>
                 <Input
                   id="country"
                   value={formData.country}
@@ -257,10 +259,10 @@ const EditAccountModal = ({ open, onOpenChange, account, onAccountUpdated }: Edi
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
-            {t('common.cancel')}
+            Cancel
           </Button>
           <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700">
-            {t('accounts.updateAccount')}
+            Update Account
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Calendar, Phone, Mail, MessageSquare, Edit, Trash2 } from "lucide-react";
@@ -17,7 +16,6 @@ interface Activity {
 }
 
 const Activities = () => {
-  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
@@ -64,8 +62,8 @@ const Activities = () => {
     setActivities(updatedActivities);
     localStorage.setItem('crmActivities', JSON.stringify(updatedActivities));
     toast({
-      title: t('activities.activityDeleted'),
-      description: t('activities.activityDeletedDesc')
+      title: "Activity deleted",
+      description: "The activity has been successfully deleted."
     });
   };
 
@@ -88,8 +86,8 @@ const Activities = () => {
     <div className="p-8 bg-slate-50 min-h-screen" data-testid="activities-main-container">
       <div className="flex justify-between items-start mb-8" data-testid="activities-header-section">
         <div data-testid="activities-header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-testid="activities-page-title">{t('activities.title')}</h1>
-          <p className="text-slate-600 mt-2" data-testid="activities-page-subtitle">{t('activities.subtitle')}</p>
+          <h1 className="text-3xl font-bold text-slate-800" data-testid="activities-page-title">Activities</h1>
+          <p className="text-slate-600 mt-2" data-testid="activities-page-subtitle">Track and manage your activities</p>
         </div>
         <Button 
           className="bg-[#4AB831] hover:bg-[#3da127]"
@@ -97,7 +95,7 @@ const Activities = () => {
           data-testid="activities-new-activity-button"
         >
           <Plus className="h-4 w-4 mr-2" data-testid="activities-new-activity-icon" />
-          <span data-testid="activities-new-activity-text">{t('activities.newActivity')}</span>
+          <span data-testid="activities-new-activity-text">New Activity</span>
         </Button>
       </div>
 
@@ -120,9 +118,9 @@ const Activities = () => {
                 <div className="flex items-center space-x-2" data-testid="activities-actions">
                   <div className="flex-shrink-0 mr-4" data-testid="activities-status-section">
                     {activity.completed ? (
-                      <span className="text-emerald-600 text-sm" data-testid="activities-completed-status">{t('common.completed')}</span>
+                      <span className="text-emerald-600 text-sm" data-testid="activities-completed-status">Completed</span>
                     ) : (
-                      <span className="text-orange-600 text-sm" data-testid="activities-pending-status">{t('common.pending')}</span>
+                      <span className="text-orange-600 text-sm" data-testid="activities-pending-status">Pending</span>
                     )}
                   </div>
                   <Button

@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -11,7 +10,6 @@ import { toast } from "@/hooks/use-toast";
 import { getProducts, saveProducts, Product } from "@/utils/productData";
 
 const Products = () => {
-  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -38,8 +36,8 @@ const Products = () => {
     setProducts(updatedProducts);
     saveProducts(updatedProducts);
     toast({
-      title: t('products.productCreated'),
-      description: t('products.productCreatedDesc')
+      title: "Product created",
+      description: "The product has been successfully created."
     });
   };
 
@@ -48,8 +46,8 @@ const Products = () => {
     setProducts(updatedProducts);
     saveProducts(updatedProducts);
     toast({
-      title: t('products.productDeleted'),
-      description: t('products.productDeletedDesc')
+      title: "Product deleted",
+      description: "The product has been successfully deleted."
     });
   };
 
@@ -66,8 +64,8 @@ const Products = () => {
     <div className="p-8 bg-slate-50 min-h-screen" data-testid="products-main-container">
       <div className="flex justify-between items-start mb-8" data-testid="products-header-section">
         <div data-testid="products-header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-testid="products-page-title">{t('products.title')}</h1>
-          <p className="text-slate-600 mt-2" data-testid="products-page-subtitle">{t('products.subtitle')}</p>
+          <h1 className="text-3xl font-bold text-slate-800" data-testid="products-page-title">Products</h1>
+          <p className="text-slate-600 mt-2" data-testid="products-page-subtitle">Manage your product catalog</p>
         </div>
         <Button 
           className="bg-[#4AB831] hover:bg-[#3da127]"
@@ -75,7 +73,7 @@ const Products = () => {
           data-testid="products-new-button"
         >
           <Plus className="h-4 w-4 mr-2" data-testid="products-new-icon" />
-          <span data-testid="products-new-text">{t('products.newProduct')}</span>
+          <span data-testid="products-new-text">New Product</span>
         </Button>
       </div>
 

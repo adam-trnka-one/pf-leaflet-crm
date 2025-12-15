@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import {
   Dialog,
   DialogContent,
@@ -32,7 +31,6 @@ interface NewContactModalProps {
 }
 
 const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactModalProps) => {
-  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -97,12 +95,12 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>{t('contacts.createContact')}</DialogTitle>
+          <DialogTitle>Create New Contact</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="firstName">{t('common.firstName')}</Label>
+              <Label htmlFor="firstName">First Name</Label>
               <Input
                 id="firstName"
                 value={formData.firstName}
@@ -111,7 +109,7 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="lastName">{t('common.lastName')}</Label>
+              <Label htmlFor="lastName">Last Name</Label>
               <Input
                 id="lastName"
                 value={formData.lastName}
@@ -122,7 +120,7 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="email">{t('common.email')}</Label>
+            <Label htmlFor="email">Email</Label>
             <Input
               id="email"
               type="email"
@@ -133,7 +131,7 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="phone">{t('common.phone')}</Label>
+            <Label htmlFor="phone">Phone</Label>
             <Input
               id="phone"
               value={formData.phone}
@@ -143,7 +141,7 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="title">{t('common.jobTitle')}</Label>
+            <Label htmlFor="title">Job Title</Label>
             <Input
               id="title"
               value={formData.title}
@@ -153,7 +151,7 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="accountName">{t('contacts.accountName')}</Label>
+            <Label htmlFor="accountName">Account Name</Label>
             <Input
               id="accountName"
               value={formData.accountName}
@@ -164,10 +162,10 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
-            {t('common.cancel')}
+            Cancel
           </Button>
           <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700">
-            {t('contacts.createContact')}
+            Create Contact
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import {
   Dialog,
   DialogContent,
@@ -43,7 +42,6 @@ interface EditLeadModalProps {
 }
 
 const EditLeadModal = ({ open, onOpenChange, lead, onLeadUpdated }: EditLeadModalProps) => {
-  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -90,20 +88,24 @@ const EditLeadModal = ({ open, onOpenChange, lead, onLeadUpdated }: EditLeadModa
       rating: formData.rating,
     };
 
+    // Get existing leads from localStorage
     const existingLeads = JSON.parse(localStorage.getItem('crmLeads') || '[]');
     const updatedLeads = existingLeads.map((l: Lead) => 
       l.id === lead.id ? updatedLead : l
     );
     
+    // Store back to localStorage
     localStorage.setItem('crmLeads', JSON.stringify(updatedLeads));
     
     toast({
-      title: t('common.leadUpdated'),
-      description: t('common.leadUpdatedDesc')
+      title: "Lead updated",
+      description: "The lead has been successfully updated."
     });
     
+    // Reset form and close modal
     onOpenChange(false);
     
+    // Notify parent component
     if (onLeadUpdated) {
       onLeadUpdated();
     }
@@ -113,12 +115,12 @@ const EditLeadModal = ({ open, onOpenChange, lead, onLeadUpdated }: EditLeadModa
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]" data-testid="edit-lead-modal-content">
         <DialogHeader data-testid="edit-lead-modal-header">
-          <DialogTitle data-testid="edit-lead-modal-title">{t('leads.editLead')}</DialogTitle>
+          <DialogTitle data-testid="edit-lead-modal-title">Edit Lead</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4" data-testid="edit-lead-modal-form">
           <div className="grid grid-cols-2 gap-4" data-testid="edit-lead-name-row">
             <div className="grid gap-2" data-testid="edit-lead-first-name-field">
-              <Label htmlFor="firstName" data-testid="edit-lead-first-name-label">{t('common.firstName')}</Label>
+              <Label htmlFor="firstName" data-testid="edit-lead-first-name-label">First Name</Label>
               <Input
                 id="firstName"
                 value={formData.firstName}
@@ -128,7 +130,7 @@ const EditLeadModal = ({ open, onOpenChange, lead, onLeadUpdated }: EditLeadModa
               />
             </div>
             <div className="grid gap-2" data-testid="edit-lead-last-name-field">
-              <Label htmlFor="lastName" data-testid="edit-lead-last-name-label">{t('common.lastName')}</Label>
+              <Label htmlFor="lastName" data-testid="edit-lead-last-name-label">Last Name</Label>
               <Input
                 id="lastName"
                 value={formData.lastName}
@@ -140,7 +142,7 @@ const EditLeadModal = ({ open, onOpenChange, lead, onLeadUpdated }: EditLeadModa
           </div>
 
           <div className="grid gap-2" data-testid="edit-lead-company-field">
-            <Label htmlFor="company" data-testid="edit-lead-company-label">{t('common.company')}</Label>
+            <Label htmlFor="company" data-testid="edit-lead-company-label">Company</Label>
             <Input
               id="company"
               value={formData.company}
@@ -151,7 +153,7 @@ const EditLeadModal = ({ open, onOpenChange, lead, onLeadUpdated }: EditLeadModa
           </div>
 
           <div className="grid gap-2" data-testid="edit-lead-email-field">
-            <Label htmlFor="email" data-testid="edit-lead-email-label">{t('common.email')}</Label>
+            <Label htmlFor="email" data-testid="edit-lead-email-label">Email</Label>
             <Input
               id="email"
               type="email"
@@ -163,7 +165,7 @@ const EditLeadModal = ({ open, onOpenChange, lead, onLeadUpdated }: EditLeadModa
           </div>
 
           <div className="grid gap-2" data-testid="edit-lead-phone-field">
-            <Label htmlFor="phone" data-testid="edit-lead-phone-label">{t('common.phone')}</Label>
+            <Label htmlFor="phone" data-testid="edit-lead-phone-label">Phone</Label>
             <Input
               id="phone"
               value={formData.phone}
@@ -174,7 +176,7 @@ const EditLeadModal = ({ open, onOpenChange, lead, onLeadUpdated }: EditLeadModa
           </div>
 
           <div className="grid gap-2" data-testid="edit-lead-title-field">
-            <Label htmlFor="title" data-testid="edit-lead-title-label">{t('common.jobTitle')}</Label>
+            <Label htmlFor="title" data-testid="edit-lead-title-label">Job Title</Label>
             <Input
               id="title"
               value={formData.title}
@@ -186,57 +188,57 @@ const EditLeadModal = ({ open, onOpenChange, lead, onLeadUpdated }: EditLeadModa
 
           <div className="grid grid-cols-2 gap-4" data-testid="edit-lead-status-rating-row">
             <div className="grid gap-2" data-testid="edit-lead-status-field">
-              <Label htmlFor="status" data-testid="edit-lead-status-label">{t('common.status')}</Label>
+              <Label htmlFor="status" data-testid="edit-lead-status-label">Status</Label>
               <Select value={formData.status} onValueChange={(value) => setFormData({ ...formData, status: value })}>
                 <SelectTrigger data-testid="edit-lead-status-trigger">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent data-testid="edit-lead-status-content">
-                  <SelectItem value="New" data-testid="edit-lead-status-new">{t('leads.statuses.new')}</SelectItem>
-                  <SelectItem value="Working" data-testid="edit-lead-status-working">{t('leads.statuses.working')}</SelectItem>
-                  <SelectItem value="Qualified" data-testid="edit-lead-status-qualified">{t('leads.statuses.qualified')}</SelectItem>
-                  <SelectItem value="Unqualified" data-testid="edit-lead-status-unqualified">{t('leads.statuses.unqualified')}</SelectItem>
-                  <SelectItem value="Converted" data-testid="edit-lead-status-converted">{t('leads.statuses.converted')}</SelectItem>
+                  <SelectItem value="New" data-testid="edit-lead-status-new">New</SelectItem>
+                  <SelectItem value="Working" data-testid="edit-lead-status-working">Working</SelectItem>
+                  <SelectItem value="Qualified" data-testid="edit-lead-status-qualified">Qualified</SelectItem>
+                  <SelectItem value="Unqualified" data-testid="edit-lead-status-unqualified">Unqualified</SelectItem>
+                  <SelectItem value="Converted" data-testid="edit-lead-status-converted">Converted</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="grid gap-2" data-testid="edit-lead-rating-field">
-              <Label htmlFor="rating" data-testid="edit-lead-rating-label">{t('common.rating')}</Label>
+              <Label htmlFor="rating" data-testid="edit-lead-rating-label">Rating</Label>
               <Select value={formData.rating} onValueChange={(value) => setFormData({ ...formData, rating: value })}>
                 <SelectTrigger data-testid="edit-lead-rating-trigger">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent data-testid="edit-lead-rating-content">
-                  <SelectItem value="Hot" data-testid="edit-lead-rating-hot">{t('leads.ratings.hot')}</SelectItem>
-                  <SelectItem value="Warm" data-testid="edit-lead-rating-warm">{t('leads.ratings.warm')}</SelectItem>
-                  <SelectItem value="Cold" data-testid="edit-lead-rating-cold">{t('leads.ratings.cold')}</SelectItem>
+                  <SelectItem value="Hot" data-testid="edit-lead-rating-hot">Hot</SelectItem>
+                  <SelectItem value="Warm" data-testid="edit-lead-rating-warm">Warm</SelectItem>
+                  <SelectItem value="Cold" data-testid="edit-lead-rating-cold">Cold</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
 
           <div className="grid gap-2" data-testid="edit-lead-source-field">
-            <Label htmlFor="source" data-testid="edit-lead-source-label">{t('leads.source')}</Label>
+            <Label htmlFor="source" data-testid="edit-lead-source-label">Source</Label>
             <Select value={formData.source} onValueChange={(value) => setFormData({ ...formData, source: value })}>
               <SelectTrigger data-testid="edit-lead-source-trigger">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent data-testid="edit-lead-source-content">
-                <SelectItem value="Website" data-testid="edit-lead-source-website">{t('leads.sources.website')}</SelectItem>
-                <SelectItem value="Referral" data-testid="edit-lead-source-referral">{t('leads.sources.referral')}</SelectItem>
-                <SelectItem value="Cold Call" data-testid="edit-lead-source-cold-call">{t('leads.sources.coldCall')}</SelectItem>
-                <SelectItem value="Trade Show" data-testid="edit-lead-source-trade-show">{t('leads.sources.tradeShow')}</SelectItem>
-                <SelectItem value="Social Media" data-testid="edit-lead-source-social-media">{t('leads.sources.socialMedia')}</SelectItem>
+                <SelectItem value="Website" data-testid="edit-lead-source-website">Website</SelectItem>
+                <SelectItem value="Referral" data-testid="edit-lead-source-referral">Referral</SelectItem>
+                <SelectItem value="Cold Call" data-testid="edit-lead-source-cold-call">Cold Call</SelectItem>
+                <SelectItem value="Trade Show" data-testid="edit-lead-source-trade-show">Trade Show</SelectItem>
+                <SelectItem value="Social Media" data-testid="edit-lead-source-social-media">Social Media</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
         <DialogFooter data-testid="edit-lead-modal-footer">
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="edit-lead-cancel-button">
-            {t('common.cancel')}
+            Cancel
           </Button>
           <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700" data-testid="edit-lead-update-button">
-            {t('leads.updateLead')}
+            Update Lead
           </Button>
         </DialogFooter>
       </DialogContent>

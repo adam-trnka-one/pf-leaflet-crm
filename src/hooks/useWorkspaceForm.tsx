@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
-import { useProductFruits } from "@/contexts/ProductFruitsContext";
+import { useProductFruits } from "@/hooks/useProductFruits";
 import { toast } from "@/hooks/use-toast";
 import { validateRequiredFields } from "@/utils/workspaceValidation";
 

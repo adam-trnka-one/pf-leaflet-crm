@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import {
   Dialog,
   DialogContent,
@@ -45,7 +44,6 @@ interface NewAccountModalProps {
 }
 
 const NewAccountModal = ({ open, onOpenChange, onAccountCreated }: NewAccountModalProps) => {
-  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     type: "Customer",
@@ -124,11 +122,11 @@ const NewAccountModal = ({ open, onOpenChange, onAccountCreated }: NewAccountMod
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px] max-h-[80vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>{t('accounts.createAccount')}</DialogTitle>
+          <DialogTitle>Create New Account</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
-            <Label htmlFor="account-name">{t('accounts.accountName')}</Label>
+            <Label htmlFor="account-name">Account Name</Label>
             <Input
               id="account-name"
               value={formData.name}
@@ -138,22 +136,22 @@ const NewAccountModal = ({ open, onOpenChange, onAccountCreated }: NewAccountMod
           </div>
           
           <div className="grid gap-2">
-            <Label htmlFor="type">{t('accounts.accountType')}</Label>
+            <Label htmlFor="type">Account Type</Label>
             <Select value={formData.type} onValueChange={(value) => setFormData({ ...formData, type: value })}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Customer">{t('accounts.customer')}</SelectItem>
-                <SelectItem value="Prospect">{t('accounts.prospect')}</SelectItem>
-                <SelectItem value="Partner">{t('accounts.partner')}</SelectItem>
-                <SelectItem value="Competitor">{t('accounts.competitor')}</SelectItem>
+                <SelectItem value="Customer">Customer</SelectItem>
+                <SelectItem value="Prospect">Prospect</SelectItem>
+                <SelectItem value="Partner">Partner</SelectItem>
+                <SelectItem value="Competitor">Competitor</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="industry">{t('common.industry')}</Label>
+            <Label htmlFor="industry">Industry</Label>
             <Input
               id="industry"
               value={formData.industry}
@@ -164,7 +162,7 @@ const NewAccountModal = ({ open, onOpenChange, onAccountCreated }: NewAccountMod
 
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="revenue">{t('common.annualRevenue')}</Label>
+              <Label htmlFor="revenue">Annual Revenue</Label>
               <Input
                 id="revenue"
                 type="number"
@@ -174,7 +172,7 @@ const NewAccountModal = ({ open, onOpenChange, onAccountCreated }: NewAccountMod
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="employees">{t('common.employees')}</Label>
+              <Label htmlFor="employees">Employees</Label>
               <Input
                 id="employees"
                 type="number"
@@ -186,7 +184,7 @@ const NewAccountModal = ({ open, onOpenChange, onAccountCreated }: NewAccountMod
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="street">{t('common.street')}</Label>
+            <Label htmlFor="street">Street Address</Label>
             <Input
               id="street"
               value={formData.street}
@@ -197,7 +195,7 @@ const NewAccountModal = ({ open, onOpenChange, onAccountCreated }: NewAccountMod
 
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="city">{t('common.city')}</Label>
+              <Label htmlFor="city">City</Label>
               <Input
                 id="city"
                 value={formData.city}
@@ -206,7 +204,7 @@ const NewAccountModal = ({ open, onOpenChange, onAccountCreated }: NewAccountMod
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="state">{t('common.state')}</Label>
+              <Label htmlFor="state">State</Label>
               <Input
                 id="state"
                 value={formData.state}
@@ -218,7 +216,7 @@ const NewAccountModal = ({ open, onOpenChange, onAccountCreated }: NewAccountMod
 
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="country">{t('common.country')}</Label>
+              <Label htmlFor="country">Country</Label>
               <Input
                 id="country"
                 value={formData.country}
@@ -227,7 +225,7 @@ const NewAccountModal = ({ open, onOpenChange, onAccountCreated }: NewAccountMod
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="postalCode">{t('common.postalCode')}</Label>
+              <Label htmlFor="postalCode">Postal Code</Label>
               <Input
                 id="postalCode"
                 value={formData.postalCode}
@@ -239,10 +237,10 @@ const NewAccountModal = ({ open, onOpenChange, onAccountCreated }: NewAccountMod
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
-            {t('common.cancel')}
+            Cancel
           </Button>
           <Button onClick={handleSubmit} className="bg-[#4AB831] hover:bg-[#3da127]">
-            {t('accounts.createAccount')}
+            Create Account
           </Button>
         </DialogFooter>
       </DialogContent>
