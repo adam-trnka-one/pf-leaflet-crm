@@ -1,3 +1,4 @@
+// ProductFruits Context Provider - centralizes all ProductFruits state and initialization logic
 import { createContext, useContext, useEffect, useRef, useState, useCallback, ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 
