@@ -250,35 +250,57 @@ export const ProductFruitsProvider = ({ children }: { children: ReactNode }) => 
     });
   }, []);
 
-  const initializeFromStorage = useCallback(() => {
+  // Simplified auto-initialization effect - runs on mount and path changes
+  // No callback dependencies to avoid stale closure issues
+  useEffect(() => {
+    const isDashboard = location.pathname.startsWith('/dashboard');
+    
+    console.log('[ProductFruits] Auto-init check:', {
+      path: location.pathname,
+      isDashboard,
+      hasInitialized: hasInitialized.current,
+      isInitializing: isInitializing.current,
+      status: state.status
+    });
+    
+    if (!isDashboard) {
+      console.log('[ProductFruits] Not on dashboard, skipping auto-init');
+      return;
+    }
+    
     if (hasInitialized.current || isInitializing.current) {
       console.log('[ProductFruits] Already initialized or initializing, skipping');
       return;
     }
     
+    // Try to load from storage and initialize
     try {
       const savedData = localStorage.getItem(STORAGE_KEY);
+      console.log('[ProductFruits] Saved data found:', !!savedData);
+      
       if (savedData) {
         const workspaceData = JSON.parse(savedData);
+        console.log('[ProductFruits] Parsed workspace data:', {
+          hasWorkspaceCode: !!workspaceData.workspaceCode,
+          hasUsername: !!workspaceData.username,
+          workspaceCode: workspaceData.workspaceCode
+        });
         
         if (workspaceData.workspaceCode && workspaceData.username) {
-          console.log('[ProductFruits] Auto-initializing from storage');
+          console.log('[ProductFruits] Auto-initializing from storage NOW');
           hasInitialized.current = true;
-          initializeProductFruits(workspaceData);
           initializedWorkspaceCode.current = workspaceData.workspaceCode;
+          initializeProductFruits(workspaceData);
+        } else {
+          console.log('[ProductFruits] Missing workspaceCode or username in saved data');
         }
+      } else {
+        console.log('[ProductFruits] No saved workspace data found');
       }
     } catch (error) {
       console.error('[ProductFruits] Error loading from localStorage:', error);
     }
-  }, [initializeProductFruits]);
-
-  useEffect(() => {
-    if (location.pathname.startsWith('/dashboard') && !hasInitialized.current) {
-      console.log('[ProductFruits] On dashboard page, attempting auto-init');
-      initializeFromStorage();
-    }
-  }, [location.pathname, initializeFromStorage]);
+  }, [location.pathname]); // Only depend on pathname - initializeProductFruits is stable via useCallback
 
   const canAutoInitialize = location.pathname.startsWith('/dashboard');
 
