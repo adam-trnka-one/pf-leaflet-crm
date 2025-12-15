@@ -1,1 +1,86 @@
-{ "title": "العملاء المحتملون", "subtitle": "إدارة العملاء المحتملين", "newLead": "جديد", "searchPlaceholder": "بحث...", "noResults": "لا توجد نتائج.", "convertLead": "تحويل", "fields": { "firstName": "الاسم الأول", "lastName": "اسم العائلة", "email": "البريد الإلكتروني", "phone": "الهاتف", "company": "الشركة", "title": "المسمى", "status": "الحالة", "rating": "التقييم", "source": "المصدر", "owner": "المالك", "created": "تم الإنشاء" }, "statuses": { "new": "جديد", "working": "قيد العمل", "qualified": "مؤهل", "unqualified": "غير مؤهل", "converted": "محول" }, "ratings": { "hot": "ساخن", "warm": "دافئ", "cold": "بارد" }, "sources": { "web": "الويب", "phone": "الهاتف", "referral": "إحالة", "advertisement": "إعلان", "tradeShow": "معرض", "email": "بريد" }, "modal": { "createTitle": "إنشاء", "editTitle": "تعديل", "createButton": "إنشاء", "saveButton": "حفظ" }, "messages": { "deleted": "تم الحذف." } }
+{
+  "title": "العملاء المحتملون",
+  "subtitle": "إدارة العملاء المحتملين للمبيعات",
+  "newLead": "عميل محتمل جديد",
+  "createNew": "إنشاء عميل محتمل جديد",
+  "edit": "تعديل العميل المحتمل",
+  "searchPlaceholder": "البحث عن العملاء المحتملين...",
+  "noResults": "لم يتم العثور على عملاء محتملين.",
+  "convertLead": "تحويل العميل المحتمل",
+  "columns": {
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "company": "الشركة",
+    "title": "المسمى الوظيفي",
+    "status": "الحالة",
+    "rating": "التقييم",
+    "source": "المصدر",
+    "owner": "المالك",
+    "created": "تاريخ الإنشاء"
+  },
+  "fields": {
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "company": "الشركة",
+    "title": "المسمى الوظيفي",
+    "status": "الحالة",
+    "rating": "التقييم",
+    "source": "المصدر",
+    "owner": "المالك",
+    "created": "تاريخ الإنشاء"
+  },
+  "status": {
+    "new": "جديد",
+    "working": "قيد العمل",
+    "qualified": "مؤهل",
+    "unqualified": "غير مؤهل",
+    "converted": "محول"
+  },
+  "statuses": {
+    "new": "جديد",
+    "working": "قيد العمل",
+    "qualified": "مؤهل",
+    "unqualified": "غير مؤهل",
+    "converted": "محول"
+  },
+  "rating": {
+    "hot": "ساخن",
+    "warm": "دافئ",
+    "cold": "بارد"
+  },
+  "ratings": {
+    "hot": "ساخن",
+    "warm": "دافئ",
+    "cold": "بارد"
+  },
+  "source": {
+    "website": "الموقع الإلكتروني",
+    "referral": "إحالة",
+    "coldCall": "اتصال بارد",
+    "tradeShow": "معرض تجاري",
+    "socialMedia": "وسائل التواصل الاجتماعي",
+    "emailCampaign": "حملة بريد إلكتروني"
+  },
+  "sources": {
+    "web": "الويب",
+    "phone": "الهاتف",
+    "referral": "إحالة",
+    "advertisement": "إعلان",
+    "tradeShow": "معرض",
+    "email": "بريد إلكتروني"
+  },
+  "modal": {
+    "createTitle": "إنشاء عميل محتمل جديد",
+    "editTitle": "تعديل العميل المحتمل",
+    "createButton": "إنشاء العميل المحتمل",
+    "saveButton": "حفظ التغييرات"
+  },
+  "messages": {
+    "deleted": "تم حذف العميل المحتمل بنجاح.",
+    "updated": "تم تحديث العميل المحتمل بنجاح."
+  }
+}

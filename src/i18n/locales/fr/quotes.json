@@ -3,6 +3,7 @@
   "subtitle": "Gérez vos devis et propositions de vente",
   "newQuote": "Nouveau Devis",
   "createNew": "Créer un Nouveau Devis",
+  "edit": "Modifier le Devis",
   "searchPlaceholder": "Rechercher des devis...",
   "noResults": "Aucun devis trouvé.",
   "columns": {

@@ -1,9 +1,86 @@
 {
-  "title": "Leads", "subtitle": "Gerencie seus leads de vendas", "newLead": "Novo Lead", "searchPlaceholder": "Pesquisar leads...", "noResults": "Nenhum lead encontrado.", "convertLead": "Converter Lead",
-  "fields": { "firstName": "Nome", "lastName": "Sobrenome", "email": "E-mail", "phone": "Telefone", "company": "Empresa", "title": "Cargo", "status": "Status", "rating": "Classificação", "source": "Origem", "owner": "Proprietário", "created": "Criado" },
-  "statuses": { "new": "Novo", "working": "Em Trabalho", "qualified": "Qualificado", "unqualified": "Não Qualificado", "converted": "Convertido" },
-  "ratings": { "hot": "Quente", "warm": "Morno", "cold": "Frio" },
-  "sources": { "web": "Web", "phone": "Telefone", "referral": "Indicação", "advertisement": "Publicidade", "tradeShow": "Feira", "email": "E-mail" },
-  "modal": { "createTitle": "Criar Novo Lead", "editTitle": "Editar Lead", "createButton": "Criar Lead", "saveButton": "Salvar Alterações" },
-  "messages": { "deleted": "Lead excluído com sucesso." }
+  "title": "Leads",
+  "subtitle": "Gerencie seus leads de vendas",
+  "newLead": "Novo Lead",
+  "createNew": "Criar Novo Lead",
+  "edit": "Editar Lead",
+  "searchPlaceholder": "Pesquisar leads...",
+  "noResults": "Nenhum lead encontrado.",
+  "convertLead": "Converter Lead",
+  "columns": {
+    "firstName": "Nome",
+    "lastName": "Sobrenome",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "company": "Empresa",
+    "title": "Cargo",
+    "status": "Status",
+    "rating": "Classificação",
+    "source": "Origem",
+    "owner": "Proprietário",
+    "created": "Criado"
+  },
+  "fields": {
+    "firstName": "Nome",
+    "lastName": "Sobrenome",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "company": "Empresa",
+    "title": "Cargo",
+    "status": "Status",
+    "rating": "Classificação",
+    "source": "Origem",
+    "owner": "Proprietário",
+    "created": "Criado"
+  },
+  "status": {
+    "new": "Novo",
+    "working": "Em Trabalho",
+    "qualified": "Qualificado",
+    "unqualified": "Não Qualificado",
+    "converted": "Convertido"
+  },
+  "statuses": {
+    "new": "Novo",
+    "working": "Em Trabalho",
+    "qualified": "Qualificado",
+    "unqualified": "Não Qualificado",
+    "converted": "Convertido"
+  },
+  "rating": {
+    "hot": "Quente",
+    "warm": "Morno",
+    "cold": "Frio"
+  },
+  "ratings": {
+    "hot": "Quente",
+    "warm": "Morno",
+    "cold": "Frio"
+  },
+  "source": {
+    "website": "Site",
+    "referral": "Indicação",
+    "coldCall": "Ligação Fria",
+    "tradeShow": "Feira",
+    "socialMedia": "Redes Sociais",
+    "emailCampaign": "Campanha de E-mail"
+  },
+  "sources": {
+    "web": "Web",
+    "phone": "Telefone",
+    "referral": "Indicação",
+    "advertisement": "Publicidade",
+    "tradeShow": "Feira",
+    "email": "E-mail"
+  },
+  "modal": {
+    "createTitle": "Criar Novo Lead",
+    "editTitle": "Editar Lead",
+    "createButton": "Criar Lead",
+    "saveButton": "Salvar Alterações"
+  },
+  "messages": {
+    "deleted": "O lead foi excluído com sucesso.",
+    "updated": "O lead foi atualizado com sucesso."
+  }
 }

@@ -1,8 +1,63 @@
 {
-  "title": "Atividades", "subtitle": "Gerencie suas tarefas e atividades", "newActivity": "Nova Atividade", "searchPlaceholder": "Pesquisar atividades...", "noResults": "Nenhuma atividade encontrada.",
-  "fields": { "subject": "Assunto", "type": "Tipo", "status": "Status", "priority": "Prioridade", "dueDate": "Data Limite", "relatedTo": "Relacionado a", "assignedTo": "Atribuído a", "description": "Descrição" },
-  "types": { "call": "Ligação", "meeting": "Reunião", "task": "Tarefa", "email": "E-mail", "event": "Evento" },
-  "statuses": { "notStarted": "Não Iniciado", "inProgress": "Em Andamento", "completed": "Concluído", "deferred": "Adiado" },
-  "priorities": { "low": "Baixa", "normal": "Normal", "high": "Alta" },
-  "modal": { "createTitle": "Criar Nova Atividade", "editTitle": "Editar Atividade", "createButton": "Criar Atividade", "saveButton": "Salvar Alterações" }
+  "title": "Atividades",
+  "subtitle": "Acompanhe e gerencie suas atividades",
+  "newActivity": "Nova Atividade",
+  "edit": "Editar Atividade",
+  "searchPlaceholder": "Pesquisar atividades...",
+  "noResults": "Nenhuma atividade encontrada.",
+  "completed": "Concluída",
+  "pending": "Pendente",
+  "columns": {
+    "subject": "Assunto",
+    "type": "Tipo",
+    "status": "Status",
+    "date": "Data",
+    "priority": "Prioridade",
+    "dueDate": "Data Limite",
+    "relatedTo": "Relacionado a",
+    "assignedTo": "Atribuído a",
+    "description": "Descrição"
+  },
+  "fields": {
+    "subject": "Assunto",
+    "type": "Tipo",
+    "status": "Status",
+    "priority": "Prioridade",
+    "dueDate": "Data Limite",
+    "relatedTo": "Relacionado a",
+    "assignedTo": "Atribuído a",
+    "description": "Descrição"
+  },
+  "types": {
+    "call": "Ligação",
+    "meeting": "Reunião",
+    "task": "Tarefa",
+    "email": "E-mail",
+    "event": "Evento"
+  },
+  "status": {
+    "pending": "Pendente",
+    "completed": "Concluída"
+  },
+  "statuses": {
+    "notStarted": "Não Iniciado",
+    "inProgress": "Em Andamento",
+    "completed": "Concluído",
+    "deferred": "Adiado"
+  },
+  "priorities": {
+    "low": "Baixa",
+    "normal": "Normal",
+    "high": "Alta"
+  },
+  "modal": {
+    "createTitle": "Criar Nova Atividade",
+    "editTitle": "Editar Atividade",
+    "createButton": "Criar Atividade",
+    "saveButton": "Salvar Alterações"
+  },
+  "messages": {
+    "deleted": "A atividade foi excluída com sucesso.",
+    "updated": "A atividade foi atualizada com sucesso."
+  }
 }

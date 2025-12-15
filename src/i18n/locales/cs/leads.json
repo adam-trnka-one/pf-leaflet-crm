@@ -2,13 +2,15 @@
   "title": "Potenciální zákazníci",
   "subtitle": "Spravujte své prodejní leady",
   "newLead": "Nový lead",
+  "createNew": "Vytvořit nový lead",
+  "edit": "Upravit lead",
   "searchPlaceholder": "Hledat leady...",
   "noResults": "Nebyly nalezeny žádné leady.",
   "convertLead": "Konvertovat lead",
-  "fields": {
+  "columns": {
     "firstName": "Jméno",
     "lastName": "Příjmení",
-    "email": "Email",
+    "email": "E-mail",
     "phone": "Telefon",
     "company": "Společnost",
     "title": "Pozice",
@@ -18,6 +20,26 @@
     "owner": "Vlastník",
     "created": "Vytvořeno"
   },
+  "fields": {
+    "firstName": "Jméno",
+    "lastName": "Příjmení",
+    "email": "E-mail",
+    "phone": "Telefon",
+    "company": "Společnost",
+    "title": "Pozice",
+    "status": "Stav",
+    "rating": "Hodnocení",
+    "source": "Zdroj",
+    "owner": "Vlastník",
+    "created": "Vytvořeno"
+  },
+  "status": {
+    "new": "Nový",
+    "working": "Zpracováváno",
+    "qualified": "Kvalifikovaný",
+    "unqualified": "Nekvalifikovaný",
+    "converted": "Konvertovaný"
+  },
   "statuses": {
     "new": "Nový",
     "working": "Zpracováváno",
@@ -25,10 +47,23 @@
     "unqualified": "Nekvalifikovaný",
     "converted": "Konvertovaný"
   },
+  "rating": {
+    "hot": "Horký",
+    "warm": "Teplý",
+    "cold": "Studený"
+  },
   "ratings": {
     "hot": "Horký",
     "warm": "Teplý",
     "cold": "Studený"
+  },
+  "source": {
+    "website": "Webová stránka",
+    "referral": "Doporučení",
+    "coldCall": "Studený hovor",
+    "tradeShow": "Veletrh",
+    "socialMedia": "Sociální sítě",
+    "emailCampaign": "E-mailová kampaň"
   },
   "sources": {
     "web": "Web",
@@ -45,6 +80,7 @@
     "saveButton": "Uložit změny"
   },
   "messages": {
-    "deleted": "Lead byl úspěšně smazán."
+    "deleted": "Lead byl úspěšně smazán.",
+    "updated": "Lead byl úspěšně aktualizován."
   }
 }

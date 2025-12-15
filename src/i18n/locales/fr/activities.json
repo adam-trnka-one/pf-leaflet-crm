@@ -1,1 +1,63 @@
-{ "title": "Activités", "subtitle": "Gérez vos activités", "newActivity": "Nouvelle", "searchPlaceholder": "Rechercher...", "noResults": "Aucun résultat.", "fields": { "subject": "Sujet", "type": "Type", "status": "Statut", "priority": "Priorité", "dueDate": "Échéance", "relatedTo": "Lié à", "assignedTo": "Assigné à", "description": "Description" }, "types": { "call": "Appel", "meeting": "Réunion", "task": "Tâche", "email": "Email", "event": "Événement" }, "statuses": { "notStarted": "Non démarré", "inProgress": "En cours", "completed": "Terminé", "deferred": "Différé" }, "priorities": { "low": "Basse", "normal": "Normale", "high": "Haute" }, "modal": { "createTitle": "Créer", "editTitle": "Modifier", "createButton": "Créer", "saveButton": "Enregistrer" } }
+{
+  "title": "Activités",
+  "subtitle": "Suivez et gérez vos activités",
+  "newActivity": "Nouvelle Activité",
+  "edit": "Modifier l'Activité",
+  "searchPlaceholder": "Rechercher des activités...",
+  "noResults": "Aucune activité trouvée.",
+  "completed": "Terminée",
+  "pending": "En attente",
+  "columns": {
+    "subject": "Sujet",
+    "type": "Type",
+    "status": "Statut",
+    "date": "Date",
+    "priority": "Priorité",
+    "dueDate": "Échéance",
+    "relatedTo": "Lié à",
+    "assignedTo": "Assigné à",
+    "description": "Description"
+  },
+  "fields": {
+    "subject": "Sujet",
+    "type": "Type",
+    "status": "Statut",
+    "priority": "Priorité",
+    "dueDate": "Échéance",
+    "relatedTo": "Lié à",
+    "assignedTo": "Assigné à",
+    "description": "Description"
+  },
+  "types": {
+    "call": "Appel",
+    "meeting": "Réunion",
+    "task": "Tâche",
+    "email": "Email",
+    "event": "Événement"
+  },
+  "status": {
+    "pending": "En attente",
+    "completed": "Terminée"
+  },
+  "statuses": {
+    "notStarted": "Non démarré",
+    "inProgress": "En cours",
+    "completed": "Terminé",
+    "deferred": "Différé"
+  },
+  "priorities": {
+    "low": "Basse",
+    "normal": "Normale",
+    "high": "Haute"
+  },
+  "modal": {
+    "createTitle": "Créer une Nouvelle Activité",
+    "editTitle": "Modifier l'Activité",
+    "createButton": "Créer l'Activité",
+    "saveButton": "Enregistrer les Modifications"
+  },
+  "messages": {
+    "deleted": "L'activité a été supprimée avec succès.",
+    "updated": "L'activité a été mise à jour avec succès."
+  }
+}
