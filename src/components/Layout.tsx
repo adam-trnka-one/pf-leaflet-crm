@@ -2,7 +2,7 @@ import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search, Newspaper, Play, Loader2 } from "lucide-react";
+import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search, Newspaper, Loader2 } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset, useSidebar } from "@/components/ui/sidebar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useProductFruits } from "@/hooks/useProductFruits";
@@ -23,21 +23,19 @@ const LayoutContent = () => {
   // Sync language with workspace settings
   useLanguageSync();
 
-  const handleSaveAndInitiate = async () => {
+  const handleLanguageChangeAndInitiate = async (value: string) => {
+    setLocalWorkspaceData(prev => ({ ...prev, languageCode: value }));
     setIsInitiating(true);
     try {
+      // Small delay to allow state update
+      await new Promise(resolve => setTimeout(resolve, 100));
       handleSaveWorkspaceData();
       await handleInitiateProductFruits();
-      await new Promise(resolve => setTimeout(resolve, 1000));
     } catch (error) {
       console.error('Error in save and initiate:', error);
     } finally {
       setIsInitiating(false);
     }
-  };
-
-  const handleLanguageChange = (value: string) => {
-    setLocalWorkspaceData(prev => ({ ...prev, languageCode: value }));
   };
 
   const navigation = [
@@ -152,36 +150,27 @@ const LayoutContent = () => {
                 <Input placeholder={t('header.searchPlaceholder')} className="pl-10 rtl:pl-3 rtl:pr-10 bg-slate-50 border-slate-200 focus:bg-white" />
               </div>
               
-              {/* Language Dropdown */}
-              <Select value={localWorkspaceData.languageCode} onValueChange={handleLanguageChange}>
-                <SelectTrigger className="w-20 h-8 bg-white">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-white z-50">
-                  <SelectItem value="en">EN</SelectItem>
-                  <SelectItem value="cs">CS</SelectItem>
-                  <SelectItem value="de">DE</SelectItem>
-                  <SelectItem value="fr">FR</SelectItem>
-                  <SelectItem value="es">ES</SelectItem>
-                  <SelectItem value="pt">PT</SelectItem>
-                  <SelectItem value="ar">AR</SelectItem>
-                </SelectContent>
-              </Select>
-
-              {/* Save & Initiate PF Button */}
-              <Button 
-                size="icon"
-                onClick={handleSaveAndInitiate}
-                disabled={isInitiating}
-                className="h-8 w-8 bg-emerald-600 hover:bg-emerald-700"
-                title="Save & Initiate PF"
-              >
-                {isInitiating ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  <Play className="h-4 w-4" />
-                )}
-              </Button>
+              {/* Language Dropdown with Save & Initiate */}
+              <div className="flex items-center gap-1">
+                <Select value={localWorkspaceData.languageCode} onValueChange={handleLanguageChangeAndInitiate} disabled={isInitiating}>
+                  <SelectTrigger className="w-20 h-8 bg-white">
+                    {isInitiating ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <SelectValue />
+                    )}
+                  </SelectTrigger>
+                  <SelectContent className="bg-white z-50">
+                    <SelectItem value="en">EN</SelectItem>
+                    <SelectItem value="cs">CS</SelectItem>
+                    <SelectItem value="de">DE</SelectItem>
+                    <SelectItem value="fr">FR</SelectItem>
+                    <SelectItem value="es">ES</SelectItem>
+                    <SelectItem value="pt">PT</SelectItem>
+                    <SelectItem value="ar">AR</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
 
               <Button 
                 ref={newsfeedRef}
