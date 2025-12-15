@@ -30,7 +30,9 @@
     "status": "Status",
     "name": "Name",
     "company": "Company",
-    "rating": "Rating"
+    "rating": "Rating",
+    "noTasks": "No recent tasks",
+    "noLeads": "No recent leads"
   },
   "checklist": {
     "title": "Getting Started",

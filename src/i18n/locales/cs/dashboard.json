@@ -30,7 +30,9 @@
     "status": "Stav",
     "name": "Jméno",
     "company": "Společnost",
-    "rating": "Hodnocení"
+    "rating": "Hodnocení",
+    "noTasks": "Žádné nedávné úkoly",
+    "noLeads": "Žádní nedávní potenciální zákazníci"
   },
   "checklist": {
     "title": "Začínáme",
