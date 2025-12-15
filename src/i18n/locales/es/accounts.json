@@ -1,1 +1,41 @@
-{ "title": "Cuentas", "subtitle": "Gestione sus cuentas", "newAccount": "Nueva Cuenta", "searchPlaceholder": "Buscar cuentas...", "noResults": "Sin resultados.", "fields": { "accountName": "Nombre", "accountType": "Tipo", "industry": "Industria", "annualRevenue": "Ingresos", "employees": "Empleados", "streetAddress": "Dirección", "city": "Ciudad", "state": "Estado", "country": "País", "postalCode": "CP", "owner": "Propietario", "created": "Creado" }, "types": { "customer": "Cliente", "prospect": "Prospecto", "partner": "Socio", "competitor": "Competidor" }, "modal": { "createTitle": "Crear Cuenta", "editTitle": "Editar Cuenta", "createButton": "Crear", "saveButton": "Guardar" }, "placeholders": { "accountName": "Acme Corp", "industry": "Tecnología", "revenue": "1000000", "employees": "50", "street": "Calle 123", "city": "Madrid", "state": "Madrid", "country": "España", "postalCode": "28001" } }
+{
+  "title": "Cuentas",
+  "subtitle": "Gestiona tus cuentas de clientes",
+  "newAccount": "Nueva cuenta",
+  "createNew": "Crear nueva cuenta",
+  "edit": "Editar cuenta",
+  "searchPlaceholder": "Buscar cuentas...",
+  "noResults": "No se encontraron cuentas que coincidan con tu búsqueda.",
+  "notFound": "Cuenta no encontrada",
+  "backToList": "Volver a cuentas",
+  "columns": {
+    "name": "Nombre de la cuenta",
+    "type": "Tipo",
+    "industry": "Industria",
+    "revenue": "Ingresos anuales",
+    "employees": "Empleados",
+    "owner": "Propietario",
+    "created": "Creado"
+  },
+  "tabs": {
+    "details": "Detalles",
+    "timeline": "Cronología",
+    "files": "Archivos"
+  },
+  "sections": {
+    "basicInfo": "Información básica",
+    "contactInfo": "Información de contacto",
+    "timeline": "Cronología de actividades",
+    "files": "Archivos y documentos"
+  },
+  "types": {
+    "customer": "Cliente",
+    "prospect": "Prospecto",
+    "partner": "Socio",
+    "competitor": "Competidor"
+  },
+  "placeholders": {
+    "timeline": "La cronología de actividades se implementará aquí",
+    "files": "La gestión de archivos se implementará aquí"
+  }
+}

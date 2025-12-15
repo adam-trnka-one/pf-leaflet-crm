@@ -1,6 +1,35 @@
 {
-  "title": "Contatos", "subtitle": "Gerencie seus relacionamentos de contato", "newContact": "Novo Contato", "searchPlaceholder": "Pesquisar contatos...", "noResults": "Nenhum contato encontrado.",
-  "fields": { "firstName": "Nome", "lastName": "Sobrenome", "email": "E-mail", "phone": "Telefone", "title": "Cargo", "account": "Conta", "owner": "Proprietário", "created": "Criado" },
-  "modal": { "createTitle": "Criar Novo Contato", "editTitle": "Editar Contato", "createButton": "Criar Contato", "saveButton": "Salvar Alterações" },
-  "placeholders": { "firstName": "João", "lastName": "Silva", "email": "joao@exemplo.com", "phone": "+55 11 99999-0000", "title": "CEO" }
+  "title": "Contatos",
+  "subtitle": "Gerencie seus relacionamentos de contato",
+  "newContact": "Novo contato",
+  "createNew": "Criar novo contato",
+  "edit": "Editar contato",
+  "searchPlaceholder": "Pesquisar contatos...",
+  "noResults": "Nenhum contato encontrado correspondente à sua pesquisa.",
+  "notFound": "Contato não encontrado",
+  "backToList": "Voltar para contatos",
+  "columns": {
+    "firstName": "Nome",
+    "lastName": "Sobrenome",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "title": "Título",
+    "account": "Conta",
+    "owner": "Proprietário",
+    "created": "Criado"
+  },
+  "tabs": {
+    "details": "Detalhes",
+    "timeline": "Linha do tempo",
+    "files": "Arquivos"
+  },
+  "sections": {
+    "contactInfo": "Informações de contato",
+    "timeline": "Linha do tempo de atividades",
+    "files": "Arquivos e documentos"
+  },
+  "placeholders": {
+    "timeline": "A linha do tempo de atividades será implementada aqui",
+    "files": "O gerenciamento de arquivos será implementado aqui"
+  }
 }

@@ -2,21 +2,31 @@
   "title": "Účty",
   "subtitle": "Spravujte své zákaznické účty",
   "newAccount": "Nový účet",
+  "createNew": "Vytvořit nový účet",
+  "edit": "Upravit účet",
   "searchPlaceholder": "Hledat účty...",
   "noResults": "Nebyly nalezeny žádné účty odpovídající vašemu hledání.",
-  "fields": {
-    "accountName": "Název účtu",
-    "accountType": "Typ účtu",
+  "notFound": "Účet nenalezen",
+  "backToList": "Zpět na účty",
+  "columns": {
+    "name": "Název účtu",
+    "type": "Typ",
     "industry": "Odvětví",
-    "annualRevenue": "Roční příjmy",
+    "revenue": "Roční příjem",
     "employees": "Zaměstnanci",
-    "streetAddress": "Ulice",
-    "city": "Město",
-    "state": "Stát",
-    "country": "Země",
-    "postalCode": "PSČ",
     "owner": "Vlastník",
     "created": "Vytvořeno"
+  },
+  "tabs": {
+    "details": "Podrobnosti",
+    "timeline": "Časová osa",
+    "files": "Soubory"
+  },
+  "sections": {
+    "basicInfo": "Základní informace",
+    "contactInfo": "Kontaktní informace",
+    "timeline": "Časová osa aktivit",
+    "files": "Soubory a dokumenty"
   },
   "types": {
     "customer": "Zákazník",
@@ -24,21 +34,8 @@
     "partner": "Partner",
     "competitor": "Konkurent"
   },
-  "modal": {
-    "createTitle": "Vytvořit nový účet",
-    "editTitle": "Upravit účet",
-    "createButton": "Vytvořit účet",
-    "saveButton": "Uložit změny"
-  },
   "placeholders": {
-    "accountName": "Acme Corporation",
-    "industry": "Technologie",
-    "revenue": "1000000",
-    "employees": "50",
-    "street": "Hlavní 123",
-    "city": "Praha",
-    "state": "Praha",
-    "country": "Česká republika",
-    "postalCode": "11000"
+    "timeline": "Časová osa aktivit bude implementována zde",
+    "files": "Správa souborů bude implementována zde"
   }
 }

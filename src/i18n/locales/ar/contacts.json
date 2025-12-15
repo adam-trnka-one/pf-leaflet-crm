@@ -1,1 +1,35 @@
-{ "title": "جهات الاتصال", "subtitle": "إدارة جهات اتصالك", "newContact": "جهة اتصال جديدة", "searchPlaceholder": "بحث...", "noResults": "لا توجد نتائج.", "fields": { "firstName": "الاسم الأول", "lastName": "اسم العائلة", "email": "البريد الإلكتروني", "phone": "الهاتف", "title": "المسمى الوظيفي", "account": "الحساب", "owner": "المالك", "created": "تم الإنشاء" }, "modal": { "createTitle": "إنشاء جهة اتصال", "editTitle": "تعديل جهة اتصال", "createButton": "إنشاء", "saveButton": "حفظ" }, "placeholders": { "firstName": "أحمد", "lastName": "محمد", "email": "ahmed@example.com", "phone": "+966 50 000 0000", "title": "مدير عام" } }
+{
+  "title": "جهات الاتصال",
+  "subtitle": "إدارة علاقات جهات الاتصال",
+  "newContact": "جهة اتصال جديدة",
+  "createNew": "إنشاء جهة اتصال جديدة",
+  "edit": "تعديل جهة الاتصال",
+  "searchPlaceholder": "البحث في جهات الاتصال...",
+  "noResults": "لم يتم العثور على جهات اتصال تطابق بحثك.",
+  "notFound": "جهة الاتصال غير موجودة",
+  "backToList": "العودة إلى جهات الاتصال",
+  "columns": {
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "title": "المسمى الوظيفي",
+    "account": "الحساب",
+    "owner": "المالك",
+    "created": "تاريخ الإنشاء"
+  },
+  "tabs": {
+    "details": "التفاصيل",
+    "timeline": "الجدول الزمني",
+    "files": "الملفات"
+  },
+  "sections": {
+    "contactInfo": "معلومات الاتصال",
+    "timeline": "الجدول الزمني للنشاط",
+    "files": "الملفات والمستندات"
+  },
+  "placeholders": {
+    "timeline": "سيتم تنفيذ الجدول الزمني للنشاط هنا",
+    "files": "سيتم تنفيذ إدارة الملفات هنا"
+  }
+}

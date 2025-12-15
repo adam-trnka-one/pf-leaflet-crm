@@ -2,9 +2,13 @@
   "title": "Contacts",
   "subtitle": "Manage your contact relationships",
   "newContact": "New Contact",
+  "createNew": "Create New Contact",
+  "edit": "Edit Contact",
   "searchPlaceholder": "Search contacts...",
   "noResults": "No contacts found matching your search.",
-  "fields": {
+  "notFound": "Contact not found",
+  "backToList": "Back to Contacts",
+  "columns": {
     "firstName": "First Name",
     "lastName": "Last Name",
     "email": "Email",
@@ -14,17 +18,18 @@
     "owner": "Owner",
     "created": "Created"
   },
-  "modal": {
-    "createTitle": "Create New Contact",
-    "editTitle": "Edit Contact",
-    "createButton": "Create Contact",
-    "saveButton": "Save Changes"
+  "tabs": {
+    "details": "Details",
+    "timeline": "Timeline",
+    "files": "Files"
+  },
+  "sections": {
+    "contactInfo": "Contact Information",
+    "timeline": "Activity Timeline",
+    "files": "Files & Documents"
   },
   "placeholders": {
-    "firstName": "John",
-    "lastName": "Doe",
-    "email": "john@example.com",
-    "phone": "+1 555-0100",
-    "title": "CEO"
+    "timeline": "Activity timeline will be implemented here",
+    "files": "File management will be implemented here"
   }
 }

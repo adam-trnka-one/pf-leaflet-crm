@@ -1,1 +1,41 @@
-{ "title": "Comptes", "subtitle": "Gérez vos comptes", "newAccount": "Nouveau Compte", "searchPlaceholder": "Rechercher...", "noResults": "Aucun résultat.", "fields": { "accountName": "Nom", "accountType": "Type", "industry": "Secteur", "annualRevenue": "Revenus", "employees": "Employés", "streetAddress": "Adresse", "city": "Ville", "state": "État", "country": "Pays", "postalCode": "Code Postal", "owner": "Propriétaire", "created": "Créé" }, "types": { "customer": "Client", "prospect": "Prospect", "partner": "Partenaire", "competitor": "Concurrent" }, "modal": { "createTitle": "Créer Compte", "editTitle": "Modifier Compte", "createButton": "Créer", "saveButton": "Enregistrer" }, "placeholders": { "accountName": "Acme Corp", "industry": "Technologie", "revenue": "1000000", "employees": "50", "street": "123 Rue Principale", "city": "Paris", "state": "Île-de-France", "country": "France", "postalCode": "75001" } }
+{
+  "title": "Comptes",
+  "subtitle": "Gérez vos comptes clients",
+  "newAccount": "Nouveau compte",
+  "createNew": "Créer un nouveau compte",
+  "edit": "Modifier le compte",
+  "searchPlaceholder": "Rechercher des comptes...",
+  "noResults": "Aucun compte trouvé correspondant à votre recherche.",
+  "notFound": "Compte non trouvé",
+  "backToList": "Retour aux comptes",
+  "columns": {
+    "name": "Nom du compte",
+    "type": "Type",
+    "industry": "Secteur",
+    "revenue": "Chiffre d'affaires annuel",
+    "employees": "Employés",
+    "owner": "Propriétaire",
+    "created": "Créé"
+  },
+  "tabs": {
+    "details": "Détails",
+    "timeline": "Chronologie",
+    "files": "Fichiers"
+  },
+  "sections": {
+    "basicInfo": "Informations de base",
+    "contactInfo": "Coordonnées",
+    "timeline": "Chronologie des activités",
+    "files": "Fichiers et documents"
+  },
+  "types": {
+    "customer": "Client",
+    "prospect": "Prospect",
+    "partner": "Partenaire",
+    "competitor": "Concurrent"
+  },
+  "placeholders": {
+    "timeline": "La chronologie des activités sera implémentée ici",
+    "files": "La gestion des fichiers sera implémentée ici"
+  }
+}

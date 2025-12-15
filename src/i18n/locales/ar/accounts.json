@@ -1,1 +1,41 @@
-{ "title": "الحسابات", "subtitle": "إدارة حساباتك", "newAccount": "حساب جديد", "searchPlaceholder": "بحث...", "noResults": "لا توجد نتائج.", "fields": { "accountName": "اسم الحساب", "accountType": "نوع الحساب", "industry": "القطاع", "annualRevenue": "الإيرادات السنوية", "employees": "الموظفون", "streetAddress": "العنوان", "city": "المدينة", "state": "المنطقة", "country": "الدولة", "postalCode": "الرمز البريدي", "owner": "المالك", "created": "تم الإنشاء" }, "types": { "customer": "عميل", "prospect": "محتمل", "partner": "شريك", "competitor": "منافس" }, "modal": { "createTitle": "إنشاء حساب", "editTitle": "تعديل حساب", "createButton": "إنشاء", "saveButton": "حفظ" }, "placeholders": { "accountName": "شركة أكمي", "industry": "تكنولوجيا", "revenue": "1000000", "employees": "50", "street": "شارع الرئيسي 123", "city": "الرياض", "state": "الرياض", "country": "السعودية", "postalCode": "11564" } }
+{
+  "title": "الحسابات",
+  "subtitle": "إدارة حسابات العملاء",
+  "newAccount": "حساب جديد",
+  "createNew": "إنشاء حساب جديد",
+  "edit": "تعديل الحساب",
+  "searchPlaceholder": "البحث في الحسابات...",
+  "noResults": "لم يتم العثور على حسابات تطابق بحثك.",
+  "notFound": "الحساب غير موجود",
+  "backToList": "العودة إلى الحسابات",
+  "columns": {
+    "name": "اسم الحساب",
+    "type": "النوع",
+    "industry": "القطاع",
+    "revenue": "الإيرادات السنوية",
+    "employees": "الموظفون",
+    "owner": "المالك",
+    "created": "تاريخ الإنشاء"
+  },
+  "tabs": {
+    "details": "التفاصيل",
+    "timeline": "الجدول الزمني",
+    "files": "الملفات"
+  },
+  "sections": {
+    "basicInfo": "المعلومات الأساسية",
+    "contactInfo": "معلومات الاتصال",
+    "timeline": "الجدول الزمني للنشاط",
+    "files": "الملفات والمستندات"
+  },
+  "types": {
+    "customer": "عميل",
+    "prospect": "عميل محتمل",
+    "partner": "شريك",
+    "competitor": "منافس"
+  },
+  "placeholders": {
+    "timeline": "سيتم تنفيذ الجدول الزمني للنشاط هنا",
+    "files": "سيتم تنفيذ إدارة الملفات هنا"
+  }
+}

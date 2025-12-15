@@ -1,1 +1,35 @@
-{ "title": "Contacts", "subtitle": "Gérez vos contacts", "newContact": "Nouveau Contact", "searchPlaceholder": "Rechercher...", "noResults": "Aucun résultat.", "fields": { "firstName": "Prénom", "lastName": "Nom", "email": "Email", "phone": "Téléphone", "title": "Titre", "account": "Compte", "owner": "Propriétaire", "created": "Créé" }, "modal": { "createTitle": "Créer Contact", "editTitle": "Modifier Contact", "createButton": "Créer", "saveButton": "Enregistrer" }, "placeholders": { "firstName": "Jean", "lastName": "Dupont", "email": "jean@exemple.fr", "phone": "+33 6 00 00 00 00", "title": "Directeur" } }
+{
+  "title": "Contacts",
+  "subtitle": "Gérez vos relations de contact",
+  "newContact": "Nouveau contact",
+  "createNew": "Créer un nouveau contact",
+  "edit": "Modifier le contact",
+  "searchPlaceholder": "Rechercher des contacts...",
+  "noResults": "Aucun contact trouvé correspondant à votre recherche.",
+  "notFound": "Contact non trouvé",
+  "backToList": "Retour aux contacts",
+  "columns": {
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "title": "Titre",
+    "account": "Compte",
+    "owner": "Propriétaire",
+    "created": "Créé"
+  },
+  "tabs": {
+    "details": "Détails",
+    "timeline": "Chronologie",
+    "files": "Fichiers"
+  },
+  "sections": {
+    "contactInfo": "Coordonnées",
+    "timeline": "Chronologie des activités",
+    "files": "Fichiers et documents"
+  },
+  "placeholders": {
+    "timeline": "La chronologie des activités sera implémentée ici",
+    "files": "La gestion des fichiers sera implémentée ici"
+  }
+}
