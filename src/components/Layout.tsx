@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useProductFruits } from "@/hooks/useProductFruits";
 import { useLanguageSync } from "@/hooks/useLanguageSync";
 import { useWorkspaceForm } from "@/hooks/useWorkspaceForm";
+import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useRef, useEffect, useState } from "react";
 import { RTL_LANGUAGES } from "@/i18n";
 const LayoutContent = () => {
@@ -18,7 +19,8 @@ const LayoutContent = () => {
   const [unreadCount, setUnreadCount] = useState(0);
   const [isInitiating, setIsInitiating] = useState(false);
   const { t } = useTranslation('navigation');
-  const { localWorkspaceData, setLocalWorkspaceData, handleSaveWorkspaceData, handleInitiateProductFruits } = useWorkspaceForm();
+  const { localWorkspaceData, setLocalWorkspaceData, handleInitiateProductFruits } = useWorkspaceForm();
+  const { updateWorkspaceData } = useWorkspace();
   
   // Sync language with workspace settings
   useLanguageSync();
@@ -27,9 +29,8 @@ const LayoutContent = () => {
     setLocalWorkspaceData(prev => ({ ...prev, languageCode: value }));
     setIsInitiating(true);
     try {
-      // Small delay to allow state update
-      await new Promise(resolve => setTimeout(resolve, 100));
-      handleSaveWorkspaceData();
+      // Update workspace context directly with new language
+      updateWorkspaceData({ languageCode: value });
       await handleInitiateProductFruits();
     } catch (error) {
       console.error('Error in save and initiate:', error);
