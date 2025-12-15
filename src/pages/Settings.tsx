@@ -1,9 +1,9 @@
-
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { User, Key, Shield, Bell, Plug, Building } from "lucide-react";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useTranslation } from "react-i18next";
 import { WorkspaceTab } from "@/components/settings/WorkspaceTab";
 import { ProfileTab } from "@/components/settings/ProfileTab";
 import { ApiTab } from "@/components/settings/ApiTab";
@@ -14,6 +14,7 @@ import { DataDisplayModal } from "@/components/settings/modals/DataDisplayModal"
 import { UpgradeModal } from "@/components/settings/modals/UpgradeModal";
 
 const Settings = () => {
+  const { t } = useTranslation('settings');
   const [isDataModalOpen, setIsDataModalOpen] = useState(false);
   const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
   const [selectedIntegration, setSelectedIntegration] = useState('');
@@ -22,12 +23,12 @@ const Settings = () => {
   const isMobile = useIsMobile();
 
   const tabOptions = [
-    { value: 'profile', label: 'Profile', icon: User },
-    { value: 'workspace', label: 'Workspace', icon: Building },
-    { value: 'api', label: 'API Keys', icon: Key },
-    { value: 'permissions', label: 'Permissions', icon: Shield },
-    { value: 'integrations', label: 'Integrations', icon: Plug },
-    { value: 'notifications', label: 'Notifications', icon: Bell },
+    { value: 'profile', label: t('tabs.profile'), icon: User },
+    { value: 'workspace', label: t('tabs.workspace'), icon: Building },
+    { value: 'api', label: t('tabs.api'), icon: Key },
+    { value: 'permissions', label: t('tabs.permissions'), icon: Shield },
+    { value: 'integrations', label: t('tabs.integrations'), icon: Plug },
+    { value: 'notifications', label: t('tabs.notifications'), icon: Bell },
   ];
 
   const getCurrentTabLabel = () => {
@@ -54,8 +55,8 @@ const Settings = () => {
     <>
       <div className="p-4 md:p-8 bg-slate-50 min-h-screen" data-testid="settings-main-container">
         <div className="mb-6 md:mb-8" data-testid="settings-header-section">
-          <h1 className="text-2xl md:text-3xl font-bold text-slate-800" data-testid="settings-page-title">Settings</h1>
-          <p className="text-slate-600 mt-1 md:mt-2 text-sm md:text-base" data-testid="settings-page-subtitle">Manage your account and application settings</p>
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-800" data-testid="settings-page-title">{t('title')}</h1>
+          <p className="text-slate-600 mt-1 md:mt-2 text-sm md:text-base" data-testid="settings-page-subtitle">{t('subtitle')}</p>
         </div>
 
         {isMobile ? (

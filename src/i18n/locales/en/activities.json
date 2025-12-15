@@ -1,9 +1,11 @@
 {
   "title": "Activities",
-  "subtitle": "Manage your tasks and activities",
+  "subtitle": "Track and manage your activities",
   "newActivity": "New Activity",
   "searchPlaceholder": "Search activities...",
   "noResults": "No activities found.",
+  "completed": "Completed",
+  "pending": "Pending",
   "fields": {
     "subject": "Subject",
     "type": "Type",
@@ -37,5 +39,8 @@
     "editTitle": "Edit Activity",
     "createButton": "Create Activity",
     "saveButton": "Save Changes"
+  },
+  "messages": {
+    "deleted": "The activity has been successfully deleted."
   }
 }

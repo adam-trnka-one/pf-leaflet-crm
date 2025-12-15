@@ -1,9 +1,11 @@
 {
   "title": "Opportunities",
-  "subtitle": "Manage your sales opportunities",
+  "subtitle": "Manage your sales pipeline",
   "newOpportunity": "New Opportunity",
   "searchPlaceholder": "Search opportunities...",
   "noResults": "No opportunities found.",
+  "noOpportunitiesInStage": "No opportunities in this stage",
+  "close": "Close",
   "fields": {
     "opportunityName": "Opportunity Name",
     "account": "Account",
@@ -19,6 +21,8 @@
     "qualification": "Qualification",
     "proposal": "Proposal",
     "negotiation": "Negotiation",
+    "demo": "Demo",
+    "followUp": "Follow-up",
     "closedWon": "Closed Won",
     "closedLost": "Closed Lost"
   },

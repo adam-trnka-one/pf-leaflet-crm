@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { getSampleData, resetDatabase, type Lead } from "@/utils/sampleData";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,8 +7,10 @@ import { Plus, UserPlus, Mail, Phone, Building, Edit, Trash2 } from "lucide-reac
 import NewLeadModal from "@/components/modals/NewLeadModal";
 import EditLeadModal from "@/components/modals/EditLeadModal";
 import { toast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 const Leads = () => {
+  const { t } = useTranslation(['leads', 'common']);
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -57,8 +58,8 @@ const Leads = () => {
     localStorage.setItem('crmLeads', JSON.stringify(updatedLeads));
     loadLeads();
     toast({
-      title: "Lead deleted",
-      description: "The lead has been successfully deleted."
+      title: t('common:deleted'),
+      description: t('leads:messages.deleted')
     });
   };
 
@@ -101,8 +102,8 @@ const Leads = () => {
       {/* Header */}
       <div className="flex justify-between items-start mb-8" data-testid="leads-header-section">
         <div data-testid="leads-header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-testid="leads-page-title">Leads</h1>
-          <p className="text-slate-600 mt-2" data-testid="leads-page-subtitle">Manage your sales leads</p>
+          <h1 className="text-3xl font-bold text-slate-800" data-testid="leads-page-title">{t('leads:title')}</h1>
+          <p className="text-slate-600 mt-2" data-testid="leads-page-subtitle">{t('leads:subtitle')}</p>
         </div>
         <Button 
           className="bg-emerald-600 hover:bg-emerald-700"
@@ -110,7 +111,7 @@ const Leads = () => {
           data-testid="leads-new-lead-button"
         >
           <Plus className="h-4 w-4 mr-2" data-testid="leads-new-lead-icon" />
-          <span data-testid="leads-new-lead-text">New Lead</span>
+          <span data-testid="leads-new-lead-text">{t('leads:newLead')}</span>
         </Button>
       </div>
 
@@ -158,24 +159,24 @@ const Leads = () => {
               </div>
 
               <div className="text-sm text-slate-600" data-testid="leads-source-row">
-                <span className="font-medium" data-testid="leads-source-label">Source:</span> 
+                <span className="font-medium" data-testid="leads-source-label">{t('leads:fields.source')}:</span> 
                 <span data-testid="leads-source-value">{lead.source}</span>
               </div>
 
               <div className="pt-2 border-t border-slate-100" data-testid="leads-metadata-section">
                 <div className="text-xs text-slate-500" data-testid="leads-owner-row">
-                  <span data-testid="leads-owner-label">Owner: </span>
+                  <span data-testid="leads-owner-label">{t('common:owner')}: </span>
                   <span data-testid="leads-owner-value">{lead.owner}</span>
                 </div>
                 <div className="text-xs text-slate-500" data-testid="leads-created-row">
-                  <span data-testid="leads-created-label">Created: </span>
+                  <span data-testid="leads-created-label">{t('common:created')}: </span>
                   <span data-testid="leads-created-value">{lead.createdAt.toLocaleDateString()}</span>
                 </div>
               </div>
 
               <div className="pt-2 space-y-2" data-testid="leads-actions-section">
                 <Button size="sm" className="w-full" data-testid="leads-convert-button">
-                  <span data-testid="leads-convert-text">Convert Lead</span>
+                  <span data-testid="leads-convert-text">{t('leads:convertLead')}</span>
                 </Button>
                 <div className="flex space-x-2" data-testid="leads-edit-delete-row">
                   <Button
@@ -186,7 +187,7 @@ const Leads = () => {
                     data-testid="leads-edit-button"
                   >
                     <Edit className="h-4 w-4 mr-1" data-testid="leads-edit-icon" />
-                    <span data-testid="leads-edit-text">Edit</span>
+                    <span data-testid="leads-edit-text">{t('common:edit')}</span>
                   </Button>
                   <Button
                     variant="outline"
@@ -206,7 +207,7 @@ const Leads = () => {
 
       {leads.length === 0 && (
         <div className="text-center py-12" data-testid="leads-empty-state">
-          <p className="text-slate-500" data-testid="leads-empty-message">No leads found.</p>
+          <p className="text-slate-500" data-testid="leads-empty-message">{t('leads:noResults')}</p>
         </div>
       )}
 
