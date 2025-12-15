@@ -32,22 +32,27 @@ export const useProductFruits = () => {
   });
 
   useEffect(() => {
-    // Only initialize ProductFruits on dashboard pages
-    if (location.pathname.startsWith('/dashboard')) {
+    // Only initialize ProductFruits on dashboard pages and only once
+    if (location.pathname.startsWith('/dashboard') && !hasInitialized.current) {
       initializeFromStorage();
     }
   }, [location.pathname]);
 
   const initializeFromStorage = () => {
+    // Prevent multiple calls
+    if (hasInitialized.current || isInitializing.current) {
+      return;
+    }
+    
     try {
       const savedData = localStorage.getItem(STORAGE_KEY);
       if (savedData) {
         const workspaceData = JSON.parse(savedData);
         
         if (workspaceData.workspaceCode && workspaceData.username) {
+          hasInitialized.current = true;
           initializeProductFruits(workspaceData);
           initializedWorkspaceCode.current = workspaceData.workspaceCode;
-          hasInitialized.current = true;
         }
       }
     } catch (error) {
@@ -78,14 +83,14 @@ export const useProductFruits = () => {
     return 'en';
   };
 
-  const initializeProductFruits = useCallback(async (workspaceData?: any) => {
+  const initializeProductFruits = useCallback(async (workspaceData?: any, forceReinit = false) => {
     // Prevent concurrent initializations
     if (isInitializing.current) {
       console.log('ProductFruits initialization already in progress, skipping');
       return;
     }
+    
     isInitializing.current = true;
-
     setState(prev => ({ ...prev, status: 'loading', error: null }));
 
     let dataToUse = workspaceData;
@@ -115,32 +120,31 @@ export const useProductFruits = () => {
     // Get current language
     const languageCode = getLanguageCode();
 
-    // Clean up existing ProductFruits instance
-    if ((window as any).$productFruits) {
+    // Clean up existing ProductFruits instance thoroughly
+    const existingPF = (window as any).$productFruits;
+    if (existingPF && typeof existingPF.push === 'function') {
       try {
-        (window as any).$productFruits.push(['destroy']);
+        existingPF.push(['destroy']);
         console.log('ProductFruits destroyed before reinitialization');
+        // Wait for destroy to complete
+        await new Promise(resolve => setTimeout(resolve, 200));
       } catch (e) {
         console.log('ProductFruits destroy failed:', e);
       }
     }
     
-    // Clear globals
+    // Clear all ProductFruits globals
     delete (window as any).$productFruits;
     delete (window as any).productFruits;
+    delete (window as any).productFruitsInit;
+    delete (window as any).productFruitsInit2;
 
-    // Small delay to ensure cleanup is complete
-    await new Promise(resolve => setTimeout(resolve, 100));
-
-    // Remove existing ProductFruits scripts including the static one from index.html
-    const existingScripts = document.querySelectorAll('script[src*="productfruits"], script[src*="pf.dev"], script[src*="/static/script.js"], script[data-productfruits-init]');
+    // Remove ALL existing ProductFruits scripts
+    const existingScripts = document.querySelectorAll('script[src*="productfruits"], script[src*="pf.dev"], script[data-productfruits-init]');
     existingScripts.forEach(script => script.remove());
     
-    // Also remove the static ProductFruits script from index.html if it exists
-    const staticScript = document.querySelector('script[src="https://app.productfruits.com/static/script.js"]');
-    if (staticScript) {
-      staticScript.remove();
-    }
+    // Wait a bit more after removing scripts
+    await new Promise(resolve => setTimeout(resolve, 100));
 
     // Build props object from custom properties
     const props: Record<string, string> = {};
