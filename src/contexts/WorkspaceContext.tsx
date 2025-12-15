@@ -11,6 +11,7 @@ interface WorkspaceData {
   customProperties: { name: string; value: string }[];
   selectedWorkspace?: string;
   customUrl?: string;
+  languageCode: string;
 }
 
 interface WorkspaceContextType {
@@ -30,7 +31,8 @@ const defaultWorkspaceData: WorkspaceData = {
   lastName: 'Doe',
   role: 'Admin',
   customProperties: [],
-  selectedWorkspace: 'jess'
+  selectedWorkspace: 'jess',
+  languageCode: 'en'
 };
 
 export const useWorkspace = () => {

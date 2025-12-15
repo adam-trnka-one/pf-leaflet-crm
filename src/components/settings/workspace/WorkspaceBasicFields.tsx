@@ -12,9 +12,20 @@ interface WorkspaceBasicFieldsProps {
     role: string;
     selectedWorkspace?: string;
     customUrl?: string;
+    languageCode: string;
   };
   setLocalWorkspaceData: (updater: (prev: any) => any) => void;
 }
+
+const languageOptions = [
+  { name: "English", code: "en" },
+  { name: "Czech", code: "cs" },
+  { name: "Portuguese", code: "pt" },
+  { name: "Spanish", code: "es" },
+  { name: "French", code: "fr" },
+  { name: "German", code: "de" },
+  { name: "Arabic", code: "ar" }
+];
 
 const workspaceOptions = [
   {
@@ -232,6 +243,27 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
           onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, role: e.target.value }))}
           data-testid="workspace-role-input"
         />
+      </div>
+
+      <div data-testid="workspace-language-field">
+        <Label htmlFor="languageCode" className="text-sm font-medium text-slate-700" data-testid="workspace-language-label">
+          Language Code
+        </Label>
+        <Select 
+          value={localWorkspaceData.languageCode || "en"} 
+          onValueChange={(value) => setLocalWorkspaceData(prev => ({ ...prev, languageCode: value }))}
+        >
+          <SelectTrigger className="mt-1" data-testid="workspace-language-trigger">
+            <SelectValue placeholder="Select language" />
+          </SelectTrigger>
+          <SelectContent data-testid="workspace-language-content">
+            {languageOptions.map((option) => (
+              <SelectItem key={option.code} value={option.code} data-testid={`language-option-${option.code}`}>
+                {option.name} ({option.code})
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
     </>
   );
