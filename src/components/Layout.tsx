@@ -2,23 +2,43 @@ import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search, Newspaper } from "lucide-react";
+import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search, Newspaper, Play, Loader2 } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset, useSidebar } from "@/components/ui/sidebar";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useProductFruits } from "@/hooks/useProductFruits";
 import { useLanguageSync } from "@/hooks/useLanguageSync";
+import { useWorkspaceForm } from "@/hooks/useWorkspaceForm";
 import { useRef, useEffect, useState } from "react";
 import { RTL_LANGUAGES } from "@/i18n";
-
 const LayoutContent = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { isMobile, setOpenMobile } = useSidebar();
   const newsfeedRef = useRef<HTMLButtonElement>(null);
   const [unreadCount, setUnreadCount] = useState(0);
+  const [isInitiating, setIsInitiating] = useState(false);
   const { t } = useTranslation('navigation');
+  const { localWorkspaceData, setLocalWorkspaceData, handleSaveWorkspaceData, handleInitiateProductFruits } = useWorkspaceForm();
   
   // Sync language with workspace settings
   useLanguageSync();
+
+  const handleSaveAndInitiate = async () => {
+    setIsInitiating(true);
+    try {
+      handleSaveWorkspaceData();
+      await handleInitiateProductFruits();
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    } catch (error) {
+      console.error('Error in save and initiate:', error);
+    } finally {
+      setIsInitiating(false);
+    }
+  };
+
+  const handleLanguageChange = (value: string) => {
+    setLocalWorkspaceData(prev => ({ ...prev, languageCode: value }));
+  };
 
   const navigation = [
     { name: t('items.dashboard'), href: "/dashboard", icon: LayoutDashboard },
@@ -131,6 +151,38 @@ const LayoutContent = () => {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 rtl:left-auto rtl:right-3" />
                 <Input placeholder={t('header.searchPlaceholder')} className="pl-10 rtl:pl-3 rtl:pr-10 bg-slate-50 border-slate-200 focus:bg-white" />
               </div>
+              
+              {/* Language Dropdown */}
+              <Select value={localWorkspaceData.languageCode} onValueChange={handleLanguageChange}>
+                <SelectTrigger className="w-20 h-8 bg-white">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-white z-50">
+                  <SelectItem value="en">EN</SelectItem>
+                  <SelectItem value="cs">CS</SelectItem>
+                  <SelectItem value="de">DE</SelectItem>
+                  <SelectItem value="fr">FR</SelectItem>
+                  <SelectItem value="es">ES</SelectItem>
+                  <SelectItem value="pt">PT</SelectItem>
+                  <SelectItem value="ar">AR</SelectItem>
+                </SelectContent>
+              </Select>
+
+              {/* Save & Initiate PF Button */}
+              <Button 
+                size="icon"
+                onClick={handleSaveAndInitiate}
+                disabled={isInitiating}
+                className="h-8 w-8 bg-emerald-600 hover:bg-emerald-700"
+                title="Save & Initiate PF"
+              >
+                {isInitiating ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Play className="h-4 w-4" />
+                )}
+              </Button>
+
               <Button 
                 ref={newsfeedRef}
                 variant="ghost" 
