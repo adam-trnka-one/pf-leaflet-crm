@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { WorkspaceProvider } from "@/contexts/WorkspaceContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useState, useEffect } from "react";
+import '@/i18n';
+import RTLProvider from "@/components/RTLProvider";
 import Layout from "./components/Layout";
 import Hero from "./pages/Hero";
 import Help from "./pages/Help";
@@ -65,38 +67,40 @@ const MobileRedirect = ({ children }: { children: React.ReactNode }) => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<MobileRedirect><Hero /></MobileRedirect>} />
-          <Route path="/products" element={<MobileRedirect><PublicProducts /></MobileRedirect>} />
-          <Route path="/help" element={<Help />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogArticle />} />
-          <Route path="/login" element={<WorkspaceProvider><Login /></WorkspaceProvider>} />
-          <Route path="/dashboard" element={
-            <WorkspaceProvider>
-              <Layout />
-            </WorkspaceProvider>
-          }>
-            <Route index element={<Dashboard />} />
-            <Route path="accounts" element={<Accounts />} />
-            <Route path="accounts/:id" element={<AccountDetail />} />
-            <Route path="contacts" element={<Contacts />} />
-            <Route path="contacts/:id" element={<ContactDetail />} />
-            <Route path="leads" element={<Leads />} />
-            <Route path="opportunities" element={<Opportunities />} />
-            <Route path="activities" element={<Activities />} />
-            <Route path="cases" element={<Cases />} />
-            <Route path="users" element={<Users />} />
-            <Route path="products" element={<Products />} />
-            <Route path="quotes" element={<Quotes />} />
-            <Route path="settings" element={<Settings />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <RTLProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<MobileRedirect><Hero /></MobileRedirect>} />
+            <Route path="/products" element={<MobileRedirect><PublicProducts /></MobileRedirect>} />
+            <Route path="/help" element={<Help />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogArticle />} />
+            <Route path="/login" element={<WorkspaceProvider><Login /></WorkspaceProvider>} />
+            <Route path="/dashboard" element={
+              <WorkspaceProvider>
+                <Layout />
+              </WorkspaceProvider>
+            }>
+              <Route index element={<Dashboard />} />
+              <Route path="accounts" element={<Accounts />} />
+              <Route path="accounts/:id" element={<AccountDetail />} />
+              <Route path="contacts" element={<Contacts />} />
+              <Route path="contacts/:id" element={<ContactDetail />} />
+              <Route path="leads" element={<Leads />} />
+              <Route path="opportunities" element={<Opportunities />} />
+              <Route path="activities" element={<Activities />} />
+              <Route path="cases" element={<Cases />} />
+              <Route path="users" element={<Users />} />
+              <Route path="products" element={<Products />} />
+              <Route path="quotes" element={<Quotes />} />
+              <Route path="settings" element={<Settings />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </RTLProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
