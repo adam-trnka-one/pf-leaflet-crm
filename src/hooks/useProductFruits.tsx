@@ -111,9 +111,11 @@ export const useProductFruits = () => {
       ...(Object.keys(props).length > 0 && { props })
     };
 
+    const languageCode = dataToUse.languageCode || 'en';
+    
     script.innerHTML = `
       if (window.$productFruits) {
-        window.$productFruits.push(['init', '${dataToUse.workspaceCode}', 'en', ${JSON.stringify(initData)}]);
+        window.$productFruits.push(['init', '${dataToUse.workspaceCode}', '${languageCode}', ${JSON.stringify(initData)}]);
       }
     `;
 

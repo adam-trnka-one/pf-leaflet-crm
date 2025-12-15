@@ -17,7 +17,8 @@ export const useWorkspaceForm = () => {
     role: '',
     customProperties: [],
     selectedWorkspace: 'jess',
-    customUrl: ''
+    customUrl: '',
+    languageCode: 'en'
   });
   const [customProperties, setCustomProperties] = useState<{ name: string; value: string }[]>([]);
 
@@ -32,7 +33,8 @@ export const useWorkspaceForm = () => {
       role: workspaceData.role,
       customProperties: workspaceData.customProperties,
       selectedWorkspace: workspaceData.selectedWorkspace || 'jess',
-      customUrl: workspaceData.customUrl || ''
+      customUrl: workspaceData.customUrl || '',
+      languageCode: workspaceData.languageCode || 'en'
     });
     setCustomProperties(workspaceData.customProperties);
   }, [workspaceData]);
@@ -153,7 +155,8 @@ export const useWorkspaceForm = () => {
       lastName: 'Doe',
       role: 'Admin',
       customProperties: [],
-      selectedWorkspace: 'jess'
+      selectedWorkspace: 'jess',
+      languageCode: 'en'
     };
 
     // Update the context with default data
