@@ -60,23 +60,24 @@ export const WorkspaceActions = ({
     setIsDataModalOpen(true);
   };
 
-  const handleInitiateWithLoading = async () => {
-    console.log('Starting initiation process...');
+  const handleSaveAndInitiate = async () => {
+    console.log('Starting save and initiation process...');
     setIsInitiating(true);
-    console.log('Loading state set to true');
     
     try {
+      // First save workspace data
+      console.log('Saving workspace data...');
+      handleSaveWorkspaceData();
+      
+      // Then initiate ProductFruits
       console.log('Calling handleInitiateProductFruits...');
       await handleInitiateProductFruits();
       console.log('handleInitiateProductFruits completed');
       
-    console.log('Adding delay...');
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log('Delay completed, staying on current page...');
+      await new Promise(resolve => setTimeout(resolve, 1000));
     } catch (error) {
-      console.error('Error initiating ProductFruits:', error);
+      console.error('Error in save and initiate:', error);
     } finally {
-      console.log('Setting loading state to false');
       setIsInitiating(false);
     }
   };
@@ -107,27 +108,19 @@ export const WorkspaceActions = ({
         </div>
         <div className="flex flex-col sm:flex-row gap-2 md:gap-3" data-testid="workspace-primary-actions">
           <Button 
-            variant="outline"
-            className="bg-green-600 hover:bg-green-700 text-white border-green-600 disabled:opacity-50 w-full sm:w-auto"
-            onClick={handleInitiateWithLoading}
+            className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 w-full sm:w-auto"
+            onClick={handleSaveAndInitiate}
             disabled={isInitiating}
-            data-testid="workspace-initiate-productfruits-button"
+            data-testid="workspace-save-initiate-button"
           >
             {isInitiating ? (
-              <Loader2 className="h-4 w-4 mr-2 animate-spin" data-testid="workspace-initiate-productfruits-loader" />
+              <Loader2 className="h-4 w-4 mr-2 animate-spin" data-testid="workspace-save-initiate-loader" />
             ) : (
-              <Play className="h-4 w-4 mr-2" data-testid="workspace-initiate-productfruits-icon" />
+              <Play className="h-4 w-4 mr-2" data-testid="workspace-save-initiate-icon" />
             )}
-            <span data-testid="workspace-initiate-productfruits-text">
-              {isInitiating ? 'Initiating...' : t('workspace.initiateButton')}
+            <span data-testid="workspace-save-initiate-text">
+              {isInitiating ? 'Saving & Initiating...' : t('workspace.initiateButton')}
             </span>
-          </Button>
-          <Button 
-            className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto"
-            onClick={handleSaveWorkspaceData}
-            data-testid="workspace-save-workspace-button"
-          >
-            <span data-testid="workspace-save-workspace-text">{t('workspace.saveButton')}</span>
           </Button>
         </div>
       </div>
