@@ -1,4 +1,4 @@
-
+import { useTranslation } from "react-i18next";
 import { Card, CardContent } from "@/components/ui/card";
 import { DollarSign, Users, Target } from "lucide-react";
 
@@ -10,13 +10,15 @@ interface MetricsCardsProps {
 }
 
 const MetricsCards = ({ totalRevenue, totalAccounts, totalContacts, openOpportunities }: MetricsCardsProps) => {
+  const { t } = useTranslation('dashboard');
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-testid="metrics-cards-grid">
       <Card className="bg-white shadow-sm" data-testid="metrics-revenue-card">
         <CardContent className="p-6" data-testid="metrics-revenue-content">
           <div className="flex items-center justify-between" data-testid="metrics-revenue-layout">
             <div data-testid="metrics-revenue-info">
-              <p className="text-sm font-medium text-slate-600" data-testid="metrics-revenue-label">Total Revenue</p>
+              <p className="text-sm font-medium text-slate-600" data-testid="metrics-revenue-label">{t('metrics.totalRevenue')}</p>
               <p className="text-2xl font-bold text-slate-800" data-testid="metrics-revenue-value">${totalRevenue.toLocaleString()}</p>
             </div>
             <div className="h-12 w-12 bg-emerald-100 rounded-lg flex items-center justify-center" data-testid="metrics-revenue-icon-container">
@@ -30,7 +32,7 @@ const MetricsCards = ({ totalRevenue, totalAccounts, totalContacts, openOpportun
         <CardContent className="p-6" data-testid="metrics-accounts-content">
           <div className="flex items-center justify-between" data-testid="metrics-accounts-layout">
             <div data-testid="metrics-accounts-info">
-              <p className="text-sm font-medium text-slate-600" data-testid="metrics-accounts-label">Total Accounts</p>
+              <p className="text-sm font-medium text-slate-600" data-testid="metrics-accounts-label">{t('metrics.totalAccounts')}</p>
               <p className="text-2xl font-bold text-slate-800" data-testid="metrics-accounts-value">{totalAccounts}</p>
             </div>
             <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center" data-testid="metrics-accounts-icon-container">
@@ -44,7 +46,7 @@ const MetricsCards = ({ totalRevenue, totalAccounts, totalContacts, openOpportun
         <CardContent className="p-6" data-testid="metrics-contacts-content">
           <div className="flex items-center justify-between" data-testid="metrics-contacts-layout">
             <div data-testid="metrics-contacts-info">
-              <p className="text-sm font-medium text-slate-600" data-testid="metrics-contacts-label">Total Contacts</p>
+              <p className="text-sm font-medium text-slate-600" data-testid="metrics-contacts-label">{t('metrics.totalContacts')}</p>
               <p className="text-2xl font-bold text-slate-800" data-testid="metrics-contacts-value">{totalContacts}</p>
             </div>
             <div className="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center" data-testid="metrics-contacts-icon-container">
@@ -58,7 +60,7 @@ const MetricsCards = ({ totalRevenue, totalAccounts, totalContacts, openOpportun
         <CardContent className="p-6" data-testid="metrics-opportunities-content">
           <div className="flex items-center justify-between" data-testid="metrics-opportunities-layout">
             <div data-testid="metrics-opportunities-info">
-              <p className="text-sm font-medium text-slate-600" data-testid="metrics-opportunities-label">Open Opportunities</p>
+              <p className="text-sm font-medium text-slate-600" data-testid="metrics-opportunities-label">{t('metrics.openOpportunities')}</p>
               <p className="text-2xl font-bold text-slate-800" data-testid="metrics-opportunities-value">{openOpportunities}</p>
             </div>
             <div className="h-12 w-12 bg-orange-100 rounded-lg flex items-center justify-center" data-testid="metrics-opportunities-icon-container">

@@ -1,56 +1,12 @@
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search, Newspaper } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset, useSidebar } from "@/components/ui/sidebar";
 import { useProductFruits } from "@/hooks/useProductFruits";
+import { useLanguageSync } from "@/hooks/useLanguageSync";
 import { useRef, useEffect, useState } from "react";
-
-const navigation = [{
-  name: "Dashboard",
-  href: "/dashboard",
-  icon: LayoutDashboard
-}, {
-  name: "Accounts",
-  href: "/dashboard/accounts",
-  icon: Users
-}, {
-  name: "Contacts",
-  href: "/dashboard/contacts",
-  icon: Contact
-}, {
-  name: "Leads",
-  href: "/dashboard/leads",
-  icon: UserPlus
-}, {
-  name: "Opportunities",
-  href: "/dashboard/opportunities",
-  icon: Target
-}, {
-  name: "Activities",
-  href: "/dashboard/activities",
-  icon: Activity
-}, {
-  name: "Cases",
-  href: "/dashboard/cases",
-  icon: HelpCircle
-}, {
-  name: "Users",
-  href: "/dashboard/users",
-  icon: Users
-}, {
-  name: "Products",
-  href: "/dashboard/products",
-  icon: Package
-}, {
-  name: "Quotes",
-  href: "/dashboard/quotes",
-  icon: FileText
-}, {
-  name: "Settings",
-  href: "/dashboard/settings",
-  icon: Settings
-}];
 
 const LayoutContent = () => {
   const location = useLocation();
@@ -58,6 +14,24 @@ const LayoutContent = () => {
   const { isMobile, setOpenMobile } = useSidebar();
   const newsfeedRef = useRef<HTMLButtonElement>(null);
   const [unreadCount, setUnreadCount] = useState(0);
+  const { t } = useTranslation('navigation');
+  
+  // Sync language with workspace settings
+  useLanguageSync();
+
+  const navigation = [
+    { name: t('items.dashboard'), href: "/dashboard", icon: LayoutDashboard },
+    { name: t('items.accounts'), href: "/dashboard/accounts", icon: Users },
+    { name: t('items.contacts'), href: "/dashboard/contacts", icon: Contact },
+    { name: t('items.leads'), href: "/dashboard/leads", icon: UserPlus },
+    { name: t('items.opportunities'), href: "/dashboard/opportunities", icon: Target },
+    { name: t('items.activities'), href: "/dashboard/activities", icon: Activity },
+    { name: t('items.cases'), href: "/dashboard/cases", icon: HelpCircle },
+    { name: t('items.users'), href: "/dashboard/users", icon: Users },
+    { name: t('items.products'), href: "/dashboard/products", icon: Package },
+    { name: t('items.quotes'), href: "/dashboard/quotes", icon: FileText },
+    { name: t('items.settings'), href: "/dashboard/settings", icon: Settings }
+  ];
   
   const isActive = (href: string) => {
     if (href === "/dashboard") return location.pathname === "/dashboard";
@@ -121,7 +95,7 @@ const LayoutContent = () => {
                 <SidebarMenu className="space-y-1">
                   {navigation.map(item => {
                   const Icon = item.icon;
-                  return <SidebarMenuItem key={item.name}>
+                  return <SidebarMenuItem key={item.href}>
                         <SidebarMenuButton asChild isActive={isActive(item.href)} tooltip={item.name} className="h-11 px-4 rounded-lg text-sm font-medium">
                           <Link to={item.href} onClick={handleNavClick}>
                             <Icon className="h-5 w-5" />
@@ -150,8 +124,8 @@ const LayoutContent = () => {
             
             <div className="flex items-center gap-4 flex-1 max-w-2xl">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
-                <Input placeholder="Search accounts, contacts, opportunities..." className="pl-10 bg-slate-50 border-slate-200 focus:bg-white" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 rtl:left-auto rtl:right-3" />
+                <Input placeholder={t('header.searchPlaceholder')} className="pl-10 rtl:pl-3 rtl:pr-10 bg-slate-50 border-slate-200 focus:bg-white" />
               </div>
               <Button 
                 ref={newsfeedRef}
@@ -159,7 +133,7 @@ const LayoutContent = () => {
                 size="icon" 
                 onClick={handleNewsfeedClick}
                 className="h-8 w-8 relative"
-                title="Newsfeed"
+                title={t('header.newsfeed')}
                 id="newsfeed-launcher"
               >
                 <Newspaper className="h-4 w-4" />
@@ -174,7 +148,7 @@ const LayoutContent = () => {
                 size="icon" 
                 onClick={handleSignOut}
                 className="h-8 w-8"
-                title="Sign Out"
+                title={t('header.signOut')}
               >
                 <LogOut className="h-4 w-4" />
               </Button>
