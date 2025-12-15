@@ -1,1 +1,35 @@
-{ "title": "Kontakte", "subtitle": "Verwalten Sie Ihre Kontakte", "newContact": "Neuer Kontakt", "searchPlaceholder": "Suchen...", "noResults": "Keine Ergebnisse.", "fields": { "firstName": "Vorname", "lastName": "Nachname", "email": "E-Mail", "phone": "Telefon", "title": "Titel", "account": "Konto", "owner": "Eigentümer", "created": "Erstellt" }, "modal": { "createTitle": "Kontakt erstellen", "editTitle": "Kontakt bearbeiten", "createButton": "Erstellen", "saveButton": "Speichern" }, "placeholders": { "firstName": "Max", "lastName": "Mustermann", "email": "max@beispiel.de", "phone": "+49 30 12345678", "title": "Geschäftsführer" } }
+{
+  "title": "Kontakte",
+  "subtitle": "Verwalten Sie Ihre Kontaktbeziehungen",
+  "newContact": "Neuer Kontakt",
+  "createNew": "Neuen Kontakt erstellen",
+  "edit": "Kontakt bearbeiten",
+  "searchPlaceholder": "Kontakte suchen...",
+  "noResults": "Keine Kontakte gefunden, die Ihrer Suche entsprechen.",
+  "notFound": "Kontakt nicht gefunden",
+  "backToList": "Zurück zu Kontakten",
+  "columns": {
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "title": "Titel",
+    "account": "Konto",
+    "owner": "Besitzer",
+    "created": "Erstellt"
+  },
+  "tabs": {
+    "details": "Details",
+    "timeline": "Zeitleiste",
+    "files": "Dateien"
+  },
+  "sections": {
+    "contactInfo": "Kontaktinformationen",
+    "timeline": "Aktivitätszeitleiste",
+    "files": "Dateien und Dokumente"
+  },
+  "placeholders": {
+    "timeline": "Die Aktivitätszeitleiste wird hier implementiert",
+    "files": "Die Dateiverwaltung wird hier implementiert"
+  }
+}

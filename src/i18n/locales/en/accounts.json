@@ -2,21 +2,31 @@
   "title": "Accounts",
   "subtitle": "Manage your customer accounts",
   "newAccount": "New Account",
+  "createNew": "Create New Account",
+  "edit": "Edit Account",
   "searchPlaceholder": "Search accounts...",
   "noResults": "No accounts found matching your search.",
-  "fields": {
-    "accountName": "Account Name",
-    "accountType": "Account Type",
+  "notFound": "Account not found",
+  "backToList": "Back to Accounts",
+  "columns": {
+    "name": "Account Name",
+    "type": "Type",
     "industry": "Industry",
-    "annualRevenue": "Annual Revenue",
+    "revenue": "Annual Revenue",
     "employees": "Employees",
-    "streetAddress": "Street Address",
-    "city": "City",
-    "state": "State",
-    "country": "Country",
-    "postalCode": "Postal Code",
     "owner": "Owner",
     "created": "Created"
+  },
+  "tabs": {
+    "details": "Details",
+    "timeline": "Timeline",
+    "files": "Files"
+  },
+  "sections": {
+    "basicInfo": "Basic Information",
+    "contactInfo": "Contact Information",
+    "timeline": "Activity Timeline",
+    "files": "Files & Documents"
   },
   "types": {
     "customer": "Customer",
@@ -24,21 +34,8 @@
     "partner": "Partner",
     "competitor": "Competitor"
   },
-  "modal": {
-    "createTitle": "Create New Account",
-    "editTitle": "Edit Account",
-    "createButton": "Create Account",
-    "saveButton": "Save Changes"
-  },
   "placeholders": {
-    "accountName": "Acme Corporation",
-    "industry": "Technology",
-    "revenue": "1000000",
-    "employees": "50",
-    "street": "123 Main St",
-    "city": "New York",
-    "state": "NY",
-    "country": "USA",
-    "postalCode": "10001"
+    "timeline": "Activity timeline will be implemented here",
+    "files": "File management will be implemented here"
   }
 }

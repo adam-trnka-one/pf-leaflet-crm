@@ -2,29 +2,34 @@
   "title": "Kontakty",
   "subtitle": "Spravujte své kontaktní vztahy",
   "newContact": "Nový kontakt",
+  "createNew": "Vytvořit nový kontakt",
+  "edit": "Upravit kontakt",
   "searchPlaceholder": "Hledat kontakty...",
   "noResults": "Nebyly nalezeny žádné kontakty odpovídající vašemu hledání.",
-  "fields": {
+  "notFound": "Kontakt nenalezen",
+  "backToList": "Zpět na kontakty",
+  "columns": {
     "firstName": "Jméno",
     "lastName": "Příjmení",
-    "email": "Email",
+    "email": "E-mail",
     "phone": "Telefon",
     "title": "Pozice",
     "account": "Účet",
     "owner": "Vlastník",
     "created": "Vytvořeno"
   },
-  "modal": {
-    "createTitle": "Vytvořit nový kontakt",
-    "editTitle": "Upravit kontakt",
-    "createButton": "Vytvořit kontakt",
-    "saveButton": "Uložit změny"
+  "tabs": {
+    "details": "Podrobnosti",
+    "timeline": "Časová osa",
+    "files": "Soubory"
+  },
+  "sections": {
+    "contactInfo": "Kontaktní informace",
+    "timeline": "Časová osa aktivit",
+    "files": "Soubory a dokumenty"
   },
   "placeholders": {
-    "firstName": "Jan",
-    "lastName": "Novák",
-    "email": "jan@priklad.cz",
-    "phone": "+420 555 010 000",
-    "title": "Ředitel"
+    "timeline": "Časová osa aktivit bude implementována zde",
+    "files": "Správa souborů bude implementována zde"
   }
 }

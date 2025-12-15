@@ -1,1 +1,41 @@
-{ "title": "Konten", "subtitle": "Verwalten Sie Ihre Konten", "newAccount": "Neues Konto", "searchPlaceholder": "Suchen...", "noResults": "Keine Ergebnisse.", "fields": { "accountName": "Name", "accountType": "Typ", "industry": "Branche", "annualRevenue": "Jahresumsatz", "employees": "Mitarbeiter", "streetAddress": "Adresse", "city": "Stadt", "state": "Bundesland", "country": "Land", "postalCode": "PLZ", "owner": "Eigentümer", "created": "Erstellt" }, "types": { "customer": "Kunde", "prospect": "Interessent", "partner": "Partner", "competitor": "Wettbewerber" }, "modal": { "createTitle": "Konto erstellen", "editTitle": "Konto bearbeiten", "createButton": "Erstellen", "saveButton": "Speichern" }, "placeholders": { "accountName": "Acme GmbH", "industry": "Technologie", "revenue": "1000000", "employees": "50", "street": "Hauptstraße 123", "city": "Berlin", "state": "Berlin", "country": "Deutschland", "postalCode": "10115" } }
+{
+  "title": "Konten",
+  "subtitle": "Verwalten Sie Ihre Kundenkonten",
+  "newAccount": "Neues Konto",
+  "createNew": "Neues Konto erstellen",
+  "edit": "Konto bearbeiten",
+  "searchPlaceholder": "Konten suchen...",
+  "noResults": "Keine Konten gefunden, die Ihrer Suche entsprechen.",
+  "notFound": "Konto nicht gefunden",
+  "backToList": "Zurück zu Konten",
+  "columns": {
+    "name": "Kontoname",
+    "type": "Typ",
+    "industry": "Branche",
+    "revenue": "Jahresumsatz",
+    "employees": "Mitarbeiter",
+    "owner": "Besitzer",
+    "created": "Erstellt"
+  },
+  "tabs": {
+    "details": "Details",
+    "timeline": "Zeitleiste",
+    "files": "Dateien"
+  },
+  "sections": {
+    "basicInfo": "Grundinformationen",
+    "contactInfo": "Kontaktinformationen",
+    "timeline": "Aktivitätszeitleiste",
+    "files": "Dateien und Dokumente"
+  },
+  "types": {
+    "customer": "Kunde",
+    "prospect": "Interessent",
+    "partner": "Partner",
+    "competitor": "Wettbewerber"
+  },
+  "placeholders": {
+    "timeline": "Die Aktivitätszeitleiste wird hier implementiert",
+    "files": "Die Dateiverwaltung wird hier implementiert"
+  }
+}
