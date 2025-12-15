@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTranslation } from "react-i18next";
 
 interface Quote {
   id: number;
@@ -34,6 +35,7 @@ interface NewQuoteModalProps {
 }
 
 const NewQuoteModal = ({ open, onOpenChange, onQuoteCreated }: NewQuoteModalProps) => {
+  const { t } = useTranslation(['quotes', 'common']);
   const [formData, setFormData] = useState({
     name: "",
     account: "",
@@ -57,7 +59,6 @@ const NewQuoteModal = ({ open, onOpenChange, onQuoteCreated }: NewQuoteModalProp
 
     console.log("Creating new quote:", newQuote);
     
-    // Notify parent component
     if (onQuoteCreated) {
       onQuoteCreated(newQuote);
     }
@@ -70,11 +71,11 @@ const NewQuoteModal = ({ open, onOpenChange, onQuoteCreated }: NewQuoteModalProp
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]" data-testid="new-quote-modal-content">
         <DialogHeader data-testid="new-quote-modal-header">
-          <DialogTitle data-testid="new-quote-modal-title">Create New Quote</DialogTitle>
+          <DialogTitle data-testid="new-quote-modal-title">{t('createNew')}</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4" data-testid="new-quote-modal-form">
           <div className="grid gap-2" data-testid="new-quote-name-field">
-            <Label htmlFor="quote-name" data-testid="new-quote-name-label">Quote Name</Label>
+            <Label htmlFor="quote-name" data-testid="new-quote-name-label">{t('columns.name')}</Label>
             <Input
               id="quote-name"
               value={formData.name}
@@ -84,7 +85,7 @@ const NewQuoteModal = ({ open, onOpenChange, onQuoteCreated }: NewQuoteModalProp
             />
           </div>
           <div className="grid gap-2" data-testid="new-quote-account-field">
-            <Label htmlFor="account" data-testid="new-quote-account-label">Account</Label>
+            <Label htmlFor="account" data-testid="new-quote-account-label">{t('columns.account')}</Label>
             <Input
               id="account"
               value={formData.account}
@@ -94,7 +95,7 @@ const NewQuoteModal = ({ open, onOpenChange, onQuoteCreated }: NewQuoteModalProp
             />
           </div>
           <div className="grid gap-2" data-testid="new-quote-amount-field">
-            <Label htmlFor="amount" data-testid="new-quote-amount-label">Amount</Label>
+            <Label htmlFor="amount" data-testid="new-quote-amount-label">{t('columns.amount')}</Label>
             <Input
               id="amount"
               type="number"
@@ -105,26 +106,26 @@ const NewQuoteModal = ({ open, onOpenChange, onQuoteCreated }: NewQuoteModalProp
             />
           </div>
           <div className="grid gap-2" data-testid="new-quote-status-field">
-            <Label htmlFor="status" data-testid="new-quote-status-label">Status</Label>
+            <Label htmlFor="status" data-testid="new-quote-status-label">{t('columns.status')}</Label>
             <Select value={formData.status} onValueChange={(value) => setFormData({ ...formData, status: value })}>
               <SelectTrigger data-testid="new-quote-status-trigger">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent data-testid="new-quote-status-content">
-                <SelectItem value="Draft" data-testid="new-quote-status-draft">Draft</SelectItem>
-                <SelectItem value="Sent" data-testid="new-quote-status-sent">Sent</SelectItem>
-                <SelectItem value="Accepted" data-testid="new-quote-status-accepted">Accepted</SelectItem>
-                <SelectItem value="Rejected" data-testid="new-quote-status-rejected">Rejected</SelectItem>
+                <SelectItem value="Draft" data-testid="new-quote-status-draft">{t('status.draft')}</SelectItem>
+                <SelectItem value="Sent" data-testid="new-quote-status-sent">{t('status.sent')}</SelectItem>
+                <SelectItem value="Accepted" data-testid="new-quote-status-accepted">{t('status.accepted')}</SelectItem>
+                <SelectItem value="Rejected" data-testid="new-quote-status-rejected">{t('status.rejected')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
         <DialogFooter data-testid="new-quote-modal-footer">
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="new-quote-cancel-button">
-            Cancel
+            {t('common:cancel')}
           </Button>
           <Button onClick={handleSubmit} className="bg-leaflet-green hover:bg-leaflet-green-hover" data-testid="new-quote-create-button">
-            Create Quote
+            {t('common:create')}
           </Button>
         </DialogFooter>
       </DialogContent>

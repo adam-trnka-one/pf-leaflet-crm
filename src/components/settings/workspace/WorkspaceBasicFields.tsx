@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useTranslation } from "react-i18next";
 
 interface WorkspaceBasicFieldsProps {
   localWorkspaceData: {
@@ -64,18 +65,17 @@ const devOptions = [
 ];
 
 export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData }: WorkspaceBasicFieldsProps) => {
+  const { t } = useTranslation('settings');
   const selectedWorkspace = localWorkspaceData.selectedWorkspace || "jess";
   const isCustomWorkspace = selectedWorkspace === "custom";
   const isDevWorkspace = selectedWorkspace === "dev";
   const isPRWorkspace = ["pr1", "pr2", "pr3", "pr4", "pr5"].includes(selectedWorkspace);
   const isCustomDevWorkspace = selectedWorkspace === "custom-dev";
   
-  // Check if user email has @productfruits.com domain
   const isProductFruitsUser = localWorkspaceData.email?.endsWith("@productfruits.com");
 
   const handleWorkspaceChange = (value: string) => {
     if (value === "dev") {
-      // When DEV is selected, default to PR1
       setLocalWorkspaceData(prev => ({
         ...prev,
         selectedWorkspace: "pr1",
@@ -105,11 +105,11 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
     <>
       <div data-testid="workspace-selection-field">
         <Label htmlFor="workspaceSelection" className="text-sm font-medium text-slate-700" data-testid="workspace-selection-label">
-          Workspace <span className="text-red-500">*</span>
+          {t('workspace.selectedWorkspace')} <span className="text-red-500">*</span>
         </Label>
         <Select value={(isPRWorkspace || isCustomDevWorkspace) ? "dev" : selectedWorkspace} onValueChange={handleWorkspaceChange}>
           <SelectTrigger className="mt-1" data-testid="workspace-selection-trigger">
-            <SelectValue placeholder="Select a workspace" />
+            <SelectValue placeholder={t('workspace.selectedWorkspace')} />
           </SelectTrigger>
           <SelectContent data-testid="workspace-selection-content">
             {workspaceOptions
@@ -146,7 +146,7 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
       {isCustomDevWorkspace && (
         <div data-testid="custom-url-field">
           <Label htmlFor="customUrl" className="text-sm font-medium text-slate-700" data-testid="custom-url-label">
-            URL <span className="text-red-500">*</span>
+            {t('workspace.customUrl')} <span className="text-red-500">*</span>
           </Label>
           <Input 
             id="customUrl" 
@@ -162,7 +162,7 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
       {(isCustomWorkspace || isPRWorkspace || isCustomDevWorkspace) && (
         <div data-testid="workspace-code-field">
           <Label htmlFor="workspaceCode" className="text-sm font-medium text-slate-700" data-testid="workspace-code-label">
-            Workspace Code {(isPRWorkspace || isCustomDevWorkspace) && <span className="text-red-500">*</span>}
+            {t('workspace.workspaceCode')} {(isPRWorkspace || isCustomDevWorkspace) && <span className="text-red-500">*</span>}
           </Label>
           <Input 
             id="workspaceCode" 
@@ -179,7 +179,7 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="workspace-user-credentials-grid">
         <div data-testid="workspace-username-field">
           <Label htmlFor="username" className="text-sm font-medium text-slate-700" data-testid="workspace-username-label">
-            Username <span className="text-red-500">*</span>
+            {t('workspace.username')} <span className="text-red-500">*</span>
           </Label>
           <Input 
             id="username" 
@@ -192,7 +192,7 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
           />
         </div>
         <div data-testid="workspace-email-field">
-          <Label htmlFor="email" className="text-sm font-medium text-slate-700" data-testid="workspace-email-label">Email</Label>
+          <Label htmlFor="email" className="text-sm font-medium text-slate-700" data-testid="workspace-email-label">{t('workspace.email')}</Label>
           <Input 
             id="email" 
             type="email"
@@ -208,7 +208,7 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="workspace-name-fields-grid">
         <div data-testid="workspace-first-name-field">
           <Label htmlFor="firstName" className="text-sm font-medium text-slate-700" data-testid="workspace-first-name-label">
-            First Name <span className="text-red-500">*</span>
+            {t('workspace.firstName')} <span className="text-red-500">*</span>
           </Label>
           <Input 
             id="firstName" 
@@ -221,7 +221,7 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
           />
         </div>
         <div data-testid="workspace-last-name-field">
-          <Label htmlFor="lastName" className="text-sm font-medium text-slate-700" data-testid="workspace-last-name-label">Last Name</Label>
+          <Label htmlFor="lastName" className="text-sm font-medium text-slate-700" data-testid="workspace-last-name-label">{t('workspace.lastName')}</Label>
           <Input 
             id="lastName" 
             placeholder="Enter last name"
@@ -234,7 +234,7 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
       </div>
 
       <div data-testid="workspace-role-field">
-        <Label htmlFor="role" className="text-sm font-medium text-slate-700" data-testid="workspace-role-label">Role</Label>
+        <Label htmlFor="role" className="text-sm font-medium text-slate-700" data-testid="workspace-role-label">{t('workspace.role')}</Label>
         <Input 
           id="role" 
           placeholder="Enter role (e.g. Student, Teacher)"
@@ -247,7 +247,7 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
 
       <div data-testid="workspace-language-field">
         <Label htmlFor="languageCode" className="text-sm font-medium text-slate-700" data-testid="workspace-language-label">
-          Language Code
+          {t('workspace.languageCode')}
         </Label>
         <Select 
           value={localWorkspaceData.languageCode || "en"} 

@@ -7,8 +7,10 @@ import { Separator } from "@/components/ui/separator";
 import { useState, useEffect } from "react";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { toast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 export const ProfileTab = () => {
+  const { t } = useTranslation(['settings', 'common']);
   const { workspaceData, updateWorkspaceData } = useWorkspace();
   const [localData, setLocalData] = useState({
     firstName: '',
@@ -17,7 +19,6 @@ export const ProfileTab = () => {
     phone: '+1 (555) 123-4567'
   });
 
-  // Load workspace data into local state when context data changes
   useEffect(() => {
     setLocalData(prev => ({
       ...prev,
@@ -28,7 +29,6 @@ export const ProfileTab = () => {
   }, [workspaceData]);
 
   const handleSaveChanges = () => {
-    // Update workspace context with the synced fields
     updateWorkspaceData({
       firstName: localData.firstName,
       lastName: localData.lastName,
@@ -36,20 +36,20 @@ export const ProfileTab = () => {
     });
 
     toast({
-      title: "Profile saved",
-      description: "Your profile changes have been saved and synced with workspace data."
+      title: t('common:saved'),
+      description: t('common:saved')
     });
   };
 
   return (
     <Card className="bg-white shadow-sm" data-testid="profile-card">
       <CardHeader data-testid="profile-card-header">
-        <CardTitle data-testid="profile-card-title">Profile Settings</CardTitle>
+        <CardTitle data-testid="profile-card-title">{t('profile.title')}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4 md:space-y-6" data-testid="profile-card-content">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="profile-name-fields-grid">
           <div data-testid="profile-first-name-field">
-            <Label htmlFor="firstName" data-testid="profile-first-name-label">First Name</Label>
+            <Label htmlFor="firstName" data-testid="profile-first-name-label">{t('workspace.firstName')}</Label>
             <Input 
               id="firstName" 
               value={localData.firstName}
@@ -58,7 +58,7 @@ export const ProfileTab = () => {
             />
           </div>
           <div data-testid="profile-last-name-field">
-            <Label htmlFor="lastName" data-testid="profile-last-name-label">Last Name</Label>
+            <Label htmlFor="lastName" data-testid="profile-last-name-label">{t('workspace.lastName')}</Label>
             <Input 
               id="lastName" 
               value={localData.lastName}
@@ -69,7 +69,7 @@ export const ProfileTab = () => {
         </div>
         
         <div data-testid="profile-email-field">
-          <Label htmlFor="email" data-testid="profile-email-label">Email</Label>
+          <Label htmlFor="email" data-testid="profile-email-label">{t('workspace.email')}</Label>
           <Input 
             id="email" 
             type="email" 
@@ -80,7 +80,7 @@ export const ProfileTab = () => {
         </div>
         
         <div data-testid="profile-phone-field">
-          <Label htmlFor="phone" data-testid="profile-phone-label">Phone</Label>
+          <Label htmlFor="phone" data-testid="profile-phone-label">{t('common:phone')}</Label>
           <Input 
             id="phone" 
             value={localData.phone}
@@ -97,7 +97,7 @@ export const ProfileTab = () => {
             onClick={handleSaveChanges}
             data-testid="profile-save-changes-button"
           >
-            <span data-testid="profile-save-changes-text">Save Changes</span>
+            <span data-testid="profile-save-changes-text">{t('common:save')}</span>
           </Button>
         </div>
       </CardContent>

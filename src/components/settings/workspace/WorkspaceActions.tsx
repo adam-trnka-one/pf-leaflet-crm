@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataDisplayModal } from "../modals/DataDisplayModal";
 import { useDashboardData } from "@/hooks/useDashboardData";
+import { useTranslation } from "react-i18next";
 
 interface WorkspaceActionsProps {
   handleResetToDefaults: () => void;
@@ -21,6 +22,7 @@ export const WorkspaceActions = ({
   handleDisableProductFruits,
   workspaceData 
 }: WorkspaceActionsProps) => {
+  const { t } = useTranslation('settings');
   const [isDataModalOpen, setIsDataModalOpen] = useState(false);
   const [displayData, setDisplayData] = useState('');
   const [isInitiating, setIsInitiating] = useState(false);
@@ -68,7 +70,6 @@ export const WorkspaceActions = ({
       await handleInitiateProductFruits();
       console.log('handleInitiateProductFruits completed');
       
-    // Add a small delay to show the loading state
     console.log('Adding delay...');
     await new Promise(resolve => setTimeout(resolve, 1000));
     console.log('Delay completed, staying on current page...');
@@ -93,7 +94,7 @@ export const WorkspaceActions = ({
             data-testid="workspace-reset-database-button"
           >
             <RotateCcw className="h-4 w-4 mr-2" />
-            <span data-testid="workspace-reset-database-text">Reset to Default</span>
+            <span data-testid="workspace-reset-database-text">{t('workspace.resetButton')}</span>
           </Button>
           <Button 
             variant="outline"
@@ -101,7 +102,7 @@ export const WorkspaceActions = ({
             onClick={handleViewSavedData}
             data-testid="workspace-view-saved-data-button"
           >
-            <span data-testid="workspace-view-saved-data-text">View Saved Data</span>
+            <span data-testid="workspace-view-saved-data-text">{t('workspace.viewDataButton')}</span>
           </Button>
         </div>
         <div className="flex flex-col sm:flex-row gap-2 md:gap-3" data-testid="workspace-primary-actions">
@@ -118,7 +119,7 @@ export const WorkspaceActions = ({
               <Play className="h-4 w-4 mr-2" data-testid="workspace-initiate-productfruits-icon" />
             )}
             <span data-testid="workspace-initiate-productfruits-text">
-              {isInitiating ? 'Initiating...' : 'Initiate ProductFruits'}
+              {isInitiating ? 'Initiating...' : t('workspace.initiateButton')}
             </span>
           </Button>
           <Button 
@@ -126,7 +127,7 @@ export const WorkspaceActions = ({
             onClick={handleSaveWorkspaceData}
             data-testid="workspace-save-workspace-button"
           >
-            <span data-testid="workspace-save-workspace-text">Save Workspace Data</span>
+            <span data-testid="workspace-save-workspace-text">{t('workspace.saveButton')}</span>
           </Button>
         </div>
       </div>
