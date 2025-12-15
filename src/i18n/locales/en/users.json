@@ -1,9 +1,21 @@
 {
   "title": "Users",
-  "subtitle": "Manage your team members",
+  "subtitle": "Manage system users and permissions",
   "newUser": "New User",
+  "createNew": "Create New User",
   "searchPlaceholder": "Search users...",
   "noResults": "No users found.",
+  "columns": {
+    "name": "Full Name",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "role": "Role",
+    "department": "Department",
+    "status": "Status",
+    "lastLogin": "Last Login"
+  },
   "fields": {
     "firstName": "First Name",
     "lastName": "Last Name",
@@ -29,5 +41,10 @@
     "editTitle": "Edit User",
     "createButton": "Create User",
     "saveButton": "Save Changes"
+  },
+  "messages": {
+    "created": "The user has been successfully created.",
+    "deleted": "The user has been successfully deleted.",
+    "updated": "The user has been successfully updated."
   }
 }

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -8,8 +7,10 @@ import NewProductModal from "@/components/modals/NewProductModal";
 import EditProductModal from "@/components/modals/EditProductModal";
 import { toast } from "@/hooks/use-toast";
 import { getProducts, saveProducts, Product } from "@/utils/productData";
+import { useTranslation } from "react-i18next";
 
 const Products = () => {
+  const { t } = useTranslation(['products', 'common']);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -36,8 +37,8 @@ const Products = () => {
     setProducts(updatedProducts);
     saveProducts(updatedProducts);
     toast({
-      title: "Product created",
-      description: "The product has been successfully created."
+      title: t('common:created'),
+      description: t('products:messages.created')
     });
   };
 
@@ -46,8 +47,8 @@ const Products = () => {
     setProducts(updatedProducts);
     saveProducts(updatedProducts);
     toast({
-      title: "Product deleted",
-      description: "The product has been successfully deleted."
+      title: t('common:deleted'),
+      description: t('products:messages.deleted')
     });
   };
 
@@ -64,8 +65,8 @@ const Products = () => {
     <div className="p-8 bg-slate-50 min-h-screen" data-testid="products-main-container">
       <div className="flex justify-between items-start mb-8" data-testid="products-header-section">
         <div data-testid="products-header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-testid="products-page-title">Products</h1>
-          <p className="text-slate-600 mt-2" data-testid="products-page-subtitle">Manage your product catalog</p>
+          <h1 className="text-3xl font-bold text-slate-800" data-testid="products-page-title">{t('products:title')}</h1>
+          <p className="text-slate-600 mt-2" data-testid="products-page-subtitle">{t('products:subtitle')}</p>
         </div>
         <Button 
           className="bg-[#4AB831] hover:bg-[#3da127]"
@@ -73,7 +74,7 @@ const Products = () => {
           data-testid="products-new-button"
         >
           <Plus className="h-4 w-4 mr-2" data-testid="products-new-icon" />
-          <span data-testid="products-new-text">New Product</span>
+          <span data-testid="products-new-text">{t('products:newProduct')}</span>
         </Button>
       </div>
 
@@ -119,7 +120,7 @@ const Products = () => {
               <div className="flex justify-between items-center" data-testid={`product-footer-${product.id}`}>
                 <div className="flex items-center space-x-1 text-emerald-600 font-semibold" data-testid={`product-price-section-${product.id}`}>
                   <DollarSign className="h-4 w-4" data-testid={`product-price-icon-${product.id}`} />
-                  <span data-testid={`product-price-text-${product.id}`}>{product.price}/month</span>
+                  <span data-testid={`product-price-text-${product.id}`}>{product.price}{t('products:perMonth')}</span>
                 </div>
                 <Badge variant="outline" className="text-emerald-600" data-testid={`product-status-badge-${product.id}`}>
                   <span data-testid={`product-status-text-${product.id}`}>{product.status}</span>

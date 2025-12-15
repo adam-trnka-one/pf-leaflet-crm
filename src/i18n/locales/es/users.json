@@ -1,1 +1,50 @@
-{ "title": "Usuarios", "subtitle": "Gestione usuarios", "newUser": "Nuevo", "searchPlaceholder": "Buscar...", "noResults": "Sin resultados.", "fields": { "firstName": "Nombre", "lastName": "Apellido", "email": "Correo", "phone": "Teléfono", "role": "Rol", "department": "Departamento", "status": "Estado", "lastLogin": "Último Acceso" }, "roles": { "admin": "Admin", "manager": "Gerente", "salesRep": "Ventas", "support": "Soporte" }, "statuses": { "active": "Activo", "inactive": "Inactivo" }, "modal": { "createTitle": "Crear", "editTitle": "Editar", "createButton": "Crear", "saveButton": "Guardar" } }
+{
+  "title": "Usuarios",
+  "subtitle": "Gestione usuarios y permisos del sistema",
+  "newUser": "Nuevo Usuario",
+  "createNew": "Crear Nuevo Usuario",
+  "searchPlaceholder": "Buscar usuarios...",
+  "noResults": "No se encontraron usuarios.",
+  "columns": {
+    "name": "Nombre Completo",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo",
+    "phone": "Teléfono",
+    "role": "Rol",
+    "department": "Departamento",
+    "status": "Estado",
+    "lastLogin": "Último Acceso"
+  },
+  "fields": {
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo",
+    "phone": "Teléfono",
+    "role": "Rol",
+    "department": "Departamento",
+    "status": "Estado",
+    "lastLogin": "Último Acceso"
+  },
+  "roles": {
+    "admin": "Admin",
+    "manager": "Gerente",
+    "salesRep": "Ventas",
+    "support": "Soporte"
+  },
+  "statuses": {
+    "active": "Activo",
+    "inactive": "Inactivo"
+  },
+  "modal": {
+    "createTitle": "Crear Nuevo Usuario",
+    "editTitle": "Editar Usuario",
+    "createButton": "Crear Usuario",
+    "saveButton": "Guardar Cambios"
+  },
+  "messages": {
+    "created": "El usuario se ha creado correctamente.",
+    "deleted": "El usuario se ha eliminado correctamente.",
+    "updated": "El usuario se ha actualizado correctamente."
+  }
+}

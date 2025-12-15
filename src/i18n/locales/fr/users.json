@@ -1,1 +1,50 @@
-{ "title": "Utilisateurs", "subtitle": "Gérez les utilisateurs", "newUser": "Nouveau", "searchPlaceholder": "Rechercher...", "noResults": "Aucun résultat.", "fields": { "firstName": "Prénom", "lastName": "Nom", "email": "Email", "phone": "Téléphone", "role": "Rôle", "department": "Département", "status": "Statut", "lastLogin": "Dernière connexion" }, "roles": { "admin": "Admin", "manager": "Manager", "salesRep": "Commercial", "support": "Support" }, "statuses": { "active": "Actif", "inactive": "Inactif" }, "modal": { "createTitle": "Créer", "editTitle": "Modifier", "createButton": "Créer", "saveButton": "Enregistrer" } }
+{
+  "title": "Utilisateurs",
+  "subtitle": "Gérez les utilisateurs et les permissions",
+  "newUser": "Nouvel Utilisateur",
+  "createNew": "Créer un Nouvel Utilisateur",
+  "searchPlaceholder": "Rechercher des utilisateurs...",
+  "noResults": "Aucun utilisateur trouvé.",
+  "columns": {
+    "name": "Nom Complet",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "role": "Rôle",
+    "department": "Département",
+    "status": "Statut",
+    "lastLogin": "Dernière Connexion"
+  },
+  "fields": {
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "role": "Rôle",
+    "department": "Département",
+    "status": "Statut",
+    "lastLogin": "Dernière connexion"
+  },
+  "roles": {
+    "admin": "Admin",
+    "manager": "Manager",
+    "salesRep": "Commercial",
+    "support": "Support"
+  },
+  "statuses": {
+    "active": "Actif",
+    "inactive": "Inactif"
+  },
+  "modal": {
+    "createTitle": "Créer un Nouvel Utilisateur",
+    "editTitle": "Modifier l'Utilisateur",
+    "createButton": "Créer l'Utilisateur",
+    "saveButton": "Enregistrer les Modifications"
+  },
+  "messages": {
+    "created": "L'utilisateur a été créé avec succès.",
+    "deleted": "L'utilisateur a été supprimé avec succès.",
+    "updated": "L'utilisateur a été mis à jour avec succès."
+  }
+}

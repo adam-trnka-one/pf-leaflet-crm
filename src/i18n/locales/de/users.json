@@ -1,1 +1,50 @@
-{ "title": "Benutzer", "subtitle": "Verwalten Sie Benutzer", "newUser": "Neu", "searchPlaceholder": "Suchen...", "noResults": "Keine Ergebnisse.", "fields": { "firstName": "Vorname", "lastName": "Nachname", "email": "E-Mail", "phone": "Telefon", "role": "Rolle", "department": "Abteilung", "status": "Status", "lastLogin": "Letzte Anmeldung" }, "roles": { "admin": "Admin", "manager": "Manager", "salesRep": "Vertrieb", "support": "Support" }, "statuses": { "active": "Aktiv", "inactive": "Inaktiv" }, "modal": { "createTitle": "Erstellen", "editTitle": "Bearbeiten", "createButton": "Erstellen", "saveButton": "Speichern" } }
+{
+  "title": "Benutzer",
+  "subtitle": "Benutzer und Berechtigungen verwalten",
+  "newUser": "Neuer Benutzer",
+  "createNew": "Neuen Benutzer erstellen",
+  "searchPlaceholder": "Benutzer suchen...",
+  "noResults": "Keine Benutzer gefunden.",
+  "columns": {
+    "name": "Vollständiger Name",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "role": "Rolle",
+    "department": "Abteilung",
+    "status": "Status",
+    "lastLogin": "Letzte Anmeldung"
+  },
+  "fields": {
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "role": "Rolle",
+    "department": "Abteilung",
+    "status": "Status",
+    "lastLogin": "Letzte Anmeldung"
+  },
+  "roles": {
+    "admin": "Admin",
+    "manager": "Manager",
+    "salesRep": "Vertrieb",
+    "support": "Support"
+  },
+  "statuses": {
+    "active": "Aktiv",
+    "inactive": "Inaktiv"
+  },
+  "modal": {
+    "createTitle": "Neuen Benutzer erstellen",
+    "editTitle": "Benutzer bearbeiten",
+    "createButton": "Benutzer erstellen",
+    "saveButton": "Änderungen speichern"
+  },
+  "messages": {
+    "created": "Der Benutzer wurde erfolgreich erstellt.",
+    "deleted": "Der Benutzer wurde erfolgreich gelöscht.",
+    "updated": "Der Benutzer wurde erfolgreich aktualisiert."
+  }
+}

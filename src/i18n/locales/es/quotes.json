@@ -1,1 +1,50 @@
-{ "title": "Cotizaciones", "subtitle": "Gestione cotizaciones", "newQuote": "Nueva", "searchPlaceholder": "Buscar...", "noResults": "Sin resultados.", "fields": { "quoteNumber": "Número", "quoteName": "Nombre", "account": "Cuenta", "opportunity": "Oportunidad", "status": "Estado", "expirationDate": "Expiración", "subtotal": "Subtotal", "discount": "Descuento", "tax": "Impuesto", "total": "Total" }, "statuses": { "draft": "Borrador", "pending": "Pendiente", "accepted": "Aceptada", "rejected": "Rechazada" }, "modal": { "createTitle": "Crear", "editTitle": "Editar", "createButton": "Crear", "saveButton": "Guardar" } }
+{
+  "title": "Cotizaciones",
+  "subtitle": "Gestione cotizaciones y propuestas de venta",
+  "newQuote": "Nueva Cotización",
+  "createNew": "Crear Nueva Cotización",
+  "searchPlaceholder": "Buscar cotizaciones...",
+  "noResults": "No se encontraron cotizaciones.",
+  "columns": {
+    "name": "Nombre de Cotización",
+    "account": "Cuenta",
+    "amount": "Monto",
+    "status": "Estado",
+    "date": "Fecha"
+  },
+  "fields": {
+    "quoteNumber": "Número",
+    "quoteName": "Nombre",
+    "account": "Cuenta",
+    "opportunity": "Oportunidad",
+    "status": "Estado",
+    "expirationDate": "Vencimiento",
+    "subtotal": "Subtotal",
+    "discount": "Descuento",
+    "tax": "Impuesto",
+    "total": "Total"
+  },
+  "status": {
+    "draft": "Borrador",
+    "sent": "Enviada",
+    "accepted": "Aceptada",
+    "rejected": "Rechazada"
+  },
+  "statuses": {
+    "draft": "Borrador",
+    "pending": "Pendiente",
+    "accepted": "Aceptada",
+    "rejected": "Rechazada"
+  },
+  "modal": {
+    "createTitle": "Crear Nueva Cotización",
+    "editTitle": "Editar Cotización",
+    "createButton": "Crear Cotización",
+    "saveButton": "Guardar Cambios"
+  },
+  "messages": {
+    "created": "La cotización se ha creado correctamente.",
+    "deleted": "La cotización se ha eliminado correctamente.",
+    "updated": "La cotización se ha actualizado correctamente."
+  }
+}

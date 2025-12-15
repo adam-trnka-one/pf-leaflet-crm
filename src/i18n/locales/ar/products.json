@@ -1,1 +1,43 @@
-{ "title": "المنتجات", "subtitle": "إدارة منتجاتك", "newProduct": "جديد", "searchPlaceholder": "بحث...", "noResults": "لا توجد نتائج.", "fields": { "productName": "الاسم", "productCode": "الرمز", "category": "الفئة", "price": "السعر", "quantity": "الكمية", "description": "الوصف", "active": "نشط" }, "categories": { "software": "برمجيات", "hardware": "أجهزة", "service": "خدمة", "subscription": "اشتراك" }, "modal": { "createTitle": "إنشاء", "editTitle": "تعديل", "createButton": "إنشاء", "saveButton": "حفظ" } }
+{
+  "title": "المنتجات",
+  "subtitle": "إدارة كتالوج المنتجات",
+  "newProduct": "منتج جديد",
+  "createNew": "إنشاء منتج جديد",
+  "searchPlaceholder": "البحث عن المنتجات...",
+  "noResults": "لم يتم العثور على منتجات.",
+  "perMonth": "/شهر",
+  "columns": {
+    "name": "اسم المنتج",
+    "description": "الوصف",
+    "price": "السعر",
+    "category": "الفئة",
+    "status": "الحالة"
+  },
+  "fields": {
+    "productName": "الاسم",
+    "productCode": "الرمز",
+    "category": "الفئة",
+    "price": "السعر",
+    "quantity": "الكمية",
+    "description": "الوصف",
+    "active": "نشط"
+  },
+  "categories": {
+    "software": "برمجيات",
+    "hardware": "أجهزة",
+    "service": "خدمة",
+    "subscription": "اشتراك",
+    "training": "تدريب"
+  },
+  "modal": {
+    "createTitle": "إنشاء منتج جديد",
+    "editTitle": "تعديل المنتج",
+    "createButton": "إنشاء المنتج",
+    "saveButton": "حفظ التغييرات"
+  },
+  "messages": {
+    "created": "تم إنشاء المنتج بنجاح.",
+    "deleted": "تم حذف المنتج بنجاح.",
+    "updated": "تم تحديث المنتج بنجاح."
+  }
+}

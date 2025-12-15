@@ -1,1 +1,43 @@
-{ "title": "Produits", "subtitle": "Gérez vos produits", "newProduct": "Nouveau", "searchPlaceholder": "Rechercher...", "noResults": "Aucun résultat.", "fields": { "productName": "Nom", "productCode": "Code", "category": "Catégorie", "price": "Prix", "quantity": "Quantité", "description": "Description", "active": "Actif" }, "categories": { "software": "Logiciel", "hardware": "Matériel", "service": "Service", "subscription": "Abonnement" }, "modal": { "createTitle": "Créer", "editTitle": "Modifier", "createButton": "Créer", "saveButton": "Enregistrer" } }
+{
+  "title": "Produits",
+  "subtitle": "Gérez votre catalogue de produits",
+  "newProduct": "Nouveau Produit",
+  "createNew": "Créer un Nouveau Produit",
+  "searchPlaceholder": "Rechercher des produits...",
+  "noResults": "Aucun produit trouvé.",
+  "perMonth": "/mois",
+  "columns": {
+    "name": "Nom du Produit",
+    "description": "Description",
+    "price": "Prix",
+    "category": "Catégorie",
+    "status": "Statut"
+  },
+  "fields": {
+    "productName": "Nom",
+    "productCode": "Code",
+    "category": "Catégorie",
+    "price": "Prix",
+    "quantity": "Quantité",
+    "description": "Description",
+    "active": "Actif"
+  },
+  "categories": {
+    "software": "Logiciel",
+    "hardware": "Matériel",
+    "service": "Service",
+    "subscription": "Abonnement",
+    "training": "Formation"
+  },
+  "modal": {
+    "createTitle": "Créer un Nouveau Produit",
+    "editTitle": "Modifier le Produit",
+    "createButton": "Créer le Produit",
+    "saveButton": "Enregistrer les Modifications"
+  },
+  "messages": {
+    "created": "Le produit a été créé avec succès.",
+    "deleted": "Le produit a été supprimé avec succès.",
+    "updated": "Le produit a été mis à jour avec succès."
+  }
+}
