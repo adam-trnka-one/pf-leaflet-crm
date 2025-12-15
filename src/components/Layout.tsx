@@ -11,6 +11,8 @@ import { useWorkspaceForm } from "@/hooks/useWorkspaceForm";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useRef, useEffect, useState } from "react";
 import { RTL_LANGUAGES } from "@/i18n";
+import { toast } from "@/hooks/use-toast";
+
 const LayoutContent = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -25,15 +27,36 @@ const LayoutContent = () => {
   // Sync language with workspace settings
   useLanguageSync();
 
+  const languageNames: Record<string, string> = {
+    en: 'English',
+    cs: 'Čeština',
+    de: 'Deutsch',
+    fr: 'Français',
+    es: 'Español',
+    pt: 'Português',
+    ar: 'العربية'
+  };
+
   const handleLanguageChangeAndInitiate = async (value: string) => {
     setLocalWorkspaceData(prev => ({ ...prev, languageCode: value }));
     setIsInitiating(true);
+    
+    toast({
+      title: "Changing language...",
+      description: `Switching to ${languageNames[value]} and initializing ProductFruits`,
+    });
+
     try {
       // Update workspace context directly with new language
       updateWorkspaceData({ languageCode: value });
       await handleInitiateProductFruits();
     } catch (error) {
       console.error('Error in save and initiate:', error);
+      toast({
+        title: "Error",
+        description: "Failed to change language",
+        variant: "destructive"
+      });
     } finally {
       setIsInitiating(false);
     }
