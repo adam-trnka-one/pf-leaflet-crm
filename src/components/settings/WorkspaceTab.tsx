@@ -6,8 +6,10 @@ import { useWorkspaceForm } from "@/hooks/useWorkspaceForm";
 import { WorkspaceBasicFields } from "./workspace/WorkspaceBasicFields";
 import { CustomPropertiesSection } from "./workspace/CustomPropertiesSection";
 import { WorkspaceActions } from "./workspace/WorkspaceActions";
+import { useTranslation } from "react-i18next";
 
 export const WorkspaceTab = () => {
+  const { t } = useTranslation('settings');
   const {
     localWorkspaceData,
     setLocalWorkspaceData,
@@ -25,10 +27,10 @@ export const WorkspaceTab = () => {
       <CardHeader data-testid="workspace-card-header">
         <CardTitle className="flex items-center space-x-2" data-testid="workspace-card-title">
           <Building className="h-5 w-5" data-testid="workspace-icon" />
-          <span data-testid="workspace-title-text">Workspace Configuration</span>
+          <span data-testid="workspace-title-text">{t('workspace.title')}</span>
         </CardTitle>
         <p className="text-sm text-slate-600" data-testid="workspace-description">
-          Configure your workspace settings below. This information will be used to initialize ProductFruits on your site.
+          {t('workspace.title')}
         </p>
       </CardHeader>
       <CardContent className="space-y-4 md:space-y-6" data-testid="workspace-card-content">

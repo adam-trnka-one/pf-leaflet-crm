@@ -3,17 +3,20 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useTranslation } from "react-i18next";
 
 export const ApiTab = () => {
+  const { t } = useTranslation('settings');
+
   return (
     <Card className="bg-white shadow-sm" data-testid="api-card">
       <CardHeader data-testid="api-card-header">
-        <CardTitle data-testid="api-card-title">API Keys</CardTitle>
+        <CardTitle data-testid="api-card-title">{t('api.title')}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4" data-testid="api-card-content">
         <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg" data-testid="api-warning">
           <p className="text-sm text-yellow-800" data-testid="api-warning-text">
-            API keys provide access to your CRM data. Keep them secure and never share them publicly.
+            {t('api.subtitle')}
           </p>
         </div>
         

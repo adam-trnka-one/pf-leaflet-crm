@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 interface Quote {
   id: number;
@@ -36,6 +37,7 @@ interface EditQuoteModalProps {
 }
 
 const EditQuoteModal = ({ open, onOpenChange, quote, onQuoteUpdated }: EditQuoteModalProps) => {
+  const { t } = useTranslation(['quotes', 'common']);
   const [formData, setFormData] = useState({
     name: "",
     account: "",
@@ -57,8 +59,8 @@ const EditQuoteModal = ({ open, onOpenChange, quote, onQuoteUpdated }: EditQuote
   const handleSubmit = () => {
     if (!formData.name || !formData.account || !formData.amount) {
       toast({
-        title: "Error",
-        description: "Please fill in all required fields.",
+        title: t('common:error'),
+        description: t('common:fillRequired'),
         variant: "destructive"
       });
       return;
@@ -80,8 +82,8 @@ const EditQuoteModal = ({ open, onOpenChange, quote, onQuoteUpdated }: EditQuote
     onQuoteUpdated(updatedQuote);
 
     toast({
-      title: "Quote updated",
-      description: "The quote has been successfully updated."
+      title: t('common:updated'),
+      description: t('common:updated')
     });
 
     onOpenChange(false);
@@ -91,11 +93,11 @@ const EditQuoteModal = ({ open, onOpenChange, quote, onQuoteUpdated }: EditQuote
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]" data-testid="edit-quote-modal-content">
         <DialogHeader data-testid="edit-quote-modal-header">
-          <DialogTitle data-testid="edit-quote-modal-title">Edit Quote</DialogTitle>
+          <DialogTitle data-testid="edit-quote-modal-title">{t('edit')}</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4" data-testid="edit-quote-modal-form">
           <div className="grid gap-2" data-testid="edit-quote-name-field">
-            <Label htmlFor="quote-name" data-testid="edit-quote-name-label">Quote Name</Label>
+            <Label htmlFor="quote-name" data-testid="edit-quote-name-label">{t('columns.name')}</Label>
             <Input
               id="quote-name"
               value={formData.name}
@@ -105,7 +107,7 @@ const EditQuoteModal = ({ open, onOpenChange, quote, onQuoteUpdated }: EditQuote
             />
           </div>
           <div className="grid gap-2" data-testid="edit-quote-account-field">
-            <Label htmlFor="account" data-testid="edit-quote-account-label">Account</Label>
+            <Label htmlFor="account" data-testid="edit-quote-account-label">{t('columns.account')}</Label>
             <Input
               id="account"
               value={formData.account}
@@ -115,7 +117,7 @@ const EditQuoteModal = ({ open, onOpenChange, quote, onQuoteUpdated }: EditQuote
             />
           </div>
           <div className="grid gap-2" data-testid="edit-quote-amount-field">
-            <Label htmlFor="amount" data-testid="edit-quote-amount-label">Amount</Label>
+            <Label htmlFor="amount" data-testid="edit-quote-amount-label">{t('columns.amount')}</Label>
             <Input
               id="amount"
               type="number"
@@ -126,26 +128,26 @@ const EditQuoteModal = ({ open, onOpenChange, quote, onQuoteUpdated }: EditQuote
             />
           </div>
           <div className="grid gap-2" data-testid="edit-quote-status-field">
-            <Label htmlFor="status" data-testid="edit-quote-status-label">Status</Label>
+            <Label htmlFor="status" data-testid="edit-quote-status-label">{t('columns.status')}</Label>
             <Select value={formData.status} onValueChange={(value) => setFormData({ ...formData, status: value })}>
               <SelectTrigger data-testid="edit-quote-status-trigger">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent data-testid="edit-quote-status-content">
-                <SelectItem value="Draft" data-testid="edit-quote-status-draft">Draft</SelectItem>
-                <SelectItem value="Sent" data-testid="edit-quote-status-sent">Sent</SelectItem>
-                <SelectItem value="Accepted" data-testid="edit-quote-status-accepted">Accepted</SelectItem>
-                <SelectItem value="Rejected" data-testid="edit-quote-status-rejected">Rejected</SelectItem>
+                <SelectItem value="Draft" data-testid="edit-quote-status-draft">{t('status.draft')}</SelectItem>
+                <SelectItem value="Sent" data-testid="edit-quote-status-sent">{t('status.sent')}</SelectItem>
+                <SelectItem value="Accepted" data-testid="edit-quote-status-accepted">{t('status.accepted')}</SelectItem>
+                <SelectItem value="Rejected" data-testid="edit-quote-status-rejected">{t('status.rejected')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
         <DialogFooter data-testid="edit-quote-modal-footer">
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="edit-quote-cancel-button">
-            Cancel
+            {t('common:cancel')}
           </Button>
           <Button onClick={handleSubmit} className="bg-[#4AB831] hover:bg-[#3da127]" data-testid="edit-quote-update-button">
-            Update Quote
+            {t('common:update')}
           </Button>
         </DialogFooter>
       </DialogContent>

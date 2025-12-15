@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getSampleData } from "@/utils/sampleData";
+import { useTranslation } from "react-i18next";
 
 interface Contact {
   id: string;
@@ -31,6 +32,7 @@ interface NewContactModalProps {
 }
 
 const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactModalProps) => {
+  const { t } = useTranslation(['contacts', 'common']);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -57,24 +59,15 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
       createdAt: new Date(),
     };
 
-    // Get existing contacts from localStorage
     const existingStoredContacts = JSON.parse(localStorage.getItem('crmContacts') || '[]');
-    
-    // Get sample data contacts
     const sampleData = getSampleData();
     const sampleContacts = sampleData ? sampleData.contacts : [];
-    
-    // Combine all contacts: new contact + stored contacts + sample contacts
-    // But avoid duplicates by checking if sample contacts are already in stored contacts
     const allExistingContacts = existingStoredContacts.length > 0 ? existingStoredContacts : sampleContacts;
     const updatedContacts = [newContact, ...allExistingContacts];
-    
-    // Store back to localStorage
     localStorage.setItem('crmContacts', JSON.stringify(updatedContacts));
     
     console.log("Creating new contact:", newContact);
     
-    // Reset form and close modal
     onOpenChange(false);
     setFormData({
       firstName: "",
@@ -85,7 +78,6 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
       accountName: "",
     });
     
-    // Notify parent component
     if (onContactCreated) {
       onContactCreated();
     }
@@ -95,12 +87,12 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Create New Contact</DialogTitle>
+          <DialogTitle>{t('createNew')}</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="firstName">First Name</Label>
+              <Label htmlFor="firstName">{t('columns.firstName')}</Label>
               <Input
                 id="firstName"
                 value={formData.firstName}
@@ -109,7 +101,7 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="lastName">Last Name</Label>
+              <Label htmlFor="lastName">{t('columns.lastName')}</Label>
               <Input
                 id="lastName"
                 value={formData.lastName}
@@ -120,7 +112,7 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">{t('columns.email')}</Label>
             <Input
               id="email"
               type="email"
@@ -131,7 +123,7 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="phone">Phone</Label>
+            <Label htmlFor="phone">{t('columns.phone')}</Label>
             <Input
               id="phone"
               value={formData.phone}
@@ -141,7 +133,7 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="title">Job Title</Label>
+            <Label htmlFor="title">{t('columns.title')}</Label>
             <Input
               id="title"
               value={formData.title}
@@ -151,7 +143,7 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="accountName">Account Name</Label>
+            <Label htmlFor="accountName">{t('columns.account')}</Label>
             <Input
               id="accountName"
               value={formData.accountName}
@@ -162,10 +154,10 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
-            Cancel
+            {t('common:cancel')}
           </Button>
           <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700">
-            Create Contact
+            {t('common:create')}
           </Button>
         </DialogFooter>
       </DialogContent>

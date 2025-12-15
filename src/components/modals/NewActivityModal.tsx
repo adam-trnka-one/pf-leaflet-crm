@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTranslation } from "react-i18next";
 
 interface Activity {
   id: string;
@@ -33,6 +34,7 @@ interface NewActivityModalProps {
 }
 
 const NewActivityModal = ({ open, onOpenChange, onActivityCreated }: NewActivityModalProps) => {
+  const { t } = useTranslation(['activities', 'common']);
   const [formData, setFormData] = useState({
     type: "Call",
     subject: "",
@@ -52,27 +54,16 @@ const NewActivityModal = ({ open, onOpenChange, onActivityCreated }: NewActivity
       completed: false,
     };
 
-    // Get existing activities from localStorage
     const existingStoredActivities = JSON.parse(localStorage.getItem('crmActivities') || '[]');
-    
-    // If no stored activities exist, check if we have default activities from the Activities page
-    // This preserves the default activities that were set in the Activities page
     let allExistingActivities = existingStoredActivities;
-    
-    // If localStorage is empty, we'll let the Activities page handle the defaults
-    // This way we don't duplicate the default activities logic
     const updatedActivities = [newActivity, ...allExistingActivities];
-    
-    // Store back to localStorage
     localStorage.setItem('crmActivities', JSON.stringify(updatedActivities));
     
     console.log("Creating new activity:", newActivity);
     
-    // Reset form and close modal
     onOpenChange(false);
     setFormData({ type: "Call", subject: "", date: "" });
     
-    // Notify parent component
     if (onActivityCreated) {
       onActivityCreated();
     }
@@ -82,25 +73,25 @@ const NewActivityModal = ({ open, onOpenChange, onActivityCreated }: NewActivity
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]" data-testid="new-activity-modal-content">
         <DialogHeader data-testid="new-activity-modal-header">
-          <DialogTitle data-testid="new-activity-modal-title">Create New Activity</DialogTitle>
+          <DialogTitle data-testid="new-activity-modal-title">{t('createNew')}</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4" data-testid="new-activity-modal-form">
           <div className="grid gap-2" data-testid="new-activity-type-field">
-            <Label htmlFor="activity-type" data-testid="new-activity-type-label">Type</Label>
+            <Label htmlFor="activity-type" data-testid="new-activity-type-label">{t('columns.type')}</Label>
             <Select value={formData.type} onValueChange={(value) => setFormData({ ...formData, type: value })}>
               <SelectTrigger data-testid="new-activity-type-trigger">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent data-testid="new-activity-type-content">
-                <SelectItem value="Call" data-testid="new-activity-type-call">Call</SelectItem>
-                <SelectItem value="Email" data-testid="new-activity-type-email">Email</SelectItem>
-                <SelectItem value="Meeting" data-testid="new-activity-type-meeting">Meeting</SelectItem>
-                <SelectItem value="Task" data-testid="new-activity-type-task">Task</SelectItem>
+                <SelectItem value="Call" data-testid="new-activity-type-call">{t('types.call')}</SelectItem>
+                <SelectItem value="Email" data-testid="new-activity-type-email">{t('types.email')}</SelectItem>
+                <SelectItem value="Meeting" data-testid="new-activity-type-meeting">{t('types.meeting')}</SelectItem>
+                <SelectItem value="Task" data-testid="new-activity-type-task">{t('types.task')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div className="grid gap-2" data-testid="new-activity-subject-field">
-            <Label htmlFor="subject" data-testid="new-activity-subject-label">Subject</Label>
+            <Label htmlFor="subject" data-testid="new-activity-subject-label">{t('columns.subject')}</Label>
             <Input
               id="subject"
               value={formData.subject}
@@ -110,7 +101,7 @@ const NewActivityModal = ({ open, onOpenChange, onActivityCreated }: NewActivity
             />
           </div>
           <div className="grid gap-2" data-testid="new-activity-date-field">
-            <Label htmlFor="date" data-testid="new-activity-date-label">Due Date</Label>
+            <Label htmlFor="date" data-testid="new-activity-date-label">{t('columns.date')}</Label>
             <Input
               id="date"
               type="date"
@@ -122,10 +113,10 @@ const NewActivityModal = ({ open, onOpenChange, onActivityCreated }: NewActivity
         </div>
         <DialogFooter data-testid="new-activity-modal-footer">
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="new-activity-cancel-button">
-            Cancel
+            {t('common:cancel')}
           </Button>
           <Button onClick={handleSubmit} className="bg-leaflet-green hover:bg-leaflet-green-hover" data-testid="new-activity-create-button">
-            Create Activity
+            {t('common:create')}
           </Button>
         </DialogFooter>
       </DialogContent>

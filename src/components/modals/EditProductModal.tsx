@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 interface Product {
   id: number;
@@ -36,6 +37,7 @@ interface EditProductModalProps {
 }
 
 const EditProductModal = ({ open, onOpenChange, product, onProductUpdated }: EditProductModalProps) => {
+  const { t } = useTranslation(['products', 'common']);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -57,8 +59,8 @@ const EditProductModal = ({ open, onOpenChange, product, onProductUpdated }: Edi
   const handleSubmit = () => {
     if (!formData.name || !formData.description || !formData.price) {
       toast({
-        title: "Error",
-        description: "Please fill in all required fields.",
+        title: t('common:error'),
+        description: t('common:fillRequired'),
         variant: "destructive"
       });
       return;
@@ -80,8 +82,8 @@ const EditProductModal = ({ open, onOpenChange, product, onProductUpdated }: Edi
     onProductUpdated(updatedProduct);
 
     toast({
-      title: "Product updated",
-      description: "The product has been successfully updated."
+      title: t('common:updated'),
+      description: t('common:updated')
     });
 
     onOpenChange(false);
@@ -91,11 +93,11 @@ const EditProductModal = ({ open, onOpenChange, product, onProductUpdated }: Edi
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]" data-testid="edit-product-modal-content">
         <DialogHeader data-testid="edit-product-modal-header">
-          <DialogTitle data-testid="edit-product-modal-title">Edit Product</DialogTitle>
+          <DialogTitle data-testid="edit-product-modal-title">{t('edit')}</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4" data-testid="edit-product-modal-form">
           <div className="grid gap-2" data-testid="edit-product-name-field">
-            <Label htmlFor="product-name" data-testid="edit-product-name-label">Product Name</Label>
+            <Label htmlFor="product-name" data-testid="edit-product-name-label">{t('columns.name')}</Label>
             <Input
               id="product-name"
               value={formData.name}
@@ -105,7 +107,7 @@ const EditProductModal = ({ open, onOpenChange, product, onProductUpdated }: Edi
             />
           </div>
           <div className="grid gap-2" data-testid="edit-product-description-field">
-            <Label htmlFor="description" data-testid="edit-product-description-label">Description</Label>
+            <Label htmlFor="description" data-testid="edit-product-description-label">{t('columns.description')}</Label>
             <Input
               id="description"
               value={formData.description}
@@ -115,7 +117,7 @@ const EditProductModal = ({ open, onOpenChange, product, onProductUpdated }: Edi
             />
           </div>
           <div className="grid gap-2" data-testid="edit-product-price-field">
-            <Label htmlFor="price" data-testid="edit-product-price-label">Price (monthly)</Label>
+            <Label htmlFor="price" data-testid="edit-product-price-label">{t('columns.price')}</Label>
             <Input
               id="price"
               type="number"
@@ -126,25 +128,25 @@ const EditProductModal = ({ open, onOpenChange, product, onProductUpdated }: Edi
             />
           </div>
           <div className="grid gap-2" data-testid="edit-product-category-field">
-            <Label htmlFor="category" data-testid="edit-product-category-label">Category</Label>
+            <Label htmlFor="category" data-testid="edit-product-category-label">{t('columns.category')}</Label>
             <Select value={formData.category} onValueChange={(value) => setFormData({ ...formData, category: value })}>
               <SelectTrigger data-testid="edit-product-category-trigger">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent data-testid="edit-product-category-content">
-                <SelectItem value="Software" data-testid="edit-product-category-software">Software</SelectItem>
-                <SelectItem value="Service" data-testid="edit-product-category-service">Service</SelectItem>
-                <SelectItem value="Training" data-testid="edit-product-category-training">Training</SelectItem>
+                <SelectItem value="Software" data-testid="edit-product-category-software">{t('categories.software')}</SelectItem>
+                <SelectItem value="Service" data-testid="edit-product-category-service">{t('categories.service')}</SelectItem>
+                <SelectItem value="Training" data-testid="edit-product-category-training">{t('categories.training')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
         <DialogFooter data-testid="edit-product-modal-footer">
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="edit-product-cancel-button">
-            Cancel
+            {t('common:cancel')}
           </Button>
           <Button onClick={handleSubmit} className="bg-[#4AB831] hover:bg-[#3da127]" data-testid="edit-product-update-button">
-            Update Product
+            {t('common:update')}
           </Button>
         </DialogFooter>
       </DialogContent>

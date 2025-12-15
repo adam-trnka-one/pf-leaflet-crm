@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Plug, Crown, Check, Settings as SettingsIcon } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 interface Integration {
   name: string;
@@ -74,20 +75,22 @@ const integrations: Integration[] = [
 ];
 
 export const IntegrationsTab = () => {
+  const { t } = useTranslation(['settings', 'common']);
+
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "active":
         return (
           <Badge className="bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border-green-200">
             <Check className="h-3 w-3 mr-1" />
-            Active
+            {t('common:active')}
           </Badge>
         );
       case "available":
         return (
           <Badge className="bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 border-blue-200">
             <Plug className="h-3 w-3 mr-1" />
-            Available
+            {t('common:available')}
           </Badge>
         );
       case "premium":
@@ -117,7 +120,7 @@ export const IntegrationsTab = () => {
             }}
           >
             <SettingsIcon className="h-4 w-4 mr-2" />
-            Configure
+            {t('common:configure')}
           </Button>
         );
       case "available":
@@ -132,7 +135,7 @@ export const IntegrationsTab = () => {
             }}
           >
             <Plug className="h-4 w-4 mr-2" />
-            Connect
+            {t('common:connect')}
           </Button>
         );
       case "premium":
@@ -162,9 +165,9 @@ export const IntegrationsTab = () => {
   return (
     <Card className="bg-white shadow-sm" data-testid="integrations-card">
       <CardHeader data-testid="integrations-card-header">
-        <CardTitle data-testid="integrations-card-title">Integrations</CardTitle>
+        <CardTitle data-testid="integrations-card-title">{t('integrations.title')}</CardTitle>
         <p className="text-sm text-slate-600" data-testid="integrations-description">
-          Connect Leaflet CRM with powerful tools to enhance your workflow
+          {t('integrations.subtitle')}
         </p>
       </CardHeader>
       <CardContent className="space-y-4 md:space-y-6" data-testid="integrations-card-content">

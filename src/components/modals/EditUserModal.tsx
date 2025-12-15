@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 interface User {
   id: string;
@@ -35,6 +36,7 @@ interface EditUserModalProps {
 }
 
 const EditUserModal = ({ open, onOpenChange, user, onUserUpdated }: EditUserModalProps) => {
+  const { t } = useTranslation(['users', 'common']);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -66,24 +68,19 @@ const EditUserModal = ({ open, onOpenChange, user, onUserUpdated }: EditUserModa
       status: formData.status,
     };
 
-    // Get existing users from localStorage
     const existingUsers = JSON.parse(localStorage.getItem('crmUsers') || '[]');
     const updatedUsers = existingUsers.map((u: User) => 
       u.id === user.id ? updatedUser : u
     );
-    
-    // Store back to localStorage
     localStorage.setItem('crmUsers', JSON.stringify(updatedUsers));
     
     toast({
-      title: "User updated",
-      description: "The user has been successfully updated."
+      title: t('common:updated'),
+      description: t('common:updated')
     });
     
-    // Reset form and close modal
     onOpenChange(false);
     
-    // Notify parent component
     if (onUserUpdated) {
       onUserUpdated();
     }
@@ -93,11 +90,11 @@ const EditUserModal = ({ open, onOpenChange, user, onUserUpdated }: EditUserModa
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]" data-testid="edit-user-modal-content">
         <DialogHeader data-testid="edit-user-modal-header">
-          <DialogTitle data-testid="edit-user-modal-title">Edit User</DialogTitle>
+          <DialogTitle data-testid="edit-user-modal-title">{t('edit')}</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4" data-testid="edit-user-modal-form">
           <div className="grid gap-2" data-testid="edit-user-name-field">
-            <Label htmlFor="user-name" data-testid="edit-user-name-label">Full Name</Label>
+            <Label htmlFor="user-name" data-testid="edit-user-name-label">{t('columns.name')}</Label>
             <Input
               id="user-name"
               value={formData.name}
@@ -107,7 +104,7 @@ const EditUserModal = ({ open, onOpenChange, user, onUserUpdated }: EditUserModa
             />
           </div>
           <div className="grid gap-2" data-testid="edit-user-email-field">
-            <Label htmlFor="email" data-testid="edit-user-email-label">Email</Label>
+            <Label htmlFor="email" data-testid="edit-user-email-label">{t('columns.email')}</Label>
             <Input
               id="email"
               type="email"
@@ -118,37 +115,37 @@ const EditUserModal = ({ open, onOpenChange, user, onUserUpdated }: EditUserModa
             />
           </div>
           <div className="grid gap-2" data-testid="edit-user-role-field">
-            <Label htmlFor="role" data-testid="edit-user-role-label">Role</Label>
+            <Label htmlFor="role" data-testid="edit-user-role-label">{t('columns.role')}</Label>
             <Select value={formData.role} onValueChange={(value) => setFormData({ ...formData, role: value })}>
               <SelectTrigger data-testid="edit-user-role-trigger">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent data-testid="edit-user-role-content">
-                <SelectItem value="Admin" data-testid="edit-user-role-admin">Admin</SelectItem>
-                <SelectItem value="Manager" data-testid="edit-user-role-manager">Manager</SelectItem>
-                <SelectItem value="Sales Rep" data-testid="edit-user-role-sales">Sales Rep</SelectItem>
+                <SelectItem value="Admin" data-testid="edit-user-role-admin">{t('roles.admin')}</SelectItem>
+                <SelectItem value="Manager" data-testid="edit-user-role-manager">{t('roles.manager')}</SelectItem>
+                <SelectItem value="Sales Rep" data-testid="edit-user-role-sales">{t('roles.salesRep')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div className="grid gap-2" data-testid="edit-user-status-field">
-            <Label htmlFor="status" data-testid="edit-user-status-label">Status</Label>
+            <Label htmlFor="status" data-testid="edit-user-status-label">{t('columns.status')}</Label>
             <Select value={formData.status} onValueChange={(value) => setFormData({ ...formData, status: value })}>
               <SelectTrigger data-testid="edit-user-status-trigger">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent data-testid="edit-user-status-content">
-                <SelectItem value="Active" data-testid="edit-user-status-active">Active</SelectItem>
-                <SelectItem value="Inactive" data-testid="edit-user-status-inactive">Inactive</SelectItem>
+                <SelectItem value="Active" data-testid="edit-user-status-active">{t('status.active')}</SelectItem>
+                <SelectItem value="Inactive" data-testid="edit-user-status-inactive">{t('status.inactive')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
         <DialogFooter data-testid="edit-user-modal-footer">
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="edit-user-cancel-button">
-            Cancel
+            {t('common:cancel')}
           </Button>
           <Button onClick={handleSubmit} className="bg-[#4AB831] hover:bg-[#3da127]" data-testid="edit-user-update-button">
-            Update User
+            {t('common:update')}
           </Button>
         </DialogFooter>
       </DialogContent>
