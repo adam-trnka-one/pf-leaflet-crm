@@ -154,7 +154,7 @@ const LayoutContent = () => {
               {/* Language Dropdown with Flags */}
               <div className="flex items-center gap-1">
                 <Select value={localWorkspaceData.languageCode} onValueChange={handleLanguageChangeAndInitiate} disabled={isInitiating}>
-                  <SelectTrigger className="w-24 h-8 bg-white" title="Select language">
+                  <SelectTrigger className="w-36 h-8 bg-white" title="Select language">
                     {isInitiating ? (
                       <Loader2 className="h-4 w-4 animate-spin" />
                     ) : (
