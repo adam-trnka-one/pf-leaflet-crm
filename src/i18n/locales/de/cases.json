@@ -1,1 +1,79 @@
-{ "title": "Fälle", "subtitle": "Verwalten Sie Ihre Fälle", "newCase": "Neu", "searchPlaceholder": "Suchen...", "noResults": "Keine Ergebnisse.", "fields": { "caseNumber": "Nummer", "subject": "Betreff", "status": "Status", "priority": "Priorität", "type": "Typ", "account": "Konto", "contact": "Kontakt", "owner": "Eigentümer", "created": "Erstellt" }, "statuses": { "new": "Neu", "working": "In Bearbeitung", "escalated": "Eskaliert", "closed": "Geschlossen" }, "priorities": { "low": "Niedrig", "medium": "Mittel", "high": "Hoch", "critical": "Kritisch" }, "types": { "problem": "Problem", "question": "Frage", "featureRequest": "Anfrage" }, "modal": { "createTitle": "Erstellen", "editTitle": "Bearbeiten", "createButton": "Erstellen", "saveButton": "Speichern" } }
+{
+  "title": "Fälle",
+  "subtitle": "Verwalten Sie Kundensupport-Fälle",
+  "newCase": "Neuer Fall",
+  "edit": "Fall bearbeiten",
+  "searchPlaceholder": "Fälle suchen...",
+  "noResults": "Keine Fälle gefunden, die Ihren Filtern entsprechen.",
+  "filterByStatus": "Nach Status filtern",
+  "filterByPriority": "Nach Priorität filtern",
+  "allStatuses": "Alle Status",
+  "allPriorities": "Alle Prioritäten",
+  "columns": {
+    "caseNumber": "Fallnummer",
+    "subject": "Betreff",
+    "description": "Beschreibung",
+    "status": "Status",
+    "priority": "Priorität",
+    "type": "Typ",
+    "account": "Konto",
+    "contact": "Kontakt",
+    "owner": "Eigentümer",
+    "created": "Erstellt"
+  },
+  "fields": {
+    "caseNumber": "Fallnummer",
+    "subject": "Betreff",
+    "status": "Status",
+    "priority": "Priorität",
+    "type": "Typ",
+    "account": "Konto",
+    "contact": "Kontakt",
+    "owner": "Eigentümer",
+    "created": "Erstellt"
+  },
+  "status": {
+    "new": "Neu",
+    "inProgress": "In Bearbeitung",
+    "pending": "Ausstehend",
+    "resolved": "Gelöst",
+    "closed": "Geschlossen"
+  },
+  "statuses": {
+    "new": "Neu",
+    "inProgress": "In Bearbeitung",
+    "pending": "Ausstehend",
+    "resolved": "Gelöst",
+    "closed": "Geschlossen",
+    "working": "In Arbeit",
+    "escalated": "Eskaliert"
+  },
+  "priority": {
+    "low": "Niedrig",
+    "medium": "Mittel",
+    "high": "Hoch",
+    "critical": "Kritisch"
+  },
+  "priorities": {
+    "low": "Niedrig",
+    "medium": "Mittel",
+    "high": "Hoch",
+    "critical": "Kritisch"
+  },
+  "types": {
+    "problem": "Problem",
+    "question": "Frage",
+    "featureRequest": "Funktionsanfrage",
+    "bug": "Fehler"
+  },
+  "modal": {
+    "createTitle": "Neuen Fall erstellen",
+    "editTitle": "Fall bearbeiten",
+    "createButton": "Fall erstellen",
+    "saveButton": "Änderungen speichern"
+  },
+  "messages": {
+    "deleted": "Der Fall wurde erfolgreich gelöscht.",
+    "updated": "Der Fall wurde erfolgreich aktualisiert."
+  }
+}

@@ -3,6 +3,7 @@
   "subtitle": "Gestione cotizaciones y propuestas de venta",
   "newQuote": "Nueva Cotización",
   "createNew": "Crear Nueva Cotización",
+  "edit": "Editar Cotización",
   "searchPlaceholder": "Buscar cotizaciones...",
   "noResults": "No se encontraron cotizaciones.",
   "columns": {

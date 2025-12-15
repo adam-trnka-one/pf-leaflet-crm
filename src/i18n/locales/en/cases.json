@@ -2,12 +2,25 @@
   "title": "Cases",
   "subtitle": "Manage customer support cases",
   "newCase": "New Case",
+  "edit": "Edit Case",
   "searchPlaceholder": "Search cases...",
   "noResults": "No cases found matching your filters.",
   "filterByStatus": "Filter by status",
   "filterByPriority": "Filter by priority",
   "allStatuses": "All Statuses",
   "allPriorities": "All Priorities",
+  "columns": {
+    "caseNumber": "Case Number",
+    "subject": "Subject",
+    "description": "Description",
+    "status": "Status",
+    "priority": "Priority",
+    "type": "Type",
+    "account": "Account",
+    "contact": "Contact",
+    "owner": "Owner",
+    "created": "Created"
+  },
   "fields": {
     "caseNumber": "Case Number",
     "subject": "Subject",
@@ -19,6 +32,13 @@
     "owner": "Owner",
     "created": "Created"
   },
+  "status": {
+    "new": "New",
+    "inProgress": "In Progress",
+    "pending": "Pending",
+    "resolved": "Resolved",
+    "closed": "Closed"
+  },
   "statuses": {
     "new": "New",
     "inProgress": "In Progress",
@@ -27,6 +47,12 @@
     "closed": "Closed",
     "working": "Working",
     "escalated": "Escalated"
+  },
+  "priority": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "critical": "Critical"
   },
   "priorities": {
     "low": "Low",
@@ -37,7 +63,8 @@
   "types": {
     "problem": "Problem",
     "question": "Question",
-    "featureRequest": "Feature Request"
+    "featureRequest": "Feature Request",
+    "bug": "Bug"
   },
   "modal": {
     "createTitle": "Create New Case",
@@ -46,6 +73,7 @@
     "saveButton": "Save Changes"
   },
   "messages": {
-    "deleted": "The case has been successfully deleted."
+    "deleted": "The case has been successfully deleted.",
+    "updated": "The case has been successfully updated."
   }
 }

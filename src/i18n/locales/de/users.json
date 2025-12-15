@@ -3,6 +3,7 @@
   "subtitle": "Benutzer und Berechtigungen verwalten",
   "newUser": "Neuer Benutzer",
   "createNew": "Neuen Benutzer erstellen",
+  "edit": "Benutzer bearbeiten",
   "searchPlaceholder": "Benutzer suchen...",
   "noResults": "Keine Benutzer gefunden.",
   "columns": {
@@ -27,10 +28,14 @@
     "lastLogin": "Letzte Anmeldung"
   },
   "roles": {
-    "admin": "Admin",
+    "admin": "Administrator",
     "manager": "Manager",
     "salesRep": "Vertrieb",
     "support": "Support"
+  },
+  "status": {
+    "active": "Aktiv",
+    "inactive": "Inaktiv"
   },
   "statuses": {
     "active": "Aktiv",

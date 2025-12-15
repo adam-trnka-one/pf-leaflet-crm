@@ -3,6 +3,7 @@
   "subtitle": "Verwalten Sie Ihren Produktkatalog",
   "newProduct": "Neues Produkt",
   "createNew": "Neues Produkt erstellen",
+  "edit": "Produkt bearbeiten",
   "searchPlaceholder": "Produkte suchen...",
   "noResults": "Keine Produkte gefunden.",
   "perMonth": "/Monat",
@@ -26,7 +27,7 @@
     "software": "Software",
     "hardware": "Hardware",
     "service": "Dienstleistung",
-    "subscription": "Abo",
+    "subscription": "Abonnement",
     "training": "Schulung"
   },
   "modal": {

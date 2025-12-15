@@ -3,6 +3,7 @@
   "subtitle": "Manage your sales leads",
   "newLead": "New Lead",
   "createNew": "Create New Lead",
+  "edit": "Edit Lead",
   "searchPlaceholder": "Search leads...",
   "noResults": "No leads found.",
   "convertLead": "Convert Lead",
@@ -46,6 +47,7 @@
     "saveButton": "Save Changes"
   },
   "messages": {
-    "deleted": "The lead has been successfully deleted."
+    "deleted": "The lead has been successfully deleted.",
+    "updated": "The lead has been successfully updated."
   }
 }

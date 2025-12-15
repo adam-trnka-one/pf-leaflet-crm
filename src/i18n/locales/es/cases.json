@@ -1,1 +1,79 @@
-{ "title": "Casos", "subtitle": "Gestione casos", "newCase": "Nuevo", "searchPlaceholder": "Buscar...", "noResults": "Sin resultados.", "fields": { "caseNumber": "Número", "subject": "Asunto", "status": "Estado", "priority": "Prioridad", "type": "Tipo", "account": "Cuenta", "contact": "Contacto", "owner": "Propietario", "created": "Creado" }, "statuses": { "new": "Nuevo", "working": "En Trabajo", "escalated": "Escalado", "closed": "Cerrado" }, "priorities": { "low": "Baja", "medium": "Media", "high": "Alta", "critical": "Crítica" }, "types": { "problem": "Problema", "question": "Pregunta", "featureRequest": "Solicitud" }, "modal": { "createTitle": "Crear", "editTitle": "Editar", "createButton": "Crear", "saveButton": "Guardar" } }
+{
+  "title": "Casos",
+  "subtitle": "Gestione casos de soporte al cliente",
+  "newCase": "Nuevo Caso",
+  "edit": "Editar Caso",
+  "searchPlaceholder": "Buscar casos...",
+  "noResults": "No se encontraron casos que coincidan con sus filtros.",
+  "filterByStatus": "Filtrar por estado",
+  "filterByPriority": "Filtrar por prioridad",
+  "allStatuses": "Todos los Estados",
+  "allPriorities": "Todas las Prioridades",
+  "columns": {
+    "caseNumber": "Número de Caso",
+    "subject": "Asunto",
+    "description": "Descripción",
+    "status": "Estado",
+    "priority": "Prioridad",
+    "type": "Tipo",
+    "account": "Cuenta",
+    "contact": "Contacto",
+    "owner": "Propietario",
+    "created": "Creado"
+  },
+  "fields": {
+    "caseNumber": "Número de Caso",
+    "subject": "Asunto",
+    "status": "Estado",
+    "priority": "Prioridad",
+    "type": "Tipo",
+    "account": "Cuenta",
+    "contact": "Contacto",
+    "owner": "Propietario",
+    "created": "Creado"
+  },
+  "status": {
+    "new": "Nuevo",
+    "inProgress": "En Progreso",
+    "pending": "Pendiente",
+    "resolved": "Resuelto",
+    "closed": "Cerrado"
+  },
+  "statuses": {
+    "new": "Nuevo",
+    "inProgress": "En Progreso",
+    "pending": "Pendiente",
+    "resolved": "Resuelto",
+    "closed": "Cerrado",
+    "working": "En Trabajo",
+    "escalated": "Escalado"
+  },
+  "priority": {
+    "low": "Baja",
+    "medium": "Media",
+    "high": "Alta",
+    "critical": "Crítica"
+  },
+  "priorities": {
+    "low": "Baja",
+    "medium": "Media",
+    "high": "Alta",
+    "critical": "Crítica"
+  },
+  "types": {
+    "problem": "Problema",
+    "question": "Pregunta",
+    "featureRequest": "Solicitud de Función",
+    "bug": "Error"
+  },
+  "modal": {
+    "createTitle": "Crear Nuevo Caso",
+    "editTitle": "Editar Caso",
+    "createButton": "Crear Caso",
+    "saveButton": "Guardar Cambios"
+  },
+  "messages": {
+    "deleted": "El caso se ha eliminado correctamente.",
+    "updated": "El caso se ha actualizado correctamente."
+  }
+}

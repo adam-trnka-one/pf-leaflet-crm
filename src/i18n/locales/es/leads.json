@@ -3,6 +3,7 @@
   "subtitle": "Gestione sus prospectos de venta",
   "newLead": "Nuevo Prospecto",
   "createNew": "Crear Nuevo Prospecto",
+  "edit": "Editar Prospecto",
   "searchPlaceholder": "Buscar prospectos...",
   "noResults": "No se encontraron prospectos.",
   "convertLead": "Convertir Prospecto",
@@ -79,6 +80,7 @@
     "saveButton": "Guardar Cambios"
   },
   "messages": {
-    "deleted": "El prospecto se ha eliminado correctamente."
+    "deleted": "El prospecto se ha eliminado correctamente.",
+    "updated": "El prospecto se ha actualizado correctamente."
   }
 }

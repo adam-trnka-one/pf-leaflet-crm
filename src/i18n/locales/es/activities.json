@@ -1,1 +1,63 @@
-{ "title": "Actividades", "subtitle": "Gestione actividades", "newActivity": "Nueva", "searchPlaceholder": "Buscar...", "noResults": "Sin resultados.", "fields": { "subject": "Asunto", "type": "Tipo", "status": "Estado", "priority": "Prioridad", "dueDate": "Fecha", "relatedTo": "Relacionado", "assignedTo": "Asignado", "description": "Descripción" }, "types": { "call": "Llamada", "meeting": "Reunión", "task": "Tarea", "email": "Correo", "event": "Evento" }, "statuses": { "notStarted": "No Iniciado", "inProgress": "En Progreso", "completed": "Completado", "deferred": "Diferido" }, "priorities": { "low": "Baja", "normal": "Normal", "high": "Alta" }, "modal": { "createTitle": "Crear", "editTitle": "Editar", "createButton": "Crear", "saveButton": "Guardar" } }
+{
+  "title": "Actividades",
+  "subtitle": "Rastree y gestione sus actividades",
+  "newActivity": "Nueva Actividad",
+  "edit": "Editar Actividad",
+  "searchPlaceholder": "Buscar actividades...",
+  "noResults": "No se encontraron actividades.",
+  "completed": "Completado",
+  "pending": "Pendiente",
+  "columns": {
+    "subject": "Asunto",
+    "type": "Tipo",
+    "status": "Estado",
+    "date": "Fecha",
+    "priority": "Prioridad",
+    "dueDate": "Fecha de Vencimiento",
+    "relatedTo": "Relacionado con",
+    "assignedTo": "Asignado a",
+    "description": "Descripción"
+  },
+  "fields": {
+    "subject": "Asunto",
+    "type": "Tipo",
+    "status": "Estado",
+    "priority": "Prioridad",
+    "dueDate": "Fecha de Vencimiento",
+    "relatedTo": "Relacionado con",
+    "assignedTo": "Asignado a",
+    "description": "Descripción"
+  },
+  "types": {
+    "call": "Llamada",
+    "meeting": "Reunión",
+    "task": "Tarea",
+    "email": "Correo",
+    "event": "Evento"
+  },
+  "status": {
+    "pending": "Pendiente",
+    "completed": "Completado"
+  },
+  "statuses": {
+    "notStarted": "No Iniciado",
+    "inProgress": "En Progreso",
+    "completed": "Completado",
+    "deferred": "Diferido"
+  },
+  "priorities": {
+    "low": "Baja",
+    "normal": "Normal",
+    "high": "Alta"
+  },
+  "modal": {
+    "createTitle": "Crear Nueva Actividad",
+    "editTitle": "Editar Actividad",
+    "createButton": "Crear Actividad",
+    "saveButton": "Guardar Cambios"
+  },
+  "messages": {
+    "deleted": "La actividad se ha eliminado correctamente.",
+    "updated": "La actividad se ha actualizado correctamente."
+  }
+}

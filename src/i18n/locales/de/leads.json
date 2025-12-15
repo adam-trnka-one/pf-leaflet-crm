@@ -1,1 +1,86 @@
-{ "title": "Leads", "subtitle": "Verwalten Sie Ihre Leads", "newLead": "Neu", "searchPlaceholder": "Suchen...", "noResults": "Keine Ergebnisse.", "convertLead": "Konvertieren", "fields": { "firstName": "Vorname", "lastName": "Nachname", "email": "E-Mail", "phone": "Telefon", "company": "Firma", "title": "Titel", "status": "Status", "rating": "Bewertung", "source": "Quelle", "owner": "Eigentümer", "created": "Erstellt" }, "statuses": { "new": "Neu", "working": "In Bearbeitung", "qualified": "Qualifiziert", "unqualified": "Nicht qualifiziert", "converted": "Konvertiert" }, "ratings": { "hot": "Heiß", "warm": "Warm", "cold": "Kalt" }, "sources": { "web": "Web", "phone": "Telefon", "referral": "Empfehlung", "advertisement": "Werbung", "tradeShow": "Messe", "email": "E-Mail" }, "modal": { "createTitle": "Erstellen", "editTitle": "Bearbeiten", "createButton": "Erstellen", "saveButton": "Speichern" }, "messages": { "deleted": "Gelöscht." } }
+{
+  "title": "Leads",
+  "subtitle": "Verwalten Sie Ihre Verkaufs-Leads",
+  "newLead": "Neuer Lead",
+  "createNew": "Neuen Lead erstellen",
+  "edit": "Lead bearbeiten",
+  "searchPlaceholder": "Leads suchen...",
+  "noResults": "Keine Leads gefunden.",
+  "convertLead": "Lead konvertieren",
+  "columns": {
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "company": "Firma",
+    "title": "Titel",
+    "status": "Status",
+    "rating": "Bewertung",
+    "source": "Quelle",
+    "owner": "Eigentümer",
+    "created": "Erstellt"
+  },
+  "fields": {
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "company": "Firma",
+    "title": "Titel",
+    "status": "Status",
+    "rating": "Bewertung",
+    "source": "Quelle",
+    "owner": "Eigentümer",
+    "created": "Erstellt"
+  },
+  "status": {
+    "new": "Neu",
+    "working": "In Bearbeitung",
+    "qualified": "Qualifiziert",
+    "unqualified": "Nicht qualifiziert",
+    "converted": "Konvertiert"
+  },
+  "statuses": {
+    "new": "Neu",
+    "working": "In Bearbeitung",
+    "qualified": "Qualifiziert",
+    "unqualified": "Nicht qualifiziert",
+    "converted": "Konvertiert"
+  },
+  "rating": {
+    "hot": "Heiß",
+    "warm": "Warm",
+    "cold": "Kalt"
+  },
+  "ratings": {
+    "hot": "Heiß",
+    "warm": "Warm",
+    "cold": "Kalt"
+  },
+  "source": {
+    "website": "Website",
+    "referral": "Empfehlung",
+    "coldCall": "Kaltakquise",
+    "tradeShow": "Messe",
+    "socialMedia": "Soziale Medien",
+    "emailCampaign": "E-Mail-Kampagne"
+  },
+  "sources": {
+    "web": "Web",
+    "phone": "Telefon",
+    "referral": "Empfehlung",
+    "advertisement": "Werbung",
+    "tradeShow": "Messe",
+    "email": "E-Mail"
+  },
+  "modal": {
+    "createTitle": "Neuen Lead erstellen",
+    "editTitle": "Lead bearbeiten",
+    "createButton": "Lead erstellen",
+    "saveButton": "Änderungen speichern"
+  },
+  "messages": {
+    "deleted": "Der Lead wurde erfolgreich gelöscht.",
+    "updated": "Der Lead wurde erfolgreich aktualisiert."
+  }
+}
