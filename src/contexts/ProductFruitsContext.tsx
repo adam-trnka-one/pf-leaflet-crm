@@ -43,7 +43,7 @@ export const ProductFruitsProvider = ({ children }: { children: ReactNode }) => 
   const [state, setState] = useState<ProductFruitsState>({
     status: 'idle',
     workspaceCode: '',
-    language: '',
+    language: 'en',
     userData: null,
     scriptUrl: '',
     lastInitialized: null,
@@ -62,9 +62,13 @@ export const ProductFruitsProvider = ({ children }: { children: ReactNode }) => 
   };
 
   const getLanguageCode = (): string => {
-    const savedLanguage = localStorage.getItem('language');
-    if (savedLanguage && ['en', 'cs', 'fr', 'ar', 'pt'].includes(savedLanguage)) {
-      return savedLanguage;
+    try {
+      const savedLanguage = localStorage.getItem('language');
+      if (savedLanguage && ['en', 'cs', 'fr', 'ar', 'pt'].includes(savedLanguage)) {
+        return savedLanguage;
+      }
+    } catch (e) {
+      console.warn('[ProductFruits] Error reading language from localStorage:', e);
     }
     return 'en';
   };
@@ -129,7 +133,7 @@ export const ProductFruitsProvider = ({ children }: { children: ReactNode }) => 
       return;
     }
 
-    const languageCode = getLanguageCode();
+    const languageCode = getLanguageCode() || 'en';
     await destroyProductFruits();
 
     const props: Record<string, string> = {};
@@ -192,7 +196,7 @@ export const ProductFruitsProvider = ({ children }: { children: ReactNode }) => 
       initScript.setAttribute('data-productfruits-init', 'true');
       initScript.innerHTML = `
         window.$productFruits = window.$productFruits || [];
-        window.$productFruits.push(['init', '${dataToUse.workspaceCode}', '${languageCode}', ${JSON.stringify(initData)}]);
+        window.$productFruits.push(['init', '${dataToUse.workspaceCode}', '${languageCode || 'en'}', ${JSON.stringify(initData)}]);
       `;
       document.head.appendChild(initScript);
       console.log(`[ProductFruits] Init command pushed - workspace: ${dataToUse.workspaceCode}, lang: ${languageCode}`);
@@ -242,7 +246,7 @@ export const ProductFruitsProvider = ({ children }: { children: ReactNode }) => 
     setState({
       status: 'idle',
       workspaceCode: '',
-      language: '',
+      language: 'en',
       userData: null,
       scriptUrl: '',
       lastInitialized: null,
