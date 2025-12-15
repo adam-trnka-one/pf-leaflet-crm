@@ -1,1 +1,79 @@
-{ "title": "الحالات", "subtitle": "إدارة حالاتك", "newCase": "جديدة", "searchPlaceholder": "بحث...", "noResults": "لا توجد نتائج.", "fields": { "caseNumber": "الرقم", "subject": "الموضوع", "status": "الحالة", "priority": "الأولوية", "type": "النوع", "account": "الحساب", "contact": "جهة الاتصال", "owner": "المالك", "created": "تم الإنشاء" }, "statuses": { "new": "جديدة", "working": "قيد العمل", "escalated": "مصعدة", "closed": "مغلقة" }, "priorities": { "low": "منخفضة", "medium": "متوسطة", "high": "عالية", "critical": "حرجة" }, "types": { "problem": "مشكلة", "question": "سؤال", "featureRequest": "طلب ميزة" }, "modal": { "createTitle": "إنشاء", "editTitle": "تعديل", "createButton": "إنشاء", "saveButton": "حفظ" } }
+{
+  "title": "الحالات",
+  "subtitle": "إدارة حالات دعم العملاء",
+  "newCase": "حالة جديدة",
+  "edit": "تعديل الحالة",
+  "searchPlaceholder": "البحث عن الحالات...",
+  "noResults": "لم يتم العثور على حالات تطابق معاييرك.",
+  "filterByStatus": "تصفية حسب الحالة",
+  "filterByPriority": "تصفية حسب الأولوية",
+  "allStatuses": "جميع الحالات",
+  "allPriorities": "جميع الأولويات",
+  "columns": {
+    "caseNumber": "رقم الحالة",
+    "subject": "الموضوع",
+    "description": "الوصف",
+    "status": "الحالة",
+    "priority": "الأولوية",
+    "type": "النوع",
+    "account": "الحساب",
+    "contact": "جهة الاتصال",
+    "owner": "المالك",
+    "created": "تاريخ الإنشاء"
+  },
+  "fields": {
+    "caseNumber": "رقم الحالة",
+    "subject": "الموضوع",
+    "status": "الحالة",
+    "priority": "الأولوية",
+    "type": "النوع",
+    "account": "الحساب",
+    "contact": "جهة الاتصال",
+    "owner": "المالك",
+    "created": "تاريخ الإنشاء"
+  },
+  "status": {
+    "new": "جديدة",
+    "inProgress": "قيد التنفيذ",
+    "pending": "قيد الانتظار",
+    "resolved": "تم الحل",
+    "closed": "مغلقة"
+  },
+  "statuses": {
+    "new": "جديدة",
+    "inProgress": "قيد التنفيذ",
+    "pending": "قيد الانتظار",
+    "resolved": "تم الحل",
+    "closed": "مغلقة",
+    "working": "قيد العمل",
+    "escalated": "مصعدة"
+  },
+  "priority": {
+    "low": "منخفضة",
+    "medium": "متوسطة",
+    "high": "عالية",
+    "critical": "حرجة"
+  },
+  "priorities": {
+    "low": "منخفضة",
+    "medium": "متوسطة",
+    "high": "عالية",
+    "critical": "حرجة"
+  },
+  "types": {
+    "problem": "مشكلة",
+    "question": "سؤال",
+    "featureRequest": "طلب ميزة",
+    "bug": "خطأ برمجي"
+  },
+  "modal": {
+    "createTitle": "إنشاء حالة جديدة",
+    "editTitle": "تعديل الحالة",
+    "createButton": "إنشاء الحالة",
+    "saveButton": "حفظ التغييرات"
+  },
+  "messages": {
+    "deleted": "تم حذف الحالة بنجاح.",
+    "updated": "تم تحديث الحالة بنجاح."
+  }
+}

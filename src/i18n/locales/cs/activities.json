@@ -1,9 +1,23 @@
 {
   "title": "Aktivity",
-  "subtitle": "Spravujte své úkoly a aktivity",
+  "subtitle": "Sledujte a spravujte své aktivity",
   "newActivity": "Nová aktivita",
+  "edit": "Upravit aktivitu",
   "searchPlaceholder": "Hledat aktivity...",
   "noResults": "Nebyly nalezeny žádné aktivity.",
+  "completed": "Dokončeno",
+  "pending": "Čeká na vyřízení",
+  "columns": {
+    "subject": "Předmět",
+    "type": "Typ",
+    "status": "Stav",
+    "date": "Datum",
+    "priority": "Priorita",
+    "dueDate": "Termín",
+    "relatedTo": "Souvisí s",
+    "assignedTo": "Přiřazeno",
+    "description": "Popis"
+  },
   "fields": {
     "subject": "Předmět",
     "type": "Typ",
@@ -18,8 +32,12 @@
     "call": "Hovor",
     "meeting": "Schůzka",
     "task": "Úkol",
-    "email": "Email",
+    "email": "E-mail",
     "event": "Událost"
+  },
+  "status": {
+    "pending": "Čeká na vyřízení",
+    "completed": "Dokončeno"
   },
   "statuses": {
     "notStarted": "Nezahájeno",
@@ -37,5 +55,9 @@
     "editTitle": "Upravit aktivitu",
     "createButton": "Vytvořit aktivitu",
     "saveButton": "Uložit změny"
+  },
+  "messages": {
+    "deleted": "Aktivita byla úspěšně smazána.",
+    "updated": "Aktivita byla úspěšně aktualizována."
   }
 }

@@ -3,6 +3,7 @@
   "subtitle": "Gérez les utilisateurs et les permissions",
   "newUser": "Nouvel Utilisateur",
   "createNew": "Créer un Nouvel Utilisateur",
+  "edit": "Modifier l'Utilisateur",
   "searchPlaceholder": "Rechercher des utilisateurs...",
   "noResults": "Aucun utilisateur trouvé.",
   "columns": {
@@ -27,10 +28,14 @@
     "lastLogin": "Dernière connexion"
   },
   "roles": {
-    "admin": "Admin",
+    "admin": "Administrateur",
     "manager": "Manager",
     "salesRep": "Commercial",
     "support": "Support"
+  },
+  "status": {
+    "active": "Actif",
+    "inactive": "Inactif"
   },
   "statuses": {
     "active": "Actif",

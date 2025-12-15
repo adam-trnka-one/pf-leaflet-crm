@@ -1,9 +1,26 @@
 {
   "title": "Případy",
-  "subtitle": "Spravujte své podpůrné případy",
+  "subtitle": "Spravujte případy zákaznické podpory",
   "newCase": "Nový případ",
+  "edit": "Upravit případ",
   "searchPlaceholder": "Hledat případy...",
-  "noResults": "Nebyly nalezeny žádné případy.",
+  "noResults": "Nebyly nalezeny žádné případy odpovídající vašim filtrům.",
+  "filterByStatus": "Filtrovat podle stavu",
+  "filterByPriority": "Filtrovat podle priority",
+  "allStatuses": "Všechny stavy",
+  "allPriorities": "Všechny priority",
+  "columns": {
+    "caseNumber": "Číslo případu",
+    "subject": "Předmět",
+    "description": "Popis",
+    "status": "Stav",
+    "priority": "Priorita",
+    "type": "Typ",
+    "account": "Účet",
+    "contact": "Kontakt",
+    "owner": "Vlastník",
+    "created": "Vytvořeno"
+  },
   "fields": {
     "caseNumber": "Číslo případu",
     "subject": "Předmět",
@@ -15,11 +32,27 @@
     "owner": "Vlastník",
     "created": "Vytvořeno"
   },
+  "status": {
+    "new": "Nový",
+    "inProgress": "Probíhá",
+    "pending": "Čeká na vyřízení",
+    "resolved": "Vyřešeno",
+    "closed": "Uzavřeno"
+  },
   "statuses": {
     "new": "Nový",
+    "inProgress": "Probíhá",
+    "pending": "Čeká na vyřízení",
+    "resolved": "Vyřešeno",
+    "closed": "Uzavřeno",
     "working": "Zpracováváno",
-    "escalated": "Eskalováno",
-    "closed": "Uzavřeno"
+    "escalated": "Eskalováno"
+  },
+  "priority": {
+    "low": "Nízká",
+    "medium": "Střední",
+    "high": "Vysoká",
+    "critical": "Kritická"
   },
   "priorities": {
     "low": "Nízká",
@@ -30,12 +63,17 @@
   "types": {
     "problem": "Problém",
     "question": "Dotaz",
-    "featureRequest": "Požadavek na funkci"
+    "featureRequest": "Požadavek na funkci",
+    "bug": "Chyba"
   },
   "modal": {
     "createTitle": "Vytvořit nový případ",
     "editTitle": "Upravit případ",
     "createButton": "Vytvořit případ",
     "saveButton": "Uložit změny"
+  },
+  "messages": {
+    "deleted": "Případ byl úspěšně smazán.",
+    "updated": "Případ byl úspěšně aktualizován."
   }
 }

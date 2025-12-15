@@ -1,1 +1,63 @@
-{ "title": "الأنشطة", "subtitle": "إدارة أنشطتك", "newActivity": "جديدة", "searchPlaceholder": "بحث...", "noResults": "لا توجد نتائج.", "fields": { "subject": "الموضوع", "type": "النوع", "status": "الحالة", "priority": "الأولوية", "dueDate": "تاريخ الاستحقاق", "relatedTo": "مرتبط بـ", "assignedTo": "مسند إلى", "description": "الوصف" }, "types": { "call": "مكالمة", "meeting": "اجتماع", "task": "مهمة", "email": "بريد", "event": "حدث" }, "statuses": { "notStarted": "لم يبدأ", "inProgress": "قيد التنفيذ", "completed": "مكتمل", "deferred": "مؤجل" }, "priorities": { "low": "منخفضة", "normal": "عادية", "high": "عالية" }, "modal": { "createTitle": "إنشاء", "editTitle": "تعديل", "createButton": "إنشاء", "saveButton": "حفظ" } }
+{
+  "title": "الأنشطة",
+  "subtitle": "تتبع وإدارة أنشطتك",
+  "newActivity": "نشاط جديد",
+  "edit": "تعديل النشاط",
+  "searchPlaceholder": "البحث عن الأنشطة...",
+  "noResults": "لم يتم العثور على أنشطة.",
+  "completed": "مكتمل",
+  "pending": "قيد الانتظار",
+  "columns": {
+    "subject": "الموضوع",
+    "type": "النوع",
+    "status": "الحالة",
+    "date": "التاريخ",
+    "priority": "الأولوية",
+    "dueDate": "تاريخ الاستحقاق",
+    "relatedTo": "مرتبط بـ",
+    "assignedTo": "مسند إلى",
+    "description": "الوصف"
+  },
+  "fields": {
+    "subject": "الموضوع",
+    "type": "النوع",
+    "status": "الحالة",
+    "priority": "الأولوية",
+    "dueDate": "تاريخ الاستحقاق",
+    "relatedTo": "مرتبط بـ",
+    "assignedTo": "مسند إلى",
+    "description": "الوصف"
+  },
+  "types": {
+    "call": "مكالمة",
+    "meeting": "اجتماع",
+    "task": "مهمة",
+    "email": "بريد إلكتروني",
+    "event": "حدث"
+  },
+  "status": {
+    "pending": "قيد الانتظار",
+    "completed": "مكتمل"
+  },
+  "statuses": {
+    "notStarted": "لم يبدأ",
+    "inProgress": "قيد التنفيذ",
+    "completed": "مكتمل",
+    "deferred": "مؤجل"
+  },
+  "priorities": {
+    "low": "منخفضة",
+    "normal": "عادية",
+    "high": "عالية"
+  },
+  "modal": {
+    "createTitle": "إنشاء نشاط جديد",
+    "editTitle": "تعديل النشاط",
+    "createButton": "إنشاء النشاط",
+    "saveButton": "حفظ التغييرات"
+  },
+  "messages": {
+    "deleted": "تم حذف النشاط بنجاح.",
+    "updated": "تم تحديث النشاط بنجاح."
+  }
+}

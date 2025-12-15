@@ -3,6 +3,7 @@
   "subtitle": "Gérez votre catalogue de produits",
   "newProduct": "Nouveau Produit",
   "createNew": "Créer un Nouveau Produit",
+  "edit": "Modifier le Produit",
   "searchPlaceholder": "Rechercher des produits...",
   "noResults": "Aucun produit trouvé.",
   "perMonth": "/mois",
