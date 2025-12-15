@@ -1,13 +1,35 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const STORAGE_KEY = 'leaflet-workspace-data';
+
+export type ProductFruitsStatus = 'idle' | 'loading' | 'initialized' | 'error';
+
+export interface ProductFruitsState {
+  status: ProductFruitsStatus;
+  workspaceCode: string;
+  language: string;
+  userData: Record<string, any> | null;
+  scriptUrl: string;
+  lastInitialized: Date | null;
+  error: string | null;
+}
 
 export const useProductFruits = () => {
   const location = useLocation();
   const initializedWorkspaceCode = useRef<string>('');
   const hasInitialized = useRef<boolean>(false);
   const isInitializing = useRef<boolean>(false);
+
+  const [state, setState] = useState<ProductFruitsState>({
+    status: 'idle',
+    workspaceCode: '',
+    language: '',
+    userData: null,
+    scriptUrl: '',
+    lastInitialized: null,
+    error: null,
+  });
 
   useEffect(() => {
     // Only initialize ProductFruits on dashboard pages
@@ -58,13 +80,15 @@ export const useProductFruits = () => {
     return 'en';
   };
 
-  const initializeProductFruits = async (workspaceData?: any) => {
+  const initializeProductFruits = useCallback(async (workspaceData?: any) => {
     // Prevent concurrent initializations
     if (isInitializing.current) {
       console.log('ProductFruits initialization already in progress, skipping');
       return;
     }
     isInitializing.current = true;
+
+    setState(prev => ({ ...prev, status: 'loading', error: null }));
 
     let dataToUse = workspaceData;
     
@@ -78,6 +102,7 @@ export const useProductFruits = () => {
       } catch (error) {
         console.error('Error loading workspace data from localStorage:', error);
         isInitializing.current = false;
+        setState(prev => ({ ...prev, status: 'error', error: 'Failed to load workspace data' }));
         return;
       }
     }
@@ -85,6 +110,7 @@ export const useProductFruits = () => {
     if (!dataToUse || !dataToUse.workspaceCode || !dataToUse.username) {
       console.log('Missing required workspace data for ProductFruits initialization');
       isInitializing.current = false;
+      setState(prev => ({ ...prev, status: 'error', error: 'Missing workspace code or username' }));
       return;
     }
 
@@ -146,6 +172,15 @@ export const useProductFruits = () => {
     mainScript.async = true;
     const scriptUrl = getScriptUrl(dataToUse.selectedWorkspace, dataToUse.customUrl);
     mainScript.src = `${scriptUrl}?c=${dataToUse.workspaceCode}`;
+
+    // Update state with loading info
+    setState(prev => ({
+      ...prev,
+      workspaceCode: dataToUse.workspaceCode,
+      language: languageCode,
+      userData: initData,
+      scriptUrl: scriptUrl,
+    }));
     
     // Wait for script to load before initializing
     mainScript.onload = () => {
@@ -161,18 +196,30 @@ export const useProductFruits = () => {
       console.log('ProductFruits language:', languageCode);
       console.log('Initialization data:', initData);
       isInitializing.current = false;
+      
+      setState(prev => ({
+        ...prev,
+        status: 'initialized',
+        lastInitialized: new Date(),
+        error: null,
+      }));
     };
 
     mainScript.onerror = () => {
       console.error('Failed to load ProductFruits script');
       isInitializing.current = false;
+      setState(prev => ({
+        ...prev,
+        status: 'error',
+        error: 'Failed to load ProductFruits script',
+      }));
     };
     
     document.head.appendChild(mainScript);
 
     // Update the tracking reference
     initializedWorkspaceCode.current = dataToUse.workspaceCode;
-  };
+  }, []);
 
   const hasWorkspaceCodeChanged = (currentWorkspaceCode: string) => {
     return hasInitialized.current && 
@@ -183,6 +230,7 @@ export const useProductFruits = () => {
   return {
     initializeProductFruits,
     hasWorkspaceCodeChanged,
-    canAutoInitialize: location.pathname.startsWith('/dashboard')
+    canAutoInitialize: location.pathname.startsWith('/dashboard'),
+    state,
   };
 };
