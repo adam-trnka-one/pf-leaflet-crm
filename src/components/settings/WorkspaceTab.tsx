@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Building } from "lucide-react";
@@ -6,10 +5,13 @@ import { useWorkspaceForm } from "@/hooks/useWorkspaceForm";
 import { WorkspaceBasicFields } from "./workspace/WorkspaceBasicFields";
 import { CustomPropertiesSection } from "./workspace/CustomPropertiesSection";
 import { WorkspaceActions } from "./workspace/WorkspaceActions";
+import { ProductFruitsDebugPanel } from "./workspace/ProductFruitsDebugPanel";
+import { useProductFruits } from "@/hooks/useProductFruits";
 import { useTranslation } from "react-i18next";
 
 export const WorkspaceTab = () => {
   const { t } = useTranslation();
+  const { state: productFruitsState } = useProductFruits();
   const {
     localWorkspaceData,
     setLocalWorkspaceData,
@@ -55,6 +57,10 @@ export const WorkspaceTab = () => {
           handleSaveWorkspaceData={handleSaveWorkspaceData}
           workspaceData={workspaceData}
         />
+
+        <Separator data-testid="workspace-separator-3" />
+
+        <ProductFruitsDebugPanel state={productFruitsState} />
       </CardContent>
     </Card>
   );
