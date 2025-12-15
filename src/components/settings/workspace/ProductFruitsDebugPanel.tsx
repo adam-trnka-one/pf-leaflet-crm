@@ -1,13 +1,60 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Bug, CheckCircle2, Loader2, AlertCircle, Clock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Bug, CheckCircle2, Loader2, AlertCircle, Clock, RefreshCw } from "lucide-react";
 import { ProductFruitsState } from "@/hooks/useProductFruits";
+import { useState } from "react";
 
 interface ProductFruitsDebugPanelProps {
   state: ProductFruitsState;
+  onReinitialize?: () => Promise<void>;
 }
 
-export const ProductFruitsDebugPanel = ({ state }: ProductFruitsDebugPanelProps) => {
+const getTroubleshootingSuggestions = (error: string | null): string[] => {
+  if (!error) return [];
+  
+  const suggestions: string[] = [];
+  
+  if (error.includes('already initialized')) {
+    suggestions.push('ProductFruits was initialized multiple times. Try refreshing the page.');
+    suggestions.push('Check if there are duplicate initialization scripts.');
+  }
+  if (error.includes('language')) {
+    suggestions.push('Language code may be invalid. Verify it matches your workspace settings.');
+  }
+  if (error.includes('Failed to load')) {
+    suggestions.push('Check your network connection.');
+    suggestions.push('Verify the workspace code is correct.');
+    suggestions.push('Ensure the script URL is accessible.');
+  }
+  if (error.includes('Missing workspace code')) {
+    suggestions.push('Enter a valid workspace code in the settings above.');
+  }
+  if (error.includes('Missing') && error.includes('username')) {
+    suggestions.push('Enter a username/email in the settings above.');
+  }
+  
+  if (suggestions.length === 0) {
+    suggestions.push('Try refreshing the page.');
+    suggestions.push('Check the browser console for more details.');
+  }
+  
+  return suggestions;
+};
+
+export const ProductFruitsDebugPanel = ({ state, onReinitialize }: ProductFruitsDebugPanelProps) => {
+  const [isReinitializing, setIsReinitializing] = useState(false);
+
+  const handleReinitialize = async () => {
+    if (!onReinitialize || isReinitializing) return;
+    setIsReinitializing(true);
+    try {
+      await onReinitialize();
+    } finally {
+      setIsReinitializing(false);
+    }
+  };
+
   const getStatusBadge = () => {
     switch (state.status) {
       case 'idle':
@@ -21,6 +68,8 @@ export const ProductFruitsDebugPanel = ({ state }: ProductFruitsDebugPanelProps)
     }
   };
 
+  const troubleshootingSuggestions = getTroubleshootingSuggestions(state.error);
+
   return (
     <Card className="bg-slate-50 border-dashed border-slate-300">
       <CardHeader className="py-3">
@@ -29,7 +78,25 @@ export const ProductFruitsDebugPanel = ({ state }: ProductFruitsDebugPanelProps)
             <Bug className="h-4 w-4 text-slate-500" />
             <span className="text-slate-600">ProductFruits Debug</span>
           </div>
-          {getStatusBadge()}
+          <div className="flex items-center gap-2">
+            {getStatusBadge()}
+            {onReinitialize && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleReinitialize}
+                disabled={isReinitializing || state.status === 'loading'}
+                className="h-6 px-2 text-xs"
+              >
+                {isReinitializing ? (
+                  <Loader2 className="h-3 w-3 animate-spin" />
+                ) : (
+                  <RefreshCw className="h-3 w-3" />
+                )}
+                <span className="ml-1">Reinit</span>
+              </Button>
+            )}
+          </div>
         </CardTitle>
       </CardHeader>
       <CardContent className="py-2 space-y-3">
@@ -60,16 +127,29 @@ export const ProductFruitsDebugPanel = ({ state }: ProductFruitsDebugPanelProps)
               </span>
             </div>
           )}
-          {state.error && (
-            <div className="col-span-2">
-              <span className="text-red-500 block">Error</span>
-              <span className="text-red-600">{state.error}</span>
-            </div>
-          )}
         </div>
+
+        {state.error && (
+          <div className="space-y-2 border-t border-slate-200 pt-2">
+            <div>
+              <span className="text-red-500 text-xs font-medium block">Error</span>
+              <span className="text-red-600 text-xs">{state.error}</span>
+            </div>
+            {troubleshootingSuggestions.length > 0 && (
+              <div>
+                <span className="text-slate-500 text-xs font-medium block mb-1">Troubleshooting</span>
+                <ul className="text-xs text-slate-600 space-y-0.5 list-disc list-inside">
+                  {troubleshootingSuggestions.map((suggestion, index) => (
+                    <li key={index}>{suggestion}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
         
         {state.userData && (
-          <div>
+          <div className="border-t border-slate-200 pt-2">
             <span className="text-slate-500 text-xs block mb-1">User Data</span>
             <pre className="bg-slate-200 p-2 rounded text-[10px] text-slate-700 overflow-auto max-h-32">
               {JSON.stringify(state.userData, null, 2)}

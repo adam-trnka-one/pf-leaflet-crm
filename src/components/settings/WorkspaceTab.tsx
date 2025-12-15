@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 
 export const WorkspaceTab = () => {
   const { t } = useTranslation();
-  const { state: productFruitsState } = useProductFruits();
+  const { state: productFruitsState, initializeProductFruits } = useProductFruits();
   const {
     localWorkspaceData,
     setLocalWorkspaceData,
@@ -23,6 +23,10 @@ export const WorkspaceTab = () => {
     handleResetToDefaults,
     workspaceData
   } = useWorkspaceForm();
+
+  const handleReinitialize = async () => {
+    await initializeProductFruits(undefined, true);
+  };
 
   return (
     <Card className="bg-white shadow-sm" data-testid="workspace-card">
@@ -60,7 +64,7 @@ export const WorkspaceTab = () => {
 
         <Separator data-testid="workspace-separator-3" />
 
-        <ProductFruitsDebugPanel state={productFruitsState} />
+        <ProductFruitsDebugPanel state={productFruitsState} onReinitialize={handleReinitialize} />
       </CardContent>
     </Card>
   );
