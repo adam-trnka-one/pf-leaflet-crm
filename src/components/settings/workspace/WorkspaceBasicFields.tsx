@@ -36,12 +36,6 @@ const workspaceOptions = [
     isDefault: true
   },
   {
-    name: "Leaflet CRM - Static PF",
-    code: "OxISa0He3RgK0P8q",
-    value: "static",
-    isDefault: false
-  },
-  {
     name: "DEV",
     code: "",
     value: "dev",
