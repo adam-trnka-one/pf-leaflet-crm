@@ -84,79 +84,85 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>{t('createNew')}</DialogTitle>
+    <Dialog open={open} onOpenChange={onOpenChange} data-testid="new-contact-modal">
+      <DialogContent className="sm:max-w-[425px]" data-testid="new-contact-modal-content">
+        <DialogHeader data-testid="new-contact-modal-header">
+          <DialogTitle data-testid="new-contact-modal-title">{t('createNew')}</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="grid gap-2">
-              <Label htmlFor="firstName">{t('columns.firstName')}</Label>
+        <div className="grid gap-4 py-4" data-testid="new-contact-modal-form">
+          <div className="grid grid-cols-2 gap-4" data-testid="new-contact-name-row">
+            <div className="grid gap-2" data-testid="new-contact-firstname-field">
+              <Label htmlFor="firstName" data-testid="new-contact-firstname-label">{t('columns.firstName')}</Label>
               <Input
                 id="firstName"
                 value={formData.firstName}
                 onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                 placeholder="John"
+                data-testid="new-contact-firstname-input"
               />
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="lastName">{t('columns.lastName')}</Label>
+            <div className="grid gap-2" data-testid="new-contact-lastname-field">
+              <Label htmlFor="lastName" data-testid="new-contact-lastname-label">{t('columns.lastName')}</Label>
               <Input
                 id="lastName"
                 value={formData.lastName}
                 onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                 placeholder="Doe"
+                data-testid="new-contact-lastname-input"
               />
             </div>
           </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="email">{t('columns.email')}</Label>
+          <div className="grid gap-2" data-testid="new-contact-email-field">
+            <Label htmlFor="email" data-testid="new-contact-email-label">{t('columns.email')}</Label>
             <Input
               id="email"
               type="email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               placeholder="john.doe@company.com"
+              data-testid="new-contact-email-input"
             />
           </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="phone">{t('columns.phone')}</Label>
+          <div className="grid gap-2" data-testid="new-contact-phone-field">
+            <Label htmlFor="phone" data-testid="new-contact-phone-label">{t('columns.phone')}</Label>
             <Input
               id="phone"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               placeholder="+1 (555) 123-4567"
+              data-testid="new-contact-phone-input"
             />
           </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="title">{t('columns.title')}</Label>
+          <div className="grid gap-2" data-testid="new-contact-title-field">
+            <Label htmlFor="title" data-testid="new-contact-title-label">{t('columns.title')}</Label>
             <Input
               id="title"
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               placeholder="Sales Manager"
+              data-testid="new-contact-title-input"
             />
           </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="accountName">{t('columns.account')}</Label>
+          <div className="grid gap-2" data-testid="new-contact-account-field">
+            <Label htmlFor="accountName" data-testid="new-contact-account-label">{t('columns.account')}</Label>
             <Input
               id="accountName"
               value={formData.accountName}
               onChange={(e) => setFormData({ ...formData, accountName: e.target.value })}
               placeholder="Acme Corporation"
+              data-testid="new-contact-account-input"
             />
           </div>
         </div>
-        <DialogFooter>
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
+        <DialogFooter data-testid="new-contact-modal-footer">
+          <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="new-contact-cancel-button">
             {t('common:cancel')}
           </Button>
-          <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700">
+          <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700" data-testid="new-contact-create-button">
             {t('common:create')}
           </Button>
         </DialogFooter>

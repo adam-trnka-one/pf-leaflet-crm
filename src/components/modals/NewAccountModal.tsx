@@ -111,127 +111,136 @@ const NewAccountModal = ({ open, onOpenChange, onAccountCreated }: NewAccountMod
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[500px] max-h-[80vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>{t('createNew')}</DialogTitle>
+    <Dialog open={open} onOpenChange={onOpenChange} data-testid="new-account-modal">
+      <DialogContent className="sm:max-w-[500px] max-h-[80vh] overflow-y-auto" data-testid="new-account-modal-content">
+        <DialogHeader data-testid="new-account-modal-header">
+          <DialogTitle data-testid="new-account-modal-title">{t('createNew')}</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid gap-2">
-            <Label htmlFor="account-name">{t('columns.name')}</Label>
+        <div className="grid gap-4 py-4" data-testid="new-account-modal-form">
+          <div className="grid gap-2" data-testid="new-account-name-field">
+            <Label htmlFor="account-name" data-testid="new-account-name-label">{t('columns.name')}</Label>
             <Input
               id="account-name"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               placeholder="Acme Corporation"
+              data-testid="new-account-name-input"
             />
           </div>
           
-          <div className="grid gap-2">
-            <Label htmlFor="type">{t('columns.type')}</Label>
+          <div className="grid gap-2" data-testid="new-account-type-field">
+            <Label htmlFor="type" data-testid="new-account-type-label">{t('columns.type')}</Label>
             <Select value={formData.type} onValueChange={(value) => setFormData({ ...formData, type: value })}>
-              <SelectTrigger>
+              <SelectTrigger data-testid="new-account-type-trigger">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Customer">{t('types.customer')}</SelectItem>
-                <SelectItem value="Prospect">{t('types.prospect')}</SelectItem>
-                <SelectItem value="Partner">{t('types.partner')}</SelectItem>
-                <SelectItem value="Competitor">{t('types.competitor')}</SelectItem>
+              <SelectContent data-testid="new-account-type-content">
+                <SelectItem value="Customer" data-testid="new-account-type-customer">{t('types.customer')}</SelectItem>
+                <SelectItem value="Prospect" data-testid="new-account-type-prospect">{t('types.prospect')}</SelectItem>
+                <SelectItem value="Partner" data-testid="new-account-type-partner">{t('types.partner')}</SelectItem>
+                <SelectItem value="Competitor" data-testid="new-account-type-competitor">{t('types.competitor')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="industry">{t('columns.industry')}</Label>
+          <div className="grid gap-2" data-testid="new-account-industry-field">
+            <Label htmlFor="industry" data-testid="new-account-industry-label">{t('columns.industry')}</Label>
             <Input
               id="industry"
               value={formData.industry}
               onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
               placeholder="Technology"
+              data-testid="new-account-industry-input"
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="grid gap-2">
-              <Label htmlFor="revenue">{t('columns.revenue')}</Label>
+          <div className="grid grid-cols-2 gap-4" data-testid="new-account-financials-row">
+            <div className="grid gap-2" data-testid="new-account-revenue-field">
+              <Label htmlFor="revenue" data-testid="new-account-revenue-label">{t('columns.revenue')}</Label>
               <Input
                 id="revenue"
                 type="number"
                 value={formData.revenue}
                 onChange={(e) => setFormData({ ...formData, revenue: e.target.value })}
                 placeholder="1000000"
+                data-testid="new-account-revenue-input"
               />
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="employees">{t('columns.employees')}</Label>
+            <div className="grid gap-2" data-testid="new-account-employees-field">
+              <Label htmlFor="employees" data-testid="new-account-employees-label">{t('columns.employees')}</Label>
               <Input
                 id="employees"
                 type="number"
                 value={formData.employees}
                 onChange={(e) => setFormData({ ...formData, employees: e.target.value })}
                 placeholder="50"
+                data-testid="new-account-employees-input"
               />
             </div>
           </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="street">{t('common:address')}</Label>
+          <div className="grid gap-2" data-testid="new-account-street-field">
+            <Label htmlFor="street" data-testid="new-account-street-label">{t('common:address')}</Label>
             <Input
               id="street"
               value={formData.street}
               onChange={(e) => setFormData({ ...formData, street: e.target.value })}
               placeholder="123 Main St"
+              data-testid="new-account-street-input"
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="grid gap-2">
-              <Label htmlFor="city">{t('common:city')}</Label>
+          <div className="grid grid-cols-2 gap-4" data-testid="new-account-city-state-row">
+            <div className="grid gap-2" data-testid="new-account-city-field">
+              <Label htmlFor="city" data-testid="new-account-city-label">{t('common:city')}</Label>
               <Input
                 id="city"
                 value={formData.city}
                 onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                 placeholder="New York"
+                data-testid="new-account-city-input"
               />
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="state">{t('common:state')}</Label>
+            <div className="grid gap-2" data-testid="new-account-state-field">
+              <Label htmlFor="state" data-testid="new-account-state-label">{t('common:state')}</Label>
               <Input
                 id="state"
                 value={formData.state}
                 onChange={(e) => setFormData({ ...formData, state: e.target.value })}
                 placeholder="NY"
+                data-testid="new-account-state-input"
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="grid gap-2">
-              <Label htmlFor="country">{t('common:country')}</Label>
+          <div className="grid grid-cols-2 gap-4" data-testid="new-account-country-postal-row">
+            <div className="grid gap-2" data-testid="new-account-country-field">
+              <Label htmlFor="country" data-testid="new-account-country-label">{t('common:country')}</Label>
               <Input
                 id="country"
                 value={formData.country}
                 onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                 placeholder="USA"
+                data-testid="new-account-country-input"
               />
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="postalCode">{t('common:postalCode')}</Label>
+            <div className="grid gap-2" data-testid="new-account-postalcode-field">
+              <Label htmlFor="postalCode" data-testid="new-account-postalcode-label">{t('common:postalCode')}</Label>
               <Input
                 id="postalCode"
                 value={formData.postalCode}
                 onChange={(e) => setFormData({ ...formData, postalCode: e.target.value })}
                 placeholder="10001"
+                data-testid="new-account-postalcode-input"
               />
             </div>
           </div>
         </div>
-        <DialogFooter>
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
+        <DialogFooter data-testid="new-account-modal-footer">
+          <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="new-account-cancel-button">
             {t('common:cancel')}
           </Button>
-          <Button onClick={handleSubmit} className="bg-[#4AB831] hover:bg-[#3da127]">
+          <Button onClick={handleSubmit} className="bg-[#4AB831] hover:bg-[#3da127]" data-testid="new-account-create-button">
             {t('common:create')}
           </Button>
         </DialogFooter>
