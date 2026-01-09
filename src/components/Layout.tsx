@@ -165,33 +165,37 @@ const LayoutContent = () => {
         <SidebarInset className="flex-1">
           <header className="flex h-[89px] shrink-0 items-center justify-between gap-6 border-b px-6 bg-white py-0">
             <div className="flex items-center gap-4">
-              <SidebarTrigger className="-ml-1" />
+              <SidebarTrigger className="-ml-1" data-testid="sidebar-trigger" />
             </div>
             
             <div className="flex items-center gap-4 flex-1 max-w-2xl">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 rtl:left-auto rtl:right-3" />
-                <Input placeholder={t('header.searchPlaceholder')} className="pl-10 rtl:pl-3 rtl:pr-10 bg-slate-50 border-slate-200 focus:bg-white" />
+                <Input 
+                  placeholder={t('header.searchPlaceholder')} 
+                  className="pl-10 rtl:pl-3 rtl:pr-10 bg-slate-50 border-slate-200 focus:bg-white" 
+                  data-testid="header-search-input"
+                />
               </div>
               
               {/* Language Dropdown with Flags */}
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1" data-testid="language-selector-container">
                 <Select value={localWorkspaceData.languageCode} onValueChange={handleLanguageChangeAndInitiate} disabled={isInitiating}>
-                  <SelectTrigger className="w-36 h-8 bg-white" title="Select language">
+                  <SelectTrigger className="w-36 h-8 bg-white" title="Select language" data-testid="language-selector-trigger">
                     {isInitiating ? (
                       <Loader2 className="h-4 w-4 animate-spin" />
                     ) : (
                       <SelectValue />
                     )}
                   </SelectTrigger>
-                  <SelectContent className="bg-white z-50 min-w-[160px]">
-                    <SelectItem value="en">🇬🇧 English</SelectItem>
-                    <SelectItem value="cs">🇨🇿 Čeština</SelectItem>
-                    <SelectItem value="de">🇩🇪 Deutsch</SelectItem>
-                    <SelectItem value="fr">🇫🇷 Français</SelectItem>
-                    <SelectItem value="es">🇪🇸 Español</SelectItem>
-                    <SelectItem value="pt">🇵🇹 Português</SelectItem>
-                    <SelectItem value="ar">🇸🇦 العربية</SelectItem>
+                  <SelectContent className="bg-white z-50 min-w-[160px]" data-testid="language-selector-content">
+                    <SelectItem value="en" data-testid="language-option-en">🇬🇧 English</SelectItem>
+                    <SelectItem value="cs" data-testid="language-option-cs">🇨🇿 Čeština</SelectItem>
+                    <SelectItem value="de" data-testid="language-option-de">🇩🇪 Deutsch</SelectItem>
+                    <SelectItem value="fr" data-testid="language-option-fr">🇫🇷 Français</SelectItem>
+                    <SelectItem value="es" data-testid="language-option-es">🇪🇸 Español</SelectItem>
+                    <SelectItem value="pt" data-testid="language-option-pt">🇵🇹 Português</SelectItem>
+                    <SelectItem value="ar" data-testid="language-option-ar">🇸🇦 العربية</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -204,6 +208,7 @@ const LayoutContent = () => {
                 className="h-8 w-8 relative"
                 title={t('header.newsfeed')}
                 id="newsfeed-launcher"
+                data-testid="newsfeed-button"
               >
                 <Newspaper className="h-4 w-4" />
                 {unreadCount > 0 && (
@@ -218,6 +223,7 @@ const LayoutContent = () => {
                 onClick={handleSignOut}
                 className="h-8 w-8"
                 title={t('header.signOut')}
+                data-testid="signout-button"
               >
                 <LogOut className="h-4 w-4" />
               </Button>
