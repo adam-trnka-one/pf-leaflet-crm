@@ -186,3 +186,18 @@
   background: hsl(var(--card)) !important;
   border: 1px solid hsl(var(--border)) !important;
 }
+
+/* Mobile bottom nav spacing for overlays */
+@media (max-width: 639px) {
+  /* Ensure dialogs/modals are positioned above bottom nav */
+  [data-radix-dialog-content],
+  [data-radix-alert-dialog-content] {
+    max-height: calc(100vh - 5rem) !important;
+    margin-bottom: 4rem;
+  }
+  
+  /* Adjust popover and dropdown positioning */
+  [data-radix-popper-content-wrapper] {
+    z-index: 60 !important;
+  }
+}

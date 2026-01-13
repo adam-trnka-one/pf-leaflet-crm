@@ -85,7 +85,8 @@ const BottomNav = () => {
           <DropdownMenuContent 
             align="end" 
             side="top" 
-            className="w-48 mb-2 bg-white z-50"
+            sideOffset={8}
+            className="w-48 mb-2 bg-white z-[60]"
             data-testid="bottom-nav-more-menu"
           >
             {moreNavItems.map((item) => {
