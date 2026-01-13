@@ -12,6 +12,7 @@ import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useRef, useEffect, useState } from "react";
 import { RTL_LANGUAGES } from "@/i18n";
 import { toast } from "@/hooks/use-toast";
+import BottomNav from "@/components/BottomNav";
 
 const LayoutContent = () => {
   const location = useLocation();
@@ -228,11 +229,12 @@ const LayoutContent = () => {
               </Button>
             </div>
           </header>
-          <main className="flex-1 overflow-auto p-6">
+          <main className="flex-1 overflow-auto p-4 sm:p-6 pb-20 sm:pb-6">
             <Outlet />
           </main>
         </SidebarInset>
       </div>
+      <BottomNav />
     </div>
   );
 };
