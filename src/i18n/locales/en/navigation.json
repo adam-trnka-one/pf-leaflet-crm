@@ -10,7 +10,8 @@
     "users": "Users",
     "products": "Products",
     "quotes": "Quotes",
-    "settings": "Settings"
+    "settings": "Settings",
+    "more": "More"
   },
   "header": {
     "searchPlaceholder": "Search accounts, contacts, opportunities...",
