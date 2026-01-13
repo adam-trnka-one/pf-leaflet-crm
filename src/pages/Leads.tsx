@@ -98,15 +98,15 @@ const Leads = () => {
   }
 
   return (
-    <div className="p-8 bg-slate-50 min-h-screen" data-testid="leads-main-container">
+    <div className="p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen" data-testid="leads-main-container">
       {/* Header */}
-      <div className="flex justify-between items-start mb-8" data-testid="leads-header-section">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 sm:mb-8" data-testid="leads-header-section">
         <div data-testid="leads-header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-testid="leads-page-title">{t('leads:title')}</h1>
-          <p className="text-slate-600 mt-2" data-testid="leads-page-subtitle">{t('leads:subtitle')}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800" data-testid="leads-page-title">{t('leads:title')}</h1>
+          <p className="text-slate-600 mt-1 sm:mt-2 text-sm sm:text-base" data-testid="leads-page-subtitle">{t('leads:subtitle')}</p>
         </div>
         <Button 
-          className="bg-emerald-600 hover:bg-emerald-700"
+          className="bg-emerald-600 hover:bg-emerald-700 w-full sm:w-auto"
           onClick={() => setIsModalOpen(true)}
           data-testid="leads-new-lead-button"
         >

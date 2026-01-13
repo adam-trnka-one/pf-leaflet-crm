@@ -56,14 +56,14 @@ const Quotes = () => {
   };
 
   return (
-    <div className="p-8 bg-slate-50 min-h-screen" data-testid="quotes-main-container">
-      <div className="flex justify-between items-start mb-8" data-testid="quotes-header-section">
+    <div className="p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen" data-testid="quotes-main-container">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 sm:mb-8" data-testid="quotes-header-section">
         <div data-testid="quotes-header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-testid="quotes-page-title">{t('quotes:title')}</h1>
-          <p className="text-slate-600 mt-2" data-testid="quotes-page-subtitle">{t('quotes:subtitle')}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800" data-testid="quotes-page-title">{t('quotes:title')}</h1>
+          <p className="text-slate-600 mt-1 sm:mt-2 text-sm sm:text-base" data-testid="quotes-page-subtitle">{t('quotes:subtitle')}</p>
         </div>
         <Button 
-          className="bg-[#4AB831] hover:bg-[#3da127]"
+          className="bg-[#4AB831] hover:bg-[#3da127] w-full sm:w-auto"
           onClick={() => setIsModalOpen(true)}
           data-testid="quotes-new-quote-button"
         >
@@ -75,10 +75,10 @@ const Quotes = () => {
       <div className="space-y-4" data-testid="quotes-list">
         {quotes.map((quote) => (
           <Card key={quote.id} className="bg-white shadow-sm hover:shadow-md transition-shadow" data-testid="quotes-quote-card">
-            <CardContent className="p-6" data-testid="quotes-card-content">
-              <div className="flex items-center justify-between" data-testid="quotes-card-row">
+            <CardContent className="p-4 sm:p-6" data-testid="quotes-card-content">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" data-testid="quotes-card-row">
                 <div className="flex items-center space-x-4" data-testid="quotes-quote-info-section">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center" data-testid="quotes-quote-icon-container">
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0" data-testid="quotes-quote-icon-container">
                     <FileText className="h-5 w-5 text-blue-600" data-testid="quotes-quote-icon" />
                   </div>
                   <div data-testid="quotes-quote-details">
@@ -87,8 +87,8 @@ const Quotes = () => {
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-6" data-testid="quotes-quote-metadata-section">
-                  <div className="text-right" data-testid="quotes-quote-financial-info">
+                <div className="flex flex-wrap items-center justify-between sm:justify-end gap-3 sm:gap-6" data-testid="quotes-quote-metadata-section">
+                  <div className="text-left sm:text-right" data-testid="quotes-quote-financial-info">
                     <div className="flex items-center space-x-1 text-emerald-600 font-semibold" data-testid="quotes-amount-section">
                       <DollarSign className="h-4 w-4" data-testid="quotes-amount-icon" />
                       <span data-testid="quotes-amount-text">{quote.amount.toLocaleString()}</span>
@@ -110,8 +110,8 @@ const Quotes = () => {
                       onClick={() => handleEdit(quote)}
                       data-testid="quotes-edit-button"
                     >
-                      <Edit className="h-4 w-4 mr-1" data-testid="quotes-edit-icon" />
-                      <span data-testid="quotes-edit-text">{t('common:edit')}</span>
+                      <Edit className="h-4 w-4 sm:mr-1" data-testid="quotes-edit-icon" />
+                      <span className="hidden sm:inline" data-testid="quotes-edit-text">{t('common:edit')}</span>
                     </Button>
                     <Button
                       variant="outline"

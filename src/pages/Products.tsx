@@ -62,14 +62,14 @@ const Products = () => {
   };
 
   return (
-    <div className="p-8 bg-slate-50 min-h-screen" data-testid="products-main-container">
-      <div className="flex justify-between items-start mb-8" data-testid="products-header-section">
+    <div className="p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen" data-testid="products-main-container">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 sm:mb-8" data-testid="products-header-section">
         <div data-testid="products-header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-testid="products-page-title">{t('products:title')}</h1>
-          <p className="text-slate-600 mt-2" data-testid="products-page-subtitle">{t('products:subtitle')}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800" data-testid="products-page-title">{t('products:title')}</h1>
+          <p className="text-slate-600 mt-1 sm:mt-2 text-sm sm:text-base" data-testid="products-page-subtitle">{t('products:subtitle')}</p>
         </div>
         <Button 
-          className="bg-[#4AB831] hover:bg-[#3da127]"
+          className="bg-[#4AB831] hover:bg-[#3da127] w-full sm:w-auto"
           onClick={() => setIsModalOpen(true)}
           data-testid="products-new-button"
         >
