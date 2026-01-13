@@ -163,13 +163,13 @@ const LayoutContent = () => {
         </Sidebar>
 
         <SidebarInset className="flex-1">
-          <header className="flex h-[89px] shrink-0 items-center justify-between gap-6 border-b px-6 bg-white py-0">
-            <div className="flex items-center gap-4">
+          <header className="flex h-auto min-h-[64px] sm:h-[89px] shrink-0 items-center justify-between gap-2 sm:gap-6 border-b px-3 sm:px-6 bg-white py-2 sm:py-0">
+            <div className="flex items-center gap-2 sm:gap-4">
               <SidebarTrigger className="-ml-1" data-testid="sidebar-trigger" />
             </div>
             
-            <div className="flex items-center gap-4 flex-1 max-w-2xl">
-              <div className="relative flex-1">
+            <div className="flex items-center gap-2 sm:gap-4 flex-1 max-w-2xl">
+              <div className="relative flex-1 hidden sm:block">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 rtl:left-auto rtl:right-3" />
                 <Input 
                   placeholder={t('header.searchPlaceholder')} 
@@ -178,10 +178,9 @@ const LayoutContent = () => {
                 />
               </div>
               
-              {/* Language Dropdown with Flags */}
               <div className="flex items-center gap-1" data-testid="language-selector-container">
                 <Select value={localWorkspaceData.languageCode} onValueChange={handleLanguageChangeAndInitiate} disabled={isInitiating}>
-                  <SelectTrigger className="w-36 h-8 bg-white" title="Select language" data-testid="language-selector-trigger">
+                  <SelectTrigger className="w-12 sm:w-36 h-8 bg-white" title="Select language" data-testid="language-selector-trigger">
                     {isInitiating ? (
                       <Loader2 className="h-4 w-4 animate-spin" />
                     ) : (

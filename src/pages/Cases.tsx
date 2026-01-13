@@ -139,15 +139,15 @@ const Cases = () => {
   }
 
   return (
-    <div className="p-8 bg-slate-50 min-h-screen" data-testid="cases-main-container">
+    <div className="p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen" data-testid="cases-main-container">
       {/* Header */}
-      <div className="flex justify-between items-start mb-8" data-testid="cases-header-section">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 sm:mb-8" data-testid="cases-header-section">
         <div data-testid="cases-header-content">
-          <h1 className="text-3xl font-bold text-slate-800" data-testid="cases-page-title">{t('cases:title')}</h1>
-          <p className="text-slate-600 mt-2" data-testid="cases-page-subtitle">{t('cases:subtitle')}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800" data-testid="cases-page-title">{t('cases:title')}</h1>
+          <p className="text-slate-600 mt-1 sm:mt-2 text-sm sm:text-base" data-testid="cases-page-subtitle">{t('cases:subtitle')}</p>
         </div>
         <Button 
-          className="bg-emerald-600 hover:bg-emerald-700" 
+          className="bg-emerald-600 hover:bg-emerald-700 w-full sm:w-auto" 
           onClick={() => setIsModalOpen(true)}
           data-testid="cases-new-case-button"
         >
@@ -157,9 +157,9 @@ const Cases = () => {
       </div>
 
       {/* Filters */}
-      <div className="flex space-x-4 mb-6" data-testid="cases-filters-section">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6" data-testid="cases-filters-section">
         <Select value={statusFilter} onValueChange={setStatusFilter} data-testid="cases-status-filter">
-          <SelectTrigger className="w-48 bg-white" data-testid="cases-status-filter-trigger">
+          <SelectTrigger className="w-full sm:w-48 bg-white" data-testid="cases-status-filter-trigger">
             <SelectValue placeholder={t('cases:filterByStatus')} data-testid="cases-status-filter-value" />
           </SelectTrigger>
           <SelectContent data-testid="cases-status-filter-content">
@@ -173,7 +173,7 @@ const Cases = () => {
         </Select>
 
         <Select value={priorityFilter} onValueChange={setPriorityFilter} data-testid="cases-priority-filter">
-          <SelectTrigger className="w-48 bg-white" data-testid="cases-priority-filter-trigger">
+          <SelectTrigger className="w-full sm:w-48 bg-white" data-testid="cases-priority-filter-trigger">
             <SelectValue placeholder={t('cases:filterByPriority')} data-testid="cases-priority-filter-value" />
           </SelectTrigger>
           <SelectContent data-testid="cases-priority-filter-content">
