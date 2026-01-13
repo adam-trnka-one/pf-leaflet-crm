@@ -200,4 +200,16 @@
   [data-radix-popper-content-wrapper] {
     z-index: 60 !important;
   }
+  
+  /* Move ProductFruits elements above bottom nav */
+  #productfruits-container,
+  [data-pf-widget],
+  .productfruits--launcher,
+  .pf-widget__launcher,
+  .pf-widget__content,
+  #pf-launcher,
+  [class*="productfruits"],
+  [id*="productfruits"] {
+    bottom: 5rem !important;
+  }
 }
