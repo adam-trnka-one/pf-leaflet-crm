@@ -19,7 +19,11 @@
     "resetButton": "Obnovit výchozí",
     "saveSuccess": "HTML hlavička úspěšně uložena",
     "saveError": "Nepodařilo se uložit HTML hlavičku",
-    "resetSuccess": "HTML hlavička obnovena na výchozí hodnoty"
+    "resetSuccess": "HTML hlavička obnovena na výchozí hodnoty",
+    "showPreview": "Zobrazit náhled",
+    "hidePreview": "Skrýt náhled",
+    "previewTitle": "Náhled - Elementy k injektování",
+    "noElements": "Žádné platné HTML elementy k náhledu"
   },
   "profile": {
     "title": "Nastavení profilu",
