@@ -7,7 +7,19 @@
     "api": "مفاتيح API",
     "permissions": "الصلاحيات",
     "integrations": "التكاملات",
-    "notifications": "الإشعارات"
+    "notifications": "الإشعارات",
+    "html": "HTML"
+  },
+  "html": {
+    "title": "محرر HTML Head",
+    "subtitle": "تحرير قسم HEAD لتطبيق Leaflet CRM. سيتم تطبيق التغييرات بعد إعادة تحميل الصفحة.",
+    "headSection": "قسم HEAD",
+    "warning": "تحذير: HTML غير صحيح قد يؤدي إلى تعطل التطبيق. استخدم بحذر.",
+    "saveButton": "حفظ التغييرات",
+    "resetButton": "إعادة تعيين القيم الافتراضية",
+    "saveSuccess": "تم حفظ HTML HEAD بنجاح",
+    "saveError": "فشل في حفظ HTML HEAD",
+    "resetSuccess": "تم إعادة تعيين HTML HEAD إلى القيم الافتراضية"
   },
   "profile": {
     "title": "إعدادات الملف الشخصي",

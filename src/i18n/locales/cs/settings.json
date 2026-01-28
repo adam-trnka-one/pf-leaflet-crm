@@ -7,7 +7,19 @@
     "api": "API klíče",
     "permissions": "Oprávnění",
     "integrations": "Integrace",
-    "notifications": "Oznámení"
+    "notifications": "Oznámení",
+    "html": "HTML"
+  },
+  "html": {
+    "title": "Editor HTML hlavičky",
+    "subtitle": "Upravte sekci HEAD aplikace Leaflet CRM. Změny se projeví po obnovení stránky.",
+    "headSection": "Sekce HEAD",
+    "warning": "Varování: Nesprávné HTML může narušit aplikaci. Používejte opatrně.",
+    "saveButton": "Uložit změny",
+    "resetButton": "Obnovit výchozí",
+    "saveSuccess": "HTML hlavička úspěšně uložena",
+    "saveError": "Nepodařilo se uložit HTML hlavičku",
+    "resetSuccess": "HTML hlavička obnovena na výchozí hodnoty"
   },
   "profile": {
     "title": "Nastavení profilu",
