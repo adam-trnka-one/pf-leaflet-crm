@@ -2,50 +2,32 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
 import { RotateCcw, Save } from 'lucide-react';
 import { toast } from 'sonner';
+import Editor from 'react-simple-code-editor';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-markup';
+import 'prismjs/themes/prism-tomorrow.css';
+import { getCustomHeadHtml, setCustomHeadHtml, resetCustomHeadHtml } from '@/hooks/useCustomHeadHtml';
 
-const STORAGE_KEY = 'leaflet-custom-head-html';
-
-const DEFAULT_HEAD_HTML = `<!-- ProductFruits Script -->
-<script>
-  (function(w,d,u,c) {
-    w.$productFruits = w.$productFruits || [];
-    w.productFruitsUser = c;
-    var a = d.getElementsByTagName('head')[0];
-    var r = d.createElement('script');
-    r.async = 1;
-    r.src = u;
-    a.appendChild(r);
-  })(window, document, 'https://app.productfruits.com/static/script.js', { username: 'demo-user' });
-</script>
-
-<!-- Custom Meta Tags -->
-<meta name="theme-color" content="#3b82f6">
-
-<!-- Custom Styles -->
-<style>
-  /* Add your custom styles here */
-</style>`;
+const highlightCode = (code: string) => {
+  return Prism.highlight(code, Prism.languages.markup, 'markup');
+};
 
 export const HtmlTab = () => {
   const { t } = useTranslation('settings');
-  const [headHtml, setHeadHtml] = useState(DEFAULT_HEAD_HTML);
+  const [headHtml, setHeadHtml] = useState('');
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
-    const savedHtml = localStorage.getItem(STORAGE_KEY);
-    if (savedHtml) {
-      setHeadHtml(savedHtml);
-    }
+    setHeadHtml(getCustomHeadHtml());
   }, []);
 
   const handleSave = () => {
     setIsSaving(true);
     try {
-      localStorage.setItem(STORAGE_KEY, headHtml);
-      toast.success(t('html.saveSuccess', 'HEAD HTML saved successfully'));
+      setCustomHeadHtml(headHtml);
+      toast.success(t('html.saveSuccess', 'HEAD HTML saved successfully. Reload the page to apply changes.'));
     } catch (error) {
       console.error('Error saving HEAD HTML:', error);
       toast.error(t('html.saveError', 'Failed to save HEAD HTML'));
@@ -55,9 +37,9 @@ export const HtmlTab = () => {
   };
 
   const handleReset = () => {
-    setHeadHtml(DEFAULT_HEAD_HTML);
-    localStorage.setItem(STORAGE_KEY, DEFAULT_HEAD_HTML);
-    toast.success(t('html.resetSuccess', 'HEAD HTML reset to default'));
+    setHeadHtml('');
+    resetCustomHeadHtml();
+    toast.success(t('html.resetSuccess', 'HEAD HTML reset to empty'));
   };
 
   return (
@@ -72,16 +54,31 @@ export const HtmlTab = () => {
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-700">
+          <label className="text-sm font-medium text-foreground">
             {t('html.headSection', 'HEAD Section')}
           </label>
-          <Textarea
-            value={headHtml}
-            onChange={(e) => setHeadHtml(e.target.value)}
-            className="font-mono text-sm min-h-[400px] bg-slate-900 text-green-400 border-slate-700"
-            placeholder="Enter HEAD HTML content..."
-            data-testid="settings-html-textarea"
-          />
+          <div 
+            className="rounded-md border border-border overflow-hidden"
+            data-testid="settings-html-editor-container"
+          >
+            <Editor
+              value={headHtml}
+              onValueChange={setHeadHtml}
+              highlight={highlightCode}
+              padding={16}
+              placeholder="<!-- Enter custom HEAD HTML here -->"
+              style={{
+                fontFamily: '"Fira Code", "Fira Mono", Consolas, Monaco, "Andale Mono", monospace',
+                fontSize: 14,
+                backgroundColor: '#1d1f21',
+                color: '#c5c8c6',
+                minHeight: '400px',
+                lineHeight: 1.5,
+              }}
+              textareaClassName="focus:outline-none"
+              data-testid="settings-html-editor"
+            />
+          </div>
           <p className="text-xs text-muted-foreground">
             {t('html.warning', 'Warning: Incorrect HTML may break the application. Use with caution.')}
           </p>

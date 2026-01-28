@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { WorkspaceProvider } from "@/contexts/WorkspaceContext";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useCustomHeadHtml } from "@/hooks/useCustomHeadHtml";
 import { useState, useEffect } from "react";
 import '@/i18n';
 import RTLProvider from "@/components/RTLProvider";
@@ -29,6 +30,12 @@ import PublicProducts from "./pages/PublicProducts";
 import Quotes from "./pages/Quotes";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+
+// Component to inject custom HEAD HTML
+const CustomHeadInjector = () => {
+  useCustomHeadHtml();
+  return null;
+};
 
 const queryClient = new QueryClient();
 
@@ -68,6 +75,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <RTLProvider>
+        <CustomHeadInjector />
         <Toaster />
         <Sonner />
         <BrowserRouter>
