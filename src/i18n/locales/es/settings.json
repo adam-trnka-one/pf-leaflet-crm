@@ -7,7 +7,19 @@
     "api": "Claves API",
     "permissions": "Permisos",
     "integrations": "Integraciones",
-    "notifications": "Notificaciones"
+    "notifications": "Notificaciones",
+    "html": "HTML"
+  },
+  "html": {
+    "title": "Editor de HTML Head",
+    "subtitle": "Edite la sección HEAD de la aplicación Leaflet CRM. Los cambios se aplicarán después de recargar la página.",
+    "headSection": "Sección HEAD",
+    "warning": "Advertencia: HTML incorrecto puede dañar la aplicación. Úselo con precaución.",
+    "saveButton": "Guardar Cambios",
+    "resetButton": "Restablecer Valores",
+    "saveSuccess": "HTML HEAD guardado correctamente",
+    "saveError": "Error al guardar HTML HEAD",
+    "resetSuccess": "HTML HEAD restablecido a valores predeterminados"
   },
   "profile": {
     "title": "Configuración de Perfil",
