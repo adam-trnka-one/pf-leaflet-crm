@@ -19,7 +19,11 @@
     "resetButton": "Restaurar Padrões",
     "saveSuccess": "HTML HEAD salvo com sucesso",
     "saveError": "Falha ao salvar HTML HEAD",
-    "resetSuccess": "HTML HEAD restaurado para padrão"
+    "resetSuccess": "HTML HEAD restaurado para padrão",
+    "showPreview": "Mostrar Prévia",
+    "hidePreview": "Ocultar Prévia",
+    "previewTitle": "Prévia - Elementos a serem injetados",
+    "noElements": "Nenhum elemento HTML válido para visualizar"
   },
   "profile": {
     "title": "Configurações de Perfil",

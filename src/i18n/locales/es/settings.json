@@ -19,7 +19,11 @@
     "resetButton": "Restablecer Valores",
     "saveSuccess": "HTML HEAD guardado correctamente",
     "saveError": "Error al guardar HTML HEAD",
-    "resetSuccess": "HTML HEAD restablecido a valores predeterminados"
+    "resetSuccess": "HTML HEAD restablecido a valores predeterminados",
+    "showPreview": "Mostrar Vista Previa",
+    "hidePreview": "Ocultar Vista Previa",
+    "previewTitle": "Vista Previa - Elementos a inyectar",
+    "noElements": "No hay elementos HTML válidos para previsualizar"
   },
   "profile": {
     "title": "Configuración de Perfil",

@@ -19,7 +19,11 @@
     "resetButton": "Auf Standard zurücksetzen",
     "saveSuccess": "HEAD HTML erfolgreich gespeichert",
     "saveError": "HEAD HTML konnte nicht gespeichert werden",
-    "resetSuccess": "HEAD HTML auf Standard zurückgesetzt"
+    "resetSuccess": "HEAD HTML auf Standard zurückgesetzt",
+    "showPreview": "Vorschau anzeigen",
+    "hidePreview": "Vorschau ausblenden",
+    "previewTitle": "Vorschau - Zu injizierende Elemente",
+    "noElements": "Keine gültigen HTML-Elemente zur Vorschau"
   },
   "profile": {
     "title": "Profileinstellungen",

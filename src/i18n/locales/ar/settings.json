@@ -19,7 +19,11 @@
     "resetButton": "إعادة تعيين القيم الافتراضية",
     "saveSuccess": "تم حفظ HTML HEAD بنجاح",
     "saveError": "فشل في حفظ HTML HEAD",
-    "resetSuccess": "تم إعادة تعيين HTML HEAD إلى القيم الافتراضية"
+    "resetSuccess": "تم إعادة تعيين HTML HEAD إلى القيم الافتراضية",
+    "showPreview": "عرض المعاينة",
+    "hidePreview": "إخفاء المعاينة",
+    "previewTitle": "معاينة - العناصر المراد حقنها",
+    "noElements": "لا توجد عناصر HTML صالحة للمعاينة"
   },
   "profile": {
     "title": "إعدادات الملف الشخصي",

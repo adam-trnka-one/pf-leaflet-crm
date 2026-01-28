@@ -19,7 +19,11 @@
     "resetButton": "Réinitialiser les valeurs",
     "saveSuccess": "HTML HEAD enregistré avec succès",
     "saveError": "Échec de l'enregistrement du HTML HEAD",
-    "resetSuccess": "HTML HEAD réinitialisé aux valeurs par défaut"
+    "resetSuccess": "HTML HEAD réinitialisé aux valeurs par défaut",
+    "showPreview": "Afficher l'aperçu",
+    "hidePreview": "Masquer l'aperçu",
+    "previewTitle": "Aperçu - Éléments à injecter",
+    "noElements": "Aucun élément HTML valide à prévisualiser"
   },
   "profile": {
     "title": "Paramètres du Profil",

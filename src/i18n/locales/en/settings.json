@@ -19,7 +19,11 @@
     "resetButton": "Reset to Default",
     "saveSuccess": "HEAD HTML saved successfully",
     "saveError": "Failed to save HEAD HTML",
-    "resetSuccess": "HEAD HTML reset to default"
+    "resetSuccess": "HEAD HTML reset to default",
+    "showPreview": "Show Preview",
+    "hidePreview": "Hide Preview",
+    "previewTitle": "Preview - Elements to be injected",
+    "noElements": "No valid HTML elements to preview"
   },
   "profile": {
     "title": "Profile Settings",
