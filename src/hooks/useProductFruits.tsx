@@ -66,6 +66,18 @@ export const useProductFruits = () => {
       return;
     }
 
+    // Destroy existing ProductFruits instance via official SDK before re-init
+    if ((window as any).productFruits?.services?.destroy) {
+      (window as any).productFruits.services.destroy();
+    }
+    // Clear global objects
+    if ((window as any).$productFruits) {
+      delete (window as any).$productFruits;
+    }
+    if ((window as any).productFruits) {
+      delete (window as any).productFruits;
+    }
+
     // Remove existing ProductFruits scripts including the static one from index.html
     const existingScripts = document.querySelectorAll('script[src*="productfruits"], script[src*="pf.dev"], script[src*="/static/script.js"], script[data-productfruits-init]');
     existingScripts.forEach(script => script.remove());
