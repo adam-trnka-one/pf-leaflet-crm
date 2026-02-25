@@ -1,14 +1,8 @@
 
 
-## Plan: Properly deactivate ProductFruits before logout
+## Plan: Remove page reload after logout
 
-**Problem:** Currently the sign-out function navigates away and reloads before properly destroying the ProductFruits instance. It only removes script tags and the `$productFruits` array, but doesn't call the official destroy API.
+**Rationale:** Since ProductFruits is now properly destroyed via the official SDK, and all scripts/globals are cleaned up manually, the `window.location.reload()` call is unnecessary. The `navigate("/login")` alone is sufficient to take the user to the login page.
 
-**Change:** Update `handleSignOut` in `src/components/Layout.tsx` to:
-
-1. Call `window.productFruits.services.destroy()` first (the official SDK cleanup method)
-2. Remove ProductFruits script tags and global objects
-3. Then navigate to `/login` and reload
-
-**Single file change:** `src/components/Layout.tsx` — reorder and enhance the `handleSignOut` function to call the destroy API before cleanup and navigation.
+**Change:** In `src/components/Layout.tsx`, remove the `window.location.reload()` line from `handleSignOut`, keeping only `navigate("/login")`.
 
