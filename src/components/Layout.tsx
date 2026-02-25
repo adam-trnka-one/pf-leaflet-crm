@@ -106,9 +106,8 @@ const LayoutContent = () => {
       delete (window as any).productFruits;
     }
 
-    // 4. Navigate to login and refresh
+    // 4. Navigate to login
     navigate("/login");
-    window.location.reload();
   };
 
   // Setup ProductFruits newsfeed
