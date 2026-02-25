@@ -89,18 +89,24 @@ const LayoutContent = () => {
   };
 
   const handleSignOut = () => {
-    // Remove ProductFruits script
-    const existingScript = document.querySelector('script[data-productfruits-init]');
-    if (existingScript) {
-      existingScript.remove();
+    // 1. Destroy ProductFruits instance via official SDK
+    if ((window as any).productFruits?.services?.destroy) {
+      (window as any).productFruits.services.destroy();
     }
 
-    // Clear ProductFruits global object
+    // 2. Remove ProductFruits scripts
+    const existingScripts = document.querySelectorAll('script[data-productfruits-init], script[src*="productfruits"], script[src*="pf.dev"], script[src*="/static/script.js"]');
+    existingScripts.forEach(script => script.remove());
+
+    // 3. Clear ProductFruits global objects
     if ((window as any).$productFruits) {
       delete (window as any).$productFruits;
     }
+    if ((window as any).productFruits) {
+      delete (window as any).productFruits;
+    }
 
-    // Navigate to home page and refresh
+    // 4. Navigate to login and refresh
     navigate("/login");
     window.location.reload();
   };
