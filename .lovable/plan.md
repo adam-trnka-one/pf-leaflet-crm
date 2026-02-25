@@ -1,8 +1,30 @@
 
 
-## Plan: Remove page reload after logout
+## Plan: Add proper destroy before re-initialization in Save & Initiate flow
 
-**Rationale:** Since ProductFruits is now properly destroyed via the official SDK, and all scripts/globals are cleaned up manually, the `window.location.reload()` call is unnecessary. The `navigate("/login")` alone is sufficient to take the user to the login page.
+**Problem:** When the user clicks "Save & Initiate", the `initializeProductFruits` function in `useProductFruits.tsx` only removes script tags and injects new ones. It does **not** call `window.productFruits.services.destroy()` before re-initializing, unlike the logout flow which now properly destroys first. This can leave stale ProductFruits state in memory.
 
-**Change:** In `src/components/Layout.tsx`, remove the `window.location.reload()` line from `handleSignOut`, keeping only `navigate("/login")`.
+**What changes:**
+
+Update `initializeProductFruits` in `src/hooks/useProductFruits.tsx` to call `window.productFruits.services.destroy()` as the first step before removing scripts and re-initializing. This mirrors the destroy logic already used in the logout handler.
+
+**Technical detail:**
+
+In `src/hooks/useProductFruits.tsx`, inside `initializeProductFruits()` (around line 69, before removing existing scripts), add:
+
+```typescript
+// Destroy existing ProductFruits instance via official SDK before re-init
+if ((window as any).productFruits?.services?.destroy) {
+  (window as any).productFruits.services.destroy();
+}
+// Also clear global objects
+if ((window as any).$productFruits) {
+  delete (window as any).$productFruits;
+}
+if ((window as any).productFruits) {
+  delete (window as any).productFruits;
+}
+```
+
+This ensures a clean slate before the new scripts and init call are added. One file changed: `src/hooks/useProductFruits.tsx`.
 
