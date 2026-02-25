@@ -1,10 +1,14 @@
 
 
-## Plan: Redirect logout to /login
+## Plan: Properly deactivate ProductFruits before logout
 
-**What changes:**
-One line change in `src/components/Layout.tsx` — update the `handleSignOut` function to navigate to `"/login"` instead of `"/"`.
+**Problem:** Currently the sign-out function navigates away and reloads before properly destroying the ProductFruits instance. It only removes script tags and the `$productFruits` array, but doesn't call the official destroy API.
 
-**Technical detail:**
-In `src/components/Layout.tsx`, line ~101, change `navigate("/")` to `navigate("/login")`.
+**Change:** Update `handleSignOut` in `src/components/Layout.tsx` to:
+
+1. Call `window.productFruits.services.destroy()` first (the official SDK cleanup method)
+2. Remove ProductFruits script tags and global objects
+3. Then navigate to `/login` and reload
+
+**Single file change:** `src/components/Layout.tsx` — reorder and enhance the `handleSignOut` function to call the destroy API before cleanup and navigation.
 
