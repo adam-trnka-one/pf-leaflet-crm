@@ -101,7 +101,7 @@ const LayoutContent = () => {
     }
 
     // Navigate to home page and refresh
-    navigate("/");
+    navigate("/login");
     window.location.reload();
   };
 
