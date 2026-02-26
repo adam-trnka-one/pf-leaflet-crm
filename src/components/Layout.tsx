@@ -2,16 +2,18 @@ import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search, Newspaper, Loader2 } from "lucide-react";
+import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search, Newspaper, Loader2, RotateCcw } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset, useSidebar } from "@/components/ui/sidebar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useProductFruits } from "@/hooks/useProductFruits";
 import { useLanguageSync } from "@/hooks/useLanguageSync";
 import { useWorkspaceForm } from "@/hooks/useWorkspaceForm";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
+import { Badge } from "@/components/ui/badge";
 import { RTL_LANGUAGES } from "@/i18n";
 import { toast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
 import BottomNav from "@/components/BottomNav";
 
 const LayoutContent = () => {
@@ -21,8 +23,9 @@ const LayoutContent = () => {
   const newsfeedRef = useRef<HTMLButtonElement>(null);
   const [unreadCount, setUnreadCount] = useState(0);
   const [isInitiating, setIsInitiating] = useState(false);
+  const [isPFActive, setIsPFActive] = useState(false);
   const { t } = useTranslation('navigation');
-  const { localWorkspaceData, setLocalWorkspaceData, handleInitiateProductFruits } = useWorkspaceForm();
+  const { localWorkspaceData, setLocalWorkspaceData, handleInitiateProductFruits, handleResetToDefaults } = useWorkspaceForm();
   const { updateWorkspaceData } = useWorkspace();
   
   // Sync language with workspace settings
@@ -110,6 +113,16 @@ const LayoutContent = () => {
     navigate("/login");
   };
 
+  // Check ProductFruits active status
+  useEffect(() => {
+    const checkPFStatus = () => {
+      setIsPFActive(!!(window as any).productFruits?.services);
+    };
+    checkPFStatus();
+    const interval = setInterval(checkPFStatus, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
   // Setup ProductFruits newsfeed
   useEffect(() => {
     // Listen for unread count changes
@@ -162,8 +175,36 @@ const LayoutContent = () => {
           </SidebarContent>
 
           <SidebarFooter className="border-t border-sidebar-border p-4">
-            <div className="px-4">
-              <p className="text-xs text-slate-500">Version 1.0.{Date.now().toString().slice(-6)}</p>
+            <div className="px-4 space-y-2">
+              <div className="flex items-center justify-between">
+                <p className="text-xs text-muted-foreground">Version 1.0.{Date.now().toString().slice(-6)}</p>
+                <Badge 
+                  variant={isPFActive ? "default" : "secondary"}
+                  className={cn(
+                    "text-[10px] px-1.5 py-0",
+                    isPFActive 
+                      ? "bg-green-100 text-green-700 border-green-200 hover:bg-green-100" 
+                      : "bg-muted text-muted-foreground"
+                  )}
+                >
+                  <span className={cn("inline-block w-1.5 h-1.5 rounded-full mr-1", isPFActive ? "bg-green-500" : "bg-muted-foreground")} />
+                  PF: {isPFActive ? "Active" : "Inactive"}
+                </Badge>
+              </div>
+              {localWorkspaceData.selectedWorkspace !== 'jess' && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full h-7 text-xs"
+                  onClick={() => {
+                    handleResetToDefaults();
+                    setTimeout(() => handleInitiateProductFruits(), 500);
+                  }}
+                >
+                  <RotateCcw className="h-3 w-3 mr-1" />
+                  Reset to Default
+                </Button>
+              )}
             </div>
           </SidebarFooter>
         </Sidebar>
