@@ -116,6 +116,8 @@ export const useWorkspaceForm = () => {
       title: "ProductFruits initiated",
       description: "ProductFruits script has been initialized with current workspace data."
     });
+
+    return true;
   };
 
   const handleDisableProductFruits = () => {

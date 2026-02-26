@@ -198,7 +198,10 @@ const LayoutContent = () => {
                   className="w-full h-7 text-xs"
                   onClick={() => {
                     handleResetToDefaults();
-                    setTimeout(() => handleInitiateProductFruits(), 500);
+                    setTimeout(() => {
+                      handleInitiateProductFruits();
+                      navigate('/dashboard');
+                    }, 500);
                   }}
                 >
                   <RotateCcw className="h-3 w-3 mr-1" />

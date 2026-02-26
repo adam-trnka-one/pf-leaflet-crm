@@ -75,6 +75,9 @@ export const WorkspaceActions = ({
       console.log('handleInitiateProductFruits completed');
       
       await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Redirect to dashboard after successful initiation
+      navigate('/dashboard');
     } catch (error) {
       console.error('Error in save and initiate:', error);
     } finally {
