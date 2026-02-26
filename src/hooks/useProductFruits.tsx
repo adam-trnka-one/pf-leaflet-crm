@@ -78,6 +78,11 @@ export const useProductFruits = () => {
       delete (window as any).productFruits;
     }
 
+    // Re-create the $productFruits queue so push() works before the script loads
+    (window as any).$productFruits = (window as any).$productFruits || [];
+    (window as any).productFruits = (window as any).productFruits || {};
+    (window as any).productFruits.scrV = '2';
+
     // Remove existing ProductFruits scripts including the static one from index.html
     const existingScripts = document.querySelectorAll('script[src*="productfruits"], script[src*="pf.dev"], script[src*="/static/script.js"], script[data-productfruits-init]');
     existingScripts.forEach(script => script.remove());
@@ -88,18 +93,6 @@ export const useProductFruits = () => {
       staticScript.remove();
     }
 
-    // Create and add the new main ProductFruits script with correct URL
-    const mainScript = document.createElement('script');
-    mainScript.async = true;
-    const scriptUrl = getScriptUrl(dataToUse.selectedWorkspace, dataToUse.customUrl);
-    mainScript.src = `${scriptUrl}?c=${dataToUse.workspaceCode}`;
-    document.head.appendChild(mainScript);
-
-    // Create the initialization script
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.setAttribute('data-productfruits-init', 'true');
-    
     // Build props object from custom properties
     const props: Record<string, string> = {};
     if (dataToUse.customProperties && Array.isArray(dataToUse.customProperties)) {
@@ -124,14 +117,17 @@ export const useProductFruits = () => {
     };
 
     const languageCode = dataToUse.languageCode || 'en';
-    
-    script.innerHTML = `
-      if (window.$productFruits) {
-        window.$productFruits.push(['init', '${dataToUse.workspaceCode}', '${languageCode}', ${JSON.stringify(initData)}]);
-      }
-    `;
 
-    document.head.appendChild(script);
+    // Push init command to the queue - the main script will process it when loaded
+    (window as any).$productFruits.push(['init', dataToUse.workspaceCode, languageCode, initData]);
+
+    // Create and add the new main ProductFruits script with correct URL
+    const mainScript = document.createElement('script');
+    mainScript.async = true;
+    const scriptUrl = getScriptUrl(dataToUse.selectedWorkspace, dataToUse.customUrl);
+    mainScript.src = `${scriptUrl}?c=${dataToUse.workspaceCode}`;
+    document.head.appendChild(mainScript);
+
     console.log('ProductFruits initialized with workspace code:', dataToUse.workspaceCode);
     console.log('Initialization data:', initData);
 
