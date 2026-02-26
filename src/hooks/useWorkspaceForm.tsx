@@ -134,11 +134,6 @@ export const useWorkspaceForm = () => {
       title: "ProductFruits disabled",
       description: "ProductFruits has been disabled and removed from the page."
     });
-
-    // Perform soft refresh to ensure complete removal
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
   };
 
   const handleResetToDefaults = () => {
