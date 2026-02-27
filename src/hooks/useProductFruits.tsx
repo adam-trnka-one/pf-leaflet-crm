@@ -10,7 +10,6 @@ export const useProductFruits = () => {
   const hasInitialized = useRef<boolean>(false);
 
   useEffect(() => {
-    // Only initialize ProductFruits on dashboard pages
     if (location.pathname.startsWith('/dashboard')) {
       initializeFromStorage();
     }
@@ -35,7 +34,6 @@ export const useProductFruits = () => {
 
   const getScriptUrl = (selectedWorkspace?: string, customUrl?: string) => {
     if (selectedWorkspace === 'custom-dev' && customUrl) {
-      // Extract domain from custom URL and construct script path
       const url = customUrl.endsWith('/') ? customUrl.slice(0, -1) : customUrl;
       return `${url}/static/script.js`;
     }
@@ -45,10 +43,46 @@ export const useProductFruits = () => {
     return 'https://app.productfruits.com/static/script.js';
   };
 
-  const initializeProductFruits = (workspaceData?: any) => {
+  const cleanupProductFruits = (): Promise<void> => {
+    return new Promise((resolve) => {
+      // Step 1: Call official destroy if available
+      if ((window as any).productFruits?.services?.destroy) {
+        try {
+          (window as any).productFruits.services.destroy();
+        } catch (e) {
+          console.warn('PF destroy() threw:', e);
+        }
+      }
+
+      // Step 2: Wait for SDK to tear down internally
+      setTimeout(() => {
+        // Step 3: Remove ALL PF-injected DOM elements (scripts, iframes, styles, divs)
+        const pfElements = document.querySelectorAll(
+          'script[src*="productfruits"], script[src*="pf.dev"], script[src*="/static/script.js"], ' +
+          'script[data-productfruits-init], ' +
+          '[id*="productfruits"], [class*="productfruits"], ' +
+          'iframe[src*="productfruits"], iframe[src*="pf.dev"]'
+        );
+        pfElements.forEach(el => el.remove());
+
+        // Also remove the static script
+        const staticScript = document.querySelector('script[src="https://app.productfruits.com/static/script.js"]');
+        if (staticScript) staticScript.remove();
+
+        // Step 4: Clean up ALL PF-related globals
+        const pfGlobals = ['$productFruits', 'productFruits', 'productFruitsIsReady', 'productFruitsUser'];
+        pfGlobals.forEach(key => {
+          try { delete (window as any)[key]; } catch (_) { (window as any)[key] = undefined; }
+        });
+
+        resolve();
+      }, 300);
+    });
+  };
+
+  const initializeProductFruits = async (workspaceData?: any): Promise<boolean> => {
     let dataToUse = workspaceData;
     
-    // If no data provided, load from localStorage
     if (!dataToUse) {
       try {
         const savedData = localStorage.getItem(STORAGE_KEY);
@@ -57,43 +91,24 @@ export const useProductFruits = () => {
         }
       } catch (error) {
         console.error('Error loading workspace data from localStorage:', error);
-        return;
+        return false;
       }
     }
 
     if (!dataToUse || !dataToUse.workspaceCode || !dataToUse.username) {
       console.log('Missing required workspace data for ProductFruits initialization');
-      return;
+      return false;
     }
 
-    // Destroy existing ProductFruits instance via official SDK before re-init
-    if ((window as any).productFruits?.services?.destroy) {
-      (window as any).productFruits.services.destroy();
-    }
-    // Clear global objects
-    if ((window as any).$productFruits) {
-      delete (window as any).$productFruits;
-    }
-    if ((window as any).productFruits) {
-      delete (window as any).productFruits;
-    }
+    // Step 1: Clean up existing instance and wait for it
+    await cleanupProductFruits();
 
-    // Re-create the $productFruits queue so push() works before the script loads
-    (window as any).$productFruits = (window as any).$productFruits || [];
-    (window as any).productFruits = (window as any).productFruits || {};
+    // Step 2: Set up fresh globals
+    (window as any).$productFruits = [];
+    (window as any).productFruits = {};
     (window as any).productFruits.scrV = '2';
 
-    // Remove existing ProductFruits scripts including the static one from index.html
-    const existingScripts = document.querySelectorAll('script[src*="productfruits"], script[src*="pf.dev"], script[src*="/static/script.js"], script[data-productfruits-init]');
-    existingScripts.forEach(script => script.remove());
-    
-    // Also remove the static ProductFruits script from index.html if it exists
-    const staticScript = document.querySelector('script[src="https://app.productfruits.com/static/script.js"]');
-    if (staticScript) {
-      staticScript.remove();
-    }
-
-    // Build props object from custom properties
+    // Step 3: Build init data
     const props: Record<string, string> = {};
     if (dataToUse.customProperties && Array.isArray(dataToUse.customProperties)) {
       dataToUse.customProperties.forEach((prop: any) => {
@@ -103,7 +118,6 @@ export const useProductFruits = () => {
       });
     }
 
-    // Generate sign-up date in required format (current date as example)
     const signUpDate = new Date().toISOString();
 
     const initData = {
@@ -118,21 +132,32 @@ export const useProductFruits = () => {
 
     const languageCode = dataToUse.languageCode || 'en';
 
-    // Push init command to the queue - the main script will process it when loaded
+    // Step 4: Push init command to queue
     (window as any).$productFruits.push(['init', dataToUse.workspaceCode, languageCode, initData]);
 
-    // Create and add the new main ProductFruits script with correct URL
-    const mainScript = document.createElement('script');
-    mainScript.async = true;
-    const scriptUrl = getScriptUrl(dataToUse.selectedWorkspace, dataToUse.customUrl);
-    mainScript.src = `${scriptUrl}?c=${dataToUse.workspaceCode}`;
-    document.head.appendChild(mainScript);
+    // Step 5: Load new script and wait for it
+    return new Promise<boolean>((resolve) => {
+      const mainScript = document.createElement('script');
+      mainScript.async = true;
+      const scriptUrl = getScriptUrl(dataToUse.selectedWorkspace, dataToUse.customUrl);
+      mainScript.src = `${scriptUrl}?c=${dataToUse.workspaceCode}`;
 
-    console.log('ProductFruits initialized with workspace code:', dataToUse.workspaceCode);
-    console.log('Initialization data:', initData);
+      mainScript.onload = () => {
+        console.log('ProductFruits script loaded successfully for workspace:', dataToUse.workspaceCode);
+        initializedWorkspaceCode.current = dataToUse.workspaceCode;
+        hasInitialized.current = true;
+        resolve(true);
+      };
 
-    // Update the tracking reference
-    initializedWorkspaceCode.current = dataToUse.workspaceCode;
+      mainScript.onerror = () => {
+        console.error('Failed to load ProductFruits script from:', mainScript.src);
+        resolve(false);
+      };
+
+      document.head.appendChild(mainScript);
+      console.log('ProductFruits initializing with workspace code:', dataToUse.workspaceCode);
+      console.log('Initialization data:', initData);
+    });
   };
 
   const hasWorkspaceCodeChanged = (currentWorkspaceCode: string) => {
