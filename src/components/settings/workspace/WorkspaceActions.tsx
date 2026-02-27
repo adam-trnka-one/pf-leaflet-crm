@@ -67,14 +67,12 @@ export const WorkspaceActions = ({
     try {
       // First save workspace data
       console.log('Saving workspace data...');
-      handleSaveWorkspaceData();
+      await handleSaveWorkspaceData();
       
-      // Then initiate ProductFruits
+      // Then initiate ProductFruits (now properly async with destroy/init sequencing)
       console.log('Calling handleInitiateProductFruits...');
-      await handleInitiateProductFruits();
-      console.log('handleInitiateProductFruits completed');
-      
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const success = await handleInitiateProductFruits();
+      console.log('handleInitiateProductFruits completed, success:', success);
       
       // Redirect to dashboard after successful initiation
       navigate('/dashboard');

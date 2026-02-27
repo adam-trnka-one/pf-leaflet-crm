@@ -39,7 +39,7 @@ export const useWorkspaceForm = () => {
     setCustomProperties(workspaceData.customProperties);
   }, [workspaceData]);
 
-  const handleSaveWorkspaceData = () => {
+  const handleSaveWorkspaceData = async () => {
     // For custom, PR workspaces, or custom-dev, check if workspace code is provided
     const requiresWorkspaceCode = localWorkspaceData.selectedWorkspace === 'custom' || localWorkspaceData.selectedWorkspace?.startsWith('pr') || localWorkspaceData.selectedWorkspace === 'custom-dev';
     if (requiresWorkspaceCode && !localWorkspaceData.workspaceCode.trim()) {
@@ -87,7 +87,7 @@ export const useWorkspaceForm = () => {
     
     // Only initialize ProductFruits if workspace code is provided
     if (dataToSave.workspaceCode.trim()) {
-      initializeProductFruits();
+      await initializeProductFruits();
       console.log('Workspace data saved and ProductFruits re-initialized:', dataToSave);
     } else {
       console.log('Workspace data saved without ProductFruits initialization (empty workspace code):', dataToSave);
@@ -99,7 +99,7 @@ export const useWorkspaceForm = () => {
     });
   };
 
-  const handleInitiateProductFruits = () => {
+  const handleInitiateProductFruits = async () => {
     // Only initialize if workspace code is provided
     if (!localWorkspaceData.workspaceCode.trim()) {
       toast({
@@ -107,17 +107,20 @@ export const useWorkspaceForm = () => {
         description: "Workspace code is required to initialize ProductFruits",
         variant: "destructive"
       });
-      return;
+      return false;
     }
 
-    initializeProductFruits();
+    const success = await initializeProductFruits();
     
     toast({
-      title: "ProductFruits initiated",
-      description: "ProductFruits script has been initialized with current workspace data."
+      title: success ? "ProductFruits initiated" : "ProductFruits failed",
+      description: success 
+        ? "ProductFruits script has been initialized with current workspace data."
+        : "Failed to load ProductFruits script. Check workspace code and try again.",
+      variant: success ? "default" : "destructive"
     });
 
-    return true;
+    return success;
   };
 
   const handleDisableProductFruits = () => {
