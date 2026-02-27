@@ -1,30 +1,38 @@
 
 
-## Plan: Add ProductFruits status indicator and reset-to-default switch in sidebar footer
+## Plan: Fix ProductFruits destroy/re-init to work without page reload
 
-### What will be added
+### Root cause
 
-1. **ProductFruits active/disabled indicator** in the sidebar footer, next to the existing version text. A small colored dot (green when active, gray when disabled) with a label like "PF: Active" or "PF: Inactive". The status is determined by checking whether `window.productFruits` and `window.$productFruits` globals exist.
+The current destroy flow has issues:
 
-2. **"Reset to Default" button** that appears only when the workspace is set to a non-default value (i.e., not "jess"). Clicking it calls `handleResetToDefaults` from `useWorkspaceForm` and then re-initializes ProductFruits with default settings.
+1. After calling `productFruits.services.destroy()`, the code immediately deletes `window.$productFruits` and `window.productFruits`, then reassigns them. But the destroy is async internally -- the SDK may still be referencing these globals when they get wiped.
+2. The SDK script removal only targets specific selectors, but PF may inject additional elements (iframes, stylesheets, event listeners) that persist and conflict with the new instance.
+3. The new `$productFruits` array is created with `|| []`, but since we just deleted it, it always becomes `[]` -- this is fine, but the init push happens before the script loads, and if the old script's modules are still cached in memory, conflicts arise.
 
-### Changes
+### Fix in `src/hooks/useProductFruits.tsx`
 
-**`src/components/Layout.tsx`** (SidebarFooter section, lines 164-168):
-- Import `Badge` from `@/components/ui/badge`
-- Import `RotateCcw` icon
-- Add a state variable to track PF active status, updated via an interval or checked on render by looking at `window.$productFruits` existence
-- Access `workspaceData` from `useWorkspace` (already imported) to check if `selectedWorkspace !== 'jess'`
-- In the `SidebarFooter`, add:
-  - A row showing version + PF status badge (green "Active" / gray "Inactive")
-  - When `selectedWorkspace` is not "jess", show a small "Reset to Default" button that calls `handleResetToDefaults` followed by `handleInitiateProductFruits` to switch back to the default workspace and re-initialize
+**Make `initializeProductFruits` async with proper sequencing:**
 
-### Technical details
+1. Call `productFruits.services.destroy()` and wait for cleanup (small delay ~200ms)
+2. Remove **all** PF-injected DOM elements: scripts, iframes (`[id*="productfruits"]`, `[class*="productfruits"]`), style tags
+3. Clean up all PF-related globals more thoroughly (check for `productFruitsIsReady`, `productFruitsUser`, etc.)
+4. Only after cleanup is complete, set up fresh globals and inject the new script
+5. Wait for the new script's `onload` event before resolving, so callers know PF is ready
 
-- PF status check: Use a simple state + `setInterval` (every 2 seconds) that checks `!!(window as any).$productFruits && Array.isArray((window as any).$productFruits) === false` or checks if the ProductFruits scripts exist in the DOM. Alternatively, check `!!(window as any).productFruits?.services` as a reliable indicator that PF is fully loaded.
-- The "Reset to Default" action will: call `handleResetToDefaults()` (sets workspace data back to defaults with `selectedWorkspace: 'jess'`), then call `handleInitiateProductFruits()` to re-init PF with the default workspace code.
-- Layout of footer: version on left, PF badge on right, reset button below when applicable. Compact design that fits the sidebar width.
+**Changes to `initializeProductFruits`:**
+- Make it return a `Promise` that resolves when the new script has loaded
+- Add a 200ms delay after `destroy()` to let the SDK tear down
+- Broaden DOM cleanup: `document.querySelectorAll('[id*="productfruits"], [class*="productfruits"], iframe[src*="productfruits"]')` 
+- Use `mainScript.onload` to resolve the promise
+- Add `mainScript.onerror` handling
+
+**Changes to callers** (`useWorkspaceForm.tsx`, `Layout.tsx`, `WorkspaceActions.tsx`):
+- `await initializeProductFruits()` instead of fire-and-forget, since it now returns a Promise
 
 ### File changes
-- `src/components/Layout.tsx` — modify SidebarFooter section
+- `src/hooks/useProductFruits.tsx` — make destroy+init async with proper sequencing
+- `src/hooks/useWorkspaceForm.tsx` — await the async init
+- `src/components/Layout.tsx` — await the async init in reset handler
+- `src/components/settings/workspace/WorkspaceActions.tsx` — already awaits, just ensure compatibility
 
