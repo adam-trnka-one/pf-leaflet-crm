@@ -74,8 +74,10 @@ export const WorkspaceActions = ({
       const success = await handleInitiateProductFruits();
       console.log('handleInitiateProductFruits completed, success:', success);
       
-      // Redirect to dashboard after successful initiation
-      navigate('/dashboard');
+      // Full reload to ensure PF state is clean
+      setTimeout(() => {
+        window.location.href = '/dashboard';
+      }, 500);
     } catch (error) {
       console.error('Error in save and initiate:', error);
     } finally {

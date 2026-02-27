@@ -54,6 +54,9 @@ const LayoutContent = () => {
       // Update workspace context directly with new language
       updateWorkspaceData({ languageCode: value });
       await handleInitiateProductFruits();
+      setTimeout(() => {
+        window.location.href = window.location.pathname;
+      }, 500);
     } catch (error) {
       console.error('Error in save and initiate:', error);
       toast({
@@ -196,10 +199,12 @@ const LayoutContent = () => {
                   variant="outline"
                   size="sm"
                   className="w-full h-7 text-xs"
-                  onClick={async () => {
+                    onClick={async () => {
                     handleResetToDefaults();
                     await handleInitiateProductFruits();
-                    navigate('/dashboard');
+                    setTimeout(() => {
+                      window.location.href = '/dashboard';
+                    }, 500);
                   }}
                 >
                   <RotateCcw className="h-3 w-3 mr-1" />
