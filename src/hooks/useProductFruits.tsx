@@ -10,7 +10,7 @@ export const useProductFruits = () => {
   const hasInitialized = useRef<boolean>(false);
 
   useEffect(() => {
-    if (location.pathname.startsWith('/dashboard')) {
+    if (location.pathname.startsWith('/dashboard') && !hasInitialized.current) {
       initializeFromStorage();
     }
   }, [location.pathname]);
