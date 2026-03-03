@@ -1,36 +1,54 @@
 
 
-## Root Cause
+## Plan: Add Projects page to CRM
 
-`useProductFruits()` is called in **two separate places**, creating two independent hook instances:
+Create a new "Projects" page following the same structure as Contacts, but using Tailwind CSS class names for element identification instead of `data-testid` attributes.
 
-1. **`LayoutContent`** (line 28 of Layout.tsx) via `useWorkspaceForm()` -> `useProductFruits()`
-2. **`WorkspaceTab`** (rendered inside Settings page) via `useWorkspaceForm()` -> `useProductFruits()`
+### Data Layer
 
-Each instance has its **own** `hasInitialized` ref initialized to `false`. When you navigate to Settings and the Workspace tab renders, the second instance's `useEffect` fires, sees `hasInitialized.current === false` and `location.pathname.startsWith('/dashboard')`, and calls `initializeFromStorage()` -- which destroys and re-creates the entire PF session.
+**`src/utils/sampleData.ts`**:
+- Add `Project` interface with fields: `id`, `name`, `accountId`, `accountName`, `status` (Active/On Hold/Completed/Cancelled), `priority` (Low/Medium/High/Critical), `startDate`, `endDate`, `owner`, `budget`, `description`, `createdAt`
+- Add `generateProjects(accounts, count)` function
+- Include projects in `generateAndStoreSampleData` and `getSampleData`
 
-## Fix
+### Page Component
 
-Change `hasInitialized` and `initializedWorkspaceCode` from **per-instance refs** to **module-level variables** in `useProductFruits.tsx`. This way all hook instances share the same initialization state, and the second instance (from WorkspaceTab) won't trigger a redundant init.
+**`src/pages/Projects.tsx`** (new file):
+- Grid layout with cards, same visual style as Contacts
+- Search bar filtering by name, account, owner
+- "New Project" button (opens modal)
+- Each card shows: name, account, status badge, priority badge, date range, owner, budget
+- All elements identified via semantic Tailwind classes (e.g., `projects-card`, `projects-search`, `projects-grid`) instead of `data-testid`
 
-### File: `src/hooks/useProductFruits.tsx`
+### Modal
 
-Move these two lines **outside** the hook function (module scope):
+**`src/components/modals/NewProjectModal.tsx`** (new file):
+- Dialog form with fields: name, account (select), status, priority, start/end dates, budget, description, owner
+- Same pattern as `NewContactModal` but without `data-testid`
 
-```typescript
-// Module-level shared state (not per-instance)
-let hasInitialized = false;
-let initializedWorkspaceCode = '';
+### Navigation & Routing
 
-export const useProductFruits = () => {
-  const location = useLocation();
-  // Remove the useRef lines for hasInitialized and initializedWorkspaceCode
-  ...
-```
+**`src/App.tsx`**: Add route `<Route path="projects" element={<Projects />} />` under dashboard
+**`src/components/Layout.tsx`**: Add Projects nav item (using `Briefcase` icon from lucide) between Quotes and Settings
+**`src/components/BottomNav.tsx`**: Add Projects to the "More" dropdown menu
 
-Then update all references from `.current` to direct access:
-- `hasInitialized.current` -> `hasInitialized`
-- `initializedWorkspaceCode.current` -> `initializedWorkspaceCode`
+### i18n
 
-This is a single-file change with no impact on the public API of the hook.
+Add `projects` translation namespace across all 7 locales (en, cs, de, fr, es, pt, ar) with keys: `title`, `subtitle`, `newProject`, `searchPlaceholder`, `noResults`, `columns.*`, `status.*`, `priority.*`
+
+Add `"projects": "Projects"` (and translations) to each locale's `navigation.json`.
+
+### Summary of files
+
+| Action | File |
+|--------|------|
+| New | `src/pages/Projects.tsx` |
+| New | `src/components/modals/NewProjectModal.tsx` |
+| New | `src/i18n/locales/{en,cs,de,fr,es,pt,ar}/projects.json` (7 files) |
+| Edit | `src/utils/sampleData.ts` |
+| Edit | `src/App.tsx` |
+| Edit | `src/components/Layout.tsx` |
+| Edit | `src/components/BottomNav.tsx` |
+| Edit | `src/i18n/index.ts` |
+| Edit | `src/i18n/locales/{all}/navigation.json` (7 files) |
 
