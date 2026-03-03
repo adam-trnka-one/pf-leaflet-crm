@@ -1,16 +1,17 @@
-
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const STORAGE_KEY = 'leaflet-workspace-data';
 
+// Module-level shared state (not per-instance)
+let hasInitialized = false;
+let initializedWorkspaceCode = '';
+
 export const useProductFruits = () => {
   const location = useLocation();
-  const initializedWorkspaceCode = useRef<string>('');
-  const hasInitialized = useRef<boolean>(false);
 
   useEffect(() => {
-    if (location.pathname.startsWith('/dashboard') && !hasInitialized.current) {
+    if (location.pathname.startsWith('/dashboard') && !hasInitialized) {
       initializeFromStorage();
     }
   }, [location.pathname]);
@@ -23,8 +24,8 @@ export const useProductFruits = () => {
         
         if (workspaceData.workspaceCode && workspaceData.username) {
           initializeProductFruits(workspaceData);
-          initializedWorkspaceCode.current = workspaceData.workspaceCode;
-          hasInitialized.current = true;
+          initializedWorkspaceCode = workspaceData.workspaceCode;
+          hasInitialized = true;
         }
       }
     } catch (error) {
@@ -144,8 +145,8 @@ export const useProductFruits = () => {
 
       mainScript.onload = () => {
         console.log('ProductFruits script loaded successfully for workspace:', dataToUse.workspaceCode);
-        initializedWorkspaceCode.current = dataToUse.workspaceCode;
-        hasInitialized.current = true;
+        initializedWorkspaceCode = dataToUse.workspaceCode;
+        hasInitialized = true;
         resolve(true);
       };
 
@@ -161,8 +162,8 @@ export const useProductFruits = () => {
   };
 
   const hasWorkspaceCodeChanged = (currentWorkspaceCode: string) => {
-    return hasInitialized.current && 
-           currentWorkspaceCode !== initializedWorkspaceCode.current &&
+    return hasInitialized && 
+           currentWorkspaceCode !== initializedWorkspaceCode &&
            currentWorkspaceCode !== '';
   };
 
