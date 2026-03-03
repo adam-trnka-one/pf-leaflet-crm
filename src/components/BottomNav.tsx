@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Activity, HelpCircle, Package, FileText, Settings } from "lucide-react";
+import { Activity, HelpCircle, Package, FileText, Settings, Briefcase } from "lucide-react";
 
 const BottomNav = () => {
   const location = useLocation();
@@ -28,6 +28,7 @@ const BottomNav = () => {
     { name: t('items.users'), href: "/dashboard/users", icon: Users },
     { name: t('items.products'), href: "/dashboard/products", icon: Package },
     { name: t('items.quotes'), href: "/dashboard/quotes", icon: FileText },
+    { name: t('items.projects'), href: "/dashboard/projects", icon: Briefcase },
     { name: t('items.settings'), href: "/dashboard/settings", icon: Settings },
   ];
 

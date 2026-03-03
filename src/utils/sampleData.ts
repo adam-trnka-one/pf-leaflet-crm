@@ -75,6 +75,33 @@ export interface Case {
   createdAt: Date;
 }
 
+export interface Project {
+  id: string;
+  name: string;
+  accountId: string;
+  accountName: string;
+  status: string;
+  priority: string;
+  startDate: Date;
+  endDate: Date;
+  owner: string;
+  budget: number;
+  description: string;
+  createdAt: Date;
+}
+
+const projectStatuses = ['Active', 'On Hold', 'Completed', 'Cancelled'];
+const projectDescriptions = [
+  'Enterprise-wide CRM implementation and data migration project.',
+  'Custom dashboard development for executive reporting needs.',
+  'Integration of third-party APIs with existing infrastructure.',
+  'Mobile application development for field sales team.',
+  'Data analytics platform setup and configuration.',
+  'Customer portal redesign and UX improvements.',
+  'Automated workflow engine implementation.',
+  'Security audit and compliance remediation project.',
+];
+
 const industries = ['Technology', 'Healthcare', 'Finance', 'Manufacturing', 'Retail', 'Education', 'Real Estate', 'Consulting'];
 const accountTypes = ['Customer', 'Prospect', 'Partner', 'Competitor'];
 const stages = ['Prospecting', 'Qualification', 'Proposal', 'Negotiation', 'Closed Won', 'Closed Lost', 'Follow-up', 'Demo'];
@@ -254,12 +281,40 @@ export function generateCases(accounts: Account[], contacts: Contact[], count: n
   return cases;
 }
 
+export function generateProjects(accounts: Account[], count: number = 30): Project[] {
+  const projects: Project[] = [];
+  const projectNames = ['CRM Implementation', 'Dashboard Revamp', 'API Integration', 'Mobile App', 'Analytics Platform', 'Portal Redesign', 'Workflow Engine', 'Security Audit', 'Cloud Migration', 'Performance Optimization'];
+
+  for (let i = 0; i < count; i++) {
+    const account = getRandomItem(accounts);
+    const startDate = generateRandomDate(180);
+    const endDate = new Date(startDate);
+    endDate.setDate(endDate.getDate() + Math.floor(Math.random() * 180) + 30);
+
+    projects.push({
+      id: `proj_${i + 1}`,
+      name: `${getRandomItem(projectNames)} - ${account.name}`,
+      accountId: account.id,
+      accountName: account.name,
+      status: getRandomItem(projectStatuses),
+      priority: getRandomItem(priorities),
+      startDate,
+      endDate,
+      owner: getRandomItem(owners),
+      budget: Math.floor(Math.random() * 500000) + 10000,
+      description: getRandomItem(projectDescriptions),
+      createdAt: generateRandomDate(365),
+    });
+  }
+
+  return projects;
+}
+
 // Storage functions
 export function getSampleData() {
   const stored = localStorage.getItem('leafletCrmData');
   if (stored) {
     const data = JSON.parse(stored);
-    // Convert date strings back to Date objects
     data.accounts.forEach((acc: any) => acc.createdAt = new Date(acc.createdAt));
     data.contacts.forEach((con: any) => con.createdAt = new Date(con.createdAt));
     data.opportunities.forEach((opp: any) => {
@@ -268,6 +323,13 @@ export function getSampleData() {
     });
     data.leads.forEach((lead: any) => lead.createdAt = new Date(lead.createdAt));
     data.cases.forEach((caseItem: any) => caseItem.createdAt = new Date(caseItem.createdAt));
+    if (data.projects) {
+      data.projects.forEach((proj: any) => {
+        proj.createdAt = new Date(proj.createdAt);
+        proj.startDate = new Date(proj.startDate);
+        proj.endDate = new Date(proj.endDate);
+      });
+    }
     return data;
   }
   return null;
@@ -279,8 +341,9 @@ export function generateAndStoreSampleData() {
   const opportunities = generateOpportunities(accounts, 100);
   const leads = generateLeads(60);
   const cases = generateCases(accounts, contacts, 20);
-  
-  const data = { accounts, contacts, opportunities, leads, cases };
+  const projects = generateProjects(accounts, 30);
+
+  const data = { accounts, contacts, opportunities, leads, cases, projects };
   localStorage.setItem('leafletCrmData', JSON.stringify(data));
   return data;
 }

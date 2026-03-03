@@ -28,6 +28,8 @@ import Users from "./pages/Users";
 import Products from "./pages/Products";
 import PublicProducts from "./pages/PublicProducts";
 import Quotes from "./pages/Quotes";
+import Projects from "./pages/Projects";
+import ProjectDashboard from "./pages/ProjectDashboard";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
@@ -103,6 +105,8 @@ const App = () => (
               <Route path="users" element={<Users />} />
               <Route path="products" element={<Products />} />
               <Route path="quotes" element={<Quotes />} />
+              <Route path="projects" element={<Projects />} />
+              <Route path="projects/:id" element={<ProjectDashboard />} />
               <Route path="settings" element={<Settings />} />
             </Route>
             <Route path="*" element={<NotFound />} />

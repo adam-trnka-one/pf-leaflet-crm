@@ -2,7 +2,7 @@ import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search, Newspaper, Loader2, RotateCcw } from "lucide-react";
+import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search, Newspaper, Loader2, RotateCcw, Briefcase } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset, useSidebar } from "@/components/ui/sidebar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
@@ -80,6 +80,7 @@ const LayoutContent = () => {
     { name: t('items.users'), href: "/dashboard/users", icon: Users },
     { name: t('items.products'), href: "/dashboard/products", icon: Package },
     { name: t('items.quotes'), href: "/dashboard/quotes", icon: FileText },
+    { name: t('items.projects'), href: "/dashboard/projects", icon: Briefcase },
     { name: t('items.settings'), href: "/dashboard/settings", icon: Settings }
   ];
   

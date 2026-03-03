@@ -1,0 +1,40 @@
+{
+  "title": "Projects",
+  "subtitle": "Manage and track your projects",
+  "newProject": "New Project",
+  "searchPlaceholder": "Search projects by name, account, or owner...",
+  "noResults": "No projects found matching your search.",
+  "columns": {
+    "name": "Name",
+    "account": "Account",
+    "status": "Status",
+    "priority": "Priority",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "owner": "Owner",
+    "budget": "Budget"
+  },
+  "status": {
+    "active": "Active",
+    "onHold": "On Hold",
+    "completed": "Completed",
+    "cancelled": "Cancelled"
+  },
+  "priority": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "critical": "Critical"
+  },
+  "dashboard": {
+    "budget": "Budget",
+    "daysRemaining": "Days Remaining",
+    "progress": "Progress",
+    "description": "Description",
+    "owner": "Owner",
+    "account": "Account",
+    "backToProjects": "Back to Projects",
+    "overdue": "Overdue",
+    "completed": "Completed"
+  }
+}

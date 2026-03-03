@@ -1,0 +1,11 @@
+{
+  "title": "Projekty",
+  "subtitle": "Správa a sledování projektů",
+  "newProject": "Nový projekt",
+  "searchPlaceholder": "Hledat projekty podle názvu, účtu nebo vlastníka...",
+  "noResults": "Nebyly nalezeny žádné projekty.",
+  "columns": { "name": "Název", "account": "Účet", "status": "Stav", "priority": "Priorita", "startDate": "Datum zahájení", "endDate": "Datum ukončení", "owner": "Vlastník", "budget": "Rozpočet" },
+  "status": { "active": "Aktivní", "onHold": "Pozastaveno", "completed": "Dokončeno", "cancelled": "Zrušeno" },
+  "priority": { "low": "Nízká", "medium": "Střední", "high": "Vysoká", "critical": "Kritická" },
+  "dashboard": { "budget": "Rozpočet", "daysRemaining": "Zbývající dny", "progress": "Průběh", "description": "Popis", "owner": "Vlastník", "account": "Účet", "backToProjects": "Zpět na projekty", "overdue": "Po termínu", "completed": "Dokončeno" }
+}
