@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { LayoutDashboard, Users, Contact, UserPlus, Target, Activity, HelpCircle, Package, FileText, Settings, LogOut, Search, Newspaper, Loader2, RotateCcw } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger, SidebarInset, useSidebar } from "@/components/ui/sidebar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useProductFruits } from "@/hooks/useProductFruits";
+
 import { useLanguageSync } from "@/hooks/useLanguageSync";
 import { useWorkspaceForm } from "@/hooks/useWorkspaceForm";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
@@ -118,11 +118,12 @@ const LayoutContent = () => {
 
   // Check ProductFruits active status
   useEffect(() => {
-    const checkPFStatus = () => {
-      setIsPFActive(!!(window as any).productFruits?.services);
+  const checkPFStatus = () => {
+      const active = !!(window as any).productFruits?.services;
+      setIsPFActive(prev => prev === active ? prev : active);
     };
     checkPFStatus();
-    const interval = setInterval(checkPFStatus, 2000);
+    const interval = setInterval(checkPFStatus, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -292,8 +293,6 @@ const LayoutContent = () => {
 };
 
 const Layout = () => {
-  useProductFruits(); // Initialize ProductFruits with workspace data
-  
   return (
     <SidebarProvider>
       <LayoutContent />
