@@ -1,0 +1,31 @@
+.page { @apply p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen; }
+.header { @apply flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 sm:mb-8; }
+.headerText { }
+.title { @apply text-2xl sm:text-3xl font-bold text-slate-800; }
+.subtitle { @apply text-slate-600 mt-1 sm:mt-2 text-sm sm:text-base; }
+.newBtn { @apply bg-[#4AB831] hover:bg-[#3da127] w-full sm:w-auto; }
+.searchWrap { @apply mb-6; }
+.searchRelative { @apply relative; }
+.searchIcon { @apply absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4; }
+.searchInput { @apply pl-10 max-w-md bg-white; }
+.grid { display: grid; @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6; }
+.cardLink { }
+.card { @apply bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer; }
+.cardHeaderInner { @apply flex items-center space-x-3; }
+.cardIconWrap { @apply w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center; }
+.cardIcon { @apply h-6 w-6 text-indigo-600; }
+.cardTitleWrap { @apply flex-1 min-w-0; }
+.cardTitle { @apply text-lg font-semibold text-slate-800 truncate; }
+.cardSubtitle { @apply text-sm text-slate-600 truncate; }
+.cardContent { @apply space-y-3; }
+.badges { @apply flex flex-wrap gap-2; }
+.dates { @apply flex items-center text-sm text-slate-600; }
+.datesIcon { @apply h-4 w-4 mr-2 shrink-0; }
+.budget { @apply flex items-center text-sm text-slate-600; }
+.budgetIcon { @apply h-4 w-4 mr-2 shrink-0; }
+.ownerRow { @apply pt-2 border-t border-slate-100; }
+.ownerText { @apply text-xs text-slate-500; }
+.empty { @apply text-center py-12; }
+.emptyText { @apply text-slate-500; }
+.loading { @apply p-8 flex items-center justify-center; }
+.spinner { @apply animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500; }

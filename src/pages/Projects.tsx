@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Plus, Search, Briefcase, Calendar, DollarSign } from "lucide-react";
 import NewProjectModal from "@/components/modals/NewProjectModal";
 import { useTranslation } from "react-i18next";
+import styles from "./Projects.module.css";
 
 const statusColors: Record<string, string> = {
   Active: "bg-emerald-100 text-emerald-700 border-emerald-200",
@@ -63,73 +64,70 @@ const Projects = () => {
 
   if (loading) {
     return (
-      <div className="projects-loading p-8 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500" />
+      <div className={styles.loading}>
+        <div className={styles.spinner} />
       </div>
     );
   }
 
   return (
-    <div className="projects-page p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen">
-      {/* Header */}
-      <div className="projects-header flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 sm:mb-8">
-        <div className="projects-header-text">
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">{t("projects:title")}</h1>
-          <p className="text-slate-600 mt-1 sm:mt-2 text-sm sm:text-base">{t("projects:subtitle")}</p>
+    <div className={styles.page}>
+      <div className={styles.header}>
+        <div className={styles.headerText}>
+          <h1 className={styles.title}>{t("projects:title")}</h1>
+          <p className={styles.subtitle}>{t("projects:subtitle")}</p>
         </div>
-        <Button className="projects-new-btn bg-[#4AB831] hover:bg-[#3da127] w-full sm:w-auto" onClick={() => setIsModalOpen(true)}>
+        <Button className={styles.newBtn} onClick={() => setIsModalOpen(true)}>
           <Plus className="h-4 w-4 mr-2" />
           <span>{t("projects:newProject")}</span>
         </Button>
       </div>
 
-      {/* Search */}
-      <div className="projects-search mb-6">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
+      <div className={styles.searchWrap}>
+        <div className={styles.searchRelative}>
+          <Search className={styles.searchIcon} />
           <Input
             placeholder={t("projects:searchPlaceholder")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="projects-search-input pl-10 max-w-md bg-white"
+            className={styles.searchInput}
           />
         </div>
       </div>
 
-      {/* Projects Grid */}
-      <div className="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className={styles.grid}>
         {filteredProjects.map((project) => (
-          <Link key={project.id} to={`/dashboard/projects/${project.id}`} className="projects-card-link">
-            <Card className="projects-card bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+          <Link key={project.id} to={`/dashboard/projects/${project.id}`} className={styles.cardLink}>
+            <Card className={styles.card}>
               <CardHeader className="pb-2">
-                <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
-                    <Briefcase className="h-6 w-6 text-indigo-600" />
+                <div className={styles.cardHeaderInner}>
+                  <div className={styles.cardIconWrap}>
+                    <Briefcase className={styles.cardIcon} />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <CardTitle className="text-lg font-semibold text-slate-800 truncate">{project.name}</CardTitle>
-                    <p className="text-sm text-slate-600 truncate">{project.accountName}</p>
+                  <div className={styles.cardTitleWrap}>
+                    <CardTitle className={styles.cardTitle}>{project.name}</CardTitle>
+                    <p className={styles.cardSubtitle}>{project.accountName}</p>
                   </div>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="projects-badges flex flex-wrap gap-2">
+              <CardContent className={styles.cardContent}>
+                <div className={styles.badges}>
                   <Badge variant="outline" className={statusColors[project.status] || ""}>{project.status}</Badge>
                   <Badge variant="outline" className={priorityColors[project.priority] || ""}>{project.priority}</Badge>
                 </div>
 
-                <div className="projects-dates flex items-center text-sm text-slate-600">
-                  <Calendar className="h-4 w-4 mr-2 shrink-0" />
+                <div className={styles.dates}>
+                  <Calendar className={styles.datesIcon} />
                   <span>{project.startDate.toLocaleDateString()} – {project.endDate.toLocaleDateString()}</span>
                 </div>
 
-                <div className="projects-budget flex items-center text-sm text-slate-600">
-                  <DollarSign className="h-4 w-4 mr-2 shrink-0" />
+                <div className={styles.budget}>
+                  <DollarSign className={styles.budgetIcon} />
                   <span>${project.budget.toLocaleString()}</span>
                 </div>
 
-                <div className="pt-2 border-t border-slate-100">
-                  <div className="text-xs text-slate-500">
+                <div className={styles.ownerRow}>
+                  <div className={styles.ownerText}>
                     <span>{t("common:owner")}: </span>
                     <span>{project.owner}</span>
                   </div>
@@ -141,8 +139,8 @@ const Projects = () => {
       </div>
 
       {filteredProjects.length === 0 && (
-        <div className="projects-empty text-center py-12">
-          <p className="text-slate-500">{t("projects:noResults")}</p>
+        <div className={styles.empty}>
+          <p className={styles.emptyText}>{t("projects:noResults")}</p>
         </div>
       )}
 

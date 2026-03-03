@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, DollarSign, Clock, User, Building2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import styles from "./ProjectDashboard.module.css";
 
 const statusColors: Record<string, string> = {
   Active: "bg-emerald-100 text-emerald-700 border-emerald-200",
@@ -47,55 +48,52 @@ const ProjectDashboard = () => {
 
   if (!project) {
     return (
-      <div className="project-dashboard-empty p-8 text-center text-slate-500">
+      <div className={styles.emptyState}>
         Project not found.
       </div>
     );
   }
 
   return (
-    <div className="project-dashboard p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen space-y-6">
-      {/* Back link */}
+    <div className={styles.page}>
       <Link to="/dashboard/projects">
-        <Button variant="ghost" size="sm" className="project-dashboard-back gap-2">
+        <Button variant="ghost" size="sm" className={styles.backBtn}>
           <ArrowLeft className="h-4 w-4" />
           {t("projects:dashboard.backToProjects")}
         </Button>
       </Link>
 
-      {/* Header */}
-      <div className="project-dashboard-header flex flex-col sm:flex-row sm:items-center gap-4">
-        <div className="flex-1 min-w-0">
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 truncate">{project.name}</h1>
+      <div className={styles.header}>
+        <div className={styles.titleWrap}>
+          <h1 className={styles.title}>{project.name}</h1>
         </div>
-        <div className="flex flex-wrap gap-2">
-          <Badge variant="outline" className={`text-sm ${statusColors[project.status] || ""}`}>{project.status}</Badge>
-          <Badge variant="outline" className={`text-sm ${priorityColors[project.priority] || ""}`}>{project.priority}</Badge>
+        <div className={styles.badgesWrap}>
+          <Badge variant="outline" className={`${styles.badgeText} ${statusColors[project.status] || ""}`}>{project.status}</Badge>
+          <Badge variant="outline" className={`${styles.badgeText} ${priorityColors[project.priority] || ""}`}>{project.priority}</Badge>
         </div>
       </div>
 
-      {/* Summary cards */}
-      <div className="project-summary-cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card className="bg-white shadow-sm">
-          <CardContent className="flex items-center gap-3 p-4">
-            <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
-              <DollarSign className="h-5 w-5 text-emerald-600" />
+      <div className={styles.summaryGrid}>
+        <Card className={styles.summaryCard}>
+          <CardContent className={styles.summaryCardContent}>
+            <div className={styles.summaryIconWrapGreen}>
+              <DollarSign className={styles.summaryIconGreen} />
             </div>
             <div>
-              <p className="text-xs text-slate-500">{t("projects:dashboard.budget")}</p>
-              <p className="text-lg font-semibold text-slate-800">${project.budget.toLocaleString()}</p>
+              <p className={styles.summaryLabel}>{t("projects:dashboard.budget")}</p>
+              <p className={styles.summaryValue}>${project.budget.toLocaleString()}</p>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-white shadow-sm">
-          <CardContent className="flex items-center gap-3 p-4">
-            <div className="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center">
-              <Clock className="h-5 w-5 text-sky-600" />
+        <Card className={styles.summaryCard}>
+          <CardContent className={styles.summaryCardContent}>
+            <div className={styles.summaryIconWrapBlue}>
+              <Clock className={styles.summaryIconBlue} />
             </div>
             <div>
-              <p className="text-xs text-slate-500">{t("projects:dashboard.daysRemaining")}</p>
-              <p className="text-lg font-semibold text-slate-800">
+              <p className={styles.summaryLabel}>{t("projects:dashboard.daysRemaining")}</p>
+              <p className={styles.summaryValue}>
                 {daysRemaining < 0
                   ? t("projects:dashboard.overdue")
                   : project.status === "Completed"
@@ -106,53 +104,51 @@ const ProjectDashboard = () => {
           </CardContent>
         </Card>
 
-        <Card className="bg-white shadow-sm">
-          <CardContent className="flex items-center gap-3 p-4">
-            <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center">
-              <User className="h-5 w-5 text-violet-600" />
+        <Card className={styles.summaryCard}>
+          <CardContent className={styles.summaryCardContent}>
+            <div className={styles.summaryIconWrapViolet}>
+              <User className={styles.summaryIconViolet} />
             </div>
             <div>
-              <p className="text-xs text-slate-500">{t("projects:dashboard.owner")}</p>
-              <p className="text-lg font-semibold text-slate-800 truncate">{project.owner}</p>
+              <p className={styles.summaryLabel}>{t("projects:dashboard.owner")}</p>
+              <p className={styles.summaryValueTruncate}>{project.owner}</p>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-white shadow-sm">
-          <CardContent className="flex items-center gap-3 p-4">
-            <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
-              <Building2 className="h-5 w-5 text-amber-600" />
+        <Card className={styles.summaryCard}>
+          <CardContent className={styles.summaryCardContent}>
+            <div className={styles.summaryIconWrapAmber}>
+              <Building2 className={styles.summaryIconAmber} />
             </div>
             <div>
-              <p className="text-xs text-slate-500">{t("projects:dashboard.account")}</p>
-              <p className="text-lg font-semibold text-slate-800 truncate">{project.accountName}</p>
+              <p className={styles.summaryLabel}>{t("projects:dashboard.account")}</p>
+              <p className={styles.summaryValueTruncate}>{project.accountName}</p>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Progress */}
-      <Card className="project-progress-section bg-white shadow-sm">
+      <Card className={styles.progressSection}>
         <CardHeader>
-          <CardTitle className="text-base font-medium text-slate-700">{t("projects:dashboard.progress")}</CardTitle>
+          <CardTitle className={styles.progressTitle}>{t("projects:dashboard.progress")}</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-3">
-          <Progress value={progressPercent} className="h-3" />
-          <div className="flex justify-between text-sm text-slate-500">
+        <CardContent className={styles.progressContent}>
+          <Progress value={progressPercent} className={styles.progressBar} />
+          <div className={styles.progressDates}>
             <span>{project.startDate.toLocaleDateString()}</span>
-            <span className="font-medium text-slate-700">{progressPercent}%</span>
+            <span className={styles.progressPercent}>{progressPercent}%</span>
             <span>{project.endDate.toLocaleDateString()}</span>
           </div>
         </CardContent>
       </Card>
 
-      {/* Description */}
-      <Card className="project-description-section bg-white shadow-sm">
+      <Card className={styles.descriptionSection}>
         <CardHeader>
-          <CardTitle className="text-base font-medium text-slate-700">{t("projects:dashboard.description")}</CardTitle>
+          <CardTitle className={styles.descriptionTitle}>{t("projects:dashboard.description")}</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-slate-600 leading-relaxed">{project.description}</p>
+          <p className={styles.descriptionText}>{project.description}</p>
         </CardContent>
       </Card>
     </div>
