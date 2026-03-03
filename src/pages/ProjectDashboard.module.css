@@ -1,0 +1,31 @@
+.page { @apply p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen space-y-6; }
+.backBtn { @apply gap-2; }
+.header { @apply flex flex-col sm:flex-row sm:items-center gap-4; }
+.titleWrap { @apply flex-1 min-w-0; }
+.title { @apply text-2xl sm:text-3xl font-bold text-slate-800 truncate; }
+.badgesWrap { @apply flex flex-wrap gap-2; }
+.badgeText { @apply text-sm; }
+.summaryGrid { @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4; }
+.summaryCard { @apply bg-white shadow-sm; }
+.summaryCardContent { @apply flex items-center gap-3 p-4; }
+.summaryIconWrapGreen { @apply w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center; }
+.summaryIconGreen { @apply h-5 w-5 text-emerald-600; }
+.summaryIconWrapBlue { @apply w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center; }
+.summaryIconBlue { @apply h-5 w-5 text-sky-600; }
+.summaryIconWrapViolet { @apply w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center; }
+.summaryIconViolet { @apply h-5 w-5 text-violet-600; }
+.summaryIconWrapAmber { @apply w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center; }
+.summaryIconAmber { @apply h-5 w-5 text-amber-600; }
+.summaryLabel { @apply text-xs text-slate-500; }
+.summaryValue { @apply text-lg font-semibold text-slate-800; }
+.summaryValueTruncate { @apply text-lg font-semibold text-slate-800 truncate; }
+.progressSection { @apply bg-white shadow-sm; }
+.progressTitle { @apply text-base font-medium text-slate-700; }
+.progressContent { @apply space-y-3; }
+.progressBar { @apply h-3; }
+.progressDates { @apply flex justify-between text-sm text-slate-500; }
+.progressPercent { @apply font-medium text-slate-700; }
+.descriptionSection { @apply bg-white shadow-sm; }
+.descriptionTitle { @apply text-base font-medium text-slate-700; }
+.descriptionText { @apply text-slate-600 leading-relaxed; }
+.emptyState { @apply p-8 text-center text-slate-500; }
