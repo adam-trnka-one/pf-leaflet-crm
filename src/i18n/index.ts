@@ -16,6 +16,7 @@ import enProducts from './locales/en/products.json';
 import enQuotes from './locales/en/quotes.json';
 import enSettings from './locales/en/settings.json';
 import enAuth from './locales/en/auth.json';
+import enProjects from './locales/en/projects.json';
 
 import csCommon from './locales/cs/common.json';
 import csNavigation from './locales/cs/navigation.json';
@@ -31,6 +32,7 @@ import csProducts from './locales/cs/products.json';
 import csQuotes from './locales/cs/quotes.json';
 import csSettings from './locales/cs/settings.json';
 import csAuth from './locales/cs/auth.json';
+import csProjects from './locales/cs/projects.json';
 
 import ptCommon from './locales/pt/common.json';
 import ptNavigation from './locales/pt/navigation.json';
@@ -46,6 +48,7 @@ import ptProducts from './locales/pt/products.json';
 import ptQuotes from './locales/pt/quotes.json';
 import ptSettings from './locales/pt/settings.json';
 import ptAuth from './locales/pt/auth.json';
+import ptProjects from './locales/pt/projects.json';
 
 import esCommon from './locales/es/common.json';
 import esNavigation from './locales/es/navigation.json';
@@ -61,6 +64,7 @@ import esProducts from './locales/es/products.json';
 import esQuotes from './locales/es/quotes.json';
 import esSettings from './locales/es/settings.json';
 import esAuth from './locales/es/auth.json';
+import esProjects from './locales/es/projects.json';
 
 import frCommon from './locales/fr/common.json';
 import frNavigation from './locales/fr/navigation.json';
@@ -76,6 +80,7 @@ import frProducts from './locales/fr/products.json';
 import frQuotes from './locales/fr/quotes.json';
 import frSettings from './locales/fr/settings.json';
 import frAuth from './locales/fr/auth.json';
+import frProjects from './locales/fr/projects.json';
 
 import deCommon from './locales/de/common.json';
 import deNavigation from './locales/de/navigation.json';
@@ -91,6 +96,7 @@ import deProducts from './locales/de/products.json';
 import deQuotes from './locales/de/quotes.json';
 import deSettings from './locales/de/settings.json';
 import deAuth from './locales/de/auth.json';
+import deProjects from './locales/de/projects.json';
 
 import arCommon from './locales/ar/common.json';
 import arNavigation from './locales/ar/navigation.json';
@@ -106,6 +112,7 @@ import arProducts from './locales/ar/products.json';
 import arQuotes from './locales/ar/quotes.json';
 import arSettings from './locales/ar/settings.json';
 import arAuth from './locales/ar/auth.json';
+import arProjects from './locales/ar/projects.json';
 
 const resources = {
   en: {
@@ -123,6 +130,7 @@ const resources = {
     quotes: enQuotes,
     settings: enSettings,
     auth: enAuth,
+    projects: enProjects,
   },
   cs: {
     common: csCommon,
@@ -139,6 +147,7 @@ const resources = {
     quotes: csQuotes,
     settings: csSettings,
     auth: csAuth,
+    projects: csProjects,
   },
   pt: {
     common: ptCommon,
@@ -155,6 +164,7 @@ const resources = {
     quotes: ptQuotes,
     settings: ptSettings,
     auth: ptAuth,
+    projects: ptProjects,
   },
   es: {
     common: esCommon,
@@ -171,6 +181,7 @@ const resources = {
     quotes: esQuotes,
     settings: esSettings,
     auth: esAuth,
+    projects: esProjects,
   },
   fr: {
     common: frCommon,
@@ -187,6 +198,7 @@ const resources = {
     quotes: frQuotes,
     settings: frSettings,
     auth: frAuth,
+    projects: frProjects,
   },
   de: {
     common: deCommon,
@@ -203,6 +215,7 @@ const resources = {
     quotes: deQuotes,
     settings: deSettings,
     auth: deAuth,
+    projects: deProjects,
   },
   ar: {
     common: arCommon,
@@ -219,6 +232,7 @@ const resources = {
     quotes: arQuotes,
     settings: arSettings,
     auth: arAuth,
+    projects: arProjects,
   },
 };
 
@@ -230,7 +244,7 @@ i18n
     resources,
     lng: 'en',
     fallbackLng: 'en',
-    ns: ['common', 'navigation', 'dashboard', 'accounts', 'contacts', 'leads', 'opportunities', 'activities', 'cases', 'users', 'products', 'quotes', 'settings', 'auth'],
+    ns: ['common', 'navigation', 'dashboard', 'accounts', 'contacts', 'leads', 'opportunities', 'activities', 'cases', 'users', 'products', 'quotes', 'settings', 'auth', 'projects'],
     defaultNS: 'common',
     interpolation: {
       escapeValue: false,

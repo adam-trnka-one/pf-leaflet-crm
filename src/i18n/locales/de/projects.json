@@ -1,0 +1,11 @@
+{
+  "title": "Projekte",
+  "subtitle": "Projekte verwalten und verfolgen",
+  "newProject": "Neues Projekt",
+  "searchPlaceholder": "Projekte nach Name, Konto oder Besitzer suchen...",
+  "noResults": "Keine Projekte gefunden.",
+  "columns": { "name": "Name", "account": "Konto", "status": "Status", "priority": "Priorität", "startDate": "Startdatum", "endDate": "Enddatum", "owner": "Besitzer", "budget": "Budget" },
+  "status": { "active": "Aktiv", "onHold": "Pausiert", "completed": "Abgeschlossen", "cancelled": "Storniert" },
+  "priority": { "low": "Niedrig", "medium": "Mittel", "high": "Hoch", "critical": "Kritisch" },
+  "dashboard": { "budget": "Budget", "daysRemaining": "Verbleibende Tage", "progress": "Fortschritt", "description": "Beschreibung", "owner": "Besitzer", "account": "Konto", "backToProjects": "Zurück zu Projekten", "overdue": "Überfällig", "completed": "Abgeschlossen" }
+}

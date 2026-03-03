@@ -1,0 +1,11 @@
+{
+  "title": "المشاريع",
+  "subtitle": "إدارة وتتبع المشاريع",
+  "newProject": "مشروع جديد",
+  "searchPlaceholder": "البحث عن المشاريع بالاسم أو الحساب أو المالك...",
+  "noResults": "لم يتم العثور على مشاريع.",
+  "columns": { "name": "الاسم", "account": "الحساب", "status": "الحالة", "priority": "الأولوية", "startDate": "تاريخ البدء", "endDate": "تاريخ الانتهاء", "owner": "المالك", "budget": "الميزانية" },
+  "status": { "active": "نشط", "onHold": "معلق", "completed": "مكتمل", "cancelled": "ملغى" },
+  "priority": { "low": "منخفضة", "medium": "متوسطة", "high": "عالية", "critical": "حرجة" },
+  "dashboard": { "budget": "الميزانية", "daysRemaining": "الأيام المتبقية", "progress": "التقدم", "description": "الوصف", "owner": "المالك", "account": "الحساب", "backToProjects": "العودة إلى المشاريع", "overdue": "متأخر", "completed": "مكتمل" }
+}

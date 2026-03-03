@@ -1,4 +1,4 @@
 {
-  "items": { "dashboard": "Painel", "accounts": "Contas", "contacts": "Contatos", "leads": "Leads", "opportunities": "Oportunidades", "activities": "Atividades", "cases": "Casos", "users": "Usuários", "products": "Produtos", "quotes": "Cotações", "settings": "Configurações" },
+  "items": { "dashboard": "Painel", "accounts": "Contas", "contacts": "Contatos", "leads": "Leads", "opportunities": "Oportunidades", "activities": "Atividades", "cases": "Casos", "users": "Usuários", "products": "Produtos", "quotes": "Cotações", "projects": "Projetos", "settings": "Configurações" },
   "header": { "searchPlaceholder": "Pesquisar contas, contatos, oportunidades...", "newsfeed": "Notícias", "signOut": "Sair" }
 }
