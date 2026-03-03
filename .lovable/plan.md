@@ -1,17 +1,23 @@
 
 
-## Plan: Use full page reload instead of React navigate after PF re-init
+## Performance Issues Found
 
-The async destroy/init cycle isn't reliably cleaning up PF's internal state. The fix is to use `window.location.href = '/dashboard'` (full reload) with a small delay after initiation, instead of React Router's `navigate()`.
+### Problem 1: Duplicate `useProductFruits` instances
+`Layout` (line 295) calls `useProductFruits()` directly, and `LayoutContent` (line 28) calls `useWorkspaceForm()` which internally also calls `useProductFruits()`. This creates **two separate hook instances**, each with its own `useEffect` watching `location.pathname`. Both can trigger `initializeFromStorage()` -- the refs (`hasInitialized`) are separate per instance, so the guard doesn't work across them. This means PF can get initialized twice on first dashboard load.
 
-### Changes
+**Fix**: Remove `useProductFruits()` from `Layout` component (line 295). The instance inside `useWorkspaceForm` (used by `LayoutContent`) is sufficient.
 
-**`src/components/settings/workspace/WorkspaceActions.tsx`** (line 78):
-- Replace `navigate('/dashboard')` with a 500ms delayed `window.location.href = '/dashboard'`
+### Problem 2: Aggressive PF status polling
+`Layout.tsx` lines 120-127 run a `setInterval` every 2 seconds checking `window.productFruits?.services`. Each call to `setIsPFActive` triggers a state update and potential re-render of the entire layout tree, even when the value hasn't changed.
 
-**`src/components/Layout.tsx`** (lines 199-202, sidebar reset button):
-- Replace `await handleInitiateProductFruits(); navigate('/dashboard')` with `await handleInitiateProductFruits()` followed by a 500ms delayed `window.location.href = '/dashboard'`
+**Fix**: Only call `setIsPFActive` when the value actually changes (compare before setting). Also increase interval to 5 seconds since this is just a status badge.
 
-**`src/components/Layout.tsx`** (language change handler, ~line 56):
-- Same pattern if it also re-inits PF — add delay + full reload
+### Problem 3: Version string forces re-renders
+Line 183: `Version 1.0.{Date.now().toString().slice(-6)}` generates a new string on every render, though this is cosmetic and low-impact.
+
+### File changes
+
+**`src/components/Layout.tsx`**:
+1. Remove `useProductFruits()` call from `Layout` component (line 295) and its import if unused
+2. Fix PF status interval: compare value before calling `setIsPFActive`, increase to 5s
 
