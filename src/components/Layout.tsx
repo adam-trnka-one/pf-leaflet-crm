@@ -96,6 +96,9 @@ const LayoutContent = () => {
   };
 
   const handleSignOut = () => {
+    // 0. Reset PF initialization state so next login can re-init
+    resetInitializationState();
+
     // 1. Destroy ProductFruits instance via official SDK
     if ((window as any).productFruits?.services?.destroy) {
       (window as any).productFruits.services.destroy();

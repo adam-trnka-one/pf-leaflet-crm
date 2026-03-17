@@ -30,7 +30,7 @@ export const useProductFruits = () => {
     }
   }, [location.pathname]);
 
-  const initializeFromStorage = () => {
+  const initializeFromStorage = (): boolean => {
     try {
       const savedData = localStorage.getItem(STORAGE_KEY);
       if (savedData) {
@@ -40,11 +40,13 @@ export const useProductFruits = () => {
           initializeProductFruits(workspaceData);
           initializedWorkspaceCode = workspaceData.workspaceCode;
           hasInitialized = true;
+          return true;
         }
       }
     } catch (error) {
       console.error('Error loading workspace data from localStorage:', error);
     }
+    return false;
   };
 
   const getScriptUrl = (selectedWorkspace?: string, customUrl?: string) => {
