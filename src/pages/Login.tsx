@@ -13,6 +13,11 @@ const Login = () => {
   const { updateWorkspaceData, workspaceData } = useWorkspace();
   const { toast } = useToast();
 
+  // Reset PF initialization state on mount so next login gets a fresh init
+  useEffect(() => {
+    resetInitializationState();
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     

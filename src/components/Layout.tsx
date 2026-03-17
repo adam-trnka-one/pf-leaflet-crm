@@ -7,6 +7,7 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupConte
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 import { useLanguageSync } from "@/hooks/useLanguageSync";
+import { resetInitializationState } from "@/hooks/useProductFruits";
 import { useWorkspaceForm } from "@/hooks/useWorkspaceForm";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useRef, useEffect, useState, useCallback } from "react";
