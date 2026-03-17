@@ -7,6 +7,7 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupConte
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 import { useLanguageSync } from "@/hooks/useLanguageSync";
+import { resetInitializationState } from "@/hooks/useProductFruits";
 import { useWorkspaceForm } from "@/hooks/useWorkspaceForm";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useRef, useEffect, useState, useCallback } from "react";
@@ -96,6 +97,9 @@ const LayoutContent = () => {
   };
 
   const handleSignOut = () => {
+    // 0. Reset PF initialization state so next login can re-init
+    resetInitializationState();
+
     // 1. Destroy ProductFruits instance via official SDK
     if ((window as any).productFruits?.services?.destroy) {
       (window as any).productFruits.services.destroy();
