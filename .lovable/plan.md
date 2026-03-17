@@ -1,42 +1,34 @@
 
 
-## Plan: Extract inline Tailwind to CSS module classes with hashed names
+## Plan: Fix ProductFruits initialization race condition after login
 
-Move all inline Tailwind utility classes from `Projects.tsx` and `ProjectDashboard.tsx` into dedicated CSS Module files. CSS Modules automatically generate unique hashed class names (like `_4skeas23F`) at build time -- Vite supports them natively with `.module.css` files.
+### Problem
 
-### Approach
+The `useProductFruits` hook uses a **module-level** `hasInitialized` flag that never resets after sign-out. When a user logs out and logs back in, the flag is still `true`, so the auto-initialization useEffect skips PF setup entirely. Additionally, there's a timing issue where the hook's useEffect may fire before the workspace data from login has been persisted to localStorage.
 
-Use **CSS Modules** (`.module.css`) which Vite supports out of the box. Each class name gets a unique hash in the compiled output (e.g., `_projects-page_4skeas` instead of human-readable names in the HTML).
+### Root Cause
 
-### New Files
+1. **`hasInitialized` persists across login/logout cycles** -- `handleSignOut` in Layout cleans up PF DOM/globals but never resets the module-level `hasInitialized` flag
+2. **Race condition on login** -- Login calls `navigate("/dashboard")` which mounts Layout, triggering `useProductFruits`. But the useEffect runs synchronously with the same render, and workspace data may not be fully committed to localStorage yet
+3. **useEffect dependency** -- Only watches `location.pathname`, so navigating from `/login` to `/dashboard` fires once, but if it fails silently (e.g., missing data), there's no retry
 
-**`src/pages/Projects.module.css`**
-- Define classes like `.page`, `.header`, `.headerText`, `.title`, `.subtitle`, `.newBtn`, `.searchWrap`, `.searchIcon`, `.searchInput`, `.grid`, `.cardLink`, `.card`, `.cardIcon`, `.cardIconWrap`, `.cardTitle`, `.cardSubtitle`, `.badges`, `.dates`, `.budget`, `.ownerRow`, `.empty`, `.loading`, `.spinner`
-- Each class contains the equivalent `@apply` directives for the Tailwind utilities currently inline (e.g., `.page { @apply p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen; }`)
+### Solution
 
-**`src/pages/ProjectDashboard.module.css`**
-- Define classes like `.page`, `.backBtn`, `.header`, `.title`, `.badgesWrap`, `.summaryGrid`, `.summaryCard`, `.summaryIconWrap`, `.summaryLabel`, `.summaryValue`, `.progressSection`, `.progressBar`, `.progressDates`, `.descriptionSection`, `.descriptionText`, `.emptyState`
-- Same pattern: `@apply` Tailwind utilities
+**`src/hooks/useProductFruits.tsx`**:
+- Export a `resetInitializationState()` function that sets `hasInitialized = false` and `initializedWorkspaceCode = ''`
+- Add a small retry mechanism: if `initializeFromStorage` finds no data on first attempt, retry after 500ms (covers the localStorage write delay from login)
 
-### Modified Files
+**`src/components/Layout.tsx`**:
+- Import and call `resetInitializationState()` inside `handleSignOut`, before navigating to `/login`
 
-**`src/pages/Projects.tsx`**
-- `import styles from './Projects.module.css'`
-- Replace all `className="projects-page p-4 sm:p-6 ..."` with `className={styles.page}`
-- Replace all inline Tailwind class strings with the corresponding `styles.xxx` reference
-- Status/priority badge colors remain as dynamic strings (merged via template literals with `styles` classes)
+**`src/pages/Login.tsx`**:
+- Import and call `resetInitializationState()` on mount (useEffect) to ensure clean state when arriving at login page
 
-**`src/pages/ProjectDashboard.tsx`**
-- `import styles from './ProjectDashboard.module.css'`
-- Same replacement pattern -- all inline utilities become `styles.xxx` references
-- Dynamic status/priority colors still passed as secondary className strings
+### Files Changed
 
-### What stays inline
-
-- Status/priority color maps (`statusColors`, `priorityColors`) remain as dynamic Tailwind classes since they are data-driven and need to be applied conditionally alongside the module class
-- Props passed to shadcn components (e.g., `<Card className="bg-white shadow-sm">`) get moved to module classes too
-
-### Result
-
-In the browser DevTools, class names will appear as hashed identifiers (e.g., `_page_x7k2a_1`, `_header_x7k2a_5`) instead of readable Tailwind utilities, matching the user's requirement for dynamic/obfuscated CSS names.
+| File | Change |
+|------|--------|
+| `src/hooks/useProductFruits.tsx` | Export `resetInitializationState()`, add retry logic in auto-init |
+| `src/components/Layout.tsx` | Call `resetInitializationState()` in `handleSignOut` |
+| `src/pages/Login.tsx` | Call `resetInitializationState()` on mount |
 
