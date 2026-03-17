@@ -7,12 +7,26 @@ const STORAGE_KEY = 'leaflet-workspace-data';
 let hasInitialized = false;
 let initializedWorkspaceCode = '';
 
+export const resetInitializationState = () => {
+  hasInitialized = false;
+  initializedWorkspaceCode = '';
+};
+
 export const useProductFruits = () => {
   const location = useLocation();
 
   useEffect(() => {
     if (location.pathname.startsWith('/dashboard') && !hasInitialized) {
-      initializeFromStorage();
+      const success = initializeFromStorage();
+      // Retry once after 500ms if first attempt found no data (race condition with login)
+      if (!success) {
+        const timer = setTimeout(() => {
+          if (!hasInitialized) {
+            initializeFromStorage();
+          }
+        }, 500);
+        return () => clearTimeout(timer);
+      }
     }
   }, [location.pathname]);
 
