@@ -55,12 +55,7 @@ const Login = () => {
   };
 
   const handleLastUsedUser = () => {
-    // Check if there's data in workspace context
     if (workspaceData.email) {
-      toast({
-        title: "Logged in",
-        description: `Welcome back, ${workspaceData.email}`,
-      });
       navigate("/dashboard");
     } else {
       toast({
