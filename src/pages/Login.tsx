@@ -135,14 +135,6 @@ const Login = () => {
               New user
             </Button>
 
-            <Button 
-              type="button"
-              onClick={handleLastUsedUser}
-              variant="outline"
-              className="w-full h-12 border-2 border-gray-200 hover:border-leaflet-green hover:bg-leaflet-green/5 font-medium rounded-md"
-            >
-              Last used user
-            </Button>
           </div>
 
           {/* Demo Info */}
