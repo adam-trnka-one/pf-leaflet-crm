@@ -50,11 +50,6 @@ const Login = () => {
     // Save to workspace context
     updateWorkspaceData(newUser);
     
-    toast({
-      title: "New user created",
-      description: `Logged in as ${newUser.email}`,
-    });
-    
     // Navigate to dashboard
     navigate("/dashboard");
   };
