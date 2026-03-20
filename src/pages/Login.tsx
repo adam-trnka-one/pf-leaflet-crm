@@ -10,8 +10,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { updateWorkspaceData, workspaceData } = useWorkspace();
-  const { toast } = useToast();
+  const { updateWorkspaceData } = useWorkspace();
 
   // Reset PF initialization state on mount so next login gets a fresh init
   useEffect(() => {
