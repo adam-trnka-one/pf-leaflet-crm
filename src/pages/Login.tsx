@@ -53,17 +53,6 @@ const Login = () => {
     navigate("/dashboard");
   };
 
-  const handleLastUsedUser = () => {
-    if (workspaceData.email) {
-      navigate("/dashboard");
-    } else {
-      toast({
-        title: "No previous user",
-        description: "Please sign in or create a new user",
-        variant: "destructive",
-      });
-    }
-  };
 
   return (
     <div className="min-h-screen flex">
