@@ -3,15 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
-import { useToast } from "@/hooks/use-toast";
+
 import { resetInitializationState } from "@/hooks/useProductFruits";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { updateWorkspaceData, workspaceData } = useWorkspace();
-  const { toast } = useToast();
+  const { updateWorkspaceData } = useWorkspace();
 
   // Reset PF initialization state on mount so next login gets a fresh init
   useEffect(() => {
@@ -54,17 +53,6 @@ const Login = () => {
     navigate("/dashboard");
   };
 
-  const handleLastUsedUser = () => {
-    if (workspaceData.email) {
-      navigate("/dashboard");
-    } else {
-      toast({
-        title: "No previous user",
-        description: "Please sign in or create a new user",
-        variant: "destructive",
-      });
-    }
-  };
 
   return (
     <div className="min-h-screen flex">
