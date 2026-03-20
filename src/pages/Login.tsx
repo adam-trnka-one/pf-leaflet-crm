@@ -36,7 +36,9 @@ const Login = () => {
     // Generate random user data
     const randomId = Math.floor(Math.random() * 10000);
     const firstNames = ["Alex", "Sam", "Jordan", "Taylor", "Morgan", "Casey", "Riley", "Quinn", "Avery", "Jamie"];
+    const lastNames = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Martinez", "Wilson"];
     const randomFirst = firstNames[Math.floor(Math.random() * firstNames.length)];
+    const randomLast = lastNames[Math.floor(Math.random() * lastNames.length)];
     const roles = ["Admin", "Manager", "Sales Rep", "Support"];
     const randomRole = roles[Math.floor(Math.random() * roles.length)];
     
@@ -44,7 +46,7 @@ const Login = () => {
       email: `user${randomId}@demo.com`,
       username: `user${randomId}@demo.com`,
       firstName: randomFirst,
-      lastName: `${randomId}`,
+      lastName: randomLast,
       role: randomRole
     };
     
