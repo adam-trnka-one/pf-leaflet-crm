@@ -33,15 +33,32 @@ const Login = () => {
   };
 
   const handleNewUser = () => {
-    // Generate random user data
-    const randomId = Math.floor(Math.random() * 10000);
-    const firstNames = ["Alex", "Sam", "Jordan", "Taylor", "Morgan", "Casey", "Riley", "Quinn", "Avery", "Jamie"];
-    const lastNames = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Martinez", "Wilson"];
+    // Generate random user data with high uniqueness
+    const randomId = Math.floor(Math.random() * 100000);
+    const firstNames = [
+      "Alex", "Sam", "Jordan", "Taylor", "Morgan", "Casey", "Riley", "Quinn", "Avery", "Jamie",
+      "Emma", "Liam", "Olivia", "Noah", "Sophia", "Lucas", "Mia", "Ethan", "Isabella", "Mason",
+      "Ava", "Logan", "Charlotte", "James", "Amelia", "Benjamin", "Harper", "Elijah", "Evelyn", "Daniel",
+      "Aria", "Henry", "Chloe", "Sebastian", "Luna", "Jack", "Ella", "Owen", "Grace", "Leo",
+      "Nora", "Caleb", "Lily", "Nathan", "Zoe", "Isaac", "Layla", "Ryan", "Penelope", "Adrian"
+    ];
+    const lastNames = [
+      "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Martinez", "Wilson",
+      "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin", "Lee", "Perez", "Thompson", "White",
+      "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Walker", "Young", "Allen", "King",
+      "Wright", "Scott", "Torres", "Nguyen", "Hill", "Flores", "Green", "Adams", "Nelson", "Baker",
+      "Hall", "Rivera", "Campbell", "Mitchell", "Carter", "Roberts", "Phillips", "Evans", "Turner", "Parker"
+    ];
+    const domains = [
+      "demo.com", "test.io", "example.org", "sandbox.dev", "trial.net",
+      "acme.co", "workspace.app", "leaflet.dev", "teamwork.io", "cloudcrm.net"
+    ];
     const randomFirst = firstNames[Math.floor(Math.random() * firstNames.length)];
     const randomLast = lastNames[Math.floor(Math.random() * lastNames.length)];
+    const randomDomain = domains[Math.floor(Math.random() * domains.length)];
     const roles = ["Admin", "Manager", "Sales Rep", "Support"];
     const randomRole = roles[Math.floor(Math.random() * roles.length)];
-    const email = `${randomFirst.toLowerCase()}.${randomLast.toLowerCase()}${randomId}@demo.com`;
+    const email = `${randomFirst.toLowerCase()}.${randomLast.toLowerCase()}${randomId}@${randomDomain}`;
     
     const newUser = {
       email,
