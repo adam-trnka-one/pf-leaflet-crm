@@ -34,7 +34,7 @@ const Login = () => {
 
   const handleNewUser = () => {
     // Generate random user data with high uniqueness
-    const randomId = Math.floor(Math.random() * 100000);
+    const randomId = `${Date.now()}${Math.floor(Math.random() * 1000)}`;
     const firstNames = [
       "Alex", "Sam", "Jordan", "Taylor", "Morgan", "Casey", "Riley", "Quinn", "Avery", "Jamie",
       "Emma", "Liam", "Olivia", "Noah", "Sophia", "Lucas", "Mia", "Ethan", "Isabella", "Mason",
