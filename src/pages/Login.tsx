@@ -41,10 +41,11 @@ const Login = () => {
     const randomLast = lastNames[Math.floor(Math.random() * lastNames.length)];
     const roles = ["Admin", "Manager", "Sales Rep", "Support"];
     const randomRole = roles[Math.floor(Math.random() * roles.length)];
+    const email = `${randomFirst.toLowerCase()}.${randomLast.toLowerCase()}${randomId}@demo.com`;
     
     const newUser = {
-      email: `user${randomId}@demo.com`,
-      username: `user${randomId}@demo.com`,
+      email,
+      username: email,
       firstName: randomFirst,
       lastName: randomLast,
       role: randomRole
