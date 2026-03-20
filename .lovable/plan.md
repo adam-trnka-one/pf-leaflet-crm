@@ -1,15 +1,15 @@
 
 
-## Plan: Clean up unused code in Login.tsx
+## Plan: Randomize first names for New User login
 
-### Changes to `src/pages/Login.tsx`
+### Change in `src/pages/Login.tsx`
 
-1. **Remove `handleLastUsedUser` function** (lines 57-67) — no longer used since the button was removed.
+In the `handleNewUser` function, add an array of first names and pick one randomly instead of always using `"User"`.
 
-2. **Remove unused imports/destructured values** now that `handleLastUsedUser` is gone:
-   - Remove `useToast` import (line 6) — `toast` is only used inside `handleLastUsedUser`
-   - Remove `const { toast } = useToast();` (line 14)
-   - Remove `workspaceData` from the `useWorkspace()` destructure (line 13) — only used in `handleLastUsedUser`
+```typescript
+const firstNames = ["Alex", "Sam", "Jordan", "Taylor", "Morgan", "Casey", "Riley", "Quinn", "Avery", "Jamie"];
+const randomFirst = firstNames[Math.floor(Math.random() * firstNames.length)];
+```
 
-Final line 13 becomes: `const { updateWorkspaceData } = useWorkspace();`
+Then use `randomFirst` as the `firstName` value in the `newUser` object.
 
