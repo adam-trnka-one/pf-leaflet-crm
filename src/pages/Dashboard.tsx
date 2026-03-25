@@ -94,10 +94,36 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="p-8 flex items-center justify-center" data-testid="dashboard-loading-container">
-        <div className="text-center" data-testid="dashboard-loading-content">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500 mx-auto" data-testid="dashboard-loading-spinner"></div>
-          <p className="mt-4 text-slate-600" data-testid="dashboard-loading-text">{t('loading')}</p>
+      <div className="p-8 space-y-8 bg-slate-50 min-h-screen" data-testid="dashboard-loading-container">
+        <div className="flex items-center justify-between">
+          <div>
+            <Skeleton className="h-8 w-48 mb-2" />
+            <Skeleton className="h-4 w-64" />
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="bg-white rounded-lg border border-slate-200 p-6">
+              <Skeleton className="h-4 w-24 mb-3" />
+              <Skeleton className="h-8 w-32" />
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div key={i} className="bg-white rounded-lg border border-slate-200 p-6">
+              <Skeleton className="h-4 w-20 mb-3" />
+              <Skeleton className="h-6 w-16" />
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {Array.from({ length: 2 }).map((_, i) => (
+            <div key={i} className="bg-white rounded-lg border border-slate-200 p-6">
+              <Skeleton className="h-4 w-32 mb-4" />
+              <Skeleton className="h-48 w-full" />
+            </div>
+          ))}
         </div>
       </div>
     );
