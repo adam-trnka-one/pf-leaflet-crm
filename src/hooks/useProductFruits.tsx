@@ -117,8 +117,10 @@ export const useProductFruits = () => {
       return false;
     }
 
-    // Step 1: Clean up existing instance and wait for it
-    await cleanupProductFruits();
+    // Step 1: Only clean up if there's an existing PF instance
+    if (hasInitialized || (window as any).productFruits?.services) {
+      await cleanupProductFruits();
+    }
 
     // Step 2: Set up fresh globals
     (window as any).$productFruits = [];
