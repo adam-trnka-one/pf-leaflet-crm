@@ -30,9 +30,12 @@ export const WorkspaceTab = () => {
           <Building className="h-5 w-5" data-testid="workspace-icon" />
           <span data-testid="workspace-title-text">{t('workspace.title')}</span>
         </CardTitle>
-        <p className="text-sm text-slate-600" data-testid="workspace-description">
-          {t('workspace.title')}
-        </p>
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-slate-600" data-testid="workspace-description">
+            {t('workspace.title')}
+          </p>
+          <span className="text-xs text-muted-foreground font-mono select-all" data-testid="app-version">v{APP_VERSION}</span>
+        </div>
       </CardHeader>
       <CardContent className="space-y-4 md:space-y-6" data-testid="workspace-card-content">
         <WorkspaceBasicFields 

@@ -187,7 +187,7 @@ const LayoutContent = () => {
           <SidebarFooter className="border-t border-sidebar-border p-4">
             <div className="px-4 space-y-2">
               <div className="flex items-center justify-between">
-                <p className="text-xs text-muted-foreground">Version 1.0.{Date.now().toString().slice(-6)}</p>
+                <p className="text-xs text-muted-foreground">v{APP_VERSION}</p>
                 <Badge 
                   variant={isPFActive ? "default" : "secondary"}
                   className={cn(
