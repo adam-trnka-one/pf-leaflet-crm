@@ -9,16 +9,16 @@ export const useWorkspaceForm = () => {
   const { initializeProductFruits } = useProductFruits();
   
   const [localWorkspaceData, setLocalWorkspaceData] = useState({
-    workspaceCode: '',
-    username: '',
-    email: '',
-    firstName: 'John',
-    lastName: '',
-    role: '',
-    customProperties: [],
-    selectedWorkspace: 'jess',
-    customUrl: '',
-    languageCode: 'en'
+    workspaceCode: workspaceData.workspaceCode,
+    username: workspaceData.username,
+    email: workspaceData.email,
+    firstName: workspaceData.firstName,
+    lastName: workspaceData.lastName,
+    role: workspaceData.role,
+    customProperties: workspaceData.customProperties,
+    selectedWorkspace: workspaceData.selectedWorkspace || 'jess',
+    customUrl: workspaceData.customUrl || '',
+    languageCode: workspaceData.languageCode || 'en'
   });
   const [customProperties, setCustomProperties] = useState<{ name: string; value: string }[]>([]);
 
