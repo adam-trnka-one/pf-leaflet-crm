@@ -1,3 +1,4 @@
+import { Skeleton } from "@/components/ui/skeleton";
 import MetricsCards from "@/components/dashboard/MetricsCards";
 import TaskSummaryCards from "@/components/dashboard/TaskSummaryCards";
 import ChartsSection from "@/components/dashboard/ChartsSection";
