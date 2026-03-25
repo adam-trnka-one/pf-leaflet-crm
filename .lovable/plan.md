@@ -1,44 +1,25 @@
 
 
-## Plan: Fix delayed username display in workspace settings form
+## Plan: Add App Version Display
 
-### Problem
+### Overview
+Create a centralized app version constant and display it in the sidebar footer so all users see the same version number and can reference it in bug reports.
 
-`useWorkspaceForm.tsx` initializes its local state with hardcoded empty/default values:
+### Changes
 
-```typescript
-const [localWorkspaceData, setLocalWorkspaceData] = useState({
-  workspaceCode: '',
-  username: '',
-  email: '',
-  firstName: 'John',
-  ...
-});
-```
+**1. Create `src/config/version.ts`**
+- Export a single `APP_VERSION` constant (e.g., `"1.0.0"`)
+- Single source of truth — update this file when releasing new versions
 
-Then a `useEffect` syncs from the context — but that runs *after* the first render, causing a visible delay where fields appear empty.
+**2. Update `src/components/Layout.tsx`**
+- Import `APP_VERSION` from the config
+- Display a version badge in the sidebar footer area (bottom of the sidebar), styled as a subtle text like `v1.0.0`
 
-### Fix
-
-**`src/hooks/useWorkspaceForm.tsx`** — Initialize `localWorkspaceData` directly from `workspaceData` instead of hardcoded defaults:
-
-```typescript
-const [localWorkspaceData, setLocalWorkspaceData] = useState({
-  workspaceCode: workspaceData.workspaceCode,
-  username: workspaceData.username,
-  email: workspaceData.email,
-  firstName: workspaceData.firstName,
-  lastName: workspaceData.lastName,
-  role: workspaceData.role,
-  customProperties: workspaceData.customProperties,
-  selectedWorkspace: workspaceData.selectedWorkspace || 'jess',
-  customUrl: workspaceData.customUrl || '',
-  languageCode: workspaceData.languageCode || 'en'
-});
-```
-
-The `useEffect` remains for subsequent context updates (e.g., resets), but the initial render now has the correct data immediately.
+**3. Update `src/components/settings/WorkspaceTab.tsx`**
+- Show the app version in the workspace settings card so users can easily copy it for bug reports
 
 ### Files modified
-- `src/hooks/useWorkspaceForm.tsx` — one change to `useState` initializer
+- `src/config/version.ts` (new)
+- `src/components/Layout.tsx`
+- `src/components/settings/WorkspaceTab.tsx`
 
