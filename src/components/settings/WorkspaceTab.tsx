@@ -2,6 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Building } from "lucide-react";
+import { APP_VERSION } from "@/config/version";
 import { useWorkspaceForm } from "@/hooks/useWorkspaceForm";
 import { WorkspaceBasicFields } from "./workspace/WorkspaceBasicFields";
 import { CustomPropertiesSection } from "./workspace/CustomPropertiesSection";
