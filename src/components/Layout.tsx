@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 import { useLanguageSync } from "@/hooks/useLanguageSync";
 import { resetInitializationState } from "@/hooks/useProductFruits";
+import { APP_VERSION } from "@/config/version";
 import { useWorkspaceForm } from "@/hooks/useWorkspaceForm";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useRef, useEffect, useState, useCallback } from "react";
@@ -186,7 +187,7 @@ const LayoutContent = () => {
           <SidebarFooter className="border-t border-sidebar-border p-4">
             <div className="px-4 space-y-2">
               <div className="flex items-center justify-between">
-                <p className="text-xs text-muted-foreground">Version 1.0.{Date.now().toString().slice(-6)}</p>
+                <p className="text-xs text-muted-foreground">v{APP_VERSION}</p>
                 <Badge 
                   variant={isPFActive ? "default" : "secondary"}
                   className={cn(
