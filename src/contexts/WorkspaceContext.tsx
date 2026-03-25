@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface WorkspaceData {
   workspaceCode: string;
@@ -44,27 +44,18 @@ export const useWorkspace = () => {
 };
 
 export const WorkspaceProvider = ({ children }: { children: ReactNode }) => {
-  const [workspaceData, setWorkspaceData] = useState<WorkspaceData>(defaultWorkspaceData);
-
-  // Load data from localStorage on mount
-  useEffect(() => {
+  const [workspaceData, setWorkspaceData] = useState<WorkspaceData>(() => {
     try {
       const savedData = localStorage.getItem(STORAGE_KEY);
       if (savedData) {
-        const parsedData = JSON.parse(savedData);
-        setWorkspaceData({ ...defaultWorkspaceData, ...parsedData });
-        console.log('Workspace data loaded from localStorage:', parsedData);
-      } else {
-        // Save default data to localStorage if nothing exists
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultWorkspaceData));
-        console.log('Default workspace data saved to localStorage');
+        return { ...defaultWorkspaceData, ...JSON.parse(savedData) };
       }
     } catch (error) {
-      console.error('Error loading workspace data from localStorage:', error);
-      // Use defaults if there's an error
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultWorkspaceData));
+      console.error('Error loading workspace data:', error);
     }
-  }, []);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultWorkspaceData));
+    return defaultWorkspaceData;
+  });
 
   const updateWorkspaceData = (data: Partial<WorkspaceData>) => {
     const updatedData = { ...workspaceData, ...data };
