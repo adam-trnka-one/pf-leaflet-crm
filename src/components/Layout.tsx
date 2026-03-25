@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 import { useLanguageSync } from "@/hooks/useLanguageSync";
 import { resetInitializationState } from "@/hooks/useProductFruits";
+import { APP_VERSION } from "@/config/version";
 import { useWorkspaceForm } from "@/hooks/useWorkspaceForm";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useRef, useEffect, useState, useCallback } from "react";
