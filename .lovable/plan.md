@@ -1,25 +1,30 @@
 
 
-## Plan: Add App Version Display
+## Plan: Handle DEV script load failure gracefully
 
-### Overview
-Create a centralized app version constant and display it in the sidebar footer so all users see the same version number and can reference it in bug reports.
+### Problem
+When the PF DEV script fails to load (`ERR_NAME_NOT_RESOLVED` — e.g., VPN not connected), the app still redirects to `/dashboard` after 500ms regardless of success/failure. The user sees a broken state with no clear feedback.
 
 ### Changes
 
-**1. Create `src/config/version.ts`**
-- Export a single `APP_VERSION` constant (e.g., `"1.0.0"`)
-- Single source of truth — update this file when releasing new versions
+**`src/components/settings/workspace/WorkspaceActions.tsx`** — Only redirect on success:
+- Check `success` return value from `handleInitiateProductFruits()`
+- If `false`, stay on settings page (don't redirect) — the toast from `useWorkspaceForm` already shows the error
 
-**2. Update `src/components/Layout.tsx`**
-- Import `APP_VERSION` from the config
-- Display a version badge in the sidebar footer area (bottom of the sidebar), styled as a subtle text like `v1.0.0`
+```typescript
+const success = await handleInitiateProductFruits();
+if (success) {
+  setTimeout(() => {
+    window.location.href = '/dashboard';
+  }, 500);
+}
+```
 
-**3. Update `src/components/settings/WorkspaceTab.tsx`**
-- Show the app version in the workspace settings card so users can easily copy it for bug reports
+**`src/hooks/useProductFruits.tsx`** — Add a 10-second timeout for script loading:
+- If the script hasn't loaded or errored within 10s, resolve with `false`
+- Improves the error message to include the URL that failed
 
 ### Files modified
-- `src/config/version.ts` (new)
-- `src/components/Layout.tsx`
-- `src/components/settings/WorkspaceTab.tsx`
+- `src/components/settings/workspace/WorkspaceActions.tsx`
+- `src/hooks/useProductFruits.tsx`
 
