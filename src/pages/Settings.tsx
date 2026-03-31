@@ -1,6 +1,6 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { User, Key, Shield, Bell, Plug, Building, Code } from "lucide-react";
+import { User, Key, Shield, Bell, Plug, Building, Code, FileText } from "lucide-react";
 import { useState, useMemo } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useTranslation } from "react-i18next";
@@ -12,6 +12,7 @@ import { PermissionsTab } from "@/components/settings/PermissionsTab";
 import { IntegrationsTab } from "@/components/settings/IntegrationsTab";
 import { NotificationsTab } from "@/components/settings/NotificationsTab";
 import { HtmlTab } from "@/components/settings/HtmlTab";
+import { ChangelogTab } from "@/components/settings/ChangelogTab";
 import { DataDisplayModal } from "@/components/settings/modals/DataDisplayModal";
 import { UpgradeModal } from "@/components/settings/modals/UpgradeModal";
 
@@ -37,9 +38,10 @@ const Settings = () => {
       { value: 'permissions', label: t('tabs.permissions'), icon: Shield },
       { value: 'integrations', label: t('tabs.integrations'), icon: Plug },
       { value: 'notifications', label: t('tabs.notifications'), icon: Bell },
+      { value: 'changelog', label: t('tabs.changelog', 'Changelog'), icon: FileText },
     ];
     
-    if (isProductFruitsUser) {
+  if (isProductFruitsUser) {
       baseOptions.push({ value: 'html', label: t('tabs.html', 'HTML'), icon: Code });
     }
     
@@ -146,6 +148,12 @@ const Settings = () => {
               </div>
             )}
 
+            {activeTab === 'changelog' && (
+              <div data-testid="settings-changelog-tab-content">
+                <ChangelogTab />
+              </div>
+            )}
+
             {activeTab === 'html' && isProductFruitsUser && (
               <div data-testid="settings-html-tab-content">
                 <HtmlTab />
@@ -154,7 +162,7 @@ const Settings = () => {
           </div>
         ) : (
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className={`grid w-full bg-muted p-1 ${isProductFruitsUser ? 'grid-cols-7' : 'grid-cols-6'}`}>
+            <TabsList className={`grid w-full bg-muted p-1 ${isProductFruitsUser ? 'grid-cols-8' : 'grid-cols-7'}`}>
               {tabOptions.map((tab) => {
                 const IconComponent = tab.icon;
                 return (
@@ -193,6 +201,10 @@ const Settings = () => {
             
             <TabsContent value="notifications" className="mt-4" data-testid="settings-notifications-tab-content">
               <NotificationsTab />
+            </TabsContent>
+
+            <TabsContent value="changelog" className="mt-4" data-testid="settings-changelog-tab-content">
+              <ChangelogTab />
             </TabsContent>
 
             {isProductFruitsUser && (
