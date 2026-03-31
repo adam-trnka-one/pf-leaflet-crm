@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 
 interface WorkspaceActionsProps {
   handleResetToDefaults: () => void;
-  handleInitiateProductFruits: () => void;
+  handleInitiateProductFruits: () => Promise<boolean>;
   handleSaveWorkspaceData: () => void;
   handleDisableProductFruits: () => void;
   workspaceData: any;
