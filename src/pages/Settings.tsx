@@ -41,7 +41,7 @@ const Settings = () => {
       { value: 'changelog', label: t('tabs.changelog', 'Changelog'), icon: FileText },
     ];
     
-    if (isProductFruitsUser) {
+  if (isProductFruitsUser) {
       baseOptions.push({ value: 'html', label: t('tabs.html', 'HTML'), icon: Code });
     }
     
