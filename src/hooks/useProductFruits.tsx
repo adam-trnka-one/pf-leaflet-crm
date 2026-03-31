@@ -55,7 +55,7 @@ export const useProductFruits = () => {
       return `${url}/static/script.js`;
     }
     if (selectedWorkspace?.startsWith('pr')) {
-      return `https://my-${selectedWorkspace}.ohio.pf.dev/static/script.js`;
+      return `https://my-pr.ohio.pf.dev/static/script.js`;
     }
     return 'https://app.productfruits.com/static/script.js';
   };
