@@ -38,6 +38,7 @@ const Settings = () => {
       { value: 'permissions', label: t('tabs.permissions'), icon: Shield },
       { value: 'integrations', label: t('tabs.integrations'), icon: Plug },
       { value: 'notifications', label: t('tabs.notifications'), icon: Bell },
+      { value: 'changelog', label: t('tabs.changelog', 'Changelog'), icon: FileText },
     ];
     
     if (isProductFruitsUser) {
