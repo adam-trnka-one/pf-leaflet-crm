@@ -162,7 +162,7 @@ const Settings = () => {
           </div>
         ) : (
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className={`grid w-full bg-muted p-1 ${isProductFruitsUser ? 'grid-cols-7' : 'grid-cols-6'}`}>
+            <TabsList className={`grid w-full bg-muted p-1 ${isProductFruitsUser ? 'grid-cols-8' : 'grid-cols-7'}`}>
               {tabOptions.map((tab) => {
                 const IconComponent = tab.icon;
                 return (
