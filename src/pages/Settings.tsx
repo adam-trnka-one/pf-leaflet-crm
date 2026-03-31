@@ -203,6 +203,10 @@ const Settings = () => {
               <NotificationsTab />
             </TabsContent>
 
+            <TabsContent value="changelog" className="mt-4" data-testid="settings-changelog-tab-content">
+              <ChangelogTab />
+            </TabsContent>
+
             {isProductFruitsUser && (
               <TabsContent value="html" className="mt-4" data-testid="settings-html-tab-content">
                 <HtmlTab />
