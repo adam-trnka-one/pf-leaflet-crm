@@ -12,6 +12,7 @@ import { PermissionsTab } from "@/components/settings/PermissionsTab";
 import { IntegrationsTab } from "@/components/settings/IntegrationsTab";
 import { NotificationsTab } from "@/components/settings/NotificationsTab";
 import { HtmlTab } from "@/components/settings/HtmlTab";
+import { ChangelogTab } from "@/components/settings/ChangelogTab";
 import { DataDisplayModal } from "@/components/settings/modals/DataDisplayModal";
 import { UpgradeModal } from "@/components/settings/modals/UpgradeModal";
 
