@@ -148,6 +148,12 @@ const Settings = () => {
               </div>
             )}
 
+            {activeTab === 'changelog' && (
+              <div data-testid="settings-changelog-tab-content">
+                <ChangelogTab />
+              </div>
+            )}
+
             {activeTab === 'html' && isProductFruitsUser && (
               <div data-testid="settings-html-tab-content">
                 <HtmlTab />
