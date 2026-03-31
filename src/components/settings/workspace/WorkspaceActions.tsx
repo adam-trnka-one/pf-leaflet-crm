@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 
 interface WorkspaceActionsProps {
   handleResetToDefaults: () => void;
-  handleInitiateProductFruits: () => void;
+  handleInitiateProductFruits: () => Promise<boolean>;
   handleSaveWorkspaceData: () => void;
   handleDisableProductFruits: () => void;
   workspaceData: any;
@@ -74,10 +74,12 @@ export const WorkspaceActions = ({
       const success = await handleInitiateProductFruits();
       console.log('handleInitiateProductFruits completed, success:', success);
       
-      // Full reload to ensure PF state is clean
-      setTimeout(() => {
-        window.location.href = '/dashboard';
-      }, 500);
+      if (success) {
+        // Full reload to ensure PF state is clean
+        setTimeout(() => {
+          window.location.href = '/dashboard';
+        }, 500);
+      }
     } catch (error) {
       console.error('Error in save and initiate:', error);
     } finally {

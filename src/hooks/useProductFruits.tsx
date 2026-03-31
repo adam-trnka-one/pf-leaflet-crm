@@ -159,18 +159,36 @@ export const useProductFruits = () => {
       const mainScript = document.createElement('script');
       mainScript.async = true;
       const scriptUrl = getScriptUrl(dataToUse.selectedWorkspace, dataToUse.customUrl);
-      mainScript.src = `${scriptUrl}?c=${dataToUse.workspaceCode}`;
+      const fullUrl = `${scriptUrl}?c=${dataToUse.workspaceCode}`;
+      mainScript.src = fullUrl;
+      let settled = false;
+
+      const timeout = setTimeout(() => {
+        if (!settled) {
+          settled = true;
+          console.error(`ProductFruits script timed out after 10s: ${fullUrl}`);
+          resolve(false);
+        }
+      }, 10000);
 
       mainScript.onload = () => {
-        console.log('ProductFruits script loaded successfully for workspace:', dataToUse.workspaceCode);
-        initializedWorkspaceCode = dataToUse.workspaceCode;
-        hasInitialized = true;
-        resolve(true);
+        if (!settled) {
+          settled = true;
+          clearTimeout(timeout);
+          console.log('ProductFruits script loaded successfully for workspace:', dataToUse.workspaceCode);
+          initializedWorkspaceCode = dataToUse.workspaceCode;
+          hasInitialized = true;
+          resolve(true);
+        }
       };
 
       mainScript.onerror = () => {
-        console.error('Failed to load ProductFruits script from:', mainScript.src);
-        resolve(false);
+        if (!settled) {
+          settled = true;
+          clearTimeout(timeout);
+          console.error(`Failed to load ProductFruits script from: ${fullUrl}`);
+          resolve(false);
+        }
       };
 
       document.head.appendChild(mainScript);

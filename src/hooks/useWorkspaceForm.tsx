@@ -99,7 +99,7 @@ export const useWorkspaceForm = () => {
     });
   };
 
-  const handleInitiateProductFruits = async () => {
+  const handleInitiateProductFruits = async (): Promise<boolean> => {
     // Only initialize if workspace code is provided
     if (!localWorkspaceData.workspaceCode.trim()) {
       toast({
