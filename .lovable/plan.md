@@ -1,30 +1,31 @@
-
-
-## Plan: Handle DEV script load failure gracefully
+## Plan: Fix PR-specific Script URLs
 
 ### Problem
-When the PF DEV script fails to load (`ERR_NAME_NOT_RESOLVED` — e.g., VPN not connected), the app still redirects to `/dashboard` after 500ms regardless of success/failure. The user sees a broken state with no clear feedback.
+In `src/hooks/useProductFruits.tsx` (line 57-58), all PR environments (PR1-PR5) use the same hardcoded URL `https://my-pr.ohio.pf.dev/static/script.js`. Only PR1 should use `my-pr`, while PR2-PR5 need their own hostnames.
 
-### Changes
+### Fix
 
-**`src/components/settings/workspace/WorkspaceActions.tsx`** — Only redirect on success:
-- Check `success` return value from `handleInitiateProductFruits()`
-- If `false`, stay on settings page (don't redirect) — the toast from `useWorkspaceForm` already shows the error
+**`src/hooks/useProductFruits.tsx`** — Update the `getScriptUrl` function:
 
 ```typescript
-const success = await handleInitiateProductFruits();
-if (success) {
-  setTimeout(() => {
-    window.location.href = '/dashboard';
-  }, 500);
+// Before
+if (selectedWorkspace?.startsWith('pr')) {
+  return `https://my-pr.ohio.pf.dev/static/script.js`;
+}
+
+// After
+if (selectedWorkspace?.startsWith('pr')) {
+  const prHost = selectedWorkspace === 'pr1' ? 'my-pr' : `my-${selectedWorkspace}`;
+  return `https://${prHost}.ohio.pf.dev/static/script.js`;
 }
 ```
 
-**`src/hooks/useProductFruits.tsx`** — Add a 10-second timeout for script loading:
-- If the script hasn't loaded or errored within 10s, resolve with `false`
-- Improves the error message to include the URL that failed
+This produces:
+- PR1 → `https://my-pr.ohio.pf.dev/static/script.js`
+- PR2 → `https://my-pr2.ohio.pf.dev/static/script.js`
+- PR3 → `https://my-pr3.ohio.pf.dev/static/script.js`
+- PR4 → `https://my-pr4.ohio.pf.dev/static/script.js`
+- PR5 → `https://my-pr5.ohio.pf.dev/static/script.js`
 
 ### Files modified
-- `src/components/settings/workspace/WorkspaceActions.tsx`
 - `src/hooks/useProductFruits.tsx`
-
