@@ -42,6 +42,12 @@ const workspaceOptions = [
     isDefault: false
   },
   {
+    name: "Usertour",
+    code: "cmr37t88s033rl254qni6mf0o",
+    value: "usertour",
+    isDefault: false
+  },
+  {
     name: "Custom",
     code: "",
     value: "custom",
