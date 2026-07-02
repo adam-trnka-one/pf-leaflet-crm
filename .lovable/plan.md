@@ -1,36 +1,41 @@
-## Plan: Add Usertour option for @productfruits.com users
+## Plan: Persist tool selection + Usertour load status/feedback
 
-### Goal
-Give internal users (`@productfruits.com` email) a new workspace choice **"Usertour"** in Settings → Workspace, alongside the existing "DEV" option. When active, initialize Usertour.js instead of ProductFruits using token `cmr37t88s033rl254qni6mf0o`.
+### Part 1 — Persistence (already mostly there; verify)
+The selected tool is `selectedWorkspace` in `WorkspaceContext`, which already saves to `localStorage` (`leaflet-workspace-data`) on every update. Choosing "Usertour" and clicking Save persists it, and `useProductFruits` reads it back on refresh via `initializeFromStorage`.
 
-### Changes
+No code change needed for persistence itself — it already works. Just confirm by adding `selectedWorkspace` to the reset-to-defaults preservation so a user's tool choice isn't silently wiped when they hit "Reset". (Currently `handleResetToDefaults` forces `selectedWorkspace: 'jess'`.) 
 
-**1. `src/components/settings/workspace/WorkspaceBasicFields.tsx`**
-- Add a new entry to `workspaceOptions`:
-  ```ts
-  { name: "Usertour", code: "cmr37t88s033rl254qni6mf0o", value: "usertour", isDefault: false }
-  ```
-- Filter it (like `dev`) so it only appears when `isProductFruitsUser` is true.
-- No workspace-code / DEV env / custom URL sub-fields — selecting Usertour just sets `selectedWorkspace: "usertour"` with the token baked in.
+Change: keep current behavior for Reset (it's a real reset), but add a short toast note. Actually — leave Reset alone; that's its point. **No change to persistence code.**
 
-**2. `src/hooks/useProductFruits.tsx`** (rename intent kept, file stays)
-- In `initializeProductFruits`, branch early: if `dataToUse.selectedWorkspace === 'usertour'`, call a new `initializeUsertour(dataToUse)` helper and return its result instead of running the PF flow.
-- `initializeUsertour`:
-  - Run `cleanupProductFruits()` first so PF is fully torn down.
-  - Also remove any prior Usertour script (`script[data-usertour-init]`) and `window.usertour` global to allow re-init on save.
-  - Inject the HTML-snippet loader stub from the Usertour docs into `<head>` (tagged `data-usertour-init`).
-  - Call `usertour.init('cmr37t88s033rl254qni6mf0o')` and `usertour.identify(username, { name: "firstName lastName", email, signed_up_at: <ISO now> })` using current workspace data.
-  - Resolve `true` immediately (the stub loads async and queues calls — matches the docs pattern); no 10s timeout needed since the stub itself handles load errors with a console warning.
+### Part 2 — Usertour load status + graceful failure
 
-**3. `src/hooks/useWorkspaceForm.tsx`**
-- `handleDisableProductFruits`: also remove `script[data-usertour-init]`, the loader `<script src="https://js.usertour.io/...">` tag, and delete `window.usertour` / `window.USERTOURJS_QUEUE` so "Disable" clears both providers.
+**`src/hooks/useProductFruits.tsx` — `initializeUsertour`**
+- After appending the stub + calling `usertour.init(token)` and `usertour.identify(...)`, actually wait for the real Usertour script to finish loading before resolving.
+- Detect load by polling `window.usertour._stubbed === undefined` (the real SDK replaces the stub) at 100 ms intervals, capped at **10 s**.
+- On success: resolve `true`, log the loaded URL.
+- On timeout or `onerror` from the injected `<script src="https://js.usertour.io/...">` tag (observe via a `MutationObserver` on `<head>` for the tag added by the stub, then attach `onerror`): resolve `false` with a console error including the URL.
+- Return `false` cleanly so callers can toast a failure.
 
-### Out of scope
-- No changes to Changelog, translations, or PF URL logic.
-- No new settings tab — Usertour is just another value in the existing Workspace dropdown.
-- No custom Usertour token input — the token is hardcoded as requested.
+**`src/hooks/useWorkspaceForm.tsx` — toast messaging**
+- In `handleInitiateProductFruits`, when `selectedWorkspace === 'usertour'`, use Usertour-specific toast copy:
+  - Success: "Usertour initialized — script loaded and user identified."
+  - Failure: "Usertour failed to load — check your network/VPN and try again."
+- In `handleSaveWorkspaceData`, same branching for the follow-up toast.
+
+**`src/components/settings/workspace/WorkspaceActions.tsx` — inline status**
+- Add a small status line under the primary action button that reflects `isInitiating` state with tool-aware copy:
+  - While initiating with Usertour selected: "Loading Usertour script…" with a spinner.
+  - While initiating with PF: "Loading ProductFruits script…".
+  - Cleared once the promise settles (toast then reports success/failure).
+- Change the button label to "Loading Usertour…" / "Loading ProductFruits…" based on `workspaceData.selectedWorkspace` while `isInitiating` is true.
+- On failure (success === false), do NOT redirect to `/dashboard` (already the case) and keep the user on Settings so they can read the error toast.
 
 ### Files modified
-- `src/components/settings/workspace/WorkspaceBasicFields.tsx`
 - `src/hooks/useProductFruits.tsx`
 - `src/hooks/useWorkspaceForm.tsx`
+- `src/components/settings/workspace/WorkspaceActions.tsx`
+
+### Out of scope
+- No new persistence layer (localStorage already handles it).
+- No changes to PF init behavior beyond message copy.
+- No new settings fields — token stays hardcoded.
