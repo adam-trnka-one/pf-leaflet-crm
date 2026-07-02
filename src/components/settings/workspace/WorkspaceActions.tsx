@@ -111,7 +111,7 @@ export const WorkspaceActions = ({
             <span data-testid="workspace-view-saved-data-text">{t('workspace.viewDataButton')}</span>
           </Button>
         </div>
-        <div className="flex flex-col sm:flex-row gap-2 md:gap-3" data-testid="workspace-primary-actions">
+        <div className="flex flex-col sm:items-end gap-2" data-testid="workspace-primary-actions">
           <Button 
             className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 w-full sm:w-auto"
             onClick={handleSaveAndInitiate}
@@ -124,9 +124,26 @@ export const WorkspaceActions = ({
               <Play className="h-4 w-4 mr-2" data-testid="workspace-save-initiate-icon" />
             )}
             <span data-testid="workspace-save-initiate-text">
-              {isInitiating ? 'Saving & Initiating...' : t('workspace.initiateButton')}
+              {isInitiating
+                ? (workspaceData.selectedWorkspace === 'usertour'
+                    ? 'Loading Usertour…'
+                    : 'Loading ProductFruits…')
+                : t('workspace.initiateButton')}
             </span>
           </Button>
+          {isInitiating && (
+            <div
+              className="text-xs text-muted-foreground flex items-center gap-1.5"
+              data-testid="workspace-initiate-status"
+              role="status"
+              aria-live="polite"
+            >
+              <Loader2 className="h-3 w-3 animate-spin" />
+              {workspaceData.selectedWorkspace === 'usertour'
+                ? 'Loading Usertour script — this can take up to 10 seconds…'
+                : 'Loading ProductFruits script…'}
+            </div>
+          )}
         </div>
       </div>
 
