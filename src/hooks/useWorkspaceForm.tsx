@@ -135,6 +135,11 @@ export const useWorkspaceForm = () => {
       delete (window as any).$productFruits;
     }
 
+    // Remove Usertour scripts and globals
+    document.querySelectorAll('script[data-usertour-init], script[src*="js.usertour.io"]').forEach(el => el.remove());
+    try { delete (window as any).usertour; } catch { (window as any).usertour = undefined; }
+    try { delete (window as any).USERTOURJS_QUEUE; } catch { (window as any).USERTOURJS_QUEUE = undefined; }
+
     toast({
       title: "ProductFruits disabled",
       description: "ProductFruits has been disabled and removed from the page."
