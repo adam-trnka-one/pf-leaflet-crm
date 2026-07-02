@@ -128,12 +128,64 @@ export const useProductFruits = () => {
     try {
       (window as any).usertour.init(token);
       (window as any).usertour.identify(userId, identifyProps);
-      console.log('Usertour initialized with token:', token, 'user:', userId, identifyProps);
+      console.log('Usertour init queued for token:', token, 'user:', userId, identifyProps);
     } catch (e) {
       console.error('Usertour initialization failed:', e);
       return false;
     }
 
+    // Watch <head> for the actual usertour.js <script> tag the stub injects,
+    // so we can catch load failures explicitly.
+    let sdkScriptEl: HTMLScriptElement | null = null;
+    let scriptFailed = false;
+    const observer = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        m.addedNodes.forEach((node) => {
+          if (
+            node instanceof HTMLScriptElement &&
+            typeof node.src === 'string' &&
+            node.src.includes('js.usertour.io')
+          ) {
+            sdkScriptEl = node;
+            node.addEventListener('error', () => {
+              scriptFailed = true;
+              console.error(`Failed to load Usertour SDK from: ${node.src}`);
+            });
+          }
+        });
+      }
+    });
+    observer.observe(document.head, { childList: true });
+
+    // Poll for the real SDK replacing the stub (real SDK removes `_stubbed`).
+    const loaded = await new Promise<boolean>((resolve) => {
+      const start = Date.now();
+      const interval = setInterval(() => {
+        const ut = (window as any).usertour;
+        if (ut && ut._stubbed !== true) {
+          clearInterval(interval);
+          resolve(true);
+          return;
+        }
+        if (scriptFailed) {
+          clearInterval(interval);
+          resolve(false);
+          return;
+        }
+        if (Date.now() - start > 10000) {
+          clearInterval(interval);
+          console.error(
+            `Usertour script timed out after 10s${sdkScriptEl ? ` (src=${sdkScriptEl.src})` : ''}`
+          );
+          resolve(false);
+        }
+      }, 100);
+    });
+    observer.disconnect();
+
+    if (!loaded) return false;
+
+    console.log('Usertour SDK loaded successfully.');
     initializedWorkspaceCode = dataToUse.workspaceCode || 'usertour';
     hasInitialized = true;
     return true;
