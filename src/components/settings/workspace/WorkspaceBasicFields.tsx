@@ -113,7 +113,7 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
           </SelectTrigger>
           <SelectContent data-testid="workspace-selection-content">
             {workspaceOptions
-              .filter(option => option.value !== "dev" || isProductFruitsUser)
+              .filter(option => (option.value !== "dev" && option.value !== "usertour") || isProductFruitsUser)
               .map((option) => (
                 <SelectItem key={option.value} value={option.value} data-testid={`workspace-option-${option.value}`}>
                   {option.name} {option.isDefault && "(Default)"}
