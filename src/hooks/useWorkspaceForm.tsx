@@ -84,15 +84,17 @@ export const useWorkspaceForm = () => {
       customProperties: customProperties.filter(prop => prop.name && prop.value)
     };
     updateWorkspaceData(dataToSave);
-    
-    // Only initialize ProductFruits if workspace code is provided
-    if (dataToSave.workspaceCode.trim()) {
+
+    const isUsertour = dataToSave.selectedWorkspace === 'usertour';
+
+    // Only initialize if workspace code is provided OR the selected tool is Usertour
+    if (dataToSave.workspaceCode.trim() || isUsertour) {
       await initializeProductFruits();
-      console.log('Workspace data saved and ProductFruits re-initialized:', dataToSave);
+      console.log('Workspace data saved and tool re-initialized:', dataToSave);
     } else {
-      console.log('Workspace data saved without ProductFruits initialization (empty workspace code):', dataToSave);
+      console.log('Workspace data saved without initialization (empty workspace code):', dataToSave);
     }
-    
+
     toast({
       title: "Workspace data saved",
       description: "Your workspace configuration has been saved successfully."
@@ -100,8 +102,10 @@ export const useWorkspaceForm = () => {
   };
 
   const handleInitiateProductFruits = async (): Promise<boolean> => {
-    // Only initialize if workspace code is provided
-    if (!localWorkspaceData.workspaceCode.trim()) {
+    const isUsertour = localWorkspaceData.selectedWorkspace === 'usertour';
+
+    // Only initialize if workspace code is provided (Usertour uses a hardcoded token)
+    if (!isUsertour && !localWorkspaceData.workspaceCode.trim()) {
       toast({
         title: "Cannot initialize ProductFruits",
         description: "Workspace code is required to initialize ProductFruits",
@@ -111,14 +115,24 @@ export const useWorkspaceForm = () => {
     }
 
     const success = await initializeProductFruits();
-    
-    toast({
-      title: success ? "ProductFruits initiated" : "ProductFruits failed",
-      description: success 
-        ? "ProductFruits script has been initialized with current workspace data."
-        : "Failed to load ProductFruits script. Check workspace code and try again.",
-      variant: success ? "default" : "destructive"
-    });
+
+    if (isUsertour) {
+      toast({
+        title: success ? "Usertour initiated" : "Usertour failed to load",
+        description: success
+          ? "Usertour script has been loaded and the user identified."
+          : "Failed to load the Usertour script. Check your network/VPN and try again.",
+        variant: success ? "default" : "destructive"
+      });
+    } else {
+      toast({
+        title: success ? "ProductFruits initiated" : "ProductFruits failed",
+        description: success
+          ? "ProductFruits script has been initialized with current workspace data."
+          : "Failed to load ProductFruits script. Check workspace code and try again.",
+        variant: success ? "default" : "destructive"
+      });
+    }
 
     return success;
   };
