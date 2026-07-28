@@ -4,6 +4,12 @@
   "newOpportunity": "Nová příležitost",
   "searchPlaceholder": "Hledat příležitosti...",
   "noResults": "Nebyly nalezeny žádné příležitosti.",
+  "noOpportunitiesInStage": "V této fázi nejsou žádné příležitosti",
+  "close": "Uzavření",
+  "editOpportunity": "Upravit příležitost",
+  "deleteOpportunity": "Smazat příležitost",
+  "deleteConfirmTitle": "Smazat příležitost?",
+  "deleteConfirmDescription": "Tato příležitost bude trvale odstraněna z vašeho pipeline.",
   "fields": {
     "opportunityName": "Název příležitosti",
     "account": "Účet",
@@ -19,6 +25,8 @@
     "qualification": "Kvalifikace",
     "proposal": "Návrh",
     "negotiation": "Jednání",
+    "demo": "Demo",
+    "followUp": "Následná péče",
     "closedWon": "Uzavřeno - Vyhrané",
     "closedLost": "Uzavřeno - Prohrané"
   },

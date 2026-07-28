@@ -1,1 +1,39 @@
-{ "title": "الفرص", "subtitle": "إدارة فرصك", "newOpportunity": "جديدة", "searchPlaceholder": "بحث...", "noResults": "لا توجد نتائج.", "fields": { "opportunityName": "الاسم", "account": "الحساب", "amount": "المبلغ", "stage": "المرحلة", "probability": "الاحتمالية", "closeDate": "تاريخ الإغلاق", "owner": "المالك", "created": "تم الإنشاء" }, "stages": { "prospecting": "التنقيب", "qualification": "التأهيل", "proposal": "العرض", "negotiation": "التفاوض", "closedWon": "مغلق - ربح", "closedLost": "مغلق - خسارة" }, "modal": { "createTitle": "إنشاء", "editTitle": "تعديل", "createButton": "إنشاء", "saveButton": "حفظ" } }
+{
+  "title": "الفرص",
+  "subtitle": "إدارة فرصك",
+  "newOpportunity": "فرصة جديدة",
+  "searchPlaceholder": "بحث...",
+  "noResults": "لا توجد نتائج.",
+  "noOpportunitiesInStage": "لا توجد فرص في هذه المرحلة",
+  "close": "الإغلاق",
+  "editOpportunity": "تعديل الفرصة",
+  "deleteOpportunity": "حذف الفرصة",
+  "deleteConfirmTitle": "حذف الفرصة؟",
+  "deleteConfirmDescription": "سيتم حذف هذه الفرصة نهائيًا من مسار المبيعات.",
+  "fields": {
+    "opportunityName": "الاسم",
+    "account": "الحساب",
+    "amount": "المبلغ",
+    "stage": "المرحلة",
+    "probability": "الاحتمالية",
+    "closeDate": "تاريخ الإغلاق",
+    "owner": "المالك",
+    "created": "تم الإنشاء"
+  },
+  "stages": {
+    "prospecting": "التنقيب",
+    "qualification": "التأهيل",
+    "proposal": "العرض",
+    "negotiation": "التفاوض",
+    "demo": "عرض توضيحي",
+    "followUp": "المتابعة",
+    "closedWon": "مغلق - ربح",
+    "closedLost": "مغلق - خسارة"
+  },
+  "modal": {
+    "createTitle": "إنشاء فرصة جديدة",
+    "editTitle": "تعديل الفرصة",
+    "createButton": "إنشاء",
+    "saveButton": "حفظ"
+  }
+}

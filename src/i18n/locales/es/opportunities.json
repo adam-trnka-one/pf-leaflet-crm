@@ -1,1 +1,39 @@
-{ "title": "Oportunidades", "subtitle": "Gestione oportunidades", "newOpportunity": "Nueva", "searchPlaceholder": "Buscar...", "noResults": "Sin resultados.", "fields": { "opportunityName": "Nombre", "account": "Cuenta", "amount": "Monto", "stage": "Etapa", "probability": "Probabilidad", "closeDate": "Fecha Cierre", "owner": "Propietario", "created": "Creado" }, "stages": { "prospecting": "Prospección", "qualification": "Calificación", "proposal": "Propuesta", "negotiation": "Negociación", "closedWon": "Cerrado Ganado", "closedLost": "Cerrado Perdido" }, "modal": { "createTitle": "Crear", "editTitle": "Editar", "createButton": "Crear", "saveButton": "Guardar" } }
+{
+  "title": "Oportunidades",
+  "subtitle": "Gestione oportunidades",
+  "newOpportunity": "Nueva oportunidad",
+  "searchPlaceholder": "Buscar...",
+  "noResults": "Sin resultados.",
+  "noOpportunitiesInStage": "No hay oportunidades en esta etapa",
+  "close": "Cierre",
+  "editOpportunity": "Editar oportunidad",
+  "deleteOpportunity": "Eliminar oportunidad",
+  "deleteConfirmTitle": "¿Eliminar oportunidad?",
+  "deleteConfirmDescription": "Esta oportunidad se eliminará permanentemente de su pipeline.",
+  "fields": {
+    "opportunityName": "Nombre",
+    "account": "Cuenta",
+    "amount": "Monto",
+    "stage": "Etapa",
+    "probability": "Probabilidad",
+    "closeDate": "Fecha Cierre",
+    "owner": "Propietario",
+    "created": "Creado"
+  },
+  "stages": {
+    "prospecting": "Prospección",
+    "qualification": "Calificación",
+    "proposal": "Propuesta",
+    "negotiation": "Negociación",
+    "demo": "Demostración",
+    "followUp": "Seguimiento",
+    "closedWon": "Cerrado Ganado",
+    "closedLost": "Cerrado Perdido"
+  },
+  "modal": {
+    "createTitle": "Crear nueva oportunidad",
+    "editTitle": "Editar oportunidad",
+    "createButton": "Crear",
+    "saveButton": "Guardar"
+  }
+}
