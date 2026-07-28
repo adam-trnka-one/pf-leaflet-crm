@@ -6,6 +6,10 @@
   "noResults": "No opportunities found.",
   "noOpportunitiesInStage": "No opportunities in this stage",
   "close": "Close",
+  "editOpportunity": "Edit opportunity",
+  "deleteOpportunity": "Delete opportunity",
+  "deleteConfirmTitle": "Delete opportunity?",
+  "deleteConfirmDescription": "This will permanently remove this opportunity from your pipeline.",
   "fields": {
     "opportunityName": "Opportunity Name",
     "account": "Account",
