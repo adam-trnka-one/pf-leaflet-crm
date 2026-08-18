@@ -70,6 +70,7 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
   const selectedWorkspace = localWorkspaceData.selectedWorkspace || "jess";
   const isCustomWorkspace = selectedWorkspace === "custom";
   const isDevWorkspace = selectedWorkspace === "dev";
+  const isUsertourWorkspace = selectedWorkspace === "usertour";
   const isPRWorkspace = ["pr1", "pr2", "pr3", "pr4", "pr5"].includes(selectedWorkspace);
   const isCustomDevWorkspace = selectedWorkspace === "custom-dev";
   
