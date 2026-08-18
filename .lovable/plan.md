@@ -4,7 +4,7 @@ When "Usertour" is selected in Settings → Workspace, show a token input field 
 
 ## Behaviour
 
-- Selecting "Usertour" reveals a required "Usertour.js Token" input, pre-filled with the current default token `cmr37t88s033rl254qni6mf0o`.
+- Selecting "Usertour" reveals a required "Usertour.js Token" input, empty by default (no prefill).
 - The token is validated as required (red border when empty) and blocks Save / Initiate with a validation toast if blank.
 - The value persists in workspace settings (localStorage), so it survives a refresh.
 - Initialization uses the saved token instead of the hardcoded constant; everything else in the Usertour load/status flow stays as is.
