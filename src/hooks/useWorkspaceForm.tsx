@@ -64,6 +64,17 @@ export const useWorkspaceForm = () => {
       return;
     }
 
+    // For Usertour, a token is required
+    if (localWorkspaceData.selectedWorkspace === 'usertour' && !localWorkspaceData.usertourToken?.trim()) {
+      toast({
+        title: "Validation Error",
+        description: "Usertour.js Token is required for the Usertour workspace",
+        variant: "destructive"
+      });
+      return;
+    }
+
+
     // Create validation data - check workspace code for custom and PR workspaces
     const validationData = {
       ...localWorkspaceData,
