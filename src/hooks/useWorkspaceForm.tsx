@@ -193,6 +193,7 @@ export const useWorkspaceForm = () => {
       role: 'Admin',
       customProperties: [],
       selectedWorkspace: 'jess',
+      usertourToken: '',
       languageCode: 'en'
     };
 
