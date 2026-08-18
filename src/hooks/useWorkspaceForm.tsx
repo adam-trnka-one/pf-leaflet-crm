@@ -18,6 +18,7 @@ export const useWorkspaceForm = () => {
     customProperties: workspaceData.customProperties,
     selectedWorkspace: workspaceData.selectedWorkspace || 'jess',
     customUrl: workspaceData.customUrl || '',
+    usertourToken: workspaceData.usertourToken || '',
     languageCode: workspaceData.languageCode || 'en'
   });
   const [customProperties, setCustomProperties] = useState<{ name: string; value: string }[]>([]);
@@ -34,6 +35,7 @@ export const useWorkspaceForm = () => {
       customProperties: workspaceData.customProperties,
       selectedWorkspace: workspaceData.selectedWorkspace || 'jess',
       customUrl: workspaceData.customUrl || '',
+      usertourToken: workspaceData.usertourToken || '',
       languageCode: workspaceData.languageCode || 'en'
     });
     setCustomProperties(workspaceData.customProperties);
