@@ -13,6 +13,7 @@ interface WorkspaceBasicFieldsProps {
     role: string;
     selectedWorkspace?: string;
     customUrl?: string;
+    usertourToken?: string;
     languageCode: string;
   };
   setLocalWorkspaceData: (updater: (prev: any) => any) => void;
