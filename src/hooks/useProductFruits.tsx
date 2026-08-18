@@ -109,7 +109,11 @@ export const useProductFruits = () => {
     try { delete (window as any).usertour; } catch { (window as any).usertour = undefined; }
     try { delete (window as any).USERTOURJS_QUEUE; } catch { (window as any).USERTOURJS_QUEUE = undefined; }
 
-    const token = 'cmr37t88s033rl254qni6mf0o';
+    const token = (dataToUse.usertourToken || '').trim();
+    if (!token) {
+      console.error('Usertour initialization aborted: missing Usertour.js token');
+      return false;
+    }
     const userId = dataToUse.username || dataToUse.email || 'anonymous';
     const name = [dataToUse.firstName, dataToUse.lastName].filter(Boolean).join(' ') || dataToUse.username;
     const signedUpAt = new Date().toISOString();

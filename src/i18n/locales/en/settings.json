@@ -49,7 +49,8 @@
     "customProperties": "Custom Properties",
     "addProperty": "Add Property",
     "propertyName": "Property Name",
-    "propertyValue": "Property Value"
+    "propertyValue": "Property Value",
+    "usertourToken": "Usertour.js Token"
   },
   "api": {
     "title": "API Keys",

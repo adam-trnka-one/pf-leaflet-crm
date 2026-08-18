@@ -49,7 +49,8 @@
     "customProperties": "Benutzerdefinierte Eigenschaften",
     "addProperty": "Eigenschaft hinzufügen",
     "propertyName": "Eigenschaftsname",
-    "propertyValue": "Eigenschaftswert"
+    "propertyValue": "Eigenschaftswert",
+    "usertourToken": "Usertour.js-Token"
   },
   "api": {
     "title": "API-Schlüssel",

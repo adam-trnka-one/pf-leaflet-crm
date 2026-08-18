@@ -49,7 +49,8 @@
     "customProperties": "Propiedades Personalizadas",
     "addProperty": "Añadir Propiedad",
     "propertyName": "Nombre de Propiedad",
-    "propertyValue": "Valor de Propiedad"
+    "propertyValue": "Valor de Propiedad",
+    "usertourToken": "Token de Usertour.js"
   },
   "api": {
     "title": "Claves API",

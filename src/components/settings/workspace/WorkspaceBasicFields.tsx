@@ -13,6 +13,7 @@ interface WorkspaceBasicFieldsProps {
     role: string;
     selectedWorkspace?: string;
     customUrl?: string;
+    usertourToken?: string;
     languageCode: string;
   };
   setLocalWorkspaceData: (updater: (prev: any) => any) => void;
@@ -69,6 +70,7 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
   const selectedWorkspace = localWorkspaceData.selectedWorkspace || "jess";
   const isCustomWorkspace = selectedWorkspace === "custom";
   const isDevWorkspace = selectedWorkspace === "dev";
+  const isUsertourWorkspace = selectedWorkspace === "usertour";
   const isPRWorkspace = ["pr1", "pr2", "pr3", "pr4", "pr5"].includes(selectedWorkspace);
   const isCustomDevWorkspace = selectedWorkspace === "custom-dev";
   
@@ -175,6 +177,24 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
           <p className="text-xs text-slate-500 mt-1" data-testid="workspace-code-counter">{localWorkspaceData.workspaceCode.length}/40 characters</p>
         </div>
       )}
+
+      {isUsertourWorkspace && (
+        <div data-testid="usertour-token-field">
+          <Label htmlFor="usertourToken" className="text-sm font-medium text-slate-700" data-testid="usertour-token-label">
+            {t('workspace.usertourToken')} <span className="text-red-500">*</span>
+          </Label>
+          <Input
+            id="usertourToken"
+            placeholder="Enter your Usertour.js token"
+            className={`mt-1 ${!localWorkspaceData.usertourToken?.trim() ? 'border-red-300 focus-visible:border-red-500' : ''}`}
+            value={localWorkspaceData.usertourToken || ''}
+            onChange={(e) => setLocalWorkspaceData(prev => ({ ...prev, usertourToken: e.target.value }))}
+            data-testid="usertour-token-input"
+          />
+          <p className="text-xs text-slate-500 mt-1" data-testid="usertour-token-counter">{(localWorkspaceData.usertourToken || '').length}/40 characters</p>
+        </div>
+      )}
+
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="workspace-user-credentials-grid">
         <div data-testid="workspace-username-field">

@@ -11,6 +11,7 @@ interface WorkspaceData {
   customProperties: { name: string; value: string }[];
   selectedWorkspace?: string;
   customUrl?: string;
+  usertourToken?: string;
   languageCode: string;
 }
 
@@ -32,6 +33,7 @@ const defaultWorkspaceData: WorkspaceData = {
   role: 'Admin',
   customProperties: [],
   selectedWorkspace: 'jess',
+  usertourToken: '',
   languageCode: 'en'
 };
 

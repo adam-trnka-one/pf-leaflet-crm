@@ -18,6 +18,7 @@ export const useWorkspaceForm = () => {
     customProperties: workspaceData.customProperties,
     selectedWorkspace: workspaceData.selectedWorkspace || 'jess',
     customUrl: workspaceData.customUrl || '',
+    usertourToken: workspaceData.usertourToken || '',
     languageCode: workspaceData.languageCode || 'en'
   });
   const [customProperties, setCustomProperties] = useState<{ name: string; value: string }[]>([]);
@@ -34,6 +35,7 @@ export const useWorkspaceForm = () => {
       customProperties: workspaceData.customProperties,
       selectedWorkspace: workspaceData.selectedWorkspace || 'jess',
       customUrl: workspaceData.customUrl || '',
+      usertourToken: workspaceData.usertourToken || '',
       languageCode: workspaceData.languageCode || 'en'
     });
     setCustomProperties(workspaceData.customProperties);
@@ -61,6 +63,17 @@ export const useWorkspaceForm = () => {
       });
       return;
     }
+
+    // For Usertour, a token is required
+    if (localWorkspaceData.selectedWorkspace === 'usertour' && !localWorkspaceData.usertourToken?.trim()) {
+      toast({
+        title: "Validation Error",
+        description: "Usertour.js Token is required for the Usertour workspace",
+        variant: "destructive"
+      });
+      return;
+    }
+
 
     // Create validation data - check workspace code for custom and PR workspaces
     const validationData = {
@@ -104,7 +117,17 @@ export const useWorkspaceForm = () => {
   const handleInitiateProductFruits = async (): Promise<boolean> => {
     const isUsertour = localWorkspaceData.selectedWorkspace === 'usertour';
 
-    // Only initialize if workspace code is provided (Usertour uses a hardcoded token)
+    // Usertour requires its own token
+    if (isUsertour && !localWorkspaceData.usertourToken?.trim()) {
+      toast({
+        title: "Cannot initialize Usertour",
+        description: "Usertour.js Token is required to initialize Usertour",
+        variant: "destructive"
+      });
+      return false;
+    }
+
+    // Only initialize if workspace code is provided
     if (!isUsertour && !localWorkspaceData.workspaceCode.trim()) {
       toast({
         title: "Cannot initialize ProductFruits",
@@ -170,6 +193,7 @@ export const useWorkspaceForm = () => {
       role: 'Admin',
       customProperties: [],
       selectedWorkspace: 'jess',
+      usertourToken: '',
       languageCode: 'en'
     };
 
