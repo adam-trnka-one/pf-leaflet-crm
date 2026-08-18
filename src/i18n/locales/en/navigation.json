@@ -17,6 +17,7 @@
   "header": {
     "searchPlaceholder": "Search accounts, contacts, opportunities...",
     "newsfeed": "Newsfeed",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "help": "Help"
   }
 }
