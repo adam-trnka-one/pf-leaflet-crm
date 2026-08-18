@@ -117,7 +117,17 @@ export const useWorkspaceForm = () => {
   const handleInitiateProductFruits = async (): Promise<boolean> => {
     const isUsertour = localWorkspaceData.selectedWorkspace === 'usertour';
 
-    // Only initialize if workspace code is provided (Usertour uses a hardcoded token)
+    // Usertour requires its own token
+    if (isUsertour && !localWorkspaceData.usertourToken?.trim()) {
+      toast({
+        title: "Cannot initialize Usertour",
+        description: "Usertour.js Token is required to initialize Usertour",
+        variant: "destructive"
+      });
+      return false;
+    }
+
+    // Only initialize if workspace code is provided
     if (!isUsertour && !localWorkspaceData.workspaceCode.trim()) {
       toast({
         title: "Cannot initialize ProductFruits",
