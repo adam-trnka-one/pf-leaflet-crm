@@ -49,7 +49,8 @@
     "customProperties": "Propriétés Personnalisées",
     "addProperty": "Ajouter une Propriété",
     "propertyName": "Nom de la Propriété",
-    "propertyValue": "Valeur de la Propriété"
+    "propertyValue": "Valeur de la Propriété",
+    "usertourToken": "Jeton Usertour.js"
   },
   "api": {
     "title": "Clés API",
