@@ -1,41 +1,19 @@
-## Plan: Persist tool selection + Usertour load status/feedback
+# Editable Usertour.js Token
 
-### Part 1 — Persistence (already mostly there; verify)
-The selected tool is `selectedWorkspace` in `WorkspaceContext`, which already saves to `localStorage` (`leaflet-workspace-data`) on every update. Choosing "Usertour" and clicking Save persists it, and `useProductFruits` reads it back on refresh via `initializeFromStorage`.
+When "Usertour" is selected in Settings → Workspace, show a token input field (same style and behaviour as the Workspace Code field) instead of relying on the hardcoded token.
 
-No code change needed for persistence itself — it already works. Just confirm by adding `selectedWorkspace` to the reset-to-defaults preservation so a user's tool choice isn't silently wiped when they hit "Reset". (Currently `handleResetToDefaults` forces `selectedWorkspace: 'jess'`.) 
+## Behaviour
 
-Change: keep current behavior for Reset (it's a real reset), but add a short toast note. Actually — leave Reset alone; that's its point. **No change to persistence code.**
+- Selecting "Usertour" reveals a required "Usertour.js Token" input, pre-filled with the current default token `cmr37t88s033rl254qni6mf0o`.
+- The token is validated as required (red border when empty) and blocks Save / Initiate with a validation toast if blank.
+- The value persists in workspace settings (localStorage), so it survives a refresh.
+- Initialization uses the saved token instead of the hardcoded constant; everything else in the Usertour load/status flow stays as is.
+- Reset to defaults restores the default token.
 
-### Part 2 — Usertour load status + graceful failure
+## Technical details
 
-**`src/hooks/useProductFruits.tsx` — `initializeUsertour`**
-- After appending the stub + calling `usertour.init(token)` and `usertour.identify(...)`, actually wait for the real Usertour script to finish loading before resolving.
-- Detect load by polling `window.usertour._stubbed === undefined` (the real SDK replaces the stub) at 100 ms intervals, capped at **10 s**.
-- On success: resolve `true`, log the loaded URL.
-- On timeout or `onerror` from the injected `<script src="https://js.usertour.io/...">` tag (observe via a `MutationObserver` on `<head>` for the tag added by the stub, then attach `onerror`): resolve `false` with a console error including the URL.
-- Return `false` cleanly so callers can toast a failure.
-
-**`src/hooks/useWorkspaceForm.tsx` — toast messaging**
-- In `handleInitiateProductFruits`, when `selectedWorkspace === 'usertour'`, use Usertour-specific toast copy:
-  - Success: "Usertour initialized — script loaded and user identified."
-  - Failure: "Usertour failed to load — check your network/VPN and try again."
-- In `handleSaveWorkspaceData`, same branching for the follow-up toast.
-
-**`src/components/settings/workspace/WorkspaceActions.tsx` — inline status**
-- Add a small status line under the primary action button that reflects `isInitiating` state with tool-aware copy:
-  - While initiating with Usertour selected: "Loading Usertour script…" with a spinner.
-  - While initiating with PF: "Loading ProductFruits script…".
-  - Cleared once the promise settles (toast then reports success/failure).
-- Change the button label to "Loading Usertour…" / "Loading ProductFruits…" based on `workspaceData.selectedWorkspace` while `isInitiating` is true.
-- On failure (success === false), do NOT redirect to `/dashboard` (already the case) and keep the user on Settings so they can read the error toast.
-
-### Files modified
-- `src/hooks/useProductFruits.tsx`
-- `src/hooks/useWorkspaceForm.tsx`
-- `src/components/settings/workspace/WorkspaceActions.tsx`
-
-### Out of scope
-- No new persistence layer (localStorage already handles it).
-- No changes to PF init behavior beyond message copy.
-- No new settings fields — token stays hardcoded.
+- `src/contexts/WorkspaceContext.tsx`: add `usertourToken: string` to `WorkspaceData` with the default token in `defaultWorkspaceData`.
+- `src/components/settings/workspace/WorkspaceBasicFields.tsx`: add `usertourToken` to the props type and render the token input (with character counter and validation styling) when `selectedWorkspace === 'usertour'`; keep the workspace-code field hidden for Usertour.
+- `src/hooks/useWorkspaceForm.tsx`: include `usertourToken` in local state and the save payload; require a non-empty token for Usertour in both `handleSaveWorkspaceData` and `handleInitiateProductFruits`; include the default token in `handleResetToDefaults`.
+- `src/hooks/useProductFruits.tsx`: in `initializeUsertour`, replace the hardcoded `token` with `dataToUse.usertourToken` (falling back to the default constant).
+- Add an `workspace.usertourToken` label key to the `settings` namespace for all 7 locales.
