@@ -149,6 +149,16 @@ const LayoutContent = () => {
     }
   };
 
+  const handleHelpClick = () => {
+    const pf = (window as any).$productFruits;
+    if (!pf) {
+      console.warn('Product Fruits not initialized - cannot toggle Elvin widget');
+      return;
+    }
+    pf.push(['do', 'toggle-elvin-widget', {}]);
+  };
+
+
   const { i18n } = useTranslation();
   const isRTL = RTL_LANGUAGES.includes(i18n.language);
 
