@@ -247,8 +247,20 @@ const LayoutContent = () => {
                   data-testid="header-search-input"
                 />
               </div>
-              
+
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleHelpClick}
+                className="h-8 w-8"
+                title={t('header.help')}
+                data-testid="help-button"
+              >
+                <HelpCircle className="h-4 w-4" />
+              </Button>
+
               <div className="flex items-center gap-1" data-testid="language-selector-container">
+
                 <Select value={localWorkspaceData.languageCode} onValueChange={handleLanguageChangeAndInitiate} disabled={isInitiating}>
                   <SelectTrigger className="w-12 sm:w-36 h-8 bg-white" title="Select language" data-testid="language-selector-trigger">
                     {isInitiating ? (
