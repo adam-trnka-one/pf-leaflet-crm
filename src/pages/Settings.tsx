@@ -70,15 +70,15 @@ const Settings = () => {
 
   return (
     <>
-      <div className="p-4 md:p-8 bg-slate-50 min-h-screen" data-testid="settings-main-container">
+      <div className="p-4 md:p-8 bg-muted min-h-screen" data-testid="settings-main-container">
         <div className="mb-6 md:mb-8" data-testid="settings-header-section">
-          <h1 className="text-2xl md:text-3xl font-bold text-slate-800" data-testid="settings-page-title">{t('title')}</h1>
-          <p className="text-slate-600 mt-1 md:mt-2 text-sm md:text-base" data-testid="settings-page-subtitle">{t('subtitle')}</p>
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground" data-testid="settings-page-title">{t('title')}</h1>
+          <p className="text-muted-foreground mt-1 md:mt-2 text-sm md:text-base" data-testid="settings-page-subtitle">{t('subtitle')}</p>
         </div>
 
         {isMobile ? (
           <div className="space-y-4 md:space-y-6" data-testid="settings-tabs-container">
-            <div className="bg-white rounded-lg border p-1">
+            <div className="bg-card rounded-lg border p-1">
               <Select value={activeTab} onValueChange={setActiveTab}>
                 <SelectTrigger className="w-full border-0 shadow-none focus:ring-0" data-testid="settings-tab-selector">
                   <div className="flex items-center space-x-2">
@@ -91,14 +91,14 @@ const Settings = () => {
                     </SelectValue>
                   </div>
                 </SelectTrigger>
-                <SelectContent className="bg-white border shadow-lg z-50">
+                <SelectContent className="bg-card border shadow-lg z-50">
                   {tabOptions.map((tab) => {
                     const IconComponent = tab.icon;
                     return (
                       <SelectItem 
                         key={tab.value} 
                         value={tab.value}
-                        className="flex items-center space-x-2 cursor-pointer hover:bg-slate-50"
+                        className="flex items-center space-x-2 cursor-pointer hover:bg-muted"
                         data-testid={`settings-${tab.value}-option`}
                       >
                         <div className="flex items-center space-x-2">

@@ -145,7 +145,7 @@ const EditProductModal = ({ open, onOpenChange, product, onProductUpdated }: Edi
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="edit-product-cancel-button">
             {t('common:cancel')}
           </Button>
-          <Button onClick={handleSubmit} className="bg-[#4AB831] hover:bg-[#3da127]" data-testid="edit-product-update-button">
+          <Button onClick={handleSubmit} className="bg-brand hover:bg-brand/90 text-brand-foreground" data-testid="edit-product-update-button">
             {t('common:update')}
           </Button>
         </DialogFooter>

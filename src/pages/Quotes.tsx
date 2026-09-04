@@ -47,23 +47,23 @@ const Quotes = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'Draft': return 'bg-gray-100 text-gray-700';
-      case 'Sent': return 'bg-blue-100 text-blue-700';
-      case 'Accepted': return 'bg-emerald-100 text-emerald-700';
-      case 'Rejected': return 'bg-red-100 text-red-700';
-      default: return 'bg-gray-100 text-gray-700';
+      case 'Draft': return 'bg-muted text-foreground';
+      case 'Sent': return 'bg-info-muted text-info-muted-foreground';
+      case 'Accepted': return 'bg-success-muted text-success-muted-foreground';
+      case 'Rejected': return 'bg-destructive-muted text-destructive-muted-foreground';
+      default: return 'bg-muted text-foreground';
     }
   };
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen" data-testid="quotes-main-container">
+    <div className="p-4 sm:p-6 lg:p-8 bg-muted min-h-screen" data-testid="quotes-main-container">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 sm:mb-8" data-testid="quotes-header-section">
         <div data-testid="quotes-header-content">
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800" data-testid="quotes-page-title">{t('quotes:title')}</h1>
-          <p className="text-slate-600 mt-1 sm:mt-2 text-sm sm:text-base" data-testid="quotes-page-subtitle">{t('quotes:subtitle')}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground" data-testid="quotes-page-title">{t('quotes:title')}</h1>
+          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base" data-testid="quotes-page-subtitle">{t('quotes:subtitle')}</p>
         </div>
         <Button 
-          className="bg-[#4AB831] hover:bg-[#3da127] w-full sm:w-auto"
+          className="bg-brand hover:bg-brand/90 text-brand-foreground w-full sm:w-auto"
           onClick={() => setIsModalOpen(true)}
           data-testid="quotes-new-quote-button"
         >
@@ -74,26 +74,26 @@ const Quotes = () => {
 
       <div className="space-y-4" data-testid="quotes-list">
         {quotes.map((quote) => (
-          <Card key={quote.id} className="bg-white shadow-sm hover:shadow-md transition-shadow" data-testid="quotes-quote-card">
+          <Card key={quote.id} className="bg-card shadow-sm hover:shadow-md transition-shadow" data-testid="quotes-quote-card">
             <CardContent className="p-4 sm:p-6" data-testid="quotes-card-content">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" data-testid="quotes-card-row">
                 <div className="flex items-center space-x-4" data-testid="quotes-quote-info-section">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0" data-testid="quotes-quote-icon-container">
-                    <FileText className="h-5 w-5 text-blue-600" data-testid="quotes-quote-icon" />
+                  <div className="w-10 h-10 bg-info-muted rounded-lg flex items-center justify-center flex-shrink-0" data-testid="quotes-quote-icon-container">
+                    <FileText className="h-5 w-5 text-info-muted-foreground" data-testid="quotes-quote-icon" />
                   </div>
                   <div data-testid="quotes-quote-details">
-                    <h3 className="font-semibold text-slate-800" data-testid="quotes-quote-name">{quote.name}</h3>
-                    <p className="text-sm text-slate-600" data-testid="quotes-quote-account">{quote.account}</p>
+                    <h3 className="font-semibold text-foreground" data-testid="quotes-quote-name">{quote.name}</h3>
+                    <p className="text-sm text-muted-foreground" data-testid="quotes-quote-account">{quote.account}</p>
                   </div>
                 </div>
                 
                 <div className="flex flex-wrap items-center justify-between sm:justify-end gap-3 sm:gap-6" data-testid="quotes-quote-metadata-section">
                   <div className="text-left sm:text-right" data-testid="quotes-quote-financial-info">
-                    <div className="flex items-center space-x-1 text-emerald-600 font-semibold" data-testid="quotes-amount-section">
+                    <div className="flex items-center space-x-1 text-success-muted-foreground font-semibold" data-testid="quotes-amount-section">
                       <DollarSign className="h-4 w-4" data-testid="quotes-amount-icon" />
                       <span data-testid="quotes-amount-text">{quote.amount.toLocaleString()}</span>
                     </div>
-                    <div className="flex items-center space-x-1 text-xs text-slate-500" data-testid="quotes-date-section">
+                    <div className="flex items-center space-x-1 text-xs text-muted-foreground" data-testid="quotes-date-section">
                       <Calendar className="h-3 w-3" data-testid="quotes-date-icon" />
                       <span data-testid="quotes-date-text">{quote.date.toLocaleDateString()}</span>
                     </div>
@@ -117,7 +117,7 @@ const Quotes = () => {
                       variant="outline"
                       size="sm"
                       onClick={() => handleDelete(quote.id)}
-                      className="text-red-600 hover:text-red-700"
+                      className="text-destructive-muted-foreground hover:text-destructive-muted-foreground"
                       data-testid="quotes-delete-button"
                     >
                       <Trash2 className="h-4 w-4" data-testid="quotes-delete-icon" />

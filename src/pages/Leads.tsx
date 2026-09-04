@@ -71,42 +71,42 @@ const Leads = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'New': return 'bg-blue-100 text-blue-700';
-      case 'Working': return 'bg-yellow-100 text-yellow-700';
-      case 'Qualified': return 'bg-emerald-100 text-emerald-700';
-      case 'Unqualified': return 'bg-red-100 text-red-700';
-      case 'Converted': return 'bg-purple-100 text-purple-700';
-      default: return 'bg-gray-100 text-gray-700';
+      case 'New': return 'bg-info-muted text-info-muted-foreground';
+      case 'Working': return 'bg-warning-muted text-warning-muted-foreground';
+      case 'Qualified': return 'bg-success-muted text-success-muted-foreground';
+      case 'Unqualified': return 'bg-destructive-muted text-destructive-muted-foreground';
+      case 'Converted': return 'bg-purple-muted text-purple-muted-foreground';
+      default: return 'bg-muted text-foreground';
     }
   };
 
   const getRatingColor = (rating: string) => {
     switch (rating) {
-      case 'Hot': return 'bg-red-100 text-red-700';
-      case 'Warm': return 'bg-orange-100 text-orange-700';
-      case 'Cold': return 'bg-blue-100 text-blue-700';
-      default: return 'bg-gray-100 text-gray-700';
+      case 'Hot': return 'bg-destructive-muted text-destructive-muted-foreground';
+      case 'Warm': return 'bg-warning-muted text-warning-muted-foreground';
+      case 'Cold': return 'bg-info-muted text-info-muted-foreground';
+      default: return 'bg-muted text-foreground';
     }
   };
 
   if (loading) {
     return (
       <div className="p-8 flex items-center justify-center" data-testid="leads-loading-container">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500" data-testid="leads-loading-spinner"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-success" data-testid="leads-loading-spinner"></div>
       </div>
     );
   }
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen" data-testid="leads-main-container">
+    <div className="p-4 sm:p-6 lg:p-8 bg-muted min-h-screen" data-testid="leads-main-container">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 sm:mb-8" data-testid="leads-header-section">
         <div data-testid="leads-header-content">
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800" data-testid="leads-page-title">{t('leads:title')}</h1>
-          <p className="text-slate-600 mt-1 sm:mt-2 text-sm sm:text-base" data-testid="leads-page-subtitle">{t('leads:subtitle')}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground" data-testid="leads-page-title">{t('leads:title')}</h1>
+          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base" data-testid="leads-page-subtitle">{t('leads:subtitle')}</p>
         </div>
         <Button 
-          className="bg-emerald-600 hover:bg-emerald-700 w-full sm:w-auto"
+          className="bg-success text-success-foreground hover:bg-success/90 w-full sm:w-auto"
           onClick={() => setIsModalOpen(true)}
           data-testid="leads-new-lead-button"
         >
@@ -118,18 +118,18 @@ const Leads = () => {
       {/* Leads Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="leads-grid">
         {leads.map((lead) => (
-          <Card key={lead.id} className="bg-white shadow-sm hover:shadow-md transition-shadow" data-testid="leads-lead-card">
+          <Card key={lead.id} className="bg-card shadow-sm hover:shadow-md transition-shadow" data-testid="leads-lead-card">
             <CardHeader className="pb-2" data-testid="leads-card-header">
               <div className="flex items-center justify-between" data-testid="leads-header-row">
                 <div className="flex items-center space-x-3" data-testid="leads-lead-info-section">
-                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center" data-testid="leads-lead-avatar">
-                    <UserPlus className="h-5 w-5 text-blue-600" data-testid="leads-lead-avatar-icon" />
+                  <div className="w-10 h-10 bg-info-muted rounded-full flex items-center justify-center" data-testid="leads-lead-avatar">
+                    <UserPlus className="h-5 w-5 text-info-muted-foreground" data-testid="leads-lead-avatar-icon" />
                   </div>
                   <div data-testid="leads-lead-name-section">
-                    <CardTitle className="text-lg font-semibold text-slate-800" data-testid="leads-lead-name">
+                    <CardTitle className="text-lg font-semibold text-foreground" data-testid="leads-lead-name">
                       {lead.firstName} {lead.lastName}
                     </CardTitle>
-                    <p className="text-sm text-slate-600" data-testid="leads-lead-title">{lead.title}</p>
+                    <p className="text-sm text-muted-foreground" data-testid="leads-lead-title">{lead.title}</p>
                   </div>
                 </div>
                 <div className="flex flex-col space-y-1" data-testid="leads-badges-section">
@@ -143,32 +143,32 @@ const Leads = () => {
               </div>
             </CardHeader>
             <CardContent className="space-y-3" data-testid="leads-card-content">
-              <div className="flex items-center text-sm text-slate-600" data-testid="leads-company-row">
+              <div className="flex items-center text-sm text-muted-foreground" data-testid="leads-company-row">
                 <Building className="h-4 w-4 mr-2" data-testid="leads-company-icon" />
                 <span data-testid="leads-company-value">{lead.company}</span>
               </div>
               
-              <div className="flex items-center text-sm text-slate-600" data-testid="leads-email-row">
+              <div className="flex items-center text-sm text-muted-foreground" data-testid="leads-email-row">
                 <Mail className="h-4 w-4 mr-2" data-testid="leads-email-icon" />
                 <span data-testid="leads-email-value">{lead.email}</span>
               </div>
 
-              <div className="flex items-center text-sm text-slate-600" data-testid="leads-phone-row">
+              <div className="flex items-center text-sm text-muted-foreground" data-testid="leads-phone-row">
                 <Phone className="h-4 w-4 mr-2" data-testid="leads-phone-icon" />
                 <span data-testid="leads-phone-value">{lead.phone}</span>
               </div>
 
-              <div className="text-sm text-slate-600" data-testid="leads-source-row">
+              <div className="text-sm text-muted-foreground" data-testid="leads-source-row">
                 <span className="font-medium" data-testid="leads-source-label">{t('leads:fields.source')}:</span> 
                 <span data-testid="leads-source-value">{lead.source}</span>
               </div>
 
-              <div className="pt-2 border-t border-slate-100" data-testid="leads-metadata-section">
-                <div className="text-xs text-slate-500" data-testid="leads-owner-row">
+              <div className="pt-2 border-t border-border" data-testid="leads-metadata-section">
+                <div className="text-xs text-muted-foreground" data-testid="leads-owner-row">
                   <span data-testid="leads-owner-label">{t('common:owner')}: </span>
                   <span data-testid="leads-owner-value">{lead.owner}</span>
                 </div>
-                <div className="text-xs text-slate-500" data-testid="leads-created-row">
+                <div className="text-xs text-muted-foreground" data-testid="leads-created-row">
                   <span data-testid="leads-created-label">{t('common:created')}: </span>
                   <span data-testid="leads-created-value">{lead.createdAt.toLocaleDateString()}</span>
                 </div>
@@ -193,7 +193,7 @@ const Leads = () => {
                     variant="outline"
                     size="sm"
                     onClick={() => handleDelete(lead.id)}
-                    className="text-red-600 hover:text-red-700"
+                    className="text-destructive-muted-foreground hover:text-destructive-muted-foreground"
                     data-testid="leads-delete-button"
                   >
                     <Trash2 className="h-4 w-4" data-testid="leads-delete-icon" />
@@ -207,7 +207,7 @@ const Leads = () => {
 
       {leads.length === 0 && (
         <div className="text-center py-12" data-testid="leads-empty-state">
-          <p className="text-slate-500" data-testid="leads-empty-message">{t('leads:noResults')}</p>
+          <p className="text-muted-foreground" data-testid="leads-empty-message">{t('leads:noResults')}</p>
         </div>
       )}
 

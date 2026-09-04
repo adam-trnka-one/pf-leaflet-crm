@@ -9,6 +9,7 @@ import { useCustomHeadHtml } from "@/hooks/useCustomHeadHtml";
 import { useState, useEffect } from "react";
 import '@/i18n';
 import RTLProvider from "@/components/RTLProvider";
+import ThemeProvider from "@/components/ThemeProvider";
 import Layout from "./components/Layout";
 import Hero from "./pages/Hero";
 import Help from "./pages/Help";
@@ -57,10 +58,10 @@ const MobileRedirect = ({ children }: { children: React.ReactNode }) => {
   
   if (isMobile && isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+      <div className="min-h-screen flex items-center justify-center bg-surface-muted">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500 mx-auto"></div>
-          <p className="mt-4 text-slate-600">Loading...</p>
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-brand mx-auto"></div>
+          <p className="mt-4 text-muted-foreground">Loading...</p>
         </div>
       </div>
     );
@@ -76,6 +77,7 @@ const MobileRedirect = ({ children }: { children: React.ReactNode }) => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <ThemeProvider>
       <RTLProvider>
         <CustomHeadInjector />
         <Toaster />
@@ -113,6 +115,7 @@ const App = () => (
           </Routes>
         </BrowserRouter>
       </RTLProvider>
+      </ThemeProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

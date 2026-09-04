@@ -71,22 +71,22 @@ const Users = () => {
 
   const getRoleColor = (role: string) => {
     switch (role) {
-      case 'Admin': return 'bg-red-100 text-red-700';
-      case 'Manager': return 'bg-purple-100 text-purple-700';
-      case 'Sales Rep': return 'bg-blue-100 text-blue-700';
-      default: return 'bg-gray-100 text-gray-700';
+      case 'Admin': return 'bg-destructive-muted text-destructive-muted-foreground';
+      case 'Manager': return 'bg-purple-muted text-purple-muted-foreground';
+      case 'Sales Rep': return 'bg-info-muted text-info-muted-foreground';
+      default: return 'bg-muted text-foreground';
     }
   };
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen" data-testid="users-main-container">
+    <div className="p-4 sm:p-6 lg:p-8 bg-muted min-h-screen" data-testid="users-main-container">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 sm:mb-8" data-testid="users-header-section">
         <div data-testid="users-header-content">
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800" data-testid="users-page-title">{t('users:title')}</h1>
-          <p className="text-slate-600 mt-1 sm:mt-2 text-sm sm:text-base" data-testid="users-page-subtitle">{t('users:subtitle')}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground" data-testid="users-page-title">{t('users:title')}</h1>
+          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base" data-testid="users-page-subtitle">{t('users:subtitle')}</p>
         </div>
         <Button 
-          className="bg-[#4AB831] hover:bg-[#3da127] w-full sm:w-auto"
+          className="bg-brand hover:bg-brand/90 text-brand-foreground w-full sm:w-auto"
           onClick={() => setIsModalOpen(true)}
           data-testid="users-new-user-button"
         >
@@ -97,15 +97,15 @@ const Users = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="users-grid">
         {users.map((user) => (
-          <Card key={user.id} className="bg-white shadow-sm" data-testid={`user-card-${user.id}`}>
+          <Card key={user.id} className="bg-card shadow-sm" data-testid={`user-card-${user.id}`}>
             <CardContent className="p-6" data-testid={`user-card-content-${user.id}`}>
               <div className="flex items-center space-x-4 mb-4" data-testid={`user-header-${user.id}`}>
-                <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center" data-testid={`user-avatar-${user.id}`}>
-                  <User className="h-6 w-6 text-slate-600" data-testid={`user-avatar-icon-${user.id}`} />
+                <div className="w-12 h-12 bg-muted rounded-full flex items-center justify-center" data-testid={`user-avatar-${user.id}`}>
+                  <User className="h-6 w-6 text-muted-foreground" data-testid={`user-avatar-icon-${user.id}`} />
                 </div>
                 <div data-testid={`user-basic-info-${user.id}`}>
-                  <h3 className="font-semibold text-slate-800" data-testid={`user-name-${user.id}`}>{user.name}</h3>
-                  <div className="flex items-center space-x-2 text-sm text-slate-600" data-testid={`user-email-section-${user.id}`}>
+                  <h3 className="font-semibold text-foreground" data-testid={`user-name-${user.id}`}>{user.name}</h3>
+                  <div className="flex items-center space-x-2 text-sm text-muted-foreground" data-testid={`user-email-section-${user.id}`}>
                     <Mail className="h-3 w-3" data-testid={`user-email-icon-${user.id}`} />
                     <span data-testid={`user-email-${user.id}`}>{user.email}</span>
                   </div>
@@ -117,7 +117,7 @@ const Users = () => {
                   <Shield className="h-3 w-3 mr-1" data-testid={`user-role-icon-${user.id}`} />
                   <span data-testid={`user-role-text-${user.id}`}>{user.role}</span>
                 </Badge>
-                <Badge variant="outline" className="text-emerald-600" data-testid={`user-status-badge-${user.id}`}>
+                <Badge variant="outline" className="text-success-muted-foreground" data-testid={`user-status-badge-${user.id}`}>
                   <span data-testid={`user-status-text-${user.id}`}>{user.status}</span>
                 </Badge>
               </div>
@@ -137,7 +137,7 @@ const Users = () => {
                   variant="outline"
                   size="sm"
                   onClick={() => handleDelete(user.id)}
-                  className="text-red-600 hover:text-red-700"
+                  className="text-destructive-muted-foreground hover:text-destructive-muted-foreground"
                   data-testid={`user-delete-button-${user.id}`}
                 >
                   <Trash2 className="h-4 w-4" data-testid={`user-delete-icon-${user.id}`} />

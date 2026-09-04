@@ -157,7 +157,7 @@ export const HtmlTab = () => {
               <Alert 
                 key={index} 
                 variant={warning.type === 'danger' ? 'destructive' : 'default'}
-                className={warning.type === 'warning' ? 'border-yellow-500 bg-yellow-500/10' : ''}
+                className={warning.type === 'warning' ? 'border-warning bg-warning/10' : ''}
               >
                 <AlertTriangle className="h-4 w-4" />
                 <AlertDescription className="ml-2">
@@ -266,7 +266,7 @@ export const HtmlTab = () => {
             <Save className="h-4 w-4" />
             {t('html.saveButton', 'Save Changes')}
             {hasDangerWarnings && (
-              <AlertTriangle className="h-4 w-4 text-yellow-500" />
+              <AlertTriangle className="h-4 w-4 text-warning" />
             )}
           </Button>
           <Button 

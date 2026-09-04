@@ -14,55 +14,58 @@ const ChartsSection = ({ pipelineData, monthlyRevenue }: ChartsSectionProps) => 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" data-testid="charts-section-grid">
       {/* Pipeline Chart */}
-      <Card className="bg-white shadow-sm" data-testid="charts-pipeline-card">
+      <Card className="bg-card shadow-sm" data-testid="charts-pipeline-card">
         <CardHeader data-testid="charts-pipeline-header">
           <CardTitle className="flex items-center space-x-2" data-testid="charts-pipeline-title">
-            <TrendingUp className="h-5 w-5 text-emerald-600" data-testid="charts-pipeline-icon" />
+            <TrendingUp className="h-5 w-5 text-chart-1" data-testid="charts-pipeline-icon" />
             <span data-testid="charts-pipeline-text">{t('charts.salesPipeline')}</span>
           </CardTitle>
         </CardHeader>
         <CardContent data-testid="charts-pipeline-content">
           <ResponsiveContainer width="100%" height={300} data-testid="charts-pipeline-chart">
             <BarChart data={pipelineData}>
-              <CartesianGrid strokeDasharray="3 3" />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--chart-grid))" />
               <XAxis 
+                stroke="hsl(var(--muted-foreground))"
                 dataKey="stage" 
                 angle={-45}
                 textAnchor="end"
                 height={80}
                 fontSize={12}
               />
-              <YAxis />
+              <YAxis stroke="hsl(var(--muted-foreground))" />
               <Tooltip 
+                contentStyle={{ background: "hsl(var(--popover))", borderColor: "hsl(var(--border))", color: "hsl(var(--popover-foreground))" }}
                 formatter={(value, name) => [
                   name === 'count' ? `${value} opportunities` : `$${Number(value).toLocaleString()}`,
                   name === 'count' ? 'Count' : 'Value'
                 ]}
               />
-              <Bar dataKey="count" fill="#10b981" name="count" />
+              <Bar dataKey="count" fill="hsl(var(--chart-1))" name="count" />
             </BarChart>
           </ResponsiveContainer>
         </CardContent>
       </Card>
 
       {/* Revenue Trend */}
-      <Card className="bg-white shadow-sm" data-testid="charts-revenue-card">
+      <Card className="bg-card shadow-sm" data-testid="charts-revenue-card">
         <CardHeader data-testid="charts-revenue-header">
           <CardTitle className="flex items-center space-x-2" data-testid="charts-revenue-title">
-            <TrendingUp className="h-5 w-5 text-blue-600" data-testid="charts-revenue-icon" />
+            <TrendingUp className="h-5 w-5 text-chart-2" data-testid="charts-revenue-icon" />
             <span data-testid="charts-revenue-text">{t('charts.monthlyRevenue')}</span>
           </CardTitle>
         </CardHeader>
         <CardContent data-testid="charts-revenue-content">
           <ResponsiveContainer width="100%" height={300} data-testid="charts-revenue-chart">
             <LineChart data={monthlyRevenue}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
-              <YAxis />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--chart-grid))" />
+              <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" />
+              <YAxis stroke="hsl(var(--muted-foreground))" />
               <Tooltip 
+                contentStyle={{ background: "hsl(var(--popover))", borderColor: "hsl(var(--border))", color: "hsl(var(--popover-foreground))" }}
                 formatter={(value) => [`$${Number(value).toLocaleString()}`, 'Revenue']}
               />
-              <Line type="monotone" dataKey="revenue" stroke="#3b82f6" strokeWidth={2} />
+              <Line type="monotone" dataKey="revenue" stroke="hsl(var(--chart-2))" strokeWidth={2} />
             </LineChart>
           </ResponsiveContainer>
         </CardContent>

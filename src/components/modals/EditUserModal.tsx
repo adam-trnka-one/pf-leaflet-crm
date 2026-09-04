@@ -144,7 +144,7 @@ const EditUserModal = ({ open, onOpenChange, user, onUserUpdated }: EditUserModa
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="edit-user-cancel-button">
             {t('common:cancel')}
           </Button>
-          <Button onClick={handleSubmit} className="bg-[#4AB831] hover:bg-[#3da127]" data-testid="edit-user-update-button">
+          <Button onClick={handleSubmit} className="bg-brand hover:bg-brand/90 text-brand-foreground" data-testid="edit-user-update-button">
             {t('common:update')}
           </Button>
         </DialogFooter>

@@ -37,13 +37,13 @@ export const ChangelogTab = () => {
   const { t } = useTranslation("settings");
 
   return (
-    <Card className="bg-white shadow-sm">
+    <Card className="bg-card shadow-sm">
       <CardHeader>
         <CardTitle className="flex items-center space-x-2">
           <FileText className="h-5 w-5" />
           <span>{t("changelog.title", "Changelog")}</span>
         </CardTitle>
-        <p className="text-sm text-slate-600">
+        <p className="text-sm text-muted-foreground">
           {t("changelog.subtitle", "Version history and recent changes")}
         </p>
       </CardHeader>
@@ -56,7 +56,7 @@ export const ChangelogTab = () => {
               </Badge>
               <span className="text-sm text-muted-foreground">{entry.date}</span>
             </div>
-            <ul className="list-disc list-inside space-y-1 text-sm text-slate-700 pl-1">
+            <ul className="list-disc list-inside space-y-1 text-sm text-foreground pl-1">
               {entry.changes.map((change, i) => (
                 <li key={i}>{change}</li>
               ))}

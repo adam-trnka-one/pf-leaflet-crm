@@ -95,7 +95,7 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="p-8 space-y-8 bg-slate-50 min-h-screen" data-testid="dashboard-loading-container">
+      <div className="p-8 space-y-8 bg-muted min-h-screen" data-testid="dashboard-loading-container">
         <div className="flex items-center justify-between">
           <div>
             <Skeleton className="h-8 w-48 mb-2" />
@@ -104,7 +104,7 @@ const Dashboard = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="bg-white rounded-lg border border-slate-200 p-6">
+            <div key={i} className="bg-card rounded-lg border border-border p-6">
               <Skeleton className="h-4 w-24 mb-3" />
               <Skeleton className="h-8 w-32" />
             </div>
@@ -112,7 +112,7 @@ const Dashboard = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="bg-white rounded-lg border border-slate-200 p-6">
+            <div key={i} className="bg-card rounded-lg border border-border p-6">
               <Skeleton className="h-4 w-20 mb-3" />
               <Skeleton className="h-6 w-16" />
             </div>
@@ -120,7 +120,7 @@ const Dashboard = () => {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {Array.from({ length: 2 }).map((_, i) => (
-            <div key={i} className="bg-white rounded-lg border border-slate-200 p-6">
+            <div key={i} className="bg-card rounded-lg border border-border p-6">
               <Skeleton className="h-4 w-32 mb-4" />
               <Skeleton className="h-48 w-full" />
             </div>
@@ -138,7 +138,7 @@ const Dashboard = () => {
   const { completedTasks, overdueTasks } = calculateTaskMetrics(recentActivities);
 
   return (
-    <div className="p-8 space-y-8 bg-slate-50 min-h-screen" data-testid="dashboard-main-container">
+    <div className="p-8 space-y-8 bg-muted min-h-screen" data-testid="dashboard-main-container">
       {/* Header */}
       <DashboardHeader 
         showChecklist={showChecklist}

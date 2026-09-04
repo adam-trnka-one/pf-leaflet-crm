@@ -54,22 +54,22 @@ const Products = () => {
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case 'Software': return 'bg-blue-100 text-blue-700';
-      case 'Service': return 'bg-emerald-100 text-emerald-700';
-      case 'Training': return 'bg-purple-100 text-purple-700';
-      default: return 'bg-gray-100 text-gray-700';
+      case 'Software': return 'bg-info-muted text-info-muted-foreground';
+      case 'Service': return 'bg-success-muted text-success-muted-foreground';
+      case 'Training': return 'bg-purple-muted text-purple-muted-foreground';
+      default: return 'bg-muted text-foreground';
     }
   };
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen" data-testid="products-main-container">
+    <div className="p-4 sm:p-6 lg:p-8 bg-muted min-h-screen" data-testid="products-main-container">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 sm:mb-8" data-testid="products-header-section">
         <div data-testid="products-header-content">
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800" data-testid="products-page-title">{t('products:title')}</h1>
-          <p className="text-slate-600 mt-1 sm:mt-2 text-sm sm:text-base" data-testid="products-page-subtitle">{t('products:subtitle')}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground" data-testid="products-page-title">{t('products:title')}</h1>
+          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base" data-testid="products-page-subtitle">{t('products:subtitle')}</p>
         </div>
         <Button 
-          className="bg-[#4AB831] hover:bg-[#3da127] w-full sm:w-auto"
+          className="bg-brand hover:bg-brand/90 text-brand-foreground w-full sm:w-auto"
           onClick={() => setIsModalOpen(true)}
           data-testid="products-new-button"
         >
@@ -80,12 +80,12 @@ const Products = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="products-grid">
         {products.map((product) => (
-          <Card key={product.id} className="bg-white shadow-sm" data-testid={`product-card-${product.id}`}>
+          <Card key={product.id} className="bg-card shadow-sm" data-testid={`product-card-${product.id}`}>
             <CardHeader data-testid={`product-card-header-${product.id}`}>
               <div className="flex items-center justify-between" data-testid={`product-header-content-${product.id}`}>
                 <div className="flex items-center space-x-3" data-testid={`product-info-${product.id}`}>
-                  <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center" data-testid={`product-icon-container-${product.id}`}>
-                    <Package className="h-5 w-5 text-emerald-600" data-testid={`product-icon-${product.id}`} />
+                  <div className="w-10 h-10 bg-success-muted rounded-lg flex items-center justify-center" data-testid={`product-icon-container-${product.id}`}>
+                    <Package className="h-5 w-5 text-success-muted-foreground" data-testid={`product-icon-${product.id}`} />
                   </div>
                   <div data-testid={`product-details-${product.id}`}>
                     <CardTitle className="text-lg" data-testid={`product-name-${product.id}`}>{product.name}</CardTitle>
@@ -107,7 +107,7 @@ const Products = () => {
                     variant="outline"
                     size="sm"
                     onClick={() => handleDelete(product.id)}
-                    className="text-red-600 hover:text-red-700"
+                    className="text-destructive-muted-foreground hover:text-destructive-muted-foreground"
                     data-testid={`product-delete-button-${product.id}`}
                   >
                     <Trash2 className="h-4 w-4" data-testid={`product-delete-icon-${product.id}`} />
@@ -116,13 +116,13 @@ const Products = () => {
               </div>
             </CardHeader>
             <CardContent data-testid={`product-card-content-${product.id}`}>
-              <p className="text-slate-600 mb-4" data-testid={`product-description-${product.id}`}>{product.description}</p>
+              <p className="text-muted-foreground mb-4" data-testid={`product-description-${product.id}`}>{product.description}</p>
               <div className="flex justify-between items-center" data-testid={`product-footer-${product.id}`}>
-                <div className="flex items-center space-x-1 text-emerald-600 font-semibold" data-testid={`product-price-section-${product.id}`}>
+                <div className="flex items-center space-x-1 text-success-muted-foreground font-semibold" data-testid={`product-price-section-${product.id}`}>
                   <DollarSign className="h-4 w-4" data-testid={`product-price-icon-${product.id}`} />
                   <span data-testid={`product-price-text-${product.id}`}>{product.price}{t('products:perMonth')}</span>
                 </div>
-                <Badge variant="outline" className="text-emerald-600" data-testid={`product-status-badge-${product.id}`}>
+                <Badge variant="outline" className="text-success-muted-foreground" data-testid={`product-status-badge-${product.id}`}>
                   <span data-testid={`product-status-text-${product.id}`}>{product.status}</span>
                 </Badge>
               </div>

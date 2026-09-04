@@ -18,8 +18,8 @@ const DashboardHeader = ({
   return (
     <div className="flex justify-between items-start" data-testid="dashboard-header-section">
       <div data-testid="dashboard-header-content">
-        <h1 className="text-3xl font-bold text-slate-800" data-testid="dashboard-page-title">{t('title')}</h1>
-        <p className="text-slate-600 mt-2" data-testid="dashboard-page-subtitle">{t('subtitle')}</p>
+        <h1 className="text-3xl font-bold text-foreground" data-testid="dashboard-page-title">{t('title')}</h1>
+        <p className="text-muted-foreground mt-2" data-testid="dashboard-page-subtitle">{t('subtitle')}</p>
       </div>
       <div className="flex items-center space-x-2 rtl:space-x-reverse">
         {showChecklistToggle && (

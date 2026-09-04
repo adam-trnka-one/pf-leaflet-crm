@@ -114,7 +114,7 @@ const NewUserModal = ({ open, onOpenChange, onUserCreated }: NewUserModalProps) 
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="new-user-cancel-button">
             {t('common:cancel')}
           </Button>
-          <Button onClick={handleSubmit} className="bg-[#4AB831] hover:bg-[#3da127]" data-testid="new-user-create-button">
+          <Button onClick={handleSubmit} className="bg-brand hover:bg-brand/90 text-brand-foreground" data-testid="new-user-create-button">
             {t('common:create')}
           </Button>
         </DialogFooter>

@@ -123,7 +123,7 @@ const NewProductModal = ({ open, onOpenChange, onProductCreated }: NewProductMod
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="new-product-cancel-button">
             {t('common:cancel')}
           </Button>
-          <Button onClick={handleSubmit} className="bg-[#4AB831] hover:bg-[#3da127]" data-testid="new-product-create-button">
+          <Button onClick={handleSubmit} className="bg-brand hover:bg-brand/90 text-brand-foreground" data-testid="new-product-create-button">
             {t('common:create')}
           </Button>
         </DialogFooter>

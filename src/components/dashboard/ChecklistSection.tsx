@@ -47,7 +47,7 @@ const ChecklistSection = () => {
     <div 
       ref={checklistRef} 
       id="productfruits-checklist-container"
-      className="min-h-[600px] w-full bg-white shadow-sm border border-slate-200 rounded-lg p-6 relative"
+      className="min-h-[600px] w-full bg-card shadow-sm border border-border rounded-lg p-6 relative"
       data-testid="checklist-container"
     >
       {isLoading && (

@@ -17,6 +17,7 @@ import { RTL_LANGUAGES } from "@/i18n";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import BottomNav from "@/components/BottomNav";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const LayoutContent = () => {
   const location = useLocation();
@@ -163,7 +164,7 @@ const LayoutContent = () => {
   const isRTL = RTL_LANGUAGES.includes(i18n.language);
 
   return (
-    <div className="min-h-screen flex flex-col w-full bg-slate-50">
+    <div className="min-h-screen flex flex-col w-full bg-surface-muted">
       <div className="flex flex-1 w-full">
         <Sidebar className="w-72" side={isRTL ? "right" : "left"}>
           <SidebarHeader className="border-b border-sidebar-border px-4 py-[18px]">
@@ -203,11 +204,11 @@ const LayoutContent = () => {
                   className={cn(
                     "text-[10px] px-1.5 py-0",
                     isPFActive 
-                      ? "bg-green-100 text-green-700 border-green-200 hover:bg-green-100" 
+                      ? "bg-success-muted text-success-muted-foreground border-success/30 hover:bg-success-muted" 
                       : "bg-muted text-muted-foreground"
                   )}
                 >
-                  <span className={cn("inline-block w-1.5 h-1.5 rounded-full mr-1", isPFActive ? "bg-green-500" : "bg-muted-foreground")} />
+                  <span className={cn("inline-block w-1.5 h-1.5 rounded-full mr-1", isPFActive ? "bg-success" : "bg-muted-foreground")} />
                   PF: {isPFActive ? "Active" : "Inactive"}
                 </Badge>
               </div>
@@ -233,20 +234,22 @@ const LayoutContent = () => {
         </Sidebar>
 
         <SidebarInset className="flex-1">
-          <header className="flex h-auto min-h-[64px] sm:h-[89px] shrink-0 items-center justify-between gap-2 sm:gap-6 border-b px-3 sm:px-6 bg-white py-2 sm:py-0">
+          <header className="flex h-auto min-h-[64px] sm:h-[89px] shrink-0 items-center justify-between gap-2 sm:gap-6 border-b px-3 sm:px-6 bg-card py-2 sm:py-0">
             <div className="flex items-center gap-2 sm:gap-4">
               <SidebarTrigger className="-ml-1" data-testid="sidebar-trigger" />
             </div>
             
             <div className="flex items-center gap-2 sm:gap-4 flex-1 max-w-2xl">
               <div className="relative flex-1 hidden sm:block">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400 rtl:left-auto rtl:right-3" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground rtl:left-auto rtl:right-3" />
                 <Input 
                   placeholder={t('header.searchPlaceholder')} 
-                  className="pl-10 rtl:pl-3 rtl:pr-10 bg-slate-50 border-slate-200 focus:bg-white" 
+                  className="pl-10 rtl:pl-3 rtl:pr-10 bg-muted border-border focus:bg-background" 
                   data-testid="header-search-input"
                 />
               </div>
+
+              <ThemeToggle />
 
               <Button
                 variant="ghost"
@@ -262,14 +265,14 @@ const LayoutContent = () => {
               <div className="flex items-center gap-1" data-testid="language-selector-container">
 
                 <Select value={localWorkspaceData.languageCode} onValueChange={handleLanguageChangeAndInitiate} disabled={isInitiating}>
-                  <SelectTrigger className="w-12 sm:w-36 h-8 bg-white" title="Select language" data-testid="language-selector-trigger">
+                  <SelectTrigger className="w-12 sm:w-36 h-8 bg-background" title="Select language" data-testid="language-selector-trigger">
                     {isInitiating ? (
                       <Loader2 className="h-4 w-4 animate-spin" />
                     ) : (
                       <SelectValue />
                     )}
                   </SelectTrigger>
-                  <SelectContent className="bg-white z-50 min-w-[160px]" data-testid="language-selector-content">
+                  <SelectContent className="bg-popover z-50 min-w-[160px]" data-testid="language-selector-content">
                     <SelectItem value="en" data-testid="language-option-en">🇬🇧 English</SelectItem>
                     <SelectItem value="cs" data-testid="language-option-cs">🇨🇿 Čeština</SelectItem>
                     <SelectItem value="de" data-testid="language-option-de">🇩🇪 Deutsch</SelectItem>
@@ -293,7 +296,7 @@ const LayoutContent = () => {
               >
                 <Newspaper className="h-4 w-4" />
                 {unreadCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
                     {unreadCount > 9 ? '9+' : unreadCount}
                   </span>
                 )}

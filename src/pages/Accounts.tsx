@@ -61,32 +61,32 @@ const Accounts = () => {
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case 'Customer': return 'bg-emerald-100 text-emerald-700';
-      case 'Prospect': return 'bg-blue-100 text-blue-700';
-      case 'Partner': return 'bg-purple-100 text-purple-700';
-      case 'Competitor': return 'bg-red-100 text-red-700';
-      default: return 'bg-gray-100 text-gray-700';
+      case 'Customer': return 'bg-success-muted text-success-muted-foreground';
+      case 'Prospect': return 'bg-info-muted text-info-muted-foreground';
+      case 'Partner': return 'bg-purple-muted text-purple-muted-foreground';
+      case 'Competitor': return 'bg-destructive-muted text-destructive-muted-foreground';
+      default: return 'bg-muted text-foreground';
     }
   };
 
   if (loading) {
     return (
       <div className="p-8 flex items-center justify-center" data-testid="accounts-loading-container">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500" data-testid="accounts-loading-spinner"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-success" data-testid="accounts-loading-spinner"></div>
       </div>
     );
   }
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen" data-testid="accounts-main-container">
+    <div className="p-4 sm:p-6 lg:p-8 bg-muted min-h-screen" data-testid="accounts-main-container">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 sm:mb-8" data-testid="accounts-header-section">
         <div data-testid="accounts-header-content">
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800" data-testid="accounts-page-title">{t('accounts:title')}</h1>
-          <p className="text-slate-600 mt-1 sm:mt-2 text-sm sm:text-base" data-testid="accounts-page-subtitle">{t('accounts:subtitle')}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground" data-testid="accounts-page-title">{t('accounts:title')}</h1>
+          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base" data-testid="accounts-page-subtitle">{t('accounts:subtitle')}</p>
         </div>
         <Button 
-          className="bg-[#4AB831] hover:bg-[#3da127] w-full sm:w-auto"
+          className="bg-brand hover:bg-brand/90 text-brand-foreground w-full sm:w-auto"
           onClick={() => setIsModalOpen(true)}
           data-testid="accounts-new-account-button"
         >
@@ -98,12 +98,12 @@ const Accounts = () => {
       {/* Search */}
       <div className="mb-6" data-testid="accounts-search-section">
         <div className="relative" data-testid="accounts-search-container">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" data-testid="accounts-search-icon" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" data-testid="accounts-search-icon" />
           <Input
             placeholder={t('accounts:searchPlaceholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10 max-w-md bg-white"
+            className="pl-10 max-w-md bg-card"
             data-testid="accounts-search-input"
           />
         </div>
@@ -113,10 +113,10 @@ const Accounts = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="accounts-grid">
         {filteredAccounts.map((account) => (
           <Link key={account.id} to={`/dashboard/accounts/${account.id}`} data-testid="accounts-account-link">
-            <Card className="bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer" data-testid="accounts-account-card">
+            <Card className="bg-card shadow-sm hover:shadow-md transition-shadow cursor-pointer" data-testid="accounts-account-card">
               <CardHeader className="pb-2" data-testid="accounts-card-header">
                 <div className="flex justify-between items-start" data-testid="accounts-header-row">
-                  <CardTitle className="text-lg font-semibold text-slate-800 line-clamp-1" data-testid="accounts-account-name">
+                  <CardTitle className="text-lg font-semibold text-foreground line-clamp-1" data-testid="accounts-account-name">
                     {account.name}
                   </CardTitle>
                   <Badge className={getTypeColor(account.type)} data-testid="accounts-account-type-badge">
@@ -125,33 +125,33 @@ const Accounts = () => {
                 </div>
               </CardHeader>
               <CardContent className="space-y-3" data-testid="accounts-card-content">
-                <div className="flex items-center text-sm text-slate-600" data-testid="accounts-industry-row">
+                <div className="flex items-center text-sm text-muted-foreground" data-testid="accounts-industry-row">
                   <span className="font-medium mr-2" data-testid="accounts-industry-label">{t('common:industry')}:</span>
                   <span data-testid="accounts-industry-value">{account.industry}</span>
                 </div>
                 
                 <div className="flex items-center justify-between text-sm" data-testid="accounts-metrics-row">
-                  <div className="flex items-center text-slate-600" data-testid="accounts-revenue-container">
+                  <div className="flex items-center text-muted-foreground" data-testid="accounts-revenue-container">
                     <DollarSign className="h-4 w-4 mr-1" data-testid="accounts-revenue-icon" />
                     <span data-testid="accounts-revenue-value">${account.revenue.toLocaleString()}</span>
                   </div>
-                  <div className="flex items-center text-slate-600" data-testid="accounts-employees-container">
+                  <div className="flex items-center text-muted-foreground" data-testid="accounts-employees-container">
                     <Users className="h-4 w-4 mr-1" data-testid="accounts-employees-icon" />
                     <span data-testid="accounts-employees-value">{account.employees}</span>
                   </div>
                 </div>
 
-                <div className="flex items-center text-sm text-slate-600" data-testid="accounts-location-row">
+                <div className="flex items-center text-sm text-muted-foreground" data-testid="accounts-location-row">
                   <MapPin className="h-4 w-4 mr-1" data-testid="accounts-location-icon" />
                   <span data-testid="accounts-location-value">{account.address.city}, {account.address.country}</span>
                 </div>
 
-                <div className="pt-2 border-t border-slate-100" data-testid="accounts-metadata-section">
-                  <div className="text-xs text-slate-500" data-testid="accounts-owner-row">
+                <div className="pt-2 border-t border-border" data-testid="accounts-metadata-section">
+                  <div className="text-xs text-muted-foreground" data-testid="accounts-owner-row">
                     <span data-testid="accounts-owner-label">{t('common:owner')}: </span>
                     <span data-testid="accounts-owner-value">{account.owner}</span>
                   </div>
-                  <div className="text-xs text-slate-500" data-testid="accounts-created-row">
+                  <div className="text-xs text-muted-foreground" data-testid="accounts-created-row">
                     <span data-testid="accounts-created-label">{t('common:created')}: </span>
                     <span data-testid="accounts-created-value">{account.createdAt.toLocaleDateString()}</span>
                   </div>
@@ -164,7 +164,7 @@ const Accounts = () => {
 
       {filteredAccounts.length === 0 && (
         <div className="text-center py-12" data-testid="accounts-empty-state">
-          <p className="text-slate-500" data-testid="accounts-empty-message">{t('accounts:noResults')}</p>
+          <p className="text-muted-foreground" data-testid="accounts-empty-message">{t('accounts:noResults')}</p>
         </div>
       )}
 

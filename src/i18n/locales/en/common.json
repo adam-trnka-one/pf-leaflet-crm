@@ -52,5 +52,11 @@
   "success": "Success",
   "confirmDelete": "Are you sure you want to delete this item?",
   "deleted": "Item deleted successfully",
-  "fillRequired": "Please fill all required fields"
+  "fillRequired": "Please fill all required fields",
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "system": "System",
+    "dark": "Dark"
+  }
 }

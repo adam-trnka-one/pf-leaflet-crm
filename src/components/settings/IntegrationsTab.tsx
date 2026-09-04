@@ -81,21 +81,21 @@ export const IntegrationsTab = () => {
     switch (status) {
       case "active":
         return (
-          <Badge className="bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border-green-200">
+          <Badge className="bg-gradient-to-r from-success-muted to-success-muted text-success-muted-foreground border-success/40">
             <Check className="h-3 w-3 mr-1" />
             {t('common:active')}
           </Badge>
         );
       case "available":
         return (
-          <Badge className="bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 border-blue-200">
+          <Badge className="bg-gradient-to-r from-info-muted to-info-muted text-info-muted-foreground border-info/40">
             <Plug className="h-3 w-3 mr-1" />
             {t('common:available')}
           </Badge>
         );
       case "premium":
         return (
-          <Badge className="bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800 border-amber-200">
+          <Badge className="bg-gradient-to-r from-warning-muted to-warning-muted text-warning-muted-foreground border-warning/40">
             <Crown className="h-3 w-3 mr-1" />
             {t('integrations.premium')}
           </Badge>
@@ -111,7 +111,7 @@ export const IntegrationsTab = () => {
         return (
           <Button 
             variant="outline"
-            className="border-green-200 text-green-700 hover:bg-green-50 w-full md:w-auto"
+            className="border-success/40 text-success-muted-foreground hover:bg-success-muted w-full md:w-auto"
             onClick={() => {
               toast({
                 title: `${integration.name} Settings`,
@@ -126,7 +126,7 @@ export const IntegrationsTab = () => {
       case "available":
         return (
           <Button 
-            className="bg-blue-600 hover:bg-blue-700 text-white w-full md:w-auto"
+            className="bg-info text-info-foreground hover:bg-info/90 text-white w-full md:w-auto"
             onClick={() => {
               toast({
                 title: `Connecting ${integration.name}`,
@@ -141,7 +141,7 @@ export const IntegrationsTab = () => {
       case "premium":
         return (
           <Button 
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-md w-full md:w-auto"
+            className="bg-gradient-to-r from-info to-purple hover:from-info hover:to-purple text-white shadow-md w-full md:w-auto"
             onClick={() => {
               toast({
                 title: `Upgrade Required`,
@@ -163,31 +163,31 @@ export const IntegrationsTab = () => {
   };
 
   return (
-    <Card className="bg-white shadow-sm" data-testid="integrations-card">
+    <Card className="bg-card shadow-sm" data-testid="integrations-card">
       <CardHeader data-testid="integrations-card-header">
         <CardTitle data-testid="integrations-card-title">{t('integrations.title')}</CardTitle>
-        <p className="text-sm text-slate-600" data-testid="integrations-description">
+        <p className="text-sm text-muted-foreground" data-testid="integrations-description">
           {t('integrations.subtitle')}
         </p>
       </CardHeader>
       <CardContent className="space-y-4 md:space-y-6" data-testid="integrations-card-content">
         <div className="grid grid-cols-1 gap-4 md:gap-6" data-testid="integrations-grid">
           {integrations.map((integration) => (
-            <div key={integration.name} className="p-4 md:p-6 border border-slate-200 rounded-lg hover:border-slate-300 transition-colors bg-gradient-to-r from-slate-50 to-white" data-testid={`integration-${integration.name.toLowerCase().replace(' ', '-')}`}>
+            <div key={integration.name} className="p-4 md:p-6 border border-border rounded-lg hover:border-border transition-colors bg-gradient-to-r from-muted to-card" data-testid={`integration-${integration.name.toLowerCase().replace(' ', '-')}`}>
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                 <div className="flex items-start space-x-3 md:space-x-4 flex-1">
                   <div className="text-2xl md:text-3xl flex-shrink-0" data-testid={`integration-logo-${integration.name.toLowerCase().replace(' ', '-')}`}>{integration.logo}</div>
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-col md:flex-row md:items-center md:space-x-3 mb-2">
-                      <h4 className="font-semibold text-slate-800 text-base md:text-lg" data-testid={`integration-name-${integration.name.toLowerCase().replace(' ', '-')}`}>{integration.name}</h4>
+                      <h4 className="font-semibold text-foreground text-base md:text-lg" data-testid={`integration-name-${integration.name.toLowerCase().replace(' ', '-')}`}>{integration.name}</h4>
                       <div className="mt-1 md:mt-0">
                         {getStatusBadge(integration.status)}
                       </div>
                     </div>
-                    <p className="text-sm text-slate-600 mb-3 leading-relaxed" data-testid={`integration-description-${integration.name.toLowerCase().replace(' ', '-')}`}>{integration.description}</p>
+                    <p className="text-sm text-muted-foreground mb-3 leading-relaxed" data-testid={`integration-description-${integration.name.toLowerCase().replace(' ', '-')}`}>{integration.description}</p>
                     <div className="hidden md:flex flex-wrap gap-1.5 md:gap-2" data-testid={`integration-features-${integration.name.toLowerCase().replace(' ', '-')}`}>
                       {integration.features.map((feature, index) => (
-                        <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-50 text-blue-700 border border-blue-200" data-testid={`integration-feature-${integration.name.toLowerCase().replace(' ', '-')}-${index}`}>
+                        <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-info-muted text-info-muted-foreground border border-info/40" data-testid={`integration-feature-${integration.name.toLowerCase().replace(' ', '-')}-${index}`}>
                           {feature}
                         </span>
                       ))}
@@ -204,19 +204,19 @@ export const IntegrationsTab = () => {
         
         <Separator data-testid="integrations-separator" />
         
-        <div className="p-4 md:p-6 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg" data-testid="premium-upgrade-section">
-          <h4 className="font-semibold text-blue-800 mb-2 flex items-center text-sm md:text-base" data-testid="premium-upgrade-title">
+        <div className="p-4 md:p-6 bg-gradient-to-r from-info-muted to-purple-muted border border-info/40 rounded-lg" data-testid="premium-upgrade-section">
+          <h4 className="font-semibold text-info-muted-foreground mb-2 flex items-center text-sm md:text-base" data-testid="premium-upgrade-title">
             <Crown className="h-4 w-4 md:h-5 md:w-5 mr-2" />
             {t('integrations.unlockPremium')}
           </h4>
-          <p className="text-sm text-blue-700 mb-4 leading-relaxed" data-testid="premium-upgrade-description">
+          <p className="text-sm text-info-muted-foreground mb-4 leading-relaxed" data-testid="premium-upgrade-description">
             {t('integrations.unlockPremiumDesc')}
           </p>
           <div className="flex flex-col sm:flex-row gap-2 md:gap-3" data-testid="premium-upgrade-actions">
-            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white w-full sm:w-auto" data-testid="view-premium-plans-button">
+            <Button className="bg-gradient-to-r from-info to-purple hover:from-info hover:to-purple text-white w-full sm:w-auto" data-testid="view-premium-plans-button">
               {t('integrations.viewPlans')}
             </Button>
-            <Button variant="outline" className="text-blue-700 border-blue-300 hover:bg-blue-100 w-full sm:w-auto" data-testid="contact-sales-button">
+            <Button variant="outline" className="text-info-muted-foreground border-info/40 hover:bg-info-muted w-full sm:w-auto" data-testid="contact-sales-button">
               {t('integrations.contactSales')}
             </Button>
           </div>

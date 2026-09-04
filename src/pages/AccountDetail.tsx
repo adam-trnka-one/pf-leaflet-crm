@@ -54,7 +54,7 @@ const AccountDetail = () => {
   if (loading) {
     return (
       <div className="p-8 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-success"></div>
       </div>
     );
   }
@@ -62,7 +62,7 @@ const AccountDetail = () => {
   if (!account) {
     return (
       <div className="p-8 text-center">
-        <h1 className="text-2xl font-bold text-slate-800">{t('notFound')}</h1>
+        <h1 className="text-2xl font-bold text-foreground">{t('notFound')}</h1>
         <Link to="/dashboard/accounts">
           <Button className="mt-4">{t('backToList')}</Button>
         </Link>
@@ -71,7 +71,7 @@ const AccountDetail = () => {
   }
 
   return (
-    <div className="p-8 bg-slate-50 min-h-screen">
+    <div className="p-8 bg-muted min-h-screen">
       {/* Header */}
       <div className="flex items-center space-x-4 mb-8">
         <Link to="/dashboard/accounts">
@@ -80,11 +80,11 @@ const AccountDetail = () => {
           </Button>
         </Link>
         <div className="flex-1">
-          <h1 className="text-3xl font-bold text-slate-800">{account.name}</h1>
-          <p className="text-slate-600">{account.industry} • {account.type}</p>
+          <h1 className="text-3xl font-bold text-foreground">{account.name}</h1>
+          <p className="text-muted-foreground">{account.industry} • {account.type}</p>
         </div>
         <Button 
-          className="bg-emerald-600 hover:bg-emerald-700"
+          className="bg-success text-success-foreground hover:bg-success/90"
           onClick={() => setIsEditModalOpen(true)}
         >
           <Edit className="h-4 w-4 mr-2" />
@@ -93,7 +93,7 @@ const AccountDetail = () => {
       </div>
 
       <Tabs defaultValue="details" className="space-y-6">
-        <TabsList className="bg-white">
+        <TabsList className="bg-card">
           <TabsTrigger value="details">{t('tabs.details')}</TabsTrigger>
           <TabsTrigger value="timeline">{t('tabs.timeline')}</TabsTrigger>
           <TabsTrigger value="files">{t('tabs.files')}</TabsTrigger>
@@ -102,46 +102,46 @@ const AccountDetail = () => {
         <TabsContent value="details" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Basic Information */}
-            <Card className="bg-white shadow-sm">
+            <Card className="bg-card shadow-sm">
               <CardHeader>
                 <CardTitle>{t('sections.basicInfo')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-slate-600">{t('columns.name')}</label>
-                    <p className="font-medium text-slate-800">{account.name}</p>
+                    <label className="text-sm font-medium text-muted-foreground">{t('columns.name')}</label>
+                    <p className="font-medium text-foreground">{account.name}</p>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-slate-600">{t('columns.type')}</label>
+                    <label className="text-sm font-medium text-muted-foreground">{t('columns.type')}</label>
                     <Badge className="mt-1">{account.type}</Badge>
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-slate-600">{t('columns.industry')}</label>
-                    <p className="font-medium text-slate-800">{account.industry}</p>
+                    <label className="text-sm font-medium text-muted-foreground">{t('columns.industry')}</label>
+                    <p className="font-medium text-foreground">{account.industry}</p>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-slate-600">{t('columns.owner')}</label>
-                    <p className="font-medium text-slate-800">{account.owner}</p>
+                    <label className="text-sm font-medium text-muted-foreground">{t('columns.owner')}</label>
+                    <p className="font-medium text-foreground">{account.owner}</p>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex items-center space-x-2">
-                    <DollarSign className="h-4 w-4 text-slate-500" />
+                    <DollarSign className="h-4 w-4 text-muted-foreground" />
                     <div>
-                      <label className="text-sm font-medium text-slate-600">{t('columns.revenue')}</label>
-                      <p className="font-medium text-slate-800">${account.revenue.toLocaleString()}</p>
+                      <label className="text-sm font-medium text-muted-foreground">{t('columns.revenue')}</label>
+                      <p className="font-medium text-foreground">${account.revenue.toLocaleString()}</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Users className="h-4 w-4 text-slate-500" />
+                    <Users className="h-4 w-4 text-muted-foreground" />
                     <div>
-                      <label className="text-sm font-medium text-slate-600">{t('columns.employees')}</label>
-                      <p className="font-medium text-slate-800">{account.employees}</p>
+                      <label className="text-sm font-medium text-muted-foreground">{t('columns.employees')}</label>
+                      <p className="font-medium text-foreground">{account.employees}</p>
                     </div>
                   </div>
                 </div>
@@ -149,32 +149,32 @@ const AccountDetail = () => {
             </Card>
 
             {/* Contact Information */}
-            <Card className="bg-white shadow-sm">
+            <Card className="bg-card shadow-sm">
               <CardHeader>
                 <CardTitle>{t('sections.contactInfo')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center space-x-3">
-                  <Phone className="h-4 w-4 text-slate-500" />
+                  <Phone className="h-4 w-4 text-muted-foreground" />
                   <div>
-                    <label className="text-sm font-medium text-slate-600">{t('common:phone')}</label>
-                    <p className="font-medium text-slate-800">{account.phone}</p>
+                    <label className="text-sm font-medium text-muted-foreground">{t('common:phone')}</label>
+                    <p className="font-medium text-foreground">{account.phone}</p>
                   </div>
                 </div>
 
                 <div className="flex items-center space-x-3">
-                  <Globe className="h-4 w-4 text-slate-500" />
+                  <Globe className="h-4 w-4 text-muted-foreground" />
                   <div>
-                    <label className="text-sm font-medium text-slate-600">{t('common:website')}</label>
-                    <p className="font-medium text-slate-800">{account.website}</p>
+                    <label className="text-sm font-medium text-muted-foreground">{t('common:website')}</label>
+                    <p className="font-medium text-foreground">{account.website}</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-3">
-                  <MapPin className="h-4 w-4 text-slate-500 mt-1" />
+                  <MapPin className="h-4 w-4 text-muted-foreground mt-1" />
                   <div>
-                    <label className="text-sm font-medium text-slate-600">{t('common:address')}</label>
-                    <p className="font-medium text-slate-800">
+                    <label className="text-sm font-medium text-muted-foreground">{t('common:address')}</label>
+                    <p className="font-medium text-foreground">
                       {account.address.street}<br />
                       {account.address.city}, {account.address.state} {account.address.zipCode}<br />
                       {account.address.country}
@@ -187,23 +187,23 @@ const AccountDetail = () => {
         </TabsContent>
 
         <TabsContent value="timeline">
-          <Card className="bg-white shadow-sm">
+          <Card className="bg-card shadow-sm">
             <CardHeader>
               <CardTitle>{t('sections.timeline')}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-slate-500 text-center py-8">{t('placeholders.timeline')}</p>
+              <p className="text-muted-foreground text-center py-8">{t('placeholders.timeline')}</p>
             </CardContent>
           </Card>
         </TabsContent>
 
         <TabsContent value="files">
-          <Card className="bg-white shadow-sm">
+          <Card className="bg-card shadow-sm">
             <CardHeader>
               <CardTitle>{t('sections.files')}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-slate-500 text-center py-8">{t('placeholders.files')}</p>
+              <p className="text-muted-foreground text-center py-8">{t('placeholders.files')}</p>
             </CardContent>
           </Card>
         </TabsContent>

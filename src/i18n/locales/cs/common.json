@@ -52,5 +52,11 @@
   "success": "Úspěch",
   "confirmDelete": "Opravdu chcete tuto položku smazat?",
   "deleted": "Položka byla úspěšně smazána",
-  "fillRequired": "Vyplňte prosím všechna povinná pole"
+  "fillRequired": "Vyplňte prosím všechna povinná pole",
+  "theme": {
+    "label": "Vzhled",
+    "light": "Světlý",
+    "system": "Systémový",
+    "dark": "Tmavý"
+  }
 }

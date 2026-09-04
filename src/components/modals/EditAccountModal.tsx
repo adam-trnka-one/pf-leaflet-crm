@@ -270,7 +270,7 @@ const EditAccountModal = ({ open, onOpenChange, account, onAccountUpdated }: Edi
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="edit-account-cancel-button">
             {t('common:cancel')}
           </Button>
-          <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700" data-testid="edit-account-update-button">
+          <Button onClick={handleSubmit} className="bg-success text-success-foreground hover:bg-success/90" data-testid="edit-account-update-button">
             {t('common:update')}
           </Button>
         </DialogFooter>
