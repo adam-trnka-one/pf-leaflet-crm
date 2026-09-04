@@ -58,7 +58,7 @@ const Hero = () => {
             Lighten your workload
             <span className="text-brand block mt-4"> Boost your revenue</span>
           </h1>
-          <p className="text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
+          <p className="text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
             Streamline your customer relationships, boost sales productivity, and grow your business with our intuitive CRM platform.
           </p>
           <div className="flex gap-6 justify-center flex-wrap">
