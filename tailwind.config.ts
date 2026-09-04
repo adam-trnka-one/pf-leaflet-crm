@@ -64,8 +64,44 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				leaflet: {
-					green: '#4AB831',
-					'green-hover': '#3da127'
+					green: 'hsl(var(--brand))',
+					'green-hover': 'hsl(var(--brand) / 0.85)'
+				},
+				surface: {
+					DEFAULT: 'hsl(var(--surface))',
+					foreground: 'hsl(var(--surface-foreground))',
+					muted: 'hsl(var(--surface-muted))'
+				},
+				brand: {
+					DEFAULT: 'hsl(var(--brand))',
+					foreground: 'hsl(var(--brand-foreground))',
+					muted: 'hsl(var(--brand-muted))'
+				},
+				success: {
+					DEFAULT: 'hsl(var(--success))',
+					foreground: 'hsl(var(--success-foreground))',
+					muted: 'hsl(var(--success-muted))',
+					'muted-foreground': 'hsl(var(--success-muted-foreground))'
+				},
+				warning: {
+					DEFAULT: 'hsl(var(--warning))',
+					foreground: 'hsl(var(--warning-foreground))',
+					muted: 'hsl(var(--warning-muted))',
+					'muted-foreground': 'hsl(var(--warning-muted-foreground))'
+				},
+				info: {
+					DEFAULT: 'hsl(var(--info))',
+					foreground: 'hsl(var(--info-foreground))',
+					muted: 'hsl(var(--info-muted))',
+					'muted-foreground': 'hsl(var(--info-muted-foreground))'
+				},
+				chart: {
+					1: 'hsl(var(--chart-1))',
+					2: 'hsl(var(--chart-2))',
+					3: 'hsl(var(--chart-3))',
+					4: 'hsl(var(--chart-4))',
+					5: 'hsl(var(--chart-5))',
+					grid: 'hsl(var(--chart-grid))'
 				}
 			},
 			borderRadius: {
