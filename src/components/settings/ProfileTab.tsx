@@ -42,7 +42,7 @@ export const ProfileTab = () => {
   };
 
   return (
-    <Card className="bg-white shadow-sm" data-testid="profile-card">
+    <Card className="bg-card shadow-sm" data-testid="profile-card">
       <CardHeader data-testid="profile-card-header">
         <CardTitle data-testid="profile-card-title">{t('profile.title')}</CardTitle>
       </CardHeader>
@@ -93,7 +93,7 @@ export const ProfileTab = () => {
         
         <div className="flex justify-end" data-testid="profile-actions">
           <Button 
-            className="bg-emerald-600 hover:bg-emerald-700"
+            className="bg-success hover:bg-success"
             onClick={handleSaveChanges}
             data-testid="profile-save-changes-button"
           >

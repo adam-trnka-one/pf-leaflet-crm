@@ -21,14 +21,14 @@ import { useTranslation } from "react-i18next";
 const STORAGE_KEY = "crmOpportunities";
 
 const stages = [
-  { name: "Prospecting", key: "prospecting", color: "bg-slate-100 text-slate-700" },
-  { name: "Qualification", key: "qualification", color: "bg-blue-100 text-blue-700" },
-  { name: "Proposal", key: "proposal", color: "bg-yellow-100 text-yellow-700" },
-  { name: "Negotiation", key: "negotiation", color: "bg-orange-100 text-orange-700" },
-  { name: "Demo", key: "demo", color: "bg-purple-100 text-purple-700" },
-  { name: "Follow-up", key: "followUp", color: "bg-indigo-100 text-indigo-700" },
-  { name: "Closed Won", key: "closedWon", color: "bg-emerald-100 text-emerald-700" },
-  { name: "Closed Lost", key: "closedLost", color: "bg-red-100 text-red-700" },
+  { name: "Prospecting", key: "prospecting", color: "bg-muted text-foreground" },
+  { name: "Qualification", key: "qualification", color: "bg-info-muted text-info-muted-foreground" },
+  { name: "Proposal", key: "proposal", color: "bg-warning-muted text-warning-muted-foreground" },
+  { name: "Negotiation", key: "negotiation", color: "bg-warning-muted text-warning-muted-foreground" },
+  { name: "Demo", key: "demo", color: "bg-purple-muted text-purple-muted-foreground" },
+  { name: "Follow-up", key: "followUp", color: "bg-info-muted text-info-muted-foreground" },
+  { name: "Closed Won", key: "closedWon", color: "bg-success-muted text-success-muted-foreground" },
+  { name: "Closed Lost", key: "closedLost", color: "bg-destructive-muted text-destructive-muted-foreground" },
 ];
 
 const Opportunities = () => {
@@ -105,21 +105,21 @@ const Opportunities = () => {
   if (loading) {
     return (
       <div className="p-8 flex items-center justify-center" data-testid="opportunities-loading-container">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500" data-testid="opportunities-loading-spinner"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-success" data-testid="opportunities-loading-spinner"></div>
       </div>
     );
   }
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen" data-testid="opportunities-main-container">
+    <div className="p-4 sm:p-6 lg:p-8 bg-muted min-h-screen" data-testid="opportunities-main-container">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 sm:mb-8" data-testid="opportunities-header-section">
         <div data-testid="opportunities-header-content">
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800" data-testid="opportunities-page-title">{t('opportunities:title')}</h1>
-          <p className="text-slate-600 mt-1 sm:mt-2 text-sm sm:text-base" data-testid="opportunities-page-subtitle">{t('opportunities:subtitle')}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground" data-testid="opportunities-page-title">{t('opportunities:title')}</h1>
+          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base" data-testid="opportunities-page-subtitle">{t('opportunities:subtitle')}</p>
         </div>
         <Button
-          className="bg-emerald-600 hover:bg-emerald-700 w-full sm:w-auto"
+          className="bg-success hover:bg-success w-full sm:w-auto"
           onClick={() => setIsModalOpen(true)}
           data-testid="opportunities-new-opportunity-button"
         >
@@ -142,17 +142,17 @@ const Opportunities = () => {
               onDrop={(e) => handleDrop(e, stage.name)}
               data-testid="opportunities-stage-column"
             >
-              <div className="bg-white rounded-lg shadow-sm" data-testid="opportunities-stage-container">
-                <div className="p-4 border-b border-slate-200" data-testid="opportunities-stage-header">
+              <div className="bg-card rounded-lg shadow-sm" data-testid="opportunities-stage-container">
+                <div className="p-4 border-b border-border" data-testid="opportunities-stage-header">
                   <div className="flex items-center justify-between mb-2" data-testid="opportunities-stage-title-row">
-                    <h3 className="font-semibold text-slate-800" data-testid="opportunities-stage-title">
+                    <h3 className="font-semibold text-foreground" data-testid="opportunities-stage-title">
                       {t(`opportunities:stages.${stage.key}`)}
                     </h3>
                     <Badge variant="secondary" className={stage.color} data-testid="opportunities-stage-count-badge">
                       {stageOpportunities.length}
                     </Badge>
                   </div>
-                  <p className="text-sm text-slate-600 flex items-center" data-testid="opportunities-stage-total-value">
+                  <p className="text-sm text-muted-foreground flex items-center" data-testid="opportunities-stage-total-value">
                     <DollarSign className="h-4 w-4 mr-1" data-testid="opportunities-stage-value-icon" />
                     <span data-testid="opportunities-stage-value-amount">${totalValue.toLocaleString()}</span>
                   </p>
@@ -169,14 +169,14 @@ const Opportunities = () => {
                     >
                       <CardContent className="p-4" data-testid="opportunities-card-content">
                         <div className="flex items-start justify-between gap-2 mb-2">
-                          <h4 className="font-medium text-slate-800 line-clamp-2" data-testid="opportunities-opportunity-name">
+                          <h4 className="font-medium text-foreground line-clamp-2" data-testid="opportunities-opportunity-name">
                             {opportunity.name}
                           </h4>
                           <div className="flex items-center gap-1 shrink-0" data-testid="opportunities-card-actions">
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="h-7 w-7 text-slate-500 hover:text-slate-800"
+                              className="h-7 w-7 text-muted-foreground hover:text-foreground"
                               aria-label={t('opportunities:editOpportunity')}
                               title={t('opportunities:editOpportunity')}
                               onClick={() => setEditing(opportunity)}
@@ -187,7 +187,7 @@ const Opportunities = () => {
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="h-7 w-7 text-slate-500 hover:text-red-600"
+                              className="h-7 w-7 text-muted-foreground hover:text-destructive-muted-foreground"
                               aria-label={t('opportunities:deleteOpportunity')}
                               title={t('opportunities:deleteOpportunity')}
                               onClick={() => setDeletingId(opportunity.id)}
@@ -197,20 +197,20 @@ const Opportunities = () => {
                             </Button>
                           </div>
                         </div>
-                        <p className="text-sm text-slate-600 mb-2" data-testid="opportunities-opportunity-account">{opportunity.accountName}</p>
+                        <p className="text-sm text-muted-foreground mb-2" data-testid="opportunities-opportunity-account">{opportunity.accountName}</p>
                         <div className="flex justify-between items-center mb-2" data-testid="opportunities-opportunity-metrics">
-                          <span className="font-semibold text-emerald-600" data-testid="opportunities-opportunity-amount">
+                          <span className="font-semibold text-success-muted-foreground" data-testid="opportunities-opportunity-amount">
                             ${opportunity.amount.toLocaleString()}
                           </span>
                           <Badge variant="outline" data-testid="opportunities-opportunity-probability">
                             {opportunity.probability}%
                           </Badge>
                         </div>
-                        <div className="text-xs text-slate-500" data-testid="opportunities-opportunity-close-date">
+                        <div className="text-xs text-muted-foreground" data-testid="opportunities-opportunity-close-date">
                           <span data-testid="opportunities-close-date-label">{t('opportunities:close')}: </span>
                           <span data-testid="opportunities-close-date-value">{opportunity.closeDate.toLocaleDateString()}</span>
                         </div>
-                        <div className="text-xs text-slate-500 mt-1" data-testid="opportunities-opportunity-owner">
+                        <div className="text-xs text-muted-foreground mt-1" data-testid="opportunities-opportunity-owner">
                           <span data-testid="opportunities-owner-label">{t('opportunities:fields.owner')}: </span>
                           <span data-testid="opportunities-owner-value">{opportunity.owner}</span>
                         </div>
@@ -219,7 +219,7 @@ const Opportunities = () => {
                   ))}
 
                   {stageOpportunities.length === 0 && (
-                    <div className="text-center py-8 text-slate-400" data-testid="opportunities-empty-stage">
+                    <div className="text-center py-8 text-muted-foreground" data-testid="opportunities-empty-stage">
                       <span data-testid="opportunities-empty-stage-message">{t('opportunities:noOpportunitiesInStage')}</span>
                     </div>
                   )}
@@ -253,7 +253,7 @@ const Opportunities = () => {
             <AlertDialogCancel data-testid="opportunities-delete-cancel">{t('common:cancel')}</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleDelete}
-              className="bg-red-600 hover:bg-red-700"
+              className="bg-destructive hover:bg-destructive"
               data-testid="opportunities-delete-confirm"
             >
               {t('common:delete')}

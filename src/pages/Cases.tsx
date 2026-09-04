@@ -101,22 +101,22 @@ const Cases = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'New': return 'bg-blue-100 text-blue-700';
-      case 'In Progress': return 'bg-yellow-100 text-yellow-700';
-      case 'Pending': return 'bg-orange-100 text-orange-700';
-      case 'Resolved': return 'bg-emerald-100 text-emerald-700';
-      case 'Closed': return 'bg-gray-100 text-gray-700';
-      default: return 'bg-gray-100 text-gray-700';
+      case 'New': return 'bg-info-muted text-info-muted-foreground';
+      case 'In Progress': return 'bg-warning-muted text-warning-muted-foreground';
+      case 'Pending': return 'bg-warning-muted text-warning-muted-foreground';
+      case 'Resolved': return 'bg-success-muted text-success-muted-foreground';
+      case 'Closed': return 'bg-muted text-foreground';
+      default: return 'bg-muted text-foreground';
     }
   };
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'Critical': return 'bg-red-100 text-red-700';
-      case 'High': return 'bg-orange-100 text-orange-700';
-      case 'Medium': return 'bg-yellow-100 text-yellow-700';
-      case 'Low': return 'bg-green-100 text-green-700';
-      default: return 'bg-gray-100 text-gray-700';
+      case 'Critical': return 'bg-destructive-muted text-destructive-muted-foreground';
+      case 'High': return 'bg-warning-muted text-warning-muted-foreground';
+      case 'Medium': return 'bg-warning-muted text-warning-muted-foreground';
+      case 'Low': return 'bg-success-muted text-success-muted-foreground';
+      default: return 'bg-muted text-foreground';
     }
   };
 
@@ -133,21 +133,21 @@ const Cases = () => {
   if (loading) {
     return (
       <div className="p-8 flex items-center justify-center" data-testid="cases-loading-container">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-500" data-testid="cases-loading-spinner"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-success" data-testid="cases-loading-spinner"></div>
       </div>
     );
   }
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen" data-testid="cases-main-container">
+    <div className="p-4 sm:p-6 lg:p-8 bg-muted min-h-screen" data-testid="cases-main-container">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 sm:mb-8" data-testid="cases-header-section">
         <div data-testid="cases-header-content">
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800" data-testid="cases-page-title">{t('cases:title')}</h1>
-          <p className="text-slate-600 mt-1 sm:mt-2 text-sm sm:text-base" data-testid="cases-page-subtitle">{t('cases:subtitle')}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground" data-testid="cases-page-title">{t('cases:title')}</h1>
+          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base" data-testid="cases-page-subtitle">{t('cases:subtitle')}</p>
         </div>
         <Button 
-          className="bg-emerald-600 hover:bg-emerald-700 w-full sm:w-auto" 
+          className="bg-success hover:bg-success w-full sm:w-auto" 
           onClick={() => setIsModalOpen(true)}
           data-testid="cases-new-case-button"
         >
@@ -159,7 +159,7 @@ const Cases = () => {
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6" data-testid="cases-filters-section">
         <Select value={statusFilter} onValueChange={setStatusFilter} data-testid="cases-status-filter">
-          <SelectTrigger className="w-full sm:w-48 bg-white" data-testid="cases-status-filter-trigger">
+          <SelectTrigger className="w-full sm:w-48 bg-card" data-testid="cases-status-filter-trigger">
             <SelectValue placeholder={t('cases:filterByStatus')} data-testid="cases-status-filter-value" />
           </SelectTrigger>
           <SelectContent data-testid="cases-status-filter-content">
@@ -173,7 +173,7 @@ const Cases = () => {
         </Select>
 
         <Select value={priorityFilter} onValueChange={setPriorityFilter} data-testid="cases-priority-filter">
-          <SelectTrigger className="w-full sm:w-48 bg-white" data-testid="cases-priority-filter-trigger">
+          <SelectTrigger className="w-full sm:w-48 bg-card" data-testid="cases-priority-filter-trigger">
             <SelectValue placeholder={t('cases:filterByPriority')} data-testid="cases-priority-filter-value" />
           </SelectTrigger>
           <SelectContent data-testid="cases-priority-filter-content">
@@ -189,13 +189,13 @@ const Cases = () => {
       {/* Cases List */}
       <div className="space-y-4" data-testid="cases-list">
         {filteredCases.map((case_) => (
-          <Card key={case_.id} className="bg-white shadow-sm hover:shadow-md transition-shadow" data-testid={`case-card-${case_.id}`}>
+          <Card key={case_.id} className="bg-card shadow-sm hover:shadow-md transition-shadow" data-testid={`case-card-${case_.id}`}>
             <CardContent className="p-6" data-testid={`case-card-content-${case_.id}`}>
               <div className="flex items-start justify-between" data-testid={`case-card-row-${case_.id}`}>
                 <div className="flex-1" data-testid={`case-info-section-${case_.id}`}>
                   <div className="flex items-center space-x-3 mb-2" data-testid={`case-header-${case_.id}`}>
-                    <HelpCircle className="h-5 w-5 text-slate-500" data-testid={`case-icon-${case_.id}`} />
-                    <h3 className="font-semibold text-slate-800" data-testid={`case-subject-${case_.id}`}>{case_.subject}</h3>
+                    <HelpCircle className="h-5 w-5 text-muted-foreground" data-testid={`case-icon-${case_.id}`} />
+                    <h3 className="font-semibold text-foreground" data-testid={`case-subject-${case_.id}`}>{case_.subject}</h3>
                     <Badge className={getStatusColor(case_.status)} variant="secondary" data-testid={`case-status-badge-${case_.id}`}>
                       <span data-testid={`case-status-text-${case_.id}`}>{case_.status}</span>
                     </Badge>
@@ -207,30 +207,30 @@ const Cases = () => {
                     </Badge>
                   </div>
                   
-                  <p className="text-slate-600 mb-4" data-testid={`case-description-${case_.id}`}>{case_.description}</p>
+                  <p className="text-muted-foreground mb-4" data-testid={`case-description-${case_.id}`}>{case_.description}</p>
                   
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm" data-testid={`case-details-grid-${case_.id}`}>
                       <div data-testid={`case-account-info-${case_.id}`}>
-                        <label className="text-slate-500" data-testid={`case-account-label-${case_.id}`}>{t('cases:fields.account')}</label>
-                        <p className="font-medium text-slate-800" data-testid={`case-account-name-${case_.id}`}>{case_.accountName}</p>
+                        <label className="text-muted-foreground" data-testid={`case-account-label-${case_.id}`}>{t('cases:fields.account')}</label>
+                        <p className="font-medium text-foreground" data-testid={`case-account-name-${case_.id}`}>{case_.accountName}</p>
                       </div>
                       <div data-testid={`case-contact-info-${case_.id}`}>
-                        <label className="text-slate-500" data-testid={`case-contact-label-${case_.id}`}>{t('cases:fields.contact')}</label>
-                        <p className="font-medium text-slate-800" data-testid={`case-contact-name-${case_.id}`}>{case_.contactName}</p>
+                        <label className="text-muted-foreground" data-testid={`case-contact-label-${case_.id}`}>{t('cases:fields.contact')}</label>
+                        <p className="font-medium text-foreground" data-testid={`case-contact-name-${case_.id}`}>{case_.contactName}</p>
                       </div>
                       <div data-testid={`case-type-info-${case_.id}`}>
-                        <label className="text-slate-500" data-testid={`case-type-label-${case_.id}`}>{t('cases:fields.type')}</label>
-                        <p className="font-medium text-slate-800" data-testid={`case-type-value-${case_.id}`}>{case_.type}</p>
+                        <label className="text-muted-foreground" data-testid={`case-type-label-${case_.id}`}>{t('cases:fields.type')}</label>
+                        <p className="font-medium text-foreground" data-testid={`case-type-value-${case_.id}`}>{case_.type}</p>
                       </div>
                       <div data-testid={`case-owner-info-${case_.id}`}>
-                        <label className="text-slate-500" data-testid={`case-owner-label-${case_.id}`}>{t('cases:fields.owner')}</label>
-                        <p className="font-medium text-slate-800" data-testid={`case-owner-name-${case_.id}`}>{case_.owner}</p>
+                        <label className="text-muted-foreground" data-testid={`case-owner-label-${case_.id}`}>{t('cases:fields.owner')}</label>
+                        <p className="font-medium text-foreground" data-testid={`case-owner-name-${case_.id}`}>{case_.owner}</p>
                     </div>
                   </div>
                 </div>
                 
                 <div className="flex flex-col items-end space-y-2" data-testid={`case-actions-section-${case_.id}`}>
-                  <div className="text-xs text-slate-500 text-right" data-testid={`case-metadata-${case_.id}`}>
+                  <div className="text-xs text-muted-foreground text-right" data-testid={`case-metadata-${case_.id}`}>
                     <p data-testid={`case-id-${case_.id}`}>{t('cases:fields.caseNumber')} #{case_.id}</p>
                     <p data-testid={`case-created-date-${case_.id}`}>{t('cases:fields.created')}: {case_.createdAt.toLocaleDateString()}</p>
                   </div>
@@ -248,7 +248,7 @@ const Cases = () => {
                       variant="outline"
                       size="sm"
                       onClick={() => handleDelete(case_.id)}
-                      className="text-red-600 hover:text-red-700"
+                      className="text-destructive-muted-foreground hover:text-destructive-muted-foreground"
                       data-testid={`case-delete-button-${case_.id}`}
                     >
                       <Trash2 className="h-4 w-4" data-testid={`case-delete-icon-${case_.id}`} />
@@ -263,7 +263,7 @@ const Cases = () => {
 
       {filteredCases.length === 0 && (
         <div className="text-center py-12" data-testid="cases-empty-state">
-          <p className="text-slate-500" data-testid="cases-empty-message">{t('cases:noResults')}</p>
+          <p className="text-muted-foreground" data-testid="cases-empty-message">{t('cases:noResults')}</p>
         </div>
       )}
 

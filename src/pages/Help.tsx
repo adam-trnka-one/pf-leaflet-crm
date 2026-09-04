@@ -451,19 +451,19 @@ const Help = () => {
   );
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-muted">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-white/20 shadow-sm">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-lg border-b border-border/20 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
-              <Link to="/" className="flex items-center text-slate-600 hover:text-slate-900 transition-colors">
+              <Link to="/" className="flex items-center text-muted-foreground hover:text-foreground transition-colors">
                 <ArrowLeft className="h-5 w-5 mr-2" />
                 Back to Home
               </Link>
-              <div className="h-6 border-l border-slate-300"></div>
+              <div className="h-6 border-l border-border"></div>
               <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
-              <h1 className="text-xl font-semibold text-slate-900">Help Center</h1>
+              <h1 className="text-xl font-semibold text-foreground">Help Center</h1>
             </div>
             <Button asChild style={{ backgroundColor: '#4AB830' }} className="hover:opacity-90">
               <Link to="/login">
@@ -475,7 +475,7 @@ const Help = () => {
       </header>
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-leaflet-green to-green-500 text-white py-16 mt-16">
+      <div className="bg-gradient-to-r from-leaflet-green to-success text-white py-16 mt-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl font-bold mb-4">Leaflet CRM Help Center</h1>
           <p className="text-xl opacity-90 mb-8">
@@ -484,13 +484,13 @@ const Help = () => {
           
           {/* Search */}
           <div className="relative max-w-md mx-auto">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <Input
               type="text"
               placeholder="Search help articles..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 bg-white text-slate-900 placeholder-slate-500 border-slate-300 focus:border-leaflet-green focus:ring-leaflet-green"
+              className="pl-10 bg-card text-foreground placeholder:text-muted-foreground border-border focus:border-leaflet-green focus:ring-leaflet-green"
             />
           </div>
         </div>
@@ -533,7 +533,7 @@ const Help = () => {
                   <div className="p-2 bg-leaflet-green/10 rounded-lg">
                     <Icon className="h-6 w-6 text-leaflet-green" />
                   </div>
-                  <h2 className="text-2xl font-bold text-slate-900">{category.title}</h2>
+                  <h2 className="text-2xl font-bold text-foreground">{category.title}</h2>
                 </div>
                 
                 <Card>
@@ -541,11 +541,11 @@ const Help = () => {
                     <Accordion type="single" collapsible className="w-full">
                       {category.articles.map((article, index) => (
                         <AccordionItem key={index} value={`${category.id}-${index}`}>
-                          <AccordionTrigger className="px-6 py-4 text-left hover:no-underline hover:bg-slate-50">
+                          <AccordionTrigger className="px-6 py-4 text-left hover:no-underline hover:bg-muted">
                             <span className="font-medium">{article.title}</span>
                           </AccordionTrigger>
                           <AccordionContent className="px-6 pb-4">
-                            <div className="prose prose-slate max-w-none text-slate-600">
+                            <div className="prose prose-slate max-w-none text-muted-foreground">
                               {article.content}
                             </div>
                           </AccordionContent>
@@ -562,30 +562,30 @@ const Help = () => {
         {/* No Results */}
         {filteredCategories.length === 0 && (
           <div className="text-center py-12">
-            <div className="text-slate-400 mb-4">
+            <div className="text-muted-foreground mb-4">
               <Search className="h-12 w-12 mx-auto" />
             </div>
-            <h3 className="text-lg font-medium text-slate-900 mb-2">No articles found</h3>
-            <p className="text-slate-600">Try adjusting your search terms or browse all categories above.</p>
+            <h3 className="text-lg font-medium text-foreground mb-2">No articles found</h3>
+            <p className="text-muted-foreground">Try adjusting your search terms or browse all categories above.</p>
           </div>
         )}
       </div>
 
       {/* Footer */}
-      <footer className="px-8 py-10 bg-gray-900 text-white">
+      <footer className="px-8 py-10 bg-secondary text-white">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-center mb-6">
             <img src="/lovable-uploads/c0907da0-bd7a-4b1e-8a74-d019f4a02220.png" alt="Leaflet CRM" className="h-8 w-auto" />
           </div>
           <div className="flex justify-center space-x-8 mb-6">
-            <Link to="/blog" className="text-gray-400 hover:text-white transition-colors">
+            <Link to="/blog" className="text-muted-foreground hover:text-white transition-colors">
               Blog
             </Link>
-            <Link to="/help" className="text-gray-400 hover:text-white transition-colors">
+            <Link to="/help" className="text-muted-foreground hover:text-white transition-colors">
               Help
             </Link>
           </div>
-          <p className="text-gray-400 text-lg text-center">
+          <p className="text-muted-foreground text-lg text-center">
             © 2025 Leaflet CRM. All rights reserved.
           </p>
         </div>

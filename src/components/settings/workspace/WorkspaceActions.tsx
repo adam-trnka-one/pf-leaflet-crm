@@ -95,7 +95,7 @@ export const WorkspaceActions = ({
         <div className="flex flex-col sm:flex-row gap-2 md:gap-3" data-testid="workspace-secondary-actions">
           <Button 
             variant="outline" 
-            className="text-orange-600 border-orange-200 hover:bg-orange-50 w-full sm:w-auto"
+            className="text-warning-muted-foreground border-warning/40 hover:bg-warning-muted w-full sm:w-auto"
             onClick={handleResetDatabase}
             data-testid="workspace-reset-database-button"
           >
@@ -113,7 +113,7 @@ export const WorkspaceActions = ({
         </div>
         <div className="flex flex-col sm:items-end gap-2" data-testid="workspace-primary-actions">
           <Button 
-            className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 w-full sm:w-auto"
+            className="bg-success hover:bg-success disabled:opacity-50 w-full sm:w-auto"
             onClick={handleSaveAndInitiate}
             disabled={isInitiating}
             data-testid="workspace-save-initiate-button"

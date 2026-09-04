@@ -176,7 +176,7 @@ const NewOpportunityModal = ({ open, onOpenChange, onOpportunityCreated }: NewOp
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="new-opportunity-cancel-button">
             {t('common:cancel')}
           </Button>
-          <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700" data-testid="new-opportunity-create-button">
+          <Button onClick={handleSubmit} className="bg-success hover:bg-success" data-testid="new-opportunity-create-button">
             {t('opportunities:modal.createButton')}
           </Button>
         </DialogFooter>

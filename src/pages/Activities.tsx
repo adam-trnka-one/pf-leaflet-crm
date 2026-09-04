@@ -84,11 +84,11 @@ const Activities = () => {
   };
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 bg-slate-50 min-h-screen" data-testid="activities-main-container">
+    <div className="p-4 sm:p-6 lg:p-8 bg-muted min-h-screen" data-testid="activities-main-container">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 sm:mb-8" data-testid="activities-header-section">
         <div data-testid="activities-header-content">
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800" data-testid="activities-page-title">{t('activities:title')}</h1>
-          <p className="text-slate-600 mt-1 sm:mt-2 text-sm sm:text-base" data-testid="activities-page-subtitle">{t('activities:subtitle')}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground" data-testid="activities-page-title">{t('activities:title')}</h1>
+          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base" data-testid="activities-page-subtitle">{t('activities:subtitle')}</p>
         </div>
         <Button 
           className="bg-[#4AB831] hover:bg-[#3da127] w-full sm:w-auto"
@@ -102,7 +102,7 @@ const Activities = () => {
 
       <div className="space-y-4" data-testid="activities-list">
         {activities.map((activity) => (
-          <Card key={activity.id} className="bg-white shadow-sm" data-testid="activities-activity-card">
+          <Card key={activity.id} className="bg-card shadow-sm" data-testid="activities-activity-card">
             <CardContent className="p-4 sm:p-6" data-testid="activities-card-content">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" data-testid="activities-card-row">
                 <div className="flex items-center space-x-4" data-testid="activities-info-section">
@@ -110,8 +110,8 @@ const Activities = () => {
                     {getActivityIcon(activity.type)}
                   </div>
                   <div className="flex-1 min-w-0" data-testid="activities-details">
-                    <h3 className="font-semibold text-slate-800 truncate" data-testid="activities-subject">{activity.subject}</h3>
-                    <p className="text-sm text-slate-600" data-testid="activities-metadata">
+                    <h3 className="font-semibold text-foreground truncate" data-testid="activities-subject">{activity.subject}</h3>
+                    <p className="text-sm text-muted-foreground" data-testid="activities-metadata">
                       <span data-testid="activities-type">{activity.type}</span> • <span data-testid="activities-date">{activity.date.toLocaleDateString()}</span>
                     </p>
                   </div>
@@ -119,9 +119,9 @@ const Activities = () => {
                 <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4" data-testid="activities-actions">
                   <div className="flex-shrink-0" data-testid="activities-status-section">
                     {activity.completed ? (
-                      <span className="text-emerald-600 text-sm" data-testid="activities-completed-status">{t('activities:completed')}</span>
+                      <span className="text-success-muted-foreground text-sm" data-testid="activities-completed-status">{t('activities:completed')}</span>
                     ) : (
-                      <span className="text-orange-600 text-sm" data-testid="activities-pending-status">{t('activities:pending')}</span>
+                      <span className="text-warning-muted-foreground text-sm" data-testid="activities-pending-status">{t('activities:pending')}</span>
                     )}
                   </div>
                   <div className="flex gap-2">
@@ -137,7 +137,7 @@ const Activities = () => {
                       variant="outline"
                       size="sm"
                       onClick={() => handleDelete(activity.id)}
-                      className="text-red-600 hover:text-red-700"
+                      className="text-destructive-muted-foreground hover:text-destructive-muted-foreground"
                       data-testid="activities-delete-button"
                     >
                       <Trash2 className="h-4 w-4" data-testid="activities-delete-icon" />

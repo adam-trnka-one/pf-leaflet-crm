@@ -207,7 +207,7 @@ const EditCaseModal = ({ open, onOpenChange, case_, onCaseUpdated }: EditCaseMod
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="edit-case-cancel-button">
             {t('common:cancel')}
           </Button>
-          <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700" data-testid="edit-case-update-button">
+          <Button onClick={handleSubmit} className="bg-success hover:bg-success" data-testid="edit-case-update-button">
             {t('common:update')}
           </Button>
         </DialogFooter>

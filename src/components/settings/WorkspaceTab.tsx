@@ -24,14 +24,14 @@ export const WorkspaceTab = () => {
   } = useWorkspaceForm();
 
   return (
-    <Card className="bg-white shadow-sm" data-testid="workspace-card">
+    <Card className="bg-card shadow-sm" data-testid="workspace-card">
       <CardHeader data-testid="workspace-card-header">
         <CardTitle className="flex items-center space-x-2" data-testid="workspace-card-title">
           <Building className="h-5 w-5" data-testid="workspace-icon" />
           <span data-testid="workspace-title-text">{t('workspace.title')}</span>
         </CardTitle>
         <div className="flex items-center justify-between">
-          <p className="text-sm text-slate-600" data-testid="workspace-description">
+          <p className="text-sm text-muted-foreground" data-testid="workspace-description">
             {t('workspace.title')}
           </p>
           <span className="text-xs text-muted-foreground font-mono select-all" data-testid="app-version">v{APP_VERSION}</span>

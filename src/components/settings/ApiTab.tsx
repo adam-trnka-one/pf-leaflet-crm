@@ -9,13 +9,13 @@ export const ApiTab = () => {
   const { t } = useTranslation('settings');
 
   return (
-    <Card className="bg-white shadow-sm" data-testid="api-card">
+    <Card className="bg-card shadow-sm" data-testid="api-card">
       <CardHeader data-testid="api-card-header">
         <CardTitle data-testid="api-card-title">{t('api.title')}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4" data-testid="api-card-content">
-        <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg" data-testid="api-warning">
-          <p className="text-sm text-yellow-800" data-testid="api-warning-text">
+        <div className="p-4 bg-warning-muted border border-warning/40 rounded-lg" data-testid="api-warning">
+          <p className="text-sm text-warning-muted-foreground" data-testid="api-warning-text">
             {t('api.subtitle')}
           </p>
         </div>

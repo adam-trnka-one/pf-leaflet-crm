@@ -84,7 +84,7 @@ const NewProjectModal = ({ open, onOpenChange, onProjectCreated }: NewProjectMod
             <Label>{t("projects:columns.account")}</Label>
             <Select value={formData.accountId} onValueChange={(v) => setFormData((p) => ({ ...p, accountId: v }))}>
               <SelectTrigger className="new-project-account"><SelectValue /></SelectTrigger>
-              <SelectContent className="bg-white z-50">
+              <SelectContent className="bg-card z-50">
                 {accounts.slice(0, 20).map((a) => (
                   <SelectItem key={a.id} value={a.id}>{a.name}</SelectItem>
                 ))}
@@ -97,7 +97,7 @@ const NewProjectModal = ({ open, onOpenChange, onProjectCreated }: NewProjectMod
               <Label>{t("projects:columns.status")}</Label>
               <Select value={formData.status} onValueChange={(v) => setFormData((p) => ({ ...p, status: v }))}>
                 <SelectTrigger className="new-project-status"><SelectValue /></SelectTrigger>
-                <SelectContent className="bg-white z-50">
+                <SelectContent className="bg-card z-50">
                   <SelectItem value="Active">{t("projects:status.active")}</SelectItem>
                   <SelectItem value="On Hold">{t("projects:status.onHold")}</SelectItem>
                   <SelectItem value="Completed">{t("projects:status.completed")}</SelectItem>
@@ -109,7 +109,7 @@ const NewProjectModal = ({ open, onOpenChange, onProjectCreated }: NewProjectMod
               <Label>{t("projects:columns.priority")}</Label>
               <Select value={formData.priority} onValueChange={(v) => setFormData((p) => ({ ...p, priority: v }))}>
                 <SelectTrigger className="new-project-priority"><SelectValue /></SelectTrigger>
-                <SelectContent className="bg-white z-50">
+                <SelectContent className="bg-card z-50">
                   <SelectItem value="Low">{t("projects:priority.low")}</SelectItem>
                   <SelectItem value="Medium">{t("projects:priority.medium")}</SelectItem>
                   <SelectItem value="High">{t("projects:priority.high")}</SelectItem>

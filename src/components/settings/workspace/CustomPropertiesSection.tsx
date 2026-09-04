@@ -31,7 +31,7 @@ export const CustomPropertiesSection = ({ customProperties, setCustomProperties 
   return (
     <div data-testid="workspace-custom-properties-section">
       <div className="flex items-center justify-between mb-4" data-testid="workspace-custom-properties-header">
-        <Label className="text-sm font-medium text-slate-700" data-testid="workspace-custom-properties-label">{t('workspace.customProperties')}</Label>
+        <Label className="text-sm font-medium text-foreground" data-testid="workspace-custom-properties-label">{t('workspace.customProperties')}</Label>
         <Button 
           variant="outline" 
           size="sm" 
@@ -66,7 +66,7 @@ export const CustomPropertiesSection = ({ customProperties, setCustomProperties 
                 variant="ghost" 
                 size="sm"
                 onClick={() => removeCustomProperty(index)}
-                className="text-slate-500 hover:text-red-500"
+                className="text-muted-foreground hover:text-destructive"
                 data-testid={`workspace-remove-property-${index}`}
               >
                 <X className="h-4 w-4" data-testid={`workspace-remove-property-icon-${index}`} />

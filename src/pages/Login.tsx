@@ -79,7 +79,7 @@ const Login = () => {
   return (
     <div className="min-h-screen flex">
       {/* Left side - Form */}
-      <div className="flex-1 flex items-center justify-center bg-white px-8 lg:px-16">
+      <div className="flex-1 flex items-center justify-center bg-card px-8 lg:px-16">
         <div className="w-full max-w-md">
           {/* Logo */}
           <div className="mb-8">
@@ -88,7 +88,7 @@ const Login = () => {
 
           {/* Welcome Text */}
           <div className="mb-8">
-            <h1 className="text-3xl font-light text-gray-800 mb-2">
+            <h1 className="text-3xl font-light text-foreground mb-2">
               Hello,
             </h1>
             <h2 className="text-3xl font-bold text-leaflet-green">
@@ -129,10 +129,10 @@ const Login = () => {
           <div className="mt-6 space-y-3">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-gray-200" />
+                <span className="w-full border-t border-border" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-white px-2 text-gray-400">Or continue with</span>
+                <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
               </div>
             </div>
 
@@ -140,7 +140,7 @@ const Login = () => {
               type="button"
               onClick={handleNewUser}
               variant="outline"
-              className="w-full h-12 border-2 border-gray-200 hover:border-leaflet-green hover:bg-leaflet-green/5 font-medium rounded-md"
+              className="w-full h-12 border-2 border-border hover:border-leaflet-green hover:bg-leaflet-green/5 font-medium rounded-md"
             >
               New user
             </Button>
@@ -149,7 +149,7 @@ const Login = () => {
 
           {/* Demo Info */}
           <div className="mt-8">
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-muted-foreground">
               Demo credentials: any email/password
             </p>
           </div>
@@ -157,18 +157,18 @@ const Login = () => {
       </div>
 
       {/* Right side - Gradient Background */}
-      <div className="hidden lg:flex flex-1 bg-gradient-to-br from-leaflet-green via-green-400 to-emerald-500 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-leaflet-green/90 via-green-400/80 to-emerald-500/90"></div>
+      <div className="hidden lg:flex flex-1 bg-gradient-to-br from-leaflet-green via-success to-success relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-leaflet-green/90 via-success/80 to-success/90"></div>
         
         {/* Decorative circles */}
-        <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-white/10 rounded-full"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-white/10 rounded-full"></div>
-        <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-white/20 rounded-full"></div>
+        <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-card/10 rounded-full"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-card/10 rounded-full"></div>
+        <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-card/20 rounded-full"></div>
         
         {/* Gradient overlay shapes */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-gradient-to-bl from-green-400/30 to-transparent rounded-full transform translate-x-1/3 -translate-y-1/3"></div>
-          <div className="absolute bottom-0 left-0 w-2/3 h-2/3 bg-gradient-to-tr from-emerald-400/30 to-transparent rounded-full transform -translate-x-1/3 translate-y-1/3"></div>
+          <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-gradient-to-bl from-success/30 to-transparent rounded-full transform translate-x-1/3 -translate-y-1/3"></div>
+          <div className="absolute bottom-0 left-0 w-2/3 h-2/3 bg-gradient-to-tr from-success/30 to-transparent rounded-full transform -translate-x-1/3 translate-y-1/3"></div>
         </div>
       </div>
     </div>

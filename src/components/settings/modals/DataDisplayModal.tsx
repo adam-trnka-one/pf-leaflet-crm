@@ -18,7 +18,7 @@ export const DataDisplayModal = ({ isOpen, onClose, displayData }: DataDisplayMo
           <DialogTitle data-testid="data-display-modal-title">ProductFruits Script Format</DialogTitle>
         </DialogHeader>
         <div className="space-y-4" data-testid="data-display-modal-body">
-          <p className="text-sm text-slate-600" data-testid="data-display-description">
+          <p className="text-sm text-muted-foreground" data-testid="data-display-description">
             Here's your workspace data formatted for the ProductFruits script:
           </p>
           <Textarea

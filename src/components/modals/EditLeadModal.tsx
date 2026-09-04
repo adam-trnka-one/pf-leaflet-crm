@@ -234,7 +234,7 @@ const EditLeadModal = ({ open, onOpenChange, lead, onLeadUpdated }: EditLeadModa
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="edit-lead-cancel-button">
             {t('common:cancel')}
           </Button>
-          <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700" data-testid="edit-lead-update-button">
+          <Button onClick={handleSubmit} className="bg-success hover:bg-success" data-testid="edit-lead-update-button">
             {t('common:update')}
           </Button>
         </DialogFooter>
