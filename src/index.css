@@ -37,6 +37,39 @@
 
     --radius: 0.5rem;
 
+    --surface: 0 0% 100%;
+    --surface-foreground: 222.2 84% 4.9%;
+    --surface-muted: 210 40% 98%;
+
+    --brand: 104 58% 46%;
+    --brand-foreground: 0 0% 100%;
+    --brand-muted: 104 58% 95%;
+
+    --success: 142 71% 40%;
+    --success-foreground: 0 0% 100%;
+    --success-muted: 142 71% 95%;
+    --success-muted-foreground: 142 71% 28%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 26 83% 14%;
+    --warning-muted: 48 96% 92%;
+    --warning-muted-foreground: 26 83% 30%;
+
+    --info: 217 91% 60%;
+    --info-foreground: 0 0% 100%;
+    --info-muted: 214 95% 94%;
+    --info-muted-foreground: 221 83% 40%;
+
+    --destructive-muted: 0 86% 96%;
+    --destructive-muted-foreground: 0 74% 38%;
+
+    --chart-1: 160 84% 39%;
+    --chart-2: 217 91% 60%;
+    --chart-3: 38 92% 50%;
+    --chart-4: 271 81% 56%;
+    --chart-5: 340 82% 52%;
+    --chart-grid: 214.3 31.8% 91.4%;
+
     --sidebar-background: 0 0% 98%;
 
     --sidebar-foreground: 240 5.3% 26.1%;
