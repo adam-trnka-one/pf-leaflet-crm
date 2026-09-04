@@ -88,13 +88,13 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 222.2 47% 7%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 222.2 40% 11%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 222.2 40% 11%;
     --popover-foreground: 210 40% 98%;
 
     --primary: 210 40% 98%;
@@ -104,24 +104,58 @@
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted-foreground: 215 20.2% 70%;
 
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 62.8% 40%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --border: 217.2 25% 22%;
+    --input: 217.2 25% 22%;
     --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
+
+    --surface: 222.2 40% 11%;
+    --surface-foreground: 210 40% 98%;
+    --surface-muted: 222.2 47% 7%;
+
+    --brand: 104 50% 55%;
+    --brand-foreground: 222.2 47% 7%;
+    --brand-muted: 104 30% 18%;
+
+    --success: 142 60% 45%;
+    --success-foreground: 222.2 47% 7%;
+    --success-muted: 142 40% 16%;
+    --success-muted-foreground: 142 60% 72%;
+
+    --warning: 38 85% 55%;
+    --warning-foreground: 26 83% 10%;
+    --warning-muted: 34 45% 17%;
+    --warning-muted-foreground: 38 90% 72%;
+
+    --info: 217 85% 65%;
+    --info-foreground: 222.2 47% 7%;
+    --info-muted: 217 45% 20%;
+    --info-muted-foreground: 213 90% 78%;
+
+    --destructive-muted: 0 45% 20%;
+    --destructive-muted-foreground: 0 85% 78%;
+
+    --chart-1: 160 70% 50%;
+    --chart-2: 217 85% 65%;
+    --chart-3: 38 85% 58%;
+    --chart-4: 271 70% 68%;
+    --chart-5: 340 75% 63%;
+    --chart-grid: 217.2 25% 22%;
+
+    --sidebar-background: 222.2 45% 9%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-border: 217.2 25% 20%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
@@ -136,21 +170,21 @@
   }
 }
 
-/* Custom green color */
+/* Custom brand green (themed) */
 .bg-leaflet-green {
-  background-color: #4AB831;
+  background-color: hsl(var(--brand));
 }
 
 .hover\:bg-leaflet-green-hover:hover {
-  background-color: #3da127;
+  background-color: hsl(var(--brand) / 0.85);
 }
 
 .text-leaflet-green {
-  color: #4AB831;
+  color: hsl(var(--brand));
 }
 
 .border-leaflet-green {
-  border-color: #4AB831;
+  border-color: hsl(var(--brand));
 }
 
 /* ProductFruits checklist panel styling */
