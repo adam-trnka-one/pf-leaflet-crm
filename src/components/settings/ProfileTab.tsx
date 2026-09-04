@@ -8,6 +8,9 @@ import { useState, useEffect } from "react";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { toast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "next-themes";
+import { Sun, Moon, Monitor } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export const ProfileTab = () => {
   const { t } = useTranslation(['settings', 'common']);
@@ -27,6 +30,13 @@ export const ProfileTab = () => {
       email: workspaceData.email
     }));
   }, [workspaceData]);
+
+  const { theme, setTheme } = useTheme();
+  const themeOptions = [
+    { value: 'light', label: t('common:theme.light', 'Light'), icon: Sun },
+    { value: 'system', label: t('common:theme.system', 'System'), icon: Monitor },
+    { value: 'dark', label: t('common:theme.dark', 'Dark'), icon: Moon },
+  ];
 
   const handleSaveChanges = () => {
     updateWorkspaceData({
@@ -89,6 +99,31 @@ export const ProfileTab = () => {
           />
         </div>
         
+        <Separator data-testid="profile-theme-separator" />
+
+        <div data-testid="profile-theme-field">
+          <Label data-testid="profile-theme-label">{t('common:theme.label', 'Theme')}</Label>
+          <div className="mt-2 grid grid-cols-3 gap-2 max-w-md" data-testid="profile-theme-options">
+            {themeOptions.map(({ value, label, icon: Icon }) => (
+              <button
+                key={value}
+                type="button"
+                onClick={() => setTheme(value)}
+                className={cn(
+                  "flex flex-col items-center gap-2 rounded-lg border-2 p-3 text-sm transition-colors",
+                  theme === value
+                    ? "border-brand bg-brand-muted text-foreground"
+                    : "border-border bg-background text-muted-foreground hover:text-foreground"
+                )}
+                data-testid={`profile-theme-option-${value}`}
+              >
+                <Icon className="h-5 w-5" />
+                <span>{label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
         <Separator data-testid="profile-separator" />
         
         <div className="flex justify-end" data-testid="profile-actions">
