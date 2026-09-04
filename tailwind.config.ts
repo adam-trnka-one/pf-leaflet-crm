@@ -95,6 +95,12 @@ export default {
 					muted: 'hsl(var(--info-muted))',
 					'muted-foreground': 'hsl(var(--info-muted-foreground))'
 				},
+				purple: {
+					DEFAULT: 'hsl(var(--purple))',
+					foreground: 'hsl(var(--purple-foreground))',
+					muted: 'hsl(var(--purple-muted))',
+					'muted-foreground': 'hsl(var(--purple-muted-foreground))'
+				},
 				chart: {
 					1: 'hsl(var(--chart-1))',
 					2: 'hsl(var(--chart-2))',

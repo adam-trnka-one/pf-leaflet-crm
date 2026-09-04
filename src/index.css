@@ -63,6 +63,11 @@
     --destructive-muted: 0 86% 96%;
     --destructive-muted-foreground: 0 74% 38%;
 
+    --purple: 271 81% 56%;
+    --purple-foreground: 0 0% 100%;
+    --purple-muted: 270 95% 96%;
+    --purple-muted-foreground: 272 72% 42%;
+
     --chart-1: 160 84% 39%;
     --chart-2: 217 91% 60%;
     --chart-3: 38 92% 50%;
@@ -141,6 +146,11 @@
 
     --destructive-muted: 0 45% 20%;
     --destructive-muted-foreground: 0 85% 78%;
+
+    --purple: 271 70% 68%;
+    --purple-foreground: 222.2 47% 7%;
+    --purple-muted: 271 40% 22%;
+    --purple-muted-foreground: 270 90% 82%;
 
     --chart-1: 160 70% 50%;
     --chart-2: 217 85% 65%;
