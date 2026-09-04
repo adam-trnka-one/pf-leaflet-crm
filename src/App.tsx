@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { WorkspaceProvider } from "@/contexts/WorkspaceContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useCustomHeadHtml } from "@/hooks/useCustomHeadHtml";
+import { useThemeColorMeta } from "@/hooks/useThemeColorMeta";
+
 import { useState, useEffect } from "react";
 import '@/i18n';
 import RTLProvider from "@/components/RTLProvider";
@@ -40,7 +42,14 @@ const CustomHeadInjector = () => {
   return null;
 };
 
+// Keeps browser chrome (address bar, native controls) in sync with the theme
+const ThemeMeta = () => {
+  useThemeColorMeta();
+  return null;
+};
+
 const queryClient = new QueryClient();
+
 
 const MobileRedirect = ({ children }: { children: React.ReactNode }) => {
   const isMobile = useIsMobile();
@@ -80,6 +89,8 @@ const App = () => (
       <ThemeProvider>
       <RTLProvider>
         <CustomHeadInjector />
+        <ThemeMeta />
+
         <Toaster />
         <Sonner />
         <BrowserRouter>

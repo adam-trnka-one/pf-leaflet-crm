@@ -5,6 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0f1a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" />
     <script>
       (function () {
         try {
@@ -12,17 +15,23 @@
           var dark = stored === 'dark' || (stored === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
           document.documentElement.classList.toggle('dark', dark);
           document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+          var m = document.querySelector('meta[name="theme-color"]:not([media])');
+          if (m) m.setAttribute('content', dark ? '#0a0f1a' : '#ffffff');
         } catch (e) {}
       })();
     </script>
+
     <title>Leaflet CRM - Lighten your workload, Boost your revenue</title>
-    <meta name="description" content="Lovable Generated Project" />
+    <meta name="description" content="Leaflet CRM demo — accounts, contacts, leads, deals and projects in one lightweight workspace." />
     <meta name="author" content="Lovable" />
     <link rel="icon" href="/lovable-uploads/a463ee16-d179-4512-a26c-beef17e76ecd.png" type="image/png">
+    <link rel="canonical" href="https://democrm.productfruits.com/" />
 
-    <meta property="og:title" content="leaflet-crm-bloom" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:title" content="Leaflet CRM - Lighten your workload, Boost your revenue" />
+    <meta property="og:description" content="Leaflet CRM demo — accounts, contacts, leads, deals and projects in one lightweight workspace." />
+    <meta property="og:url" content="https://democrm.productfruits.com/" />
     <meta property="og:type" content="website" />
+
     <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
