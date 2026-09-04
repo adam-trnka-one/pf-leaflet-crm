@@ -146,7 +146,7 @@ const EditQuoteModal = ({ open, onOpenChange, quote, onQuoteUpdated }: EditQuote
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="edit-quote-cancel-button">
             {t('common:cancel')}
           </Button>
-          <Button onClick={handleSubmit} className="bg-[#4AB831] hover:bg-[#3da127]" data-testid="edit-quote-update-button">
+          <Button onClick={handleSubmit} className="bg-brand hover:bg-brand/90 text-brand-foreground" data-testid="edit-quote-update-button">
             {t('common:update')}
           </Button>
         </DialogFooter>

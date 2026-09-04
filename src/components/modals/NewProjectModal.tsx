@@ -146,7 +146,7 @@ const NewProjectModal = ({ open, onOpenChange, onProjectCreated }: NewProjectMod
             <Textarea value={formData.description} onChange={(e) => setFormData((p) => ({ ...p, description: e.target.value }))} className="new-project-description" rows={3} />
           </div>
 
-          <Button type="submit" className="new-project-submit w-full bg-[#4AB831] hover:bg-[#3da127]">{t("projects:newProject")}</Button>
+          <Button type="submit" className="new-project-submit w-full bg-brand hover:bg-brand/90 text-brand-foreground">{t("projects:newProject")}</Button>
         </form>
       </DialogContent>
     </Dialog>

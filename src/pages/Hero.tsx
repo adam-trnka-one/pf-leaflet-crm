@@ -34,7 +34,7 @@ const Hero = () => {
           </button>
         </div>
         <Link to="/login">
-          <Button className="bg-[#4AB831] hover:bg-[#3da127] text-white">
+          <Button className="bg-brand hover:bg-brand/90 text-brand-foreground text-white">
             Sign In
           </Button>
         </Link>
@@ -56,14 +56,14 @@ const Hero = () => {
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <h1 className="text-6xl md:text-7xl font-bold text-white mb-8 leading-tight drop-shadow-2xl">
             Lighten your workload
-            <span className="text-[#4AB831] block mt-4"> Boost your revenue</span>
+            <span className="text-brand block mt-4"> Boost your revenue</span>
           </h1>
           <p className="text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
             Streamline your customer relationships, boost sales productivity, and grow your business with our intuitive CRM platform.
           </p>
           <div className="flex gap-6 justify-center flex-wrap">
             <Link to="/login">
-              <Button size="lg" className="bg-[#4AB831] hover:bg-[#3da127] text-white px-10 py-6 text-xl">
+              <Button size="lg" className="bg-brand hover:bg-brand/90 text-brand-foreground text-white px-10 py-6 text-xl">
                 Get Started
                 <ArrowRight className="ml-3 h-6 w-6" />
               </Button>
@@ -80,7 +80,7 @@ const Hero = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="text-center p-8">
-              <div className="w-20 h-20 bg-[#4AB831] rounded-xl flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 bg-brand rounded-xl flex items-center justify-center mx-auto mb-6">
                 <Users className="h-10 w-10 text-white" />
               </div>
               <h3 className="text-2xl font-semibold text-foreground mb-4">Contact Management</h3>
@@ -89,7 +89,7 @@ const Hero = () => {
               </p>
             </div>
             <div className="text-center p-8">
-              <div className="w-20 h-20 bg-[#4AB831] rounded-xl flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 bg-brand rounded-xl flex items-center justify-center mx-auto mb-6">
                 <Target className="h-10 w-10 text-white" />
               </div>
               <h3 className="text-2xl font-semibold text-foreground mb-4">Sales Pipeline</h3>
@@ -98,7 +98,7 @@ const Hero = () => {
               </p>
             </div>
             <div className="text-center p-8">
-              <div className="w-20 h-20 bg-[#4AB831] rounded-xl flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 bg-brand rounded-xl flex items-center justify-center mx-auto mb-6">
                 <BarChart3 className="h-10 w-10 text-white" />
               </div>
               <h3 className="text-2xl font-semibold text-foreground mb-4">Analytics & Reports</h3>
@@ -123,7 +123,7 @@ const Hero = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-[#4AB831] rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 bg-brand rounded-lg flex items-center justify-center flex-shrink-0">
                 <Shield className="h-6 w-6 text-white" />
               </div>
               <div>
@@ -132,7 +132,7 @@ const Hero = () => {
               </div>
             </div>
             <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-[#4AB831] rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 bg-brand rounded-lg flex items-center justify-center flex-shrink-0">
                 <Zap className="h-6 w-6 text-white" />
               </div>
               <div>
@@ -141,7 +141,7 @@ const Hero = () => {
               </div>
             </div>
             <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-[#4AB831] rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 bg-brand rounded-lg flex items-center justify-center flex-shrink-0">
                 <Globe className="h-6 w-6 text-white" />
               </div>
               <div>
@@ -240,22 +240,22 @@ const Hero = () => {
               </div>
               <ul className="space-y-3">
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-[#4AB831] mr-3" />
+                  <CheckCircle className="h-5 w-5 text-brand mr-3" />
                   <span>Up to 1,000 contacts</span>
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-[#4AB831] mr-3" />
+                  <CheckCircle className="h-5 w-5 text-brand mr-3" />
                   <span>Basic reporting</span>
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-[#4AB831] mr-3" />
+                  <CheckCircle className="h-5 w-5 text-brand mr-3" />
                   <span>Email support</span>
                 </li>
               </ul>
             </div>
             <div className="border-2 border-[#4AB831] rounded-xl p-8 relative">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <span className="bg-[#4AB831] text-white px-4 py-2 rounded-full text-sm font-medium">
+                <span className="bg-brand text-white px-4 py-2 rounded-full text-sm font-medium">
                   Most Popular
                 </span>
               </div>
@@ -266,19 +266,19 @@ const Hero = () => {
               </div>
               <ul className="space-y-3">
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-[#4AB831] mr-3" />
+                  <CheckCircle className="h-5 w-5 text-brand mr-3" />
                   <span>Up to 10,000 contacts</span>
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-[#4AB831] mr-3" />
+                  <CheckCircle className="h-5 w-5 text-brand mr-3" />
                   <span>Advanced analytics</span>
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-[#4AB831] mr-3" />
+                  <CheckCircle className="h-5 w-5 text-brand mr-3" />
                   <span>Priority support</span>
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-[#4AB831] mr-3" />
+                  <CheckCircle className="h-5 w-5 text-brand mr-3" />
                   <span>API access</span>
                 </li>
               </ul>
@@ -291,19 +291,19 @@ const Hero = () => {
               </div>
               <ul className="space-y-3">
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-[#4AB831] mr-3" />
+                  <CheckCircle className="h-5 w-5 text-brand mr-3" />
                   <span>Unlimited contacts</span>
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-[#4AB831] mr-3" />
+                  <CheckCircle className="h-5 w-5 text-brand mr-3" />
                   <span>Custom integrations</span>
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-[#4AB831] mr-3" />
+                  <CheckCircle className="h-5 w-5 text-brand mr-3" />
                   <span>24/7 phone support</span>
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-[#4AB831] mr-3" />
+                  <CheckCircle className="h-5 w-5 text-brand mr-3" />
                   <span>Custom training</span>
                 </li>
               </ul>
@@ -317,19 +317,19 @@ const Hero = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-[#4AB831] mb-2">50K+</div>
+              <div className="text-4xl font-bold text-brand mb-2">50K+</div>
               <div className="text-muted-foreground">Active Users</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-[#4AB831] mb-2">99.9%</div>
+              <div className="text-4xl font-bold text-brand mb-2">99.9%</div>
               <div className="text-muted-foreground">Uptime</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-[#4AB831] mb-2">150+</div>
+              <div className="text-4xl font-bold text-brand mb-2">150+</div>
               <div className="text-muted-foreground">Countries</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-[#4AB831] mb-2">24/7</div>
+              <div className="text-4xl font-bold text-brand mb-2">24/7</div>
               <div className="text-muted-foreground">Support</div>
             </div>
           </div>
@@ -337,7 +337,7 @@ const Hero = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="px-8 py-24 bg-[#4AB831]">
+      <section className="px-8 py-24 bg-brand">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-8">
             Ready to transform your business?
@@ -346,7 +346,7 @@ const Hero = () => {
             Join thousands of businesses already using Leaflet CRM to grow their revenue.
           </p>
           <Link to="/login">
-            <Button size="lg" className="bg-card text-[#4AB831] hover:bg-muted px-10 py-6 text-xl">
+            <Button size="lg" className="bg-card text-brand hover:bg-muted px-10 py-6 text-xl">
               Get Started
               <ArrowRight className="ml-3 h-6 w-6" />
             </Button>

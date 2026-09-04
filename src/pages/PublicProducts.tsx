@@ -69,7 +69,7 @@ const PublicProducts = () => {
                     <span className="text-sm font-normal text-muted-foreground">/month</span>
                   </div>
                 </div>
-                <Button className="w-full bg-[#4AB831] hover:bg-[#3da127]">
+                <Button className="w-full bg-brand hover:bg-brand/90 text-brand-foreground">
                   Get Started
                 </Button>
               </CardContent>

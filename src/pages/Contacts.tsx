@@ -75,7 +75,7 @@ const Contacts = () => {
           <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base" data-testid="contacts-page-subtitle">{t('contacts:subtitle')}</p>
         </div>
         <Button 
-          className="bg-[#4AB831] hover:bg-[#3da127] w-full sm:w-auto"
+          className="bg-brand hover:bg-brand/90 text-brand-foreground w-full sm:w-auto"
           onClick={() => setIsModalOpen(true)}
           data-testid="contacts-new-contact-button"
         >
