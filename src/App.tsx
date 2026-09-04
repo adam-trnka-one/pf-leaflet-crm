@@ -89,6 +89,8 @@ const App = () => (
       <ThemeProvider>
       <RTLProvider>
         <CustomHeadInjector />
+        <ThemeMeta />
+
         <Toaster />
         <Sonner />
         <BrowserRouter>
