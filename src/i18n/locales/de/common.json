@@ -52,5 +52,11 @@
   "success": "Erfolg",
   "confirmDelete": "Sind Sie sicher, dass Sie dieses Element löschen möchten?",
   "deleted": "Element erfolgreich gelöscht",
-  "fillRequired": "Bitte füllen Sie alle Pflichtfelder aus"
+  "fillRequired": "Bitte füllen Sie alle Pflichtfelder aus",
+  "theme": {
+    "label": "Design",
+    "light": "Hell",
+    "system": "System",
+    "dark": "Dunkel"
+  }
 }

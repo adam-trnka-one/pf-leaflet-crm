@@ -52,5 +52,11 @@
   "success": "Sucesso",
   "confirmDelete": "Tem certeza de que deseja excluir este item?",
   "deleted": "Item excluído com sucesso",
-  "fillRequired": "Por favor, preencha todos os campos obrigatórios"
+  "fillRequired": "Por favor, preencha todos os campos obrigatórios",
+  "theme": {
+    "label": "Tema",
+    "light": "Claro",
+    "system": "Sistema",
+    "dark": "Escuro"
+  }
 }
