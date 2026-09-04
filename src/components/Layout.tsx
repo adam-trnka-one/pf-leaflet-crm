@@ -248,6 +248,8 @@ const LayoutContent = () => {
                 />
               </div>
 
+              <ThemeToggle />
+
               <Button
                 variant="ghost"
                 size="icon"
