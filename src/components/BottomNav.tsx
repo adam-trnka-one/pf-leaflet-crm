@@ -41,7 +41,7 @@ const BottomNav = () => {
 
   return (
     <nav 
-      className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 sm:hidden"
+      className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-border sm:hidden"
       data-testid="bottom-nav"
     >
       <div className="flex items-center justify-around h-16 px-2" data-testid="bottom-nav-container">
@@ -55,8 +55,8 @@ const BottomNav = () => {
               className={cn(
                 "flex flex-col items-center justify-center flex-1 h-full py-2 px-1 transition-colors",
                 active 
-                  ? "text-[#4AB831]" 
-                  : "text-slate-500 hover:text-slate-700"
+                  ? "text-brand" 
+                  : "text-muted-foreground hover:text-foreground"
               )}
               data-testid={`bottom-nav-${item.href.split('/').pop() || 'dashboard'}`}
             >
@@ -74,8 +74,8 @@ const BottomNav = () => {
               className={cn(
                 "flex flex-col items-center justify-center flex-1 h-full py-2 px-1 transition-colors",
                 isMoreActive 
-                  ? "text-[#4AB831]" 
-                  : "text-slate-500 hover:text-slate-700"
+                  ? "text-brand" 
+                  : "text-muted-foreground hover:text-foreground"
               )}
               data-testid="bottom-nav-more"
             >
@@ -87,7 +87,7 @@ const BottomNav = () => {
             align="end" 
             side="top" 
             sideOffset={8}
-            className="w-48 mb-2 bg-white z-[60]"
+            className="w-48 mb-2 bg-popover z-[60]"
             data-testid="bottom-nav-more-menu"
           >
             {moreNavItems.map((item) => {
@@ -99,7 +99,7 @@ const BottomNav = () => {
                     to={item.href}
                     className={cn(
                       "flex items-center gap-3 cursor-pointer",
-                      active && "text-[#4AB831] font-medium"
+                      active && "text-brand font-medium"
                     )}
                     data-testid={`bottom-nav-more-${item.href.split('/').pop()}`}
                   >
