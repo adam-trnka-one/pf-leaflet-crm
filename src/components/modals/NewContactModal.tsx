@@ -162,7 +162,7 @@ const NewContactModal = ({ open, onOpenChange, onContactCreated }: NewContactMod
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="new-contact-cancel-button">
             {t('common:cancel')}
           </Button>
-          <Button onClick={handleSubmit} className="bg-success hover:bg-success" data-testid="new-contact-create-button">
+          <Button onClick={handleSubmit} className="bg-success text-success-foreground hover:bg-success/90" data-testid="new-contact-create-button">
             {t('common:create')}
           </Button>
         </DialogFooter>

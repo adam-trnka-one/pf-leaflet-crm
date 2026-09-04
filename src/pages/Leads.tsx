@@ -106,7 +106,7 @@ const Leads = () => {
           <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base" data-testid="leads-page-subtitle">{t('leads:subtitle')}</p>
         </div>
         <Button 
-          className="bg-success hover:bg-success w-full sm:w-auto"
+          className="bg-success text-success-foreground hover:bg-success/90 w-full sm:w-auto"
           onClick={() => setIsModalOpen(true)}
           data-testid="leads-new-lead-button"
         >

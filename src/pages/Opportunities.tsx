@@ -119,7 +119,7 @@ const Opportunities = () => {
           <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base" data-testid="opportunities-page-subtitle">{t('opportunities:subtitle')}</p>
         </div>
         <Button
-          className="bg-success hover:bg-success w-full sm:w-auto"
+          className="bg-success text-success-foreground hover:bg-success/90 w-full sm:w-auto"
           onClick={() => setIsModalOpen(true)}
           data-testid="opportunities-new-opportunity-button"
         >
@@ -253,7 +253,7 @@ const Opportunities = () => {
             <AlertDialogCancel data-testid="opportunities-delete-cancel">{t('common:cancel')}</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleDelete}
-              className="bg-destructive hover:bg-destructive"
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
               data-testid="opportunities-delete-confirm"
             >
               {t('common:delete')}

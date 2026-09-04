@@ -147,7 +147,7 @@ const Cases = () => {
           <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base" data-testid="cases-page-subtitle">{t('cases:subtitle')}</p>
         </div>
         <Button 
-          className="bg-success hover:bg-success w-full sm:w-auto" 
+          className="bg-success text-success-foreground hover:bg-success/90 w-full sm:w-auto" 
           onClick={() => setIsModalOpen(true)}
           data-testid="cases-new-case-button"
         >

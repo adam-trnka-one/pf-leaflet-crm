@@ -147,7 +147,7 @@ const EditActivityModal = ({ open, onOpenChange, activity, onActivityUpdated }: 
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="edit-activity-cancel-button">
             {t('common:cancel')}
           </Button>
-          <Button onClick={handleSubmit} className="bg-success hover:bg-success" data-testid="edit-activity-update-button">
+          <Button onClick={handleSubmit} className="bg-success text-success-foreground hover:bg-success/90" data-testid="edit-activity-update-button">
             {t('common:update')}
           </Button>
         </DialogFooter>

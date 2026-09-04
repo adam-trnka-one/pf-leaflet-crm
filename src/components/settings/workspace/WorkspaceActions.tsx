@@ -113,7 +113,7 @@ export const WorkspaceActions = ({
         </div>
         <div className="flex flex-col sm:items-end gap-2" data-testid="workspace-primary-actions">
           <Button 
-            className="bg-success hover:bg-success disabled:opacity-50 w-full sm:w-auto"
+            className="bg-success text-success-foreground hover:bg-success/90 disabled:opacity-50 w-full sm:w-auto"
             onClick={handleSaveAndInitiate}
             disabled={isInitiating}
             data-testid="workspace-save-initiate-button"

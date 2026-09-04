@@ -228,7 +228,7 @@ const NewLeadModal = ({ open, onOpenChange, onLeadCreated }: NewLeadModalProps) 
           <Button variant="outline" onClick={() => onOpenChange(false)} data-testid="new-lead-cancel-button">
             {t('common:cancel')}
           </Button>
-          <Button onClick={handleSubmit} className="bg-success hover:bg-success" data-testid="new-lead-create-button">
+          <Button onClick={handleSubmit} className="bg-success text-success-foreground hover:bg-success/90" data-testid="new-lead-create-button">
             {t('common:create')}
           </Button>
         </DialogFooter>

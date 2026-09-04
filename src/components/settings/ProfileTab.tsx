@@ -93,7 +93,7 @@ export const ProfileTab = () => {
         
         <div className="flex justify-end" data-testid="profile-actions">
           <Button 
-            className="bg-success hover:bg-success"
+            className="bg-success text-success-foreground hover:bg-success/90"
             onClick={handleSaveChanges}
             data-testid="profile-save-changes-button"
           >

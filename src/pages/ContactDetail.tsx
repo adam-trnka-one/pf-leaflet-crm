@@ -89,7 +89,7 @@ const ContactDetail = () => {
           </div>
         </div>
         <Button 
-          className="bg-success hover:bg-success"
+          className="bg-success text-success-foreground hover:bg-success/90"
           onClick={() => setIsEditModalOpen(true)}
         >
           <Edit className="h-4 w-4 mr-2" />

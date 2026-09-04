@@ -126,7 +126,7 @@ export const IntegrationsTab = () => {
       case "available":
         return (
           <Button 
-            className="bg-info hover:bg-info text-white w-full md:w-auto"
+            className="bg-info text-info-foreground hover:bg-info/90 text-white w-full md:w-auto"
             onClick={() => {
               toast({
                 title: `Connecting ${integration.name}`,
