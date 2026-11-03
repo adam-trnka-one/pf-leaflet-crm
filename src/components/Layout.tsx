@@ -124,19 +124,34 @@ const LayoutContent = () => {
   };
 
 
-  // Setup ProductFruits newsfeed
-  useEffect(() => {
-    // Listen for unread count changes
-    if ((window as any).productFruits?.api?.announcementsV2) {
-      (window as any).productFruits.api.announcementsV2.listen('newsfeed-unread-count-changed', (data: { count: number }) => {
+  // Attach the ProductFruits newsfeed as soon as PF is active, so the first click opens it
+  const attachedNewsfeedRef = useRef<HTMLElement | null>(null);
+  const attachNewsfeed = () => {
+    const api = (window as any).productFruits?.api?.announcementsV2;
+    const el = newsfeedRef.current;
+    if (!api || !el) return false;
+    if (attachedNewsfeedRef.current !== el) {
+      api.attachNewsWidgetToElement(el);
+      api.listen?.('newsfeed-unread-count-changed', (data: { count: number }) => {
         setUnreadCount(data.count);
       });
+      attachedNewsfeedRef.current = el;
     }
-  }, []);
+    return true;
+  };
+
+  useEffect(() => {
+    if (toolStatus.state === 'active' && toolStatus.tool === 'productfruits') {
+      attachNewsfeed();
+    } else {
+      attachedNewsfeedRef.current = null;
+    }
+  }, [toolStatus.state, toolStatus.tool]);
 
   const handleNewsfeedClick = () => {
-    if (newsfeedRef.current && (window as any).productFruits?.api?.announcementsV2) {
-      (window as any).productFruits.api.announcementsV2.attachNewsWidgetToElement(newsfeedRef.current);
+    // Fallback: if not yet attached, attach now and re-dispatch the click so it opens on the first press
+    if (attachedNewsfeedRef.current !== newsfeedRef.current && attachNewsfeed()) {
+      setTimeout(() => newsfeedRef.current?.click(), 0);
     }
   };
 
