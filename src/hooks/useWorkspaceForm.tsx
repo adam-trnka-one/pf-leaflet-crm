@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
-import { useProductFruits } from "@/hooks/useProductFruits";
+import { useProductFruits, teardownActiveTool, getToolStatus } from "@/hooks/useProductFruits";
 import { toast } from "@/hooks/use-toast";
 import { validateRequiredFields } from "@/utils/workspaceValidation";
 
@@ -102,8 +102,15 @@ export const useWorkspaceForm = () => {
 
     // Only initialize if workspace code is provided OR the selected tool is Usertour
     if (dataToSave.workspaceCode.trim() || isUsertour) {
-      await initializeProductFruits();
+      const ok = await initializeProductFruits();
       console.log('Workspace data saved and tool re-initialized:', dataToSave);
+      if (!ok) {
+        toast({
+          title: isUsertour ? "Usertour failed to load" : "ProductFruits failed",
+          description: getToolStatus().error || "The script could not be loaded.",
+          variant: "destructive"
+        });
+      }
     } else {
       console.log('Workspace data saved without initialization (empty workspace code):', dataToSave);
     }
@@ -138,13 +145,14 @@ export const useWorkspaceForm = () => {
     }
 
     const success = await initializeProductFruits();
+    const failReason = getToolStatus().error;
 
     if (isUsertour) {
       toast({
         title: success ? "Usertour initiated" : "Usertour failed to load",
         description: success
           ? "Usertour script has been loaded and the user identified."
-          : "Failed to load the Usertour script. Check your network/VPN and try again.",
+          : `${failReason || 'Failed to load the Usertour script'}. Check your network/VPN and try again.`,
         variant: success ? "default" : "destructive"
       });
     } else {
@@ -152,7 +160,7 @@ export const useWorkspaceForm = () => {
         title: success ? "ProductFruits initiated" : "ProductFruits failed",
         description: success
           ? "ProductFruits script has been initialized with current workspace data."
-          : "Failed to load ProductFruits script. Check workspace code and try again.",
+          : `${failReason || 'Failed to load ProductFruits script'}. Check workspace code and try again.`,
         variant: success ? "default" : "destructive"
       });
     }
@@ -160,18 +168,8 @@ export const useWorkspaceForm = () => {
     return success;
   };
 
-  const teardownActiveTool = () => {
-    try { (window as any).productFruits?.services?.destroy?.(); } catch { /* ignore */ }
-    document.querySelectorAll('script[data-productfruits-init], script[src*="productfruits"], script[src*="pf.dev"]').forEach(el => el.remove());
-    try { delete (window as any).$productFruits; } catch { (window as any).$productFruits = undefined; }
-    try { delete (window as any).productFruits; } catch { (window as any).productFruits = undefined; }
-    document.querySelectorAll('script[data-usertour-init], script[src*="js.usertour.io"]').forEach(el => el.remove());
-    try { delete (window as any).usertour; } catch { (window as any).usertour = undefined; }
-    try { delete (window as any).USERTOURJS_QUEUE; } catch { (window as any).USERTOURJS_QUEUE = undefined; }
-  };
-
   const handleWorkspaceSwitch = () => {
-    teardownActiveTool();
+    void teardownActiveTool();
     toast({
       title: "Previous workspace stopped",
       description: "Save to start the new one."
@@ -179,7 +177,7 @@ export const useWorkspaceForm = () => {
   };
 
   const handleDisableProductFruits = () => {
-    teardownActiveTool();
+    void teardownActiveTool();
 
     toast({
       title: "ProductFruits disabled",
