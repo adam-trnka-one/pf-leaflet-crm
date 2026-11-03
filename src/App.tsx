@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import '@/i18n';
 import RTLProvider from "@/components/RTLProvider";
 import ThemeProvider from "@/components/ThemeProvider";
+import { FontProvider } from "@/contexts/FontContext";
 import Layout from "./components/Layout";
 import Hero from "./pages/Hero";
 import Help from "./pages/Help";
@@ -87,6 +88,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <ThemeProvider>
+      <FontProvider>
       <RTLProvider>
         <CustomHeadInjector />
         <ThemeMeta />
@@ -126,6 +128,7 @@ const App = () => (
           </Routes>
         </BrowserRouter>
       </RTLProvider>
+      </FontProvider>
       </ThemeProvider>
     </TooltipProvider>
   </QueryClientProvider>
