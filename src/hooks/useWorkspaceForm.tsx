@@ -41,7 +41,8 @@ export const useWorkspaceForm = () => {
     setCustomProperties(workspaceData.customProperties);
   }, [workspaceData]);
 
-  const handleSaveWorkspaceData = async () => {
+  const handleSaveWorkspaceData = async (options: { initialize?: boolean } = {}) => {
+    const shouldInitialize = options.initialize !== false;
     // For custom, PR workspaces, or custom-dev, check if workspace code is provided
     const requiresWorkspaceCode = localWorkspaceData.selectedWorkspace === 'custom' || localWorkspaceData.selectedWorkspace?.startsWith('pr') || localWorkspaceData.selectedWorkspace === 'custom-dev';
     if (requiresWorkspaceCode && !localWorkspaceData.workspaceCode.trim()) {
@@ -101,7 +102,7 @@ export const useWorkspaceForm = () => {
     const isUsertour = dataToSave.selectedWorkspace === 'usertour';
 
     // Only initialize if workspace code is provided OR the selected tool is Usertour
-    if (dataToSave.workspaceCode.trim() || isUsertour) {
+    if (shouldInitialize && (dataToSave.workspaceCode.trim() || isUsertour)) {
       const ok = await initializeProductFruits();
       console.log('Workspace data saved and tool re-initialized:', dataToSave);
       if (!ok) {

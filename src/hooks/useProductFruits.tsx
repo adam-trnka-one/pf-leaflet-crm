@@ -6,10 +6,14 @@ const STORAGE_KEY = 'leaflet-workspace-data';
 // Module-level shared state (not per-instance)
 let hasInitialized = false;
 let initializedWorkspaceCode = '';
+let inFlightInit: Promise<boolean> | null = null;
+// Set when the user stops a tool by switching workspace: no auto-start until Save/Initiate or a new page load.
+let autoInitSuppressed = false;
 
 export const resetInitializationState = () => {
   hasInitialized = false;
   initializedWorkspaceCode = '';
+  autoInitSuppressed = false;
   setToolStatus({ state: 'idle', tool: null });
 };
 
@@ -90,6 +94,7 @@ export const teardownActiveTool = async (): Promise<void> => {
   document.querySelectorAll(PF_DOM_SELECTOR).forEach(el => el.remove());
   removeUsertour();
   resetInitializationState();
+  autoInitSuppressed = true;
   const generation = ++teardownGeneration;
   // Second pass once the SDK finished its async teardown, unless a new init started meanwhile.
   await new Promise(r => setTimeout(r, 300));
@@ -105,12 +110,12 @@ export const useProductFruits = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname.startsWith('/dashboard') && !hasInitialized) {
+    if (location.pathname.startsWith('/dashboard') && !hasInitialized && !autoInitSuppressed) {
       const success = initializeFromStorage();
       // Retry once after 500ms if first attempt found no data (race condition with login)
       if (!success) {
         const timer = setTimeout(() => {
-          if (!hasInitialized) {
+          if (!hasInitialized && !autoInitSuppressed) {
             initializeFromStorage();
           }
         }, 500);
@@ -276,7 +281,14 @@ export const useProductFruits = () => {
     return true;
   };
 
-  const initializeProductFruits = async (workspaceData?: any): Promise<boolean> => {
+  const initializeProductFruits = (workspaceData?: any): Promise<boolean> => {
+    // Collapse concurrent calls into one initialization.
+    if (inFlightInit) return inFlightInit;
+    inFlightInit = runInitialization(workspaceData).finally(() => { inFlightInit = null; });
+    return inFlightInit;
+  };
+
+  const runInitialization = async (workspaceData?: any): Promise<boolean> => {
     let dataToUse = workspaceData;
     
     if (!dataToUse) {
