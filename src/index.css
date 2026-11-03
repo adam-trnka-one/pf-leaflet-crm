@@ -7,6 +7,12 @@
 
 @layer base {
   :root {
+    --font-system: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-arial: Arial, Helvetica, sans-serif;
+    --font-georgia: Georgia, "Times New Roman", serif;
+    --font-verdana: Verdana, Geneva, sans-serif;
+    --font-trebuchet: "Trebuchet MS", Arial, sans-serif;
+    --font-app: var(--font-system);
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -171,6 +177,15 @@
 }
 
 @layer base {
+  :root[data-font="arial"] { --font-app: var(--font-arial); }
+  :root[data-font="georgia"] { --font-app: var(--font-georgia); }
+  :root[data-font="verdana"] { --font-app: var(--font-verdana); }
+  :root[data-font="trebuchet"] { --font-app: var(--font-trebuchet); }
+
+  html {
+    font-family: var(--font-app);
+  }
+
   * {
     @apply border-border;
   }

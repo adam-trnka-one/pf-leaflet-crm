@@ -53,6 +53,14 @@
   "confirmDelete": "Tem certeza de que deseja excluir este item?",
   "deleted": "Item excluído com sucesso",
   "fillRequired": "Por favor, preencha todos os campos obrigatórios",
+  "font": {
+    "label": "Fonte",
+    "system": "Padrão do sistema",
+    "arial": "Arial",
+    "georgia": "Georgia",
+    "verdana": "Verdana",
+    "trebuchet": "Trebuchet MS"
+  },
   "theme": {
     "label": "Tema",
     "light": "Claro",

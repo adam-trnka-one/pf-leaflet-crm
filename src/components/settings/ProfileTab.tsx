@@ -11,6 +11,9 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "next-themes";
 import { Sun, Moon, Monitor } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useFont } from "@/contexts/FontContext";
+import { FONT_OPTIONS } from "@/lib/font-preference";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export const ProfileTab = () => {
   const { t } = useTranslation(['settings', 'common']);
@@ -32,6 +35,7 @@ export const ProfileTab = () => {
   }, [workspaceData]);
 
   const { theme, setTheme } = useTheme();
+  const { font, setFont } = useFont();
   const themeOptions = [
     { value: 'light', label: t('common:theme.light', 'Light'), icon: Sun },
     { value: 'system', label: t('common:theme.system', 'System'), icon: Monitor },
@@ -125,6 +129,22 @@ export const ProfileTab = () => {
         </div>
 
         <Separator data-testid="profile-separator" />
+
+        <div data-testid="profile-font-field">
+          <Label htmlFor="profile-font" data-testid="profile-font-label">{t('common:font.label')}</Label>
+          <Select value={font} onValueChange={setFont}>
+            <SelectTrigger id="profile-font" className="mt-2 w-full md:max-w-md" data-testid="profile-font-select">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent data-testid="profile-font-options">
+              {FONT_OPTIONS.map(option => (
+                <SelectItem key={option} value={option} data-testid={`profile-font-option-${option}`}>
+                  {t(`common:font.${option}`)}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
         
         <div className="flex justify-end" data-testid="profile-actions">
           <Button 

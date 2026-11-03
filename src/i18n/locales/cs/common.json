@@ -53,6 +53,14 @@
   "confirmDelete": "Opravdu chcete tuto položku smazat?",
   "deleted": "Položka byla úspěšně smazána",
   "fillRequired": "Vyplňte prosím všechna povinná pole",
+  "font": {
+    "label": "Písmo",
+    "system": "Výchozí systémové",
+    "arial": "Arial",
+    "georgia": "Georgia",
+    "verdana": "Verdana",
+    "trebuchet": "Trebuchet MS"
+  },
   "theme": {
     "label": "Vzhled",
     "light": "Světlý",

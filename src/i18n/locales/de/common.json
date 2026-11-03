@@ -53,6 +53,14 @@
   "confirmDelete": "Sind Sie sicher, dass Sie dieses Element löschen möchten?",
   "deleted": "Element erfolgreich gelöscht",
   "fillRequired": "Bitte füllen Sie alle Pflichtfelder aus",
+  "font": {
+    "label": "Schriftart",
+    "system": "Systemstandard",
+    "arial": "Arial",
+    "georgia": "Georgia",
+    "verdana": "Verdana",
+    "trebuchet": "Trebuchet MS"
+  },
   "theme": {
     "label": "Design",
     "light": "Hell",
