@@ -146,8 +146,6 @@ export const useProductFruits = () => {
       return false;
     }
     setToolStatus({ state: 'loading', tool: 'usertour' });
-    if (false) {
-    }
     const userId = dataToUse.username || dataToUse.email || 'anonymous';
     const name = [dataToUse.firstName, dataToUse.lastName].filter(Boolean).join(' ') || dataToUse.username;
     const signedUpAt = new Date().toISOString();
