@@ -17,6 +17,7 @@ interface WorkspaceBasicFieldsProps {
     languageCode: string;
   };
   setLocalWorkspaceData: (updater: (prev: any) => any) => void;
+  onWorkspaceSwitch?: () => void;
 }
 
 const languageOptions = [
@@ -65,7 +66,7 @@ const devOptions = [
   { name: "Custom", value: "custom-dev" }
 ];
 
-export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData }: WorkspaceBasicFieldsProps) => {
+export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData, onWorkspaceSwitch }: WorkspaceBasicFieldsProps) => {
   const { t } = useTranslation('settings');
   const selectedWorkspace = localWorkspaceData.selectedWorkspace || "jess";
   const isCustomWorkspace = selectedWorkspace === "custom";
@@ -77,6 +78,9 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
   const isProductFruitsUser = localWorkspaceData.email?.endsWith("@productfruits.com");
 
   const handleWorkspaceChange = (value: string) => {
+    const currentTop = (isPRWorkspace || isCustomDevWorkspace) ? "dev" : selectedWorkspace;
+    if (value === currentTop) return;
+    onWorkspaceSwitch?.();
     if (value === "dev") {
       setLocalWorkspaceData(prev => ({
         ...prev,
@@ -96,6 +100,8 @@ export const WorkspaceBasicFields = ({ localWorkspaceData, setLocalWorkspaceData
   };
 
   const handleDevWorkspaceChange = (value: string) => {
+    if (value === selectedWorkspace) return;
+    onWorkspaceSwitch?.();
     setLocalWorkspaceData(prev => ({
       ...prev,
       selectedWorkspace: value,

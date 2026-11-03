@@ -19,6 +19,7 @@ export const WorkspaceTab = () => {
     handleSaveWorkspaceData,
     handleInitiateProductFruits,
     handleDisableProductFruits,
+    handleWorkspaceSwitch,
     handleResetToDefaults,
     workspaceData
   } = useWorkspaceForm();
@@ -41,6 +42,7 @@ export const WorkspaceTab = () => {
         <WorkspaceBasicFields 
           localWorkspaceData={localWorkspaceData}
           setLocalWorkspaceData={setLocalWorkspaceData}
+          onWorkspaceSwitch={handleWorkspaceSwitch}
         />
 
         <Separator data-testid="workspace-separator-1" />
