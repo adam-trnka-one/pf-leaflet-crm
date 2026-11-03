@@ -53,6 +53,14 @@
   "confirmDelete": "Are you sure you want to delete this item?",
   "deleted": "Item deleted successfully",
   "fillRequired": "Please fill all required fields",
+  "font": {
+    "label": "Font",
+    "system": "System default",
+    "arial": "Arial",
+    "georgia": "Georgia",
+    "verdana": "Verdana",
+    "trebuchet": "Trebuchet MS"
+  },
   "theme": {
     "label": "Theme",
     "light": "Light",

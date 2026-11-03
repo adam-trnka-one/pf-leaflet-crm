@@ -53,6 +53,14 @@
   "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا العنصر؟",
   "deleted": "تم حذف العنصر بنجاح",
   "fillRequired": "يرجى ملء جميع الحقول المطلوبة",
+  "font": {
+    "label": "الخط",
+    "system": "الخط الافتراضي للنظام",
+    "arial": "Arial",
+    "georgia": "Georgia",
+    "verdana": "Verdana",
+    "trebuchet": "Trebuchet MS"
+  },
   "theme": {
     "label": "المظهر",
     "light": "فاتح",
