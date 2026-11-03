@@ -200,16 +200,31 @@ const LayoutContent = () => {
               <div className="flex items-center justify-between">
                 <p className="text-xs text-muted-foreground">v{APP_VERSION}</p>
                 <Badge 
-                  variant={isPFActive ? "default" : "secondary"}
+                  variant={toolStatus.state === 'active' ? "default" : "secondary"}
+                  title={toolStatus.error}
+                  data-testid="tool-status-badge"
+                  data-state={toolStatus.state}
                   className={cn(
                     "text-[10px] px-1.5 py-0",
-                    isPFActive 
-                      ? "bg-success-muted text-success-muted-foreground border-success/30 hover:bg-success-muted" 
-                      : "bg-muted text-muted-foreground"
+                    toolStatus.state === 'active' && "bg-success-muted text-success-muted-foreground border-success/30 hover:bg-success-muted",
+                    toolStatus.state === 'failed' && "bg-destructive/10 text-destructive border-destructive/30 hover:bg-destructive/10",
+                    (toolStatus.state === 'idle' || toolStatus.state === 'loading') && "bg-muted text-muted-foreground"
                   )}
                 >
-                  <span className={cn("inline-block w-1.5 h-1.5 rounded-full mr-1", isPFActive ? "bg-success" : "bg-muted-foreground")} />
-                  PF: {isPFActive ? "Active" : "Inactive"}
+                  {toolStatus.state === 'loading' ? (
+                    <Loader2 className="w-2.5 h-2.5 mr-1 animate-spin" />
+                  ) : (
+                    <span className={cn(
+                      "inline-block w-1.5 h-1.5 rounded-full mr-1",
+                      toolStatus.state === 'active' ? "bg-success" : toolStatus.state === 'failed' ? "bg-destructive" : "bg-muted-foreground"
+                    )} />
+                  )}
+                  {toolStatus.tool === 'usertour' ? 'Usertour' : 'PF'}: {
+                    toolStatus.state === 'active' ? 'Active'
+                      : toolStatus.state === 'loading' ? 'Loading…'
+                      : toolStatus.state === 'failed' ? 'Failed'
+                      : 'Inactive'
+                  }
                 </Badge>
               </div>
               {localWorkspaceData.selectedWorkspace !== 'jess' && (
