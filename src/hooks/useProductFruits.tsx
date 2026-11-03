@@ -80,12 +80,26 @@ const removeUsertour = () => {
 };
 
 /** Fully stop whichever tool is running and reset init state. */
+const PF_DOM_SELECTOR =
+  'script[src*="productfruits"], script[src*="pf.dev"], script[data-productfruits-init], ' +
+  '[id*="productfruits"], [class*="productfruits"], iframe[src*="productfruits"], iframe[src*="pf.dev"]';
+
 export const teardownActiveTool = async (): Promise<void> => {
-  await cleanupProductFruits();
+  // Stop immediately: destroy, hide widgets, reset status — no delay visible to the user.
+  try { (window as any).productFruits?.services?.destroy?.(); } catch (e) { console.warn('PF destroy() threw:', e); }
+  document.querySelectorAll(PF_DOM_SELECTOR).forEach(el => el.remove());
   removeUsertour();
   resetInitializationState();
-  setToolStatus({ state: 'idle', tool: null });
+  const generation = ++teardownGeneration;
+  // Second pass once the SDK finished its async teardown, unless a new init started meanwhile.
+  await new Promise(r => setTimeout(r, 300));
+  if (generation !== teardownGeneration || getToolStatus().state !== 'idle') return;
+  document.querySelectorAll(PF_DOM_SELECTOR).forEach(el => el.remove());
+  ['$productFruits', 'productFruits', 'productFruitsIsReady', 'productFruitsUser'].forEach(key => {
+    try { delete (window as any)[key]; } catch (_) { (window as any)[key] = undefined; }
+  });
 };
+let teardownGeneration = 0;
 
 export const useProductFruits = () => {
   const location = useLocation();
