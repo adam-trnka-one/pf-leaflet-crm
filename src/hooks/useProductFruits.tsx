@@ -10,6 +10,7 @@ let initializedWorkspaceCode = '';
 export const resetInitializationState = () => {
   hasInitialized = false;
   initializedWorkspaceCode = '';
+  setToolStatus({ state: 'idle', tool: null });
 };
 
 export type ToolStatusState = 'idle' | 'loading' | 'active' | 'failed';
