@@ -75,10 +75,8 @@ export const WorkspaceActions = ({
       console.log('handleInitiateProductFruits completed, success:', success);
       
       if (success) {
-        // Full reload to ensure PF state is clean
-        setTimeout(() => {
-          window.location.href = '/dashboard';
-        }, 500);
+        // In-app navigation keeps the tool that was just started (no second init).
+        navigate('/dashboard');
       }
     } catch (error) {
       console.error('Error in save and initiate:', error);

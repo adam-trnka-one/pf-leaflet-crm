@@ -284,7 +284,20 @@ export const useProductFruits = () => {
   const initializeProductFruits = (workspaceData?: any): Promise<boolean> => {
     // Collapse concurrent calls into one initialization.
     if (inFlightInit) return inFlightInit;
-    inFlightInit = runInitialization(workspaceData).finally(() => { inFlightInit = null; });
+    // Mark the session as started so the dashboard auto-start never runs a second init.
+    hasInitialized = true;
+    autoInitSuppressed = false;
+    inFlightInit = runInitialization(workspaceData)
+      .then((ok) => {
+        if (ok) {
+          try {
+            const saved = workspaceData ?? JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+            initializedWorkspaceCode = saved?.workspaceCode ?? initializedWorkspaceCode;
+          } catch { /* ignore */ }
+        }
+        return ok;
+      })
+      .finally(() => { inFlightInit = null; });
     return inFlightInit;
   };
 
