@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 interface WorkspaceActionsProps {
   handleResetToDefaults: () => void;
   handleInitiateProductFruits: () => Promise<boolean>;
-  handleSaveWorkspaceData: () => void;
+  handleSaveWorkspaceData: (options?: { initialize?: boolean }) => Promise<void> | void;
   handleDisableProductFruits: () => void;
   workspaceData: any;
 }
@@ -65,9 +65,9 @@ export const WorkspaceActions = ({
     setIsInitiating(true);
     
     try {
-      // First save workspace data
+      // First save workspace data (without starting the tool — the initiate step below does that once)
       console.log('Saving workspace data...');
-      await handleSaveWorkspaceData();
+      await handleSaveWorkspaceData({ initialize: false });
       
       // Then initiate ProductFruits (now properly async with destroy/init sequencing)
       console.log('Calling handleInitiateProductFruits...');

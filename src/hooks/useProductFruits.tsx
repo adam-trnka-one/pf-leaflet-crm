@@ -6,6 +6,7 @@ const STORAGE_KEY = 'leaflet-workspace-data';
 // Module-level shared state (not per-instance)
 let hasInitialized = false;
 let initializedWorkspaceCode = '';
+let inFlightInit: Promise<boolean> | null = null;
 
 export const resetInitializationState = () => {
   hasInitialized = false;
@@ -276,7 +277,14 @@ export const useProductFruits = () => {
     return true;
   };
 
-  const initializeProductFruits = async (workspaceData?: any): Promise<boolean> => {
+  const initializeProductFruits = (workspaceData?: any): Promise<boolean> => {
+    // Collapse concurrent calls into one initialization.
+    if (inFlightInit) return inFlightInit;
+    inFlightInit = runInitialization(workspaceData).finally(() => { inFlightInit = null; });
+    return inFlightInit;
+  };
+
+  const runInitialization = async (workspaceData?: any): Promise<boolean> => {
     let dataToUse = workspaceData;
     
     if (!dataToUse) {
