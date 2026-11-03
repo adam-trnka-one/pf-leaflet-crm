@@ -129,7 +129,7 @@ const LayoutContent = () => {
   const attachNewsfeed = () => {
     const api = (window as any).productFruits?.api?.announcementsV2;
     const el = newsfeedRef.current;
-    if (!api || !el) return false;
+    if (!api?.attachNewsWidgetToElement || !el) return false;
     if (attachedNewsfeedRef.current !== el) {
       api.attachNewsWidgetToElement(el);
       api.listen?.('newsfeed-unread-count-changed', (data: { count: number }) => {
@@ -142,7 +142,13 @@ const LayoutContent = () => {
 
   useEffect(() => {
     if (toolStatus.state === 'active' && toolStatus.tool === 'productfruits') {
-      attachNewsfeed();
+      // announcementsV2 API becomes available shortly after PF reports ready — wait for it
+      if (attachNewsfeed()) return;
+      const started = Date.now();
+      const timer = window.setInterval(() => {
+        if (attachNewsfeed() || Date.now() - started > 15000) window.clearInterval(timer);
+      }, 200);
+      return () => window.clearInterval(timer);
     } else {
       attachedNewsfeedRef.current = null;
     }
