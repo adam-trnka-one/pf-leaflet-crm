@@ -160,22 +160,26 @@ export const useWorkspaceForm = () => {
     return success;
   };
 
-  const handleDisableProductFruits = () => {
-    // Remove ProductFruits script
-    const existingScript = document.querySelector('script[data-productfruits-init]');
-    if (existingScript) {
-      existingScript.remove();
-    }
-
-    // Clear ProductFruits global object
-    if ((window as any).$productFruits) {
-      delete (window as any).$productFruits;
-    }
-
-    // Remove Usertour scripts and globals
+  const teardownActiveTool = () => {
+    try { (window as any).productFruits?.services?.destroy?.(); } catch { /* ignore */ }
+    document.querySelectorAll('script[data-productfruits-init], script[src*="productfruits"], script[src*="pf.dev"]').forEach(el => el.remove());
+    try { delete (window as any).$productFruits; } catch { (window as any).$productFruits = undefined; }
+    try { delete (window as any).productFruits; } catch { (window as any).productFruits = undefined; }
     document.querySelectorAll('script[data-usertour-init], script[src*="js.usertour.io"]').forEach(el => el.remove());
     try { delete (window as any).usertour; } catch { (window as any).usertour = undefined; }
     try { delete (window as any).USERTOURJS_QUEUE; } catch { (window as any).USERTOURJS_QUEUE = undefined; }
+  };
+
+  const handleWorkspaceSwitch = () => {
+    teardownActiveTool();
+    toast({
+      title: "Previous workspace stopped",
+      description: "Save to start the new one."
+    });
+  };
+
+  const handleDisableProductFruits = () => {
+    teardownActiveTool();
 
     toast({
       title: "ProductFruits disabled",
@@ -215,6 +219,7 @@ export const useWorkspaceForm = () => {
     handleSaveWorkspaceData,
     handleInitiateProductFruits,
     handleDisableProductFruits,
+    handleWorkspaceSwitch,
     handleResetToDefaults,
     workspaceData
   };
