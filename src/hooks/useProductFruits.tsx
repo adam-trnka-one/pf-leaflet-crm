@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useSyncExternalStore } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const STORAGE_KEY = 'leaflet-workspace-data';
@@ -10,6 +10,73 @@ let initializedWorkspaceCode = '';
 export const resetInitializationState = () => {
   hasInitialized = false;
   initializedWorkspaceCode = '';
+};
+
+export type ToolStatusState = 'idle' | 'loading' | 'active' | 'failed';
+export interface ToolStatus {
+  state: ToolStatusState;
+  tool: 'productfruits' | 'usertour' | null;
+  error?: string;
+}
+
+let toolStatus: ToolStatus = { state: 'idle', tool: null };
+const statusListeners = new Set<() => void>();
+
+export const setToolStatus = (next: ToolStatus) => {
+  toolStatus = next;
+  statusListeners.forEach(l => l());
+};
+export const getToolStatus = () => toolStatus;
+export const subscribeToolStatus = (listener: () => void) => {
+  statusListeners.add(listener);
+  return () => { statusListeners.delete(listener); };
+};
+export const useToolStatus = () => useSyncExternalStore(subscribeToolStatus, getToolStatus, getToolStatus);
+
+const hostOf = (url: string) => { try { return new URL(url).host; } catch { return url; } };
+
+export const cleanupProductFruits = (): Promise<void> => {
+  return new Promise((resolve) => {
+    if ((window as any).productFruits?.services?.destroy) {
+      try {
+        (window as any).productFruits.services.destroy();
+      } catch (e) {
+        console.warn('PF destroy() threw:', e);
+      }
+    }
+
+    setTimeout(() => {
+      const pfElements = document.querySelectorAll(
+        'script[src*="productfruits"], script[src*="pf.dev"], script[src*="/static/script.js"], ' +
+        'script[data-productfruits-init], ' +
+        '[id*="productfruits"], [class*="productfruits"], ' +
+        'iframe[src*="productfruits"], iframe[src*="pf.dev"]'
+      );
+      pfElements.forEach(el => el.remove());
+
+      const pfGlobals = ['$productFruits', 'productFruits', 'productFruitsIsReady', 'productFruitsUser'];
+      pfGlobals.forEach(key => {
+        try { delete (window as any)[key]; } catch (_) { (window as any)[key] = undefined; }
+      });
+
+      resolve();
+    }, 300);
+  });
+};
+
+const removeUsertour = () => {
+  try { (window as any).usertour?.endAll?.(); } catch { /* ignore */ }
+  document.querySelectorAll('script[data-usertour-init], script[src*="js.usertour.io"]').forEach(el => el.remove());
+  try { delete (window as any).usertour; } catch { (window as any).usertour = undefined; }
+  try { delete (window as any).USERTOURJS_QUEUE; } catch { (window as any).USERTOURJS_QUEUE = undefined; }
+};
+
+/** Fully stop whichever tool is running and reset init state. */
+export const teardownActiveTool = async (): Promise<void> => {
+  await cleanupProductFruits();
+  removeUsertour();
+  resetInitializationState();
+  setToolStatus({ state: 'idle', tool: null });
 };
 
 export const useProductFruits = () => {
@@ -61,43 +128,6 @@ export const useProductFruits = () => {
     return 'https://app.productfruits.com/static/script.js';
   };
 
-  const cleanupProductFruits = (): Promise<void> => {
-    return new Promise((resolve) => {
-      // Step 1: Call official destroy if available
-      if ((window as any).productFruits?.services?.destroy) {
-        try {
-          (window as any).productFruits.services.destroy();
-        } catch (e) {
-          console.warn('PF destroy() threw:', e);
-        }
-      }
-
-      // Step 2: Wait for SDK to tear down internally
-      setTimeout(() => {
-        // Step 3: Remove ALL PF-injected DOM elements (scripts, iframes, styles, divs)
-        const pfElements = document.querySelectorAll(
-          'script[src*="productfruits"], script[src*="pf.dev"], script[src*="/static/script.js"], ' +
-          'script[data-productfruits-init], ' +
-          '[id*="productfruits"], [class*="productfruits"], ' +
-          'iframe[src*="productfruits"], iframe[src*="pf.dev"]'
-        );
-        pfElements.forEach(el => el.remove());
-
-        // Also remove the static script
-        const staticScript = document.querySelector('script[src="https://app.productfruits.com/static/script.js"]');
-        if (staticScript) staticScript.remove();
-
-        // Step 4: Clean up ALL PF-related globals
-        const pfGlobals = ['$productFruits', 'productFruits', 'productFruitsIsReady', 'productFruitsUser'];
-        pfGlobals.forEach(key => {
-          try { delete (window as any)[key]; } catch (_) { (window as any)[key] = undefined; }
-        });
-
-        resolve();
-      }, 300);
-    });
-  };
-
   const initializeUsertour = async (dataToUse: any): Promise<boolean> => {
     // Tear down any PF instance first
     if (hasInitialized || (window as any).productFruits?.services) {
@@ -112,7 +142,11 @@ export const useProductFruits = () => {
     const token = (dataToUse.usertourToken || '').trim();
     if (!token) {
       console.error('Usertour initialization aborted: missing Usertour.js token');
+      setToolStatus({ state: 'failed', tool: 'usertour', error: 'Missing Usertour.js token' });
       return false;
+    }
+    setToolStatus({ state: 'loading', tool: 'usertour' });
+    if (false) {
     }
     const userId = dataToUse.username || dataToUse.email || 'anonymous';
     const name = [dataToUse.firstName, dataToUse.lastName].filter(Boolean).join(' ') || dataToUse.username;
@@ -135,6 +169,7 @@ export const useProductFruits = () => {
       console.log('Usertour init queued for token:', token, 'user:', userId, identifyProps);
     } catch (e) {
       console.error('Usertour initialization failed:', e);
+      setToolStatus({ state: 'failed', tool: 'usertour', error: 'Usertour initialization failed' });
       return false;
     }
 
@@ -187,8 +222,12 @@ export const useProductFruits = () => {
     });
     observer.disconnect();
 
-    if (!loaded) return false;
+    if (!loaded) {
+      setToolStatus({ state: 'failed', tool: 'usertour', error: `Could not reach ${sdkScriptEl ? hostOf(sdkScriptEl.src) : 'js.usertour.io'}` });
+      return false;
+    }
 
+    setToolStatus({ state: 'active', tool: 'usertour' });
     console.log('Usertour SDK loaded successfully.');
     initializedWorkspaceCode = dataToUse.workspaceCode || 'usertour';
     hasInitialized = true;
@@ -222,6 +261,7 @@ export const useProductFruits = () => {
 
     if (!dataToUse.workspaceCode || !dataToUse.username) {
       console.log('Missing required workspace data for ProductFruits initialization');
+      setToolStatus({ state: 'failed', tool: 'productfruits', error: 'Missing workspace code or username' });
       return false;
     }
 
@@ -275,6 +315,7 @@ export const useProductFruits = () => {
         if (!settled) {
           settled = true;
           console.error(`ProductFruits script timed out after 10s: ${fullUrl}`);
+          setToolStatus({ state: 'failed', tool: 'productfruits', error: `Could not reach ${hostOf(fullUrl)} (timed out)` });
           resolve(false);
         }
       }, 10000);
@@ -286,6 +327,7 @@ export const useProductFruits = () => {
           console.log('ProductFruits script loaded successfully for workspace:', dataToUse.workspaceCode);
           initializedWorkspaceCode = dataToUse.workspaceCode;
           hasInitialized = true;
+          setToolStatus({ state: 'active', tool: 'productfruits' });
           resolve(true);
         }
       };
@@ -295,10 +337,12 @@ export const useProductFruits = () => {
           settled = true;
           clearTimeout(timeout);
           console.error(`Failed to load ProductFruits script from: ${fullUrl}`);
+          setToolStatus({ state: 'failed', tool: 'productfruits', error: `Could not reach ${hostOf(fullUrl)}` });
           resolve(false);
         }
       };
 
+      setToolStatus({ state: 'loading', tool: 'productfruits' });
       document.head.appendChild(mainScript);
       console.log('ProductFruits initializing with workspace code:', dataToUse.workspaceCode);
       console.log('Initialization data:', initData);
