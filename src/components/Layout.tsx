@@ -7,7 +7,7 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupConte
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 import { useLanguageSync } from "@/hooks/useLanguageSync";
-import { resetInitializationState } from "@/hooks/useProductFruits";
+import { resetInitializationState, useToolStatus } from "@/hooks/useProductFruits";
 import { APP_VERSION } from "@/config/version";
 import { useWorkspaceForm } from "@/hooks/useWorkspaceForm";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
@@ -26,7 +26,7 @@ const LayoutContent = () => {
   const newsfeedRef = useRef<HTMLButtonElement>(null);
   const [unreadCount, setUnreadCount] = useState(0);
   const [isInitiating, setIsInitiating] = useState(false);
-  const [isPFActive, setIsPFActive] = useState(false);
+  const toolStatus = useToolStatus();
   const { t } = useTranslation('navigation');
   const { localWorkspaceData, setLocalWorkspaceData, handleInitiateProductFruits, handleResetToDefaults } = useWorkspaceForm();
   const { updateWorkspaceData } = useWorkspace();
@@ -123,16 +123,6 @@ const LayoutContent = () => {
     navigate("/login");
   };
 
-  // Check ProductFruits active status
-  useEffect(() => {
-  const checkPFStatus = () => {
-      const active = !!(window as any).productFruits?.services;
-      setIsPFActive(prev => prev === active ? prev : active);
-    };
-    checkPFStatus();
-    const interval = setInterval(checkPFStatus, 5000);
-    return () => clearInterval(interval);
-  }, []);
 
   // Setup ProductFruits newsfeed
   useEffect(() => {
