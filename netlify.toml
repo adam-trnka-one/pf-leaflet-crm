@@ -1,0 +1,16 @@
+# Netlify build settings for LeafletCRM (Product Fruits demo app)
+# Public address: https://democrm.productfruits.com
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Single-page app: send every path to index.html so a page refresh
+# on /accounts, /dashboard etc. does not return 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
